@@ -14,7 +14,7 @@ function bank(t){
    ex("\\(\\dfrac{\\sqrt{48}}{\\sqrt3}\\)",["Use \\(\\sqrt a/\\sqrt b=\\sqrt{a/b}\\).","\\(\\sqrt{48/3}=\\sqrt{16}=4\\).","Check that both roots were positive."])
   ],
   practice:{foundation:["Simplify \\(\\sqrt{20}\\).","Simplify \\(\\sqrt{45}\\).","Simplify \\(2\\sqrt8+\\sqrt{18}\\)."],core:["Simplify \\(\\sqrt{108}\\).","Simplify \\(5\\sqrt{12}-\\sqrt{75}\\).","Simplify \\(\\sqrt{24}\\times\\sqrt6\\)."],extension:["Simplify \\(3\\sqrt{50}-2\\sqrt8+\\sqrt{98}\\).","Show that \\(\\sqrt{12}\\sqrt{27}=18\\).","Given \\(a\\sqrt3=\\sqrt{192}\\), find \\(a\\)."]},
-  homework:[hw("Foundation","Simplify \\(\\sqrt{63}\\).",["\\(63=9\\times7\\).","\\(\\sqrt{63}=3\\sqrt7\\)."]),hw("Core","Simplify \\(4\\sqrt{18}-\\sqrt8\\).",["\\(\\sqrt{18}=3?\\) No: \\(\\sqrt{18}=3?\\sqrt2=3?\\) because \\(18=9\\times2\\), so \\(\\sqrt{18}=3\\sqrt2\\).","\\(\\sqrt8=2\\sqrt2\\).","\\(4(3\\sqrt2)-2\\sqrt2=10\\sqrt2\\)."]),hw("Extension","Simplify \\(\\sqrt{54}\\times\\sqrt{24}\\).",["Combine first: \\(\\sqrt{1296}\\).","\\(1296=36^2\\), so the value is \\(36\\)."])]
+  homework:[hw("Foundation","Simplify \\(\\sqrt{63}\\).",["\\(63=9\\times7\\).","\\(\\sqrt{63}=3\\sqrt7\\)."]),hw("Core","Simplify \\(4\\sqrt{18}-\\sqrt8\\).",["\\(18=9\\times2\\), so \\(\\sqrt{18}=3\\sqrt2\\).","\\(\\sqrt8=2\\sqrt2\\).","\\(4(3\\sqrt2)-2\\sqrt2=10\\sqrt2\\)."]),hw("Extension","Simplify \\(\\sqrt{54}\\times\\sqrt{24}\\).",["Combine first: \\(\\sqrt{1296}\\).","\\(1296=36^2\\), so the value is \\(36\\)."])]
  };
  if(t==="rationalise") return {
   examples:[
