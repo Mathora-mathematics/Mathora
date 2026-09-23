@@ -738,9 +738,12 @@ function initModelBoards(){
     function sizeCanvas(){
       var r=shell.getBoundingClientRect();
       if(r.width<20||r.height<20)return;
-      canvas.width=Math.max(1,Math.floor(r.width*dpr));
-      canvas.height=Math.max(1,Math.floor(r.height*dpr));
+      var targetW=Math.max(1,Math.floor(r.width*dpr));
+      var targetH=Math.max(1,Math.floor(r.height*dpr));
       canvas.style.width=r.width+"px";canvas.style.height=r.height+"px";
+      if(canvas.width===targetW && canvas.height===targetH) return;
+      canvas.width=targetW;
+      canvas.height=targetH;
       var cx=canvas.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);
     }
     if(canvas.dataset.bound==="1"){sizeCanvas();return;}
