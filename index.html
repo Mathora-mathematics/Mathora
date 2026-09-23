@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#eaf6fb">
+  <title>Year 10 Mathematics | NES</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="Open lessons">☰</button>
+    <div>
+      <div class="eyebrow">NEW ENGLISH SCHOOL • YEAR 10</div>
+      <h1 id="siteTitle">Mathematics Teaching Hub</h1>
+    </div>
+    <button id="presentBtn" class="ghost-btn">Presentation mode</button>
+  </header>
+
+  <div class="shell">
+    <aside id="sidebar" class="sidebar" aria-label="Lesson navigation">
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search lessons…" autocomplete="off">
+      </div>
+      <div id="lessonNav"></div>
+    </aside>
+
+    <main id="main" class="main">
+      <section class="hero">
+        <div>
+          <span id="unitPill" class="pill">Year 10</span>
+          <h2 id="lessonTitle">Choose a lesson</h2>
+          <p id="lessonSubtitle"></p>
+        </div>
+        <div class="hero-actions">
+          <button id="prevBtn" class="ghost-btn">← Previous</button>
+          <button id="nextBtn" class="primary-btn">Next →</button>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="Lesson sections">
+        <button class="tab active" data-tab="learn">Learning points</button>
+        <button class="tab" data-tab="examples">Teacher examples</button>
+        <button class="tab" data-tab="practice">Independent practice</button>
+        <button class="tab" data-tab="homework">Homework</button>
+        <button class="tab" data-tab="whiteboard">Whiteboard</button>
+      </nav>
+
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <template id="solutionTemplate">
+    <details class="solution">
+      <summary>Show solution</summary>
+      <div class="solution-body"></div>
+    </details>
+  </template>
+
+  <script src="lessons.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
