@@ -1457,3 +1457,950 @@ function render(){
   if(tab==="whiteboard")initBoard();
   location.hash=l.id+"-"+tab;
 }
+
+
+/* =====================================================================
+   V4 — textbook-first teaching layer
+   Source order: NES SoW -> Cambridge Coursebook -> Exam Success
+   Maths renderer: KaTeX with graceful failure; no MathJax dependency.
+   ===================================================================== */
+
+var COURSEBOOK_URL="https://drive.google.com/file/d/1A_hJ2SAZEXpG2U1HRmTxMt1fxb-VYSGL/view";
+var EXAM_SUCCESS_URL="https://drive.google.com/file/d/1FRNikzxut4HDIhkOf20QSmaeK-bwB5AH/view";
+var SOW_URL="https://docs.google.com/spreadsheets/d/1YnmCS9DqRTNO4v5UrAC9WzQUleavA1br/edit";
+
+var EXAM_SUCCESS_MAP={
+ "12":"Exam Success — Chapter 1: Number",
+ "13":"Exam Success — Chapter 2: Algebra and graphs",
+ "14":"Exam Success — Chapter 2: Algebra and graphs",
+ "15":"Exam Success — Chapter 2: Algebra and graphs",
+ "16":"Exam Success — Chapter 4: Geometry",
+ "17":"Exam Success — Chapter 5: Mensuration",
+ "18":"Exam Success — Chapter 9: Statistics",
+ "19":"Exam Success — Chapter 9: Statistics",
+ "20":"Exam Success — Chapter 2: Algebra and graphs",
+ "21":"Exam Success — Chapter 1: Number / sets",
+ "22":"Exam Success — Chapter 1: Number / proportion"
+};
+
+var LEARNING_GUIDE={
+"12.1":{
+ concept:"A surd is an irrational root that is deliberately left in exact form. The aim is not to turn it into a decimal, but to rewrite it in a simpler exact form.",
+ rules:[
+  ["\\sqrt{a}\\,\\sqrt{b}=\\sqrt{ab}","Roots can be multiplied by multiplying the values inside the roots."],
+  ["\\frac{\\sqrt a}{\\sqrt b}=\\sqrt{\\frac ab}","For positive values, roots can be divided in the same way."],
+  ["\\sqrt{k^2a}=k\\sqrt a","To simplify a surd, extract perfect-square factors."],
+  ["p\\sqrt a+q\\sqrt a=(p+q)\\sqrt a","Only like surds can be collected."]
+ ],
+ method:["Look for the largest perfect-square factor first.","Simplify each surd before trying to add or subtract.","When brackets are present, expand as you would with algebra, then simplify roots and collect like terms.","Keep the final answer exact unless the question explicitly asks for a decimal."],
+ pitfalls:["Do not use \\(\\sqrt a+\\sqrt b=\\sqrt{a+b}\\); this is not a valid rule.","The coefficient of \\(\\sqrt a\\) is 1 when no number is written.","Check signs carefully when expanding brackets containing surds."]
+},
+"12.2":{
+ concept:"Rationalising the denominator means rewriting an equivalent fraction so that no surd remains in the denominator. The Cambridge coursebook treats this as a mathematical convention for exact answers.",
+ rules:[
+  ["\\frac{k}{\\sqrt a}\\times\\frac{\\sqrt a}{\\sqrt a}","For a single surd denominator, multiply top and bottom by that surd."],
+  ["(a+\\sqrt b)(a-\\sqrt b)=a^2-b","For a two-term denominator, use the conjugate so the denominator becomes rational."],
+  ["\\frac{m}{n}\\times\\frac{k}{k}=\\frac{mk}{nk}","You are multiplying by a strategic form of 1, so the value is unchanged."]
+ ],
+ method:["Simplify any surds first; sometimes the denominator becomes rational without further work.","For \\(a+\\sqrt b\\), multiply by \\(a-\\sqrt b\\); for \\(a-\\sqrt b\\), multiply by \\(a+\\sqrt b\\).","Expand the numerator fully and simplify the denominator using difference of two squares.","Simplify the final exact expression."],
+ pitfalls:["Do not multiply only the denominator.","Use the whole conjugate, including its sign.","A rationalised answer can still contain surds in the numerator."]
+},
+"13.1":{
+ concept:"An algebraic fraction is simplified in the same way as a numerical fraction: factor first, then cancel common factors.",
+ rules:[
+  ["\\frac{ab}{ac}=\\frac bc","Cancellation is cancellation of factors."],
+  ["\\frac{x^m}{x^n}=x^{m-n}","Index laws apply to algebraic factors."],
+  ["\\frac{(x-a)(x-b)}{(x-a)(x-c)}=\\frac{x-b}{x-c}","Factorise polynomial numerators and denominators before cancelling."]
+ ],
+ method:["Find numerical HCFs and common powers first.","Factorise every polynomial expression that can be factorised.","Cancel common factors only after factorisation.","Keep the original denominator restrictions in mind even if a factor cancels."],
+ pitfalls:["You cannot cancel individual terms across addition or subtraction.","Do not lose excluded values from the original denominator.","Always check whether the final numerator or denominator can factorise further."]
+},
+"13.2":{
+ concept:"The four operations with algebraic fractions use the same fraction rules as arithmetic, but factorising early usually makes the work much shorter.",
+ rules:[
+  ["\\frac ab\\times\\frac cd=\\frac{ac}{bd}","Multiply numerators and denominators; cancel factors before or after multiplying."],
+  ["\\frac ab\\div\\frac cd=\\frac ab\\times\\frac dc","Division means multiply by the reciprocal."],
+  ["\\frac ab+\\frac cd=\\frac{ad+bc}{bd}","Addition/subtraction requires a common denominator."]
+ ],
+ method:["For multiplication/division, factorise and cancel before expanding.","For addition/subtraction, factor denominators first and identify the lowest common denominator.","Multiply every numerator by the missing factor.","Combine numerators, then factorise the final numerator to see whether more cancellation is possible."],
+ pitfalls:["Do not add denominators.","When subtracting, use brackets around an entire numerator before removing them.","The coursebook explicitly advises checking whether the final numerator can be factorised further."]
+},
+"14.1":{
+ concept:"Constructing algebra means translating words, diagrams and relationships into expressions, equations or formulae using the shortest standard notation.",
+ rules:[
+  ["3x","Write the number before the variable and omit the multiplication sign."],
+  ["x^2,\\;x^3","Use indices for repeated multiplication."],
+  ["x+5","'The sum of x and five' means addition."],
+  ["6x-2","'Six times x minus two' means multiply first, then subtract."]
+ ],
+ method:["Choose and define the unknown first.","Translate one phrase at a time in the order stated.","Use brackets when an operation applies to a whole expression.","For consecutive integers use \\(n,n+1\\); consecutive even integers can be \\(2n,2n+2\\).","An expression has no equals sign; an equation states equality; a formula links variables."],
+ pitfalls:["Order matters in subtraction and division.","Do not write unnecessary multiplication signs.","Use brackets to protect a sum or difference being multiplied."]
+},
+"14.2":{
+ concept:"A linear equation is solved by preserving equality: whatever operation is performed on one side must be performed on the other.",
+ rules:[
+  ["ax+b=c","Undo addition/subtraction before division when convenient."],
+  ["a(x+b)=c","Expand brackets or divide first, depending on which is cleaner."],
+  ["ax+b=cx+d","Collect variable terms on one side and constants on the other."]
+ ],
+ method:["Simplify both sides first: expand brackets and collect like terms.","Use inverse operations while keeping the equation balanced.","For fractional coefficients, multiply through by a common denominator.","Substitute the final value back into the original equation to check."],
+ pitfalls:["A negative coefficient is part of the term.","Do not change signs merely because a term moves sides; the sign changes because an inverse operation is applied.","When forming an equation from a context, define the unknown before solving."]
+},
+"14.3":{
+ concept:"Quadratic equations can have two, one or no real solutions. The SoW requires factorisation, completing the square and the quadratic formula.",
+ rules:[
+  ["ax^2+bx+c=0","Put the equation into standard form before choosing a method."],
+  ["(x-p)(x-q)=0","If a product is zero, at least one factor is zero."],
+  ["x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}","The quadratic formula works for any quadratic with \\(a\\ne0\\)."],
+  ["x^2+2px=(x+p)^2-p^2","This is the key pattern for completing the square."]
+ ],
+ method:["Factorise when integer factors are visible.","Complete the square when the leading coefficient is 1 or when exact turning-point form is useful.","Use the quadratic formula when factorisation is not convenient.","Keep exact surd answers when required by the question."],
+ pitfalls:["The equation must equal zero before using the zero-product rule.","Substitute signs carefully into the quadratic formula, especially when \\(b<0\\).","The \\(\\pm\\) creates two candidate solutions."]
+},
+"14.4":{
+ concept:"A fractional equation contains one or more denominators. Clear the denominators using an LCM before solving, while respecting values that make a denominator zero.",
+ rules:[
+  ["x\\ne a","If a denominator contains \\(x-a\\), then \\(x=a\\) is excluded."],
+  ["\\text{LCM}\\times\\text{every term}","Multiply every term on both sides by the lowest common denominator."]
+ ],
+ method:["Write down restrictions first.","Factor denominators if necessary and choose the LCM.","Multiply every term by the LCM so the fractions cancel.","Solve the resulting linear or quadratic equation.","Reject any solution that violates an original denominator restriction."],
+ pitfalls:["Do not multiply only some terms by the LCM.","A quadratic may appear after clearing denominators.","Always check candidate solutions in the original equation."]
+},
+"14.5":{
+ concept:"Two simultaneous equations describe two conditions that must be true at the same time. A solution is an ordered pair satisfying both.",
+ rules:[
+  ["\\text{intersection of two lines}","Graphically, the simultaneous solution is the point where the two lines meet."],
+  ["\\text{eliminate one variable}","Make coefficients equal/opposite, then add or subtract the equations."],
+  ["y=\\cdots","For substitution, express one variable in terms of the other and substitute."]
+ ],
+ method:["Choose elimination when coefficients line up easily.","Choose substitution when one variable is already isolated or has coefficient 1.","Graphical solutions are approximate unless the intersection lies exactly on grid values.","For word problems, define both unknowns and form two independent equations."],
+ pitfalls:["Two unknowns require two independent equations.","When multiplying an equation, multiply every term.","Check the final pair in both original equations."]
+},
+"14.6":{
+ concept:"When one simultaneous equation is linear and the other is non-linear, substitution usually produces a quadratic. This can produce two intersection points.",
+ rules:[
+  ["y=mx+c","Use the linear equation to replace \\(y\\) (or \\(x\\)) in the non-linear equation."],
+  ["\\text{quadratic}=0","Solve the resulting quadratic, then substitute back for the second coordinate."]
+ ],
+ method:["Rearrange the linear equation if necessary.","Substitute it into the non-linear equation.","Solve the resulting quadratic completely.","Find the matching second coordinate for each root.","Check both ordered pairs."],
+ pitfalls:["There may be two valid pairs; do not stop after the first root.","Keep pairs matched correctly.","Powers in this SoW sub-unit are no higher than two."]
+},
+"14.7":{
+ concept:"Changing the subject means rearranging a formula so the required variable is alone on one side.",
+ rules:[
+  ["y=ax+b\\Rightarrow x=\\frac{y-b}{a}","Reverse the order of operations."],
+  ["P=ax+bx=x(a+b)","If the subject appears twice, factor it out first."],
+  ["A=\\pi r^2\\Rightarrow r=\\sqrt{A/\\pi}","Undo powers using roots."]
+ ],
+ method:["Identify what operations are acting on the required subject.","Undo outer operations one at a time.","If the subject occurs in several terms, collect those terms and factorise.","Clear fractions early when that simplifies the structure.","Check by substituting your rearranged expression back into the original relationship."],
+ pitfalls:["Do not 'move' terms without a valid inverse operation.","When taking square roots in geometric formulae, context may require the positive root.","Keep brackets around multi-term numerators and denominators."]
+},
+"15.1":{
+ concept:"An inequality describes a range of values rather than one exact value. The four symbols distinguish strict and inclusive boundaries.",
+ rules:[
+  ["x<a","Strict boundary: \\(a\\) is not included; use an open circle."],
+  ["x\\le a","Inclusive boundary: \\(a\\) is included; use a filled circle."],
+  ["x>a","Shade/arrow to the right on a number line."],
+  ["x<a","Shade/arrow to the left on a number line."]
+ ],
+ method:["Read the symbol from the variable outward.","Decide whether the endpoint is included.","Place the endpoint accurately on the number line.","Shade the side containing values that satisfy the statement."],
+ pitfalls:["< and > are strict; ≤ and ≥ include equality.","A compound inequality describes values between two boundaries.","Check a sample value if you are unsure which direction to shade."]
+},
+"15.2":{
+ concept:"Solve a linear inequality like a linear equation, except that multiplying or dividing by a negative reverses the inequality sign.",
+ rules:[
+  ["-2x<6\\Rightarrow x>-3","Dividing by a negative reverses the sign."],
+  ["a<x\\le b","For a compound inequality, apply the same operation to all three parts."]
+ ],
+ method:["Expand brackets and collect like terms.","Use inverse operations to isolate the variable.","Reverse the sign only when multiplying/dividing by a negative quantity.","Represent the final answer on a number line when asked.","Interpret integer/context restrictions after solving."],
+ pitfalls:["Do not reverse the sign for addition or subtraction.","Keep all parts of a compound inequality balanced.","In context, the greatest/least integer solution may be what is actually required."]
+},
+"15.3":{
+ concept:"A linear inequality in two variables represents a half-plane. The boundary line and whether that boundary is included are both important.",
+ rules:[
+  ["y<mx+c","Use a broken/dashed boundary because equality is not included."],
+  ["y\\le mx+c","Use a solid boundary because equality is included."],
+  ["\\text{test point}","Substitute a point not on the boundary to decide which side satisfies the inequality."]
+ ],
+ method:["Replace the inequality sign with '=' and draw the boundary line accurately.","Choose solid or dashed according to inclusion.","Test a convenient point such as \\((0,0)\\) if it is not on the boundary.","Shade the required region (or, if following the coursebook convention in a question, shade the unwanted region)."],
+ pitfalls:["Do not infer the correct side from visual appearance alone; test a point.","Vertical boundaries such as \\(x=3\\) require left/right shading.","Horizontal boundaries such as \\(y=2\\) require above/below shading."]
+},
+"15.4":{
+ concept:"A shaded feasible region can be described by listing one inequality for each boundary.",
+ rules:[
+  ["\\text{solid line}\\Rightarrow \\le\\text{ or }\\ge","The boundary is part of the region."],
+  ["\\text{dashed line}\\Rightarrow <\\text{ or }>","The boundary is excluded."]
+ ],
+ method:["Find the equation of each boundary line.","Use a test point inside the required region.","Choose the inequality sign that makes the test point true.","Repeat for every boundary and list the inequalities together."],
+ pitfalls:["This SoW does not include linear-programming optimisation.","The same region can require three or more simultaneous inequalities.","Check axes boundaries such as \\(x\\ge0\\) and \\(y\\ge0\\)."]
+},
+"16.1":{
+ concept:"Unknown-angle problems are solved by identifying a geometric relationship, writing an equation, and giving the correct reason.",
+ rules:[
+  ["\\text{angles at a point}=360^\\circ","All angles around one point make a full turn."],
+  ["\\text{angles on a straight line}=180^\\circ","Adjacent angles on a straight line are supplementary."],
+  ["\\text{vertically opposite angles are equal}","Opposite angles formed by intersecting lines are equal."],
+  ["\\text{triangle}=180^\\circ,\\quad \\text{quadrilateral}=360^\\circ","Use angle sums for polygons."]
+ ],
+ method:["Mark known equal/right angles on the diagram.","State the relationship being used before calculating.","Form an equation if the angle is algebraic.","Give the reason beside the numerical step, using proper geometric terminology."],
+ pitfalls:["Use three-letter notation correctly when an angle name is required.","Do not say merely 'because it looks equal'.","Right-angle markers represent exactly \\(90^\\circ\\)."]
+},
+"16.2":{
+ concept:"When a transversal cuts parallel lines, corresponding and alternate angles are equal while co-interior angles are supplementary.",
+ rules:[
+  ["\\text{corresponding angles are equal}","Often recognised by an F-type position."],
+  ["\\text{alternate angles are equal}","Often recognised by a Z-type position."],
+  ["\\text{co-interior angles sum to }180^\\circ","These lie on the same side of the transversal."]
+ ],
+ method:["Confirm that the lines are marked parallel.","Identify the relationship using its correct name.","Transfer the known angle, then use straight-line or triangle sums if needed.","In multi-step questions, write a reason for each new angle."],
+ pitfalls:["F/Z/C shapes are memory aids, not accepted geometric reasons; use the words corresponding, alternate and co-interior.","Co-interior angles are not generally equal.","Parallel-arrow markings matter."]
+},
+"16.3":{
+ concept:"Polygon angle facts come from splitting an n-sided polygon into triangles and from the full-turn total of exterior angles.",
+ rules:[
+  ["\\text{interior sum}=(n-2)180^\\circ","An n-gon can be divided into \\(n-2\\) triangles."],
+  ["\\text{exterior sum}=360^\\circ","One exterior angle at each vertex makes a full turn."],
+  ["\\text{regular exterior}=360^\\circ/n","All exterior angles are equal in a regular polygon."],
+  ["\\text{regular interior}=180^\\circ-360^\\circ/n","Interior and adjacent exterior angles are supplementary."]
+ ],
+ method:["Decide whether the polygon is regular.","Use the appropriate sum formula.","For reverse problems, form an equation in \\(n\\).","For irregular polygons, add known interior/exterior angles rather than assuming equality."],
+ pitfalls:["Interior-angle sum is not \\(360^\\circ\\) except for a quadrilateral.","'Regular' means equal sides and equal angles.","Concave polygons use the same interior-angle-sum formula."]
+},
+"16.4":{
+ concept:"Line symmetry describes reflection onto itself; rotational symmetry describes a shape matching itself after rotation about a centre.",
+ rules:[
+  ["\\text{order of rotational symmetry}=\\frac{360^\\circ}{\\text{smallest matching angle}}","Count the starting position as one match."],
+  ["\\text{circle}","A circle has infinitely many lines of symmetry and infinite rotational symmetry."]
+ ],
+ method:["For line symmetry, imagine folding along the candidate line.","For rotational symmetry, rotate about the centre through one full turn.","Use shape properties rather than appearance alone."],
+ pitfalls:["A rectangle has two lines of symmetry but rotational order 2.","A general parallelogram has rotational order 2 but no line symmetry.","Orientation matters for irregular shapes."]
+},
+"16.5":{
+ concept:"Three-dimensional symmetry is described using planes of symmetry and axes of rotational symmetry.",
+ rules:[
+  ["\\text{plane of symmetry}","A plane divides a solid into mirror-image halves."],
+  ["\\text{axis of rotational symmetry}","A line about which the solid can rotate and match itself."]
+ ],
+ method:["Identify the solid and its cross-section/base symmetry.","Imagine slicing the solid with a plane.","For rotational symmetry, consider rotations about a line through the solid.","Use correct language: prism, cylinder, pyramid, cone, plane, axis."],
+ pitfalls:["A line drawn on a 2D sketch is not automatically a plane in 3D.","Prisms inherit many symmetries from their cross-section.","A cone has infinitely many vertical planes of symmetry but one main rotational axis."]
+},
+"17.1":{
+ concept:"Metric conversions depend on dimension. A length scale factor is squared for area and cubed for volume.",
+ rules:[
+  ["1\\text{ m}=100\\text{ cm}","Length conversion."],
+  ["1\\text{ m}^2=10\\,000\\text{ cm}^2","Square the length scale factor."],
+  ["1\\text{ m}^3=1\\,000\\,000\\text{ cm}^3","Cube the length scale factor."],
+  ["1\\text{ litre}=1000\\text{ cm}^3,\\quad1\\text{ m}^3=1000\\text{ litres}","Volume/capacity links."]
+ ],
+ method:["Write the unit relationship first.","Decide whether it is length, area or volume.","Apply the scale factor the correct number of times.","Attach the converted unit to the final value."],
+ pitfalls:["Do not use ×100 for m² to cm².","Square/cube units must remain squared/cubed.","Mass and capacity use different conversion facts from geometric volume."]
+},
+"17.2":{
+ concept:"Perimeter measures the outside boundary; area measures the surface enclosed. Perpendicular height is essential in triangle, parallelogram and trapezium formulae.",
+ rules:[
+  ["A_{\\triangle}=\\frac12bh","Use the perpendicular height."],
+  ["A_{\\parallel}=bh","Base × perpendicular height."],
+  ["A_{\\text{trap}}=\\frac12(a+b)h","\\(a,b\\) are the parallel sides."]
+ ],
+ method:["Mark or calculate missing lengths first.","For compound shapes, split into simple shapes or subtract cut-outs.","Keep perimeter and area calculations separate.","Use consistent units before calculating."],
+ pitfalls:["A sloping side is not the height unless it is perpendicular to the base.","Area units are squared.","Internal edges are not part of an external perimeter unless the shape has a cut-out boundary."]
+},
+"17.3":{
+ concept:"Circle problems use radius, diameter, circumference and area. Exact answers may be left in terms of \\(\\pi\\).",
+ rules:[
+  ["d=2r","Diameter is twice the radius."],
+  ["C=2\\pi r=\\pi d","Circumference."],
+  ["A=\\pi r^2","Area."]
+ ],
+ method:["Identify whether the given length is a radius or diameter.","Substitute into the correct formula.","Keep \\(\\pi\\) exact until the final step unless a decimal is requested.","For reverse problems, rearrange the formula before taking a square root where needed."],
+ pitfalls:["Do not use diameter in \\(\\pi r^2\\).","Area units are squared; circumference units are linear.","Round only once at the end."]
+},
+"17.4":{
+ concept:"A sector is a fraction of a circle. Use the fraction \\(\\theta/360\\) for both arc length and sector area.",
+ rules:[
+  ["L=\\frac{\\theta}{360}\\,2\\pi r","Arc length."],
+  ["A=\\frac{\\theta}{360}\\,\\pi r^2","Sector area."],
+  ["P_{\\text{sector}}=L+2r","Sector perimeter includes both radii."],
+  ["\\theta_{\\text{major}}=360^\\circ-\\theta_{\\text{minor}}","Major sectors use the remaining angle."]
+ ],
+ method:["Identify minor or major sector.","Find the relevant central angle.","Take the same fraction of circumference or circle area.","For perimeter, add straight radial edges separately."],
+ pitfalls:["Sector perimeter is not just arc length.","For a major sector, calculate the major angle first.","Keep exact \\(\\pi\\) values if required."]
+},
+"18.1":{
+ concept:"Statistical data should be classified and organised before it is analysed. Tables make frequencies, categories and relationships visible.",
+ rules:[
+  ["\\text{categorical / numerical}","Decide whether values are labels or numbers."],
+  ["\\text{discrete / continuous}","Discrete values are countable; continuous values are measured."],
+  ["\\text{frequency}","Number of observations in a category/class."],
+  ["\\text{two-way table}","Shows two categorical variables simultaneously."]
+ ],
+ method:["Choose clear non-overlapping categories or class intervals.","Use tallies to reduce counting errors.","Complete row/column totals in a two-way table.","Check the grand total against the number of observations."],
+ pitfalls:["Grouped intervals must not overlap.","A boundary value must belong to exactly one class.","Totals provide an important error check."]
+},
+"18.2":{
+ concept:"Measures of centre describe a typical value; measures of spread describe variability. Different measures suit different data.",
+ rules:[
+  ["\\bar x=\\frac{\\sum x}{n}","Mean."],
+  ["\\text{range}=\\max-\\min","Overall spread."],
+  ["\\text{IQR}=Q_3-Q_1","Spread of the middle 50%."]
+ ],
+ method:["Order data before finding median or quartiles.","Use the median/IQR when extreme values would distort the mean/range.","Use mean when every value should contribute to the summary.","When comparing groups, comment on both centre and spread."],
+ pitfalls:["The mode may not exist or may not be unique.","Quartile conventions must be applied consistently.","A larger average does not imply greater consistency."]
+},
+"18.3":{
+ concept:"For grouped data, the exact individual values are unknown, so the mean is estimated using class midpoints.",
+ rules:[
+  ["m=\\frac{L+U}{2}","Class midpoint."],
+  ["\\bar x\\approx\\frac{\\sum fm}{\\sum f}","Estimated grouped mean."]
+ ],
+ method:["Find the midpoint of each class.","Multiply each midpoint by its class frequency.","Add the \\(fm\\) products and divide by total frequency.","State or understand that the answer is an estimate."],
+ pitfalls:["Do not use class boundaries themselves instead of midpoints.","The wider the classes, the more information about individual values is lost.","Check \\(\\sum f\\) carefully."]
+},
+"18.4":{
+ concept:"The modal class is the class with greatest frequency. The median class is the class containing the middle observation.",
+ rules:[
+  ["\\text{modal class}=\\text{class with highest frequency}","Use frequency, not the numerical size of the class."],
+  ["\\text{median position}\\approx n/2","Locate this position using cumulative frequency."]
+ ],
+ method:["For modal class, compare frequencies.","For median class, form cumulative frequencies and find where the middle position falls.","For continuous grouped data, more advanced linear interpolation can refine an estimate."],
+ pitfalls:["The syllabus names modal class explicitly; median-class questions can still appear in examinations.","Class width does not change the modal class when working from a frequency table (histograms require density)."]
+},
+"18.5":{
+ concept:"Interpreting a table means extracting information, making valid comparisons and drawing conclusions that the data actually supports.",
+ rules:[
+  ["\\text{proportion}=\\frac{\\text{part}}{\\text{whole}}","Convert to percentages when comparison of differently sized groups is needed."]
+ ],
+ method:["Read headings and units before using values.","Use totals, proportions and differences rather than impressions.","Quote numerical evidence in an inference.","Check whether the table shows frequencies, percentages or rates."],
+ pitfalls:["Do not compare raw totals when group sizes differ substantially.","An inference should not claim more than the table shows."]
+},
+"18.6":{
+ concept:"A complete comparison between data sets normally discusses both a measure of centre and a measure of spread.",
+ rules:[
+  ["\\text{higher median/mean}\\Rightarrow\\text{higher typical value}","State the actual values."],
+  ["\\text{smaller IQR/range}\\Rightarrow\\text{more consistent}","State the actual values."]
+ ],
+ method:["Choose comparable measures for both groups.","Compare typical value first.","Compare spread/consistency second.","Write the conclusion in the context of the data."],
+ pitfalls:["Do not say one set is 'better' unless the context defines what better means.","Two means alone do not tell you about consistency."]
+},
+"18.7":{
+ concept:"Statistical conclusions are limited by how the data was collected and what variables were measured.",
+ rules:[
+  ["\\text{sample}\\ne\\text{population}","A sample may not represent the whole population."],
+  ["\\text{association}\\ne\\text{causation}","Observed differences or patterns do not automatically identify a cause."]
+ ],
+ method:["Check sample size and sampling method.","Look for missing groups, non-response, self-selection or measurement bias.","Separate what is observed from what is inferred.","Use cautious language such as 'suggests' when evidence is limited."],
+ pitfalls:["A large sample can still be biased.","A graph or table can be accurate but used to support an over-strong conclusion."]
+},
+"19.1":{
+ concept:"Different statistical diagrams serve different purposes. Construction conventions matter because poor scales, missing keys or incorrect angles can mislead.",
+ rules:[
+  ["\\text{pie angle}=\\frac{f}{\\sum f}\\times360^\\circ","Each sector represents a fraction of the total."],
+  ["\\text{bar chart}","Frequency is shown by bar height; bars for categories/discrete values are separated."],
+  ["\\text{stem-and-leaf}","Leaves are ordered and a key is required."],
+  ["\\text{pictogram}","A key states the value of one whole symbol."]
+ ],
+ method:["Choose a sensible scale and label axes.","Check a pie chart totals \\(360^\\circ\\).","Order stems/leaves and include a key.","For dual/stacked bar charts, keep a common scale and clear legend."],
+ pitfalls:["Do not join discrete bar-chart bars.","Partial pictogram symbols must be interpreted proportionally.","A pie chart is unsuitable for overlapping categories."]
+},
+"19.2":{
+ concept:"A scatter diagram displays paired (bivariate) data to reveal a possible relationship between two variables.",
+ rules:[
+  ["(x,y)","Each observation contributes one paired point."],
+  ["\\times","The SoW specifically expects plotted points to be clearly marked, for example as small crosses."]
+ ],
+ method:["Put the explanatory variable on the horizontal axis when appropriate.","Choose scales covering the full data range.","Plot every pair accurately.","Look for direction, strength and outliers after plotting."],
+ pitfalls:["Do not join scatter points in order.","An isolated point should be identified as an outlier, not silently ignored."]
+},
+"19.3":{
+ concept:"Correlation describes the direction and strength of an association between two variables.",
+ rules:[
+  ["\\text{positive}","As one variable increases, the other tends to increase."],
+  ["\\text{negative}","As one variable increases, the other tends to decrease."],
+  ["\\text{zero correlation}","No clear linear trend."]
+ ],
+ method:["State direction first, then strength where appropriate.","Comment on outliers.","Remember that correlation is evidence of association, not proof of cause and effect."],
+ pitfalls:["A curved relationship can have weak linear correlation while still showing a pattern.","A third variable may explain an apparent relationship."]
+},
+"19.4":{
+ concept:"A straight line of best fit summarises the linear trend of a scatter plot and can be used for estimates.",
+ rules:[
+  ["\\text{single ruled line}","The SoW says it should be drawn by inspection."],
+  ["\\text{full data set}","Extend the line across the data cloud."],
+  ["\\text{balanced points}","Aim for roughly even numbers above and below over the line's length."]
+ ],
+ method:["Ignore individual-point chasing; fit the overall pattern.","Use the line for interpolation inside the observed range.","If extrapolating, state that reliability is lower.","More able students can form an approximate equation of the line."],
+ pitfalls:["Do not force the line through the origin unless the context/data supports this.","A strong correlation gives better predictions than a weak one, but predictions remain estimates."]
+},
+"19.5":{
+ concept:"Cumulative frequency records a running total. A cumulative-frequency curve shows how many observations are at or below each upper class boundary.",
+ rules:[
+  ["CF_k=f_1+f_2+\\cdots+f_k","Cumulative total."],
+  ["\\text{plot at upper class boundaries}","Pair each cumulative total with the upper boundary of its class."],
+  ["\\text{small crosses + smooth curve}","The SoW explicitly specifies clearly marked points joined by a smooth curve."]
+ ],
+ method:["Calculate running totals.","Plot cumulative frequency on the vertical axis.","Plot upper class boundaries on the horizontal axis.","Join with a smooth increasing curve.","Use the curve to estimate counts/probabilities."],
+ pitfalls:["Cumulative frequency cannot decrease.","Do not plot ordinary class midpoints for the cumulative graph."]
+},
+"19.6":{
+ concept:"Median, quartiles and percentiles are read from positions on the cumulative-frequency scale, then projected across to the curve and down to the data axis.",
+ rules:[
+  ["Q_1:\\;0.25N","25th percentile."],
+  ["\\text{median}:\\;0.50N","50th percentile."],
+  ["Q_3:\\;0.75N","75th percentile."],
+  ["IQR=Q_3-Q_1","Middle-50% spread."]
+ ],
+ method:["Find the required cumulative-frequency position.","Move horizontally to the curve.","Move vertically to the horizontal axis.","Read the approximate data value.","For a cutoff such as top 20%, read the 80th percentile."],
+ pitfalls:["Graph readings are estimates.","Use total frequency N, not the highest data value, to find percentile positions."]
+},
+"19.7":{
+ concept:"A histogram represents continuous grouped data. When class widths differ, height must be frequency density so bar area represents frequency.",
+ rules:[
+  ["\\text{frequency density}=\\frac{\\text{frequency}}{\\text{class width}}","Vertical-axis quantity."],
+  ["\\text{frequency}=\\text{density}\\times\\text{class width}","Histogram bar area corresponds to frequency."]
+ ],
+ method:["Calculate every class width.","Calculate density for each class.","Draw adjacent bars over the exact class intervals.","Label the vertical axis 'Frequency density'.","Use bar area to recover frequencies."],
+ pitfalls:["Do not use raw frequency as height when widths are unequal.","Histogram bars touch because the variable is continuous.","A taller bar is not necessarily a more frequent class if widths differ."]
+},
+"19.8":{
+ concept:"Frequency-density calculations connect the frequency table and histogram in both directions.",
+ rules:[
+  ["d=f/w","Density."],
+  ["f=dw","Frequency."],
+  ["w=f/d","Class width."]
+ ],
+ method:["Identify which two quantities are known.","Use the appropriate rearrangement.","For partial intervals, use proportional bar area only when a uniform distribution within the class is being estimated."],
+ pitfalls:["Keep class width in the same data units as the horizontal axis.","The modal class in a histogram corresponds to greatest density, not necessarily greatest frequency."]
+},
+"19.9":{
+ concept:"Inference from a statistical diagram must be supported by what the diagram actually displays.",
+ rules:[
+  ["\\text{read}\\rightarrow\\text{compare}\\rightarrow\\text{infer}","Extract values first, then make the statement."]
+ ],
+ method:["Read scale and units carefully.","Quote numerical/visual evidence.","Distinguish observations from explanations.","Use cautious language for claims beyond the display."],
+ pitfalls:["Truncated axes can exaggerate differences.","Different diagram types emphasise different aspects of data."]
+},
+"19.10":{
+ concept:"Graphs can compare centre, spread, shape and unusual features between data sets.",
+ rules:[
+  ["\\text{median + IQR}","A common comparison pair for cumulative-frequency/box-style summaries."],
+  ["\\text{centre + spread + shape}","Use more than one feature when the graph allows it."]
+ ],
+ method:["Compare typical values.","Compare consistency/spread.","Comment on skew/outliers/clusters if visible.","Support every comparison with values read from the graph."],
+ pitfalls:["Do not infer individual values from a grouped graph unless justified.","A higher median does not imply lower variability."]
+},
+"19.11":{
+ concept:"A graph can be correctly drawn yet still support only limited conclusions. Sampling, scale, extrapolation and causation all matter.",
+ rules:[
+  ["\\text{extrapolation}=\\text{outside observed range}","Treat with caution."],
+  ["\\text{correlation}\\ne\\text{causation}","A graph alone does not prove cause."]
+ ],
+ method:["Inspect the sample and axes.","Ask whether the chosen graph hides information.","Check whether a prediction lies inside or outside the data range.","State limitations explicitly."],
+ pitfalls:["Visual impact is not evidence by itself.","A small or biased sample limits generalisation."]
+},
+"20.1":{
+ concept:"A function maps each allowed input to exactly one output. Function notation names the rule and lets you evaluate, describe domains and identify ranges.",
+ rules:[
+  ["y=f(x)","The output of function f for input x."],
+  ["\\text{domain}","The set of permitted inputs."],
+  ["\\text{range}","The set of outputs produced."]
+ ],
+ method:["Substitute the input everywhere x appears.","Respect domain restrictions such as division by zero.","For a finite domain, evaluate every allowed input to find the range.","Use mapping diagrams or graphs to visualise input-output relationships."],
+ pitfalls:["\\(f(x)\\) does not mean \\(f\\times x\\).","A single input cannot map to two different outputs in a function."]
+},
+"20.2":{
+ concept:"An inverse function undoes the effect of the original function, returning outputs to their original inputs.",
+ rules:[
+  ["f^{-1}(f(x))=x","Where both functions are defined."],
+  ["y=f(x)\\Rightarrow x=f(y)\\text{ after swapping }x,y","A standard algebraic method for finding the inverse."]
+ ],
+ method:["Write \\(y=f(x)\\).","Swap x and y.","Rearrange for y.","Rename y as \\(f^{-1}(x)\\).","Check by composition if needed."],
+ pitfalls:["\\(f^{-1}(x)\\) is not \\(1/f(x)\\).","A function must be one-to-one on its domain to have a single-valued inverse.","For \\(x^2\\), restrict the domain before defining an inverse."]
+},
+"20.3":{
+ concept:"A composite function performs one function and then another. In \\(gf(x)=g(f(x))\\), f is applied first.",
+ rules:[
+  ["gf(x)=g(f(x))","Work from the inside outward."],
+  ["fg(x)=f(g(x))","Order matters; usually \\(fg\\ne gf\\)."],
+  ["ff(x)=f(f(x))","The same function can be applied repeatedly."]
+ ],
+ method:["Start with the input.","Apply the right-most/inner function.","Use that output as the input to the next function.","Check domain restrictions at every stage."],
+ pitfalls:["Do not read \\(gf\\) left-to-right as 'g then f'.","A composite may be undefined even when the starting input is allowed for the first function."]
+},
+"21.1":{
+ concept:"Set notation describes collections and relationships precisely. Venn diagrams give a visual model of unions, intersections, complements and subsets.",
+ rules:[
+  ["A\\cup B","Union: in A or B or both."],
+  ["A\\cap B","Intersection: in both A and B."],
+  ["A'","Complement: in the universal set but not A."],
+  ["A\\subseteq B","Every element of A is also in B."]
+ ],
+ method:["Draw the universal set as a rectangle.","Use circles for sets.","When filling a counting Venn diagram, start with the deepest overlap, then work outward.","Use shading to represent set operations.","For two sets, remember De Morgan relationships between complements, unions and intersections."],
+ pitfalls:["'Or' in set union is inclusive.","Elements outside all circles may still belong to the universal set.","Do not double-count an intersection when finding a union total."]
+},
+"22.1":{
+ concept:"Proportion models how one quantity changes with another. The proportionality symbol is converted into an equation by introducing a constant \\(k\\).",
+ rules:[
+  ["y\\propto x\\Rightarrow y=kx","Direct linear proportion."],
+  ["y\\propto x^2\\Rightarrow y=kx^2","Direct square proportion."],
+  ["y\\propto \\sqrt x\\Rightarrow y=k\\sqrt x","Direct square-root proportion."],
+  ["y\\propto \\frac1x\\Rightarrow y=\\frac{k}{x}","Inverse proportion."],
+  ["y\\propto \\frac1{x^2}\\Rightarrow y=\\frac{k}{x^2}","Inverse-square proportion."]
+ ],
+ method:["Translate the verbal statement into proportional notation.","Replace ∝ with = and constant k.","Use a known pair of values to find k.","Write the full model before substituting the new value.","Rearrange if the unknown is x rather than y."],
+ pitfalls:["Do not assume direct proportion means 'add the same amount'.","Inverse-square relationships change much faster than inverse-linear ones.","The SoW also includes cube and cube-root proportion."]
+}
+};
+
+function guideFor(l){
+ return LEARNING_GUIDE[l.id] || {
+  concept:l.title,
+  rules:[],
+  method:l.obj||[],
+  pitfalls:["Use the exact Cambridge IGCSE notation and check the final answer in context."]
+ };
+}
+
+function sourceBadge(l){
+ return '<div class="source-library">'+
+   '<div><span class="source-label">Scheme of work</span><strong>'+l.id+' • '+l.title+'</strong></div>'+
+   '<div><span class="source-label">Cambridge coursebook</span><strong>'+l.src+'</strong></div>'+
+   '<div><span class="source-label">Exam Success companion</span><strong>'+(EXAM_SUCCESS_MAP[l.u]||"Exam Success")+'</strong></div>'+
+   '<div class="source-links"><a href="'+SOW_URL+'" target="_blank" rel="noopener">Open SoW</a><a href="'+COURSEBOOK_URL+'" target="_blank" rel="noopener">Open Coursebook</a><a href="'+EXAM_SUCCESS_URL+'" target="_blank" rel="noopener">Open Exam Success</a></div>'+
+  '</div>';
+}
+
+function texFormula(tex,note){
+ return '<div class="rule-row"><div class="math-tex" data-tex="'+escapeAttrV4(tex)+'"></div><div>'+note+'</div></div>';
+}
+function escapeAttrV4(s){
+ return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function typesetMathV4(root){
+ root=root||document;
+ if(window.katex){
+  root.querySelectorAll(".math-tex[data-tex]").forEach(function(el){
+   try{katex.render(el.getAttribute("data-tex"),el,{throwOnError:false,strict:"ignore",trust:false,displayMode:false});}
+   catch(e){el.textContent=el.getAttribute("data-tex");}
+  });
+ }
+ if(window.renderMathInElement){
+  try{
+   renderMathInElement(root,{
+    delimiters:[
+     {left:"\\[",right:"\\]",display:true},
+     {left:"\\(",right:"\\)",display:false}
+    ],
+    throwOnError:false,
+    strict:"ignore",
+    trust:false,
+    errorColor:"#8b1e1e",
+    ignoredTags:["script","noscript","style","textarea","pre","code"]
+   });
+  }catch(e){console.warn("Math rendering skipped:",e);}
+ }
+}
+
+var BOOK_BANK={
+"12.1":{
+ examples:[
+  ex("Write \\(3\\sqrt7\\) in the form \\(\\sqrt n\\).",["Write 3 as \\(\\sqrt9\\).","\\(3\\sqrt7=\\sqrt9\\times\\sqrt7=\\sqrt{63}\\)."]),
+  ex("Simplify \\(7\\sqrt5-\\sqrt{20}\\).",["\\(\\sqrt{20}=\\sqrt4\\sqrt5=2\\sqrt5\\).","\\(7\\sqrt5-2\\sqrt5=5\\sqrt5\\)."]),
+  ex("Simplify \\(4\\sqrt5-2\\sqrt2+6\\sqrt5-3\\sqrt2\\).",["Group like surds.","\\((4+6)\\sqrt5+(-2-3)\\sqrt2\\).","Answer \\(10\\sqrt5-5\\sqrt2\\)."]),
+  ex("The rectangle has base \\(4\\sqrt7\\), diagonal \\(2\\sqrt{35}\\) and height \\(x\\). Show that \\(x=2\\sqrt7\\).",["Use Pythagoras: \\(x^2+(4\\sqrt7)^2=(2\\sqrt{35})^2\\).","\\(x^2+112=140\\).","\\(x^2=28\\).","\\(x=\\sqrt{28}=2\\sqrt7\\) (positive length)."])
+ ],
+ practice:{foundation:["Simplify \\(\\sqrt{28}\\).","Simplify \\(\\sqrt{99}\\).","Simplify \\(\\sqrt{24}\\).","Simplify \\(5\\sqrt{12}\\).","Write \\(3\\sqrt6\\) in the form \\(\\sqrt n\\).","Write \\(2\\sqrt{10}\\) in the form \\(\\sqrt n\\)."],core:["Arrange \\(2\\sqrt5,3\\sqrt3,3\\sqrt5\\) in descending order without a calculator.","Use positive integers to show that \\(\\sqrt m+\\sqrt n=\\sqrt{m+n}\\) is not a valid rule.","Simplify \\(2\\sqrt3+3\\sqrt7+3\\sqrt3\\).","Simplify \\(\\sqrt{20}+\\sqrt5\\).","Simplify \\(4\\sqrt3-2\\sqrt{27}\\).","Simplify \\(3\\sqrt8+2\\sqrt{18}\\)."],extension:["Simplify \\(3+2\\sqrt3-2+3\\sqrt3\\).","Simplify \\(2\\sqrt6+3-2(1+\\sqrt6)\\).","Calculate the exact perimeter of a rectangle with sides \\(2+\\sqrt{10}\\) cm and \\(\\sqrt5\\) cm.","Prove \\(\\sqrt{12}\\sqrt{27}\\) is rational.","Find \\(a\\) if \\(a\\sqrt3=\\sqrt{192}\\).","Create an incorrect surd rule and give a counterexample."]},
+ homework:[
+  hw("Foundation","Simplify \\(\\sqrt{54}\\).",["\\(54=9\\times6\\).","\\(\\sqrt{54}=3\\sqrt6\\)."]),
+  hw("Foundation","Write \\(6\\sqrt3\\) in the form \\(\\sqrt n\\).",["\\(6=\\sqrt{36}\\).","\\(6\\sqrt3=\\sqrt{108}\\)."]),
+  hw("Core","Simplify \\(\\sqrt{75}-2\\sqrt3\\).",["\\(\\sqrt{75}=5\\sqrt3\\).","Answer \\(3\\sqrt3\\)."]),
+  hw("Core","Simplify \\(3\\sqrt{27}+2\\sqrt{12}\\).",["\\(3\\sqrt{27}=9\\sqrt3\\).","\\(2\\sqrt{12}=4\\sqrt3\\).","Answer \\(13\\sqrt3\\)."]),
+  hw("Extension","A square has perimeter \\(20\\sqrt3\\) cm. Find its area.",["Side \\(=5\\sqrt3\\).","Area \\(=(5\\sqrt3)^2=75\\text{ cm}^2\\)."]),
+  hw("Extension","Show that \\(\\sqrt{48}-\\sqrt{27}=\\sqrt3\\).",["\\(\\sqrt{48}=4\\sqrt3\\), \\(\\sqrt{27}=3\\sqrt3\\).","Difference \\(=\\sqrt3\\)."])
+ ]
+},
+"12.2":{
+ examples:[
+  ex("Write \\(\\frac1{\\sqrt{10}}\\) with a rational denominator.",["Multiply numerator and denominator by \\(\\sqrt{10}\\).","\\(\\frac1{\\sqrt{10}}=\\frac{\\sqrt{10}}{10}\\)."]),
+  ex("Write \\(\\frac{3\\sqrt2}{\\sqrt6}\\) with a rational denominator.",["Multiply by \\(\\sqrt6/\\sqrt6\\).","\\(\\frac{3\\sqrt{12}}6=\\frac{3(2\\sqrt3)}6=\\sqrt3\\)."]),
+  ex("Write \\(\\frac4{3\\sqrt3}\\) with a rational denominator.",["Multiply by \\(\\sqrt3/\\sqrt3\\).","\\(\\frac{4\\sqrt3}{9}\\)."]),
+  ex("Rationalise \\(\\frac3{2+\\sqrt5}\\).",["Multiply by the conjugate \\(2-\\sqrt5\\).","Denominator \\((2+\\sqrt5)(2-\\sqrt5)=4-5=-1\\).","Numerator \\(=3(2-\\sqrt5)\\).","Answer \\(3\\sqrt5-6\\)."])
+ ],
+ practice:{foundation:["Rationalise \\(5/\\sqrt3\\).","Rationalise \\(-2/\\sqrt{11}\\).","Rationalise \\(3/\\sqrt5\\).","Simplify \\(\\sqrt5/\\sqrt{10}\\).","Simplify \\(\\sqrt{45}/\\sqrt3\\).","Simplify \\(\\sqrt2/\\sqrt{18}\\)."],core:["Rationalise \\((\\sqrt2-1)/\\sqrt2\\).","Rationalise \\(-3/(2\\sqrt5)\\).","Rationalise \\((2\\sqrt2+\\sqrt3)/\\sqrt2\\).","Rationalise \\(3/(4+\\sqrt3)\\).","Rationalise \\(\\sqrt3/(6-\\sqrt3)\\).","Rationalise \\((3+\\sqrt7)/(3-\\sqrt7)\\)."],extension:["Write \\((3+2\\sqrt7)/(\\sqrt7-2)+(2-\\sqrt7)/(\\sqrt{12}+3)\\) as a single fraction with rational denominator.","Rationalise \\((\\sqrt{18}-\\sqrt8)/(2+3\\sqrt{98})\\).","Show that \\(1/(\\sqrt5-2)=\\sqrt5+2\\).","Explain why conjugates remove a surd denominator.","Create a fraction whose conjugate method produces denominator 11.","Compare exact and decimal forms of one rationalised result."]},
+ homework:[
+  hw("Foundation","Rationalise \\(7/\\sqrt2\\).",["Multiply by \\(\\sqrt2/\\sqrt2\\).","Answer \\(7\\sqrt2/2\\)."]),
+  hw("Foundation","Rationalise \\(1/\\sqrt6\\).",["Answer \\(\\sqrt6/6\\)."]),
+  hw("Core","Rationalise \\(2/(3+\\sqrt5)\\).",["Use conjugate \\(3-\\sqrt5\\).","Denominator \\(=4\\).","Answer \\((3-\\sqrt5)/2\\)."]),
+  hw("Core","Rationalise \\(5/(4-\\sqrt7)\\).",["Use \\(4+\\sqrt7\\).","Denominator \\(=9\\).","Answer \\(5(4+\\sqrt7)/9\\)."]),
+  hw("Extension","Rationalise \\(2/(\\sqrt7-\\sqrt5)\\).",["Use conjugate \\(\\sqrt7+\\sqrt5\\).","Denominator \\(=2\\).","Answer \\(\\sqrt7+\\sqrt5\\)."]),
+  hw("Extension","Evaluate \\(1/(2+\\sqrt3)+1/(2-\\sqrt3)\\).",["Each denominator rationalises because \\((2+\\sqrt3)(2-\\sqrt3)=1\\).","Sum \\((2-\\sqrt3)+(2+\\sqrt3)=4\\)."])
+ ]
+},
+"13.1":{
+ examples:[
+  ex("Simplify \\(\\frac{3x}{6}\\).",["HCF of 3 and 6 is 3.","Divide numerator and denominator by 3: \\(x/2\\)."]),
+  ex("Simplify \\(\\frac{y^2}{y^5}\\).",["The common factor is \\(y^2\\).","\\(y^2/y^5=1/y^3\\)."]),
+  ex("Simplify \\(\\frac{12p^3}{16p^7}\\).",["Numerical HCF is 4; variable HCF is \\(p^3\\).","Answer \\(\\frac3{4p^4}\\)."]),
+  ex("Simplify \\(\\frac{x^2-4x+3}{x^2-7x+12}\\).",["Factor numerator: \\((x-3)(x-1)\\).","Factor denominator: \\((x-3)(x-4)\\).","Cancel \\((x-3)\\).","Answer \\((x-1)/(x-4)\\), keeping original restrictions."])
+ ],
+ practice:{foundation:["Simplify \\(2x/4\\).","Simplify \\(3y/12\\).","Simplify \\(5x/x\\).","Simplify \\(10y/y\\).","Simplify \\(6t/36\\).","Simplify \\(9u/27\\)."],core:["Simplify \\(y^2/y^5\\).","Simplify \\(18g^4/(16k^2)\\) where possible.","Simplify \\((x^2-9)/(x-3)\\).","Simplify \\((x^2+5x)/(x)\\).","Simplify \\((x^2-16)/(x^2+x-20)\\).","State restrictions before simplifying \\((x^2-1)/(x^2-3x+2)\\)."],extension:["Simplify \\((2x^2-18)/(x^2+x-12)\\).","Simplify \\((x^3-4x)/(x^2-x-6)\\).","Explain why \\((x+5)/x\\) cannot be simplified by 'cancelling x'.","Find an expression with two excluded values that simplifies to \\((x-1)/(x+4)\\).","Solve \\((x^2-9)/(x-3)=10\\) respecting restrictions.","Explain why cancelled factors still create excluded values."]},
+ homework:[
+  hw("Foundation","Simplify \\(15a^2/(5a)\\).",["Cancel 5a.","Answer \\(3a\\)."]),
+  hw("Foundation","Simplify \\(18p^3/(24p^5)\\).",["Reduce \\(18/24=3/4\\).","\\(p^3/p^5=1/p^2\\).","Answer \\(3/(4p^2)\\)."]),
+  hw("Core","Simplify \\((x^2-25)/(x^2+3x-10)\\).",["Factor: \\((x-5)(x+5)/[(x+5)(x-2)]\\).","Answer \\((x-5)/(x-2)\\)."]),
+  hw("Core","Simplify \\((2x^2+8x)/(x^2+6x+8)\\).",["Factor top \\(2x(x+4)\\), bottom \\((x+2)(x+4)\\).","Answer \\(2x/(x+2)\\)."]),
+  hw("Extension","Simplify \\((x^2-6x+9)/(x^2-9)\\) and state restrictions.",["Factor \\((x-3)^2/[(x-3)(x+3)]\\).","Answer \\((x-3)/(x+3)\\).","Restrictions \\(x\\ne3,-3\\)."]),
+  hw("Extension","Why is \\((x+2)/x\\ne2\\) in general?",["Because x is not a factor of the whole numerator.","For x=1 the expression equals 3, not 2."])
+ ]
+},
+"13.2":{
+ examples:[
+  ex("Simplify \\(\\frac4{3x^2}\\times\\frac{14x^3}{16y^2}\\).",["Multiply numerators and denominators.","Cancel numerical and algebraic common factors.","Answer \\(\\frac{7x}{6y^2}\\)."]),
+  ex("Simplify \\(\\frac{14x^4y^3}{9}\\div\\frac{7x^2y}{18}\\).",["Change division to multiplication by the reciprocal.","\\(\\frac{14x^4y^3}{9}\\times\\frac{18}{7x^2y}\\).","Cancel factors.","Answer \\(4x^2y^2\\)."]),
+  ex("Write \\(\\frac{2x}{3}+\\frac{5x}{6}\\) as a single fraction.",["LCM of 3 and 6 is 6.","\\(4x/6+5x/6=9x/6=3x/2\\)."]),
+  ex("Write \\(\\frac{3x+4}{x^2+x-6}-\\frac1{x+3}\\) as one fraction in lowest terms.",["Factor \\(x^2+x-6=(x+3)(x-2)\\).","Use common denominator \\((x+3)(x-2)\\).","Numerator becomes \\(3x+4-(x-2)=2x+6=2(x+3)\\).","Cancel \\(x+3\\): answer \\(2/(x-2)\\)."])
+ ],
+ practice:{foundation:["\\((2x/3)\\times(3x/8)\\)","\\((3y/4)\\times(2y/7)\\)","\\((2z/7)\\div(3z/4)\\)","\\(y/2+y/4\\)","\\(t/3+t/5\\)","\\(2a/7-3a/14\\)"],core:["\\((x+1)/3+(x+1)/8\\)","\\((10pqr/17)-(3pqr/8)\\)","\\(2x/3+3x/7-x/4\\)","\\((x^2-4)/(3x)\\div((x+2)/(6x))\\)","\\(1/x+2/(x+3)\\)","\\(4/(x-2)-1/(x+1)\\)"],extension:["Simplify \\((x+1)/(x-1)+(x-1)/(x+1)\\).","Find x if \\(1/x+1/(x+2)=3/4\\).","Simplify a complex fraction containing a factorised quadratic denominator.","Explain why factorising denominators before finding the LCD can reduce work.","Create two algebraic fractions whose sum simplifies by cancellation.","Check restrictions for a fully simplified result."]},
+ homework:[
+  hw("Foundation","Simplify \\((3x/4)\\times(8/(9x))\\).",["Cancel factors.","Answer \\(2/3\\)."]),
+  hw("Foundation","Simplify \\((5a/6)\\div(10a^2/9)\\).",["Multiply by reciprocal.","Answer \\(3/(4a)\\)."]),
+  hw("Core","Write \\(1/x+2/(x+1)\\) as one fraction.",["LCD \\(x(x+1)\\).","Numerator \\(x+1+2x=3x+1\\).","Answer \\((3x+1)/(x(x+1))\\)."]),
+  hw("Core","Simplify \\(2/(x-1)-1/(x+1)\\).",["LCD \\((x-1)(x+1)\\).","Numerator \\(2(x+1)-(x-1)=x+3\\).","Answer \\((x+3)/(x^2-1)\\)."]),
+  hw("Extension","Simplify \\((x^2-4)/(3x)\\div((x+2)/(6x))\\).",["Multiply by reciprocal.","Factor \\(x^2-4=(x-2)(x+2)\\).","Cancel to get \\(2(x-2)\\)."]),
+  hw("Extension","Write \\(2/(x+3)+1/(x-3)\\) as one fraction.",["LCD \\((x+3)(x-3)\\).","Numerator \\(2(x-3)+(x+3)=3x-3\\).","Answer \\(3(x-1)/(x^2-9)\\)."])
+ ]
+},
+"14.1":{
+ examples:[
+  ex("Using \\(h\\) for average height, write an expression for a height 12 cm shorter than average.",["'Shorter than' means subtract.","Answer \\(h-12\\)."]),
+  ex("Using \\(h\\), write an expression for a height twice the average height.",["Twice means multiply by 2.","Standard notation: \\(2h\\)."]),
+  ex("Let the unknown number be \\(x\\). Write an expression for six times \\(x\\) minus two.",["Six times x is \\(6x\\).","Then subtract 2: \\(6x-2\\)."]),
+  ex("Write an equation for the product of two consecutive even numbers being 168.",["Let the first be \\(2n\\).","The next is \\(2n+2\\).","Equation: \\(2n(2n+2)=168\\)."])
+ ],
+ practice:{foundation:["Rewrite \\(6\\times x\\times y\\) in simplest form.","Rewrite \\(7\\times a\\times b\\).","Write the sum of x and 13.","Write a number multiplied by five.","Write the difference between 25 and x.","Write x cubed."],core:["Write a third of x plus three.","Write four times x plus twice x.","Write three more than x.","Write six less than x.","Write ten times x.","Write the sum of -8 and x."],extension:["Write the sum of x and its square.","Write a number six times its square more than x.","Write the fraction obtained when double x is divided by x+4.","Form a quadratic equation from a rectangle context.","Form simultaneous equations from a two-price context.","Create a 'think of a number' trick and prove its result algebraically."]},
+ homework:[
+  hw("Foundation","Write an expression for 'five more than x'.",["Answer \\(x+5\\)."]),
+  hw("Foundation","Write 'three times y minus 4'.",["Answer \\(3y-4\\)."]),
+  hw("Core","Two consecutive integers sum to 41. Form an equation.",["Let integers be \\(n,n+1\\).","Equation \\(n+n+1=41\\)."]),
+  hw("Core","A rectangle has sides \\(x\\) and \\(x+3\\), area 70. Form an equation.",["Area \\(=x(x+3)\\).","Equation \\(x(x+3)=70\\)."]),
+  hw("Extension","Two consecutive odd integers have product 143. Form an equation.",["Let first be \\(2n+1\\), next \\(2n+3\\).","Equation \\((2n+1)(2n+3)=143\\)."]),
+  hw("Extension","A right triangle has legs x and x+2, hypotenuse 10. Form an equation.",["Pythagoras: \\(x^2+(x+2)^2=100\\)."])
+ ]
+},
+"14.5":{
+ examples:[
+  ex("Solve graphically: \\(x-3y=6\\) and \\(2x+y=5\\).",["For \\(x-3y=6\\): intercepts are \\((6,0)\\) and \\((0,-2)\\).","For \\(2x+y=5\\): intercepts are \\((5/2,0)\\) and \\((0,5)\\).","Draw both lines on the same axes.","They intersect at \\((3,-1)\\), so \\(x=3,y=-1\\)."]),
+  ex("Solve \\(x+y=9\\), \\(x-y=3\\) by elimination.",["Add the equations: \\(2x=12\\).","\\(x=6\\).","Substitute to obtain \\(y=3\\)."]),
+  ex("Solve \\(2x+3y=13\\), \\(4x-y=5\\).",["Multiply the second equation by 3: \\(12x-3y=15\\).","Add: \\(14x=28\\), so \\(x=2\\).","Substitute: \\(8-y=5\\), so \\(y=3\\)."]),
+  ex("Three coffees and two teas cost 6.50; five coffees and two teas cost 9.50. Find each price.",["Let coffee cost c and tea cost t.","\\(3c+2t=6.50\\), \\(5c+2t=9.50\\).","Subtract: \\(2c=3\\), so \\(c=1.50\\).","Then \\(4.50+2t=6.50\\), so \\(t=1.00\\)."])
+ ],
+ practice:{foundation:["Solve \\(x+y=7,\\ x-y=1\\).","Solve \\(x+y=12,\\ 2x+y=17\\).","Solve \\(2x+y=8,\\ x-y=1\\).","Find the intersection of \\(y=x+1\\) and \\(y=7-x\\).","Check \\((3,2)\\) in two given equations.","State why one equation is not enough for two unknowns."],core:["Solve \\(3x+2y=16,\\ x-y=2\\).","Solve \\(2x+5y=1,\\ 3x-y=11\\).","Solve a pair by substitution.","Solve a pair by graphing and report an approximate intersection.","Form equations from two ticket prices.","Form equations from a mixture/context problem."],extension:["Solve a pair requiring both equations to be multiplied.","Solve a three-variable extension problem.","Explain when elimination is more efficient than substitution.","Create a system with solution \\((3,-2)\\).","Show the graphical and algebraic methods agree for a chosen pair.","Analyse a pair of parallel lines and explain why there is no solution."]},
+ homework:[
+  hw("Foundation","Solve \\(x+y=10,\\ x-y=4\\).",["Add: \\(2x=14\\), so \\(x=7\\).","Then \\(y=3\\)."]),
+  hw("Foundation","Solve \\(x+y=12,\\ 2x+y=17\\).",["Subtract first from second: \\(x=5\\).","Then \\(y=7\\)."]),
+  hw("Core","Solve \\(2x+3y=12,\\ x+y=5\\).",["Double second: \\(2x+2y=10\\).","Subtract: \\(y=2\\).","Then \\(x=3\\)."]),
+  hw("Core","Solve \\(3x-2y=7,\\ 4x+3y=1\\).",["Multiply first by 3 and second by 2.","\\(9x-6y=21\\), \\(8x+6y=2\\).","\\(17x=23\\), so \\(x=23/17\\).","Substitute to find \\(y=-25/17\\)."]),
+  hw("Extension","Adult and child tickets satisfy \\(2a+3c=21\\), \\(a+2c=13\\). Find a,c.",["Double second: \\(2a+4c=26\\).","Subtract first: \\(c=5\\).","Then \\(a=3\\)."]),
+  hw("Extension","Explain graphically why two distinct parallel linear equations have no simultaneous solution.",["Their graphs never intersect.","A simultaneous solution would have to be a point lying on both lines, so none exists."])
+ ]
+},
+"15.3":{
+ examples:[
+  ex("Find the inequality represented by the unshaded region bounded by the broken line through \\((0,4)\\) and \\((2,0)\\).",["Gradient \\(=(0-4)/(2-0)=-2\\), so boundary is \\(y=-2x+4\\).","Rewrite as \\(y+2x=4\\).","Test point \\(P(3,2)\\) in the unshaded region: \\(2+6=8>4\\).","Boundary is broken, so equality is excluded.","Inequality: \\(y+2x>4\\)."]),
+  ex("Represent \\(2y-3x\\le6\\) on axes.",["Boundary: \\(2y-3x=6\\), or \\(y=1.5x+3\\).","Use a solid line because equality is included.","Test \\((0,0)\\): \\(0\\le6\\) is true.","Shade the side containing the origin."]),
+  ex("Represent \\(x+2y<4\\).",["Boundary \\(x+2y=4\\) has intercepts \\((4,0)\\), \\((0,2)\\).","Use a dashed line.","Test \\((0,0)\\): true, so shade that side."]),
+  ex("Represent \\(x-y\\ge0\\).",["Boundary \\(x-y=0\\Rightarrow y=x\\).","Use a solid line.","Test \\((1,0)\\): \\(1\\ge0\\), so shade the side containing \\((1,0)\\)."])
+ ],
+ practice:{foundation:["Graph \\(y>3-3x\\).","Graph \\(3x-2y\\ge6\\).","Graph \\(x\\le5\\).","Graph \\(y>3\\).","Graph \\(0\\le x\\le2\\).","State solid/dashed boundary for each."],core:["Graph \\(x+3y\\le10\\).","Graph \\(-3<x<5\\).","Graph two inequalities and identify their overlap.","Find the inequality represented by a dashed line \\(y=2x-1\\) with the region below selected.","Find the inequality represented by a solid vertical boundary.","Use a check point to justify the chosen side."],extension:["List the inequalities defining a triangle bounded by \\(x=0,y=0,x+y=6\\).","Describe a region between two non-parallel lines.","Create a graph for a compound inequality system.","Explain why a boundary is excluded in a strict inequality.","Reverse-engineer an inequality from a graph with gradient -2.","Analyse how changing the intercept changes the region."]},
+ homework:[
+  hw("Foundation","Graph \\(y\\ge x-2\\): state boundary type.",["Boundary \\(y=x-2\\) is solid because equality is included."]),
+  hw("Foundation","For \\(y<2x+1\\), does \\((0,0)\\) satisfy it?",["\\(0<1\\) is true.","So the origin lies in the required region."]),
+  hw("Core","Find the boundary of \\(2y-3x\\le6\\).",["Replace ≤ with =: \\(2y-3x=6\\).","Rearrange \\(y=1.5x+3\\)."]),
+  hw("Core","Graph \\(x+2y<4\\): give intercepts.",["Set y=0: x=4.","Set x=0: y=2.","Use a dashed line through \\((4,0),(0,2)\\)."]),
+  hw("Extension","Find the inequality for the side of dashed line \\(y=-2x+4\\) containing \\((3,2)\\).",["At \\((3,2)\\), \\(2>-2(3)+4=-2\\).","So \\(y>-2x+4\\)."]),
+  hw("Extension","Explain why testing a point on the boundary is useless.",["Every boundary point makes the boundary equation equal.","It cannot distinguish which half-plane satisfies >/<."])
+ ]
+},
+"16.1":{
+ examples:[
+  ex("In a right-angled square-like figure, a \\(72^\\circ\\) angle and \\(x\\) together make the right angle at B. Find x.",["\\(72+x=90\\).","\\(x=18^\\circ\\).","Reason: complementary angles in a right angle."]),
+  ex("A straight line is split into \\(48^\\circ\\), a right angle, and \\(x\\). Find x.",["\\(48+90+x=180\\).","\\(x=42^\\circ\\).","Reason: angles on a straight line sum to \\(180^\\circ\\)."]),
+  ex("Two lines intersect. The angle vertically opposite x is \\(30^\\circ\\). Find x.",["Vertically opposite angles are equal.","\\(x=30^\\circ\\)."]),
+  ex("Angles around a point are \\(x,2x,4x,150^\\circ\\). Find x.",["\\(x+2x+4x+150=360\\).","\\(7x=210\\).","\\(x=30^\\circ\\)."])
+ ],
+ practice:{foundation:["Find x on a straight line with 112°.","Find the vertically opposite angle to 127°.","A right angle is split into 35° and x.","A triangle has angles 48°,67°,x.","A quadrilateral has 90°,85°,112°,x.","Give the geometric reason for every answer."],core:["Angles around a point are x,x,70°,110°. Find x.","Vertically opposite angles are \\(3x+5\\) and \\(5x-35\\). Find x.","A straight line is split into \\(2x+10\\) and \\(5x-5\\). Find x.","Triangle angles are \\(x,2x,3x\\).","Quadrilateral angles are \\(x,x+20,2x,100\\).","Write a proof-style angle solution."],extension:["A right angle is split into x and \\(2x+9\\).","Adjacent angles at an intersection are \\(4x-7\\), \\(2x+31\\).","Construct an angle problem with answer 36°.","Explain vertically opposite equality using straight-line sums.","Solve a compound diagram using at least three reasons.","Use three-letter notation to identify each angle used."]},
+ homework:[
+  hw("Foundation","Find x if \\(x+124=180\\).",["\\(x=56^\\circ\\)."]),
+  hw("Foundation","Find the vertically opposite angle to 74°.",["Answer \\(74^\\circ\\)."]),
+  hw("Core","Angles around a point are 95°,80°,75°,x.",["Known total 250°.","\\(x=110^\\circ\\)."]),
+  hw("Core","Triangle angles are \\(x,2x,75^\\circ\\).",["\\(3x+75=180\\).","\\(x=35^\\circ\\)."]),
+  hw("Extension","Vertically opposite angles are \\(5x-8\\) and \\(3x+28\\).",["Set equal.","\\(2x=36\\).","\\(x=18\\)."]),
+  hw("Extension","Quadrilateral angles are \\(x,2x,3x,60^\\circ\\).",["\\(6x+60=360\\).","\\(x=50^\\circ\\)."])
+ ]
+},
+"16.2":{
+ examples:[
+  ex("In the coursebook parallel-line figure, \\(47^\\circ\\) is alternate to angle a. Find a.",["Alternate angles between parallel lines are equal.","\\(a=47^\\circ\\)."]),
+  ex("In the same figure, \\(62^\\circ\\) is alternate to angle c. Find c.",["Alternate angles are equal.","\\(c=62^\\circ\\)."]),
+  ex("Angles a, b and c lie on a straight line. Using \\(a=47^\\circ,c=62^\\circ\\), find b.",["\\(a+b+c=180^\\circ\\).","\\(47+b+62=180\\).","\\(b=71^\\circ\\)."]),
+  ex("Two co-interior angles are \\(3x+10\\) and \\(5x+2\\). Find x.",["Co-interior angles sum to 180°.","\\(3x+10+5x+2=180\\).","\\(8x=168\\).","\\(x=21\\)."])
+ ],
+ practice:{foundation:["Find a corresponding angle equal to 112°.","Find an alternate angle equal to 39°.","Find a co-interior partner of 68°.","State the reason for each.","Identify corresponding/alternate/co-interior from three diagrams.","Find x if corresponding angles are x+18 and 70."],core:["Solve a multi-step parallel-line triangle problem.","Find x if alternate angles are \\(3x+5\\), \\(5x-35\\).","Find x if co-interior angles are \\(2x+20\\), \\(4x+10\\).","Combine corresponding angles with a straight line.","Combine alternate angles with triangle sum.","Use correct geometric reason wording."],extension:["Prove two lines are parallel using equal alternate angles.","Create a diagram in which corresponding, alternate and co-interior facts are all used.","Find three unknowns in a multi-transversal diagram.","Explain why F/Z/C are memory aids rather than reasons.","Solve an algebraic parallel-line proof.","Connect parallel-line angle work to an interior-angle polygon problem."]},
+ homework:[
+  hw("Foundation","A corresponding angle is 58°. Find its match.",["Corresponding angles are equal.","Answer 58°."]),
+  hw("Foundation","One co-interior angle is 117°. Find the other.",["\\(180-117=63^\\circ\\)."]),
+  hw("Core","Alternate angles are \\(3x+7\\) and \\(5x-21\\). Find x.",["Set equal: \\(3x+7=5x-21\\).","\\(28=2x\\).","\\(x=14\\)."]),
+  hw("Core","Co-interior angles are \\(4x+10\\), \\(2x+20\\).",["Sum to 180: \\(6x+30=180\\).","\\(x=25\\)."]),
+  hw("Extension","Explain why equal alternate angles can establish parallel lines.",["The converse of the alternate-angle property applies: if a transversal creates equal alternate angles, the two lines are parallel."]),
+  hw("Extension","A straight-line angle b lies between alternate angles 47° and 62°. Find b.",["\\(47+b+62=180\\).","\\(b=71^\\circ\\)."])
+ ]
+},
+"17.4":{
+ examples:[
+  ex("For a sector with radius 4 cm and major angle \\(360^\\circ-65^\\circ\\), find its area.",["Major angle \\(=295^\\circ\\).","Area \\(=\\frac{295}{360}\\pi(4)^2\\).","\\(\\approx41.2\\text{ cm}^2\\)."]),
+  ex("For the same major sector, find its perimeter.",["Arc length \\(=\\frac{295}{360}\\times2\\pi\\times4\\).","Add two radii: \\(+8\\).","Perimeter \\(\\approx28.6\\text{ cm}\\)."]),
+  ex("Find area and arc length for radius 6 cm, angle 40°.",["Area \\(=(40/360)\\pi36=4\\pi\\text{ cm}^2\\).","Arc \\(=(40/360)12\\pi=4\\pi/3\\text{ cm}\\)."]),
+  ex("An arc has length \\(5\\pi\\) cm in a circle of radius 12 cm. Find the central angle.",["\\(5\\pi=(\\theta/360)24\\pi\\).","Cancel \\(\\pi\\): \\(5=\\theta/15\\).","\\(\\theta=75^\\circ\\)."])
+ ],
+ practice:{foundation:["Find area and perimeter of a 40° sector, r=6 cm.","Find a 45° sector area with radius 8 cm.","Find arc length for r=3.2 cm, angle 15°.","Find a semicircle area for diameter 17.2 cm.","Find a quadrant perimeter for radius 15.4 m.","Find major angle when minor angle is 65°."],core:["Find area and perimeter of the coursebook 'pac-man' style major sector.","Find coloured sector area and arc length for 70°, r=18 cm.","Find a 120° sector with radius 8.2 cm.","Find a major sector with missing angle 95°, r=6.4 cm.","Find angle given sector area.","Find radius given arc length."],extension:["A sector has equal numerical area and arc length; form a relationship.","Find sector angle from perimeter and radius.","Compare exact and rounded sector answers.","Create a compound shape from a sector and rectangle.","Find the area remaining after a sector is removed from a circle.","Solve a reverse major-sector problem."]},
+ homework:[
+  hw("Foundation","Find arc length for r=10 cm, angle 72°.",["\\((72/360)2\\pi10=4\\pi\\text{ cm}\\)."]),
+  hw("Foundation","Find area for r=6 cm, angle 120°.",["\\((120/360)36\\pi=12\\pi\\text{ cm}^2\\)."]),
+  hw("Core","Find perimeter of a 90° sector, r=8 cm.",["Arc \\(=4\\pi\\).","Perimeter \\(=16+4\\pi\\text{ cm}\\)."]),
+  hw("Core","A major sector has minor angle 80°. Find major angle.",["\\(360-80=280^\\circ\\)."]),
+  hw("Extension","Arc length is \\(7\\pi\\), r=14. Find angle.",["\\(7\\pi=(\\theta/360)28\\pi\\).","\\(\\theta=90^\\circ\\)."]),
+  hw("Extension","Sector area is \\(25\\pi\\), angle 144°. Find r.",["\\(25=(144/360)r^2=(2/5)r^2\\).","\\(r^2=62.5\\).","\\(r=5\\sqrt{2.5}\\) cm."])
+ ]
+},
+"19.1":{
+ examples:[
+  ex("The homework scores of 20 students are 20,20,15,20,17,16,18,18,20,15,20,18,19,17,18,20,19,18,20,18. Represent the information using a bar chart.",["First tabulate frequencies: 15→2, 16→1, 17→2, 18→6, 19→2, 20→7.","Place score on the horizontal axis.","Place frequency on the vertical axis.","Draw separated bars of heights 2,1,2,6,2,7."]),
+  ex("A pie-chart sector is a right angle and the total is 120 students. How many chose that sector?",["Right angle \\(=90^\\circ\\).","\\(90/360=1/4\\).","\\(1/4\\times120=30\\).","30 students."]),
+  ex("36 students choose UK 9, France 6, Spain 11, Other 10. Find pie-chart angles.",["There are 36 students, so each student represents \\(10^\\circ\\).","UK 90°, France 60°, Spain 110°, Other 100°.","Check: total 360°."]),
+  ex("Construct a stem-and-leaf diagram for 12,15,18,21,21,24,29,31,34.",["Use tens as stems.","Order leaves.","Include a key such as \\(2|4=24\\)."])
+ ],
+ practice:{foundation:["Make a frequency table from 2,3,3,4,4,4,5.","Draw a bar chart for frequencies 3,5,7,4.","Find pie angle for 12 out of 48.","Find pie angle for 9 out of 36.","Write a key for a stem-and-leaf diagram.","A pictogram symbol represents 8 people; interpret 2.5 symbols."],core:["Construct a stem-and-leaf for 11,14,17,18,22,24,24,29,31.","Find all pie angles for frequencies 5,7,8,10.","Design a dual bar chart.","Explain why discrete bars are separated.","Calculate frequencies from partial pictogram symbols.","Compare what a bar chart and pie chart emphasise."],extension:["A pie sector is 126°. Find fraction and percentage.","Find a missing pie sector from the other angles.","Create a back-to-back stem-and-leaf.","Explain how a truncated bar-chart axis can mislead.","Choose the best diagram for two contexts and justify.","Represent the same data in two valid ways and compare."]},
+ homework:[
+  hw("Foundation","14 of 56 responses are in one category. Find pie angle.",["\\(14/56=1/4\\).","Angle \\(=90^\\circ\\)."]),
+  hw("Foundation","One pictogram symbol represents 6 students. What do 3.5 symbols represent?",["\\(3.5\\times6=21\\)."]),
+  hw("Core","Write 13,14,18,21,21,25,29 as a stem-and-leaf.",["Stem 1: 3,4,8.","Stem 2: 1,1,5,9.","Add a key."]),
+  hw("Core","Frequencies 8,12,10 total 30. Find pie angles.",["Each item represents 12°.","Angles 96°,144°,120°."]),
+  hw("Extension","A pie sector is 54°. Find percentage.",["\\(54/360=0.15\\).","15%."]),
+  hw("Extension","Explain why a truncated bar-chart axis may be misleading.",["It can visually exaggerate small differences.","Always read the numerical scale."])
+ ]
+},
+"19.2":{
+ examples:[
+  ex("A scatter diagram shows foot length generally increasing with height. Describe the correlation.",["The relationship is positive because both variables tend to increase together.","The points are reasonably close to a trend, so the correlation is fairly strong."]),
+  ex("What should a line of best fit look like?",["Use one straight ruled line by inspection.","Extend it across the entire data set.","Aim for approximately equal numbers of points on either side over its length."]),
+  ex("A height of 164 cm corresponds to a foot length of about 26 cm on the fitted line. What kind of estimate is this?",["164 cm lies inside the collected data range.","This is interpolation.","The estimate is more defensible than a far-out extrapolation, though still approximate."]),
+  ex("Why is predicting a foot length for height 195 cm unreliable when no heights above 183.4 cm were collected?",["195 cm lies outside the observed range.","Extending the line beyond collected data is extrapolation.","The trend may not continue in the same way, so reliability is lower."])
+ ],
+ practice:{foundation:["Classify an upward scatter trend.","Classify a downward trend.","Classify a random cloud.","Identify an outlier.","State what bivariate data means.","Plot given pairs as small crosses."],core:["Describe strength and direction of four scatter plots.","Draw a line of best fit by eye.","Use the line for interpolation.","Explain why it need not pass through any point.","Comment on an outlier.","Distinguish interpolation from extrapolation."],extension:["Explain why correlation does not prove causation.","Give a third variable for ice-cream sales and sunburn cases.","Estimate an equation for a line of best fit.","Discuss effect of an extreme outlier.","Design data likely to show zero correlation.","Critique a prediction beyond the observed range."]},
+ homework:[
+  hw("Foundation","A scatter plot falls from left to right. State correlation.",["Negative correlation."]),
+  hw("Foundation","What is an outlier?",["A point noticeably away from the main pattern."]),
+  hw("Core","Why extend a best-fit line across the whole data cloud?",["To represent the overall trend rather than a small local section."]),
+  hw("Core","Why is interpolation usually safer than extrapolation?",["It stays within the range supported by observed data."]),
+  hw("Extension","Height and vocabulary correlate in children. Give a plausible third variable.",["Age: older children tend to be taller and have larger vocabularies."]),
+  hw("Extension","Why can strong correlation still give uncertain individual predictions?",["Individual points vary around the trend line; correlation summarises an overall pattern."])
+ ]
+},
+"19.5":{
+ examples:[
+  ex("A cumulative frequency curve represents 200 candidates. Only scores above the 80th percentile get an interview. Find the cumulative-frequency position to read.",["\\(80\\%\\) of 200 is \\(0.8\\times200=160\\).","Read the test score where the curve has cumulative frequency 160."]),
+  ex("The curve gives a score of about 35 at cumulative frequency 160. Interpret this.",["The 80th percentile is approximately 35.","Candidates must score above 35 to be invited."]),
+  ex("For 80 observations, state the positions of \\(Q_1\\), median and \\(Q_3\\).",["\\(Q_1=20\\)th value.","Median = 40th value.","\\(Q_3=60\\)th value."]),
+  ex("Why are cumulative-frequency graph readings estimates?",["The original data is grouped.","The smooth curve interpolates between plotted cumulative totals.","Exact individual values are not known."])
+ ],
+ practice:{foundation:["Find cumulative totals for 4,7,5,9.","For 60 values, state median position.","For 80 values, state Q1 and Q3 positions.","State which class boundary is plotted.","Explain why CF never decreases.","Plot four cumulative points."],core:["Complete a CF table.","Draw a smooth curve from upper boundaries.","Read a median.","Read Q1,Q3 and IQR.","Estimate the 90th percentile.","Estimate number above a threshold."],extension:["Use CF to estimate a probability.","Compare two CF curves using median and IQR.","Find a top-15% cutoff.","Explain why curve readings are estimates.","Explain why upper boundaries are used.","Assess reliability when the curve is steep around a percentile."]},
+ homework:[
+  hw("Foundation","Frequencies 3,5,8,4. Find cumulative frequencies.",["3,8,16,20."]),
+  hw("Foundation","100 values: median CF position?",["50."]),
+  hw("Core","120 values: Q1 and Q3 positions?",["30 and 90."]),
+  hw("Core","A curve gives Q1=18,Q3=31. Find IQR.",["13."]),
+  hw("Extension","Top 10% of 250 receive an award. Which CF gives the cutoff?",["90% are at/below cutoff.","\\(0.9\\times250=225\\)."]),
+  hw("Extension","Why are graph answers approximate?",["Grouped data loses exact individual values and the curve interpolates between cumulative points."])
+ ]
+},
+"19.7":{
+ examples:[
+  ex("The class \\(140\\le h\\le150\\) has frequency 15. Find frequency density.",["Class width = 10.","Density \\(=15/10=1.5\\)."]),
+  ex("The class \\(160<h\\le165\\) has frequency 20. Find density.",["Class width = 5.","Density \\(=20/5=4\\)."]),
+  ex("A histogram bar from 150 to 160 has density 3.5. Find frequency.",["Width = 10.","Frequency \\(=3.5\\times10=35\\)."]),
+  ex("Why can two classes with equal frequency have different histogram heights?",["Histogram height is frequency density, not frequency.","A narrower class needs greater height so its bar area still represents the same frequency."])
+ ],
+ practice:{foundation:["Find density for f=12,width=4.","Find density for f=18,width=6.","Find frequency for density 2.5,width=8.","Find class width 30–45.","State vertical-axis label.","Explain what bar area represents."],core:["Find frequency for density 1.8,width=15.","Find width for frequency24,density3.","Complete a table with missing density.","Complete a histogram from a table.","Recover missing frequencies.","Identify modal class from density."],extension:["Two bars have equal area but different widths. Compare frequencies.","Find missing bar height from total frequency.","Estimate percentage above a threshold cutting through a class.","Explain unequal heights for equal frequencies.","Design data for a specified histogram.","Critique a histogram drawn with gaps."]},
+ homework:[
+  hw("Foundation","Frequency 21,width7. Find density.",["3."]),
+  hw("Foundation","Density1.5,width12. Find frequency.",["18."]),
+  hw("Core","Frequency30,density2.5. Find width.",["12."]),
+  hw("Core","Class 50–65 has frequency24. Find density.",["Width15.","Density1.6."]),
+  hw("Extension","A histogram bar area is20. Find its frequency.",["Histogram area represents frequency, so 20."]),
+  hw("Extension","Why use frequency density for unequal widths?",["So bar area is proportional to frequency."])
+ ]
+},
+"20.3":{
+ examples:[
+  ex("Given \\(f(x)=x+6\\) and \\(g(x)=x-3\\), find \\(fg(x)\\) and \\(gf(x)\\).",["\\(fg(x)=f(x-3)=x+3\\).","\\(gf(x)=g(x+6)=x+3\\)."]),
+  ex("Given \\(f(x)=2x\\), \\(g(x)=-x\\), find \\(gf(1)\\).",["Apply f first: \\(f(1)=2\\).","Then g: \\(g(2)=-2\\)."]),
+  ex("Given \\(f(x)=3x+1\\), find \\(ff(x)\\).",["\\(ff(x)=f(3x+1)\\).","\\(=3(3x+1)+1=9x+4\\)."]),
+  ex("Given \\(f(x)=-x\\), \\(g(x)=x-1\\), \\(h(x)=1/(x+2)\\), show why \\(hgf(1)\\) cannot be evaluated.",["\\(f(1)=-1\\).","\\(g(-1)=-2\\).","\\(h(-2)=1/0\\), undefined.","So the composite is undefined at 1."])
+ ],
+ practice:{foundation:["For f=x+6,g=x-3, find fg(x).","Find gf(x).","For f=2x,g=-x, find gf(x).","Find fg(2).","Find ff(4).","State which function is applied first in gf(x)."],core:["Given f=3x+1,h=6x², find hf(x).","Find fh(x).","Given g=x²+1,h=2x+3, find gh(1).","Find hg(1).","Given f=8-x²,g=x²-8, find ff(x).","Find gg(x)."],extension:["Given f=2x-5,g=1/x evaluate gf(5/7).","Evaluate gf(4).","For f=x⁴,g=√(x²+36), find fg(x).","Show a composite is undefined at a specified input.","Construct functions where fg≠gf.","Solve fg(x)=a for a given value."]},
+ homework:[
+  hw("Foundation","f=x+5,g=2x. Find gf(3).",["f(3)=8.","g(8)=16."]),
+  hw("Foundation","f=3x-1. Find ff(2).",["f(2)=5.","f(5)=14."]),
+  hw("Core","f=x²,g=x-4. Find fg(x).",["\\(fg(x)=(x-4)^2\\)."]),
+  hw("Core","f=2x+1,g=x². Find gf(x).",["\\(gf(x)=(2x+1)^2\\)."]),
+  hw("Extension","f=1/x,g=x-2. Where is fg undefined?",["\\(fg(x)=1/(x-2)\\).","Undefined at x=2."]),
+  hw("Extension","f=x+1,g=2x. Solve fg(x)=11.",["\\(fg(x)=2x+1\\).","\\(x=5\\)."])
+ ]
+},
+"21.1":{
+ examples:[
+  ex("Let \\(\\xi=\\{1,2,3,4,5,6,7,8,9,10\\}\\), \\(A=\\{1,2,3,4,5,6,7\\}\\), \\(B=\\{4,5,8\\}\\). Place the elements in a Venn diagram.",["Intersection first: \\(A\\cap B=\\{4,5\\}\\).","A only: \\(1,2,3,6,7\\).","B only: 8.","Outside both: 9,10."]),
+  ex("Shade \\(A\\cap B\\).",["Intersection means elements in both sets.","Shade only the overlapping lens."]),
+  ex("Shade \\(A\\cup B\\).",["Union means in A or B or both.","Shade both circles including the overlap."]),
+  ex("In a class, 18 study French,15 Spanish,7 both. Find the number studying at least one.",["\\(n(F\\cup S)=18+15-7\\).","Subtract the overlap once because it was counted twice.","Answer 26."])
+ ],
+ practice:{foundation:["List the union of {1,2,3} and {3,4}.","List the intersection.","Find a complement in universal set 1–10.","Shade A∩B.","Shade A∪B.","Describe A' in words."],core:["30 students:19 football,16 basketball,8 both. Find at least one.","Find neither given a universal total.","Complete a two-set Venn diagram from region counts.","Use notation for 'in B but not A'.","Interpret a shaded complement.","Apply a simple subset relation."],extension:["Complete a three-set Venn diagram from totals.","Use De Morgan's law.","Solve for an unknown overlap.","Explain why the deepest overlap is filled first.","Translate a verbal condition into notation.","Check a set identity with a small universal set."]},
+ homework:[
+  hw("Foundation","A={1,2,5},B={2,3,5}. Find A∩B.",["{2,5}."]),
+  hw("Foundation","Find A∪B for the same sets.",["{1,2,3,5}."]),
+  hw("Core","20 like tea,14 coffee,6 both. Find tea or coffee.",["\\(20+14-6=28\\)."]),
+  hw("Core","Universal set 1–12; A=even numbers. Find A'.",["{1,3,5,7,9,11}."]),
+  hw("Extension","Universal total50,n(A)=28,n(B)=25,n(A∩B)=10. Find neither.",["Union \\(=28+25-10=43\\).","Neither \\(=7\\)."]),
+  hw("Extension","State De Morgan's law for the complement of a union.",["\\((A\\cup B)'=A'\\cap B'\\)."])
+ ]
+}
+};
+
+function upgradedBank(l){
+ return BOOK_BANK[l.id] || deepTextbookBank(l) || specialisedBank(l.type) || bank(l.type);
+}
+
+function bookDiagramV4(l,i){
+ var id=l.id;
+ if(id==="12.1" && i===3){
+  return '<svg class="diagram book-redraw" viewBox="0 0 650 300" aria-label="Coursebook surd rectangle"><rect x="145" y="55" width="360" height="180" fill="#fff" stroke="#172f39" stroke-width="4"/><line x1="145" y1="55" x2="505" y2="235" stroke="#c84d3a" stroke-width="4"/><path d="M145 215 h20 v20" fill="none" stroke="#172f39" stroke-width="3"/><path d="M485 55 v20 h20" fill="none" stroke="#172f39" stroke-width="3"/><text x="285" y="270" font-size="25">4√7</text><text x="515" y="150" font-size="25">x</text><text x="285" y="135" font-size="25">2√35</text></svg>';
+ }
+ if(id==="14.5" && i===0){
+  return '<svg class="diagram book-redraw" viewBox="0 0 650 430" aria-label="Coursebook simultaneous equations graph"><g stroke="#d9e7ec" stroke-width="1">'+Array.from({length:13},function(_,k){return '<line x1="'+(70+k*40)+'" y1="45" x2="'+(70+k*40)+'" y2="365"/>';}).join("")+Array.from({length:9},function(_,k){return '<line x1="70" y1="'+(45+k*40)+'" x2="550" y2="'+(45+k*40)+'"/>';}).join("")+'</g><line x1="70" y1="285" x2="570" y2="285" stroke="#172f39" stroke-width="3"/><line x1="150" y1="385" x2="150" y2="35" stroke="#172f39" stroke-width="3"/><line x1="150" y1="365" x2="390" y2="45" stroke="#c84d3a" stroke-width="4"/><line x1="70" y1="365" x2="550" y2="205" stroke="#c84d3a" stroke-width="4"/><circle cx="270" cy="325" r="7" fill="#18323d"/><text x="282" y="346" font-size="20">(3, −1)</text><text x="385" y="92" font-size="18">2x + y = 5</text><text x="415" y="250" font-size="18">x − 3y = 6</text></svg>';
+ }
+ if(id==="15.3" && i===0){
+  return '<svg class="diagram book-redraw" viewBox="0 0 620 420" aria-label="Coursebook inequality boundary"><g stroke="#e0edf1" stroke-width="1">'+Array.from({length:11},function(_,k){return '<line x1="'+(80+k*45)+'" y1="40" x2="'+(80+k*45)+'" y2="355"/>';}).join("")+Array.from({length:8},function(_,k){return '<line x1="80" y1="'+(40+k*45)+'" x2="560" y2="'+(40+k*45)+'"/>';}).join("")+'</g><line x1="80" y1="265" x2="570" y2="265" stroke="#172f39" stroke-width="3"/><line x1="260" y1="365" x2="260" y2="35" stroke="#172f39" stroke-width="3"/><line x1="170" y1="40" x2="395" y2="355" stroke="#c84d3a" stroke-width="4" stroke-dasharray="8 8"/><circle cx="395" cy="175" r="6" fill="#18323d"/><text x="410" y="170" font-size="22">P(3,2)</text><text x="205" y="72" font-size="20">y = −2x + 4</text></svg>';
+ }
+ if(id==="16.1"){
+  if(i===0)return '<svg class="diagram book-redraw" viewBox="0 0 600 330"><rect x="150" y="70" width="290" height="190" fill="#fff" stroke="#172f39" stroke-width="4"/><line x1="150" y1="260" x2="440" y2="180" stroke="#172f39" stroke-width="4"/><path d="M150 230 h30 v30" fill="none" stroke="#172f39" stroke-width="3"/><text x="180" y="230" font-size="25">72°</text><text x="145" y="205" font-size="25">x</text></svg>';
+  if(i===1)return '<svg class="diagram book-redraw" viewBox="0 0 600 330"><line x1="250" y1="40" x2="250" y2="290" stroke="#172f39" stroke-width="5"/><line x1="250" y1="160" x2="410" y2="65" stroke="#172f39" stroke-width="5"/><line x1="250" y1="160" x2="420" y2="265" stroke="#172f39" stroke-width="5"/><path d="M250 125 h35 v35" fill="none" stroke="#172f39" stroke-width="3"/><text x="295" y="122" font-size="25">x</text><text x="292" y="230" font-size="25">48°</text></svg>';
+  return '<svg class="diagram book-redraw" viewBox="0 0 600 330"><line x1="150" y1="60" x2="450" y2="275" stroke="#172f39" stroke-width="5"/><line x1="365" y1="40" x2="240" y2="300" stroke="#172f39" stroke-width="5"/><text x="310" y="165" font-size="25">x</text><text x="345" y="215" font-size="25">30°</text></svg>';
+ }
+ if(id==="16.2"){
+  return '<svg class="diagram book-redraw" viewBox="0 0 680 330"><line x1="80" y1="80" x2="590" y2="80" stroke="#172f39" stroke-width="4"/><line x1="80" y1="240" x2="590" y2="240" stroke="#172f39" stroke-width="4"/><line x1="235" y1="25" x2="340" y2="295" stroke="#c84d3a" stroke-width="5"/><path d="M150 76 l18 -8 v16 z" fill="#172f39"/><path d="M450 76 l18 -8 v16 z" fill="#172f39"/><path d="M150 236 l18 -8 v16 z" fill="#172f39"/><path d="M450 236 l18 -8 v16 z" fill="#172f39"/><text x="245" y="125" font-size="24">47°</text><text x="300" y="215" font-size="24">a</text><text x="300" y="120" font-size="24">b</text><text x="325" y="215" font-size="24">c</text></svg>';
+ }
+ if(id==="17.4"){
+  var major=i<2;
+  if(major)return '<svg class="diagram book-redraw" viewBox="0 0 520 360"><circle cx="250" cy="180" r="125" fill="#f6d92f" stroke="#172f39" stroke-width="4"/><path d="M250 180 L250 305 A125 125 0 0 1 363 233 Z" fill="#fff" stroke="#172f39" stroke-width="4"/><text x="280" y="245" font-size="24">65°</text><text x="255" y="270" font-size="22">4 cm</text><text x="130" y="95" font-size="20">major sector</text></svg>';
+  return diagramFor("sector");
+ }
+ if(id==="19.1" && i===0){
+  var hs=[2,1,2,6,2,7];
+  return '<svg class="diagram book-redraw" viewBox="0 0 660 420"><line x1="85" y1="345" x2="600" y2="345" stroke="#172f39" stroke-width="3"/><line x1="85" y1="345" x2="85" y2="45" stroke="#172f39" stroke-width="3"/><text x="18" y="55" font-size="18">Frequency</text><text x="315" y="395" font-size="18">Score</text>'+hs.map(function(h,j){return '<rect x="'+(120+j*75)+'" y="'+(345-h*38)+'" width="46" height="'+(h*38)+'" fill="#777" stroke="#172f39" stroke-width="2"/><text x="'+(132+j*75)+'" y="370" font-size="17">'+(15+j)+'</text>';}).join("")+'</svg>';
+ }
+ if(id==="19.1" && i===1){
+  return '<svg class="diagram book-redraw" viewBox="0 0 520 360"><circle cx="250" cy="180" r="125" fill="#fff" stroke="#172f39" stroke-width="4"/><path d="M250 180 L250 55 A125 125 0 0 1 375 180 Z" fill="#eef8fb" stroke="#172f39" stroke-width="3"/><path d="M250 180 h30 v-30" fill="none" stroke="#172f39" stroke-width="3"/><text x="305" y="120" font-size="24">A</text><text x="195" y="285" font-size="20">120 students total</text></svg>';
+ }
+ if(id==="19.2"){
+  var pos=[[130,285],[190,245],[235,235],[300,185],[350,165],[430,120],[520,90]];
+  var neg=[[135,80],[190,115],[250,135],[305,185],[370,190],[440,245],[520,270]];
+  var pts=i===1?neg:pos;
+  return '<svg class="diagram book-redraw" viewBox="0 0 680 390"><line x1="80" y1="325" x2="620" y2="325" stroke="#172f39" stroke-width="3"/><line x1="80" y1="325" x2="80" y2="45" stroke="#172f39" stroke-width="3"/>'+pts.map(function(p){return '<g stroke="#2563eb" stroke-width="3"><line x1="'+(p[0]-6)+'" y1="'+(p[1]-6)+'" x2="'+(p[0]+6)+'" y2="'+(p[1]+6)+'"/><line x1="'+(p[0]+6)+'" y1="'+(p[1]-6)+'" x2="'+(p[0]-6)+'" y2="'+(p[1]+6)+'"/></g>';}).join("")+(i===2?'<line x1="115" y1="290" x2="565" y2="70" stroke="#c84d3a" stroke-width="3"/>':'')+'</svg>';
+ }
+ if(id==="19.5"){
+  return '<svg class="diagram book-redraw" viewBox="0 0 700 430"><line x1="85" y1="350" x2="640" y2="350" stroke="#172f39" stroke-width="3"/><line x1="85" y1="350" x2="85" y2="45" stroke="#172f39" stroke-width="3"/><text x="12" y="40" font-size="18">Cumulative frequency</text><text x="300" y="405" font-size="18">Test score</text><path d="M90 345 C175 340,240 315,300 270 C360 220,405 130,470 85 C520 55,575 48,625 45" fill="none" stroke="#c84d3a" stroke-width="4"/><line x1="85" y1="105" x2="455" y2="105" stroke="#172f39" stroke-width="2" stroke-dasharray="7 7"/><line x1="455" y1="105" x2="455" y2="350" stroke="#172f39" stroke-width="2" stroke-dasharray="7 7"/><text x="45" y="112" font-size="18">160</text><text x="445" y="374" font-size="18">35</text></svg>';
+ }
+ if(id==="19.7"){
+  return '<svg class="diagram book-redraw" viewBox="0 0 720 430"><line x1="85" y1="350" x2="660" y2="350" stroke="#172f39" stroke-width="3"/><line x1="85" y1="350" x2="85" y2="45" stroke="#172f39" stroke-width="3"/><text x="8" y="42" font-size="18">Frequency density</text><text x="300" y="405" font-size="18">Height (cm)</text><rect x="100" y="245" width="90" height="105" fill="#91c83e" stroke="#172f39" stroke-width="2"/><rect x="190" y="105" width="90" height="245" fill="#91c83e" stroke="#172f39" stroke-width="2"/><rect x="325" y="90" width="45" height="260" fill="#91c83e" stroke="#172f39" stroke-width="2"/><rect x="370" y="195" width="90" height="155" fill="#91c83e" stroke="#172f39" stroke-width="2"/><rect x="550" y="308" width="90" height="42" fill="#91c83e" stroke="#172f39" stroke-width="2"/></svg>';
+ }
+ if(id==="21.1"){
+  return '<svg class="diagram book-redraw" viewBox="0 0 700 400"><rect x="55" y="45" width="590" height="300" fill="#fff" stroke="#172f39" stroke-width="3"/><circle cx="290" cy="190" r="105" fill="none" stroke="#172f39" stroke-width="3"/><circle cx="420" cy="190" r="105" fill="none" stroke="#172f39" stroke-width="3"/><text x="205" y="95" font-size="22">A</text><text x="485" y="95" font-size="22">B</text><text x="220" y="155" font-size="22">1</text><text x="255" y="205" font-size="22">2</text><text x="250" y="260" font-size="22">3</text><text x="345" y="165" font-size="22">4</text><text x="345" y="220" font-size="22">5</text><text x="195" y="235" font-size="22">6</text><text x="280" y="135" font-size="22">7</text><text x="475" y="200" font-size="22">8</text><text x="575" y="140" font-size="22">9</text><text x="565" y="270" font-size="22">10</text><text x="65" y="70" font-size="20">ξ</text></svg>';
+ }
+ return diagramForExample(l.type,i);
+}
+
+function renderLearningV4(l){
+ var g=guideFor(l);
+ var rules=(g.rules||[]).map(function(r){return texFormula(r[0],r[1]);}).join("");
+ var method=(g.method||[]).map(function(x){return '<li>'+x+'</li>';}).join("");
+ var pitfalls=(g.pitfalls||[]).map(function(x){return '<li>'+x+'</li>';}).join("");
+ var visual=bookDiagramV4(l,0);
+ return '<section class="teaching-slide notes-slide">'+
+   '<div class="slide-kicker">TEACH / KEY NOTES</div>'+
+   '<div class="explain-block"><h3>What students need to understand</h3><p>'+g.concept+'</p></div>'+
+   (rules?'<div class="rules-block"><h3>Rules & mathematical facts</h3>'+rules+'</div>':'')+
+   '<div class="notes-grid"><div><h3>Method / how to teach it</h3><ol class="method-list">'+method+'</ol></div><div><h3>Key checks & common errors</h3><ul class="clean-list">'+pitfalls+'</ul></div></div>'+
+   (visual?'<div class="book-visual"><div class="book-visual-label">Coursebook-style visual / redrawn from the supplied source</div>'+visual+'</div>':'')+
+   sourceBadge(l)+
+  '</section>';
+}
+
+function renderV4(){
+ var l=LESSONS[current],b=upgradedBank(l);
+ if(current!==lastExampleLesson){exampleSlide=0;lastExampleLesson=current;}
+ $("#unitPill").textContent="Unit "+l.u+" • "+l.unit;
+ $("#lessonTitle").textContent=l.id+"  "+l.title;
+ $("#lessonSubtitle").textContent="Cambridge IGCSE Mathematics • NES SoW + Cambridge Coursebook + Exam Success";
+ $("#prevBtn").disabled=current===0;
+ $("#nextBtn").disabled=current===LESSONS.length-1;
+ $$(".tab").forEach(function(x){x.classList.toggle("active",x.dataset.tab===tab);});
+ renderNav($("#search").value);
+
+ if(tab==="learn"){
+  $("#content").innerHTML=renderLearningV4(l);
+ }
+
+ if(tab==="examples"){
+  $("#content").innerHTML=
+   '<div class="deck-toolbar"><div><strong>Teacher examples</strong><span id="exampleCount"></span></div><div class="deck-buttons"><button id="examplePrev" class="ghost-btn">← Previous example</button><button id="exampleNext" class="primary-btn">Next example →</button></div></div>'+
+   '<div class="example-deck">'+b.examples.map(function(e,i){
+     var diag=bookDiagramV4(l,i);
+     return '<section class="example-slide teaching-slide" data-slide="'+i+'">'+
+      '<div class="slide-kicker">TEACHER EXAMPLE '+(i+1)+' OF '+b.examples.length+'</div>'+
+      '<div class="textbook-pattern"><span>Source sequence</span><strong>'+textbookLens(l,i)+'</strong><small>Cambridge: '+l.src+' • '+(EXAM_SUCCESS_MAP[l.u]||"Exam Success")+'</small></div>'+
+      '<div class="example-question">'+e.q+'</div>'+
+      (diag?'<div class="example-diagram">'+diag+'</div>':'')+
+      renderModelBoard("model-board-"+current+"-"+i)+
+      '<details class="worked-solution"><summary>Show textbook-style solution</summary><div class="solution-paper"><div class="solution-title">Worked solution</div><div class="steps">'+e.steps.map(function(s,j){return '<div class="step"><span class="step-badge">'+(j+1)+'</span><div>'+s+'</div></div>';}).join("")+'</div></div></details>'+
+     '</section>';
+   }).join("")+'</div>'+
+   '<div class="example-dots">'+b.examples.map(function(_,i){return '<button class="example-dot" data-slide="'+i+'" aria-label="Go to example '+(i+1)+'">'+(i+1)+'</button>';}).join("")+'</div>';
+ }
+
+ if(tab==="practice"){
+  var ep=extraPractice(l.type),merged={};
+  ["foundation","core","extension"].forEach(function(k){merged[k]=(b.practice[k]||[]).concat(ep[k]||[]);});
+  $("#content").innerHTML='<article class="card practice-sheet"><div class="sheet-head"><div><div class="slide-kicker">INDEPENDENT PRACTICE</div><h3>Coursebook progression + exam-style application</h3><p class="practice-source">Main source: '+l.src+'. Questions from the supplied books are used directly where transposed, then extended with matching exam-style problems.</p></div><span class="question-count">'+(merged.foundation.length+merged.core.length+merged.extension.length+(ep.problems||[]).length)+' questions</span></div>'+
+   '<div class="tiers">'+[["Foundation","foundation"],["Core","core"],["Extension","extension"]].map(function(pair){var name=pair[0],k=pair[1];return '<section class="tier '+k+'"><h4>'+name+'</h4><ol class="q-list">'+merged[k].map(function(q){return '<li>'+q+'</li>';}).join("")+'</ol></section>';}).join("")+'</div>'+
+   ((ep.problems||[]).length?'<section class="problem-solving"><div class="slide-kicker">REASONING & PROBLEM SOLVING</div><h4>Cambridge-style thinking</h4><ol class="q-list">'+ep.problems.map(function(q){return '<li>'+q+'</li>';}).join("")+'</ol></section>':'')+
+   sourceBadge(l)+'</article>';
+ }
+
+ if(tab==="homework"){
+  var allHw=(b.homework||[]).concat(extraHomework(l.type));
+  $("#content").innerHTML='<article class="card homework-sheet"><div class="sheet-head"><div><div class="slide-kicker">HOMEWORK</div><h3>Fluency → application → reasoning</h3><p class="practice-source">Attempt every item before revealing the solution. Solutions show method, not just the answer.</p></div><span class="question-count">'+allHw.length+' questions</span></div>'+
+   allHw.map(function(h,i){return '<div class="hw-item"><div class="hw-q"><span class="q-number">'+(i+1)+'</span><span class="pill">'+h.tier+'</span><span>'+h.q+'</span></div><details class="solution"><summary>Show solution</summary><div class="solution-body"><div class="steps">'+h.sol.map(function(s,j){return '<div class="step"><span class="step-badge">'+(j+1)+'</span><div>'+s+'</div></div>';}).join("")+'</div></div></details></div>';}).join("")+
+   sourceBadge(l)+'</article>';
+ }
+
+ if(tab==="whiteboard"){
+  $("#content").innerHTML='<article class="card board-card"><div class="board-tools"><strong>Whole-class whiteboard</strong><button class="colour-dot active" data-colour="#132d36" aria-label="Black pen"></button><button class="colour-dot" data-colour="#2563eb" aria-label="Blue pen"></button><button class="colour-dot" data-colour="#dc2626" aria-label="Red pen"></button><button class="colour-dot" data-colour="#15803d" aria-label="Green pen"></button><button id="eraser" class="tool-btn">Eraser</button><button id="clearBoard" class="tool-btn">Clear</button></div><div class="canvas-shell"><canvas id="board"></canvas></div></article>';
+ }
+
+ typesetMathV4($("#content"));
+ if(tab==="examples"){initModelBoards();setupExampleDeck();}
+ if(tab==="whiteboard")initBoard();
+ location.hash=l.id+"-"+tab;
+}
+
+render=renderV4;
+render();
