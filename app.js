@@ -784,3 +784,676 @@ function setupExampleDeck(){
   $$(".example-dot").forEach(function(d){d.onclick=function(){show(+d.dataset.slide);};});
   show(Number.isInteger(exampleSlide)?exampleSlide:0);
 }
+
+
+/* ===== Teaching Hub v3: textbook-pattern lesson banks ===== */
+function textbookLens(l,i){
+  var map={
+    "12.1":["simplify surds","write a surd as one square root","spot and correct an error","exact-value geometry"],
+    "12.2":["single-surd denominator","simplify then rationalise","conjugate denominator","multi-step exact expression"],
+    "13.1":["HCF cancellation","indices in algebraic fractions","factorise then cancel","reason about excluded values"],
+    "13.2":["multiply/divide algebraic fractions","common denominator","factor denominators first","simplify a complex result"],
+    "16.1":["angles on a line","angles around a point","vertically opposite angles","multi-step angle reasoning"],
+    "16.2":["corresponding angles","alternate angles","co-interior angles","parallel-line algebra"],
+    "16.3":["interior-angle sum","regular-polygon exterior angle","reverse polygon problem","mixed polygon reasoning"],
+    "17.2":["perimeter from a diagram","area of a trapezium/parallelogram","compound area","reverse mensuration problem"],
+    "17.4":["minor sector","major sector","sector perimeter","reverse arc/sector problem"],
+    "19.1":["frequency table to bar chart","pie chart","stem-and-leaf","compare representations"],
+    "19.2":["identify correlation","plot bivariate data","line of best fit","interpolation vs extrapolation"],
+    "19.5":["cumulative totals","plot upper class boundaries","read median/quartiles","percentile problem"],
+    "19.7":["frequency density","complete a histogram","recover missing frequency","interpret unequal-width classes"],
+    "20.3":["form fg and gf","evaluate a composite","repeat a function","domain/restriction reasoning"]
+  };
+  var a=map[l.id]||[];
+  return a[i]||"textbook-style progression";
+}
+
+function deepTextbookBank(l){
+  if(l.id==="12.1") return {
+    examples:[
+      ex("Simplify \\\\(\\\\sqrt{108}\\\\).",[
+        "Look for the largest square factor: \\\\(108=36\\\\times3\\\\).",
+        "\\\\(\\\\sqrt{108}=\\\\sqrt{36}\\\\sqrt3\\\\).",
+        "Therefore \\\\(\\\\sqrt{108}=6\\\\sqrt3\\\\)."
+      ]),
+      ex("Write \\\\(5\\\\sqrt6\\\\) in the form \\\\(\\\\sqrt n\\\\).",[
+        "Write 5 as \\\\(\\\\sqrt{25}\\\\).",
+        "\\\\(5\\\\sqrt6=\\\\sqrt{25}\\\\sqrt6\\\\).",
+        "\\\\(=\\\\sqrt{150}\\\\), so \\\\(n=150\\\\)."
+      ]),
+      ex("A student writes \\\\(\\\\sqrt8+\\\\sqrt{18}=\\\\sqrt{26}\\\\). Explain the error and find the correct answer.",[
+        "Square roots do not distribute over addition.",
+        "Simplify each surd separately: \\\\(\\\\sqrt8=2\\\\sqrt2\\\\), \\\\(\\\\sqrt{18}=3\\\\sqrt2\\\\).",
+        "Collect like surds: \\\\(2\\\\sqrt2+3\\\\sqrt2=5\\\\sqrt2\\\\)."
+      ]),
+      ex("A rectangle has side lengths \\\\(3+\\\\sqrt{12}\\\\) cm and \\\\(2\\\\sqrt3\\\\) cm. Find its exact perimeter in simplest form.",[
+        "Simplify first: \\\\(\\\\sqrt{12}=2\\\\sqrt3\\\\), so the first side is \\\\(3+2\\\\sqrt3\\\\).",
+        "Perimeter \\\\(=2[(3+2\\\\sqrt3)+2\\\\sqrt3]\\\\).",
+        "\\\\(=2(3+4\\\\sqrt3)=6+8\\\\sqrt3\\\\text{ cm}\\\\)."
+      ])
+    ],
+    practice:{
+      foundation:[
+        "Simplify \\\\(\\\\sqrt{28}\\\\).",
+        "Simplify \\\\(\\\\sqrt{72}\\\\).",
+        "Simplify \\\\(3\\\\sqrt{50}\\\\).",
+        "Simplify \\\\(\\\\sqrt{12}+\\\\sqrt{27}\\\\).",
+        "Simplify \\\\(5\\\\sqrt8-\\\\sqrt{32}\\\\).",
+        "Write \\\\(3\\\\sqrt5\\\\) in the form \\\\(\\\\sqrt n\\\\)."
+      ],
+      core:[
+        "Write \\\\(4\\\\sqrt7\\\\) in the form \\\\(\\\\sqrt n\\\\).",
+        "Arrange \\\\(2\\\\sqrt5,3\\\\sqrt2,\\\\sqrt{19}\\\\) in ascending order without a calculator.",
+        "Simplify \\\\(2\\\\sqrt3+3\\\\sqrt{12}-\\\\sqrt{75}\\\\).",
+        "Expand and simplify \\\\(\\\\sqrt3(4+\\\\sqrt{12})\\\\).",
+        "Expand and simplify \\\\((2+\\\\sqrt5)(3-\\\\sqrt5)\\\\).",
+        "Give a counterexample to show \\\\(\\\\sqrt a+\\\\sqrt b=\\\\sqrt{a+b}\\\\) is not generally true."
+      ],
+      extension:[
+        "A rectangle has sides \\\\(2+\\\\sqrt{10}\\\\) cm and \\\\(\\\\sqrt5\\\\) cm. Find its exact perimeter.",
+        "Show that \\\\(\\\\sqrt{48}-\\\\sqrt{27}=\\\\sqrt3\\\\).",
+        "Find \\\\(x\\\\) if \\\\(x\\\\sqrt7=\\\\sqrt{343}\\\\).",
+        "A right triangle has legs \\\\(4\\\\sqrt7\\\\) and \\\\(x\\\\), and hypotenuse \\\\(2\\\\sqrt{35}\\\\). Find \\\\(x\\\\) exactly.",
+        "A student claims \\\\(\\\\sqrt{50}-\\\\sqrt8=\\\\sqrt{42}\\\\). Diagnose and correct the method.",
+        "Prove that the product of \\\\(\\\\sqrt{12}\\\\) and \\\\(\\\\sqrt{27}\\\\) is rational."
+      ]
+    },
+    homework:[
+      hw("Foundation","Simplify \\\\(\\\\sqrt{75}\\\\).",["\\\\(75=25\\\\times3\\\\).","\\\\(\\\\sqrt{75}=5\\\\sqrt3\\\\)."]),
+      hw("Foundation","Write \\\\(2\\\\sqrt{11}\\\\) as \\\\(\\\\sqrt n\\\\).",["\\\\(2=\\\\sqrt4\\\\).","\\\\(2\\\\sqrt{11}=\\\\sqrt{44}\\\\), so \\\\(n=44\\\\)."]),
+      hw("Core","Simplify \\\\(4\\\\sqrt{18}-3\\\\sqrt8\\\\).",["\\\\(\\\\sqrt{18}=3\\\\sqrt2\\\\), \\\\(\\\\sqrt8=2\\\\sqrt2\\\\).","\\\\(12\\\\sqrt2-6\\\\sqrt2=6\\\\sqrt2\\\\)."]),
+      hw("Core","Expand and simplify \\\\((3+\\\\sqrt2)(2-\\\\sqrt2)\\\\).",["Expand: \\\\(6-3\\\\sqrt2+2\\\\sqrt2-2\\\\).","Collect terms: \\\\(4-\\\\sqrt2\\\\)."]),
+      hw("Extension","Show that \\\\(3\\\\sqrt8+2\\\\sqrt{18}=12\\\\sqrt2\\\\).",["\\\\(3\\\\sqrt8=6\\\\sqrt2\\\\).","\\\\(2\\\\sqrt{18}=6\\\\sqrt2\\\\).","Total \\\\(=12\\\\sqrt2\\\\)."]),
+      hw("Extension","A square has exact perimeter \\\\(20\\\\sqrt3\\\\) cm. Find its exact area.",["Side \\\\(=5\\\\sqrt3\\\\) cm.","Area \\\\(=(5\\\\sqrt3)^2=75\\\\text{ cm}^2\\\\)."])
+    ]
+  };
+
+  if(l.id==="12.2") return {
+    examples:[
+      ex("Rationalise \\\\(\\\\dfrac{7}{\\\\sqrt5}\\\\).",[
+        "Multiply numerator and denominator by \\\\(\\\\sqrt5\\\\).",
+        "\\\\(\\\\dfrac{7}{\\\\sqrt5}\\\\times\\\\dfrac{\\\\sqrt5}{\\\\sqrt5}=\\\\dfrac{7\\\\sqrt5}{5}\\\\)."
+      ]),
+      ex("Rationalise \\\\(\\\\dfrac{\\\\sqrt{18}}{\\\\sqrt8}\\\\).",[
+        "Simplify first: \\\\(\\\\sqrt{18}=3\\\\sqrt2\\\\), \\\\(\\\\sqrt8=2\\\\sqrt2\\\\).",
+        "\\\\(\\\\dfrac{3\\\\sqrt2}{2\\\\sqrt2}=\\\\dfrac32\\\\).",
+        "The denominator is already rational after cancellation."
+      ]),
+      ex("Rationalise \\\\(\\\\dfrac{4}{3-\\\\sqrt5}\\\\).",[
+        "Use the conjugate \\\\(3+\\\\sqrt5\\\\).",
+        "Denominator: \\\\((3-\\\\sqrt5)(3+\\\\sqrt5)=9-5=4\\\\).",
+        "Numerator: \\\\(4(3+\\\\sqrt5)\\\\).",
+        "Cancel 4 to obtain \\\\(3+\\\\sqrt5\\\\)."
+      ]),
+      ex("Write \\\\(\\\\dfrac{2+\\\\sqrt3}{2-\\\\sqrt3}\\\\) in the form \\\\(a+b\\\\sqrt3\\\\).",[
+        "Multiply by the conjugate \\\\((2+\\\\sqrt3)/(2+\\\\sqrt3)\\\\).",
+        "Denominator \\\\(=4-3=1\\\\).",
+        "Numerator \\\\((2+\\\\sqrt3)^2=4+4\\\\sqrt3+3\\\\).",
+        "Answer \\\\(7+4\\\\sqrt3\\\\)."
+      ])
+    ],
+    practice:{
+      foundation:["Rationalise \\\\(3/\\\\sqrt2\\\\).","Rationalise \\\\(5/\\\\sqrt7\\\\).","Rationalise \\\\(2\\\\sqrt3/\\\\sqrt5\\\\).","Simplify \\\\(\\\\sqrt{45}/\\\\sqrt5\\\\).","Simplify \\\\(\\\\sqrt{72}/\\\\sqrt8\\\\).","Rationalise \\\\(1/(2+\\\\sqrt3)\\\\)."],
+      core:["Rationalise \\\\(6/(3+\\\\sqrt2)\\\\).","Rationalise \\\\(5/(\\\\sqrt7-1)\\\\).","Rationalise \\\\(3/(2-\\\\sqrt5)\\\\).","Simplify \\\\((2\\\\sqrt2+\\\\sqrt6)/\\\\sqrt2\\\\).","Rationalise and simplify \\\\(\\\\sqrt3/(4-\\\\sqrt3)\\\\).","Write \\\\((3+\\\\sqrt2)/(3-\\\\sqrt2)\\\\) in the form \\\\(a+b\\\\sqrt2\\\\)."],
+      extension:["Rationalise \\\\(2/(\\\\sqrt7-\\\\sqrt5)\\\\).","Simplify fully \\\\((\\\\sqrt{18}-\\\\sqrt8)/(2+\\\\sqrt2)\\\\).","Show that \\\\(1/(\\\\sqrt5-2)=\\\\sqrt5+2\\\\).","Rationalise \\\\((2\\\\sqrt3+1)/(\\\\sqrt3-1)\\\\).","Find exact value of \\\\(1/(2+\\\\sqrt3)+1/(2-\\\\sqrt3)\\\\).","Explain why the conjugate removes the surd from a binomial denominator."]
+    },
+    homework:[
+      hw("Foundation","Rationalise \\\\(4/\\\\sqrt3\\\\).",["Multiply by \\\\(\\\\sqrt3/\\\\sqrt3\\\\).","Answer \\\\(4\\\\sqrt3/3\\\\)."]),
+      hw("Foundation","Simplify \\\\(\\\\sqrt{50}/\\\\sqrt2\\\\).",["\\\\(\\\\sqrt{50/2}=\\\\sqrt{25}=5\\\\)."]),
+      hw("Core","Rationalise \\\\(3/(2+\\\\sqrt3)\\\\).",["Use conjugate \\\\(2-\\\\sqrt3\\\\).","Denominator \\\\(=1\\\\).","Answer \\\\(6-3\\\\sqrt3\\\\)."]),
+      hw("Core","Rationalise \\\\(5/(4-\\\\sqrt7)\\\\).",["Use \\\\(4+\\\\sqrt7\\\\).","Denominator \\\\(=16-7=9\\\\).","Answer \\\\(5(4+\\\\sqrt7)/9\\\\)."]),
+      hw("Extension","Simplify \\\\((1+\\\\sqrt2)/(1-\\\\sqrt2)\\\\).",["Multiply by \\\\(1+\\\\sqrt2\\\\).","Denominator \\\\(=1-2=-1\\\\).","Numerator \\\\(=3+2\\\\sqrt2\\\\).","Answer \\\\(-3-2\\\\sqrt2\\\\)."]),
+      hw("Extension","Evaluate exactly \\\\(1/(\\\\sqrt3-1)-1/(\\\\sqrt3+1)\\\\).",["Rationalise each term or combine first.","The difference simplifies to \\\\(1\\\\)."])
+    ]
+  };
+
+  if(l.id==="13.1") return {
+    examples:[
+      ex("Simplify \\\\(\\\\dfrac{18x^3}{24x^5}\\\\).",[
+        "HCF of 18 and 24 is 6, so \\\\(18/24=3/4\\\\).",
+        "\\\\(x^3/x^5=1/x^2\\\\).",
+        "Answer \\\\(\\\\dfrac{3}{4x^2}\\\\), with \\\\(x\\\\ne0\\\\)."
+      ]),
+      ex("Simplify \\\\(\\\\dfrac{x^2-5x+6}{x^2-x-6}\\\\).",[
+        "Factor numerator: \\\\((x-2)(x-3)\\\\).",
+        "Factor denominator: \\\\((x-3)(x+2)\\\\).",
+        "Cancel the common factor \\\\((x-3)\\\\).",
+        "Answer \\\\(\\\\dfrac{x-2}{x+2}\\\\), with original restrictions \\\\(x\\\\ne3,-2\\\\)."
+      ]),
+      ex("Simplify \\\\(\\\\dfrac{4x^2-16}{2x^2+10x+12}\\\\).",[
+        "Factor numerator: \\\\(4(x-2)(x+2)\\\\).",
+        "Factor denominator: \\\\(2(x+2)(x+3)\\\\).",
+        "Cancel \\\\(2(x+2)\\\\).",
+        "Answer \\\\(\\\\dfrac{2(x-2)}{x+3}\\\\)."
+      ]),
+      ex("A student cancels the x in \\\\(\\\\dfrac{x+5}{x}\\\\) and writes 5. Explain why this is invalid.",[
+        "Cancellation works only with common factors, not individual terms joined by addition.",
+        "The numerator \\\\(x+5\\\\) is not a product containing x as a factor.",
+        "The fraction may be rewritten as \\\\(1+5/x\\\\), not 5."
+      ])
+    ],
+    practice:{
+      foundation:["Simplify \\\\(12x/18\\\\).","Simplify \\\\(15a^2/(5a)\\\\).","Simplify \\\\(18p^3/(24p^5)\\\\).","Simplify \\\\((x^2-9)/(x-3)\\\\).","Simplify \\\\((x^2+6x)/(x)\\\\).","State the excluded value for \\\\((x+1)/(x-4)\\\\)."],
+      core:["Simplify \\\\((x^2-16)/(x^2+x-20)\\\\).","Simplify \\\\((2x^2-8)/(x^2+5x+6)\\\\).","Simplify \\\\((3x^2+12x)/(x^2+6x+8)\\\\).","Simplify \\\\((x^2-2x-15)/(x^2-25)\\\\).","State all excluded values before simplifying \\\\((x^2-1)/(x^2-3x+2)\\\\).","Explain why \\\\((2x+6)/(2x)\\\\) cannot simplify to 3."],
+      extension:["Simplify \\\\((2x^2-18)/(x^2+x-12)\\\\).","Simplify \\\\((x^3-4x)/(x^2-x-6)\\\\).","Simplify and state restrictions: \\\\((x^2-4x+4)/(x^2-4)\\\\).","Find x if \\\\((x^2-9)/(x-3)=10\\\\), respecting restrictions.","Create a rational expression that simplifies to \\\\((x-1)/(x+4)\\\\) but has two excluded values.","Explain why cancelled factors still create excluded values in the original expression."]
+    },
+    homework:[
+      hw("Foundation","Simplify \\\\(20x^2/(30x)\\\\).",["\\\\(20/30=2/3\\\\) and \\\\(x^2/x=x\\\\).","Answer \\\\(2x/3\\\\)."]),
+      hw("Foundation","Simplify \\\\((x^2-25)/(x-5)\\\\).",["Factor \\\\(x^2-25=(x-5)(x+5)\\\\).","Cancel to get \\\\(x+5\\\\), with \\\\(x\\\\ne5\\\\)."]),
+      hw("Core","Simplify \\\\((x^2+7x+12)/(x^2+5x+4)\\\\).",["Factor to \\\\((x+3)(x+4)/(x+1)(x+4)\\\\).","Cancel \\\\(x+4\\\\).","Answer \\\\((x+3)/(x+1)\\\\)."]),
+      hw("Core","Simplify \\\\((2x^2-8x)/(x^2-16)\\\\).",["Factor top \\\\(2x(x-4)\\\\), bottom \\\\((x-4)(x+4)\\\\).","Answer \\\\(2x/(x+4)\\\\)."]),
+      hw("Extension","Simplify and state restrictions: \\\\((x^2-6x+9)/(x^2-9)\\\\).",["Factor \\\\((x-3)^2/[(x-3)(x+3)]\\\\).","Answer \\\\((x-3)/(x+3)\\\\).","Restrictions \\\\(x\\\\ne3,-3\\\\)."]),
+      hw("Extension","Explain why \\\\((x+2)/(x)\\\\ne2\\\\) in general.",["The numerator is a sum, not a product with x as a common factor.","For example x=2 gives 2, but x=1 gives 3."])
+    ]
+  };
+
+  if(l.id==="13.2") return {
+    examples:[
+      ex("Simplify \\\\(\\\\dfrac{3x}{4}\\\\times\\\\dfrac{8}{9x}\\\\).",[
+        "Multiply numerators and denominators.",
+        "Cancel common factors: \\\\(8/4=2\\\\), \\\\(3/9=1/3\\\\), x cancels.",
+        "Answer \\\\(2/3\\\\)."
+      ]),
+      ex("Simplify \\\\(\\\\dfrac{5a}{6}\\\\div\\\\dfrac{10a^2}{9}\\\\).",[
+        "Multiply by the reciprocal: \\\\(\\\\dfrac{5a}{6}\\\\times\\\\dfrac{9}{10a^2}\\\\).",
+        "Cancel common factors.",
+        "Answer \\\\(\\\\dfrac{3}{4a}\\\\)."
+      ]),
+      ex("Write \\\\(\\\\dfrac{2}{x} + \\\\dfrac{3}{x+1}\\\\) as a single fraction.",[
+        "LCD is \\\\(x(x+1)\\\\).",
+        "\\\\(\\\\dfrac{2(x+1)+3x}{x(x+1)}\\\\).",
+        "Numerator simplifies to \\\\(5x+2\\\\).",
+        "Answer \\\\(\\\\dfrac{5x+2}{x(x+1)}\\\\)."
+      ]),
+      ex("Simplify \\\\(\\\\dfrac{3x+4}{x^2+x-6}-\\\\dfrac1{x+3}\\\\).",[
+        "Factor \\\\(x^2+x-6=(x+3)(x-2)\\\\).",
+        "LCD is \\\\((x+3)(x-2)\\\\).",
+        "Numerator becomes \\\\(3x+4-(x-2)=2x+6=2(x+3)\\\\).",
+        "Cancel \\\\(x+3\\\\) to get \\\\(\\\\dfrac2{x-2}\\\\)."
+      ])
+    ],
+    practice:{
+      foundation:["\\\\((2x/3)\\\\times(9/(4x)))\\\\)","\\\\((5a/8)\\\\div(15a/16)\\\\)","\\\\(2/x+5/x\\\\)","\\\\(7/y-3/y\\\\)","\\\\(1/x+1/2\\\\)","\\\\(3/(x+1)+2/(x+1)\\\\)"],
+      core:["\\\\(1/x+2/(x+3)\\\\)","\\\\(4/(x-2)-1/(x+1)\\\\)","\\\\((x+2)/3)\\\\times(6/(x^2-4))\\\\)","\\\\((x^2-9)/(2x))\\\\div((x+3)/4)\\\\)","\\\\(2/(x+1)+3/(x-1)\\\\)","\\\\((3x+1)/(x^2-4))-1/(x-2)\\\\)"],
+      extension:["Simplify \\\\(1/(x-1)-1/(x+1)\\\\).","Simplify \\\\((x/(x-2))\\\\div(2x/(x+5))\\\\).","Simplify fully \\\\((x+1)/(x-1)+(x-1)/(x+1)\\\\).","Find x if \\\\(1/x+1/(x+2)=3/4\\\\).","Show that \\\\((3x+4)/(x^2+x-6)-1/(x+3)=2/(x-2)\\\\).","Explain why factorising denominators first can reduce algebraic work."]
+    },
+    homework:[
+      hw("Foundation","Simplify \\\\(3/x+4/x\\\\).",["Same denominator, so add numerators.","Answer \\\\(7/x\\\\)."]),
+      hw("Foundation","Simplify \\\\((4x/5)\\\\times(15/(8x))\\\\).",["Cancel x, reduce 15/5 and 4/8.","Answer \\\\(3/2\\\\)."]),
+      hw("Core","Simplify \\\\(1/x+2/(x+2)\\\\).",["LCD \\\\(x(x+2)\\\\).","Numerator \\\\(x+2+2x=3x+2\\\\).","Answer \\\\((3x+2)/(x(x+2))\\\\)."]),
+      hw("Core","Simplify \\\\(3/(x-1)-1/(x+1)\\\\).",["LCD \\\\((x-1)(x+1)\\\\).","Numerator \\\\(3(x+1)-(x-1)=2x+4\\\\).","Answer \\\\(2(x+2)/(x^2-1)\\\\)."]),
+      hw("Extension","Simplify \\\\((x^2-4)/(3x)\\\\div((x+2)/(6x))\\\\).",["Multiply by reciprocal.","\\\\((x-2)(x+2)/(3x))\\\\times(6x/(x+2))\\\\).","Answer \\\\(2(x-2)\\\\)."]),
+      hw("Extension","Write \\\\(2/(x+3)+1/(x-3)\\\\) as one fraction.",["LCD \\\\((x+3)(x-3)\\\\).","Numerator \\\\(2(x-3)+(x+3)=3x-3\\\\).","Answer \\\\(3(x-1)/(x^2-9)\\\\)."])
+    ]
+  };
+
+  if(l.id==="16.1") return {
+    examples:[
+      ex("In the diagram, \\\\(112^\\\\circ\\\\) and \\\\(x\\\\) lie on a straight line. Find x and give a reason.",[
+        "Angles on a straight line sum to \\\\(180^\\\\circ\\\\).",
+        "\\\\(112+x=180\\\\).",
+        "\\\\(x=68^\\\\circ\\\\)."
+      ]),
+      ex("Angles around a point are \\\\(82^\\\\circ,82^\\\\circ,x,y,z\\\\). Two adjacent right angles are shown. Find the unknown angles.",[
+        "Use right-angle information first where marked.",
+        "Use vertically opposite angles where appropriate.",
+        "Finally use angles around a point sum to \\\\(360^\\\\circ\\\\)."
+      ]),
+      ex("Two lines cross. One angle is \\\\(115^\\\\circ\\\\). Find the vertically opposite angle and each adjacent angle.",[
+        "Vertically opposite angle \\\\(=115^\\\\circ\\\\).",
+        "Adjacent angles are supplementary.",
+        "\\\\(180-115=65^\\\\circ\\\\)."
+      ]),
+      ex("Around a point, the angles are \\\\(x,2x,4x,150^\\\\circ\\\\). Find x.",[
+        "Angles around a point sum to \\\\(360^\\\\circ\\\\).",
+        "\\\\(x+2x+4x+150=360\\\\).",
+        "\\\\(7x=210\\\\).",
+        "\\\\(x=30^\\\\circ\\\\)."
+      ])
+    ],
+    practice:{
+      foundation:["Find x if \\\\(x+73=180\\\\).","Find the vertically opposite angle to \\\\(128^\\\\circ\\\\).","Three angles around a point are 90°, 110° and x. Find x.","A triangle has angles 48°, 67° and x. Find x.","A quadrilateral has angles 90°, 85°, 112° and x. Find x.","State the reason used in each answer."],
+      core:["At a point, angles are x, x, 70°, 110°. Find x.","Two intersecting lines form angles \\\\(3x+5\\\\) and \\\\(5x-35\\\\) vertically opposite. Find x.","A straight line is split into \\\\(2x+10\\\\) and \\\\(5x-5\\\\). Find x.","A triangle has angles \\\\(x,2x,3x\\\\). Find all angles.","A quadrilateral has angles \\\\(x, x+20, 2x, 100\\\\). Find x.","Write a full reason beside every step."],
+      extension:["A diagram contains a right angle split into \\\\(x\\\\) and \\\\(2x+9\\\\). Find x.","At an intersection one angle is \\\\(4x-7\\\\), adjacent angle \\\\(2x+31\\\\). Find x.","Construct your own angle problem with answer 36°.","Explain why vertically opposite angles are equal using straight-line sums.","A compound angle diagram requires three reasons. Write the solution in proof style.","Find all unknowns in a diagram combining a triangle and an intersecting line."]
+    },
+    homework:[
+      hw("Foundation","Find x if \\\\(x+124=180\\\\).",["Straight line: \\\\(x=56^\\\\circ\\\\)."]),
+      hw("Foundation","Find the angle vertically opposite \\\\(74^\\\\circ\\\\).",["Vertically opposite angles are equal.","Answer \\\\(74^\\\\circ\\\\)."]),
+      hw("Core","Angles around a point are 95°, 80°, 75° and x. Find x.",["Total 360°.","\\\\(x=360-250=110^\\\\circ\\\\)."]),
+      hw("Core","A triangle has angles \\\\(x,2x,75^\\\\circ\\\\). Find x.",["\\\\(3x+75=180\\\\).","\\\\(x=35^\\\\circ\\\\)."]),
+      hw("Extension","Vertically opposite angles are \\\\(5x-8\\\\) and \\\\(3x+28\\\\). Find x.",["Set equal: \\\\(5x-8=3x+28\\\\).","\\\\(2x=36\\\\).","\\\\(x=18\\\\)."]),
+      hw("Extension","A quadrilateral has angles \\\\(x,2x,3x,60^\\\\circ\\\\). Find x.",["Quadrilateral sum 360°.","\\\\(6x+60=360\\\\).","\\\\(x=50^\\\\circ\\\\)."])
+    ]
+  };
+
+  if(l.id==="17.2") return {
+    examples:[
+      ex("A trapezium has parallel sides 7 cm and 10 cm, and the other sides are 4 cm each. Find its perimeter.",[
+        "Perimeter is the sum of all outside edges.",
+        "\\\\(P=7+10+4+4=25\\\\text{ cm}\\\\)."
+      ]),
+      ex("Find the area of a parallelogram with base 8 m and perpendicular height 3.5 m.",[
+        "Use \\\\(A=bh\\\\).",
+        "\\\\(A=8\\\\times3.5=28\\\\text{ m}^2\\\\)."
+      ]),
+      ex("A house-shaped compound figure is a rectangle 5 m by 8 m topped by a triangle of base 5 m and height 4 m. Find its total area.",[
+        "Rectangle area \\\\(=5\\\\times8=40\\\\).",
+        "Triangle area \\\\(=\\\\tfrac12\\\\times5\\\\times4=10\\\\).",
+        "Total area \\\\(=50\\\\text{ m}^2\\\\)."
+      ]),
+      ex("A trapezium has area 63 cm², height 6 cm and one parallel side 8 cm. Find the other parallel side.",[
+        "\\\\(63=\\\\tfrac12(8+x)6\\\\).",
+        "\\\\(63=3(8+x)\\\\).",
+        "\\\\(21=8+x\\\\), so \\\\(x=13\\\\text{ cm}\\\\)."
+      ])
+    ],
+    practice:{
+      foundation:["Find perimeter of a rectangle 8 cm by 5 cm.","Find area of triangle base 12 cm, height 7 cm.","Find area of parallelogram base 9 cm, height 4 cm.","Find area of trapezium with parallel sides 6 cm and 10 cm, height 5 cm.","Find perimeter of a trapezium with sides 7,4,10,4 cm.","State correct units for each answer."],
+      core:["A compound L-shape can be split into two rectangles. Find its area from given dimensions.","A triangle has area 45 cm² and base 10 cm. Find height.","A parallelogram has area 72 cm² and height 8 cm. Find base.","A trapezium has area 54 cm², height 6 cm and one parallel side 7 cm. Find the other.","A rectangular frame has outside dimensions 12 by 9 and border width 1. Find frame area.","Compare areas of two quadrilaterals with same perimeter."],
+      extension:["A compound shape combines a trapezium and a triangle. Form an expression for its area.","A stained-glass triangle has base 45 cm and area 0.54 m². Find height in cm.","Find the missing dimension in a compound area problem.","Two shapes have equal area but different perimeters. Construct an example.","A trapezium and parallelogram have equal area. Find an unknown height.","Explain why sloping side length is irrelevant to parallelogram area."]
+    },
+    homework:[
+      hw("Foundation","Find area of a triangle with base 15 cm and height 8 cm.",["\\\\(A=\\\\tfrac12\\\\times15\\\\times8=60\\\\text{ cm}^2\\\\)."]),
+      hw("Foundation","Find perimeter of sides 4,6,7,9 cm.",["Add all sides: \\\\(26\\\\text{ cm}\\\\)."]),
+      hw("Core","Find area of trapezium with parallel sides 9 cm and 14 cm, height 6 cm.",["\\\\(A=\\\\tfrac12(9+14)6=69\\\\text{ cm}^2\\\\)."]),
+      hw("Core","A parallelogram has area 84 cm² and base 12 cm. Find height.",["\\\\(h=84/12=7\\\\text{ cm}\\\\)."]),
+      hw("Extension","A rectangle 10 by 6 has a 4 by 2 rectangle removed. Find remaining area.",["Outer area 60.","Removed area 8.","Remaining area \\\\(52\\\\text{ units}^2\\\\)."]),
+      hw("Extension","A trapezium has area 96 cm², height 8 cm, one parallel side 9 cm. Find the other.",["\\\\(96=4(9+x)\\\\).","\\\\(24=9+x\\\\).","\\\\(x=15\\\\text{ cm}\\\\)."])
+    ]
+  };
+
+  if(l.id==="17.4") return {
+    examples:[
+      ex("Find the area and arc length of a sector of radius 6 cm and angle \\\\(40^\\\\circ\\\\).",[
+        "Area \\\\(=(40/360)\\\\pi(6^2)=4\\\\pi\\\\text{ cm}^2\\\\).",
+        "Arc length \\\\(=(40/360)2\\\\pi(6)=4\\\\pi/3\\\\text{ cm}\\\\)."
+      ]),
+      ex("A major sector has radius 4 cm and missing minor angle \\\\(65^\\\\circ\\\\). Find the major-sector angle and area.",[
+        "Major angle \\\\(=360-65=295^\\\\circ\\\\).",
+        "Area \\\\(=(295/360)\\\\pi(4^2)\\\\).",
+        "Simplify or round as requested."
+      ]),
+      ex("A sector has radius 8 cm and angle \\\\(120^\\\\circ\\\\). Find its perimeter.",[
+        "Arc length \\\\(=(120/360)2\\\\pi(8)=16\\\\pi/3\\\\).",
+        "Perimeter includes two radii.",
+        "\\\\(P=16+16\\\\pi/3\\\\text{ cm}\\\\)."
+      ]),
+      ex("A sector has arc length \\\\(5\\\\pi\\\\) cm and radius 12 cm. Find the angle.",[
+        "\\\\(5\\\\pi=(\\\\theta/360)2\\\\pi(12)\\\\).",
+        "Cancel \\\\(\\\\pi\\\\): \\\\(5=\\\\theta/15\\\\).",
+        "\\\\(\\\\theta=75^\\\\circ\\\\)."
+      ])
+    ],
+    practice:{
+      foundation:["Find arc length: r=9 cm, angle 80°.","Find sector area: r=7 cm, angle 90°.","Find semicircle area for diameter 12 cm.","Find quadrant perimeter for radius 5 cm.","Find major angle if minor angle is 110°.","Give answers in terms of π where appropriate."],
+      core:["Find area and perimeter of a 135° sector of radius 8 cm.","A major sector has minor angle 50° and radius 6 cm. Find area.","Find angle if sector area is \\\\(18\\\\pi\\\\) and radius 9 cm.","Find radius if arc length is \\\\(6\\\\pi\\\\) and angle 120°.","A sector forms part of a compound shape; find total perimeter.","Compare exact and 3 s.f. answers."],
+      extension:["A 'Pac-Man' shape is a major sector formed by removing a 70° sector from a circle of radius 5 cm. Find area and perimeter.","A sector has equal numerical area and arc length. Find a relationship between r and angle.","A circular badge has a sector removed. Find remaining area from diameter and angle.","Two sectors have equal arc length. Compare their angles and radii.","Find the angle of a sector if its perimeter and radius are known.","Form an equation for a sector radius from given area."]
+    },
+    homework:[
+      hw("Foundation","Find arc length for r=10 cm, angle 72°.",["\\\\((72/360)2\\\\pi10=4\\\\pi\\\\text{ cm}\\\\)."]),
+      hw("Foundation","Find sector area for r=6 cm, angle 120°.",["\\\\((120/360)\\\\pi36=12\\\\pi\\\\text{ cm}^2\\\\)."]),
+      hw("Core","Find perimeter of a 90° sector, r=8 cm.",["Arc \\\\(=(1/4)16\\\\pi=4\\\\pi\\\\).","Perimeter \\\\(=16+4\\\\pi\\\\text{ cm}\\\\)."]),
+      hw("Core","A major sector has minor angle 80° and r=5 cm. Find major angle.",["\\\\(360-80=280^\\\\circ\\\\)."]),
+      hw("Extension","Arc length is \\\\(7\\\\pi\\\\) cm, r=14 cm. Find angle.",["\\\\(7\\\\pi=(\\\\theta/360)28\\\\pi\\\\).","\\\\(7=7\\\\theta/90\\\\).","\\\\(\\\\theta=90^\\\\circ\\\\)."]),
+      hw("Extension","Sector area is \\\\(25\\\\pi\\\\) cm², angle 144°. Find r.",["\\\\(25\\\\pi=(144/360)\\\\pi r^2=(2/5)\\\\pi r^2\\\\).","\\\\(r^2=62.5\\\\).","\\\\(r=5\\\\sqrt{2.5}\\\\) cm (exact equivalent accepted)."])
+    ]
+  };
+
+  if(l.id==="19.1") return {
+    examples:[
+      ex("The scores 15,16,17,18,19,20 occur with frequencies 2,1,2,6,2,7. Represent them in a bar chart.",[
+        "Put score on the horizontal axis and frequency on the vertical axis.",
+        "Use equal-width separated bars because the data is discrete.",
+        "Choose a vertical scale reaching at least 7.",
+        "Label both axes and give the chart a title."
+      ]),
+      ex("In a survey of 36 students, choices A, B, C, D have frequencies 9, 6, 11, 10. Find the pie-chart angles.",[
+        "One student corresponds to \\\\(360/36=10^\\\\circ\\\\).",
+        "Angles are \\\\(90^\\\\circ,60^\\\\circ,110^\\\\circ,100^\\\\circ\\\\).",
+        "Check the total is \\\\(360^\\\\circ\\\\)."
+      ]),
+      ex("Construct a stem-and-leaf diagram for 12, 15, 18, 21, 21, 24, 29, 31, 34.",[
+        "Use tens as stems.",
+        "Order leaves within each stem.",
+        "Write a key, for example \\\\(2|4=24\\\\)."
+      ]),
+      ex("A newspaper displays the same data using a pictogram and a bar chart. Which representation is easier to compare precisely, and why?",[
+        "A bar chart usually supports more precise comparisons because values are read from a numerical axis.",
+        "A pictogram can be visually engaging but partial symbols may reduce precision.",
+        "The best choice depends on audience and purpose."
+      ])
+    ],
+    practice:{
+      foundation:["Make a frequency table from 2,3,3,4,4,4,5.","Draw a bar chart for frequencies 3,5,7,4.","Find pie angle for 12 out of 48.","Find pie angle for 9 out of 36.","Write a key for a stem-and-leaf diagram.","Interpret 2.5 symbols if one symbol represents 8 people."],
+      core:["Construct a stem-and-leaf diagram for 11,14,17,18,22,24,24,29,31.","Find all pie angles for frequencies 5,7,8,10.","Design a dual bar chart comparing two classes.","Explain why bar-chart bars are separated for discrete categories.","A pictogram uses half-symbols. Calculate exact frequencies.","Compare the information shown by a bar chart and pie chart."],
+      extension:["A pie chart sector is 126°. What fraction and percentage of the total is this?","One category is missing from a pie chart. Use the other angles to find it.","Create a back-to-back stem-and-leaf diagram for two data sets.","Explain one misleading feature that can occur in a bar chart.","Choose the best representation for two different scenarios and justify.","Turn a frequency table into two different valid displays and compare them."]
+    },
+    homework:[
+      hw("Foundation","Frequency 14 out of 56. Find pie angle.",["Fraction \\\\(=1/4\\\\).","Angle \\\\(=90^\\\\circ\\\\)."]),
+      hw("Foundation","A pictogram symbol represents 6 students. What does 3.5 symbols represent?",["\\\\(3.5\\\\times6=21\\\\) students."]),
+      hw("Core","Construct a stem-and-leaf for 13,14,18,21,21,25,29.",["Stem 1: 3,4,8.","Stem 2: 1,1,5,9.","Include a key."]),
+      hw("Core","Frequencies 8,12,10 total 30. Find pie angles.",["Multiply each by 12°.","Angles: 96°, 144°, 120°."]),
+      hw("Extension","A pie sector is 54°. What percentage is it?",["\\\\(54/360=0.15\\\\).","Percentage \\\\(=15%\\\\)."]),
+      hw("Extension","Explain why a truncated vertical axis may mislead in a bar chart.",["It can visually exaggerate small differences in bar heights.","Readers should inspect the numerical scale."])
+    ]
+  };
+
+  if(l.id==="19.2") return {
+    examples:[
+      ex("A scatter diagram rises from left to right and points lie close to a straight line. Describe the correlation.",[
+        "The direction is upward, so correlation is positive.",
+        "Points are close to a line, so it is strong.",
+        "Answer: strong positive correlation."
+      ]),
+      ex("Plot the pairs \\\\((1,7),(2,5),(3,6),(4,3),(5,2),(6,1)\\\\) and describe the relationship.",[
+        "Plot each point accurately as a small cross.",
+        "The overall trend decreases as x increases.",
+        "The relationship is negative correlation."
+      ]),
+      ex("Draw a line of best fit for a scatter plot and estimate y when x=7.",[
+        "Draw one straight line across the full data cloud.",
+        "Aim for roughly balanced points above and below.",
+        "From x=7, move vertically to the line then horizontally to read y.",
+        "The answer is an estimate."
+      ]),
+      ex("The observed x-values lie between 10 and 50. A model is used at x=90. Comment on reliability.",[
+        "This is extrapolation outside the observed range.",
+        "The pattern may not continue.",
+        "The prediction is less reliable and should be stated cautiously."
+      ])
+    ],
+    practice:{
+      foundation:["State the correlation for an upward trend.","State the correlation for a downward trend.","State the correlation for a random cloud.","Identify an outlier.","Explain what bivariate data means.","Plot three given coordinate pairs as crosses."],
+      core:["Describe strength and direction of four scatter plots.","Draw a line of best fit by eye.","Use a line of best fit to interpolate.","Explain why the line need not pass through any data point.","State why a point far from the pattern matters.","Distinguish interpolation from extrapolation."],
+      extension:["A strong positive correlation exists between screen size and price. Give one cautious conclusion.","Give a plausible third variable for ice-cream sales and sunburn cases.","Explain why correlation does not prove causation.","Estimate the equation of a line of best fit from two convenient points.","Discuss the effect of one extreme outlier on a fitted line.","Design paired data likely to show zero correlation."]
+    },
+    homework:[
+      hw("Foundation","A scatter plot falls left to right. State correlation.",["Negative correlation."]),
+      hw("Foundation","What is an outlier?",["A point that lies noticeably away from the main pattern of the data."]),
+      hw("Core","Why should a line of best fit extend across the data cloud?",["It should represent the overall trend, not a small local section."]),
+      hw("Core","Why is interpolation usually safer than extrapolation?",["Interpolation stays within the range supported by observed data.","Extrapolation assumes the trend continues beyond the evidence."]),
+      hw("Extension","A strong correlation is found between height and vocabulary in children. Explain a likely third variable.",["Age is a plausible confounding variable: older children tend to be taller and have larger vocabularies."]),
+      hw("Extension","Explain why a strong correlation can still give uncertain individual predictions.",["Points still vary around the trend line.","Correlation describes an overall pattern, not exact outcomes."])
+    ]
+  };
+
+  if(l.id==="19.5") return {
+    examples:[
+      ex("Grouped frequencies are 5, 8, 11, 6 for classes ending at 10,20,30,40. Form cumulative frequencies.",[
+        "Running totals: \\\\(5,13,24,30\\\\).",
+        "These totals are paired with upper class boundaries 10,20,30,40."
+      ]),
+      ex("Plot cumulative-frequency points \\\\((10,5),(20,13),(30,24),(40,30)\\\\).",[
+        "Label axes clearly.",
+        "Plot each point as a small cross.",
+        "Join with a smooth increasing curve, not straight zig-zag segments."
+      ]),
+      ex("A cumulative-frequency curve represents 80 values. Estimate the median and quartiles.",[
+        "Use CF positions 20, 40 and 60 for Q1, median and Q3.",
+        "Move horizontally from each CF value to the curve, then vertically to the x-axis.",
+        "Read approximate x-values."
+      ]),
+      ex("Only the top 20% of 200 candidates progress. Find the cutoff using a cumulative-frequency curve.",[
+        "Top 20% means 80% lie at or below the cutoff.",
+        "\\\\(0.80\\\\times200=160\\\\).",
+        "Read the x-value corresponding to cumulative frequency 160.",
+        "Scores above that value progress."
+      ])
+    ],
+    practice:{
+      foundation:["Find cumulative frequencies for 4,7,5,9.","For 60 values, state median CF position.","For 80 values, state Q1 and Q3 positions.","State which class boundary is plotted.","Explain why cumulative frequency never decreases.","Plot four cumulative points."],
+      core:["Complete a cumulative-frequency table.","Draw a smooth CF curve from upper class boundaries.","Read median from a curve.","Read Q1 and Q3 and calculate IQR.","Estimate the 90th percentile.","Estimate number above a given threshold."],
+      extension:["Use a CF curve to estimate a probability.","Compare two CF curves using median and IQR.","Find a cutoff for the top 15% of a population.","Explain why values read from the curve are estimates.","Explain why lower class boundaries are not paired with cumulative totals in the usual construction.","Assess reliability when a curve is steep around the percentile being read."]
+    },
+    homework:[
+      hw("Foundation","Frequencies are 3,5,8,4. Find cumulative frequencies.",["Running totals: 3,8,16,20."]),
+      hw("Foundation","There are 100 values. State CF position of median.",["\\\\(100/2=50\\\\)."]),
+      hw("Core","There are 120 values. State CF positions of Q1 and Q3.",["Q1 \\\\(=30\\\\), Q3 \\\\(=90\\\\)."]),
+      hw("Core","A curve gives Q1=18, Q3=31. Find IQR.",["\\\\(31-18=13\\\\)."]),
+      hw("Extension","Top 10% of 250 students receive an award. Which CF value gives the cutoff?",["90% lie at or below cutoff.","\\\\(0.9\\\\times250=225\\\\).","Read x at CF=225."]),
+      hw("Extension","Why are CF graph answers approximate?",["The original grouped data does not give exact individual values.","The smooth curve also interpolates between plotted cumulative totals."])
+    ]
+  };
+
+  if(l.id==="19.7") return {
+    examples:[
+      ex("Class \\\\(140<h\\\\le150\\\\) has frequency 15. Find its frequency density.",[
+        "Class width \\\\(=10\\\\).",
+        "Frequency density \\\\(=15/10=1.5\\\\).",
+        "The histogram bar height is 1.5."
+      ]),
+      ex("A histogram bar from 150 to 160 has density 3.5. Find frequency.",[
+        "Class width \\\\(=10\\\\).",
+        "Frequency \\\\(=\\\\text{density}\\\\times\\\\text{width}\\\\).",
+        "\\\\(3.5\\\\times10=35\\\\)."
+      ]),
+      ex("A class from 160 to 165 has frequency 20. Compare its bar height with a 10-wide class of frequency 20.",[
+        "For 160–165, density \\\\(=20/5=4\\\\).",
+        "For a 10-wide class, density \\\\(=20/10=2\\\\).",
+        "Equal frequencies can have different heights because class widths differ."
+      ]),
+      ex("An unfinished histogram and table each contain missing information. Explain how to complete both.",[
+        "Use table frequency and class width to calculate missing density.",
+        "Use histogram height and class width to recover missing frequency.",
+        "Remember bar area, not height alone, represents frequency."
+      ])
+    ],
+    practice:{
+      foundation:["Find density: f=12, width=4.","Find density: f=18, width=6.","Find frequency: density=2.5, width=8.","Find class width 30–45.","State the vertical-axis label.","Explain what bar area represents."],
+      core:["Find frequency for density 1.8 and width 15.","Find width for frequency 24 and density 3.","Complete a histogram table with one missing density.","Complete a histogram from a frequency table.","Recover two missing frequencies from a histogram.","Identify the modal class from histogram heights and widths."],
+      extension:["Two bars have equal area but different widths. Compare frequencies.","A histogram has one missing bar; calculate its height from total frequency.","Estimate percentage above a threshold that cuts through a class.","Explain why equal-frequency classes can have different heights.","Design a grouped table that would produce a specified histogram.","Critique a 'histogram' incorrectly drawn with gaps between continuous classes."]
+    },
+    homework:[
+      hw("Foundation","Frequency 21, width 7. Find density.",["\\\\(21/7=3\\\\)."]),
+      hw("Foundation","Density 1.5, width 12. Find frequency.",["\\\\(1.5\\\\times12=18\\\\)."]),
+      hw("Core","Frequency 30, density 2.5. Find width.",["\\\\(30/2.5=12\\\\)."]),
+      hw("Core","Class 50–65 has frequency 24. Find density.",["Width 15.","Density \\\\(=24/15=1.6\\\\)."]),
+      hw("Extension","A class width is 8 and its histogram bar area is 20. Find frequency.",["Histogram area represents frequency.","Frequency \\\\(=20\\\\)."]),
+      hw("Extension","Why must a histogram use frequency density for unequal class widths?",["So that each bar's area, rather than height alone, is proportional to frequency."])
+    ]
+  };
+
+  if(l.id==="20.3") return {
+    examples:[
+      ex("Given \\\\(f(x)=x+6\\\\) and \\\\(g(x)=x-3\\\\), find \\\\(fg(x)\\\\) and \\\\(gf(x)\\\\).",[
+        "\\\\(fg(x)=f(g(x))=f(x-3)=x+3\\\\).",
+        "\\\\(gf(x)=g(f(x))=g(x+6)=x+3\\\\).",
+        "For this pair, the two composites happen to be equal."
+      ]),
+      ex("Given \\\\(f(x)=2x\\\\) and \\\\(g(x)=-x\\\\), find \\\\(gf(4)\\\\).",[
+        "Apply f first: \\\\(f(4)=8\\\\).",
+        "Then g: \\\\(g(8)=-8\\\\).",
+        "So \\\\(gf(4)=-8\\\\)."
+      ]),
+      ex("Given \\\\(f(x)=3x+1\\\\), find \\\\(ff(x)\\\\).",[
+        "\\\\(ff(x)=f(f(x))\\\\).",
+        "Substitute \\\\(3x+1\\\\) into f.",
+        "\\\\(f(3x+1)=3(3x+1)+1=9x+4\\\\)."
+      ]),
+      ex("Given \\\\(f(x)=-x\\\\), \\\\(g(x)=x-1\\\\), \\\\(h(x)=1/(x+2)\\\\), explain why \\\\(hgf(1)\\\\) is not defined.",[
+        "\\\\(f(1)=-1\\\\).",
+        "\\\\(g(-1)=-2\\\\).",
+        "\\\\(h(-2)=1/0\\\\), which is undefined.",
+        "Therefore the composite is not defined at x=1."
+      ])
+    ],
+    practice:{
+      foundation:["Given f(x)=x+4, g(x)=2x, find fg(x).","Find gf(x) for the same functions.","Find gf(3).","Find ff(2) if f(x)=3x-1.","State which function is applied first in fg(x).","Evaluate g(f(-1))."],
+      core:["Form fg and gf for f(x)=x+2, g(x)=x².","Given f(x)=2x-5, g(x)=1/x, find gf(4).","Find ff(x) for f(x)=x-3.","Find gg(-2) for g(x)=x²+1.","Evaluate hgf(2) for three given functions.","Explain why fg and gf are usually different."],
+      extension:["Find a value of x where a composite involving 1/(x-3) is undefined.","Show fg=gf for a chosen pair of translations.","Construct two functions for which fg≠gf.","Solve fg(x)=17 for given linear f and g.","Form fff(x) for f(x)=2x+1.","Explain how domain restrictions propagate through a composite."]
+    },
+    homework:[
+      hw("Foundation","f(x)=x+5, g(x)=2x. Find gf(3).",["f(3)=8.","g(8)=16."]),
+      hw("Foundation","f(x)=3x-1. Find ff(2).",["f(2)=5.","f(5)=14."]),
+      hw("Core","f(x)=x², g(x)=x-4. Find fg(x).",["\\\\(fg(x)=f(x-4)=(x-4)^2\\\\)."]),
+      hw("Core","f(x)=2x+1, g(x)=x². Find gf(x).",["\\\\(gf(x)=g(2x+1)=(2x+1)^2\\\\)."]),
+      hw("Extension","f(x)=1/x, g(x)=x-2. State x-values for which fg(x) is undefined.",["\\\\(fg(x)=1/(x-2)\\\\).","Undefined when \\\\(x=2\\\\)."]),
+      hw("Extension","f(x)=x+1, g(x)=2x. Solve fg(x)=11.",["\\\\(fg(x)=f(2x)=2x+1\\\\).","\\\\(2x+1=11\\\\Rightarrow x=5\\\\)."])
+    ]
+  };
+  return null;
+}
+
+function upgradedBank(l){
+  var deep=deepTextbookBank(l);
+  var s=deep || specialisedBank(l.type);
+  var b=s || bank(l.type);
+  if(!deep && b.examples.length<4){
+    var e=extraExample(l.type);
+    if(e) b=Object.assign({},b,{examples:b.examples.concat([e])});
+  }
+  return b;
+}
+
+function svgAngleLine(){
+  return '<svg class="diagram" viewBox="0 0 700 280"><line x1="80" y1="190" x2="620" y2="190" stroke="#18323d" stroke-width="5"/><line x1="340" y1="190" x2="420" y2="70" stroke="#18323d" stroke-width="5"/><path d="M340 190 A90 90 0 0 0 290 116" fill="none" stroke="#3e93b5" stroke-width="4"/><text x="235" y="128" font-size="28">112°</text><path d="M340 190 A80 80 0 0 1 386 124" fill="none" stroke="#d2694c" stroke-width="4"/><text x="390" y="145" font-size="28">x</text></svg>';
+}
+function svgVertical(){
+  return '<svg class="diagram" viewBox="0 0 700 300"><line x1="120" y1="250" x2="570" y2="60" stroke="#18323d" stroke-width="5"/><line x1="150" y1="60" x2="550" y2="255" stroke="#18323d" stroke-width="5"/><text x="280" y="115" font-size="28">115°</text><text x="350" y="235" font-size="28">x</text></svg>';
+}
+function svgAnglePoint(){
+  return '<svg class="diagram" viewBox="0 0 700 320"><g stroke="#18323d" stroke-width="5"><line x1="350" y1="160" x2="350" y2="35"/><line x1="350" y1="160" x2="605" y2="160"/><line x1="350" y1="160" x2="505" y2="280"/><line x1="350" y1="160" x2="185" y2="275"/><line x1="350" y1="160" x2="95" y2="160"/></g><text x="390" y="115" font-size="24">x</text><text x="455" y="205" font-size="24">2x</text><text x="220" y="215" font-size="24">4x</text><text x="190" y="120" font-size="24">150°</text></svg>';
+}
+function svgTrapezium(){
+  return '<svg class="diagram" viewBox="0 0 700 330"><polygon points="180,240 520,240 455,90 245,90" fill="#f5fbfd" stroke="#18323d" stroke-width="5"/><text x="330" y="80" font-size="24">7 cm</text><text x="330" y="275" font-size="24">10 cm</text><text x="178" y="165" font-size="24">4 cm</text><text x="505" y="165" font-size="24">4 cm</text></svg>';
+}
+function svgHouse(){
+  return '<svg class="diagram" viewBox="0 0 700 380"><polygon points="210,310 210,155 350,55 490,155 490,310" fill="#eef8fb" stroke="#18323d" stroke-width="5"/><line x1="210" y1="155" x2="490" y2="155" stroke="#7aa6b7" stroke-width="3" stroke-dasharray="8 8"/><text x="330" y="340" font-size="24">5 m</text><text x="170" y="240" font-size="24">8 m</text><text x="360" y="110" font-size="24">h = 4 m</text></svg>';
+}
+function svgSector(angle,major){
+  var a=angle||90;
+  if(major) return '<svg class="diagram" viewBox="0 0 500 360"><circle cx="250" cy="180" r="125" fill="#eef8fb" stroke="#18323d" stroke-width="4"/><path d="M250 180 L250 55 A125 125 0 0 1 363 233 Z" fill="white" stroke="#d2694c" stroke-width="4"/><text x="285" y="150" font-size="24">65°</text><text x="185" y="280" font-size="22">major sector</text></svg>';
+  return '<svg class="diagram" viewBox="0 0 500 340"><path d="M250 180 L250 55 A125 125 0 0 1 372 154 Z" fill="#dff3fb" stroke="#18323d" stroke-width="4"/><line x1="250" y1="180" x2="250" y2="55" stroke="#18323d" stroke-width="4"/><line x1="250" y1="180" x2="372" y2="154" stroke="#18323d" stroke-width="4"/><text x="295" y="135" font-size="24">'+a+'°</text><text x="260" y="100" font-size="22">r</text></svg>';
+}
+function svgBarChart(){
+  return '<svg class="diagram" viewBox="0 0 700 380"><line x1="80" y1="320" x2="640" y2="320" stroke="#18323d" stroke-width="3"/><line x1="80" y1="320" x2="80" y2="45" stroke="#18323d" stroke-width="3"/><text x="20" y="48" font-size="18">Frequency</text>'+[2,1,2,6,2,7].map((h,i)=>'<rect x="'+(120+i*80)+'" y="'+(320-h*34)+'" width="48" height="'+(h*34)+'" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><text x="'+(134+i*80)+'" y="345" font-size="18">'+(15+i)+'</text>').join("")+'</svg>';
+}
+function svgPie(){
+  return '<svg class="diagram" viewBox="0 0 520 360"><circle cx="250" cy="175" r="125" fill="#fff" stroke="#18323d" stroke-width="4"/><path d="M250 175 L250 50 A125 125 0 0 1 375 175 Z" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><path d="M250 175 L375 175 A125 125 0 0 1 187.5 283.25 Z" fill="#efe6d5" stroke="#b58d4b" stroke-width="3"/><text x="300" y="105" font-size="22">A</text><text x="305" y="245" font-size="22">B</text><text x="160" y="230" font-size="22">C / D</text></svg>';
+}
+function svgStem(){
+  return '<div class="stemleaf"><div><strong>Stem</strong><span>|</span><strong>Leaf</strong></div><div><b>1</b><span>|</span><span>2&nbsp;5&nbsp;8</span></div><div><b>2</b><span>|</span><span>1&nbsp;1&nbsp;4&nbsp;9</span></div><div><b>3</b><span>|</span><span>1&nbsp;4</span></div><p>Key: 2 | 4 = 24</p></div>';
+}
+function svgScatter(kind){
+  var pts=kind==="neg"?[[120,80],[180,110],[240,130],[300,170],[360,185],[420,225],[500,250],[560,280]]:[[120,280],[180,245],[240,230],[300,185],[360,170],[420,125],[500,105],[560,75]];
+  return '<svg class="diagram" viewBox="0 0 700 380"><line x1="75" y1="320" x2="640" y2="320" stroke="#18323d" stroke-width="3"/><line x1="75" y1="320" x2="75" y2="40" stroke="#18323d" stroke-width="3"/>'+pts.map(p=>'<g stroke="#2563eb" stroke-width="3"><line x1="'+(p[0]-6)+'" y1="'+(p[1]-6)+'" x2="'+(p[0]+6)+'" y2="'+(p[1]+6)+'"/><line x1="'+(p[0]+6)+'" y1="'+(p[1]-6)+'" x2="'+(p[0]-6)+'" y2="'+(p[1]+6)+'"/></g>').join("")+'</svg>';
+}
+function svgCF(){
+  return '<svg class="diagram" viewBox="0 0 720 420"><line x1="85" y1="345" x2="660" y2="345" stroke="#18323d" stroke-width="3"/><line x1="85" y1="345" x2="85" y2="45" stroke="#18323d" stroke-width="3"/><text x="300" y="400" font-size="18">Upper class boundary</text><text x="12" y="40" font-size="18">Cumulative frequency</text><path d="M95 338 C170 328,220 300,270 260 C330 210,390 145,455 105 C520 70,590 55,650 50" fill="none" stroke="#3e93b5" stroke-width="4"/>'+[[170,315],[250,275],[340,195],[455,105],[560,68],[650,50]].map(p=>'<g stroke="#2563eb" stroke-width="3"><line x1="'+(p[0]-5)+'" y1="'+(p[1]-5)+'" x2="'+(p[0]+5)+'" y2="'+(p[1]+5)+'"/><line x1="'+(p[0]+5)+'" y1="'+(p[1]-5)+'" x2="'+(p[0]-5)+'" y2="'+(p[1]+5)+'"/></g>').join("")+'</svg>';
+}
+function svgHistogram(){
+  return '<svg class="diagram" viewBox="0 0 720 420"><line x1="85" y1="345" x2="660" y2="345" stroke="#18323d" stroke-width="3"/><line x1="85" y1="345" x2="85" y2="45" stroke="#18323d" stroke-width="3"/><text x="10" y="40" font-size="18">Frequency density</text><rect x="105" y="240" width="90" height="105" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><rect x="195" y="100" width="90" height="245" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><rect x="285" y="65" width="45" height="280" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><rect x="330" y="185" width="90" height="160" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><rect x="510" y="300" width="120" height="45" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/></svg>';
+}
+function svgCompositeFlow(){
+  return '<svg class="diagram" viewBox="0 0 760 260"><rect x="55" y="85" width="130" height="80" rx="18" fill="#fff" stroke="#18323d" stroke-width="3"/><rect x="310" y="85" width="130" height="80" rx="18" fill="#dff3fb" stroke="#3e93b5" stroke-width="3"/><rect x="575" y="85" width="130" height="80" rx="18" fill="#efe6d5" stroke="#b58d4b" stroke-width="3"/><text x="105" y="135" font-size="26">x</text><text x="345" y="135" font-size="26">f(x)</text><text x="610" y="135" font-size="26">g(f(x))</text><path d="M185 125 H300" stroke="#18323d" stroke-width="3"/><path d="M440 125 H565" stroke="#18323d" stroke-width="3"/><text x="230" y="110" font-size="20">f</text><text x="495" y="110" font-size="20">g</text></svg>';
+}
+
+function diagramForExample(t,i){
+  var l=LESSONS[current],id=l&&l.id;
+  if(id==="16.1"){
+    if(i===0)return svgAngleLine();
+    if(i===1)return svgAnglePoint();
+    if(i===2)return svgVertical();
+    return svgAnglePoint();
+  }
+  if(id==="17.2"){
+    if(i===0)return svgTrapezium();
+    if(i===1)return '<svg class="diagram" viewBox="0 0 700 330"><polygon points="170,250 520,250 430,90 80,90" fill="#eef8fb" stroke="#18323d" stroke-width="5"/><line x1="170" y1="250" x2="170" y2="90" stroke="#d2694c" stroke-width="3" stroke-dasharray="8 8"/><text x="300" y="285" font-size="24">8 m</text><text x="180" y="165" font-size="24">3.5 m</text></svg>';
+    if(i===2)return svgHouse();
+    return svgTrapezium();
+  }
+  if(id==="17.4"){
+    if(i===0)return svgSector(40,false);
+    if(i===1)return svgSector(65,true);
+    if(i===2)return svgSector(120,false);
+    return svgSector(75,false);
+  }
+  if(id==="19.1"){
+    if(i===0)return svgBarChart();
+    if(i===1)return svgPie();
+    if(i===2)return svgStem();
+    return '<svg class="diagram" viewBox="0 0 700 260"><rect x="80" y="80" width="85" height="85" rx="10" fill="#dff3fb"/><rect x="190" y="80" width="85" height="85" rx="10" fill="#dff3fb"/><rect x="300" y="80" width="42" height="85" rx="10" fill="#dff3fb"/><text x="90" y="205" font-size="22">1 symbol = 8</text><text x="420" y="125" font-size="24">How many?</text></svg>';
+  }
+  if(id==="19.2"){
+    if(i===0)return svgScatter("pos");
+    if(i===1)return svgScatter("neg");
+    if(i===2)return svgScatter("pos").replace('</svg>','<line x1="110" y1="285" x2="585" y2="65" stroke="#d2694c" stroke-width="3"/></svg>');
+    return svgScatter("pos");
+  }
+  if(id==="19.5") return svgCF();
+  if(id==="19.7") return svgHistogram();
+  if(id==="20.3") return svgCompositeFlow();
+  if(id==="12.1" && i===3){
+    return '<svg class="diagram" viewBox="0 0 640 300"><rect x="150" y="65" width="340" height="165" fill="#fff" stroke="#18323d" stroke-width="4"/><text x="270" y="260" font-size="24">3 + √12 cm</text><text x="500" y="155" font-size="24">2√3 cm</text></svg>';
+  }
+  return (function(){
+    if(["angles","parallel","polygons"].includes(t)) return diagramFor(t);
+    if(["circle","sector"].includes(t)) return diagramFor(t);
+    if(t==="sets") return diagramFor(t);
+    if(["functions","inverse","composite"].includes(t)) return diagramFor(t);
+    if(["ineq-numberline","ineq-linear"].includes(t)) return diagramFor(t);
+    if(["scatter","correlation","bestfit"].includes(t)) return svgScatter("pos");
+    if(["cumfreq","cumfreq-read"].includes(t)) return svgCF();
+    if(["histogram","freqdensity"].includes(t)) return svgHistogram();
+    return "";
+  })();
+}
+
+/* v3 render: show source-pattern cue on each teaching slide */
+function render(){
+  var l=LESSONS[current], b=upgradedBank(l);
+  if(current!==lastExampleLesson){exampleSlide=0;lastExampleLesson=current;}
+  $("#unitPill").textContent="Unit "+l.u+" • "+l.unit;
+  $("#lessonTitle").textContent=l.id+"  "+l.title;
+  $("#lessonSubtitle").textContent="Cambridge IGCSE Mathematics • lesson-by-lesson teaching sequence";
+  $("#prevBtn").disabled=current===0; $("#nextBtn").disabled=current===LESSONS.length-1;
+  $$(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));
+  renderNav($("#search").value);
+
+  if(tab==="learn"){
+    $("#content").innerHTML=
+      '<section class="teaching-slide intro-teaching-slide"><div class="slide-kicker">START HERE</div><div class="learn-grid">'+
+      '<article class="card flat"><h3>Prior knowledge check</h3><p class="lead">Students should be ready to recall:</p><ul class="clean-list">'+l.prior.map(x=>'<li>'+x+'</li>').join("")+'</ul></article>'+
+      '<article class="card flat"><h3>Learning points</h3><p class="lead">By the end of the lesson, students should be able to:</p><ul class="clean-list">'+l.obj.map(x=>'<li>'+x+'</li>').join("")+'</ul></article>'+
+      '</div><div class="source-strip"><strong>Textbook source map:</strong> '+l.src+'. <br><strong>Build approach:</strong> worked examples and exercises are rewritten from the same question patterns and progression found in the supplied Cambridge coursebook and Exam Success book.</div></section>';
+  }
+
+  if(tab==="examples"){
+    $("#content").innerHTML=
+      '<div class="deck-toolbar"><div><strong>Teacher examples</strong><span id="exampleCount"></span></div><div class="deck-buttons"><button id="examplePrev" class="ghost-btn">← Previous example</button><button id="exampleNext" class="primary-btn">Next example →</button></div></div>'+
+      '<div class="example-deck">'+b.examples.map(function(e,i){
+        var diag=diagramForExample(l.type,i);
+        return '<section class="example-slide teaching-slide" data-slide="'+i+'"><div class="slide-kicker">EXAMPLE '+(i+1)+' OF '+b.examples.length+'</div>'+
+          '<div class="textbook-pattern"><span>Textbook pattern</span><strong>'+textbookLens(l,i)+'</strong><small>'+l.src+'</small></div>'+
+          '<div class="example-question">'+e.q+'</div>'+
+          (diag?'<div class="example-diagram">'+diag+'</div>':'')+
+          renderModelBoard('model-board-'+current+'-'+i)+
+          '<details class="worked-solution"><summary>Show model solution</summary><div class="solution-paper"><div class="solution-title">Worked solution</div><div class="steps">'+e.steps.map((s,j)=>'<div class="step"><span class="step-badge">'+(j+1)+'</span><div>'+s+'</div></div>').join("")+'</div></div></details>'+
+          '</section>';
+      }).join("")+'</div>'+
+      '<div class="example-dots">'+b.examples.map((_,i)=>'<button class="example-dot" data-slide="'+i+'" aria-label="Go to example '+(i+1)+'">'+(i+1)+'</button>').join("")+'</div>';
+  }
+
+  if(tab==="practice"){
+    var ep=extraPractice(l.type), merged={};
+    ["foundation","core","extension"].forEach(function(k){merged[k]=(b.practice[k]||[]).concat(ep[k]||[]);});
+    $("#content").innerHTML='<article class="card practice-sheet"><div class="sheet-head"><div><div class="slide-kicker">INDEPENDENT PRACTICE</div><h3>Textbook-style progressive practice</h3><p class="practice-source">Built from the progression and question forms in '+l.src+'.</p></div><span class="question-count">'+(merged.foundation.length+merged.core.length+merged.extension.length+ep.problems.length)+' questions</span></div>'+
+      '<div class="tiers">'+[["Foundation","foundation"],["Core","core"],["Extension","extension"]].map(function(pair){var name=pair[0],k=pair[1];return '<section class="tier '+k+'"><h4>'+name+'</h4><ol class="q-list">'+merged[k].map(q=>'<li>'+q+'</li>').join("")+'</ol></section>';}).join("")+'</div>'+
+      '<section class="problem-solving"><div class="slide-kicker">REASONING & PROBLEM SOLVING</div><h4>Exam-style thinking</h4><ol class="q-list">'+ep.problems.map(q=>'<li>'+q+'</li>').join("")+'</ol></section></article>';
+  }
+
+  if(tab==="homework"){
+    var allHw=(b.homework||[]).concat(extraHomework(l.type));
+    $("#content").innerHTML='<article class="card homework-sheet"><div class="sheet-head"><div><div class="slide-kicker">HOMEWORK</div><h3>Mixed textbook-style homework</h3><p class="practice-source">Fluency → application → reasoning, with full self-check solutions.</p></div><span class="question-count">'+allHw.length+' questions</span></div><p class="lead">Attempt every question before opening its worked solution.</p>'+
+      allHw.map(function(h,i){return '<div class="hw-item"><div class="hw-q"><span class="q-number">'+(i+1)+'</span><span class="pill">'+h.tier+'</span><span>'+h.q+'</span></div><details class="solution"><summary>Show solution</summary><div class="solution-body"><div class="steps">'+h.sol.map((s,j)=>'<div class="step"><span class="step-badge">'+(j+1)+'</span><div>'+s+'</div></div>').join("")+'</div></div></details></div>';}).join("")+'</article>';
+  }
+
+  if(tab==="whiteboard"){
+    $("#content").innerHTML='<article class="card board-card"><div class="board-tools"><strong>Whole-class whiteboard</strong><button class="colour-dot active" data-colour="#132d36" aria-label="Black pen"></button><button class="colour-dot" data-colour="#2563eb" aria-label="Blue pen"></button><button class="colour-dot" data-colour="#dc2626" aria-label="Red pen"></button><button class="colour-dot" data-colour="#15803d" aria-label="Green pen"></button><button id="eraser" class="tool-btn">Eraser</button><button id="clearBoard" class="tool-btn">Clear</button></div><div class="canvas-shell"><canvas id="board"></canvas></div></article>';
+  }
+
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$("#content")]);
+  if(tab==="examples"){initModelBoards();setupExampleDeck();}
+  if(tab==="whiteboard")initBoard();
+  location.hash=l.id+"-"+tab;
+}
