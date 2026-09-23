@@ -6,11 +6,8 @@
   <meta name="theme-color" content="#eaf6fb">
   <title>Year 10 Mathematics | NES</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <link rel="stylesheet" href="styles.css">
-  <script>
-    window.MathJax={tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
-  </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -44,7 +41,7 @@
       </section>
 
       <nav class="tabs" aria-label="Lesson sections">
-        <button class="tab active" data-tab="learn">Learning points</button>
+        <button class="tab active" data-tab="learn">Teach / key notes</button>
         <button class="tab" data-tab="examples">Teacher examples</button>
         <button class="tab" data-tab="practice">Independent practice</button>
         <button class="tab" data-tab="homework">Homework</button>
@@ -55,13 +52,8 @@
     </main>
   </div>
 
-  <template id="solutionTemplate">
-    <details class="solution">
-      <summary>Show solution</summary>
-      <div class="solution-body"></div>
-    </details>
-  </template>
-
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
   <script src="lessons.js"></script>
   <script src="app.js"></script>
 </body>
