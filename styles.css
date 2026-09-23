@@ -52,3 +52,13 @@ body.present .sidebar,body.present .topbar .eyebrow,body.present #menuBtn,body.p
 @media(max-width:900px){.deck-toolbar{top:122px;align-items:stretch;flex-direction:column}.deck-buttons{width:100%}.deck-buttons button{flex:1}.teaching-slide{min-height:auto}.practice-sheet .tiers{grid-template-columns:1fr}.model-canvas-shell{height:300px}.model-label{align-items:flex-start;flex-direction:column;gap:2px}}
 @media(max-width:560px){.model-canvas-shell{height:280px}.example-question{font-size:1.35rem}.teaching-slide{padding:18px;border-radius:20px}.sheet-head{flex-direction:column}.hw-q{grid-template-columns:32px 1fr}.hw-q .pill{grid-column:2}.hw-q span:last-child{grid-column:2}.model-label small{font-size:.78rem}}
 body.present .example-slide{min-height:calc(100vh - 170px)}body.present .model-canvas-shell{height:38vh}
+
+.textbook-pattern{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;margin:2px 0 18px;padding:10px 14px;border-radius:14px;background:#f8fbfc;border:1px solid var(--line)}
+.textbook-pattern span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:900;color:#4e8398}
+.textbook-pattern strong{font-size:.92rem}
+.textbook-pattern small{grid-column:1/-1;color:var(--muted);font-size:.76rem}
+.practice-source{margin:.15rem 0 0;color:var(--muted);font-size:.88rem}
+.example-diagram{background:#fbfdfe;border:1px solid #e4eef2;border-radius:18px;padding:12px}
+.example-diagram .diagram{width:min(100%,760px);max-height:340px}
+.example-dot.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(max-width:560px){.textbook-pattern{grid-template-columns:1fr}.textbook-pattern small{grid-column:1}.example-diagram{padding:4px}}
