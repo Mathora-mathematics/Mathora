@@ -2404,3 +2404,334 @@ function renderV4(){
 
 render=renderV4;
 render();
+
+
+/* V4.2 — book-specific overlays for every remaining SoW lesson */
+var BOOK_OVERLAY={
+"14.2":{
+ examples:[
+  ex("Solve \\(3x+4=10\\).",["Subtract 4 from both sides: \\(3x=6\\).","Divide by 3: \\(x=2\\).","Check: \\(3(2)+4=10\\)."]),
+  ex("Solve \\(5-2x=3(x+7)\\).",["Expand the bracket: \\(5-2x=3x+21\\).","Collect x-terms: \\(-5x=16\\).","\\(x=-16/5\\).","Substitute back to check both sides agree."]),
+  ex("Solve \\(5(x+4)=3(x+10)\\).",["Expand: \\(5x+20=3x+30\\).","Subtract \\(3x\\): \\(2x+20=30\\).","\\(2x=10\\), so \\(x=5\\)."]),
+  ex("A number is doubled, then 7 is added. The result is 25. Form and solve an equation.",["Let the number be x.","Equation: \\(2x+7=25\\).","\\(2x=18\\).","\\(x=9\\)."])
+ ],
+ practice:{foundation:["Solve \\(4x+3=31\\).","Solve \\(6x-1=53\\)."],core:["Solve \\(7x-4=-65\\).","Solve \\(5(x+4)=3(x+10)\\)."],extension:["Form and solve a linear equation from a perimeter problem.","Form and solve an equation containing brackets from a word problem."]},
+ homework:[hw("Foundation","Solve \\(8x+42=2\\).",["\\(8x=-40\\).","\\(x=-5\\)."]),hw("Core","Solve \\(4x+7=9x-18\\).",["\\(25=5x\\).","\\(x=5\\)."]),hw("Extension","Solve \\(3(2x-1)=5(x+2)-7\\).",["\\(6x-3=5x+3\\).","\\(x=6\\)."])]
+},
+"14.3":{
+ examples:[
+  ex("Solve \\(x^2+7x+12=0\\) by factorisation.",["Find two numbers with product 12 and sum 7: 3 and 4.","\\((x+3)(x+4)=0\\).","\\(x=-3\\) or \\(x=-4\\)."]),
+  ex("Write \\(x^2+6x+2\\) in completed-square form and solve \\(x^2+6x+2=0\\).",["\\(x^2+6x+2=(x+3)^2-7\\).","So \\((x+3)^2=7\\).","\\(x=-3\\pm\\sqrt7\\)."]),
+  ex("Solve \\(2x^2-3x-4=0\\) using the quadratic formula.",["\\(a=2,b=-3,c=-4\\).","\\(x=\\frac{3\\pm\\sqrt{9+32}}4\\).","\\(x=\\frac{3\\pm\\sqrt{41}}4\\)."]),
+  ex("A rectangle has sides \\(x+2\\) and \\(x+5\\), and area 60. Find x.",["\\((x+2)(x+5)=60\\).","\\(x^2+7x-50=0\\).","Use factorisation/formula; retain only a value giving positive side lengths."])
+ ],
+ practice:{foundation:["Solve \\(x^2+5x+6=0\\).","Solve \\(x^2-9=0\\)."],core:["Solve \\(x^2+4x-1=0\\) by completing the square.","Solve \\(3x^2+x-2=0\\)."],extension:["Solve \\(2x^2+5x-1=0\\) exactly.","Construct a quadratic equation from two consecutive-number information."]},
+ homework:[hw("Foundation","Solve \\(x^2+x-12=0\\).",["\\((x+4)(x-3)=0\\).","\\(x=-4,3\\)."]),hw("Core","Solve \\(x^2+8x+7=0\\) by completing square.",["\\((x+4)^2=9\\).","\\(x=-1,-7\\)."]),hw("Extension","Solve \\(2x^2+x-5=0\\) exactly.",["\\(x=(-1\\pm\\sqrt{41})/4\\)."])]
+},
+"14.4":{
+ examples:[
+  ex("Solve \\(\\frac{x}{3}+\\frac{x}{4}=7\\).",["LCM of 3 and 4 is 12.","Multiply every term by 12: \\(4x+3x=84\\).","\\(7x=84\\), so \\(x=12\\)."]),
+  ex("Solve \\(\\frac{2}{x+1}=\\frac35\\).",["Restriction: \\(x\\ne-1\\).","Cross multiply: \\(10=3(x+1)\\).","\\(3x=7\\), so \\(x=7/3\\)."]),
+  ex("Solve \\(\\frac1x+\\frac1{x+2}=\\frac34\\).",["Restrictions: \\(x\\ne0,-2\\).","Multiply by \\(4x(x+2)\\): \\(4(x+2)+4x=3x(x+2)\\).","Rearrange: \\(3x^2-2x-8=0\\).","Factor: \\((3x+4)(x-2)=0\\), so \\(x=2,-4/3\\)."]),
+  ex("Why must solutions be checked in the original fractional equation?",["Clearing denominators can produce candidate values.","Any value making an original denominator zero is invalid.","Substitution also catches algebraic errors."])
+ ],
+ practice:{foundation:["Solve \\(x/5=4\\).","Solve \\(x/4+1=6\\)."],core:["Solve \\(2/(x-1)=5/3\\).","Solve \\(1/x+1/2=1\\)."],extension:["Solve \\(4/(x-2)=x\\).","Solve a fractional equation with two linear denominators and reject excluded values."]},
+ homework:[hw("Foundation","Solve \\(x/6+2=5\\).",["\\(x=18\\)."]),hw("Core","Solve \\(3/(x+2)=2/5\\).",["\\(15=2x+4\\).","\\(x=11/2\\)."]),hw("Extension","Solve \\(1/x+1/(x+1)=1\\).",["\\(x^2-x-1=0\\).","\\(x=(1\\pm\\sqrt5)/2\\)."])]
+},
+"14.6":{
+ examples:[
+  ex("Solve \\(y=x+1\\) and \\(y=x^2-5\\).",["Set equal: \\(x+1=x^2-5\\).","\\(x^2-x-6=0\\).","\\((x-3)(x+2)=0\\).","Pairs: \\((3,4)\\), \\((-2,-1)\\)."]),
+  ex("Solve \\(y=6-x\\) and \\(x^2+y^2=20\\).",["Substitute \\(y=6-x\\).","\\(x^2+(6-x)^2=20\\).","\\(x^2-6x+8=0\\).","\\(x=2,4\\), giving \\((2,4),(4,2)\\)."]),
+  ex("Solve \\(y=2x-1\\) and \\(xy=6\\).",["Substitute: \\(x(2x-1)=6\\).","\\(2x^2-x-6=0\\).","\\((2x+3)(x-2)=0\\).","Pairs \\((2,3)\\), \\((-3/2,-4)\\)."]),
+  ex("Explain graphically why one linear and one quadratic relation may have 0, 1 or 2 real solutions.",["Solutions are intersection points.","A line can miss, touch, or cross a parabola/circle at two points."])
+ ],
+ practice:{foundation:["Solve \\(y=x,\\ y=x^2-2\\).","Solve \\(y=x+2,\\ xy=3\\)."],core:["Solve \\(y=2x+3,\\ y=x^2+1\\).","Solve \\(y=5-x,\\ xy=4\\)."],extension:["Solve \\(x+y=7,\\ xy=10\\).","Find intersections of a line and a circle exactly."]},
+ homework:[hw("Foundation","Solve \\(y=x+1,\\ y=x^2-1\\).",["Pairs \\((2,3),(-1,0)\\)."]),hw("Core","Solve \\(y=5-x,\\ xy=6\\).",["\\(x=2,3\\).","Pairs \\((2,3),(3,2)\\)."]),hw("Extension","Solve \\(y=2x,\\ x^2+y^2=45\\).",["\\(5x^2=45\\).","Pairs \\((3,6),(-3,-6)\\)."])]
+},
+"14.7":{
+ examples:[
+  ex("Make x the subject of \\(y=3x+7\\).",["\\(y-7=3x\\).","\\(x=(y-7)/3\\)."]),
+  ex("Make r the subject of \\(A=\\pi r^2\\).",["\\(r^2=A/\\pi\\).","For a radius, \\(r=\\sqrt{A/\\pi}\\)."]),
+  ex("Make x the subject of \\(P=ax+bx\\).",["Factor x: \\(P=x(a+b)\\).","\\(x=P/(a+b)\\)."]),
+  ex("Make x the subject of \\(y=(ax+b)/(cx+d)\\).",["\\(y(cx+d)=ax+b\\).","\\(ycx+yd=ax+b\\).","\\(x(yc-a)=b-yd\\).","\\(x=(b-yd)/(yc-a)\\)."])
+ ],
+ practice:{foundation:["Make t subject: \\(d=vt\\).","Make r subject: \\(C=2\\pi r\\)."],core:["Make h subject: \\(A=bh/2\\).","Make x subject: \\(p=qx+rx\\)."],extension:["Make r subject: \\(V=4\\pi r^3/3\\).","Make x subject where it appears in numerator and denominator."]},
+ homework:[hw("Foundation","Make x subject: \\(y=5x-2\\).",["\\(x=(y+2)/5\\)."]),hw("Core","Make h subject: \\(V=\\pi r^2h\\).",["\\(h=V/(\\pi r^2)\\)."]),hw("Extension","Make x subject: \\(y=(x-1)/(x+2)\\).",["\\(x=(1+2y)/(1-y)\\)."])]
+},
+"15.1":{
+ examples:[
+  ex("Represent \\(x>3\\) on a number line.",["Open circle at 3 because equality is not included.","Shade/arrow to the right."]),
+  ex("Represent \\(x\\le-2\\).",["Filled circle at -2 because equality is included.","Shade/arrow left."]),
+  ex("Write the inequality shown by an open circle at 5 shaded left.",["Open circle means strict.","Left means less than.","\\(x<5\\)."]),
+  ex("Represent \\(-3<x\\le4\\).",["Open circle at -3, filled circle at 4.","Shade only between the two endpoints."])
+ ],
+ practice:{foundation:["Draw \\(x<4\\).","Draw \\(x\\ge-1\\)."],core:["Write an inequality from a number-line diagram.","Represent \\(-5\\le x<2\\)."],extension:["List the integer values satisfying \\(-3<x\\le5\\).","Interpret an inequality in a contextual limit."]},
+ homework:[hw("Foundation","Draw \\(x\\le6\\).",["Filled circle at 6, shade left."]),hw("Core","Write the inequality: open at -2, shaded right.",["\\(x>-2\\)."]),hw("Extension","List integers satisfying \\(-2<x<4\\).",["-1,0,1,2,3."])]
+},
+"15.2":{
+ examples:[
+  ex("Solve \\(3x<2x+4\\).",["Subtract \\(2x\\): \\(x<4\\)."]),
+  ex("Solve \\(-3\\le3x-2<7\\).",["Add 2 to all three parts: \\(-1\\le3x<9\\).","Divide all parts by 3: \\(-1/3\\le x<3\\)."]),
+  ex("Solve \\(5-2x\\le11\\).",["Subtract 5: \\(-2x\\le6\\).","Divide by -2 and reverse sign: \\(x\\ge-3\\)."]),
+  ex("A lift carries at most 630 kg. Six people weigh 78 kg each. Find the greatest extra load x.",["\\(6(78)+x\\le630\\).","\\(468+x\\le630\\).","\\(x\\le162\\)."])
+ ],
+ practice:{foundation:["Solve \\(x+3>8\\).","Solve \\(3x\\le15\\)."],core:["Solve \\(7-2x<1\\).","Solve \\(-4\\le2x+2<10\\)."],extension:["Solve a contextual integer inequality.","Explain why the sign reverses on division by a negative."]},
+ homework:[hw("Foundation","Solve \\(2x-5\\ge9\\).",["\\(x\\ge7\\)."]),hw("Core","Solve \\(-3x<12\\).",["\\(x>-4\\)."]),hw("Extension","Solve \\(-5<3x+1\\le13\\).",["\\(-6<3x\\le12\\).","\\(-2<x\\le4\\)."])]
+},
+"15.4":{
+ examples:[
+  ex("A triangular region is bounded by \\(x=0\\), \\(y=0\\) and \\(x+y=6\\), including all boundaries. List its inequalities.",["Inside the first quadrant: \\(x\\ge0\\), \\(y\\ge0\\).","Below/on \\(x+y=6\\): \\(x+y\\le6\\)."]),
+  ex("A region lies above the solid line \\(y=x+1\\) and below the dashed line \\(y=5\\).",["Above solid: \\(y\\ge x+1\\).","Below dashed: \\(y<5\\)."]),
+  ex("How do you decide the inequality sign for a sloping boundary?",["Find the line equation.","Choose a point inside the region.","Substitute it; select the sign that makes the statement true."]),
+  ex("Why can the same graph require inequalities involving x only and y only?",["Vertical boundaries are equations \\(x=a\\).","Horizontal boundaries are \\(y=b\\).","The region may combine these with sloping boundaries."])
+ ],
+ practice:{foundation:["List inequalities for first quadrant below \\(x+y=4\\).","Describe region \\(x\\ge1,y<3\\)."],core:["Find inequalities from a quadrilateral region.","Use a test point for a sloping boundary."],extension:["Construct a region from four inequalities.","Explain solid/dashed boundaries in a listed system."]},
+ homework:[hw("Foundation","List first-quadrant inequalities.",["\\(x\\ge0,y\\ge0\\)."]),hw("Core","Region is below solid \\(y=2x+3\\).",["\\(y\\le2x+3\\)."]),hw("Extension","Region is right of x=1, above y=-2, below dashed y=-x+5.",["\\(x\\ge1, y\\ge-2, y<-x+5\\)."])]
+},
+"16.3":{
+ examples:[
+  ex("Find the interior-angle sum of a decagon.",["\\((10-2)180=1440^\\circ\\)."]),
+  ex("Find each exterior angle of a regular nonagon.",["Exterior angles total 360°.","\\(360/9=40^\\circ\\)."]),
+  ex("A regular polygon has exterior angle 24°. Find its number of sides.",["\\(n=360/24=15\\)."]),
+  ex("A regular polygon has interior angle 156°. Find its number of sides.",["Exterior angle \\(=180-156=24^\\circ\\).","\\(n=360/24=15\\)."])
+ ],
+ practice:{foundation:["Find sum for pentagon.","Find exterior angle of regular hexagon."],core:["Find interior angle of regular 12-gon.","Find n given exterior 15°."],extension:["Solve a two-polygon angle-at-a-point problem.","Investigate which regular polygons tessellate and explain using interior angles."]},
+ homework:[hw("Foundation","Find sum of angles in octagon.",["\\(6\\times180=1080^\\circ\\)."]),hw("Core","Regular 18-gon exterior angle?",["20°."]),hw("Extension","Interior angle 165°. Find sides.",["Exterior15°, so n=24."])]
+},
+"16.4":{
+ examples:[
+  ex("State the lines of symmetry and rotational order of a square.",["4 lines of symmetry.","Smallest matching rotation 90°, so order 4."]),
+  ex("State the symmetries of a rectangle that is not a square.",["2 lines of symmetry.","Rotational order 2."]),
+  ex("State the symmetries of a general parallelogram.",["No line symmetry.","Rotational order 2."]),
+  ex("Describe the symmetry of a circle.",["Infinitely many lines of symmetry.","It maps onto itself through any rotation about its centre."])
+ ],
+ practice:{foundation:["Symmetry of equilateral triangle.","Symmetry of regular pentagon."],core:["Compare rhombus and kite symmetries.","Classify quadrilaterals using symmetry."],extension:["Find a shape with rotational order 2 and no line symmetry.","Explain infinite symmetry of a circle."]},
+ homework:[hw("Foundation","Rotational order of regular hexagon?",["6."]),hw("Core","Lines of symmetry of rhombus?",["2, along its diagonals."]),hw("Extension","Give a quadrilateral with rotational order2 and no line symmetry.",["A general parallelogram."])]
+},
+"16.5":{
+ examples:[
+  ex("Describe planes of symmetry of a cube.",["A cube has several mirror planes through opposite faces/edges.","Use a 3D slice mentally: each plane must divide it into congruent mirror halves."]),
+  ex("Describe symmetry of a cylinder.",["Infinitely many vertical planes through its axis.","A horizontal mid-plane is also a plane of symmetry.","It has rotational symmetry about its central axis."]),
+  ex("Describe a right circular cone.",["Every plane through the axis is a plane of symmetry.","The central axis is an axis of rotational symmetry."]),
+  ex("How does a prism inherit symmetry from its cross-section?",["A line of symmetry of the cross-section can extend along the prism to form a plane of symmetry.","Rotational properties can also extend along the prism axis."])
+ ],
+ practice:{foundation:["Planes of symmetry of cuboid.","Main rotational axis of cylinder."],core:["Symmetry of triangular prism.","Symmetry of square-based pyramid."],extension:["Compare cone and cylinder symmetry.","Explain how cross-section symmetry creates prism symmetry."]},
+ homework:[hw("Foundation","Does a cone have a plane of symmetry through its axis?",["Yes."]),hw("Core","Why does a cylinder have many vertical symmetry planes?",["Any plane through its central axis divides it into mirror halves."]),hw("Extension","Describe symmetry inherited by a regular triangular prism.",["Planes/rotational axes follow the equilateral-triangle cross-section plus the prism geometry."])]
+},
+"17.1":{
+ examples:[
+  ex("Convert 3.6 m² to cm².",["\\(1m=100cm\\).","Square factor: \\(1m^2=10000cm^2\\).","\\(3.6m^2=36000cm^2\\)."]),
+  ex("Convert 0.45 m³ to cm³.",["Cube the factor 100: \\(1m^3=1,000,000cm^3\\).","\\(0.45m^3=450000cm^3\\)."]),
+  ex("Convert 2.3 m³ to litres.",["\\(1m^3=1000L\\).","\\(2.3m^3=2300L\\)."]),
+  ex("Explain why converting m² to cm² uses ×10,000 rather than ×100.",["Area has two dimensions.","Each dimension scales by 100.","Total scale \\(100^2=10000\\)."])
+ ],
+ practice:{foundation:["Convert 2.4m to cm.","Convert 3.5kg to g."],core:["Convert 0.62m² to cm².","Convert 750000cm³ to m³."],extension:["Convert between m³ and litres.","Explain area/volume scale factors."]},
+ homework:[hw("Foundation","4.2km to m.",["4200m."]),hw("Core","0.85m³ to litres.",["850L."]),hw("Extension","250000cm² to m².",["Divide by10000.","25m²."])]
+},
+"17.2":{
+ examples:[
+  ex("A trapezium has sides 7,4,10,4 cm. Find perimeter.",["Add all boundary lengths: 25 cm."]),
+  ex("Find area of a parallelogram with base 8m and perpendicular height 3.5m.",["\\(A=bh=28m^2\\)."]),
+  ex("Find area of a trapezium with parallel sides 8cm,13cm and height6cm.",["\\(A=\\frac12(8+13)6=63cm^2\\)."]),
+  ex("A compound 'house' is a 5×8 rectangle plus triangle base5,height4. Find area.",["Rectangle40.","Triangle10.","Total50m²."])
+ ],
+ practice:{foundation:["Triangle base12,height7.","Parallelogram base9,height4."],core:["Trapezium sides7,11,height5.","Compound L-shape."],extension:["Reverse trapezium area to find a side.","Compare shapes with same perimeter."]},
+ homework:[hw("Foundation","Triangle base15,height8.",["60cm²."]),hw("Core","Trapezium 9,14,height6.",["69cm²."]),hw("Extension","Trapezium area96,height8,one parallel side9. Find other.",["\\(96=4(9+x)\\).","x=15."])]
+},
+"17.3":{
+ examples:[
+  ex("Find circumference of a circle radius 5cm.",["\\(C=2\\pi r=10\\pi\\) cm."]),
+  ex("Find area of a circle diameter14cm.",["Radius7.","\\(A=49\\pi\\) cm²."]),
+  ex("A circle has circumference 30π cm. Find radius.",["\\(2\\pi r=30\\pi\\).","r=15cm."]),
+  ex("A circle has area 200cm². Find radius.",["\\(r=\\sqrt{200/\\pi}\\).","Round only at the end."])
+ ],
+ practice:{foundation:["Circumference r=6.","Area r=8."],core:["Area diameter18.","Find diameter from circumference."],extension:["Find radius from area.","Compound shape involving a semicircle."]},
+ homework:[hw("Foundation","Circumference r=7.",["14π cm."]),hw("Core","Area diameter14.",["49π cm²."]),hw("Extension","Area154 using π=22/7. Find radius.",["r=7cm."])]
+},
+"18.1":{
+ examples:[
+  ex("Classify 'eye colour' and 'height'.",["Eye colour is categorical.","Height is numerical and continuous."]),
+  ex("Construct a tally/frequency table from categorical responses.",["List categories once.","Use tally groups of five.","Count tallies into frequency column.","Check total frequency."]),
+  ex("Complete a two-way table from row and column totals.",["Use subtraction within each row/column.","Check all totals reach the same grand total."]),
+  ex("Choose non-overlapping intervals for ages 10–19.",["For continuous data use boundaries such as \\(10\\le a<12\\), \\(12\\le a<14\\), etc.","Every observation must enter exactly one class."])
+ ],
+ practice:{foundation:["Categorical or numerical?","Discrete or continuous?"],core:["Complete a two-way table.","Create a grouped frequency table."],extension:["Design class intervals for a given data range.","Explain classification bias/error."]},
+ homework:[hw("Foundation","Frequencies 5,8,6,1. Total?",["20."]),hw("Core","Complete a two-way table from totals.",["Subtract known cells from row/column totals, then cross-check."]),hw("Extension","Why must classes not overlap?",["So one observation cannot be counted twice."])]
+},
+"18.2":{
+ examples:[
+  ex("For 4,6,6,7,9,12 find mean, median, mode, range.",["Mean \\(44/6\\approx7.33\\).","Median6.5.","Mode6.","Range8."]),
+  ex("For 3,5,7,8,10,13,18,21 find Q1,Q2,Q3 and IQR.",["Q2=9.","Q1=6.","Q3=15.5.","IQR=9.5."]),
+  ex("Salaries are 500,520,540,560,4000. Which average better represents a typical salary?",["The outlier pulls the mean upward.","Median540 is more representative."]),
+  ex("ClassA median68,IQR12; ClassB median72,IQR20. Compare.",["B higher typical value.","A more consistent."])
+ ],
+ practice:{foundation:["Mean of4,6,8,10.","Median of3,5,8,9,12."],core:["Quartiles/IQR of ordered data.","Find missing value from mean."],extension:["Explain when median is preferred.","Construct data with same mean, different spread."]},
+ homework:[hw("Foundation","Mean of5,7,7,8,13.",["8."]),hw("Core","IQR of2,4,5,8,9,11,13,18.",["Q1=4.5,Q3=12,IQR7.5."]),hw("Extension","Mean of7 values18; six total111. Seventh?",["126-111=15."])]
+},
+"18.3":{
+ examples:[
+  ex("Estimate mean for 0–10:3,10–20:7,20–30:5.",["Midpoints5,15,25.","\\(\\sum fm=245\\), \\(\\sum f=15\\).","Estimate16.3."]),
+  ex("Why use class midpoint?",["Exact values within the class are unknown.","The midpoint represents the class for estimation."]),
+  ex("A grouped table has unequal class widths. Can the midpoint method still estimate a mean?",["Yes: calculate the midpoint of each interval and weight by its frequency.","Class width affects the amount of information lost, not the formula."]),
+  ex("Compare an exact mean with a grouped estimate.",["The grouped estimate may differ because all class values are replaced by midpoints.","Finer grouping generally preserves more information."])
+ ],
+ practice:{foundation:["Midpoint10–20.","Calculate fm for midpoint15,f=7."],core:["Estimate a grouped mean.","Complete missing fm column."],extension:["Compare two groupings of same raw data.","Explain effect of wider classes."]},
+ homework:[hw("Foundation","Midpoint30–50.",["40."]),hw("Core","0–10,10–20,20–30 frequencies4,8,3 estimate mean.",["215/15=14.3."]),hw("Extension","Why is result an estimate?",["Exact individual values are not known."])]
+},
+"18.4":{
+ examples:[
+  ex("Frequencies 6,12,9 for classes20–30,30–40,40–50. Identify modal class.",["Highest frequency12.","Modal class30–40."]),
+  ex("40 values have cumulative frequencies7,18,31,40. Identify median class.",["Median is around20th value.","First cumulative total reaching20 is31.","Median is in third class."]),
+  ex("Why may a histogram's modal class depend on density rather than raw frequency?",["With unequal widths, histogram height is frequency density.","The tallest bar corresponds to highest density."]),
+  ex("What is linear interpolation used for in grouped data?",["It estimates a value within a class by assuming data is spread evenly through that interval.","It is an extension beyond merely naming the median/modal class."])
+ ],
+ practice:{foundation:["Identify modal class from frequency table.","State median position for30 values."],core:["Use cumulative frequencies to find median class.","Compare modal class in table and histogram."],extension:["Use simple interpolation to estimate median.","Explain limits of interpolation."]},
+ homework:[hw("Foundation","Frequencies3,8,5,2: modal class?",["The class with frequency8."]),hw("Core","CF4,15,28,40: median class?",["20th value lies in third class."]),hw("Extension","Why can median class differ from modal class?",["They measure different features: middle position vs highest concentration/frequency."])]
+},
+"18.5":{
+ examples:[
+  ex("A table shows 42 of60 students chose option A. Find proportion and percentage.",["Proportion \\(42/60=0.7\\).","Percentage70%."]),
+  ex("Group P:30 of50 succeed; Group Q:42 of80 succeed. Which has higher success rate?",["P=60%.","Q=52.5%.","P has the higher rate despite lower raw total."]),
+  ex("A two-way table shows year group and transport. What must be checked before comparing raw counts?",["Check group totals.","If totals differ, percentages/proportions may be fairer."]),
+  ex("Write an inference supported by a table.",["State the numerical evidence first.","Then make a limited conclusion that directly follows."])
+ ],
+ practice:{foundation:["Read a row total.","Convert table count to percentage."],core:["Compare proportions across different group sizes.","Complete missing table values."],extension:["Write two justified inferences.","Identify an inference not supported by the table."]},
+ homework:[hw("Foundation","18 of30 choose B. Percentage?",["60%."]),hw("Core","Compare 24/40 with30/60.",["60% vs50%; first higher."]),hw("Extension","Why can raw totals mislead when groups differ in size?",["Larger groups naturally tend to have larger counts; rates allow fair comparison."])]
+},
+"18.6":{
+ examples:[
+  ex("GroupA median42,IQR8; GroupB median39,IQR5. Compare.",["A higher typical value.","B more consistent."]),
+  ex("Two groups have same median but different IQR.",["Typical middle value is the same.","Smaller IQR indicates less spread through the middle half."]),
+  ex("Two groups have equal mean but different range.",["Their average can match while variability differs.","Range is sensitive to extreme values."]),
+  ex("Write a complete comparison sentence.",["Name the measure, quote the value for both groups, and interpret in context."])
+ ],
+ practice:{foundation:["Compare medians18,22.","Compare IQRs4,9."],core:["Write centre+spread comparison.","Choose mean/range or median/IQR."],extension:["Discuss effect of outliers.","Explain why one summary measure is insufficient."]},
+ homework:[hw("Foundation","Which is more consistent: IQR3 or IQR8?",["IQR3."]),hw("Core","P median51,IQR10;Q median48,IQR6.",["P higher typical; Q more consistent."]),hw("Extension","Why quote values in a comparison?",["They provide evidence rather than unsupported description."])]
+},
+"18.7":{
+ examples:[
+  ex("A survey asks only volunteers. State a limitation.",["Self-selection can make the sample unrepresentative."]),
+  ex("25 students are used to represent all teenagers in Kuwait. State two limitations.",["Small sample.","Sampling frame may not represent the wider population."]),
+  ex("A table shows two variables changing together. Can it prove cause?",["No.","Association does not isolate other variables or prove a causal mechanism."]),
+  ex("A company advertises only the mean salary from a strongly skewed distribution. Why may this be misleading?",["A few high salaries can lift the mean.","Median/spread would provide more context."])
+ ],
+ practice:{foundation:["Name one source of sampling bias.","Explain non-response."],core:["Critique a convenience sample.","Explain misleading average choice."],extension:["Rewrite an over-strong conclusion cautiously.","Design a better sampling method."]},
+ homework:[hw("Foundation","Why is a sample not automatically representative?",["Its selection may systematically exclude parts of the population."]),hw("Core","Why doesn't association prove cause?",["Other variables/selection effects may explain the pattern."]),hw("Extension","Improve a biased school survey.",["Use a random/stratified sample spanning relevant year groups instead of volunteers from one class."])]
+},
+"19.3":{
+ examples:[
+  ex("Points rise from left to right. State correlation.",["Positive correlation."]),
+  ex("Points fall from left to right.",["Negative correlation."]),
+  ex("Points form no clear linear trend.",["Zero/no linear correlation."]),
+  ex("Why doesn't strong correlation prove cause and effect?",["A third variable may affect both.","The scatter diagram shows association, not an experiment controlling variables."])
+ ],
+ practice:{foundation:["Classify three patterns.","State positive correlation in words."],core:["Describe strength and direction.","Identify an outlier effect."],extension:["Give a lurking variable example.","Explain non-linear pattern vs zero linear correlation."]},
+ homework:[hw("Foundation","Upward trend?",["Positive."]),hw("Core","Strong downward trend?",["Strong negative."]),hw("Extension","Shoe size vs reading age in children: likely third variable?",["Age."])]
+},
+"19.4":{
+ examples:[
+  ex("How should a line of best fit be drawn?",["Single straight ruled line by inspection.","Across full data set.","Roughly balanced points above and below."]),
+  ex("Use a fitted line to estimate y for an x-value inside the data range.",["This is interpolation.","Read from x to line, then across to y."]),
+  ex("Why should the line not be forced through the origin?",["Only do so if data/context justify it.","Otherwise it distorts the observed trend."]),
+  ex("Why is a prediction far beyond the data less reliable?",["It is extrapolation.","The relationship may change outside the observed range."])
+ ],
+ practice:{foundation:["Draw a reasonable line through a scatter.","State interpolation/extrapolation."],core:["Read two estimates from a line.","Comment on reliability."],extension:["Estimate line equation.","Compare two plausible best-fit lines."]},
+ homework:[hw("Foundation","Inside data range prediction is called?",["Interpolation."]),hw("Core","Outside data range?",["Extrapolation."]),hw("Extension","Why balanced points both sides?",["It makes the line represent the centre of the overall trend rather than one side."])]
+},
+"19.6":{
+ examples:[
+  ex("80 values: find Q1,median,Q3 CF positions.",["20,40,60."]),
+  ex("120 values: find 90th-percentile position.",["\\(0.9\\times120=108\\)."]),
+  ex("Read Q1=18,Q3=31. Find IQR.",["\\(31-18=13\\)."]),
+  ex("Top20% cutoff in200 candidates.",["Read 80th percentile.","CF position160."])
+ ],
+ practice:{foundation:["Median position for60.","Q1,Q3 for100."],core:["Read quartiles from a curve.","Calculate IQR."],extension:["Read a percentile cutoff.","Compare two distributions from CF curves."]},
+ homework:[hw("Foundation","N=40 median position.",["20."]),hw("Core","N=80 Q1,Q3 positions.",["20,60."]),hw("Extension","P75 for200 occurs at CF?",["150."])]
+},
+"19.8":{
+ examples:[
+  ex("Frequency18,width10. Find density.",["\\(18/10=1.8\\)."]),
+  ex("Density2.4,width5. Find frequency.",["\\(2.4\\times5=12\\)."]),
+  ex("Frequency30,density2.5. Find width.",["\\(30/2.5=12\\)."]),
+  ex("Why is modal class from a histogram linked to density?",["Bar height is density.","Tallest bar shows greatest frequency per unit class width."])
+ ],
+ practice:{foundation:["d for f12,w4.","f for d2,w6."],core:["w for f24,d3.","Complete missing table entries."],extension:["Estimate partial-class count from bar area.","Explain units of density."]},
+ homework:[hw("Foundation","f15,w5: d?",["3."]),hw("Core","d1.6,w10: f?",["16."]),hw("Extension","f21,d1.4: w?",["15."])]
+},
+"19.9":{
+ examples:[
+  ex("A bar chart shows category A twice as tall as B. What should you check before saying A is twice B?",["Check the axis starts at zero and uses a linear scale.","Read actual values, not visual height alone."]),
+  ex("A pie chart sector is largest. What can you infer?",["That category has the largest share of the represented total.","You cannot infer why."]),
+  ex("A histogram has a tall narrow bar. Does it necessarily contain most observations?",["No.","Frequency depends on bar area, not height alone."]),
+  ex("A scatter plot has one outlier. How should it be handled?",["Mention it.","Do not discard it without a reason."])
+ ],
+ practice:{foundation:["Read value from a bar.","State largest sector."],core:["Draw two justified inferences.","Interpret a histogram bar."],extension:["Critique a misleading graph.","Separate observation from explanation."]},
+ homework:[hw("Foundation","Why read axis labels first?",["They define the quantity and scale."]),hw("Core","Tall histogram bar means highest frequency?",["Not necessarily when widths differ; compare area."]),hw("Extension","Why can a chart support only limited inference?",["It displays selected variables/data and may not reveal causes or sampling limitations."])]
+},
+"19.10":{
+ examples:[
+  ex("Curve A median52,IQR8; Curve B median47,IQR14. Compare.",["A higher typical value.","A more consistent because smaller IQR."]),
+  ex("Two histograms have different centres and spreads. How should comparison be structured?",["Compare typical location.","Compare spread/shape.","Quote graph-derived evidence."]),
+  ex("Two scatter plots have different correlation strengths.",["Describe both direction and strength.","Avoid claiming causation."]),
+  ex("Why is a numerical comparison stronger than saying one graph 'looks higher'?",["It gives reproducible evidence from scale values."])
+ ],
+ practice:{foundation:["Compare two medians.","Compare two IQRs."],core:["Write full CF comparison.","Compare histogram shape."],extension:["Discuss outliers/skew.","Choose appropriate graph/statistics to compare groups."]},
+ homework:[hw("Foundation","A median60 vs55: which higher typical?",["First."]),hw("Core","IQR7 vs12: which more consistent?",["IQR7."]),hw("Extension","Write one centre and one spread sentence.",["Quote both group values and interpret."])]
+},
+"19.11":{
+ examples:[
+  ex("A vertical axis begins at92 rather than0. Why can this mislead?",["Small differences appear visually much larger."]),
+  ex("A line of best fit is used far outside observed range.",["This is extrapolation and may be unreliable."]),
+  ex("A scatter correlation is used to claim causation.",["The graph establishes association only.","Other variables may explain the trend."]),
+  ex("A national conclusion comes from a small convenience sample.",["The sample may not represent the target population.","Generalisation should be cautious."])
+ ],
+ practice:{foundation:["Identify a truncated axis.","Define extrapolation."],core:["Critique a sample/graph.","Rewrite an overclaim."],extension:["Explain how visual design can bias interpretation.","Propose stronger evidence."]},
+ homework:[hw("Foundation","Why can a truncated axis exaggerate?",["It removes much of the scale range, magnifying visible differences."]),hw("Core","Why is extrapolation risky?",["No observed data directly supports the relationship there."]),hw("Extension","Correlation vs causation?",["Association alone cannot establish cause."])]
+},
+"20.1":{
+ examples:[
+  ex("Given \\(f(x)=3x-2\\), find \\(f(5)\\).",["Substitute x=5.","\\(15-2=13\\)."]),
+  ex("If \\(f(x)=x^2+1\\), find \\(f(-3)\\).",["\\((-3)^2+1=10\\)."]),
+  ex("For domain \\(\\{-2,-1,0,1,2\\}\\), find range of \\(f(x)=x^2\\).",["Outputs4,1,0,1,4.","Range \\(\\{0,1,4\\}\\)."]),
+  ex("Why is \\(f(x)=1/(x-3)\\) not defined for x=3?",["Denominator becomes zero.","So 3 is excluded from the domain."])
+ ],
+ practice:{foundation:["Evaluate f(7) for f=x+4.","Evaluate g(-3) for g=2x."],core:["Find a finite-domain range.","State domain restriction for a rational function."],extension:["Determine whether a mapping is a function.","Explain range/domain from a graph."]},
+ homework:[hw("Foundation","f=5x-1, f(3)?",["14."]),hw("Core","f=x²+2, f(-4)?",["18."]),hw("Extension","Domain all real except? f=1/(x+5).",["x≠-5."])]
+},
+"20.2":{
+ examples:[
+  ex("Find inverse of \\(f(x)=2x+7\\).",["\\(y=2x+7\\).","Swap: \\(x=2y+7\\).","\\(y=(x-7)/2\\).","\\(f^{-1}(x)=(x-7)/2\\)."]),
+  ex("Check the inverse by composition.",["\\(f(f^{-1}(x))=2((x-7)/2)+7=x\\)."]),
+  ex("Find inverse of \\(f(x)=(x+3)/5\\).",["\\(y=(x+3)/5\\).","\\(5y=x+3\\).","Swap/rearrange gives \\(f^{-1}(x)=5x-3\\)."]),
+  ex("Why does \\(f(x)=x^2\\) need a restricted domain to have an inverse?",["x and -x give same output.","Without restriction it is not one-to-one."])
+ ],
+ practice:{foundation:["Inverse of3x-5.","Inverse ofx+8."],core:["Inverse of(x-2)/4.","Check by composition."],extension:["Restrict x² then find inverse.","Explain inverse as reflection in y=x."]},
+ homework:[hw("Foundation","Inverse of4x+3.",["\\((x-3)/4\\)."]),hw("Core","Inverse of(x+2)/5.",["\\(5x-2\\)."]),hw("Extension","f=x², domain x≥0: inverse?",["\\(\\sqrt x\\)."])]
+},
+"22.1":{
+ examples:[
+  ex("\\(y\\propto x\\), and y=18 when x=6. Find model.",["\\(y=kx\\).","18=6k, so k=3.","\\(y=3x\\)."]),
+  ex("\\(y\\propto x^2\\), y=45 when x=3. Find y when x=5.",["\\(y=kx^2\\).","45=9k, so k=5.","y=125."]),
+  ex("\\(p\\propto\\sqrt q\\), p=12 when q=9. Find p when q=25.",["\\(p=k\\sqrt q\\).","12=3k, so k=4.","p=20."]),
+  ex("\\(t\\propto1/v^2\\), t=5 when v=2. Find t when v=4.",["\\(t=k/v^2\\).","5=k/4, so k=20.","t=20/16=1.25."])
+ ],
+ practice:{foundation:["Find k in direct proportion.","Write square proportion model."],core:["Solve inverse proportion.","Solve square-root proportion."],extension:["Solve cube/cube-root proportion.","Model inverse-square context."]},
+ homework:[hw("Foundation","y∝x,y=21 whenx=7. Model?",["y=3x."]),hw("Core","y∝x²,y=32 whenx=4; y whenx=7?",["k=2,y=98."]),hw("Extension","t∝1/v²,t=12 whenv=5; t whenv=10?",["k=300,t=3."])]
+}
+};
+
+function mergeOverlayV4(l,base,ov){
+ var pr={};
+ ["foundation","core","extension"].forEach(function(k){
+  pr[k]=(ov.practice&&ov.practice[k]?ov.practice[k]:[]).concat(base.practice&&base.practice[k]?base.practice[k]:[]);
+ });
+ return {examples:ov.examples||base.examples,practice:pr,homework:(ov.homework||[]).concat(base.homework||[])};
+}
+function upgradedBank(l){
+ if(BOOK_BANK[l.id])return BOOK_BANK[l.id];
+ var base=deepTextbookBank(l)||specialisedBank(l.type)||bank(l.type);
+ if(BOOK_OVERLAY[l.id])return mergeOverlayV4(l,base,BOOK_OVERLAY[l.id]);
+ return base;
+}
+render=renderV4;
+render();
