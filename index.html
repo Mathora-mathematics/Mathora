@@ -4,68 +4,87 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#eaf6fb">
-  <title>Year 10 Mathematics | NES</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <meta name="color-scheme" content="light">
+  <title>Year 10 Mathematics | NES Teaching Hub</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260924-5">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <header class="topbar">
-    <button id="menuBtn" class="icon-btn" aria-label="Open lessons">☰</button>
-    <div>
+    <button id="menuBtn" class="icon-btn" type="button" aria-label="Open lesson list">☰</button>
+    <div class="brand">
       <div class="eyebrow">NEW ENGLISH SCHOOL • YEAR 10</div>
-      <h1 id="siteTitle">Mathematics Teaching Hub</h1>
+      <div class="brand-title">Mathematics Teaching Hub</div>
     </div>
-    <button id="presentBtn" class="ghost-btn">Presentation mode</button>
+    <div class="top-actions">
+      <button id="sourceBtn" class="ghost-btn" type="button">Sources</button>
+      <button id="presentBtn" class="ghost-btn" type="button">Presentation mode</button>
+    </div>
   </header>
 
   <div class="shell">
-    <aside id="sidebar" class="sidebar" aria-label="Lesson navigation">
-      <div class="search-wrap">
-        <input id="search" type="search" placeholder="Search lessons…" autocomplete="off">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-head">
+        <label for="search">Lessons</label>
+        <input id="search" type="search" placeholder="Search topic or lesson…" autocomplete="off">
       </div>
-      <div id="lessonNav"><p class="empty">Loading lessons…</p></div>
+      <nav id="lessonNav" class="lesson-nav" aria-label="Year 10 lessons">
+        <p class="loading-copy">Loading 47 lessons…</p>
+      </nav>
     </aside>
 
-    <main id="main" class="main">
+    <main class="main">
       <section class="hero">
-        <div>
-          <span id="unitPill" class="pill">Year 10</span>
-          <h2 id="lessonTitle">Choose a lesson</h2>
-          <p id="lessonSubtitle"></p>
+        <div class="hero-copy">
+          <div class="hero-meta">
+            <span id="unitPill" class="pill">Year 10</span>
+            <span id="lessonNumber" class="lesson-number"></span>
+          </div>
+          <h1 id="lessonTitle">Loading lesson…</h1>
+          <p id="lessonSubtitle">Scheme of Work • Cambridge Coursebook • Exam Success • Cambridge IGCSE 0580</p>
         </div>
         <div class="hero-actions">
-          <button id="prevBtn" class="ghost-btn">← Previous</button>
-          <button id="nextBtn" class="primary-btn">Next →</button>
+          <button id="prevBtn" class="ghost-btn" type="button">← Previous</button>
+          <button id="nextBtn" class="primary-btn" type="button">Next →</button>
         </div>
       </section>
 
       <nav class="tabs" aria-label="Lesson sections">
-        <button class="tab active" data-tab="learn">Teach / key notes</button>
-        <button class="tab" data-tab="examples">Teacher examples</button>
-        <button class="tab" data-tab="practice">Independent practice</button>
-        <button class="tab" data-tab="homework">Homework</button>
-        <button class="tab" data-tab="whiteboard">Whiteboard</button>
+        <button class="tab active" data-tab="teach" type="button">Teach / key notes</button>
+        <button class="tab" data-tab="examples" type="button">Teacher examples</button>
+        <button class="tab" data-tab="practice" type="button">Independent practice</button>
+        <button class="tab" data-tab="homework" type="button">Homework</button>
+        <button class="tab" data-tab="whiteboard" type="button">Whiteboard</button>
       </nav>
 
-      <section id="content" class="content"><article class="card" id="bootStatus"><h3>Loading Year 10 Mathematics…</h3><p>The lesson engine is starting.</p></article></section>
+      <section id="content" class="content" aria-live="polite">
+        <article class="panel"><h2>Loading Year 10 Mathematics…</h2><p>The lesson engine is starting.</p></article>
+      </section>
     </main>
   </div>
 
+  <dialog id="sourceDialog" class="source-dialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-head">
+        <div><div class="eyebrow">SOURCE LIBRARY</div><h2>Teaching sources</h2></div>
+        <button class="icon-btn visible" value="cancel" aria-label="Close">✕</button>
+      </div>
+      <div id="sourceDialogBody"></div>
+    </form>
+  </dialog>
+
   <script>
-    window.addEventListener("error", function (event) {
-      var box = document.getElementById("content");
-      if (!box) return;
-      if (!box.innerHTML.trim()) {
-        box.innerHTML = '<article class="card"><h3>Site startup error</h3><p>The lesson app could not initialise.</p><p style="font-family:monospace;font-size:.85rem;word-break:break-word">' +
-          String(event.message || "Unknown JavaScript error") + '</p></article>';
+    window.addEventListener("error", function(event){
+      var box=document.getElementById("content");
+      if(box && !document.documentElement.dataset.mathoraReady){
+        box.innerHTML='<article class="panel error-panel"><h2>Startup error</h2><p>'+String(event.message||"Unknown JavaScript error")+'</p></article>';
       }
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="lessons.js?v=20260924-5"></script>
-  <script src="app-stable.js?v=20260924-5"></script>
-  <noscript><div class="card" style="margin:20px"><strong>JavaScript is required for the interactive lesson website.</strong></div></noscript>
+  <script src="lessons.js?v=3"></script>
+  <script src="content.js?v=3"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
