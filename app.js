@@ -2735,3 +2735,201 @@ function upgradedBank(l){
 }
 render=renderV4;
 render();
+
+
+/* ===== V5 — source-extract teaching pages + isolated KaTeX rendering ===== */
+
+var SOURCE_EXTRACTS_V5={
+ "12.1":{learn:"assets/book/surds-rectangle.webp",examples:{3:"assets/book/surds-rectangle.webp"},label:"Cambridge Coursebook • Surds • source figure"},
+ "16.1":{learn:"assets/book/angles-worked3.webp",examples:{0:"assets/book/angles-worked3.webp"},label:"Cambridge Coursebook • Angle reasoning • worked source diagram"},
+ "19.1":{learn:"assets/book/bar-chart-worked.webp",examples:{0:"assets/book/bar-chart-worked.webp"},label:"Cambridge Coursebook • Bar charts • worked source diagram"},
+ "19.2":{learn:"assets/book/scatter-exercise.webp",examples:{0:"assets/book/scatter-exercise.webp"},label:"Cambridge Coursebook • Scatter diagrams • exercise source"},
+ "19.7":{learn:"assets/book/histogram-students.webp",examples:{0:"assets/book/histogram-students.webp"},label:"Cambridge Coursebook • Histograms • exercise source"}
+};
+
+function sourceExtractV5(l,i,mode){
+ var m=SOURCE_EXTRACTS_V5[l.id];
+ if(!m)return "";
+ var src=mode==="learn"?m.learn:(m.examples||{})[i];
+ if(!src)return "";
+ return '<figure class="textbook-extract">'+
+   '<div class="extract-ribbon">SOURCE EXTRACT</div>'+
+   '<img src="'+src+'" alt="'+escapeAttrV4(m.label)+'" loading="lazy">'+
+   '<figcaption><strong>'+m.label+'</strong><span>Used from the supplied teaching copy and placed beside the transposed lesson content.</span></figcaption>'+
+ '</figure>';
+}
+
+function typesetMathV5(root){
+ root=root||document;
+ if(!window.katex)return;
+
+ root.querySelectorAll(".math-tex[data-tex]").forEach(function(el){
+   if(el.dataset.renderedV5==="1")return;
+   try{
+     katex.render(el.getAttribute("data-tex")||"",el,{
+       throwOnError:false,strict:"ignore",trust:false,displayMode:false,output:"htmlAndMathml"
+     });
+     el.dataset.renderedV5="1";
+   }catch(err){
+     el.textContent=el.getAttribute("data-tex")||"";
+     el.classList.add("math-fallback");
+   }
+ });
+
+ if(!window.renderMathInElement)return;
+ var selectors=[
+   ".explain-block p",
+   ".key-point-copy",
+   ".rule-row > div:last-child",
+   ".method-list li",
+   ".clean-list li",
+   ".mini-example-question",
+   ".mini-example-step",
+   ".example-question",
+   ".step > div",
+   ".q-list li",
+   ".hw-q > span:last-child",
+   ".practice-source",
+   ".textbook-pattern strong",
+   ".source-library strong"
+ ];
+ var seen=new Set();
+ selectors.forEach(function(sel){
+   root.querySelectorAll(sel).forEach(function(el){
+     if(seen.has(el)||el.dataset.mathDoneV5==="1")return;
+     seen.add(el);
+     try{
+       renderMathInElement(el,{
+         delimiters:[
+           {left:"\\[",right:"\\]",display:true},
+           {left:"\\(",right:"\\)",display:false}
+         ],
+         throwOnError:false,
+         strict:"ignore",
+         trust:false,
+         errorColor:"#9f1239",
+         ignoredTags:["script","noscript","style","textarea","pre","code",".katex"]
+       });
+       el.dataset.mathDoneV5="1";
+     }catch(err){
+       el.dataset.mathErrorV5="1";
+       console.warn("Math block isolated:",err);
+     }
+   });
+ });
+}
+
+function keyWordsForV5(l){
+ var map={
+  "12":["surd","exact value","simplify","conjugate"],
+  "13":["factor","common denominator","restriction","rational expression"],
+  "14":["unknown","solution","equation","formula"],
+  "15":["boundary","solution set","inclusive","strict"],
+  "16":["angle notation","geometric reason","symmetry","regular polygon"],
+  "17":["perimeter","area","radius","sector"],
+  "18":["frequency","average","quartile","spread"],
+  "19":["frequency density","correlation","cumulative frequency","inference"],
+  "20":["function","domain","range","composition"],
+  "21":["union","intersection","complement","universal set"],
+  "22":["constant of proportionality","direct","inverse","power"]
+ };
+ return map[l.u]||[];
+}
+
+function renderLearningV5(l){
+ var g=guideFor(l),b=upgradedBank(l),first=(b.examples||[])[0];
+ var rules=(g.rules||[]).map(function(r){return texFormula(r[0],r[1]);}).join("");
+ var method=(g.method||[]).map(function(x){return '<li>'+x+'</li>';}).join("");
+ var pitfalls=(g.pitfalls||[]).map(function(x){return '<li>'+x+'</li>';}).join("");
+ var vocab=keyWordsForV5(l).map(function(x){return '<span class="vocab-chip">'+x+'</span>';}).join("");
+ var mini=first?'<section class="mini-example-card">'+
+   '<div class="mini-kicker">BOOK-LED MINI EXAMPLE</div>'+
+   '<div class="mini-example-question">'+first.q+'</div>'+
+   '<div class="mini-steps">'+(first.steps||[]).slice(0,4).map(function(s,j){
+      return '<div class="mini-example-step"><span>'+(j+1)+'</span><div>'+s+'</div></div>';
+   }).join("")+'</div>'+
+ '</section>':"";
+ var src=sourceExtractV5(l,0,"learn");
+ var fallback=!src?bookDiagramV4(l,0):"";
+
+ return '<section class="teaching-slide notes-slide learning-v5">'+
+   '<div class="slide-kicker">TEACH • EXPLAIN • MODEL</div>'+
+   '<div class="learning-title-row"><div><h3>Core explanation</h3><p class="learning-intro">This section is the teaching content: definitions, rules, why the method works, and the checks students need before practice.</p></div><div class="vocab-wrap">'+vocab+'</div></div>'+
+   '<div class="explain-block prominent"><h3>What this means</h3><p>'+g.concept+'</p></div>'+
+   (rules?'<section class="rules-block"><div class="section-heading"><span>01</span><div><h3>Rules & key mathematical facts</h3><p>These are the facts to explicitly teach and keep visible while modelling.</p></div></div>'+rules+'</section>':'')+
+   '<section class="learning-v5-grid">'+
+     '<div class="method-panel"><div class="section-heading"><span>02</span><div><h3>How to do it</h3><p>Teacher explanation in a reliable order.</p></div></div><ol class="method-list">'+method+'</ol></div>'+
+     '<div class="checks-panel"><div class="section-heading"><span>03</span><div><h3>Key checks & common mistakes</h3><p>Misconceptions to address before students work independently.</p></div></div><ul class="clean-list">'+pitfalls+'</ul></div>'+
+   '</section>'+
+   mini+
+   (src?'<section class="book-source-panel"><div class="section-heading"><span>04</span><div><h3>Use the book visual</h3><p>This is an actual extract from the supplied source copy, not a recreated sketch.</p></div></div>'+src+'</section>':
+        (fallback?'<section class="book-source-panel"><div class="section-heading"><span>04</span><div><h3>Mathematical visual</h3><p>Coded diagram used where no book crop has yet been attached.</p></div></div><div class="book-visual">'+fallback+'</div></section>':''))+
+   '<details class="prior-knowledge"><summary>Before students begin • prior knowledge</summary><ul class="clean-list">'+(l.prior||[]).map(function(x){return '<li>'+x+'</li>';}).join("")+'</ul></details>'+
+   sourceBadge(l)+
+ '</section>';
+}
+
+function exampleVisualV5(l,i){
+ return sourceExtractV5(l,i,"example") || bookDiagramV4(l,i);
+}
+
+function renderV5(){
+ var l=LESSONS[current],b=upgradedBank(l);
+ if(current!==lastExampleLesson){exampleSlide=0;lastExampleLesson=current;}
+ $("#unitPill").textContent="Unit "+l.u+" • "+l.unit;
+ $("#lessonTitle").textContent=l.id+"  "+l.title;
+ $("#lessonSubtitle").textContent="Cambridge IGCSE Mathematics • NES SoW • Cambridge Coursebook • Exam Success";
+ $("#prevBtn").disabled=current===0;
+ $("#nextBtn").disabled=current===LESSONS.length-1;
+ $$(".tab").forEach(function(x){x.classList.toggle("active",x.dataset.tab===tab);});
+ renderNav($("#search").value);
+
+ if(tab==="learn"){
+   $("#content").innerHTML=renderLearningV5(l);
+ }
+
+ if(tab==="examples"){
+   $("#content").innerHTML=
+    '<div class="deck-toolbar"><div><strong>Teacher examples</strong><span id="exampleCount"></span></div><div class="deck-buttons"><button id="examplePrev" class="ghost-btn">← Previous example</button><button id="exampleNext" class="primary-btn">Next example →</button></div></div>'+
+    '<div class="example-deck">'+b.examples.map(function(e,i){
+      var visual=exampleVisualV5(l,i);
+      return '<section class="example-slide teaching-slide" data-slide="'+i+'">'+
+       '<div class="slide-kicker">TEACHER EXAMPLE '+(i+1)+' OF '+b.examples.length+'</div>'+
+       '<div class="textbook-pattern"><span>Source sequence</span><strong>'+textbookLens(l,i)+'</strong><small>Cambridge: '+l.src+' • paired with '+(EXAM_SUCCESS_MAP[l.u]||"Exam Success")+'</small></div>'+
+       '<div class="example-question">'+e.q+'</div>'+
+       (visual?'<div class="example-diagram source-aware">'+visual+'</div>':'')+
+       renderModelBoard("model-board-"+current+"-"+i)+
+       '<details class="worked-solution"><summary>Show full worked solution</summary><div class="solution-paper"><div class="solution-title">Worked solution</div><div class="steps">'+e.steps.map(function(s,j){return '<div class="step"><span class="step-badge">'+(j+1)+'</span><div>'+s+'</div></div>';}).join("")+'</div></div></details>'+
+      '</section>';
+    }).join("")+'</div>'+
+    '<div class="example-dots">'+b.examples.map(function(_,i){return '<button class="example-dot" data-slide="'+i+'" aria-label="Go to example '+(i+1)+'">'+(i+1)+'</button>';}).join("")+'</div>';
+ }
+
+ if(tab==="practice"){
+   var ep=extraPractice(l.type),merged={};
+   ["foundation","core","extension"].forEach(function(k){merged[k]=(b.practice[k]||[]).concat(ep[k]||[]);});
+   $("#content").innerHTML='<article class="card practice-sheet"><div class="sheet-head"><div><div class="slide-kicker">INDEPENDENT PRACTICE</div><h3>Coursebook exercises + exam-style progression</h3><p class="practice-source">Lesson order follows the SoW. The supplied Cambridge and Exam Success material is transposed into the sequence before additional matching reasoning problems are added.</p></div><span class="question-count">'+(merged.foundation.length+merged.core.length+merged.extension.length+(ep.problems||[]).length)+' questions</span></div>'+
+    '<div class="tiers">'+[["Foundation","foundation"],["Core","core"],["Extension","extension"]].map(function(pair){var name=pair[0],k=pair[1];return '<section class="tier '+k+'"><h4>'+name+'</h4><ol class="q-list">'+merged[k].map(function(q){return '<li>'+q+'</li>';}).join("")+'</ol></section>';}).join("")+'</div>'+
+    ((ep.problems||[]).length?'<section class="problem-solving"><div class="slide-kicker">REASONING & PROBLEM SOLVING</div><h4>Cambridge-style thinking</h4><ol class="q-list">'+ep.problems.map(function(q){return '<li>'+q+'</li>';}).join("")+'</ol></section>':'')+
+    sourceBadge(l)+'</article>';
+ }
+
+ if(tab==="homework"){
+   var allHw=(b.homework||[]).concat(extraHomework(l.type));
+   $("#content").innerHTML='<article class="card homework-sheet"><div class="sheet-head"><div><div class="slide-kicker">HOMEWORK</div><h3>Fluency → application → reasoning</h3><p class="practice-source">Attempt before revealing. Every reveal shows the method rather than only an answer.</p></div><span class="question-count">'+allHw.length+' questions</span></div>'+
+    allHw.map(function(h,i){return '<div class="hw-item"><div class="hw-q"><span class="q-number">'+(i+1)+'</span><span class="pill">'+h.tier+'</span><span>'+h.q+'</span></div><details class="solution"><summary>Show solution</summary><div class="solution-body"><div class="steps">'+h.sol.map(function(s,j){return '<div class="step"><span class="step-badge">'+(j+1)+'</span><div>'+s+'</div></div>';}).join("")+'</div></div></details></div>';}).join("")+
+    sourceBadge(l)+'</article>';
+ }
+
+ if(tab==="whiteboard"){
+   $("#content").innerHTML='<article class="card board-card"><div class="board-tools"><strong>Whole-class whiteboard</strong><button class="colour-dot active" data-colour="#132d36" aria-label="Black pen"></button><button class="colour-dot" data-colour="#2563eb" aria-label="Blue pen"></button><button class="colour-dot" data-colour="#dc2626" aria-label="Red pen"></button><button class="colour-dot" data-colour="#15803d" aria-label="Green pen"></button><button id="eraser" class="tool-btn">Eraser</button><button id="clearBoard" class="tool-btn">Clear</button></div><div class="canvas-shell"><canvas id="board"></canvas></div></article>';
+ }
+
+ typesetMathV5($("#content"));
+ if(tab==="examples"){initModelBoards();setupExampleDeck();}
+ if(tab==="whiteboard")initBoard();
+ location.hash=l.id+"-"+tab;
+}
+
+render=renderV5;
+render();
