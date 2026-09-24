@@ -23,14 +23,65 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate lesson app
+        shell: bash
+        run: |
+          node --check lessons.js
+          node --check app-stable.js
+          node <<'NODE'
+          const fs = require('fs');
+          const vm = require('vm');
+
+          const sandbox = { window: {} };
+          vm.createContext(sandbox);
+          vm.runInContext(fs.readFileSync('lessons.js', 'utf8'), sandbox);
+
+          const lessons = sandbox.window.LESSONS;
+          if (!Array.isArray(lessons)) throw new Error('window.LESSONS was not created');
+          if (lessons.length !== 47) throw new Error('Expected 47 lessons, found ' + lessons.length);
+
+          const ids = lessons.map(l => l.id);
+          if (new Set(ids).size !== ids.length) throw new Error('Duplicate lesson IDs found');
+
+          for (const l of lessons) {
+            for (const key of ['u','unit','id','title','type','src']) {
+              if (!l[key]) throw new Error('Lesson ' + l.id + ' missing ' + key);
+            }
+            if (!Array.isArray(l.prior) || !Array.isArray(l.obj)) {
+              throw new Error('Lesson ' + l.id + ' missing prior/objective arrays');
+            }
+          }
+
+          const html = fs.readFileSync('index.html', 'utf8');
+          if (!html.includes('app-stable.js')) throw new Error('index.html is not loading app-stable.js');
+          if (html.includes('app-v6.js')) throw new Error('index.html still references obsolete app-v6.js');
+
+          const assets = [
+            'assets/book/surds-rectangle.webp',
+            'assets/book/angles-worked3.webp',
+            'assets/book/bar-chart-worked.webp',
+            'assets/book/scatter-exercise.webp',
+            'assets/book/histogram-students.webp',
+            'assets/book/exam-pie-worked.webp'
+          ];
+          for (const path of assets) {
+            if (!fs.existsSync(path)) throw new Error('Missing textbook asset: ' + path);
+          }
+
+          console.log('Validated ' + lessons.length + ' lessons and ' + assets.length + ' textbook assets.');
+          NODE
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
