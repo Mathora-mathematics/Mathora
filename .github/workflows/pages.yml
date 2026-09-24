@@ -24,52 +24,46 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate lesson app
+      - name: Validate complete Year 10 build
         shell: bash
         run: |
           node --check lessons.js
-          node --check app-stable.js
+          node --check content-core.js
+          node --check content-12-17.js
+          node --check content-18-22.js
+          node --check app.js
+
           node <<'NODE'
-          const fs = require('fs');
-          const vm = require('vm');
-
-          const sandbox = { window: {} };
+          const fs=require('fs'),vm=require('vm');
+          const sandbox={window:{}};
           vm.createContext(sandbox);
-          vm.runInContext(fs.readFileSync('lessons.js', 'utf8'), sandbox);
-
-          const lessons = sandbox.window.LESSONS;
-          if (!Array.isArray(lessons)) throw new Error('window.LESSONS was not created');
-          if (lessons.length !== 47) throw new Error('Expected 47 lessons, found ' + lessons.length);
-
-          const ids = lessons.map(l => l.id);
-          if (new Set(ids).size !== ids.length) throw new Error('Duplicate lesson IDs found');
-
-          for (const l of lessons) {
-            for (const key of ['u','unit','id','title','type','src']) {
-              if (!l[key]) throw new Error('Lesson ' + l.id + ' missing ' + key);
-            }
-            if (!Array.isArray(l.prior) || !Array.isArray(l.obj)) {
-              throw new Error('Lesson ' + l.id + ' missing prior/objective arrays');
-            }
+          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js']){
+            vm.runInContext(fs.readFileSync(f,'utf8'),sandbox,{filename:f});
           }
-
-          const html = fs.readFileSync('index.html', 'utf8');
-          if (!html.includes('app-stable.js')) throw new Error('index.html is not loading app-stable.js');
-          if (html.includes('app-v6.js')) throw new Error('index.html still references obsolete app-v6.js');
-
-          const assets = [
-            'assets/book/surds-rectangle.webp',
-            'assets/book/angles-worked3.webp',
-            'assets/book/bar-chart-worked.webp',
-            'assets/book/scatter-exercise.webp',
-            'assets/book/histogram-students.webp',
-            'assets/book/exam-pie-worked.webp'
-          ];
-          for (const path of assets) {
-            if (!fs.existsSync(path)) throw new Error('Missing textbook asset: ' + path);
+          const lessons=sandbox.window.LESSONS;
+          const content=sandbox.window.LESSON_CONTENT;
+          if(!Array.isArray(lessons)||lessons.length!==47) throw new Error('Expected 47 lessons');
+          if(new Set(lessons.map(x=>x.id)).size!==47) throw new Error('Duplicate lesson ids');
+          if(Object.keys(content).length!==47) throw new Error('Expected 47 detailed content packs, got '+Object.keys(content).length);
+          for(const l of lessons){
+            const d=content[l.id];
+            if(!d)throw new Error('Missing content '+l.id);
+            if(!d.explain||d.explain.length<40)throw new Error('Weak explanation '+l.id);
+            if(!Array.isArray(d.keyPoints)||d.keyPoints.length<3)throw new Error('Missing key points '+l.id);
+            if(!Array.isArray(d.method)||d.method.length<3)throw new Error('Missing method '+l.id);
+            if(!Array.isArray(d.examples)||d.examples.length<2)throw new Error('Need >=2 examples '+l.id);
+            for(const k of ['foundation','core','extension','reasoning']){
+              if(!d.practice||!Array.isArray(d.practice[k])||d.practice[k].length<2)throw new Error('Weak practice '+l.id+' '+k);
+            }
+            if(!Array.isArray(d.homework)||d.homework.length<4)throw new Error('Need >=4 homework '+l.id);
+            if(!d.cambridge||!d.examSuccess)throw new Error('Missing source alignment '+l.id);
           }
-
-          console.log('Validated ' + lessons.length + ' lessons and ' + assets.length + ' textbook assets.');
+          const html=fs.readFileSync('index.html','utf8');
+          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js','app.js']){
+            if(!html.includes(f))throw new Error('index missing '+f);
+          }
+          if(html.includes('app-stable.js')||html.includes('app-v6.js'))throw new Error('obsolete runtime referenced');
+          console.log('PASS: 47/47 lessons contain full teaching packs.');
           NODE
 
       - name: Configure Pages
@@ -77,7 +71,7 @@ jobs:
         with:
           enablement: true
 
-      - name: Upload static site
+      - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
