@@ -1,4 +1,4 @@
-name: Deploy populated NES Year 10 Mathematics site
+name: Deploy NES Year 10 Mathematics site
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate complete lesson runtime
+      - name: Validate lesson site
         shell: bash
         run: |
           node --check lessons.js
@@ -36,13 +36,20 @@ jobs:
           node --check starter-answers.js
           node --check enhancements.js
           node --check diagrams.js
+          node --check book-diagrams.js
+          node --check question-diagrams.js
+          node --check question-engine.js
           node --check app.js
 
           node <<'NODE'
           const fs=require('fs'),vm=require('vm');
           const sandbox={window:{}};
           vm.createContext(sandbox);
-          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js','book-diagrams.js']){
+          for(const f of [
+            'lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js',
+            'starters.js','starter-answers.js','enhancements.js','diagrams.js','book-diagrams.js',
+            'question-diagrams.js','question-engine.js'
+          ]){
             vm.runInContext(fs.readFileSync(f,'utf8'),sandbox,{filename:f});
           }
 
@@ -53,6 +60,7 @@ jobs:
           const sow=sandbox.window.SOW_MAP;
           const extra=sandbox.window.EXTRA_EXAMPLES;
           const diagrams=sandbox.window.MathoraDiagrams;
+          const engine=sandbox.window.MathoraQuestionEngine;
 
           if(!Array.isArray(lessons)||lessons.length!==47) throw new Error('Expected 47 SoW lessons');
           if(Object.keys(content).length!==47) throw new Error('Expected 47 lesson content packs');
@@ -60,6 +68,8 @@ jobs:
           if(Object.keys(answers).length!==47) throw new Error('Expected 47 starter-answer sets');
           if(Object.keys(sow).length!==47) throw new Error('Expected 47 exact SoW mappings');
           if(Object.keys(extra).length!==47) throw new Error('Expected 47 enhanced example sets');
+          if(!engine||typeof engine.build!=='function') throw new Error('Question engine missing');
+          if(!diagrams||typeof diagrams.question!=='function') throw new Error('Question diagram renderer missing');
 
           for(const l of lessons){
             const d=content[l.id];
@@ -67,18 +77,39 @@ jobs:
             if(!Array.isArray(starters[l.id])||starters[l.id].length!==4) throw new Error('Starter count wrong for '+l.id);
             if(!Array.isArray(answers[l.id])||answers[l.id].length!==4) throw new Error('Starter answers wrong for '+l.id);
             if(!Array.isArray(d.examples)||d.examples.length<3) throw new Error('Need base teacher examples for '+l.id);
-            if(!Array.isArray(extra[l.id])||extra[l.id].length<2) throw new Error('Need 2 extra teacher examples for '+l.id);
-            if(!diagrams.supports(l.type)) throw new Error('Need coded diagrams for '+l.id);
-            if(!d.practice||!Array.isArray(d.practice.foundation)||!Array.isArray(d.practice.core)||!Array.isArray(d.practice.extension)) throw new Error('Practice missing for '+l.id);
-            if(!Array.isArray(d.homework)||d.homework.length<6) throw new Error('Need 6 homework questions for '+l.id);
+            if(!Array.isArray(extra[l.id])||extra[l.id].length<2) throw new Error('Need two extra examples for '+l.id);
+
+            const bank=engine.build(l.type);
+            if(!bank||bank.practice.length!==16||bank.homework.length!==16){
+              throw new Error('Need 16 practice + 16 homework for '+l.id);
+            }
+            for(const [kind,items] of Object.entries(bank)){
+              for(let i=0;i<items.length;i++){
+                const q=items[i];
+                if(!q.prompt||!Array.isArray(q.steps)||q.steps.length<1) throw new Error('Missing solved question '+l.id+' '+kind+' '+i);
+                if(q.diagram){
+                  const svg=diagrams.question(q.diagram);
+                  if(typeof svg!=='string'||!svg.includes('<svg')) throw new Error('Broken diagram '+l.id+' '+kind+' '+i+' '+q.diagram.kind);
+                }
+              }
+            }
+
+            for(let i=0;i<5;i++){
+              const svg=diagrams.example(l.id,l.type,i);
+              if(typeof svg!=='string'||!svg.includes('<svg')) throw new Error('Broken teacher diagram '+l.id+' example '+(i+1));
+            }
           }
 
           const html=fs.readFileSync('index.html','utf8');
-          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js','book-diagrams.js','app.js']){
+          for(const f of [
+            'lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js',
+            'starters.js','starter-answers.js','enhancements.js','diagrams.js','book-diagrams.js',
+            'question-diagrams.js','question-engine.js','app.js'
+          ]){
             if(!html.includes(f)) throw new Error('index.html missing '+f);
           }
 
-          console.log('PASS: 47/47 SoW lessons mapped with 5 teacher examples, diagrams, iPad whiteboards, deeper practice and homework.');
+          console.log('PASS: 47 lessons; 5 examples each; 16 practice + 16 homework; all solved diagrams validated.');
           NODE
 
       - name: Configure Pages
