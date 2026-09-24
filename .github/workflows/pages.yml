@@ -42,7 +42,7 @@ jobs:
           const fs=require('fs'),vm=require('vm');
           const sandbox={window:{}};
           vm.createContext(sandbox);
-          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js']){
+          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js','book-diagrams.js']){
             vm.runInContext(fs.readFileSync(f,'utf8'),sandbox,{filename:f});
           }
 
@@ -74,7 +74,7 @@ jobs:
           }
 
           const html=fs.readFileSync('index.html','utf8');
-          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js','app.js']){
+          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js','book-diagrams.js','app.js']){
             if(!html.includes(f)) throw new Error('index.html missing '+f);
           }
 
