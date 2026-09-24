@@ -11,12 +11,12 @@ function rationalise(){const a=[[5,2],[7,3],[6,5],[9,7],[4,3],[11,6],[8,5],[3,2]
 return Array.from({length:32},(_,i)=>{if(i<16){const [m,r]=a[i%8];return Q("Rationalise [[\\frac{"+m+"}{\\sqrt{"+r+"}}]].",["Multiply top and bottom by [[\\sqrt{"+r+"}]].","[[\\frac{"+m+"}{\\sqrt{"+r+"}}\\times\\frac{\\sqrt{"+r+"}}{\\sqrt{"+r+"}}=\\frac{"+m+"\\sqrt{"+r+"}}{"+r+"}]]."])}
 const [m,p,r]=b[i%8],den=p*p-r;return Q("Rationalise [[\\frac{"+m+"}{"+p+"-\\sqrt{"+r+"}}]].",["Multiply by the conjugate [["+p+"+\\sqrt{"+r+"}]].","Denominator: [["+p+"^2-"+r+"="+den+"]].","Final answer: [[\\frac{"+m+"("+p+"+\\sqrt{"+r+"})}{"+den+"}]]."])});}
 function algfrac(simple=true){return Array.from({length:32},(_,i)=>{const k=i%8,a=2+k,b=3+(k%4),c=1+(k%3);if(simple){
-if(i<8)return Q("Simplify [[\\frac{"+(6+2*k)+"x^"+(3+k%3)+"}{"+(9+3*k)+"x^"+(5+k%2)+"}]].",["Simplify the numerical coefficient.","Use the index law for division of powers.","State [[x\\ne0]]."]);
+if(i<8){const A=6+2*k,B=9+3*k,m=3+k%3,n=5+k%2,g=(x,y)=>y?g(y,x%y):Math.abs(x),h=g(A,B),aa=A/h,bb=B/h,e=m-n,term=e===0?"1":(e>0?"x^"+e:"\\frac{1}{x^"+(-e)+"}"),ans=bb===1?aa+term:"\\frac{"+aa+(e>0?"x^"+e:"")+"}{"+bb+(e<0?"x^"+(-e):"")+"}";return Q("Simplify [[\\frac{"+A+"x^"+m+"}{"+B+"x^"+n+"}]].",["Reduce the coefficient: [[\\frac{"+A+"}{"+B+"}=\\frac{"+aa+"}{"+bb+"}]].","Subtract indices: [["+m+"-"+n+"="+e+"]].","Final answer: [["+ans+"]], with [[x\\ne0]]."])};
 const u=2+k,v=3+(k%5),w=4+(k%4);return Q("Simplify [[\\frac{(x+"+u+")(x-"+v+")}{(x-"+v+")(x+"+w+")}]].",["Factorisation is already visible.","Cancel the complete common factor [[x-"+v+"]].","Result: [[\\frac{x+"+u+"}{x+"+w+"}]], with excluded values from the original denominator."])}
-if(i%4===0)return Q("Write [[\\frac{"+a+"}{x}+\\frac{"+b+"}{x+"+c+"}]] as one fraction.",["LCD [[=x(x+"+c+")]].","Combine numerators.","Simplify the resulting numerator and state restrictions."]);
+if(i%4===0)return Q("Write [[\\frac{"+a+"}{x}+\\frac{"+b+"}{x+"+c+"}]] as one fraction.",["LCD [[=x(x+"+c+")]].","[[\\frac{"+a+"(x+"+c+")+"+b+"x}{x(x+"+c+")}]].","Final answer: [[\\frac{"+(a+b)+"x+"+(a*c)+"}{x(x+"+c+")}]], with [[x\\ne0,-"+c+"]]."]);
 if(i%4===1)return Q("Simplify [[\\frac{"+a+"x}{"+b+"}\\times\\frac{"+c+"}{"+a+"x}]].",["Cancel common factors.","Result: [[\\frac{"+c+"}{"+b+"}]], with [[x\\ne0]]."]);
-if(i%4===2)return Q("Simplify [[\\frac{x^2-"+(a*a)+"}{"+b+"x}\\div\\frac{x+"+a+"}{"+c+"x^2}]].",["Factor the difference of two squares.","Change division to multiplication by the reciprocal.","Cancel complete common factors."]);
-return Q("Simplify [[\\frac1{x-"+c+"}-\\frac1{x+"+b+"}]].",["Use LCD [[(x-"+c+")(x+"+b+")]].","Combine the numerators carefully.","Simplify and state restrictions."])});}
+if(i%4===2)return Q("Simplify [[\\frac{x^2-"+(a*a)+"}{"+b+"x}\\div\\frac{x+"+a+"}{"+c+"x^2}]].",["[[x^2-"+(a*a)+"=(x-"+a+")(x+"+a+")]].","Change division to multiplication by the reciprocal.","Cancel [[x+"+a+"]] and one factor x.","Final answer: [[\\frac{"+c+"x(x-"+a+")}{"+b+"}]]."]);
+return Q("Simplify [[\\frac1{x-"+c+"}-\\frac1{x+"+b+"}]].",["Use LCD [[(x-"+c+")(x+"+b+")]].","Numerator [[=(x+"+b+")-(x-"+c+")="+(b+c)+"]].","Final answer: [[\\frac{"+(b+c)+"}{(x-"+c+")(x+"+b+")}]], with [[x\\ne"+c+",-"+b+"]]."])});}
 function forming(){const arr=[
 ()=>Q("Two consecutive integers have a sum of 47. Form an equation.",["Let the first be [[n]].","The next is [[n+1]].","Equation: [[n+(n+1)=47]]."]),
 ()=>Q("Two consecutive even integers have product 224. Form an equation.",["Let them be [[2n]] and [[2n+2]].","Equation: [[2n(2n+2)=224]]."]),
@@ -34,13 +34,23 @@ const rate=[1.2,.75,1.5,.9,2.2,1.1,.8,1.6][k],fixed=[3.5,2,4,5,1.5,2.7,4.2,3][k]
 function quadratic(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<8){const r1=1+k%4,r2=4+k%5,b=-(r1+r2),c=r1*r2;return Q("Solve [[x^2"+(b>=0?"+":"")+b+"x+"+c+"=0]].",["Factorise into two brackets.","Set each factor equal to zero.","Solutions: [[x="+r1+"]] or [[x="+r2+"]]."])}
 if(i<16){const b=2*(2+k%4),c=-7+k;const h=b/2,constant=c-h*h;return Q("Write [[x^2+"+b+"x"+(c>=0?"+":"")+c+"]] in completed-square form.",["Half the coefficient of x: [["+h+"]].","[[x^2+"+b+"x=(x+"+h+")^2-"+(h*h)+"]].","Final form: [[(x+"+h+")^2"+(constant>=0?"+":"")+constant+"]]."])}
 if(i<24){const a=2+k%3,b=1+k,c=-(2+k%5),D=b*b-4*a*c;return Q("Solve [["+a+"x^2+"+b+"x"+c+"=0]] using the quadratic formula.",["Identify [[a="+a+",b="+b+",c="+c+"]].","Discriminant [[="+D+"]].","[[x=\\frac{-"+b+"\\pm\\sqrt{"+D+"}}{"+(2*a)+"}]]."])}
-const w=2+k%4,add=3+k%3,area=w*(w+add);return Q("A rectangle has width [[x]] and length [[x+"+add+"]]. Its area is "+area+". Find x.",["[[x(x+"+add+")="+area+"]].","Rearrange to a quadratic.","Factorise/solve and reject any non-physical root."])});}
+const w=2+k%4,add=3+k%3,area=w*(w+add);return Q("A rectangle has width [[x]] and length [[x+"+add+"]]. Its area is "+area+". Find x.",["[[x(x+"+add+")="+area+"]].","[[x^2+"+add+"x-"+area+"=0]].","Factorise: [[(x-"+w+")(x+"+(w+add)+")=0]].","The positive root is [[x="+w+"]]."])});}
 function fractionalEq(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<8){const a=3+k,b=1+k%4,x=4+k,c=x/a+b;return Q("Solve [[\\frac{x}{"+a+"}+"+b+"="+t(c)+"]].",["Subtract "+b+".","Multiply by "+a+".","[[x="+x+"]]."])}
-if(i<16){const b=1+k%4,c=2+k%3,x=b+2;const a=c*(x-b);return Q("Solve [[\\frac{"+a+"}{x-"+b+"}="+c+"]].",["State [[x\\ne"+b+"]].","Cross-multiply.","Solve the resulting linear equation."])}
-if(i<24){const b=1+k%3,d=2+k%4,a=2+k,c=3+k%4;return Q("Solve [[\\frac{"+a+"}{x-"+b+"}=\\frac{"+c+"}{x+"+d+"}]].",["State denominator restrictions.","Cross-multiply.","Expand, collect x-terms and solve."])}
-const a=3+k,b=4+(k%3),d=5+k;return Q("Solve [[\\frac{x}{"+a+"}+\\frac{x-1}{"+b+"}="+d+"]].",["Multiply throughout by the LCM.","Expand and collect the x-terms.","Solve and check."])});}
-function simultaneous(linearOnly=true){return Array.from({length:32},(_,i)=>{const k=i%8;if(!linearOnly){if(i%2===0){const m=1+(k%2),n=(k%3)-1,R=25+2*(k%3);return Q("Solve simultaneously [[y="+m+"x"+(n>=0?"+":"")+n+"]] and [[x^2+y^2="+R+"]].",["Substitute the linear expression for y into the circle equation.","Solve the resulting quadratic.","Substitute each x-value back to find y."],{kind:"line-circle",m,n,R})}
-const m=(k%2?1:-1),n=1+k%3,c=-(2+k%3);return Q("Solve simultaneously [[y="+m+"x+"+n+"]] and [[y=x^2"+c+"]].",["Set the two expressions for y equal.","Rearrange to a quadratic.","Solve for x, then substitute to find y."],{kind:"line-parabola",m,n,c})}
+if(i<16){const b=1+k%4,c=2+k%3,x=b+2;const a=c*(x-b);return Q("Solve [[\\frac{"+a+"}{x-"+b+"}="+c+"]].",["State [[x\\ne"+b+"]].","[[ "+a+"="+c+"(x-"+b+") ]].","[[x-"+b+"="+(x-b)+"]].","[[x="+x+"]]."])}
+if(i<24){const b=1+k%3,d=2+k%4,a=2+k,c=3+k%4,num=-(a*d+c*b),den=a-c;return Q("Solve [[\\frac{"+a+"}{x-"+b+"}=\\frac{"+c+"}{x+"+d+"}]].",["Restrictions: [[x\\ne"+b+",-"+d+"]].","[["+a+"(x+"+d+")="+c+"(x-"+b+")]].","[["+(a-c)+"x="+num+"]].","[[x="+frac(num,den)+"]]."])}
+const a=3+k,b=4+(k%3),d=5+k,L=a*b,num=d*L+a,den=a+b;return Q("Solve [[\\frac{x}{"+a+"}+\\frac{x-1}{"+b+"}="+d+"]].",["Multiply by [["+L+"]]: [["+b+"x+"+a+"(x-1)="+(d*L)+"]].","[["+(a+b)+"x-"+a+"="+(d*L)+"]].","[["+(a+b)+"x="+num+"]].","[[x="+frac(num,den)+"]]."])});}
+function simultaneous(linearOnly=true){return Array.from({length:32},(_,i)=>{const k=i%8;if(!linearOnly){const circle=[
+ [1,1,25,[[3,4],[-4,-3]]],
+ [1,-1,13,[[3,2],[-2,-3]]],
+ [-1,2,13,[[-1,3],[3,-1]]],
+ [0,3,25,[[4,3],[-4,3]]]
+],para=[
+ [1,2,-4,[[3,5],[-2,0]]],
+ [2,3,3,[[0,3],[2,7]]],
+ [-1,2,-4,[[2,0],[-3,5]]],
+ [1,-1,-7,[[3,2],[-2,-3]]]
+];if(i%2===0){const z=circle[Math.floor(i/2)%circle.length],m=z[0],n=z[1],R=z[2],pts=z[3];return Q("Solve simultaneously [[y="+m+"x"+(n>=0?"+":"")+n+"]] and [[x^2+y^2="+R+"]].",["Substitute y: [[x^2+("+m+"x"+(n>=0?"+":"")+n+")^2="+R+"]].","Expand and factorise the resulting quadratic.","Solutions: [[("+pts[0][0]+","+pts[0][1]+")]] and [[("+pts[1][0]+","+pts[1][1]+")]]."],{kind:"line-circle",m,n,R})}
+const z=para[Math.floor(i/2)%para.length],m=z[0],n=z[1],cc=z[2],pts=z[3];return Q("Solve simultaneously [[y="+m+"x"+(n>=0?"+":"")+n+"]] and [[y=x^2"+(cc>=0?"+":"")+cc+"]].",["Set equal: [["+m+"x"+(n>=0?"+":"")+n+"=x^2"+(cc>=0?"+":"")+cc+"]].","Rearrange and factorise the quadratic.","Solutions: [[("+pts[0][0]+","+pts[0][1]+")]] and [[("+pts[1][0]+","+pts[1][1]+")]]."],{kind:"line-parabola",m,n,c:cc})}
 if(i<16){const x=2+k%4,y=3+k%5,a=2+k%3,b=1+k%2,d=1+k%2,e=-(1+k%3),c=a*x+b*y,f=d*x+e*y;return Q("Solve [["+a+"x"+(b>=0?"+":"")+b+"y="+c+"]] and [["+d+"x"+(e>=0?"+":"")+e+"y="+f+"]].",["Use elimination or substitution.","Eliminate one variable.","[[x="+x+", y="+y+"]]."])}
 if(i<24){const x=1+k%4,m=2+k%3,n=1+k%2,y=m*x+n,a=2+k%3,c=a*x+y;return Q("Solve [[y="+m+"x+"+n+"]] and [["+a+"x+y="+c+"]].",["Substitute the first equation into the second.","Solve for x.","Substitute back to find y."])}
 const cPrice=1.5+.5*(k%4),tPrice=1+.25*(k%3),c1=2+k%3,t1=2+(k+1)%3,c2=c1+2,t2=t1,total1=+(c1*cPrice+t1*tPrice).toFixed(2),total2=+(c2*cPrice+t2*tPrice).toFixed(2);return Q(c1+" coffees and "+t1+" teas cost KD "+total1+"; "+c2+" coffees and "+t2+" teas cost KD "+total2+". Find both prices.",["Form two simultaneous equations.","Subtract to eliminate tea.","Coffee = KD "+cPrice+", tea = KD "+tPrice+"."])});}
