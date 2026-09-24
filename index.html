@@ -3,71 +3,383 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#dff3fb">
-  <meta name="description" content="New English School Year 10 Cambridge IGCSE Mathematics teaching hub">
-  <title>Year 10 Mathematics | NES</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260924-rebuild1">
+  <meta name="theme-color" content="#dceff7">
+  <meta name="description" content="Year 10 Mathematics lesson design prototype">
+  <title>Year 10 Mathematics — Lesson Design</title>
+  <link rel="stylesheet" href="styles.css?v=design-20260924">
 </head>
 <body>
-<header class="topbar">
-  <button id="menuBtn" class="icon-btn" type="button" aria-label="Open lesson menu">☰</button>
-  <div class="brand">
-    <div class="brand-mark">Y10</div>
-    <div><div class="eyebrow">NEW ENGLISH SCHOOL • CAMBRIDGE IGCSE</div><h1>Mathematics Teaching Hub</h1></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="school-mark">NES</div>
+        <div>
+          <span>NEW ENGLISH SCHOOL</span>
+          <strong>Year 10 Math</strong>
+        </div>
+      </div>
+
+      <div class="sidebar-label">LESSON BOOK</div>
+
+      <div class="unit-list">
+        <button class="unit-row active" type="button">
+          <span class="unit-number">12</span>
+          <span class="unit-copy"><strong>Unit title</strong><small>2 lessons</small></span>
+          <span class="unit-chevron">⌄</span>
+        </button>
+        <div class="lesson-list">
+          <button class="lesson-row active" type="button">
+            <span>12.1</span>
+            <strong>Lesson title</strong>
+          </button>
+          <button class="lesson-row" type="button">
+            <span>12.2</span>
+            <strong>Lesson title</strong>
+          </button>
+        </div>
+
+        <button class="unit-row" type="button">
+          <span class="unit-number">13</span>
+          <span class="unit-copy"><strong>Unit title</strong><small>2 lessons</small></span>
+          <span class="unit-chevron">›</span>
+        </button>
+
+        <button class="unit-row" type="button">
+          <span class="unit-number">14</span>
+          <span class="unit-copy"><strong>Unit title</strong><small>7 lessons</small></span>
+          <span class="unit-chevron">›</span>
+        </button>
+
+        <button class="unit-row" type="button">
+          <span class="unit-number">15</span>
+          <span class="unit-copy"><strong>Unit title</strong><small>4 lessons</small></span>
+          <span class="unit-chevron">›</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="progress-copy">
+          <span>Course structure</span>
+          <strong>Design preview</strong>
+        </div>
+        <div class="progress-track"><span></span></div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-button mobile-only" type="button" aria-label="Open lesson menu">☰</button>
+
+        <div class="breadcrumb">
+          <span>YEAR 10</span>
+          <i></i>
+          <span>UNIT 12</span>
+          <i></i>
+          <strong>LESSON 12.1</strong>
+        </div>
+
+        <div class="top-actions">
+          <button id="focusBtn" class="soft-button" type="button">
+            <span class="button-icon">◫</span>
+            Focus mode
+          </button>
+          <button class="round-button" type="button" aria-label="More options">•••</button>
+        </div>
+      </header>
+
+      <div class="lesson-stage">
+        <nav class="flow-nav" aria-label="Lesson flow">
+          <button class="flow-button active" data-target="overview" type="button">
+            <span>01</span>
+            <strong>Overview</strong>
+          </button>
+          <button class="flow-button" data-target="starter" type="button">
+            <span>02</span>
+            <strong>Starter</strong>
+          </button>
+          <button class="flow-button" data-target="teach" type="button">
+            <span>03</span>
+            <strong>Teach</strong>
+          </button>
+          <button class="flow-button" data-target="examples" type="button">
+            <span>04</span>
+            <strong>Examples</strong>
+          </button>
+          <button class="flow-button" data-target="practice" type="button">
+            <span>05</span>
+            <strong>Practice</strong>
+          </button>
+        </nav>
+
+        <article class="notebook" id="notebook">
+          <div class="binding-holes" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+
+          <section class="notebook-page title-page section-anchor" id="overview">
+            <div class="page-margin-line"></div>
+
+            <div class="title-meta">
+              <div class="date-card">
+                <span>DATE</span>
+                <strong id="lessonDate">24 September 2026</strong>
+              </div>
+              <div class="lesson-chip">LESSON 12.1</div>
+            </div>
+
+            <div class="title-copy">
+              <p class="overline">YEAR 10 MATHEMATICS</p>
+              <h1>Lesson title will sit here beautifully.</h1>
+              <p class="lesson-intro">
+                A short one-line description can sit here when we add the real lesson content.
+              </p>
+            </div>
+
+            <div class="title-footer">
+              <div class="teacher-tag">
+                <span>TEACHER</span>
+                <strong>Mr Niculae</strong>
+              </div>
+              <button class="start-button" data-target="starter" type="button">
+                Start lesson
+                <span>→</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="notebook-page section-anchor" id="starter">
+            <div class="page-margin-line"></div>
+
+            <div class="section-head">
+              <div>
+                <span class="section-kicker">02 — STARTER</span>
+                <h2>Quick retrieval</h2>
+              </div>
+              <div class="section-time">5 min</div>
+            </div>
+
+            <div class="starter-grid">
+              <article class="question-card">
+                <span class="question-number">01</span>
+                <p>Starter question placeholder</p>
+                <div class="answer-line"></div>
+              </article>
+              <article class="question-card">
+                <span class="question-number">02</span>
+                <p>Starter question placeholder</p>
+                <div class="answer-line"></div>
+              </article>
+              <article class="question-card">
+                <span class="question-number">03</span>
+                <p>Starter question placeholder</p>
+                <div class="answer-line"></div>
+              </article>
+              <article class="question-card">
+                <span class="question-number">04</span>
+                <p>Starter question placeholder</p>
+                <div class="answer-line"></div>
+              </article>
+            </div>
+
+            <div class="solution-bar">
+              <button class="reveal-button" data-reveal="starterSolution" type="button">
+                <span class="reveal-icon">＋</span>
+                Show starter solutions
+              </button>
+              <div class="reveal-panel" id="starterSolution">
+                <div class="solution-grid">
+                  <div><span>01</span><p>Solution appears here.</p></div>
+                  <div><span>02</span><p>Solution appears here.</p></div>
+                  <div><span>03</span><p>Solution appears here.</p></div>
+                  <div><span>04</span><p>Solution appears here.</p></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="notebook-page section-anchor" id="teach">
+            <div class="page-margin-line"></div>
+
+            <div class="section-head">
+              <div>
+                <span class="section-kicker">03 — TEACH</span>
+                <h2>Key idea</h2>
+              </div>
+              <div class="page-sticker">NOTES</div>
+            </div>
+
+            <div class="notes-layout">
+              <article class="note-card blue-note">
+                <span class="tape"></span>
+                <small>KEY RULE</small>
+                <h3>Important rule or formula</h3>
+                <p>A short explanation will go here later.</p>
+              </article>
+
+              <article class="note-card beige-note">
+                <span class="tape"></span>
+                <small>REMEMBER</small>
+                <h3>Second key idea</h3>
+                <p>This is deliberately placeholder content for design only.</p>
+              </article>
+            </div>
+
+            <div class="teacher-board">
+              <div class="board-label">
+                <span>TEACHER BOARD</span>
+                <strong>Space for live modelling</strong>
+              </div>
+              <div class="lined-space">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </section>
+
+          <section class="notebook-page section-anchor" id="examples">
+            <div class="page-margin-line"></div>
+
+            <div class="section-head example-head">
+              <div>
+                <span class="section-kicker">04 — EXAMPLES</span>
+                <h2>Worked examples</h2>
+              </div>
+
+              <div class="example-nav">
+                <button id="examplePrev" class="round-button" type="button" aria-label="Previous example">←</button>
+                <span id="exampleCounter">1 / 3</span>
+                <button id="exampleNext" class="round-button dark" type="button" aria-label="Next example">→</button>
+              </div>
+            </div>
+
+            <div class="example-deck" id="exampleDeck">
+              <article class="example-card active" data-example="0">
+                <div class="example-question">
+                  <span>EXAMPLE 1</span>
+                  <h3>Example question will appear here.</h3>
+                  <p>Teacher models the method using the writing area.</p>
+                </div>
+
+                <div class="working-toolbar" data-canvas="canvasOne">
+                  <div class="pen-group">
+                    <button class="pen-dot active" data-colour="#17343d" type="button" aria-label="Dark pen"></button>
+                    <button class="pen-dot" data-colour="#287fb2" type="button" aria-label="Blue pen"></button>
+                    <button class="pen-dot" data-colour="#c95e58" type="button" aria-label="Red pen"></button>
+                  </div>
+                  <button class="mini-tool eraser-tool" type="button">Eraser</button>
+                  <button class="mini-tool clear-tool" type="button">Clear</button>
+                </div>
+
+                <div class="graph-paper">
+                  <canvas id="canvasOne"></canvas>
+                </div>
+
+                <button class="reveal-button full-width" data-reveal="exampleSolutionOne" type="button">
+                  <span class="reveal-icon">＋</span>
+                  Reveal worked solution
+                </button>
+
+                <div class="reveal-panel solution-panel" id="exampleSolutionOne">
+                  <div class="worked-step"><span>1</span><p>First line of the worked solution.</p></div>
+                  <div class="worked-step"><span>2</span><p>Second line appears beneath it.</p></div>
+                  <div class="worked-step"><span>3</span><p>Final answer is visually highlighted here.</p></div>
+                </div>
+              </article>
+
+              <article class="example-card" data-example="1">
+                <div class="example-question">
+                  <span>EXAMPLE 2</span>
+                  <h3>A second example with the same clean structure.</h3>
+                  <p>Each example transitions horizontally rather than stacking endlessly.</p>
+                </div>
+                <div class="graph-paper static-grid"></div>
+                <button class="reveal-button full-width" data-reveal="exampleSolutionTwo" type="button">
+                  <span class="reveal-icon">＋</span>
+                  Reveal worked solution
+                </button>
+                <div class="reveal-panel solution-panel" id="exampleSolutionTwo">
+                  <div class="worked-step"><span>1</span><p>Solution placeholder.</p></div>
+                  <div class="worked-step"><span>2</span><p>Solution placeholder.</p></div>
+                </div>
+              </article>
+
+              <article class="example-card" data-example="2">
+                <div class="example-question">
+                  <span>EXAMPLE 3</span>
+                  <h3>Third example placeholder.</h3>
+                  <p>The same layout can later hold diagrams, images, or textbook snippets.</p>
+                </div>
+                <div class="graph-paper static-grid"></div>
+                <button class="reveal-button full-width" data-reveal="exampleSolutionThree" type="button">
+                  <span class="reveal-icon">＋</span>
+                  Reveal worked solution
+                </button>
+                <div class="reveal-panel solution-panel" id="exampleSolutionThree">
+                  <div class="worked-step"><span>1</span><p>Solution placeholder.</p></div>
+                </div>
+              </article>
+            </div>
+
+            <div class="example-dots" id="exampleDots">
+              <button class="active" data-example-index="0" type="button"></button>
+              <button data-example-index="1" type="button"></button>
+              <button data-example-index="2" type="button"></button>
+            </div>
+          </section>
+
+          <section class="notebook-page section-anchor" id="practice">
+            <div class="page-margin-line"></div>
+
+            <div class="section-head">
+              <div>
+                <span class="section-kicker">05 — PRACTICE</span>
+                <h2>Independent practice</h2>
+              </div>
+              <div class="difficulty-key">
+                <span class="difficulty easy">Secure</span>
+                <span class="difficulty medium">Apply</span>
+                <span class="difficulty hard">Stretch</span>
+              </div>
+            </div>
+
+            <div class="practice-list">
+              <article class="practice-row">
+                <span class="practice-number">01</span>
+                <div><span class="difficulty easy">Secure</span><p>Independent question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practiceOne" type="button">Answer</button>
+              </article>
+              <div class="compact-answer reveal-panel" id="practiceOne">Answer placeholder.</div>
+
+              <article class="practice-row">
+                <span class="practice-number">02</span>
+                <div><span class="difficulty medium">Apply</span><p>Independent question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practiceTwo" type="button">Answer</button>
+              </article>
+              <div class="compact-answer reveal-panel" id="practiceTwo">Answer placeholder.</div>
+
+              <article class="practice-row">
+                <span class="practice-number">03</span>
+                <div><span class="difficulty hard">Stretch</span><p>Reasoning question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practiceThree" type="button">Answer</button>
+              </article>
+              <div class="compact-answer reveal-panel" id="practiceThree">Answer placeholder.</div>
+            </div>
+
+            <div class="lesson-end">
+              <div>
+                <span>LESSON COMPLETE</span>
+                <strong>Ready for the next lesson?</strong>
+              </div>
+              <button class="next-lesson-button" type="button">
+                Next lesson
+                <span>12.2 →</span>
+              </button>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
   </div>
-  <div class="top-actions"><button id="presentBtn" class="btn secondary" type="button">Presentation mode</button></div>
-</header>
 
-<div class="shell">
-  <aside id="sidebar" class="sidebar">
-    <div class="search-box"><input id="search" type="search" placeholder="Search all 47 lessons…" autocomplete="off"></div>
-    <nav id="lessonNav"><p class="boot">Loading lesson map…</p></nav>
-  </aside>
-
-  <main class="main">
-    <section class="hero">
-      <div class="hero-copy">
-        <span id="unitPill" class="pill">Year 10</span>
-        <h2 id="lessonTitle">Loading course…</h2>
-        <p id="lessonSubtitle">Scheme of Work • Morrison & Hamshaw • Exam Success</p>
-      </div>
-      <div class="hero-nav">
-        <button id="prevBtn" type="button" class="btn secondary">← Previous</button>
-        <button id="nextBtn" type="button" class="btn primary">Next →</button>
-      </div>
-    </section>
-
-    <nav class="tabs" aria-label="Lesson sections">
-      <button type="button" class="tab active" data-tab="teach">Teach / key notes</button>
-      <button type="button" class="tab" data-tab="examples">Teacher examples</button>
-      <button type="button" class="tab" data-tab="practice">Independent practice</button>
-      <button type="button" class="tab" data-tab="homework">Homework</button>
-      <button type="button" class="tab" data-tab="whiteboard">Whiteboard</button>
-      <button type="button" class="tab" data-tab="sources">Book sources</button>
-    </nav>
-
-    <section id="content" class="content">
-      <div class="boot"><strong>Loading 47 detailed lessons…</strong><br>Preparing examples, questions and whiteboards.</div>
-    </section>
-  </main>
-</div>
-
-<script>
-window.addEventListener("error", function(e){
-  const box=document.getElementById("content");
-  if(box && document.documentElement.dataset.appReady!=="1"){
-    box.innerHTML='<div class="fatal"><h2>Startup error</h2><p>'+String(e.message||"Unknown error").replace(/[<>&]/g,"")+'</p></div>';
-  }
-});
-</script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script src="lessons.js?v=20260924-rebuild1"></script>
-<script src="content-core.js?v=20260924-rebuild1"></script>
-<script src="content-12-17.js?v=20260924-rebuild1"></script>
-<script src="content-18-22.js?v=20260924-rebuild1"></script>
-<script src="app.js?v=20260924-rebuild1"></script>
-<noscript><div class="fatal"><h2>JavaScript is required</h2><p>This interactive teaching website needs JavaScript enabled.</p></div></noscript>
+  <script src="app.js?v=design-20260924"></script>
 </body>
 </html>
