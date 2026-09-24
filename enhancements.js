@@ -19,7 +19,7 @@ window.EXTRA_EXAMPLES={
  X("A rectangle has side lengths [[\\sqrt{45}]] cm and [[\\sqrt{20}]] cm. Find its exact area.",["Area [[=\\sqrt{45}\\times\\sqrt{20}=\\sqrt{900}]].","[[\\sqrt{900}=30]].","Exact area [[=30\\text{ cm}^2]]."],"Coursebook exact-value application",2)
 ],
 "12.2":[
- X("Rationalise [[\\frac{7}{\\sqrt5}]].",["Multiply top and bottom by [[\\sqrt5]].","[[\\frac{7}{\\sqrt5}\\times\\frac{\\sqrt5}{\\sqrt5}=\\frac{7\\sqrt5}{5}]].","The denominator is now rational."],"Morrison & Hamshaw Ex 9.8 Q5–7 style",1),
+ X("Rationalise and simplify [[\\frac{3\\sqrt2}{\\sqrt7}]].",["Multiply top and bottom by [[\\sqrt7]].","[[\\frac{3\\sqrt2}{\\sqrt7}\\times\\frac{\\sqrt7}{\\sqrt7}=\\frac{3\\sqrt{14}}7]].","No square factor remains in [[14]], so this is fully simplified."],"Morrison & Hamshaw Ex 9.8 Q5–7 style",1),
  X("Rationalise and simplify [[\\frac4{3-\\sqrt5}]].",["Use the conjugate [[3+\\sqrt5]].","Denominator: [[(3-\\sqrt5)(3+\\sqrt5)=9-5=4]].","Numerator: [[4(3+\\sqrt5)]], so the result is [[3+\\sqrt5]]."],"Coursebook Ex 9.9 / conjugate method",2)
 ],
 "13.1":[
@@ -35,7 +35,7 @@ window.EXTRA_EXAMPLES={
  X("A rectangle has length [[x+3]] and width [[x-1]]. Its perimeter is 28. Form an equation.",["Perimeter [[=2l+2w]].","[[2(x+3)+2(x-1)=28]].","This is the required linear equation; simplify only if asked."],"Exam Success §2.1 forming equations style",2)
 ],
 "14.2":[
- X("Solve [[5(x+4)=3(x+10)]].",["Expand: [[5x+20=3x+30]].","Collect x-terms: [[2x=10]].","[[x=5]]."],"SoW teaching example / Coursebook Ex 6.1",1),
+ X("Solve [[\\frac{3x-5}{4}=\\frac{x+7}{3}]].",["Multiply both sides by 12.","[[3(3x-5)=4(x+7)]].","[[9x-15=4x+28]], so [[5x=43]] and [[x=\\frac{43}{5}]]."],"Coursebook Ex 6.1 / higher-demand linear equation style",1),
  X("A taxi fare is KD 3.5 plus KD 1.2 per kilometre. The fare is KD 15.5. Find the distance.",["Let distance be [[d]] km.","[[3.5+1.2d=15.5]].","[[1.2d=12]], so [[d=10]] km."],"Coursebook forming-equations context",2)
 ],
 "14.3":[
@@ -47,7 +47,7 @@ window.EXTRA_EXAMPLES={
  X("Solve [[\\frac2{x-1}=\\frac3{x+2}]].",["Restrictions: [[x\\ne1,-2]].","Cross-multiply: [[2(x+2)=3(x-1)]].","[[2x+4=3x-3]], so [[x=7]]."],"Coursebook fractional-equation style",2)
 ],
 "14.5":[
- X("3 coffees and 2 teas cost KD 6.50. 5 coffees and 2 teas cost KD 9.50. Find each price.",["[[3c+2t=6.50]], [[5c+2t=9.50]].","Subtract: [[2c=3.00]], so [[c=1.50]].","Substitute: [[4.50+2t=6.50]], so [[t=1.00]]."],"SoW coffee/tea introduction; Exam Success simultaneous style",1),
+ X("At a school event, 4 adult tickets and 3 student tickets cost KD 31.50. Two adult tickets and 5 student tickets cost KD 24.50. Find both ticket prices.",["Let adult price be [[a]] and student price be [[s]].","[[4a+3s=31.5]], [[2a+5s=24.5]]. Double the second equation: [[4a+10s=49]].","Subtract the first equation: [[7s=17.5]], so [[s=2.5]]. Then [[4a+7.5=31.5]], so [[a=6]]."],"Morrison & Hamshaw / Exam Success contextual simultaneous-equations style",1),
  X("Solve [[2x+5y=19]] and [[y=x+1]] by substitution.",["Substitute [[y=x+1]]: [[2x+5(x+1)=19]].","[[7x+5=19]], so [[x=2]].","[[y=3]]."],"Morrison & Hamshaw Ex 14.2 substitution style",2)
 ],
 "14.6":[
@@ -63,7 +63,7 @@ window.EXTRA_EXAMPLES={
  X("A number line shows a closed circle at -1, an open circle at 5, and shading between. Write the inequality.",["Closed at -1 means [[x\\ge-1]].","Open at 5 means [[x<5]].","Together: [[-1\\le x<5]]."],"Exam Success inequalities interpretation style",2)
 ],
 "15.2":[
- X("Solve [[-3\\le3x-2<7]].",["Add 2 throughout: [[-1\\le3x<9]].","Divide throughout by 3.","[[-\\frac13\\le x<3]]."],"SoW compound inequality example",1),
+ X("Solve [[4<2x+6\\le18]].",["Subtract 6 throughout: [[-2<2x\\le12]].","Divide every part by 2.","[[-1<x\\le6]]."],"Morrison & Hamshaw compound-inequality style",1),
  X("Solve [[5-2x>3(x+1)]].",["Expand: [[5-2x>3x+3]].","[[2>5x]].","[[x<\\frac25]]."],"Coursebook Ex 14.4 style",2)
 ],
 "15.3":[
