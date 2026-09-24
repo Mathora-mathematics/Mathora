@@ -29,7 +29,8 @@ jobs:
           node --check app.js
           grep -q 'Title + starter' index.html
           grep -q 'worksheet-slide' index.html
-          grep -q 'data-print-target="practice"' index.html\n          grep -q 'data-print-target="homework"' index.html
+          grep -q 'data-print-target="practice"' index.html
+          grep -q 'data-print-target="homework"' index.html
           grep -q 'nes-design-3' index.html
           grep -q 'app.js?v=nes-design-3' index.html
           echo "PASS: NES design prototype validated."
