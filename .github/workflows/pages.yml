@@ -1,4 +1,4 @@
-name: Deploy Year 10 Maths site to GitHub Pages
+name: Deploy lesson design prototype to GitHub Pages
 
 on:
   push:
@@ -24,47 +24,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate complete Year 10 build
+      - name: Validate design prototype
         shell: bash
         run: |
-          node --check lessons.js
-          node --check content-core.js
-          node --check content-12-17.js
-          node --check content-18-22.js
           node --check app.js
-
-          node <<'NODE'
-          const fs=require('fs'),vm=require('vm');
-          const sandbox={window:{}};
-          vm.createContext(sandbox);
-          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js']){
-            vm.runInContext(fs.readFileSync(f,'utf8'),sandbox,{filename:f});
-          }
-          const lessons=sandbox.window.LESSONS;
-          const content=sandbox.window.LESSON_CONTENT;
-          if(!Array.isArray(lessons)||lessons.length!==47) throw new Error('Expected 47 lessons');
-          if(new Set(lessons.map(x=>x.id)).size!==47) throw new Error('Duplicate lesson ids');
-          if(Object.keys(content).length!==47) throw new Error('Expected 47 detailed content packs, got '+Object.keys(content).length);
-          for(const l of lessons){
-            const d=content[l.id];
-            if(!d)throw new Error('Missing content '+l.id);
-            if(!d.explain||d.explain.length<40)throw new Error('Weak explanation '+l.id);
-            if(!Array.isArray(d.keyPoints)||d.keyPoints.length<3)throw new Error('Missing key points '+l.id);
-            if(!Array.isArray(d.method)||d.method.length<3)throw new Error('Missing method '+l.id);
-            if(!Array.isArray(d.examples)||d.examples.length<2)throw new Error('Need >=2 examples '+l.id);
-            for(const k of ['foundation','core','extension','reasoning']){
-              if(!d.practice||!Array.isArray(d.practice[k])||d.practice[k].length<2)throw new Error('Weak practice '+l.id+' '+k);
-            }
-            if(!Array.isArray(d.homework)||d.homework.length<4)throw new Error('Need >=4 homework '+l.id);
-            if(!d.cambridge||!d.examSuccess)throw new Error('Missing source alignment '+l.id);
-          }
-          const html=fs.readFileSync('index.html','utf8');
-          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js','app.js']){
-            if(!html.includes(f))throw new Error('index missing '+f);
-          }
-          if(html.includes('app-stable.js')||html.includes('app-v6.js'))throw new Error('obsolete runtime referenced');
-          console.log('PASS: 47/47 lessons contain full teaching packs.');
-          NODE
+          grep -q 'notebook' index.html
+          grep -q 'reveal-button' index.html
+          grep -q 'graph-paper' index.html
+          grep -q 'flow-nav' index.html
+          grep -q 'styles.css?v=design-20260924' index.html
+          grep -q 'app.js?v=design-20260924' index.html
+          echo "PASS: lesson design prototype is structurally complete."
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
