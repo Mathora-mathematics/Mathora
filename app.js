@@ -187,8 +187,28 @@ function questionCard(l,x,globalIndex,kind){
   '<p>'+fmt(x.prompt)+'</p>'+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
  '</article>';
 }
+function solvedQuestionSets(l,d){
+ const generated=QUESTION_ENGINE.build(l.type);
+ const generatedPractice=(generated.practice||[]).slice(0,8);
+ const generatedHomework=(generated.homework||[]).slice(0,8);
+ const examples=allExamples(l,d).map(x=>({prompt:x.prompt,steps:x.steps||[],diagram:null}));
+ const oldHomework=(d.homework||[]).map(x=>({prompt:x.prompt,steps:x.steps||[],diagram:null}));
+ const unique=(items)=>{
+   const out=[],seen=new Set();
+   for(const item of items){
+     const key=String(item?.prompt||"").replace(/\s+/g," ").trim().toLowerCase();
+     if(!key||seen.has(key)||!item.steps?.length)continue;
+     seen.add(key);out.push(item);
+     if(out.length===16)break;
+   }
+   return out;
+ };
+ const practice=unique([...generatedPractice,...examples,...oldHomework,...generatedHomework]);
+ const homework=unique([...generatedHomework,...oldHomework,...examples,...generatedPractice]);
+ return {practice,homework};
+}
 function practiceHTML(l,d){
- const bank=QUESTION_ENGINE.build(l.type).practice.slice(0,16);
+ const bank=solvedQuestionSets(l,d).practice;
  window.__currentPractice=bank;
  const pages=[bank.slice(0,8),bank.slice(8,16)];
  return '<section class="section-anchor sheet-stack" id="practice">'+pages.map((page,p)=>
@@ -198,7 +218,7 @@ function practiceHTML(l,d){
  ).join("")+'</section>';
 }
 function homeworkHTML(l,d){
- const bank=QUESTION_ENGINE.build(l.type).homework.slice(0,16);
+ const bank=solvedQuestionSets(l,d).homework;
  window.__currentHomework=bank;
  const pages=[bank.slice(0,8),bank.slice(8,16)];
  return '<section class="section-anchor sheet-stack" id="homework">'+pages.map((page,p)=>
