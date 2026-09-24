@@ -1,71 +1,74 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#eaf6fb">
-  <title>Year 10 Mathematics | NES</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260924-5">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eef7fb">
+<title>Year 10 Mathematics | NES Teaching Hub</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="styles.css?v=20260924-r1">
 </head>
 <body>
-  <header class="topbar">
-    <button id="menuBtn" class="icon-btn" aria-label="Open lessons">☰</button>
-    <div>
-      <div class="eyebrow">NEW ENGLISH SCHOOL • YEAR 10</div>
-      <h1 id="siteTitle">Mathematics Teaching Hub</h1>
-    </div>
-    <button id="presentBtn" class="ghost-btn">Presentation mode</button>
-  </header>
-
-  <div class="shell">
-    <aside id="sidebar" class="sidebar" aria-label="Lesson navigation">
-      <div class="search-wrap">
-        <input id="search" type="search" placeholder="Search lessons…" autocomplete="off">
-      </div>
-      <div id="lessonNav"><p class="empty">Loading lessons…</p></div>
-    </aside>
-
-    <main id="main" class="main">
-      <section class="hero">
-        <div>
-          <span id="unitPill" class="pill">Year 10</span>
-          <h2 id="lessonTitle">Choose a lesson</h2>
-          <p id="lessonSubtitle"></p>
-        </div>
-        <div class="hero-actions">
-          <button id="prevBtn" class="ghost-btn">← Previous</button>
-          <button id="nextBtn" class="primary-btn">Next →</button>
-        </div>
-      </section>
-
-      <nav class="tabs" aria-label="Lesson sections">
-        <button class="tab active" data-tab="learn">Teach / key notes</button>
-        <button class="tab" data-tab="examples">Teacher examples</button>
-        <button class="tab" data-tab="practice">Independent practice</button>
-        <button class="tab" data-tab="homework">Homework</button>
-        <button class="tab" data-tab="whiteboard">Whiteboard</button>
-      </nav>
-
-      <section id="content" class="content"><article class="card" id="bootStatus"><h3>Loading Year 10 Mathematics…</h3><p>The lesson engine is starting.</p></article></section>
-    </main>
+<header class="topbar">
+  <button id="menuBtn" class="icon-btn" aria-label="Open lessons">☰</button>
+  <div class="brand">
+    <span class="eyebrow">NEW ENGLISH SCHOOL • YEAR 10</span>
+    <strong>Mathematics Teaching Hub</strong>
   </div>
+  <div class="top-actions">
+    <button id="sourcesBtn" class="ghost-btn">Sources</button>
+    <button id="presentBtn" class="ghost-btn">Presentation mode</button>
+  </div>
+</header>
 
-  <script>
-    window.addEventListener("error", function (event) {
-      var box = document.getElementById("content");
-      if (!box) return;
-      if (!box.innerHTML.trim()) {
-        box.innerHTML = '<article class="card"><h3>Site startup error</h3><p>The lesson app could not initialise.</p><p style="font-family:monospace;font-size:.85rem;word-break:break-word">' +
-          String(event.message || "Unknown JavaScript error") + '</p></article>';
-      }
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="lessons.js?v=20260924-5"></script>
-  <script src="app-stable.js?v=20260924-5"></script>
-  <noscript><div class="card" style="margin:20px"><strong>JavaScript is required for the interactive lesson website.</strong></div></noscript>
+<div class="app-shell">
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-head">
+      <label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Search lessons or units…" autocomplete="off"></label>
+      <div class="sidebar-meta"><span id="lessonCount">47 lessons</span><span>Units 12–22</span></div>
+    </div>
+    <nav id="lessonNav" class="lesson-nav"><div class="loading-line">Loading curriculum…</div></nav>
+  </aside>
+
+  <main class="main">
+    <section class="lesson-hero">
+      <div class="hero-copy">
+        <div class="hero-meta"><span id="unitPill" class="pill">Year 10</span><span id="sourceMini" class="source-mini"></span></div>
+        <h1 id="lessonTitle">Loading lesson…</h1>
+        <p id="lessonSubtitle">Scheme of Work • Cambridge Coursebook • Exam Success • Cambridge IGCSE 0580</p>
+      </div>
+      <div class="hero-actions">
+        <button id="prevBtn" class="ghost-btn">← Previous</button>
+        <button id="nextBtn" class="primary-btn">Next →</button>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Lesson sections">
+      <button class="tab active" data-tab="teach">Teach</button>
+      <button class="tab" data-tab="examples">Teacher examples</button>
+      <button class="tab" data-tab="practice">Independent practice</button>
+      <button class="tab" data-tab="homework">Homework</button>
+      <button class="tab" data-tab="whiteboard">Whiteboard</button>
+      <button class="tab" data-tab="sources">Sources</button>
+    </nav>
+
+    <section id="content" class="content">
+      <article class="panel boot"><h2>Loading Year 10 Mathematics…</h2><p>Building the lesson from the SoW and source books.</p></article>
+    </section>
+  </main>
+</div>
+
+<script>
+window.addEventListener("error",function(e){
+ const box=document.getElementById("content");
+ if(box && !document.documentElement.dataset.mathoraReady){
+   box.innerHTML='<article class="panel error-panel"><h2>Startup error</h2><p>'+String(e.message||"Unknown error")+'</p></article>';
+ }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="lessons.js?v=20260924-r1"></script>
+<script src="app-stable.js?v=20260924-r1"></script>
 </body>
 </html>
