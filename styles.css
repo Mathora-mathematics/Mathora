@@ -86,3 +86,52 @@ body.present .example-slide{min-height:calc(100vh - 170px)}body.present .model-c
 .example-diagram img.book-crop,.book-visual img.book-crop{max-width:100%;max-height:430px;object-fit:contain;border-radius:10px;display:block;margin:auto}
 .source-image-note{font-size:.72rem;color:var(--muted);margin-top:6px;text-align:center}
 @media(max-width:900px){.notes-grid,.source-library{grid-template-columns:1fr}.source-links{grid-column:1}.rule-row{grid-template-columns:1fr;gap:4px}.notes-slide{padding:18px}}
+
+/* V5 source-led lesson design */
+.learning-v5{gap:22px}
+.learning-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.learning-title-row h3{margin:0 0 6px;font-size:1.6rem}
+.learning-intro{margin:0;color:var(--muted);max-width:720px;line-height:1.55}
+.vocab-wrap{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px;max-width:380px}
+.vocab-chip{font-size:.75rem;font-weight:800;padding:7px 10px;border:1px solid #cfe2ea;background:#f6fbfd;border-radius:999px}
+.explain-block.prominent{padding:24px 26px;border-left:5px solid #4b9dbc;background:linear-gradient(90deg,#eef9fd,#fff)}
+.explain-block.prominent h3{margin-top:0;font-size:1.15rem}
+.explain-block.prominent p{font-size:1.08rem;line-height:1.72;margin-bottom:0}
+.section-heading{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.section-heading>span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:white;font-size:.72rem;font-weight:900;flex:0 0 auto}
+.section-heading h3{margin:0;font-size:1.2rem}
+.section-heading p{margin:3px 0 0;color:var(--muted);font-size:.87rem}
+.learning-v5-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.method-panel,.checks-panel,.rules-block,.mini-example-card,.book-source-panel{border:1px solid var(--line);border-radius:20px;background:#fff;padding:22px}
+.rules-block{background:#fbfdfe}
+.rule-row{grid-template-columns:minmax(180px,.7fr) 1.3fr;align-items:center;padding:13px 0}
+.rule-row .katex{font-size:1.08em}
+.method-list{margin:0;padding-left:24px}
+.method-list li,.checks-panel li{padding:7px 0;line-height:1.55}
+.mini-example-card{background:linear-gradient(135deg,#fffaf0,#fff)}
+.mini-kicker{font-size:.68rem;letter-spacing:.14em;font-weight:900;color:#8a6a31;margin-bottom:10px}
+.mini-example-question{font-weight:850;font-size:1.18rem;margin-bottom:13px}
+.mini-steps{display:grid;gap:8px}
+.mini-example-step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.mini-example-step>span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#f0e2c6;font-weight:900}
+.textbook-extract{margin:0;border:1px solid #d6e4e9;border-radius:18px;overflow:hidden;background:white;position:relative}
+.textbook-extract img{display:block;width:100%;max-height:520px;object-fit:contain;background:white}
+.textbook-extract figcaption{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:12px 14px;background:#f7fbfc;border-top:1px solid #d6e4e9;font-size:.78rem}
+.textbook-extract figcaption span{color:var(--muted);text-align:right}
+.extract-ribbon{position:absolute;z-index:2;top:12px;left:12px;background:#172f39;color:white;border-radius:999px;padding:6px 9px;font-size:.63rem;letter-spacing:.1em;font-weight:900}
+.book-source-panel .textbook-extract{margin-top:4px}
+.example-diagram.source-aware{padding:14px;background:#f8fbfc}
+.example-diagram.source-aware .textbook-extract{width:100%}
+.example-diagram.source-aware .textbook-extract img{max-height:420px}
+.prior-knowledge{border:1px solid var(--line);border-radius:15px;padding:0 16px;background:#fafcfd}
+.prior-knowledge summary{cursor:pointer;padding:14px 0;font-weight:850}
+.math-fallback{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#9f1239}
+[data-math-error-v5="1"]{outline:1px dashed #fecdd3;outline-offset:3px}
+@media(max-width:900px){
+ .learning-title-row{flex-direction:column}
+ .vocab-wrap{justify-content:flex-start;max-width:none}
+ .learning-v5-grid{grid-template-columns:1fr}
+ .rule-row{grid-template-columns:1fr}
+ .textbook-extract figcaption{align-items:flex-start;flex-direction:column}
+ .textbook-extract figcaption span{text-align:left}
+}
