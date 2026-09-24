@@ -3,383 +3,327 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#dceff7">
-  <meta name="description" content="Year 10 Mathematics lesson design prototype">
-  <title>Year 10 Mathematics — Lesson Design</title>
-  <link rel="stylesheet" href="styles.css?v=design-20260924">
+  <meta name="theme-color" content="#00b8e8">
+  <meta name="description" content="New English School Year 10 Mathematics lesson design prototype">
+  <title>Year 10 Mathematics | NES</title>
+  <style>:root{--nes-logo:url("data:image/webp;base64,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[... ELLIPSIZATION ...]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")}</style>
+  <link rel="stylesheet" href="styles.css?v=nes-design-2">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand">
-        <div class="school-mark">NES</div>
-        <div>
-          <span>NEW ENGLISH SCHOOL</span>
-          <strong>Year 10 Math</strong>
-        </div>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="school-lockup">
+      <div class="sidebar-logo" aria-label="New English School logo"></div>
+      <div class="school-lockup-copy">
+        <span>NEW ENGLISH SCHOOL</span>
+        <strong>Year 10 Mathematics</strong>
       </div>
+    </div>
 
-      <div class="sidebar-label">LESSON BOOK</div>
-
-      <div class="unit-list">
-        <button class="unit-row active" type="button">
-          <span class="unit-number">12</span>
-          <span class="unit-copy"><strong>Unit title</strong><small>2 lessons</small></span>
-          <span class="unit-chevron">⌄</span>
-        </button>
-        <div class="lesson-list">
-          <button class="lesson-row active" type="button">
-            <span>12.1</span>
-            <strong>Lesson title</strong>
-          </button>
-          <button class="lesson-row" type="button">
-            <span>12.2</span>
-            <strong>Lesson title</strong>
-          </button>
-        </div>
-
-        <button class="unit-row" type="button">
-          <span class="unit-number">13</span>
-          <span class="unit-copy"><strong>Unit title</strong><small>2 lessons</small></span>
-          <span class="unit-chevron">›</span>
-        </button>
-
-        <button class="unit-row" type="button">
-          <span class="unit-number">14</span>
-          <span class="unit-copy"><strong>Unit title</strong><small>7 lessons</small></span>
-          <span class="unit-chevron">›</span>
-        </button>
-
-        <button class="unit-row" type="button">
-          <span class="unit-number">15</span>
-          <span class="unit-copy"><strong>Unit title</strong><small>4 lessons</small></span>
-          <span class="unit-chevron">›</span>
-        </button>
+    <div class="sidebar-label">LESSON BOOK</div>
+    <div class="unit-list">
+      <button class="unit-row active" type="button">
+        <span class="unit-number">12</span>
+        <span class="unit-copy"><strong>Unit title</strong><small>2 lessons</small></span>
+        <span class="unit-chevron">⌄</span>
+      </button>
+      <div class="lesson-list">
+        <button class="lesson-row active" type="button"><span>12.1</span><strong>Lesson title</strong></button>
+        <button class="lesson-row" type="button"><span>12.2</span><strong>Lesson title</strong></button>
       </div>
+      <button class="unit-row" type="button"><span class="unit-number">13</span><span class="unit-copy"><strong>Unit title</strong><small>2 lessons</small></span><span class="unit-chevron">›</span></button>
+      <button class="unit-row" type="button"><span class="unit-number">14</span><span class="unit-copy"><strong>Unit title</strong><small>7 lessons</small></span><span class="unit-chevron">›</span></button>
+      <button class="unit-row" type="button"><span class="unit-number">15</span><span class="unit-copy"><strong>Unit title</strong><small>4 lessons</small></span><span class="unit-chevron">›</span></button>
+    </div>
 
-      <div class="sidebar-footer">
-        <div class="progress-copy">
-          <span>Course structure</span>
-          <strong>Design preview</strong>
-        </div>
-        <div class="progress-track"><span></span></div>
+    <div class="sidebar-footer">
+      <span>DESIGN PROTOTYPE</span>
+      <strong>NES classroom notebook</strong>
+      <div class="progress-track"><span></span></div>
+    </div>
+  </aside>
+
+  <main class="workspace">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-button mobile-only" type="button" aria-label="Open lesson menu">☰</button>
+      <div class="breadcrumb"><span>YEAR 10</span><i></i><span>UNIT 12</span><i></i><strong>LESSON 12.1</strong></div>
+      <div class="top-actions">
+        <button id="focusBtn" class="soft-button" type="button"><span>◫</span><span class="focus-text">Focus mode</span></button>
       </div>
-    </aside>
+    </header>
 
-    <main class="workspace">
-      <header class="topbar">
-        <button id="menuBtn" class="icon-button mobile-only" type="button" aria-label="Open lesson menu">☰</button>
+    <div class="lesson-stage">
+      <nav class="flow-nav" aria-label="Lesson sections">
+        <button class="flow-button active" data-target="opening" type="button"><span>01</span><strong>Title + starter</strong></button>
+        <button class="flow-button" data-target="teach" type="button"><span>02</span><strong>Teach</strong></button>
+        <button class="flow-button" data-target="examples" type="button"><span>03</span><strong>Examples</strong></button>
+        <button class="flow-button" data-target="practice" type="button"><span>04</span><strong>Practice</strong></button>
+        <button class="flow-button" data-target="homework" type="button"><span>05</span><strong>Homework</strong></button>
+      </nav>
 
-        <div class="breadcrumb">
-          <span>YEAR 10</span>
-          <i></i>
-          <span>UNIT 12</span>
-          <i></i>
-          <strong>LESSON 12.1</strong>
-        </div>
-
-        <div class="top-actions">
-          <button id="focusBtn" class="soft-button" type="button">
-            <span class="button-icon">◫</span>
-            Focus mode
-          </button>
-          <button class="round-button" type="button" aria-label="More options">•••</button>
-        </div>
-      </header>
-
-      <div class="lesson-stage">
-        <nav class="flow-nav" aria-label="Lesson flow">
-          <button class="flow-button active" data-target="overview" type="button">
-            <span>01</span>
-            <strong>Overview</strong>
-          </button>
-          <button class="flow-button" data-target="starter" type="button">
-            <span>02</span>
-            <strong>Starter</strong>
-          </button>
-          <button class="flow-button" data-target="teach" type="button">
-            <span>03</span>
-            <strong>Teach</strong>
-          </button>
-          <button class="flow-button" data-target="examples" type="button">
-            <span>04</span>
-            <strong>Examples</strong>
-          </button>
-          <button class="flow-button" data-target="practice" type="button">
-            <span>05</span>
-            <strong>Practice</strong>
-          </button>
-        </nav>
-
-        <article class="notebook" id="notebook">
-          <div class="binding-holes" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
+      <article class="notebook">
+        <section class="notebook-page opening-page section-anchor" id="opening">
+          <div class="page-margin-line"></div>
+          <div class="opening-brand">
+            <div class="cover-logo" aria-hidden="true"></div>
+            <div class="opening-school-copy">
+              <span>NEW ENGLISH SCHOOL • YEAR 10</span>
+              <strong>MATHEMATICS</strong>
+            </div>
+            <div class="lesson-chip">LESSON 12.1</div>
           </div>
 
-          <section class="notebook-page title-page section-anchor" id="overview">
-            <div class="page-margin-line"></div>
-
-            <div class="title-meta">
-              <div class="date-card">
-                <span>DATE</span>
-                <strong id="lessonDate">24 September 2026</strong>
-              </div>
-              <div class="lesson-chip">LESSON 12.1</div>
+          <div class="opening-header">
+            <div class="date-card">
+              <span>TODAY</span>
+              <strong id="lessonDate">Loading date…</strong>
             </div>
+            <div class="teacher-card"><span>TEACHER</span><strong>Mr Niculae</strong></div>
+          </div>
 
-            <div class="title-copy">
-              <p class="overline">YEAR 10 MATHEMATICS</p>
-              <h1>Lesson title will sit here beautifully.</h1>
-              <p class="lesson-intro">
-                A short one-line description can sit here when we add the real lesson content.
-              </p>
+          <div class="title-copy">
+            <p class="overline">LESSON TITLE</p>
+            <h1>Lesson title will sit here.</h1>
+            <p class="lesson-intro">A clean one-line lesson description will go here when the content stage begins.</p>
+          </div>
+
+          <div class="starter-header">
+            <div><span class="section-kicker">STARTER • 5 MIN</span><h2>Quick retrieval</h2></div>
+            <button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Show answers</button>
+          </div>
+
+          <div class="starter-grid">
+            <article class="question-card"><span class="question-number">01</span><p>Starter question placeholder</p><div class="mini-work-grid"></div></article>
+            <article class="question-card"><span class="question-number">02</span><p>Starter question placeholder</p><div class="mini-work-grid"></div></article>
+            <article class="question-card"><span class="question-number">03</span><p>Starter question placeholder</p><div class="mini-work-grid"></div></article>
+            <article class="question-card"><span class="question-number">04</span><p>Starter question placeholder</p><div class="mini-work-grid"></div></article>
+          </div>
+
+          <div class="reveal-panel starter-solutions" id="starterSolution">
+            <div class="solution-grid">
+              <div><span>01</span><p>Starter answer placeholder.</p></div>
+              <div><span>02</span><p>Starter answer placeholder.</p></div>
+              <div><span>03</span><p>Starter answer placeholder.</p></div>
+              <div><span>04</span><p>Starter answer placeholder.</p></div>
             </div>
+          </div>
 
-            <div class="title-footer">
-              <div class="teacher-tag">
-                <span>TEACHER</span>
-                <strong>Mr Niculae</strong>
-              </div>
-              <button class="start-button" data-target="starter" type="button">
-                Start lesson
-                <span>→</span>
-              </button>
+          <div class="opening-footer">
+            <div class="lesson-note"><span>LESSON FLOW</span><strong>Teach → Model → Practise → Homework</strong></div>
+            <button class="start-button" data-target="teach" type="button">Begin teaching <span>→</span></button>
+          </div>
+        </section>
+
+        <section class="notebook-page section-anchor" id="teach">
+          <div class="page-margin-line"></div>
+          <div class="section-head">
+            <div><span class="section-kicker">02 — TEACH</span><h2>Key ideas</h2></div>
+            <div class="page-tag">TEACHER NOTES</div>
+          </div>
+
+          <div class="teach-grid">
+            <article class="note-card cyan-note"><small>KEY RULE</small><h3>Important rule or formula</h3><p>Short explanation placeholder.</p></article>
+            <article class="note-card white-note"><small>WHY IT WORKS</small><h3>Reasoning or explanation</h3><p>Second explanation placeholder.</p></article>
+            <article class="note-card soft-note"><small>WATCH OUT</small><h3>Common misconception</h3><p>Misconception placeholder.</p></article>
+          </div>
+
+          <div class="teacher-board">
+            <div class="board-title"><div><span>LIVE MODELLING</span><strong>Teacher working space</strong></div><small>Square paper</small></div>
+            <div class="square-paper tall-paper"></div>
+          </div>
+        </section>
+
+        <section class="notebook-page section-anchor" id="examples">
+          <div class="page-margin-line"></div>
+          <div class="section-head example-head">
+            <div><span class="section-kicker">03 — EXAMPLES</span><h2>Worked examples</h2></div>
+            <div class="example-nav">
+              <button id="examplePrev" class="round-button" type="button" aria-label="Previous example">←</button>
+              <span id="exampleCounter">1 / 3</span>
+              <button id="exampleNext" class="round-button dark" type="button" aria-label="Next example">→</button>
             </div>
-          </section>
+          </div>
 
-          <section class="notebook-page section-anchor" id="starter">
-            <div class="page-margin-line"></div>
-
-            <div class="section-head">
-              <div>
-                <span class="section-kicker">02 — STARTER</span>
-                <h2>Quick retrieval</h2>
-              </div>
-              <div class="section-time">5 min</div>
-            </div>
-
-            <div class="starter-grid">
-              <article class="question-card">
-                <span class="question-number">01</span>
-                <p>Starter question placeholder</p>
-                <div class="answer-line"></div>
-              </article>
-              <article class="question-card">
-                <span class="question-number">02</span>
-                <p>Starter question placeholder</p>
-                <div class="answer-line"></div>
-              </article>
-              <article class="question-card">
-                <span class="question-number">03</span>
-                <p>Starter question placeholder</p>
-                <div class="answer-line"></div>
-              </article>
-              <article class="question-card">
-                <span class="question-number">04</span>
-                <p>Starter question placeholder</p>
-                <div class="answer-line"></div>
-              </article>
-            </div>
-
-            <div class="solution-bar">
-              <button class="reveal-button" data-reveal="starterSolution" type="button">
-                <span class="reveal-icon">＋</span>
-                Show starter solutions
-              </button>
-              <div class="reveal-panel" id="starterSolution">
-                <div class="solution-grid">
-                  <div><span>01</span><p>Solution appears here.</p></div>
-                  <div><span>02</span><p>Solution appears here.</p></div>
-                  <div><span>03</span><p>Solution appears here.</p></div>
-                  <div><span>04</span><p>Solution appears here.</p></div>
+          <div class="example-deck" id="exampleDeck">
+            
+            <article class="example-card active" data-example="0">
+              <div class="example-question"><span>EXAMPLE 1</span><h3>Example question placeholder.</h3><p>Question / diagram area sits above the modelling board.</p></div>
+              <div class="working-toolbar" data-canvas="canvas1">
+                <div class="pen-group">
+                  <button class="pen-dot active" data-colour="#073241" type="button" aria-label="Dark pen"></button>
+                  <button class="pen-dot" data-colour="#00aee6" type="button" aria-label="School blue pen"></button>
+                  <button class="pen-dot" data-colour="#e24b4b" type="button" aria-label="Red pen"></button>
                 </div>
+                <div><button class="mini-tool eraser-tool" type="button">Eraser</button><button class="mini-tool clear-tool" type="button">Clear</button></div>
               </div>
-            </div>
-          </section>
-
-          <section class="notebook-page section-anchor" id="teach">
-            <div class="page-margin-line"></div>
-
-            <div class="section-head">
-              <div>
-                <span class="section-kicker">03 — TEACH</span>
-                <h2>Key idea</h2>
+              <div class="graph-paper"><canvas id="canvas1"></canvas></div>
+              <button class="reveal-button full-width" data-reveal="exampleSolution1" type="button"><span class="reveal-icon">＋</span>Reveal worked solution</button>
+              <div class="reveal-panel solution-panel" id="exampleSolution1">
+                <div class="worked-step"><span>1</span><p>First line of the solution.</p></div>
+                <div class="worked-step"><span>2</span><p>Second line of the solution.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer / conclusion.</p></div>
               </div>
-              <div class="page-sticker">NOTES</div>
-            </div>
-
-            <div class="notes-layout">
-              <article class="note-card blue-note">
-                <span class="tape"></span>
-                <small>KEY RULE</small>
-                <h3>Important rule or formula</h3>
-                <p>A short explanation will go here later.</p>
-              </article>
-
-              <article class="note-card beige-note">
-                <span class="tape"></span>
-                <small>REMEMBER</small>
-                <h3>Second key idea</h3>
-                <p>This is deliberately placeholder content for design only.</p>
-              </article>
-            </div>
-
-            <div class="teacher-board">
-              <div class="board-label">
-                <span>TEACHER BOARD</span>
-                <strong>Space for live modelling</strong>
+            </article>
+            <article class="example-card " data-example="1">
+              <div class="example-question"><span>EXAMPLE 2</span><h3>Example question placeholder.</h3><p>Question / diagram area sits above the modelling board.</p></div>
+              <div class="working-toolbar" data-canvas="canvas2">
+                <div class="pen-group">
+                  <button class="pen-dot active" data-colour="#073241" type="button" aria-label="Dark pen"></button>
+                  <button class="pen-dot" data-colour="#00aee6" type="button" aria-label="School blue pen"></button>
+                  <button class="pen-dot" data-colour="#e24b4b" type="button" aria-label="Red pen"></button>
+                </div>
+                <div><button class="mini-tool eraser-tool" type="button">Eraser</button><button class="mini-tool clear-tool" type="button">Clear</button></div>
               </div>
-              <div class="lined-space">
-                <span></span><span></span><span></span><span></span>
+              <div class="graph-paper"><canvas id="canvas2"></canvas></div>
+              <button class="reveal-button full-width" data-reveal="exampleSolution2" type="button"><span class="reveal-icon">＋</span>Reveal worked solution</button>
+              <div class="reveal-panel solution-panel" id="exampleSolution2">
+                <div class="worked-step"><span>1</span><p>First line of the solution.</p></div>
+                <div class="worked-step"><span>2</span><p>Second line of the solution.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer / conclusion.</p></div>
               </div>
-            </div>
-          </section>
-
-          <section class="notebook-page section-anchor" id="examples">
-            <div class="page-margin-line"></div>
-
-            <div class="section-head example-head">
-              <div>
-                <span class="section-kicker">04 — EXAMPLES</span>
-                <h2>Worked examples</h2>
+            </article>
+            <article class="example-card " data-example="2">
+              <div class="example-question"><span>EXAMPLE 3</span><h3>Example question placeholder.</h3><p>Question / diagram area sits above the modelling board.</p></div>
+              <div class="working-toolbar" data-canvas="canvas3">
+                <div class="pen-group">
+                  <button class="pen-dot active" data-colour="#073241" type="button" aria-label="Dark pen"></button>
+                  <button class="pen-dot" data-colour="#00aee6" type="button" aria-label="School blue pen"></button>
+                  <button class="pen-dot" data-colour="#e24b4b" type="button" aria-label="Red pen"></button>
+                </div>
+                <div><button class="mini-tool eraser-tool" type="button">Eraser</button><button class="mini-tool clear-tool" type="button">Clear</button></div>
               </div>
-
-              <div class="example-nav">
-                <button id="examplePrev" class="round-button" type="button" aria-label="Previous example">←</button>
-                <span id="exampleCounter">1 / 3</span>
-                <button id="exampleNext" class="round-button dark" type="button" aria-label="Next example">→</button>
+              <div class="graph-paper"><canvas id="canvas3"></canvas></div>
+              <button class="reveal-button full-width" data-reveal="exampleSolution3" type="button"><span class="reveal-icon">＋</span>Reveal worked solution</button>
+              <div class="reveal-panel solution-panel" id="exampleSolution3">
+                <div class="worked-step"><span>1</span><p>First line of the solution.</p></div>
+                <div class="worked-step"><span>2</span><p>Second line of the solution.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer / conclusion.</p></div>
               </div>
-            </div>
+            </article>
+          </div>
+          <div class="example-dots" id="exampleDots"><button class="active" data-example-index="0"></button><button data-example-index="1"></button><button data-example-index="2"></button></div>
+        </section>
 
-            <div class="example-deck" id="exampleDeck">
-              <article class="example-card active" data-example="0">
-                <div class="example-question">
-                  <span>EXAMPLE 1</span>
-                  <h3>Example question will appear here.</h3>
-                  <p>Teacher models the method using the writing area.</p>
-                </div>
+        <section class="notebook-page section-anchor" id="practice">
+          <div class="page-margin-line"></div>
+          <div class="section-head">
+            <div><span class="section-kicker">04 — PRACTICE</span><h2>Independent practice</h2></div>
+            <div class="difficulty-key"><span class="difficulty secure">Secure</span><span class="difficulty apply">Apply</span><span class="difficulty stretch">Stretch</span></div>
+          </div>
 
-                <div class="working-toolbar" data-canvas="canvasOne">
-                  <div class="pen-group">
-                    <button class="pen-dot active" data-colour="#17343d" type="button" aria-label="Dark pen"></button>
-                    <button class="pen-dot" data-colour="#287fb2" type="button" aria-label="Blue pen"></button>
-                    <button class="pen-dot" data-colour="#c95e58" type="button" aria-label="Red pen"></button>
-                  </div>
-                  <button class="mini-tool eraser-tool" type="button">Eraser</button>
-                  <button class="mini-tool clear-tool" type="button">Clear</button>
-                </div>
-
-                <div class="graph-paper">
-                  <canvas id="canvasOne"></canvas>
-                </div>
-
-                <button class="reveal-button full-width" data-reveal="exampleSolutionOne" type="button">
-                  <span class="reveal-icon">＋</span>
-                  Reveal worked solution
-                </button>
-
-                <div class="reveal-panel solution-panel" id="exampleSolutionOne">
-                  <div class="worked-step"><span>1</span><p>First line of the worked solution.</p></div>
-                  <div class="worked-step"><span>2</span><p>Second line appears beneath it.</p></div>
-                  <div class="worked-step"><span>3</span><p>Final answer is visually highlighted here.</p></div>
-                </div>
-              </article>
-
-              <article class="example-card" data-example="1">
-                <div class="example-question">
-                  <span>EXAMPLE 2</span>
-                  <h3>A second example with the same clean structure.</h3>
-                  <p>Each example transitions horizontally rather than stacking endlessly.</p>
-                </div>
-                <div class="graph-paper static-grid"></div>
-                <button class="reveal-button full-width" data-reveal="exampleSolutionTwo" type="button">
-                  <span class="reveal-icon">＋</span>
-                  Reveal worked solution
-                </button>
-                <div class="reveal-panel solution-panel" id="exampleSolutionTwo">
-                  <div class="worked-step"><span>1</span><p>Solution placeholder.</p></div>
-                  <div class="worked-step"><span>2</span><p>Solution placeholder.</p></div>
-                </div>
-              </article>
-
-              <article class="example-card" data-example="2">
-                <div class="example-question">
-                  <span>EXAMPLE 3</span>
-                  <h3>Third example placeholder.</h3>
-                  <p>The same layout can later hold diagrams, images, or textbook snippets.</p>
-                </div>
-                <div class="graph-paper static-grid"></div>
-                <button class="reveal-button full-width" data-reveal="exampleSolutionThree" type="button">
-                  <span class="reveal-icon">＋</span>
-                  Reveal worked solution
-                </button>
-                <div class="reveal-panel solution-panel" id="exampleSolutionThree">
-                  <div class="worked-step"><span>1</span><p>Solution placeholder.</p></div>
-                </div>
-              </article>
-            </div>
-
-            <div class="example-dots" id="exampleDots">
-              <button class="active" data-example-index="0" type="button"></button>
-              <button data-example-index="1" type="button"></button>
-              <button data-example-index="2" type="button"></button>
-            </div>
-          </section>
-
-          <section class="notebook-page section-anchor" id="practice">
-            <div class="page-margin-line"></div>
-
-            <div class="section-head">
-              <div>
-                <span class="section-kicker">05 — PRACTICE</span>
-                <h2>Independent practice</h2>
-              </div>
-              <div class="difficulty-key">
-                <span class="difficulty easy">Secure</span>
-                <span class="difficulty medium">Apply</span>
-                <span class="difficulty hard">Stretch</span>
-              </div>
-            </div>
-
-            <div class="practice-list">
-              <article class="practice-row">
+          <div class="practice-board">
+            
+              <article class="practice-item">
                 <span class="practice-number">01</span>
-                <div><span class="difficulty easy">Secure</span><p>Independent question placeholder</p></div>
-                <button class="answer-toggle" data-reveal="practiceOne" type="button">Answer</button>
+                <div class="practice-copy"><span class="difficulty secure">Secure</span><p>Independent question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practice1" type="button">Answer</button>
               </article>
-              <div class="compact-answer reveal-panel" id="practiceOne">Answer placeholder.</div>
-
-              <article class="practice-row">
+              <div class="compact-answer reveal-panel" id="practice1"><div>Answer / method placeholder.</div></div>
+            
+              <article class="practice-item">
                 <span class="practice-number">02</span>
-                <div><span class="difficulty medium">Apply</span><p>Independent question placeholder</p></div>
-                <button class="answer-toggle" data-reveal="practiceTwo" type="button">Answer</button>
+                <div class="practice-copy"><span class="difficulty secure">Secure</span><p>Independent question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practice2" type="button">Answer</button>
               </article>
-              <div class="compact-answer reveal-panel" id="practiceTwo">Answer placeholder.</div>
-
-              <article class="practice-row">
+              <div class="compact-answer reveal-panel" id="practice2"><div>Answer / method placeholder.</div></div>
+            
+              <article class="practice-item">
                 <span class="practice-number">03</span>
-                <div><span class="difficulty hard">Stretch</span><p>Reasoning question placeholder</p></div>
-                <button class="answer-toggle" data-reveal="practiceThree" type="button">Answer</button>
+                <div class="practice-copy"><span class="difficulty apply">Apply</span><p>Independent question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practice3" type="button">Answer</button>
               </article>
-              <div class="compact-answer reveal-panel" id="practiceThree">Answer placeholder.</div>
-            </div>
+              <div class="compact-answer reveal-panel" id="practice3"><div>Answer / method placeholder.</div></div>
+            
+              <article class="practice-item">
+                <span class="practice-number">04</span>
+                <div class="practice-copy"><span class="difficulty apply">Apply</span><p>Independent question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practice4" type="button">Answer</button>
+              </article>
+              <div class="compact-answer reveal-panel" id="practice4"><div>Answer / method placeholder.</div></div>
+            
+              <article class="practice-item">
+                <span class="practice-number">05</span>
+                <div class="practice-copy"><span class="difficulty stretch">Stretch</span><p>Reasoning question placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practice5" type="button">Answer</button>
+              </article>
+              <div class="compact-answer reveal-panel" id="practice5"><div>Answer / method placeholder.</div></div>
+            
+              <article class="practice-item">
+                <span class="practice-number">06</span>
+                <div class="practice-copy"><span class="difficulty stretch">Stretch</span><p>Problem-solving placeholder</p></div>
+                <button class="answer-toggle" data-reveal="practice6" type="button">Answer</button>
+              </article>
+              <div class="compact-answer reveal-panel" id="practice6"><div>Answer / method placeholder.</div></div>
+            
+          </div>
+        </section>
 
-            <div class="lesson-end">
-              <div>
-                <span>LESSON COMPLETE</span>
-                <strong>Ready for the next lesson?</strong>
+        <section class="notebook-page homework-page section-anchor" id="homework">
+          <div class="page-margin-line"></div>
+          <div class="homework-banner">
+            <div><span class="section-kicker light">05 — HOMEWORK</span><h2>Homework</h2><p>Separate take-home practice with step-by-step solutions.</p></div>
+            <div class="homework-mark">HW</div>
+          </div>
+
+          <div class="homework-meta">
+            <div><span>SET</span><strong id="homeworkDate">Today</strong></div>
+            <div><span>QUESTIONS</span><strong>4</strong></div>
+            <div><span>FORMAT</span><strong>Show all working</strong></div>
+          </div>
+
+          <div class="homework-list">
+            
+            <article class="homework-item">
+              <div class="homework-question"><span class="hw-number">01</span><div><span class="hw-level">CORE</span><p>Homework question placeholder.</p></div></div>
+              <div class="homework-workspace square-paper"></div>
+              <button class="reveal-button homework-reveal" data-reveal="homeworkSolution1" type="button"><span class="reveal-icon">＋</span>Show solution</button>
+              <div class="reveal-panel homework-solution" id="homeworkSolution1">
+                <div class="worked-step"><span>1</span><p>First worked step.</p></div>
+                <div class="worked-step"><span>2</span><p>Second worked step.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer.</p></div>
               </div>
-              <button class="next-lesson-button" type="button">
-                Next lesson
-                <span>12.2 →</span>
-              </button>
-            </div>
-          </section>
-        </article>
-      </div>
-    </main>
-  </div>
+            </article>
+            <article class="homework-item">
+              <div class="homework-question"><span class="hw-number">02</span><div><span class="hw-level">CORE</span><p>Homework question placeholder.</p></div></div>
+              <div class="homework-workspace square-paper"></div>
+              <button class="reveal-button homework-reveal" data-reveal="homeworkSolution2" type="button"><span class="reveal-icon">＋</span>Show solution</button>
+              <div class="reveal-panel homework-solution" id="homeworkSolution2">
+                <div class="worked-step"><span>1</span><p>First worked step.</p></div>
+                <div class="worked-step"><span>2</span><p>Second worked step.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer.</p></div>
+              </div>
+            </article>
+            <article class="homework-item">
+              <div class="homework-question"><span class="hw-number">03</span><div><span class="hw-level">APPLY</span><p>Homework question placeholder.</p></div></div>
+              <div class="homework-workspace square-paper"></div>
+              <button class="reveal-button homework-reveal" data-reveal="homeworkSolution3" type="button"><span class="reveal-icon">＋</span>Show solution</button>
+              <div class="reveal-panel homework-solution" id="homeworkSolution3">
+                <div class="worked-step"><span>1</span><p>First worked step.</p></div>
+                <div class="worked-step"><span>2</span><p>Second worked step.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer.</p></div>
+              </div>
+            </article>
+            <article class="homework-item">
+              <div class="homework-question"><span class="hw-number">04</span><div><span class="hw-level">STRETCH</span><p>Homework question placeholder.</p></div></div>
+              <div class="homework-workspace square-paper"></div>
+              <button class="reveal-button homework-reveal" data-reveal="homeworkSolution4" type="button"><span class="reveal-icon">＋</span>Show solution</button>
+              <div class="reveal-panel homework-solution" id="homeworkSolution4">
+                <div class="worked-step"><span>1</span><p>First worked step.</p></div>
+                <div class="worked-step"><span>2</span><p>Second worked step.</p></div>
+                <div class="worked-step final-step"><span>3</span><p>Final answer.</p></div>
+              </div>
+            </article>
+          </div>
 
-  <script src="app.js?v=design-20260924"></script>
+          <div class="lesson-end">
+            <div><span>END OF LESSON</span><strong>Design ready for real content.</strong></div>
+            <button class="next-lesson-button" type="button">Next lesson <span>12.2 →</span></button>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+</div>
+<script src="app.js?v=nes-design-2"></script>
 </body>
 </html>
