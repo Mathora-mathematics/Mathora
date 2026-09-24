@@ -58,5 +58,45 @@ if(k==="chart-missing-labels")return svg(L(65,210,455,210,'stroke="'+C.ink+'" st
 function venn(d){return svg(R(45,25,430,210,'fill="#fff" stroke="'+C.ink+'" stroke-width="2"')+O(220,130,80,'fill="'+C.blue+'" opacity=".15" stroke="'+C.blue+'" stroke-width="3"')+O(315,130,80,'fill="'+C.gold+'" opacity=".18" stroke="'+C.gold+'" stroke-width="3"')+(d.kind==="venn-three"?O(268,180,70,'fill="'+C.green+'" opacity=".15" stroke="'+C.green+'" stroke-width="3"'):""))}
 function prop(d){let b=axes();if(d.kind==="prop-direct")b+=L(105,220,455,45,'stroke="'+C.blue+'" stroke-width="3"');else if(d.kind==="prop-square")b+=A('M105 220 Q250 210 465 45','fill="none" stroke="'+C.blue+'" stroke-width="3"');else if(d.kind==="prop-root")b+=A('M105 220 Q150 80 465 60','fill="none" stroke="'+C.green+'" stroke-width="3"');else b+=A('M125 45 C190 85 250 145 465 215','fill="none" stroke="'+C.red+'" stroke-width="3"');return svg(b)}
 function render(d){if(!d||!d.kind)return"";if(d.kind==="numberline")return numberline(d);if(d.kind.startsWith("ineq")||d.kind==="region")return ineq(d);if(d.kind==="line-circle")return lineCircle(d);if(d.kind==="line-parabola")return lineParabola(d);if(["straight-angle","vertical-angles","around-point","quadrilateral","exterior-triangle","isosceles","triangle-multiple","reflex"].includes(d.kind))return angle(d);if(d.kind.startsWith("parallel-"))return parallel(d);if(["polygon-triangulate","regular-polygon","exterior-angle","irregular-pentagon","exterior-walk"].includes(d.kind))return polygon(d);if(d.kind.startsWith("sym-"))return symmetry(d);if(d.kind.startsWith("solid-"))return solid(d);if(["parallelogram","trapezium","triangle-area","l-shape","compound-rect","kite-area","rhombus-area","circle-radius","circle-diameter","circle-area","circle-track","annulus","circle-square","semicircle","sector","sector-perimeter","major-sector"].includes(d.kind))return shape(d);if(d.kind.startsWith("venn-"))return venn(d);if(d.kind.startsWith("prop-"))return prop(d);return stat(d)}
-const old=window.MathoraDiagrams||{};window.MathoraDiagrams={...old,question:render};
+const old=window.MathoraDiagrams||{};
+const teacherMaps={
+"16.1":[{kind:"straight-angle",a:112},{kind:"vertical-angles",a:115},{kind:"around-point",fixed:150},{kind:"quadrilateral"},{kind:"exterior-triangle",ext:128,a:53}],
+"16.2":[{kind:"parallel-corresponding",a:70},{kind:"parallel-cointerior",a:117},{kind:"parallel-adjacent",a:68},{kind:"parallel-mixed",a:68},{kind:"parallel-corresponding",a:55}],
+"16.3":[{kind:"polygon-triangulate",n:6},{kind:"regular-polygon",n:8},{kind:"regular-polygon",n:15},{kind:"regular-polygon",n:15},{kind:"irregular-pentagon"}],
+"16.4":[{kind:"sym-rectangle"},{kind:"sym-hexagon"},{kind:"sym-order",n:5},{kind:"sym-hexagon"},{kind:"sym-rhombus"}],
+"16.5":[{kind:"solid-cylinder"},{kind:"solid-cube"},{kind:"solid-tri-prism"},{kind:"solid-tri-prism"},{kind:"solid-cylinder"}],
+"17.1":[{kind:"class-boundaries"},{kind:"group-classes"},{kind:"summary-cards"},{kind:"class-boundaries"},{kind:"group-classes"}],
+"17.2":[{kind:"parallelogram",b:8,h:3.5},{kind:"trapezium",a:8,b:13,h:6},{kind:"trapezium",a:8,b:13,h:6},{kind:"trapezium",a:8,b:14,h:6},{kind:"l-shape",W:12,H:9,w:5,h:4}],
+"17.3":[{kind:"circle-radius",r:7},{kind:"circle-diameter",d:12},{kind:"circle-area",r:9},{kind:"circle-diameter",d:12},{kind:"circle-area",r:9}],
+"17.4":[{kind:"sector",r:6,a:40},{kind:"sector-perimeter",r:8,a:120},{kind:"sector",r:12,a:75},{kind:"sector",r:9,a:80},{kind:"major-sector",r:6,a:240}],
+"18.1":[{kind:"data-types"},{kind:"two-way",vals:[11,7,14,8]},{kind:"class-boundaries"},{kind:"two-way",vals:[11,7,14,8]},{kind:"group-classes"}],
+"18.2":[{kind:"raw-dot"},{kind:"boxplot"},{kind:"outlier"},{kind:"raw-dot"},{kind:"compare-box"}],
+"18.3":[{kind:"grouped-mean"},{kind:"midpoint"},{kind:"fx-table"},{kind:"grouped-mean"},{kind:"grouped-mean"}],
+"18.4":[{kind:"modal-class"},{kind:"median-class"},{kind:"grouped-warning"},{kind:"modal-median"},{kind:"grouped-warning"}],
+"18.5":[{kind:"comparison-table"},{kind:"two-way-percent"},{kind:"comparison-table"},{kind:"two-way-overlap"},{kind:"comparison-table"}],
+"18.6":[{kind:"two-box"},{kind:"summary-cards"},{kind:"outlier"},{kind:"two-box"},{kind:"summary-cards"}],
+"18.7":[{kind:"sample-pop"},{kind:"causation"},{kind:"voluntary"},{kind:"sample-bias"},{kind:"causation"}],
+"19.1":[{kind:"pie-data"},{kind:"stem-leaf"},{kind:"pictogram"},{kind:"pie-data"},{kind:"stem-leaf"}],
+"19.2":[{kind:"scatter",v:0},{kind:"scatter-outlier",v:1},{kind:"scatter",v:2},{kind:"scatter",v:3},{kind:"scatter",v:0}],
+"19.3":[{kind:"corr-positive"},{kind:"corr-negative"},{kind:"corr-zero"},{kind:"corr-positive"},{kind:"corr-confound"}],
+"19.4":[{kind:"best-fit",v:0},{kind:"best-fit-range",inside:true},{kind:"best-fit-range",inside:false},{kind:"best-fit",v:0},{kind:"best-fit-range",inside:false}],
+"19.5":[{kind:"cf-table"},{kind:"cf-points"},{kind:"cf-curve",v:0},{kind:"cf-table"},{kind:"cf-points"}],
+"19.6":[{kind:"cf-quartiles",n:80},{kind:"cf-percentile",p:80},{kind:"cf-read",q1:18,q3:31},{kind:"cf-quartiles",n:80},{kind:"cf-read",q1:18,q3:31}],
+"19.7":[{kind:"hist",v:0},{kind:"hist",v:1},{kind:"hist",v:2},{kind:"hist",v:5},{kind:"hist",v:7}],
+"19.8":[{kind:"hist-calc"},{kind:"hist-calc"},{kind:"hist-calc"},{kind:"hist-calc"},{kind:"hist-calc"}],
+"19.9":[{kind:"bar-infer"},{kind:"pie-compare"},{kind:"cf-curve",v:5},{kind:"bar-infer"},{kind:"pie"}],
+"19.10":[{kind:"cf-compare"},{kind:"hist-compare"},{kind:"cf-compare"},{kind:"cf-compare"},{kind:"cf-compare"}],
+"19.11":[{kind:"truncated-axis"},{kind:"extrapolation"},{kind:"hist-error"},{kind:"truncated-axis"},{kind:"sample-pop"}],
+"21.1":[{kind:"venn-two"},{kind:"venn-outside"},{kind:"venn-complement"},{kind:"venn-two"},{kind:"venn-demorgan"}],
+"22.1":[{kind:"prop-square"},{kind:"prop-inverse"},{kind:"prop-root"},{kind:"prop-square"},{kind:"prop-root"}]
+};
+window.MathoraDiagrams={
+ ...old,
+ question:render,
+ example(id,type,variant=0){
+   const map=teacherMaps[id];
+   if(map&&map[variant])return render(map[variant]);
+   return old.example?old.example(id,type,variant):(old.lesson?old.lesson(type,variant):"");
+ }
+};
 })();
