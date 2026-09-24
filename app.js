@@ -8,7 +8,8 @@ const STARTER_ANSWERS=window.STARTER_ANSWERS||{};
 const SOW=window.SOW_MAP||{};
 const EXTRA=window.EXTRA_EXAMPLES||{};
 const EXAM=window.EXAM_SUCCESS_MAP||{};
-const DIAGRAMS=window.MathoraDiagrams||{supports:()=>false,lesson:()=>"",practice:()=>""};
+const DIAGRAMS=window.MathoraDiagrams||{supports:()=>false,lesson:()=>"",practice:()=>"",question:()=>""};
+const QUESTION_ENGINE=window.MathoraQuestionEngine||{build:()=>({practice:[],homework:[]})};
 
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -70,14 +71,14 @@ function renderLessonDrawer(filter=""){
    const hay=(l.id+" "+l.unit+" "+l.title+" "+(sm.objective||"")).toLowerCase();
    if(q&&!hay.includes(q))return;
    if(!groups.has(l.u))groups.set(l.u,[]);
-   groups.get(l.u).push({l,i,sm});
+   groups.get(l.u).push({l,i});
  });
  root.innerHTML=[...groups.entries()].map(([u,items])=>
   '<section class="drawer-unit">'+
    '<div class="drawer-unit-head"><span>'+esc(u)+'</span><div><strong>'+esc(items[0].l.unit)+'</strong><small>'+items.length+' lesson'+(items.length===1?"":"s")+'</small></div></div>'+
-   '<div class="drawer-unit-grid">'+items.map(({l,i,sm})=>
+   '<div class="drawer-unit-grid">'+items.map(({l,i})=>
     '<button type="button" class="drawer-lesson '+(i===currentIndex?"active":"")+'" data-index="'+i+'">'+
-      '<span>'+esc(l.id)+'</span><strong>'+esc(sm.objective||l.title)+'</strong><small>'+esc(sm.textbook||l.src)+'</small>'+
+      '<span>'+esc(l.id)+'</span><strong>'+esc(l.title)+'</strong>'+
     '</button>').join("")+'</div></section>'
  ).join("")||'<p class="page-loading">No lessons found.</p>';
  $$(".drawer-lesson",root).forEach(btn=>btn.addEventListener("click",()=>{
@@ -101,17 +102,16 @@ function starterSolutions(l){
 }
 
 function openingHTML(l,d,sm){
- const objective=sm.objective||l.title;
  return '<section class="notebook-page opening-page title-starter-page section-anchor" id="opening"><div class="page-margin-line"></div>'+
   '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
-  '<div class="title-starter-hero">'+
-    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span><i></i><span>SCHEME OF WORK LESSON</span></div><p class="overline">YEAR 10 MATHEMATICS</p><h1>'+esc(objective)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
-    '<div class="lesson-focus-card"><span>BY THE END</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
+  '<div class="title-starter-hero clean-title-hero">'+
+    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR 10 MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
+    '<div class="lesson-focus-card"><span>KEY FOCUS</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
   '</div>'+
-  '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER • 5 MIN</span><h2>Retrieval first</h2><p>Four short questions before the new learning begins.</p></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Show answers</button></div>'+
+  '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER</span><h2>Quick start</h2></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Solutions</button></div>'+
   '<div class="starter-grid title-starter-grid">'+starterCards(l)+'</div>'+
   '<div class="reveal-panel starter-solutions" id="starterSolution">'+starterSolutions(l)+'</div>'+
-  '<div class="opening-footer compact-opening-footer"><div class="lesson-note"><span>BOOK MAP</span><strong>'+esc(sm.textbook||l.src)+'</strong></div><button class="start-button" data-target="teach" type="button">Teach this lesson <span>→</span></button></div>'+
+  '<div class="opening-footer compact-opening-footer"><div class="lesson-note"><span>LESSON</span><strong>'+esc(l.title)+'</strong></div><button class="start-button" data-target="teach" type="button">Continue <span>→</span></button></div>'+
  '</section>';
 }
 
@@ -120,23 +120,16 @@ function teachHTML(l,d,sm){
  const rules=(d.rules||[]).slice(0,5).map(r=>'<div class="teach-rule"><strong>'+fmt(r[0])+'</strong><span>'+fmt(r[1])+'</span></div>').join("");
  const method=(d.method||[]).slice(0,6).map((x,i)=>'<li><span>'+String(i+1).padStart(2,"0")+'</span><p>'+fmt(x)+'</p></li>').join("");
  const mistakes=(d.mistakes||[]).slice(0,5).map(x=>'<li>'+fmt(x)+'</li>').join("");
- const visuals=DIAGRAMS.supports(l.type)?'<div class="visual-models book-visual-models"><div><span class="visual-caption">BOOK-STRUCTURED MODEL A</span>'+DIAGRAMS.example(l.id,l.type,6)+'</div><div><span class="visual-caption">BOOK-STRUCTURED MODEL B</span>'+DIAGRAMS.example(l.id,l.type,7)+'</div></div>':"";
- const schemeGuidance=sm.teaching?'<article class="scheme-guidance"><span>SCHEME GUIDANCE</span><p>'+esc(sm.teaching)+'</p></article>':"";
+ const visuals=DIAGRAMS.supports(l.type)?'<div class="visual-models clean-visual-models"><div>'+DIAGRAMS.example(l.id,l.type,6)+'</div><div>'+DIAGRAMS.example(l.id,l.type,7)+'</div></div>':"";
  return '<section class="notebook-page section-anchor" id="teach"><div class="page-margin-line"></div>'+
-  '<div class="section-head"><div><span class="section-kicker">02 — TEACH</span><h2>Teach the idea clearly</h2></div><div class="page-tag">SOW + BOTH BOOKS</div></div>'+
-  '<div class="source-map-grid teach-source-map">'+
-    '<article><span>SCHEME OF WORK</span><strong>'+esc(sm.objective||l.title)+'</strong><small>'+esc(sm.notes||"Lesson sequence follows the uploaded Year 10 scheme of work.")+'</small></article>'+
-    '<article><span>MORRISON & HAMSHAW</span><strong>'+esc(sm.textbook||l.src)+'</strong><small>Worked-example and exercise structure used to shape the modelling and diagrams.</small></article>'+
-    '<article><span>EXAM SUCCESS</span><strong>'+esc(EXAM[l.u]||"Exam Success Mathematics")+'</strong><small>Used for exam-style presentation, misconceptions and a second question style.</small></article>'+
-  '</div>'+
-  '<div class="teach-grid deep-teach">'+
-   '<article class="note-card cyan-note"><small>KEY IDEAS</small><h3>What students must understand</h3><ul class="teach-list">'+key+'</ul></article>'+
-   '<article class="note-card white-note"><small>RULES / FACTS</small><h3>Keep these visible</h3><div class="teach-rules">'+rules+'</div></article>'+
-   '<article class="note-card soft-note"><small>WATCH OUT</small><h3>Misconceptions to surface</h3><ul class="teach-list mistakes">'+mistakes+'</ul></article>'+
-  '</div>'+schemeGuidance+visuals+
-  '<div class="method-card"><div><span class="section-kicker">RELIABLE METHOD</span><h3>Model this process explicitly</h3></div><ol>'+method+'</ol></div>'+
-  '<div class="teacher-board"><div class="board-title"><div><span>LIVE MODELLING</span><strong>Whole-class whiteboard</strong></div><small>Apple Pencil / touch enabled</small></div>'+boardMarkup("teachCanvas","teach",true)+'</div>'+
-  '<div class="source-footnote">'+sourcePill("Exact SoW objective")+sourcePill("Morrison & Hamshaw mapped pages")+sourcePill("Exam Success second source")+'<span>'+esc((sm.textbook||l.src)+" • "+(EXAM[l.u]||"Exam Success"))+'</span></div>'+
+  '<div class="section-head"><div><span class="section-kicker">02</span><h2>Key ideas</h2></div></div>'+
+  '<div class="teach-grid deep-teach clean-teach">'+
+   '<article class="note-card cyan-note"><small>LEARN</small><h3>Key points</h3><ul class="teach-list">'+key+'</ul></article>'+
+   '<article class="note-card white-note"><small>KEEP</small><h3>Rules</h3><div class="teach-rules">'+rules+'</div></article>'+
+   '<article class="note-card soft-note"><small>CHECK</small><h3>Common mistakes</h3><ul class="teach-list mistakes">'+mistakes+'</ul></article>'+
+  '</div>'+visuals+
+  '<div class="method-card clean-method"><div><span class="section-kicker">METHOD</span><h3>Steps</h3></div><ol>'+method+'</ol></div>'+
+  '<div class="teacher-board"><div class="board-title"><div><span>WHITEBOARD</span><strong>Working space</strong></div><small>Apple Pencil / touch</small></div>'+boardMarkup("teachCanvas","teach",true)+'</div>'+
  '</section>';
 }
 
@@ -161,16 +154,15 @@ function boardMarkup(id,key,teach=false){
 }
 function exampleCard(l,d,e,i){
  const diagram=DIAGRAMS.supports(l.type)?DIAGRAMS.example(l.id,l.type,i):"";
- const source=e.source||((SOW[l.id]||{}).textbook||l.src);
  return '<article class="example-card '+(i===exampleIndex?"active":"")+'" data-example="'+i+'">'+
-  '<div class="example-topline"><div><span class="example-number">TEACHER EXAMPLE '+(i+1)+'</span><div class="example-source-line">'+sourcePill(i<3?"Coursebook-mapped sequence":"Second-source / extension model")+'<span>'+esc(source)+'</span></div></div><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
-  '<div class="example-workspace example-split-workspace">'+
-    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(e.prompt)+'</h3><p>Keep this question visible while you model the complete solution on the whiteboard.</p></div>'+
-      (diagram?'<div class="example-diagram-panel"><span>RECODED FROM THE MAPPED TEXTBOOK DIAGRAM / EXERCISE STRUCTURE</span>'+diagram+'<small>'+esc((SOW[l.id]||{}).textbook||l.src)+'</small></div>':"")+
+  '<div class="example-topline"><span class="example-number">EXAMPLE '+(i+1)+'</span><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
+  '<div class="example-workspace example-split-workspace clean-example-workspace">'+
+    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(e.prompt)+'</h3></div>'+
+      (diagram?'<div class="example-diagram-panel">'+diagram+'</div>':"")+
     '</aside>'+
-    '<div class="example-board-panel"><div class="board-prompt-pin"><span>LIVE MODEL</span><strong>'+fmt(e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
+    '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
   '</div>'+
-  '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Reveal fully worked solution</button>'+
+  '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Solution</button>'+
   '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
  '</article>';
 }
@@ -178,79 +170,43 @@ function exampleCard(l,d,e,i){
 function examplesHTML(l,d){
  const ex=allExamples(l,d);
  return '<section class="notebook-page examples-page section-anchor" id="examples"><div class="page-margin-line"></div>'+
-  '<div class="section-head example-head"><div><span class="section-kicker">03 — TEACHER EXAMPLES</span><h2>Five large modelling slides</h2><p>Each example has its own writable grid, diagram and worked solution.</p></div><div class="example-nav"><button id="examplePrev" class="round-button" type="button">←</button><span id="exampleCounter">'+(exampleIndex+1)+' / '+ex.length+'</span><button id="exampleNext" class="round-button dark" type="button">→</button></div></div>'+
+  '<div class="section-head example-head"><div><span class="section-kicker">03</span><h2>Examples</h2></div><div class="example-nav"><button id="examplePrev" class="round-button" type="button">←</button><span id="exampleCounter">'+(exampleIndex+1)+' / '+ex.length+'</span><button id="exampleNext" class="round-button dark" type="button">→</button></div></div>'+
   '<div class="example-deck" id="exampleDeck">'+ex.map((e,i)=>exampleCard(l,d,e,i)).join("")+'</div>'+
-  '<div class="example-dots" id="exampleDots">'+ex.map((_,i)=>'<button class="'+(i===exampleIndex?"active":"")+'" data-example-index="'+i+'" type="button" aria-label="Show example '+(i+1)+'"></button>').join("")+'</div>'+
+  '<div class="example-dots" id="exampleDots">'+ex.map((_,i)=>'<button class="'+(i===exampleIndex?"active":"")+'" data-example-index="'+i+'" type="button" aria-label="Example '+(i+1)+'"></button>').join("")+'</div>'+
  '</section>';
 }
 
-function uniqueQuestions(items,limit){
- const out=[],seen=new Set();
- for(const x of items){
-   if(!x)continue;
-   const key=String(x).trim();
-   if(!key||seen.has(key))continue;
-   seen.add(key);out.push(key);
-   if(out.length>=limit)break;
- }
- return out;
-}
-function practiceQuestions(d){
- const p=d.practice||{};
- const tagged=[];
- const add=(arr,n,level,label)=>uniqueQuestions(arr||[],n).forEach(q=>tagged.push({q,level,label}));
- add(p.foundation,3,"secure","SECURE");
- add(p.core,4,"apply","APPLY");
- add(p.extension,3,"stretch","STRETCH");
- add(p.reasoning,2,"reason","REASON");
- const all=[...(p.foundation||[]),...(p.core||[]),...(p.extension||[]),...(p.reasoning||[])];
- for(const q of all){
-   if(tagged.length>=12)break;
-   if(!tagged.some(x=>x.q===q))tagged.push({q,level:"apply",label:"APPLY"});
- }
- return tagged.slice(0,12);
-}
-function homeworkQuestions(d,used){
- const solved=(d.homework||[]).slice(0,6).map(h=>({q:h.prompt,tier:h.tier||"Core",steps:h.steps||[],solved:true}));
- const p=d.practice||{};
- const tail=[...(p.reasoning||[]).slice(-2),...(p.extension||[]).slice(-3),...(p.core||[]).slice(-3),...(p.foundation||[]).slice(-2)];
- for(const q of tail){
-   if(solved.length>=10)break;
-   if(!q||used.has(q)||solved.some(x=>x.q===q))continue;
-   solved.push({q,tier:solved.length<8?"Apply":"Stretch",steps:[],solved:false});
- }
- return solved.slice(0,10);
-}
 function worksheetHeader(l,title,id,page){
- return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action" type="button" data-print-target="'+id+'">Print all '+esc(title.toLowerCase())+'</button></div></div>'+
-  '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • PAGE '+page+'</span><h2>'+esc((SOW[l.id]||{}).objective||l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
+ return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print</button></div></div>'+
+  '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/2</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
 }
-function questionCard(l,x,i,globalIndex,kind){
- const showDiagram=DIAGRAMS.supports(l.type)&&((globalIndex%3===2)||(globalIndex===0&&["angles","parallel","polygons","area","circle","sector","charts","scatter","cumfreq","histogram","sets"].includes(l.type)));
- const diagram=showDiagram?'<div class="question-diagram">'+DIAGRAMS.practice(l.id,l.type,Math.floor(globalIndex/2))+'</div>':"";
- return '<article class="worksheet-question '+(showDiagram?"has-diagram":"")+'"><div class="worksheet-q-head"><span class="worksheet-q-number">'+String(globalIndex+1).padStart(2,"0")+'</span><span class="difficulty '+esc(x.level||"apply")+'">'+esc(x.label||x.tier||"APPLY").toUpperCase()+'</span>'+
-  (kind==="homework"&&x.solved?'<button class="answer-toggle no-print homework-solution-btn" data-hw-index="'+globalIndex+'" type="button">Solution</button>':"")+'</div><p>'+fmt(x.q)+'</p>'+diagram+'<div class="worksheet-work-grid"></div></article>';
+function questionCard(l,x,globalIndex,kind){
+ const diagram=x.diagram&&DIAGRAMS.question?DIAGRAMS.question(x.diagram):"";
+ return '<article class="worksheet-question compact-question '+(diagram?"has-diagram":"")+'">'+
+  '<div class="worksheet-q-head"><span class="worksheet-q-number">'+String(globalIndex+1).padStart(2,"0")+'</span><button class="answer-toggle no-print solution-btn" data-bank="'+kind+'" data-index="'+globalIndex+'" type="button">Solution</button></div>'+
+  '<p>'+fmt(x.prompt)+'</p>'+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
+ '</article>';
 }
 function practiceHTML(l,d){
- const qs=practiceQuestions(d),used=new Set(qs.map(x=>x.q));
- window.__currentPracticeUsed=used;
- const pages=[qs.slice(0,6),qs.slice(6,12)];
+ const bank=QUESTION_ENGINE.build(l.type).practice.slice(0,16);
+ window.__currentPractice=bank;
+ const pages=[bank.slice(0,8),bank.slice(8,16)];
  return '<section class="section-anchor sheet-stack" id="practice">'+pages.map((page,p)=>
-  '<article class="worksheet-slide print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Independent Practice","practice",p+1)+
-   '<div class="worksheet-question-grid deep-question-grid">'+page.map((x,i)=>questionCard(l,x,i,p*6+i,"practice")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>12 mixed questions: procedural, application, reasoning and visual interpretation.</span><strong>'+esc((SOW[l.id]||{}).textbook||l.src)+' • '+esc(EXAM[l.u]||"Exam Success")+'</strong></div></article>'
+  '<article class="worksheet-slide clean-question-sheet print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Practice","practice",p+1)+
+   '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"practice")).join("")+'</div>'+
+   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+(p*8+8)+'</span><strong>Show clear working in your book.</strong></div></article>'
  ).join("")+'</section>';
 }
 function homeworkHTML(l,d){
- const used=window.__currentPracticeUsed||new Set(),hw=homeworkQuestions(d,used);
- window.__currentHomework=hw;
- const pages=[hw.slice(0,5),hw.slice(5,10)];
+ const bank=QUESTION_ENGINE.build(l.type).homework.slice(0,16);
+ window.__currentHomework=bank;
+ const pages=[bank.slice(0,8),bank.slice(8,16)];
  return '<section class="section-anchor sheet-stack" id="homework">'+pages.map((page,p)=>
-  '<article class="worksheet-slide homework-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",p+1)+
-   '<div class="worksheet-question-grid homework-grid">'+page.map((x,i)=>questionCard(l,{...x,level:(p*5+i<3?"secure":p*5+i<7?"apply":"stretch"),label:x.tier},i,p*5+i,"homework")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>'+((p===0)?"Core skill and application questions.":"Higher-demand, context and reasoning questions.")+'</span><strong>Questions are adapted/recreated from the mapped coursebook and Exam Success styles.</strong></div></article>'
+  '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",p+1)+
+   '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"homework")).join("")+'</div>'+
+   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+(p*8+8)+'</span><strong>Solutions are available on screen.</strong></div></article>'
  ).join("")+
- '<div class="lesson-end no-print"><div><span>END OF LESSON</span><strong>Everything in this pack follows the uploaded SoW objective.</strong></div><button id="nextFromHomework" class="next-lesson-button" type="button">Next lesson <span>→</span></button></div></section>';
+ '<div class="lesson-end no-print"><div><span>FINISHED</span><strong>'+esc(l.title)+'</strong></div><button id="nextFromHomework" class="next-lesson-button" type="button">Next lesson <span>→</span></button></div></section>';
 }
 
 function renderNotebook(){
@@ -258,7 +214,7 @@ function renderNotebook(){
  if(!l||!d){root.innerHTML='<div class="page-loading">This lesson pack is missing from the content data.</div>';return;}
  root.innerHTML=openingHTML(l,d,sm)+teachHTML(l,d,sm)+examplesHTML(l,d)+practiceHTML(l,d)+homeworkHTML(l,d);
  typeset(root);
- bindRevealButtons();bindTargets();bindExamples();bindBoards();bindPrint();bindHomeworkSolutions();bindSectionObserver();
+ bindRevealButtons();bindTargets();bindExamples();bindBoards();bindPrint();bindWorksheetSolutions();bindSectionObserver();
  $("#nextFromHomework")?.addEventListener("click",()=>goLesson(1));
 }
 
@@ -393,24 +349,35 @@ function ensureSolutionModal(){
  }
  return modal;
 }
-function bindHomeworkSolutions(){
- const hw=window.__currentHomework||[],modal=ensureSolutionModal();if(!modal)return;
- $$(".homework-solution-btn").forEach(btn=>btn.addEventListener("click",()=>{
-  const h=hw[Number(btn.dataset.hwIndex)];if(!h||!h.solved)return;
-  $("#solutionTitle").innerHTML=fmt(h.q);
-  $("#solutionBody").innerHTML=h.steps.map((s,j)=>'<div class="worked-step '+(j===h.steps.length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("");
+function bindWorksheetSolutions(){
+ const modal=ensureSolutionModal();if(!modal)return;
+ const openSolution=(item)=>{
+  if(!item)return;
+  $("#solutionTitle").innerHTML=fmt(item.prompt);
+  $("#solutionBody").innerHTML=(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("");
   typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");
+ };
+ $$(".solution-btn").forEach(btn=>btn.addEventListener("click",()=>{
+  const bank=btn.dataset.bank==="practice"?(window.__currentPractice||[]):(window.__currentHomework||[]);
+  openSolution(bank[Number(btn.dataset.index)]);
+ }));
+ $$(".reveal-all-btn").forEach(btn=>btn.addEventListener("click",()=>{
+   const bank=btn.dataset.revealAll==="practice"?(window.__currentPractice||[]):(window.__currentHomework||[]);
+   const page=Number(btn.dataset.page)||1,start=(page-1)*8,items=bank.slice(start,start+8);
+   $("#solutionTitle").textContent=(btn.dataset.revealAll==="practice"?"Practice":"Homework")+" solutions "+(start+1)+"–"+(start+8);
+   $("#solutionBody").innerHTML=items.map((item,i)=>'<section class="bulk-solution"><h4>'+(start+i+1)+'. '+fmt(item.prompt)+'</h4>'+(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</section>').join("");
+   typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");
  }));
 }
 
 function updateHeader(){
  const l=lesson(),sm=sow();if(!l)return;
  $("#currentUnit").textContent="UNIT "+l.u+" • "+l.unit.toUpperCase();
- $("#currentLessonTitle").textContent=sm.objective||l.title;
+ $("#currentLessonTitle").textContent=l.title;
  $("#currentLessonId").textContent="Lesson "+l.id+" • "+(currentIndex+1)+" of "+LESSONS.length;
  $("#courseProgress").textContent=(currentIndex+1)+" of "+LESSONS.length+" selected";
  $("#prevLessonBtn").disabled=currentIndex===0;$("#nextLessonBtn").disabled=currentIndex===LESSONS.length-1;
- document.title=l.id+" "+(sm.objective||l.title)+" | NES";
+ document.title=l.id+" "+l.title+" | NES";
 }
 function goLesson(delta){
  const next=currentIndex+delta;if(next<0||next>=LESSONS.length)return;
