@@ -1,74 +1,73 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#eef7fb">
-<title>Year 10 Mathematics | NES Teaching Hub</title>
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<link rel="stylesheet" href="styles.css?v=20260924-r1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#dff3fb">
+  <meta name="description" content="New English School Year 10 Cambridge IGCSE Mathematics teaching hub">
+  <title>Year 10 Mathematics | NES</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="styles.css?v=20260924-rebuild1">
 </head>
 <body>
 <header class="topbar">
-  <button id="menuBtn" class="icon-btn" aria-label="Open lessons">☰</button>
+  <button id="menuBtn" class="icon-btn" type="button" aria-label="Open lesson menu">☰</button>
   <div class="brand">
-    <span class="eyebrow">NEW ENGLISH SCHOOL • YEAR 10</span>
-    <strong>Mathematics Teaching Hub</strong>
+    <div class="brand-mark">Y10</div>
+    <div><div class="eyebrow">NEW ENGLISH SCHOOL • CAMBRIDGE IGCSE</div><h1>Mathematics Teaching Hub</h1></div>
   </div>
-  <div class="top-actions">
-    <button id="sourcesBtn" class="ghost-btn">Sources</button>
-    <button id="presentBtn" class="ghost-btn">Presentation mode</button>
-  </div>
+  <div class="top-actions"><button id="presentBtn" class="btn secondary" type="button">Presentation mode</button></div>
 </header>
 
-<div class="app-shell">
+<div class="shell">
   <aside id="sidebar" class="sidebar">
-    <div class="sidebar-head">
-      <label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Search lessons or units…" autocomplete="off"></label>
-      <div class="sidebar-meta"><span id="lessonCount">47 lessons</span><span>Units 12–22</span></div>
-    </div>
-    <nav id="lessonNav" class="lesson-nav"><div class="loading-line">Loading curriculum…</div></nav>
+    <div class="search-box"><input id="search" type="search" placeholder="Search all 47 lessons…" autocomplete="off"></div>
+    <nav id="lessonNav"><p class="boot">Loading lesson map…</p></nav>
   </aside>
 
   <main class="main">
-    <section class="lesson-hero">
+    <section class="hero">
       <div class="hero-copy">
-        <div class="hero-meta"><span id="unitPill" class="pill">Year 10</span><span id="sourceMini" class="source-mini"></span></div>
-        <h1 id="lessonTitle">Loading lesson…</h1>
-        <p id="lessonSubtitle">Scheme of Work • Cambridge Coursebook • Exam Success • Cambridge IGCSE 0580</p>
+        <span id="unitPill" class="pill">Year 10</span>
+        <h2 id="lessonTitle">Loading course…</h2>
+        <p id="lessonSubtitle">Scheme of Work • Morrison & Hamshaw • Exam Success</p>
       </div>
-      <div class="hero-actions">
-        <button id="prevBtn" class="ghost-btn">← Previous</button>
-        <button id="nextBtn" class="primary-btn">Next →</button>
+      <div class="hero-nav">
+        <button id="prevBtn" type="button" class="btn secondary">← Previous</button>
+        <button id="nextBtn" type="button" class="btn primary">Next →</button>
       </div>
     </section>
 
     <nav class="tabs" aria-label="Lesson sections">
-      <button class="tab active" data-tab="teach">Teach</button>
-      <button class="tab" data-tab="examples">Teacher examples</button>
-      <button class="tab" data-tab="practice">Independent practice</button>
-      <button class="tab" data-tab="homework">Homework</button>
-      <button class="tab" data-tab="whiteboard">Whiteboard</button>
-      <button class="tab" data-tab="sources">Sources</button>
+      <button type="button" class="tab active" data-tab="teach">Teach / key notes</button>
+      <button type="button" class="tab" data-tab="examples">Teacher examples</button>
+      <button type="button" class="tab" data-tab="practice">Independent practice</button>
+      <button type="button" class="tab" data-tab="homework">Homework</button>
+      <button type="button" class="tab" data-tab="whiteboard">Whiteboard</button>
+      <button type="button" class="tab" data-tab="sources">Book sources</button>
     </nav>
 
     <section id="content" class="content">
-      <article class="panel boot"><h2>Loading Year 10 Mathematics…</h2><p>Building the lesson from the SoW and source books.</p></article>
+      <div class="boot"><strong>Loading 47 detailed lessons…</strong><br>Preparing examples, questions and whiteboards.</div>
     </section>
   </main>
 </div>
 
 <script>
-window.addEventListener("error",function(e){
- const box=document.getElementById("content");
- if(box && !document.documentElement.dataset.mathoraReady){
-   box.innerHTML='<article class="panel error-panel"><h2>Startup error</h2><p>'+String(e.message||"Unknown error")+'</p></article>';
- }
+window.addEventListener("error", function(e){
+  const box=document.getElementById("content");
+  if(box && document.documentElement.dataset.appReady!=="1"){
+    box.innerHTML='<div class="fatal"><h2>Startup error</h2><p>'+String(e.message||"Unknown error").replace(/[<>&]/g,"")+'</p></div>';
+  }
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script src="lessons.js?v=20260924-r1"></script>
-<script src="app-stable.js?v=20260924-r1"></script>
+<script src="lessons.js?v=20260924-rebuild1"></script>
+<script src="content-core.js?v=20260924-rebuild1"></script>
+<script src="content-12-17.js?v=20260924-rebuild1"></script>
+<script src="content-18-22.js?v=20260924-rebuild1"></script>
+<script src="app.js?v=20260924-rebuild1"></script>
+<noscript><div class="fatal"><h2>JavaScript is required</h2><p>This interactive teaching website needs JavaScript enabled.</p></div></noscript>
 </body>
 </html>
