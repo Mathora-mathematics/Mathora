@@ -274,13 +274,6 @@ function proportion(v=0){
  b+=txt(410,70,v%2===0?'direct':'inverse','fill="'+C.ink+'" font-size="22" font-weight="900"');
  return svg(b);
 }
-function sample(){
- return svg(
- rect(80,45,480,220,'rx="24" fill="'+C.pale+'" stroke="'+C.ink+'" stroke-width="3"')+
- txt(245,85,'POPULATION','fill="'+C.ink+'" font-size="24" font-weight="900"')+
- ...[]
- );
-}
 function sampleDiagram(){
  let b=rect(70,40,500,235,'rx="28" fill="'+C.pale+'" stroke="'+C.ink+'" stroke-width="3"');
  for(let i=0;i<22;i++){const x=110+(i%8)*55,y=100+Math.floor(i/8)*55;b+=circle(x,y,9,'fill="'+(i<6?C.blue:C.muted)+'" opacity="'+(i<6?1:.55)+'"');}
