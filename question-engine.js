@@ -72,7 +72,11 @@ function graphIneq(region=false){const base=region?[
 ()=>Q("A region is above [[y=x]], below [[y=5]], and right of [[x=1]]. List the inequalities.",["[[y\\ge x]], [[y\\le5]], [[x\\ge1]]."],{kind:"region",v:0}),
 ()=>Q("A triangular region is bounded by the axes and [[x+y=6]]. List the inequalities.",["[[x\\ge0]], [[y\\ge0]], [[x+y\\le6]]."],{kind:"region",v:1}),
 ()=>Q("A region is left of [[x=4]], above [[y=-1]], and below [[y=2x+3]].",["[[x\\le4]], [[y\\ge-1]], [[y\\le2x+3]]."],{kind:"region",v:2}),
-()=>Q("A region is between [[y=x-2]] and [[y=x+3]], with [[0\\le x\\le5]].",["[[y\\ge x-2]], [[y\\le x+3]], [[0\\le x\\le5]]."],{kind:"region",v:3})
+()=>Q("A region is between [[y=x-2]] and [[y=x+3]], with [[0\\le x\\le5]].",["[[y\\ge x-2]], [[y\\le x+3]], [[0\\le x\\le5]]."],{kind:"region",v:3}),
+()=>Q("A region is below [[y=-x+6]], above [[y=1]], and left of [[x=4]]. List the inequalities.",["[[y\\le-x+6]], [[y\\ge1]], [[x\\le4]]."],{kind:"region",v:4}),
+()=>Q("A region lies in the first quadrant and below [[2x+y=8]]. List the inequalities.",["[[x\\ge0]], [[y\\ge0]], [[2x+y\\le8]]."],{kind:"region",v:5}),
+()=>Q("A region is above [[y=2x-3]], below [[y=x+4]], and to the right of the y-axis.",["[[y\\ge2x-3]], [[y\\le x+4]], [[x\\ge0]]."],{kind:"region",v:6}),
+()=>Q("A region is inside the strip [[-2\\le x\\le3]] and above [[y=-x]].",["[[-2\\le x\\le3]], [[y\\ge-x]]."],{kind:"region",v:7})
 ]:[
 ()=>Q("Graph [[y>2x-1]].",["Draw [[y=2x-1]] dashed.","Test [[(0,0)]].","Shade the side that satisfies the inequality."],{kind:"ineq-line",m:2,c:-1,solid:false}),
 ()=>Q("Graph [[y\\le-x+4]].",["Draw [[y=-x+4]] solid.","Test [[(0,0)]].","Shade the correct side."],{kind:"ineq-line",m:-1,c:4,solid:true}),
