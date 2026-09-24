@@ -7,7 +7,7 @@
   <title>Year 10 Mathematics | NES</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260924-2">
+  <link rel="stylesheet" href="styles.css?v=20260924-4">
 </head>
 <body>
   <header class="topbar">
@@ -52,9 +52,19 @@
     </main>
   </div>
 
+  <script>
+    window.addEventListener("error", function (event) {
+      var box = document.getElementById("content");
+      if (!box) return;
+      if (!box.innerHTML.trim()) {
+        box.innerHTML = '<article class="card"><h3>Site startup error</h3><p>The lesson app could not initialise.</p><p style="font-family:monospace;font-size:.85rem;word-break:break-word">' +
+          String(event.message || "Unknown JavaScript error") + '</p></article>';
+      }
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <script src="lessons.js?v=20260924-2"></script>
-  <script src="app-v6.js?v=20260924-2"></script>
+  <script src="lessons.js?v=20260924-4"></script>
+  <script src="app-stable.js?v=20260924-4"></script>
 </body>
 </html>
