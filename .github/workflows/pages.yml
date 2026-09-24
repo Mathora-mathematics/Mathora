@@ -1,4 +1,4 @@
-name: Deploy NES lesson design prototype
+name: Deploy populated NES Year 10 Mathematics site
 
 on:
   push:
@@ -23,25 +23,64 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Validate design
+
+      - name: Validate complete lesson runtime
         shell: bash
         run: |
+          node --check lessons.js
+          node --check content-core.js
+          node --check content-12-17.js
+          node --check content-18-22.js
+          node --check starters.js
+          node --check starter-answers.js
           node --check app.js
-          grep -q 'Title + starter' index.html
-          grep -q 'worksheet-slide' index.html
-          grep -q 'data-print-target="practice"' index.html
-          grep -q 'data-print-target="homework"' index.html
-          grep -q 'nes-design-3' index.html
-          grep -q 'app.js?v=nes-design-3' index.html
-          echo "PASS: NES design prototype validated."
+
+          node <<'NODE'
+          const fs=require('fs'),vm=require('vm');
+          const sandbox={window:{}};
+          vm.createContext(sandbox);
+          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js']){
+            vm.runInContext(fs.readFileSync(f,'utf8'),sandbox,{filename:f});
+          }
+
+          const lessons=sandbox.window.LESSONS;
+          const content=sandbox.window.LESSON_CONTENT;
+          const starters=sandbox.window.STARTERS;
+          const answers=sandbox.window.STARTER_ANSWERS;
+
+          if(!Array.isArray(lessons)||lessons.length!==47) throw new Error('Expected 47 SoW lessons');
+          if(Object.keys(content).length!==47) throw new Error('Expected 47 lesson content packs');
+          if(Object.keys(starters).length!==47) throw new Error('Expected 47 starter sets');
+          if(Object.keys(answers).length!==47) throw new Error('Expected 47 starter-answer sets');
+
+          for(const l of lessons){
+            const d=content[l.id];
+            if(!d) throw new Error('Missing content for '+l.id);
+            if(!Array.isArray(starters[l.id])||starters[l.id].length!==4) throw new Error('Starter count wrong for '+l.id);
+            if(!Array.isArray(answers[l.id])||answers[l.id].length!==4) throw new Error('Starter answers wrong for '+l.id);
+            if(!Array.isArray(d.examples)||d.examples.length<2) throw new Error('Need teacher examples for '+l.id);
+            if(!d.practice||!Array.isArray(d.practice.foundation)||!Array.isArray(d.practice.core)||!Array.isArray(d.practice.extension)) throw new Error('Practice missing for '+l.id);
+            if(!Array.isArray(d.homework)||d.homework.length<6) throw new Error('Need 6 homework questions for '+l.id);
+          }
+
+          const html=fs.readFileSync('index.html','utf8');
+          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','app.js']){
+            if(!html.includes(f)) throw new Error('index.html missing '+f);
+          }
+
+          console.log('PASS: 47/47 Scheme-of-Work lessons populated with starters, teaching, examples, practice and homework.');
+          NODE
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
