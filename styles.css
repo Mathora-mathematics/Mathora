@@ -884,3 +884,218 @@ body.focus-mode .current-lesson-lockup{border-left:0;padding-left:0}
   .example-split-workspace .example-diagram-panel{margin-top:8px}
   .example-split-workspace .board-paper{height:450px!important;min-height:450px!important}
 }
+
+
+/* =========================================================
+   CLEAN LESSON DESIGN v4
+   ========================================================= */
+.title-starter-page{min-height:920px!important}
+.clean-title-hero{grid-template-columns:minmax(0,1fr) minmax(230px,.28fr)!important;padding:17px 0 13px!important}
+.clean-title-hero h1{font-size:clamp(2rem,3vw,3.35rem)!important;line-height:1.03!important}
+.clean-title-hero .compact-intro{font-size:.8rem!important;line-height:1.45!important;max-width:1040px!important}
+.clean-title-hero .lesson-focus-card{padding:13px 15px!important}
+.compact-starter-head{margin-top:13px!important}
+.title-starter-grid{gap:10px!important}
+.title-starter-grid .question-card{padding:12px 14px!important;border-radius:13px!important}
+.title-starter-grid .mini-work-grid{min-height:70px!important}
+.compact-opening-footer{margin-top:9px!important}
+
+.clean-teach{margin-top:8px}
+.clean-teach .note-card{min-height:285px!important}
+.clean-teach .note-card h3{font-size:1.23rem!important}
+.clean-method{margin-top:16px!important}
+.clean-visual-models{margin:16px 0!important}
+.clean-visual-models>div{min-height:285px!important;padding:13px!important}
+.clean-visual-models .lesson-diagram-svg{max-height:270px!important}
+
+.clean-example-workspace{
+  grid-template-columns:minmax(270px,.29fr) minmax(0,.71fr)!important;
+  gap:16px!important;
+}
+.clean-example-workspace .example-question-pane{gap:10px!important}
+.clean-example-workspace .example-question{
+  padding:15px 16px 16px!important;
+  border-radius:0 14px 14px 0!important;
+}
+.clean-example-workspace .example-question h3{
+  font-size:clamp(1.55rem,2.1vw,2.35rem)!important;
+  line-height:1.17!important;
+}
+.clean-example-workspace .example-diagram-panel{
+  min-height:260px!important;
+  padding:10px!important;
+  justify-content:center!important;
+}
+.clean-example-workspace .example-diagram-panel .lesson-diagram-svg{
+  min-height:225px!important;
+  max-height:335px!important;
+}
+.clean-example-workspace .board-prompt-pin{
+  grid-template-columns:1fr!important;
+  min-height:48px!important;
+  padding:10px 12px!important;
+}
+.clean-example-workspace .board-prompt-pin strong{font-size:1rem!important}
+.clean-example-workspace .board-paper{
+  height:690px!important;
+  min-height:690px!important;
+}
+.examples-page{min-height:1150px!important}
+.example-topline{align-items:center!important}
+.example-topline .example-number{font-size:.65rem!important}
+.example-source-line{display:none!important}
+
+.clean-question-sheet{
+  min-height:930px!important;
+  padding:27px 30px 24px!important;
+}
+.sixteen-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  min-height:700px!important;
+  height:auto!important;
+}
+.compact-question{
+  min-height:0!important;
+  padding:11px 12px 10px!important;
+  border-radius:11px!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.compact-question .worksheet-q-head{min-height:27px!important}
+.compact-question>p{
+  margin:7px 0 4px!important;
+  font-size:1.03rem!important;
+  line-height:1.3!important;
+  flex:0 0 auto;
+}
+.compact-question .answer-toggle{
+  margin-left:auto!important;
+  padding:5px 8px!important;
+  font-size:.58rem!important;
+  border-radius:8px!important;
+}
+.compact-question .question-diagram{
+  height:105px!important;
+  margin:4px 0 0!important;
+  border:0!important;
+  border-top:1px solid #e1ecef!important;
+  border-radius:0!important;
+  background:#fff!important;
+  padding-top:4px!important;
+}
+.compact-question .question-math-diagram{
+  width:100%;
+  height:100%;
+  max-height:100px;
+  display:block;
+}
+.compact-question .worksheet-work-grid{display:none!important}
+.worksheet-actions{display:flex;gap:7px!important}
+.reveal-all-btn{background:var(--nes-dark)!important;color:#fff!important;border-color:var(--nes-dark)!important}
+.worksheet-footer{font-size:.6rem!important}
+.homework-sheet{border-top:5px solid var(--nes-dark)!important}
+.bulk-solution{
+  padding:15px 0;
+  border-top:1px solid #dfebee;
+}
+.bulk-solution:first-child{border-top:0;padding-top:0}
+.bulk-solution h4{
+  margin:0 0 8px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:500;
+  font-size:1rem;
+  line-height:1.35;
+  color:var(--nes-dark);
+}
+
+.question-math-diagram text{
+  paint-order:stroke;
+  stroke:#fff;
+  stroke-width:.55px;
+  stroke-linejoin:round;
+}
+.question-math-diagram{overflow:visible}
+
+/* Keep the visual language closer to the supplied coursebook:
+   fine black construction lines, white background, one restrained cyan highlight. */
+.example-diagram-panel,.clean-visual-models>div,.question-diagram{
+  box-shadow:none!important;
+}
+.example-diagram-panel{background:#fff!important}
+.lesson-diagram-svg text,.question-math-diagram text{font-family:Arial,sans-serif!important}
+.example-diagram-panel svg,.clean-visual-models svg{background:#fff}
+
+/* Remove legacy labels/metadata that are no longer part of the clean site */
+.page-tag,.source-footnote,.visual-caption,.scheme-guidance,.book-source-strip,.source-map-grid{display:none!important}
+.drawer-lesson>small{display:none!important}
+.drawer-lesson{min-height:70px!important}
+.drawer-lesson>strong{font-size:.78rem!important}
+
+@media(max-width:1100px){
+  .clean-example-workspace{grid-template-columns:minmax(245px,.34fr) minmax(0,.66fr)!important}
+  .clean-example-workspace .board-paper{height:600px!important;min-height:600px!important}
+  .sixteen-grid{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:820px){
+  .clean-title-hero{grid-template-columns:1fr!important}
+  .clean-title-hero .lesson-focus-card{display:none!important}
+  .clean-example-workspace{
+    grid-template-columns:minmax(220px,.38fr) minmax(0,.62fr)!important;
+    gap:9px!important;
+  }
+  .clean-example-workspace .example-question h3{font-size:1.28rem!important}
+  .clean-example-workspace .example-diagram-panel{min-height:190px!important}
+  .clean-example-workspace .example-diagram-panel .lesson-diagram-svg{min-height:170px!important;max-height:230px!important}
+  .clean-example-workspace .board-paper{height:530px!important;min-height:530px!important}
+  .compact-question>p{font-size:.96rem!important}
+}
+@media(max-width:620px){
+  .clean-example-workspace{grid-template-columns:1fr!important}
+  .clean-example-workspace .board-paper{height:460px!important;min-height:460px!important}
+  .sixteen-grid{grid-template-columns:1fr!important;grid-template-rows:none!important}
+  .compact-question{min-height:145px!important}
+  .compact-question .question-diagram{height:145px!important}
+  .compact-question .question-math-diagram{max-height:140px!important}
+}
+
+@media print{
+  body.print-practice #practice>.worksheet-slide,
+  body.print-homework #homework>.worksheet-slide{
+    height:194mm!important;
+    min-height:194mm!important;
+    padding:6mm 7mm 5mm!important;
+  }
+  body.print-practice #practice .sixteen-grid,
+  body.print-homework #homework .sixteen-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,1fr)!important;
+    grid-template-rows:repeat(4,1fr)!important;
+    height:151mm!important;
+    min-height:151mm!important;
+    gap:2mm!important;
+  }
+  body.print-practice .compact-question,
+  body.print-homework .compact-question{
+    min-height:0!important;
+    padding:2.2mm 2.5mm!important;
+    border-radius:1.5mm!important;
+  }
+  body.print-practice .compact-question>p,
+  body.print-homework .compact-question>p{
+    font-size:10.5pt!important;
+    line-height:1.24!important;
+    margin:1.5mm 0!important;
+  }
+  body.print-practice .compact-question .question-diagram,
+  body.print-homework .compact-question .question-diagram{
+    height:20mm!important;
+    padding-top:1mm!important;
+  }
+  body.print-practice .compact-question .question-math-diagram,
+  body.print-homework .compact-question .question-math-diagram{max-height:19mm!important}
+  body.print-practice .worksheet-q-number,
+  body.print-homework .worksheet-q-number{width:6mm!important;height:6mm!important;font-size:6.5pt!important}
+}
