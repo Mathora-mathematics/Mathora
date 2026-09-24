@@ -28,18 +28,21 @@ jobs:
         shell: bash
         run: |
           node --check lessons.js
+          node --check sow-map.js
           node --check content-core.js
           node --check content-12-17.js
           node --check content-18-22.js
           node --check starters.js
           node --check starter-answers.js
+          node --check enhancements.js
+          node --check diagrams.js
           node --check app.js
 
           node <<'NODE'
           const fs=require('fs'),vm=require('vm');
           const sandbox={window:{}};
           vm.createContext(sandbox);
-          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js']){
+          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js']){
             vm.runInContext(fs.readFileSync(f,'utf8'),sandbox,{filename:f});
           }
 
@@ -47,28 +50,35 @@ jobs:
           const content=sandbox.window.LESSON_CONTENT;
           const starters=sandbox.window.STARTERS;
           const answers=sandbox.window.STARTER_ANSWERS;
+          const sow=sandbox.window.SOW_MAP;
+          const extra=sandbox.window.EXTRA_EXAMPLES;
+          const diagrams=sandbox.window.MathoraDiagrams;
 
           if(!Array.isArray(lessons)||lessons.length!==47) throw new Error('Expected 47 SoW lessons');
           if(Object.keys(content).length!==47) throw new Error('Expected 47 lesson content packs');
           if(Object.keys(starters).length!==47) throw new Error('Expected 47 starter sets');
           if(Object.keys(answers).length!==47) throw new Error('Expected 47 starter-answer sets');
+          if(Object.keys(sow).length!==47) throw new Error('Expected 47 exact SoW mappings');
+          if(Object.keys(extra).length!==47) throw new Error('Expected 47 enhanced example sets');
 
           for(const l of lessons){
             const d=content[l.id];
             if(!d) throw new Error('Missing content for '+l.id);
             if(!Array.isArray(starters[l.id])||starters[l.id].length!==4) throw new Error('Starter count wrong for '+l.id);
             if(!Array.isArray(answers[l.id])||answers[l.id].length!==4) throw new Error('Starter answers wrong for '+l.id);
-            if(!Array.isArray(d.examples)||d.examples.length<2) throw new Error('Need teacher examples for '+l.id);
+            if(!Array.isArray(d.examples)||d.examples.length<3) throw new Error('Need base teacher examples for '+l.id);
+            if(!Array.isArray(extra[l.id])||extra[l.id].length<2) throw new Error('Need 2 extra teacher examples for '+l.id);
+            if(!diagrams.supports(l.type)) throw new Error('Need coded diagrams for '+l.id);
             if(!d.practice||!Array.isArray(d.practice.foundation)||!Array.isArray(d.practice.core)||!Array.isArray(d.practice.extension)) throw new Error('Practice missing for '+l.id);
             if(!Array.isArray(d.homework)||d.homework.length<6) throw new Error('Need 6 homework questions for '+l.id);
           }
 
           const html=fs.readFileSync('index.html','utf8');
-          for(const f of ['lessons.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','app.js']){
+          for(const f of ['lessons.js','sow-map.js','content-core.js','content-12-17.js','content-18-22.js','starters.js','starter-answers.js','enhancements.js','diagrams.js','app.js']){
             if(!html.includes(f)) throw new Error('index.html missing '+f);
           }
 
-          console.log('PASS: 47/47 Scheme-of-Work lessons populated with starters, teaching, examples, practice and homework.');
+          console.log('PASS: 47/47 SoW lessons mapped with 5 teacher examples, diagrams, iPad whiteboards, deeper practice and homework.');
           NODE
 
       - name: Configure Pages
