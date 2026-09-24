@@ -102,20 +102,16 @@ function starterSolutions(l){
 
 function openingHTML(l,d,sm){
  const objective=sm.objective||l.title;
- return '<section class="notebook-page opening-page section-anchor" id="opening">'+
-  '<div class="page-margin-line"></div>'+
-  '<div class="opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
-  '<div class="opening-header"><div class="date-card"><span>TODAY</span><strong>'+esc(today(true))+'</strong></div><div class="teacher-card"><span>SCHEME OF WORK</span><strong>Mapped directly</strong></div></div>'+
-  '<div class="title-copy"><p class="overline">YEAR 10 MATHEMATICS</p><h1>'+esc(objective)+'</h1><p class="lesson-intro">'+fmt(d.explain)+'</p></div>'+
-  '<div class="source-map-grid">'+
-    '<article><span>SCHEME OF WORK</span><strong>'+esc(objective)+'</strong><small>'+esc(sm.notes||"Lesson objective and teaching sequence taken from the uploaded Year 10 SoW.")+'</small></article>'+
-    '<article><span>MORRISON & HAMSHAW</span><strong>'+esc(sm.textbook||l.src)+'</strong><small>Worked-example and exercise progression mapped to the SoW reference.</small></article>'+
-    '<article><span>EXAM SUCCESS</span><strong>'+esc(EXAM[l.u]||"Exam Success Mathematics")+'</strong><small>Used for second-source exam-style modelling, misconceptions and question variety.</small></article>'+
+ return '<section class="notebook-page opening-page title-starter-page section-anchor" id="opening"><div class="page-margin-line"></div>'+
+  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
+  '<div class="title-starter-hero">'+
+    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span><i></i><span>SCHEME OF WORK LESSON</span></div><p class="overline">YEAR 10 MATHEMATICS</p><h1>'+esc(objective)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
+    '<div class="lesson-focus-card"><span>BY THE END</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
   '</div>'+
-  '<div class="starter-header"><div><span class="section-kicker">STARTER • 5 MIN</span><h2>Retrieval first</h2></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Show answers</button></div>'+
-  '<div class="starter-grid">'+starterCards(l)+'</div>'+
+  '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER • 5 MIN</span><h2>Retrieval first</h2><p>Four short questions before the new learning begins.</p></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Show answers</button></div>'+
+  '<div class="starter-grid title-starter-grid">'+starterCards(l)+'</div>'+
   '<div class="reveal-panel starter-solutions" id="starterSolution">'+starterSolutions(l)+'</div>'+
-  '<div class="opening-footer"><div class="lesson-note"><span>LESSON FOCUS</span><strong>'+esc((l.obj||[]).join(" • "))+'</strong></div><button class="start-button" data-target="teach" type="button">Teach this lesson <span>→</span></button></div>'+
+  '<div class="opening-footer compact-opening-footer"><div class="lesson-note"><span>BOOK MAP</span><strong>'+esc(sm.textbook||l.src)+'</strong></div><button class="start-button" data-target="teach" type="button">Teach this lesson <span>→</span></button></div>'+
  '</section>';
 }
 
@@ -124,10 +120,15 @@ function teachHTML(l,d,sm){
  const rules=(d.rules||[]).slice(0,5).map(r=>'<div class="teach-rule"><strong>'+fmt(r[0])+'</strong><span>'+fmt(r[1])+'</span></div>').join("");
  const method=(d.method||[]).slice(0,6).map((x,i)=>'<li><span>'+String(i+1).padStart(2,"0")+'</span><p>'+fmt(x)+'</p></li>').join("");
  const mistakes=(d.mistakes||[]).slice(0,5).map(x=>'<li>'+fmt(x)+'</li>').join("");
- const visuals=DIAGRAMS.supports(l.type)?'<div class="visual-models"><div>'+DIAGRAMS.lesson(l.type,0)+'</div><div>'+DIAGRAMS.lesson(l.type,1)+'</div></div>':"";
+ const visuals=DIAGRAMS.supports(l.type)?'<div class="visual-models book-visual-models"><div><span class="visual-caption">BOOK-STRUCTURED MODEL A</span>'+DIAGRAMS.example(l.id,l.type,6)+'</div><div><span class="visual-caption">BOOK-STRUCTURED MODEL B</span>'+DIAGRAMS.example(l.id,l.type,7)+'</div></div>':"";
  const schemeGuidance=sm.teaching?'<article class="scheme-guidance"><span>SCHEME GUIDANCE</span><p>'+esc(sm.teaching)+'</p></article>':"";
  return '<section class="notebook-page section-anchor" id="teach"><div class="page-margin-line"></div>'+
   '<div class="section-head"><div><span class="section-kicker">02 — TEACH</span><h2>Teach the idea clearly</h2></div><div class="page-tag">SOW + BOTH BOOKS</div></div>'+
+  '<div class="source-map-grid teach-source-map">'+
+    '<article><span>SCHEME OF WORK</span><strong>'+esc(sm.objective||l.title)+'</strong><small>'+esc(sm.notes||"Lesson sequence follows the uploaded Year 10 scheme of work.")+'</small></article>'+
+    '<article><span>MORRISON & HAMSHAW</span><strong>'+esc(sm.textbook||l.src)+'</strong><small>Worked-example and exercise structure used to shape the modelling and diagrams.</small></article>'+
+    '<article><span>EXAM SUCCESS</span><strong>'+esc(EXAM[l.u]||"Exam Success Mathematics")+'</strong><small>Used for exam-style presentation, misconceptions and a second question style.</small></article>'+
+  '</div>'+
   '<div class="teach-grid deep-teach">'+
    '<article class="note-card cyan-note"><small>KEY IDEAS</small><h3>What students must understand</h3><ul class="teach-list">'+key+'</ul></article>'+
    '<article class="note-card white-note"><small>RULES / FACTS</small><h3>Keep these visible</h3><div class="teach-rules">'+rules+'</div></article>'+
@@ -159,19 +160,21 @@ function boardMarkup(id,key,teach=false){
  '</div>';
 }
 function exampleCard(l,d,e,i){
- const diagram=DIAGRAMS.supports(l.type)?DIAGRAMS.lesson(l.type,e.diagram??i):"";
+ const diagram=DIAGRAMS.supports(l.type)?DIAGRAMS.example(l.id,l.type,i):"";
  const source=e.source||((SOW[l.id]||{}).textbook||l.src);
  return '<article class="example-card '+(i===exampleIndex?"active":"")+'" data-example="'+i+'">'+
-  '<div class="example-topline"><div><span class="example-number">TEACHER EXAMPLE '+(i+1)+'</span><div class="example-source-line">'+sourcePill(i<3?"Book-mapped model":"Additional book-aligned model")+'<span>'+esc(source)+'</span></div></div><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
-  '<div class="example-question"><h3>'+fmt(e.prompt)+'</h3><p>Model this live. Use the diagram where helpful, then reveal the full solution only after discussion.</p></div>'+
-  '<div class="example-workspace '+(diagram?"with-diagram":"no-diagram")+'">'+
-   (diagram?'<aside class="example-diagram-panel"><span>VISUAL MODEL</span>'+diagram+'</aside>':"")+
-   '<div class="example-board-panel">'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
+  '<div class="example-topline"><div><span class="example-number">TEACHER EXAMPLE '+(i+1)+'</span><div class="example-source-line">'+sourcePill(i<3?"Coursebook-mapped sequence":"Second-source / extension model")+'<span>'+esc(source)+'</span></div></div><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
+  '<div class="example-workspace example-split-workspace">'+
+    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(e.prompt)+'</h3><p>Keep this question visible while you model the complete solution on the whiteboard.</p></div>'+
+      (diagram?'<div class="example-diagram-panel"><span>RECODED FROM THE MAPPED TEXTBOOK DIAGRAM / EXERCISE STRUCTURE</span>'+diagram+'<small>'+esc((SOW[l.id]||{}).textbook||l.src)+'</small></div>':"")+
+    '</aside>'+
+    '<div class="example-board-panel"><div class="board-prompt-pin"><span>LIVE MODEL</span><strong>'+fmt(e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
   '</div>'+
   '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Reveal fully worked solution</button>'+
   '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
  '</article>';
 }
+
 function examplesHTML(l,d){
  const ex=allExamples(l,d);
  return '<section class="notebook-page examples-page section-anchor" id="examples"><div class="page-margin-line"></div>'+
