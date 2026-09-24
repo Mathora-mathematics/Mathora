@@ -227,7 +227,7 @@ function worksheetHeader(l,title,id,page){
 }
 function questionCard(l,x,i,globalIndex,kind){
  const showDiagram=DIAGRAMS.supports(l.type)&&((globalIndex%3===2)||(globalIndex===0&&["angles","parallel","polygons","area","circle","sector","charts","scatter","cumfreq","histogram","sets"].includes(l.type)));
- const diagram=showDiagram?'<div class="question-diagram">'+DIAGRAMS.practice(l.type,globalIndex)+'</div>':"";
+ const diagram=showDiagram?'<div class="question-diagram">'+DIAGRAMS.practice(l.id,l.type,Math.floor(globalIndex/2))+'</div>':"";
  return '<article class="worksheet-question '+(showDiagram?"has-diagram":"")+'"><div class="worksheet-q-head"><span class="worksheet-q-number">'+String(globalIndex+1).padStart(2,"0")+'</span><span class="difficulty '+esc(x.level||"apply")+'">'+esc(x.label||x.tier||"APPLY").toUpperCase()+'</span>'+
   (kind==="homework"&&x.solved?'<button class="answer-toggle no-print homework-solution-btn" data-hw-index="'+globalIndex+'" type="button">Solution</button>':"")+'</div><p>'+fmt(x.q)+'</p>'+diagram+'<div class="worksheet-work-grid"></div></article>';
 }
