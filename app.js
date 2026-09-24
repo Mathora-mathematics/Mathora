@@ -2933,3 +2933,28 @@ function renderV5(){
 
 render=renderV5;
 render();
+
+
+/* V5.1 — second-book extract labels */
+if(SOURCE_EXTRACTS_V5["19.1"]){
+  SOURCE_EXTRACTS_V5["19.1"].examples[1]="assets/book/exam-pie-worked.webp";
+}
+function sourceExtractV5(l,i,mode){
+ var m=SOURCE_EXTRACTS_V5[l.id];
+ if(!m)return "";
+ var src=mode==="learn"?m.learn:(m.examples||{})[i];
+ if(!src)return "";
+ var isExam=src.indexOf("exam-")>=0;
+ var label=isExam
+   ?"Exam Success • statistical diagrams • worked source extract"
+   :(m.label||"Cambridge Coursebook • source extract");
+ var origin=isExam
+   ?"Oxford Exam Success — supplied teaching copy"
+   :"Cambridge Coursebook — supplied teaching copy";
+ return '<figure class="textbook-extract">'+
+   '<div class="extract-ribbon">'+(isExam?"EXAM SUCCESS EXTRACT":"COURSEBOOK EXTRACT")+'</div>'+
+   '<img src="'+src+'" alt="'+escapeAttrV4(label)+'" loading="lazy">'+
+   '<figcaption><strong>'+label+'</strong><span>'+origin+' • used directly inside this private teaching build.</span></figcaption>'+
+ '</figure>';
+}
+render();
