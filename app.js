@@ -9,6 +9,7 @@ function setDates(){
   const short=new Intl.DateTimeFormat("en-GB",{day:"numeric",month:"short",year:"numeric"}).format(now);
   if($("#lessonDate"))$("#lessonDate").textContent=long;
   if($("#homeworkDate"))$("#homeworkDate").textContent=short;
+  if($("#practiceDate"))$("#practiceDate").textContent=short;
 }
 setDates();
 
@@ -83,5 +84,18 @@ $$("canvas").forEach(initCanvas);
 
 $$(".lesson-row").forEach(row=>row.addEventListener("click",()=>{$$(".lesson-row").forEach(x=>x.classList.toggle("active",x===row));sidebar.classList.remove("open");}));
 $$(".unit-row").forEach(row=>row.addEventListener("click",()=>{$$(".unit-row").forEach(x=>x.classList.toggle("active",x===row));}));
+
+$("[data-print-target]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const target=button.dataset.printTarget;
+    const cls=target==="homework"?"print-homework":"print-practice";
+    document.body.classList.add(cls);
+    const cleanup=()=>document.body.classList.remove(cls);
+    window.addEventListener("afterprint",cleanup,{once:true});
+    setTimeout(()=>window.print(),50);
+    setTimeout(cleanup,2000);
+  });
+});
+
 document.documentElement.dataset.ready="1";
 })();
