@@ -202,6 +202,15 @@ const THEORY={
  }
 };
 
+THEORY["ineq-region"]={
+ concept:"A feasible region is the overlap of all half-planes that satisfy the given inequalities. Each boundary line must be drawn correctly before shading.",
+ rules:["draw each boundary from its equation","solid line for ≤ or ≥","dashed line for < or >","test a point to choose the correct side","the final feasible region satisfies every inequality"]
+};
+THEORY["ineq-graph"]={
+ concept:"A linear inequality in two variables represents a half-plane. The boundary is the corresponding equality; shading shows all coordinate pairs that satisfy the inequality.",
+ rules:["replace the inequality temporarily by = to draw the boundary","solid boundary for ≤ or ≥","dashed boundary for < or >","test a point such as (0,0) when suitable","shade only the side that satisfies the inequality"]
+};
+
 function escapeHtml(s){
  return String(s??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 }
@@ -443,6 +452,7 @@ function render(){
  safeMath(c);
  initCanvases();
  history.replaceState(null,"","#"+l.id+"-"+tab);
+ document.documentElement.dataset.mathoraReady="true";
 }
 function start(){
  if(!LESSONS.length){render();return;}
