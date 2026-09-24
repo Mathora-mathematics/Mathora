@@ -2,34 +2,35 @@
 
 A responsive lesson-by-lesson Cambridge IGCSE Mathematics teaching site for New English School Year 10.
 
-## Curriculum source
+## Curriculum and sources
 
-The lesson order is mapped directly from the 2026–2027 Year 10 scheme of work. Textbook difficulty and progression are calibrated to the Morrison & Hamshaw Cambridge IGCSE Mathematics Core and Extended references listed in each lesson. Site questions are original rather than copied verbatim.
+The site contains 47 sub-unit lessons, Units 12–22, in the order defined by the 2026–2027 Year 10 scheme of work. Each lesson stores its Morrison & Hamshaw Cambridge IGCSE Mathematics page/exercise reference. The private teaching build also uses selected source extracts from the supplied Cambridge Coursebook and Exam Success materials.
 
-## Included
+## Runtime
 
-- 47 scheme-of-work sub-unit lessons, Units 12–22
-- prior knowledge + learning points
-- 2–4 progressive teacher examples with working
-- Foundation / Core / Extension independent practice
-- homework with revealable worked solutions
-- coded SVG mathematical diagrams
-- squared touch whiteboard with pen colours, eraser and clear
-- phone, iPad / Apple Pencil and desktop responsive layouts
-- presentation mode for classroom display
-- MathJax typesetting
+The live site uses one stable application entrypoint:
 
-## GitHub Pages
+- `index.html` — page shell and startup diagnostic
+- `lessons.js` — 47-lesson SoW map exposed as `window.LESSONS`
+- `app-stable.js` — navigation, teaching notes, examples, practice, homework, maths rendering and whiteboards
+- `styles.css` — responsive desktop/iPad/phone styles
+- `assets/book/` — selected textbook source extracts used in lesson pages
 
-The Pages workflow deploys the repository root on every push to `main`.
+KaTeX is used when available for mathematical typesetting. The lesson navigation and content engine do not depend on KaTeX loading successfully.
 
-Expected site URL:
+## Reliability checks
+
+The GitHub Pages workflow validates before every deployment:
+
+- JavaScript syntax
+- exactly 47 lessons
+- unique lesson IDs
+- required lesson metadata
+- correct stable runtime reference in `index.html`
+- presence of required textbook assets
+
+A failed validation prevents a broken build from being deployed.
+
+## Live site
 
 https://mathora-mathematics.github.io/Mathora/
-
-## Files
-
-- `index.html` — application shell
-- `styles.css` — responsive visual system
-- `lessons.js` — scheme-of-work lesson map
-- `app.js` — lesson content engine, SVG diagrams, homework solutions and whiteboard
