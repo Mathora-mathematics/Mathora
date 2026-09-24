@@ -1,4 +1,4 @@
-name: Deploy lesson design prototype to GitHub Pages
+name: Deploy NES lesson design prototype
 
 on:
   push:
@@ -23,29 +23,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Validate design prototype
+      - name: Validate design
         shell: bash
         run: |
           node --check app.js
-          grep -q 'notebook' index.html
-          grep -q 'reveal-button' index.html
-          grep -q 'graph-paper' index.html
-          grep -q 'flow-nav' index.html
-          grep -q 'styles.css?v=design-20260924' index.html
-          grep -q 'app.js?v=design-20260924' index.html
-          echo "PASS: lesson design prototype is structurally complete."
-
+          grep -q 'Title + starter' index.html
+          grep -q 'homework-page' index.html
+          grep -q 'cover-logo' index.html
+          grep -q 'nes-design-2' index.html
+          grep -q 'app.js?v=nes-design-2' index.html
+          echo "PASS: NES design prototype validated."
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
