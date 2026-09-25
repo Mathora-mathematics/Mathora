@@ -12,7 +12,7 @@ for(const l of w.LESSONS){
  if(!b?.practice.length||!d)throw Error('Missing mapped material '+l.id);
  if(w.STARTERS[l.id]?.length!==4||w.STARTER_ANSWERS[l.id]?.length!==4)throw Error('Missing starter '+l.id);
  for(const a of [...b.practice,...b.homework])image(a);
- for(const e of b.examples){examples++;if(e.sourceQuestion){image(e.sourceQuestion);image(e.sourceSolution)}else if(!e.steps.length)throw Error('Missing source solution '+l.id)}
+ for(const e of b.examples){examples++;if(e.sourceQuestion){image(e.sourceQuestion);if(e.sourceSolution)image(e.sourceSolution);else if(!e.steps.length)throw Error("Missing steps "+l.id)}else if(!e.steps.length)throw Error('Missing source solution '+l.id)}
  const bank=w.MathoraQuestionEngine.build(l.type);
  if(bank.practice.length<8||d.homework.length<1)throw Error('Question coverage '+l.id);
  for(const q of [...bank.practice.slice(0,8),...d.homework,...(w.SOURCE_QUESTIONS[l.id]||[])]){

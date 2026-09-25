@@ -1111,3 +1111,30 @@ body.focus-mode .current-lesson-lockup{border-left:0;padding-left:0}
 .solution-panel .source-extract{max-width:920px}.example-diagram-panel svg{width:100%;height:auto;max-height:none}
 @media(max-width:760px){.textbook-section{padding:18px}.source-page{padding:10px}.source-credit{font-size:14px!important}.source-extract{min-width:0}}
 @media print{.textbook-section{border:0;padding:0}.source-page{break-inside:avoid}.source-page:not([open])>img{display:none}.source-credit{color:#333}}
+/* Classroom slide view: one readable surface, with controls outside the content. */
+[hidden]{display:none!important}
+body{padding-bottom:88px}
+.slide-controls{position:fixed;bottom:0;left:0;right:0;z-index:180;display:flex;align-items:center;justify-content:center;gap:24px;padding:14px 20px;background:#fff;border-top:1px solid #bfd9e3;box-shadow:0 -4px 18px #0732410b}
+.slide-controls button{font:600 17px Arial;padding:12px 24px;border:1px solid #bed8e2;border-radius:9px;background:white;color:#123b4b;cursor:pointer;min-height:46px}
+.slide-controls button:last-child{background:#123b4b;color:white}.slide-controls button:disabled{opacity:.4;cursor:default}
+#slideStatus{font-size:16px;min-width:240px;text-align:center}
+.notebook-page,.worksheet-slide{height:auto!important;min-height:0!important;overflow:visible!important}
+.example-deck{min-height:0!important}.clean-example-workspace{grid-template-columns:1fr!important;gap:18px!important}
+.example-question-pane{max-width:1100px;width:100%;margin:auto}.example-question h3{font-size:clamp(24px,2.2vw,32px)!important;line-height:1.5!important}
+.example-board-panel{min-width:0}.board-prompt-pin{display:none!important}
+.clean-example-workspace .board-paper{height:360px!important;min-height:360px!important}
+.example-question-pane .source-extract{width:100%;max-width:1040px;height:auto!important;max-height:none!important;object-fit:contain}
+.reveal-panel{display:none!important;opacity:1!important;transform:none!important;overflow:visible!important;transition:none!important}
+.reveal-panel.open{display:block!important}.worked-step{display:grid!important;grid-template-columns:32px minmax(0,1fr)!important;gap:12px;margin:12px 0!important;align-items:start!important}
+.worked-step p{font-size:20px!important;line-height:1.7!important;overflow-wrap:anywhere;margin:0!important}.solution-panel{height:auto!important;max-height:none!important;padding:24px!important}
+.solution-modal{z-index:10000!important}.solution-modal-card{width:min(1060px,96vw)!important;max-height:90dvh!important;padding:30px!important;overscroll-behavior:contain}.solution-modal-card h3{line-height:1.5!important}
+.solution-close{position:sticky!important;float:right;top:0!important;z-index:2;min-width:44px;min-height:44px}
+.teach-list li,.teach-rule,.method-card li p,.question-card p{font-size:20px!important;line-height:1.6!important}
+.sixteen-grid{grid-template-rows:none!important;height:auto!important;min-height:0!important;gap:22px!important}.compact-question{height:auto!important;min-height:180px!important}.compact-question>p{font-size:21px!important;line-height:1.6!important}
+.question-diagram{height:auto!important}.question-diagram svg{height:auto!important;max-height:320px!important}
+.source-credit{display:none!important}.source-extract{max-height:none!important;height:auto!important}.textbook-section{max-width:1180px;margin:0 auto!important}.sheet-stack{gap:0}.worksheet-actions{flex-wrap:wrap}
+.sheet-action,.answer-toggle,.flow-button strong,.mini-tool{font-size:14px!important;min-height:36px}.flow-nav{overflow:auto}.flow-button{flex-shrink:0}
+.lesson-end{display:none!important}.example-solution-toggle{position:static!important;margin:20px 0!important;font-size:18px!important;padding:16px!important}
+.print-frame{position:fixed;width:1px;height:1px;bottom:0;left:0;border:0;opacity:0;pointer-events:none}
+@media(max-width:760px){.slide-controls{gap:8px;padding:10px}.slide-controls button{font-size:14px;padding:10px}#slideStatus{font-size:13px;min-width:0;flex:1}.top-actions{flex-wrap:wrap}.top-lesson-btn{font-size:12px!important}.clean-example-workspace{grid-template-columns:1fr!important}.compact-question>p{font-size:19px!important}.notebook-page,.worksheet-slide{padding:18px!important}.worked-step p{font-size:18px!important}.solution-modal-card{padding:18px!important}}
+@media print{.slide-controls{display:none!important}}

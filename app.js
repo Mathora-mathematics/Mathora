@@ -19,6 +19,7 @@ const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 let currentIndex=0;
 let exampleIndex=0;
 let sectionObserver=null;
+let slides=[], slideIndex=0;
 const boardStates=new Map();
 
 function esc(v){
@@ -156,15 +157,15 @@ function boardMarkup(id,key,teach=false){
 }
 function exampleCard(l,d,e,i){
  const diagram=VERIFIED.render(e.verifiedDiagram);
- const question=e.sourceQuestion?sourceImage(e.sourceQuestion,e.source):"";
- const answer=e.sourceSolution?sourceImage(e.sourceSolution,"Original worked solution — "+e.source):"";
+ const question=e.sourceQuestion?sourceImage(e.sourceQuestion,"Example question"):"";
+ const answer=e.sourceSolution?sourceImage(e.sourceSolution,"Worked solution"):"";
  return '<article class="example-card '+(i===exampleIndex?"active":"")+'" data-example="'+i+'">'+
   '<div class="example-topline"><span class="example-number">EXAMPLE '+(i+1)+'</span><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
   '<div class="example-workspace example-split-workspace clean-example-workspace">'+
-    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(e.prompt)+'</h3></div>'+question+(e.source?'<p class="source-credit">'+esc(e.source)+'</p>':'')+
+    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(/^Coursebook worked example/.test(e.prompt)?'Work through the question below.':e.prompt)+'</h3></div>'+question+
       (diagram?'<div class="example-diagram-panel">'+diagram+'</div>':"")+
     '</aside>'+
-    '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
+    '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(/^Coursebook worked example/.test(e.prompt)?'Work through the question below.':e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
   '</div>'+
   '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Solution</button>'+
   '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+answer+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
@@ -181,14 +182,14 @@ function examplesHTML(l,d){
 }
 
 function worksheetHeader(l,title,id,page,total){
- return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print</button></div></div>'+
+ return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
   '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
 }
 function questionCard(l,x,globalIndex,kind){
  const diagram=VERIFIED.render(x.verifiedDiagram);
  return '<article class="worksheet-question compact-question '+(diagram?"has-diagram":"")+'">'+
   '<div class="worksheet-q-head"><span class="worksheet-q-number">'+String(globalIndex+1).padStart(2,"0")+'</span><button class="answer-toggle no-print solution-btn" data-bank="'+kind+'" data-index="'+globalIndex+'" type="button">Solution</button></div>'+
-  '<p>'+fmt(x.prompt)+'</p>'+(x.source?'<p class="source-credit">'+esc(x.source)+'</p>':'')+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
+  '<p>'+fmt(x.prompt)+'</p>'+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
  '</article>';
 }
 function solvedQuestionSets(l,d){
@@ -205,23 +206,20 @@ function solvedQuestionSets(l,d){
  return {practice,homework};
 }
 function sourceImage(asset,alt){
- return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+asset.width+'" height="'+asset.height+'" loading="lazy" alt="'+esc(alt)+'"></a>';
+ return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+asset.width+'" height="'+asset.height+'" loading="lazy" decoding="async" alt="'+esc(alt)+'"></a>';
 }
 function sourceMaterials(l,kind){
  const b=BOOKS[l.id];if(!b)return "";
- const assets=b[kind]||[];if(!assets.length)return "";
- const ox=kind==='homework';
- const assigned=b[kind+'Assignment']||(ox?'Complete the questions for this topic shown below.':'Work through the selected exercise, starting with routine questions and progressing to applications.');
- return '<section class="textbook-section print-sheet" data-print-sheet="'+kind+'"><div class="section-head"><div><span class="section-kicker">'+(ox?'EXAM SUCCESS':'CAMBRIDGE COURSEBOOK')+'</span><h2>'+(ox?'Textbook homework':'Textbook practice')+'</h2></div></div><p class="textbook-assignment">'+esc(assigned)+'</p>'+(b.supportingSelection?'<p class="source-credit">Supporting selection for this objective; the scheme of work does not specify a textbook exercise.</p>':'')+'<div class="source-pages">'+assets.map((a,i)=>'<details class="source-page" '+(i===0?'open':'')+'><summary>Page '+a.page+' · '+esc(a.heading||'Selected questions')+'</summary><p class="source-credit">'+(a.book==='oxford'?'Bettison & Taylor, Exam Success (2021)':'Morrison & Hamshaw, Cambridge IGCSE Mathematics (2023)')+' · printed p. '+a.page+' · PDF p. '+a.pdfPage+'</p>'+sourceImage(a,'Original '+(ox?'Exam Success':'Coursebook')+' questions and diagrams, printed page '+a.page)+'</details>').join('')+'</div></section>';
+ return (b[kind]||[]).map((a,i,arr)=>'<article class="worksheet-slide textbook-section print-sheet" data-print-sheet="'+kind+'">'+worksheetHeader(l,kind==='homework'?'Homework':'Independent practice',kind,i+1,arr.length).replace(/<button class="sheet-action reveal-all-btn"[\s\S]*?<\/button>/,'')+'<p class="textbook-assignment">'+esc(b[kind+'Assignment']||'Complete the questions below. Show clear working.')+'</p>'+sourceImage(a,'Questions and diagrams')+'</article>').join('');
 }
 function practiceHTML(l,d){
  const bank=solvedQuestionSets(l,d).practice;
  window.__currentPractice=bank;
  const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
  return '<section class="section-anchor sheet-stack" id="practice">'+sourceMaterials(l,'practice')+pages.map((page,p)=>
-  '<article class="worksheet-slide clean-question-sheet print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Further practice","practice",p+1,pages.length)+
+  '<article class="worksheet-slide clean-question-sheet print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Independent practice","practice",p+1,pages.length)+
    '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"practice")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+(p*8+8)+'</span><strong>Show clear working in your book.</strong></div></article>'
+   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Show clear working in your book.</strong></div></article>'
  ).join("")+'</section>';
 }
 function homeworkHTML(l,d){
@@ -229,9 +227,9 @@ function homeworkHTML(l,d){
  window.__currentHomework=bank;
  const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
  return '<section class="section-anchor sheet-stack" id="homework">'+sourceMaterials(l,'homework')+pages.map((page,p)=>
-  '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Further homework","homework",p+1,pages.length)+
+  '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",p+1,pages.length)+
    '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"homework")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+(p*8+8)+'</span><strong>Solutions are available on screen.</strong></div></article>'
+   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Solutions are available on screen.</strong></div></article>'
  ).join("")+
  '<div class="lesson-end no-print"><div><span>FINISHED</span><strong>'+esc(l.title)+'</strong></div><button id="nextFromHomework" class="next-lesson-button" type="button">Next lesson <span>→</span></button></div></section>';
 }
@@ -239,9 +237,9 @@ function homeworkHTML(l,d){
 function renderNotebook(){
  const l=lesson(),d=data(),sm=sow(),root=$("#notebook");
  if(!l||!d){root.innerHTML='<div class="page-loading">This lesson pack is missing from the content data.</div>';return;}
+ boardStates.forEach(state=>{state.ro?.disconnect();});
  root.innerHTML=openingHTML(l,d,sm)+teachHTML(l,d,sm)+examplesHTML(l,d)+practiceHTML(l,d)+homeworkHTML(l,d);
- typeset(root);
- bindRevealButtons();bindTargets();bindExamples();bindBoards();bindPrint();bindWorksheetSolutions();bindSectionObserver();
+ bindRevealButtons();bindTargets();bindExamples();bindBoards();bindPrint();bindWorksheetSolutions();buildSlides();
  $("#nextFromHomework")?.addEventListener("click",()=>goLesson(1));
 }
 
@@ -253,29 +251,38 @@ function bindRevealButtons(){
  }));
 }
 function bindTargets(){
- $$("[data-target]").forEach(btn=>btn.addEventListener("click",()=>{
-   const target=document.getElementById(btn.dataset.target);if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
- }));
+ $$("[data-target]").forEach(btn=>{btn.onclick=()=>{const n=slides.findIndex(x=>x.section===btn.dataset.target);if(n>=0)showSlide(n);};});
 }
-function bindSectionObserver(){
- if(sectionObserver)sectionObserver.disconnect();
- sectionObserver=new IntersectionObserver(entries=>{
-   const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-   if(!visible)return;
-   $$(".flow-button").forEach(b=>b.classList.toggle("active",b.dataset.target===visible.target.id));
- },{rootMargin:"-150px 0px -55% 0px",threshold:[.08,.2,.45]});
- $$(".section-anchor").forEach(s=>sectionObserver.observe(s));
+function buildSlides(){
+ slides=[{section:'opening',node:$('#opening'),label:'Starter'},{section:'teach',node:$('#teach'),label:'Key ideas'},
+ ...$$('.example-card').map((node,i)=>({section:'examples',node,label:'Example '+(i+1)})),
+ ...$$('#practice .print-sheet').map((node,i)=>({section:'practice',node,label:'Independent practice '+(i+1)})),
+ ...$$('#homework .print-sheet').map((node,i)=>({section:'homework',node,label:'Homework '+(i+1)}))];
+ let nav=$('#slideControls');if(!nav){nav=document.createElement('nav');nav.id='slideControls';nav.className='slide-controls no-print';nav.setAttribute('aria-label','Slide navigation');nav.innerHTML='<button id="slidePrev" type="button">← Previous</button><span id="slideStatus" aria-live="polite"></span><button id="slideNext" type="button">Next →</button>';document.body.append(nav);$('#slidePrev').onclick=()=>showSlide(slideIndex-1);$('#slideNext').onclick=()=>showSlide(slideIndex+1);}
+ showSlide(0,false);
 }
-
+function showSlide(index,scroll=true){
+ if(index<0||index>=slides.length)return;slideIndex=index;const current=slides[index];
+ $$('.section-anchor').forEach(el=>el.hidden=el.id!==current.section);
+ slides.forEach(x=>{if(x.section!=='opening'&&x.section!=='teach')x.node.hidden=x!==current;});
+ if(current.section==='examples'){
+  exampleIndex=$$('.example-card').indexOf(current.node);
+  $$('.example-card').forEach((c,i)=>c.classList.toggle('active',i===exampleIndex));
+  $$('#exampleDots button').forEach((c,i)=>c.classList.toggle('active',i===exampleIndex));
+  $('#exampleCounter').textContent=(exampleIndex+1)+' / '+$$('.example-card').length;
+ }
+ $$('.flow-button').forEach(b=>b.classList.toggle('active',b.dataset.target===current.section));
+ $('#slideStatus').textContent=current.label+' · '+(index+1)+' / '+slides.length;
+ $('#slidePrev').disabled=index===0;$('#slideNext').disabled=index===slides.length-1;
+ typeset(current.node);requestAnimationFrame(()=>bindBoards(current.node));
+ if(scroll)window.scrollTo({top:0,behavior:'instant'});
+}
 function bindExamples(){
  const cards=$$(".example-card"),dots=$$("#exampleDots button"),counter=$("#exampleCounter"),count=cards.length;
  if(!count)return;exampleIndex=Math.min(exampleIndex,count-1);
  function show(next){
-   exampleIndex=(next+count)%count;
-   cards.forEach((c,i)=>c.classList.toggle("active",i===exampleIndex));
-   dots.forEach((x,i)=>x.classList.toggle("active",i===exampleIndex));
-   counter.textContent=(exampleIndex+1)+" / "+count;
-   setTimeout(()=>{typeset(cards[exampleIndex]);bindBoards(cards[exampleIndex]);},40);
+  const n=Math.max(0,Math.min(count-1,next));
+  showSlide(slides.findIndex(x=>x.node===cards[n]));
  }
  $("#examplePrev")?.addEventListener("click",()=>show(exampleIndex-1));
  $("#exampleNext")?.addEventListener("click",()=>show(exampleIndex+1));
@@ -285,7 +292,7 @@ function bindExamples(){
 function boardStorageKey(canvas){return "mathora-board:"+lesson().id+":"+(canvas.dataset.boardKey||canvas.id);}
 function loadBoardState(canvas){
  const key=boardStorageKey(canvas);
- if(boardStates.has(key))return boardStates.get(key);
+ if(boardStates.has(key)){const state=boardStates.get(key);state.canvas=canvas;state.ctx=null;return state;}
  let saved=null;try{saved=JSON.parse(localStorage.getItem(key)||"null");}catch(e){}
  const state={key,strokes:Array.isArray(saved?.strokes)?saved.strokes:[],redo:[],tool:"pen",colour:"#073241",size:3,lastPen:0,canvas,ctx:null,ro:null};
  boardStates.set(key,state);return state;
@@ -359,13 +366,22 @@ function bindBoard(canvas){
    });
  }
 }
-function bindBoards(root=document){$$("canvas[data-board-key]",root).forEach(bindBoard);}
+function bindBoards(root=document){$$("canvas[data-board-key]",root).filter(c=>c.getBoundingClientRect().width>0).forEach(bindBoard);}
 
 function bindPrint(){
- $$("[data-print-target]").forEach(button=>button.addEventListener("click",()=>{
-  const cls=button.dataset.printTarget==="homework"?"print-homework":"print-practice";
-  document.body.classList.add(cls);const cleanup=()=>document.body.classList.remove(cls);
-  window.addEventListener("afterprint",cleanup,{once:true});setTimeout(()=>window.print(),60);setTimeout(cleanup,3500);
+ $$("[data-print-target]").forEach(button=>button.addEventListener("click",async()=>{
+  const sheet=button.closest('.print-sheet');if(!sheet)return;
+  const frame=document.createElement('iframe');frame.className='print-frame';frame.title='Printable worksheet';document.body.append(frame);
+  const doc=frame.contentDocument,copy=sheet.cloneNode(true);copy.hidden=false;
+  copy.querySelectorAll('.no-print,button,.source-credit').forEach(el=>el.remove());
+  copy.querySelectorAll('img').forEach(img=>{img.src=new URL(img.getAttribute('src'),location.href).href;img.loading='eager';});
+  const ready=new Promise(resolve=>frame.onload=resolve);
+  doc.open();doc.write('<!doctype html><html><head><title>'+esc(lesson().title)+' — '+(button.dataset.printTarget==='homework'?'Homework':'Independent practice')+'</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><style>@page{size:A4 portrait;margin:12mm}*{box-sizing:border-box}body{margin:0;font:12pt Arial,sans-serif;color:#153b4a}h2{font-size:21pt;margin:10px 0}p{line-height:1.5} .worksheet-brand span,.sheet-kicker{font-size:10pt;display:block}.worksheet-brand strong{font-size:15pt}.sheet-meta{display:flex;justify-content:space-between;margin:12px 0 20px}.sheet-meta label:first-child{min-width:55%;border-bottom:1px solid #abc}.worksheet-question-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.worksheet-question{break-inside:avoid;border-top:1px solid #bcd;padding:10px 4px;min-height:48mm}.worksheet-question p{font-size:12pt}.worksheet-q-number{font-weight:bold}.question-diagram svg{width:100%;height:auto;max-height:52mm}.source-extract{display:block;width:100%;height:auto;max-height:225mm;object-fit:contain;object-position:top}.source-image-link{display:block}.textbook-assignment{font-size:10pt;margin:8px 0}.worksheet-footer{font-size:9pt;border-top:1px solid #ccc;margin-top:14px;padding-top:8px;display:flex;justify-content:space-between}.worksheet-logo{display:none}.math{display:inline-block}.katex{font-size:1.05em}.worksheet-top{border-bottom:2px solid #7dc8de;padding-bottom:10px}</style></head><body>'+copy.outerHTML+'</body></html>');doc.close();
+  await ready;
+  await Promise.all(Array.from(doc.images).map(img=>img.decode().catch(()=>{})));
+  await doc.fonts.ready;
+  frame.contentWindow.addEventListener('afterprint',()=>frame.remove(),{once:true});
+  frame.contentWindow.focus();frame.contentWindow.print();
  }));
 }
 function ensureSolutionModal(){
@@ -383,7 +399,7 @@ function bindWorksheetSolutions(){
   $("#solutionTitle").innerHTML=fmt(item.prompt);
   $("#solutionBody").innerHTML=(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("");
   if(item.solutionDiagram)$("#solutionBody").innerHTML+=VERIFIED.render(item.solutionDiagram);
-  typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");
+  typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");$(".solution-close",modal)?.focus();
  };
  $$(".solution-btn").forEach(btn=>btn.addEventListener("click",()=>{
   const bank=btn.dataset.bank==="practice"?(window.__currentPractice||[]):(window.__currentHomework||[]);
@@ -394,7 +410,7 @@ function bindWorksheetSolutions(){
    const page=Number(btn.dataset.page)||1,start=(page-1)*8,items=bank.slice(start,start+8);
    $("#solutionTitle").textContent=(btn.dataset.revealAll==="practice"?"Practice":"Homework")+" solutions "+(start+1)+"–"+(start+items.length);
    $("#solutionBody").innerHTML=items.map((item,i)=>'<section class="bulk-solution"><h4>'+(start+i+1)+'. '+fmt(item.prompt)+'</h4>'+(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</section>').join("");
-   typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");
+   typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");$(".solution-close",modal)?.focus();
  }));
 }
 
@@ -426,10 +442,11 @@ function start(){
  $("#lessonSearch")?.addEventListener("input",e=>renderLessonDrawer(e.target.value));
  $("#openLessonsBtn")?.addEventListener("click",openDrawer);$("#closeLessonsBtn")?.addEventListener("click",closeDrawer);
  $("#lessonDrawer")?.addEventListener("click",e=>{if(e.target.id==="lessonDrawer")closeDrawer();});
- document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();$$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");}});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();$$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");$("#solutionModal")?.classList.remove("open");$("#solutionModal")?.setAttribute("aria-hidden","true");}});
  $("#focusBtn")?.addEventListener("click",e=>{document.body.classList.toggle("focus-mode");$(".focus-text",e.currentTarget).textContent=document.body.classList.contains("focus-mode")?"Exit focus":"Focus";});
  $("#prevLessonBtn")?.addEventListener("click",()=>goLesson(-1));$("#nextLessonBtn")?.addEventListener("click",()=>goLesson(1));
  window.addEventListener("hashchange",()=>{const old=currentIndex;initFromHash();if(old!==currentIndex){exampleIndex=0;renderAll();}});
+ document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA","SELECT","BUTTON"].includes(e.target.tagName)||$(".solution-modal.open")||$(".lesson-drawer.open"))return;if(e.key==="ArrowRight"){e.preventDefault();showSlide(slideIndex+1);}if(e.key==="ArrowLeft"){e.preventDefault();showSlide(slideIndex-1);}});
  renderAll();document.documentElement.dataset.ready="1";
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();

@@ -75,6 +75,17 @@ window.TEXTBOOK_CONTENT = {
         "steps": [],
         "sourcePage": 276,
         "sourcePdfPage": 288
+      },
+      {
+        "prompt": "Write [[5^4\\times\\sqrt7]] in exact form, then round to 3 significant figures.",
+        "steps": [
+          "[[5^4=625]], so the exact answer is [[625\\sqrt7]].",
+          "[[625\\sqrt7\\approx1653.5946]], which is [[1650]] to 3 significant figures."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 20; Question 6(c); exact-form extension",
+        "sourcePage": 20,
+        "sourcePdfPage": 22,
+        "sourceBook": "oxford"
       }
     ],
     "practiceAssignment": "Exercise 9.7: simplify and combine surds. Then Exercise 9.8, Questions 1–4 only. Work through the subparts progressively.",
@@ -122,14 +133,25 @@ window.TEXTBOOK_CONTENT = {
           "width": 751,
           "height": 143
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p280-example1-solution.webp",
-          "width": 751,
-          "height": 381
-        },
-        "steps": [],
+        "steps": [
+          "(a) Multiply by the conjugate [[2-\\sqrt5]].",
+          "[[\\frac{3}{2+\\sqrt5}=\\frac{3(2-\\sqrt5)}{4-5}=3\\sqrt5-6]].",
+          "(b) Multiply numerator and denominator by [[3+\\sqrt7]].",
+          "[[\\frac{4+\\sqrt2}{3-\\sqrt7}=\\frac{(4+\\sqrt2)(3+\\sqrt7)}{9-7}=\\frac{12+4\\sqrt7+3\\sqrt2+\\sqrt{14}}2]]."
+        ],
         "sourcePage": 280,
         "sourcePdfPage": 292
+      },
+      {
+        "prompt": "Write [[4^4\\div\\sqrt{20}]] in exact form with a rational denominator.",
+        "steps": [
+          "[[4^4=256]], [[\\sqrt{20}=2\\sqrt5]], so [[\\frac{256}{\\sqrt{20}}=\\frac{128}{\\sqrt5}]].",
+          "Multiply top and bottom by [[\\sqrt5]]: [[\\frac{128\\sqrt5}{5}]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 20; Question 6(d); rationalisation extension",
+        "sourcePage": 20,
+        "sourcePdfPage": 22,
+        "sourceBook": "oxford"
       }
     ],
     "practiceAssignment": "Exercise 9.8, Questions 5–7, followed by Exercise 9.9. Use the conjugate where the denominator has two terms.",
@@ -187,7 +209,32 @@ window.TEXTBOOK_CONTENT = {
         "book": "oxford"
       }
     ],
-    "examples": [],
+    "examples": [
+      {
+        "prompt": "Factorise and simplify [[\\frac{x^2-4x}{x^2-x-12}]]. State the excluded values.",
+        "steps": [
+          "[[x^2-4x=x(x-4)]], [[x^2-x-12=(x-4)(x+3)]].",
+          "Cancel the factor [[x-4]]: [[\\frac{x}{x+3}]].",
+          "The original denominator excludes [[x=4]] and [[x=-3]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 60; Worked example",
+        "sourcePage": 60,
+        "sourcePdfPage": 62,
+        "sourceBook": "oxford"
+      },
+      {
+        "prompt": "Factorise and simplify [[\\frac{x^2-7x+12}{2x^2-7x+3}]].",
+        "steps": [
+          "[[x^2-7x+12=(x-3)(x-4)]].",
+          "[[2x^2-7x+3=(x-3)(2x-1)]].",
+          "[[\\frac{x-4}{2x-1}]], where [[x\\ne3,\\frac12]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 60; Worked example",
+        "sourcePage": 60,
+        "sourcePdfPage": 62,
+        "sourceBook": "oxford"
+      }
+    ],
     "practiceAssignment": "Scheme of work: pages 464-465 Ex 14.13  pages 466-467 Ex 14.14\nStart with the first questions, then work towards applications and reasoning. Show clear working.",
     "homeworkAssignment": "Page 61: Question 4 (factorise and simplify)."
   },
@@ -225,7 +272,30 @@ window.TEXTBOOK_CONTENT = {
         "book": "oxford"
       }
     ],
-    "examples": [],
+    "examples": [
+      {
+        "prompt": "Simplify [[\\frac{x+1}{3}+\\frac{x-3}{4}]].",
+        "steps": [
+          "The lowest common denominator is 12.",
+          "[[\\frac{4(x+1)+3(x-3)}{12}=\\frac{4x+4+3x-9}{12}=\\frac{7x-5}{12}]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 59; Worked example",
+        "sourcePage": 59,
+        "sourcePdfPage": 61,
+        "sourceBook": "oxford"
+      },
+      {
+        "prompt": "Simplify [[\\frac{3(4x-1)}2-\\frac{2(5x+3)}3]].",
+        "steps": [
+          "Use a denominator of 6.",
+          "[[\\frac{9(4x-1)-4(5x+3)}6=\\frac{36x-9-20x-12}6=\\frac{16x-21}6]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 59; Worked example",
+        "sourcePage": 59,
+        "sourcePdfPage": 61,
+        "sourceBook": "oxford"
+      }
+    ],
     "practiceAssignment": "Scheme of work: pages 462-463 Ex 14.12\nStart with the first questions, then work towards applications and reasoning. Show clear working.",
     "homeworkAssignment": "Page 61: Questions 1–3 (add and subtract algebraic fractions)."
   },
@@ -298,12 +368,12 @@ window.TEXTBOOK_CONTENT = {
           "width": 748,
           "height": 207
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p41-example2-solution.webp",
-          "width": 748,
-          "height": 180
-        },
-        "steps": [],
+        "steps": [
+          "(a) [[4x]].",
+          "(b) [[x+5]].",
+          "(c) [[6x-2]].",
+          "(d) [[\\frac{x}{2}]]."
+        ],
         "sourcePage": 41,
         "sourcePdfPage": 54
       }
@@ -473,12 +543,12 @@ window.TEXTBOOK_CONTENT = {
           "width": 752,
           "height": 161
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p329-example1-solution.webp",
-          "width": 752,
-          "height": 527
-        },
-        "steps": [],
+        "steps": [
+          "(a) [[x^2-3x=x(x-3)=0]], so [[x=0]] or [[x=3]].",
+          "(b) [[x^2-7x+12=(x-3)(x-4)=0]], so [[x=3]] or [[x=4]].",
+          "(c) Rearrange: [[x^2+6x-16=0]]. Factorise: [[(x+8)(x-2)=0]]. Hence [[x=-8]] or [[x=2]].",
+          "(d) [[x^2-8x+16=(x-4)^2=0]], so [[x=4]]."
+        ],
         "sourcePage": 329,
         "sourcePdfPage": 341
       },
@@ -580,12 +650,11 @@ window.TEXTBOOK_CONTENT = {
           "width": 748,
           "height": 133
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p184-example1-solution.webp",
-          "width": 748,
-          "height": 121
-        },
-        "steps": [],
+        "steps": [
+          "[[x\\ne0]]. Multiply every term by [[6x]].",
+          "[[4x+2=4-x]].",
+          "[[5x=2]], so [[x=\\frac25]]. This satisfies the restriction."
+        ],
         "sourcePage": 184,
         "sourcePdfPage": 196
       }
@@ -689,12 +758,12 @@ window.TEXTBOOK_CONTENT = {
           "width": 750,
           "height": 232
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p436-example1-solution.webp",
-          "width": 750,
-          "height": 203
-        },
-        "steps": [],
+        "steps": [
+          "Multiply the first equation by 2 and the second by 4: [[3x-4y=20]], [[3x+2y=8]].",
+          "Subtract: [[-6y=12]], so [[y=-2]].",
+          "[[3x+2(-2)=8]], so [[x=4]].",
+          "Check: [[(12+8)/2=10]] and [[(12-4)/4=2]]."
+        ],
         "sourcePage": 436,
         "sourcePdfPage": 448
       }
@@ -729,19 +798,18 @@ window.TEXTBOOK_CONTENT = {
     ],
     "examples": [
       {
-        "prompt": "Coursebook worked example — page 605",
+        "prompt": "The graphs [[y=2+x]] and [[y=x^2-3x+4]] are shown. Estimate the x-coordinates of their intersections.",
         "source": "Morrison & Hamshaw, Cambridge IGCSE Mathematics (2023), p. 605",
         "sourceQuestion": {
-          "image": "assets/textbook/cambridge-p605-question-fixed.webp",
-          "width": 726,
-          "height": 494
+          "image": "assets/textbook/cambridge-p605-graph-complete.webp",
+          "width": 297,
+          "height": 489
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p605-example1-solution.webp",
-          "width": 744,
-          "height": 80
-        },
-        "steps": [],
+        "steps": [
+          "Read the x-coordinates where the line and curve cross: [[x\\approx0.6]] and [[x\\approx3.4]].",
+          "Check algebraically: [[x+2=x^2-3x+4]], hence [[x^2-4x+2=0]].",
+          "[[x=2\\pm\\sqrt2\\approx0.586,\\ 3.414]], consistent with the graph."
+        ],
         "sourcePage": 605,
         "sourcePdfPage": 615
       }
@@ -827,12 +895,11 @@ window.TEXTBOOK_CONTENT = {
           "width": 746,
           "height": 113
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p766-example1-solution.webp",
-          "width": 746,
-          "height": 212
-        },
-        "steps": [],
+        "steps": [
+          "[[m=6-\\frac{12}{p}]]. Multiply by [[p]]: [[mp=6p-12]].",
+          "Collect the terms in [[p]]: [[p(m-6)=-12]].",
+          "[[p=\\frac{12}{6-m}]], where [[m\\ne6]]."
+        ],
         "sourcePage": 766,
         "sourcePdfPage": 775
       }
@@ -912,7 +979,19 @@ window.TEXTBOOK_CONTENT = {
         "book": "oxford"
       }
     ],
-    "examples": [],
+    "examples": [
+      {
+        "prompt": "Solve [[-7x>21]].",
+        "steps": [
+          "Divide both sides by [[-7]]. Dividing by a negative reverses the inequality.",
+          "[[x<-3]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 69; Worked example",
+        "sourcePage": 69,
+        "sourcePdfPage": 71,
+        "sourceBook": "oxford"
+      }
+    ],
     "practiceAssignment": "Scheme of work: page 444 Ex 14.4\nStart with the first questions, then work towards applications and reasoning. Show clear working.",
     "homeworkAssignment": "Page 71: Question 14."
   },
@@ -1136,12 +1215,11 @@ window.TEXTBOOK_CONTENT = {
           "width": 750,
           "height": 230
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p84-example1-solution.webp",
-          "width": 750,
-          "height": 69
-        },
-        "steps": [],
+        "steps": [
+          "Alternate angles give [[a=47^\\circ]] and [[c=62^\\circ]].",
+          "Angles in triangle ABC total [[180^\\circ]], so [[b=180^\\circ-47^\\circ-62^\\circ=71^\\circ]].",
+          "Check the straight line: [[47^\\circ+71^\\circ+62^\\circ=180^\\circ]]."
+        ],
         "sourcePage": 84,
         "sourcePdfPage": 97
       }
@@ -1201,12 +1279,13 @@ window.TEXTBOOK_CONTENT = {
           "width": 992,
           "height": 694
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p93-example1-solution.webp",
-          "width": 1008,
-          "height": 105
-        },
-        "steps": [],
+        "steps": [
+          "(a) Adjacent angles in a parallelogram add to [[180^\\circ]]: [[x=110^\\circ]]. Opposite angles are equal: [[y=70^\\circ]], [[z=110^\\circ]].",
+          "(b) At Q, [[x+65^\\circ=90^\\circ]], so [[x=25^\\circ]]. Alternate angles give [[y=65^\\circ]].",
+          "(c) The fourth angle of the quadrilateral is [[360^\\circ-70^\\circ-145^\\circ-80^\\circ=65^\\circ]].",
+          "Triangle KXY is isosceles, so its two base angles are both [[65^\\circ]].",
+          "Therefore [[x=180^\\circ-65^\\circ-65^\\circ=50^\\circ]]."
+        ],
         "sourcePage": 93,
         "sourcePdfPage": 106
       }
@@ -1434,12 +1513,11 @@ window.TEXTBOOK_CONTENT = {
           "width": 754,
           "height": 307
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p197-example1-solution.webp",
-          "width": 754,
-          "height": 967
-        },
-        "steps": [],
+        "steps": [
+          "Area of rectangle: [[7\\times5=35\\text{ cm}^2]].",
+          "Area of triangle: [[\\frac12\\times5\\times6=15\\text{ cm}^2]].",
+          "Total area: [[35+15=50\\text{ cm}^2]]."
+        ],
         "sourcePage": 197,
         "sourcePdfPage": 209
       }
@@ -1722,19 +1800,12 @@ window.TEXTBOOK_CONTENT = {
     ],
     "examples": [
       {
-        "prompt": "Coursebook worked example — page 370",
+        "prompt": "After six tests, Gad has a mean score of 48%. He scores 83% in a seventh test. Find (a) his total for the first six tests and (b) his new mean.",
         "source": "Morrison & Hamshaw, Cambridge IGCSE Mathematics (2023), p. 370",
-        "sourceQuestion": {
-          "image": "assets/textbook/cambridge-p370-example1-question.webp",
-          "width": 745,
-          "height": 184
-        },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p370-example1-solution.webp",
-          "width": 745,
-          "height": 356
-        },
-        "steps": [],
+        "steps": [
+          "(a) Total score for six tests: [[6\\times48=288]].",
+          "(b) Total for seven tests: [[288+83=371]]. Mean: [[371\\div7=53\\%]]."
+        ],
         "sourcePage": 370,
         "sourcePdfPage": 382
       }
@@ -1926,12 +1997,11 @@ window.TEXTBOOK_CONTENT = {
           "width": 754,
           "height": 203
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p385-example1-solution.webp",
-          "width": 754,
-          "height": 102
-        },
-        "steps": [],
+        "steps": [
+          "Allbright has a higher median (98 cm versus 95 cm), but also a larger IQR (13 cm versus 4 cm), so its middle half of heights is more spread out.",
+          "Barstows is more consistent. Choosing it is defensible if a dependable height is the priority.",
+          "The median and IQR alone do not determine which company is more likely to produce the tallest individual flower; information about the upper tail would be needed."
+        ],
         "sourcePage": 385,
         "sourcePdfPage": 397
       }
@@ -2128,12 +2198,10 @@ window.TEXTBOOK_CONTENT = {
           "width": 754,
           "height": 446
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p135-example1-solution.webp",
-          "width": 754,
-          "height": 350
-        },
-        "steps": [],
+        "steps": [
+          "(a) The computer-games sector is [[120^\\circ]], so the fraction is [[\\frac{120}{360}=\\frac13]].",
+          "(b) Sleeping occupies [[210^\\circ]], so the time is [[\\frac{210}{360}\\times24=14]] hours."
+        ],
         "sourcePage": 135,
         "sourcePdfPage": 147
       }
@@ -2462,12 +2530,13 @@ window.TEXTBOOK_CONTENT = {
           "width": 747,
           "height": 798
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p684-example1-solution.webp",
-          "width": 747,
-          "height": 411
-        },
-        "steps": [],
+        "steps": [
+          "(a) Total: [[50]] students, read from the final cumulative frequency.",
+          "(b) Median is the [[25]]th value; read across from cumulative frequency 25, then down: approximately [[38]] minutes.",
+          "(c) At 10 minutes the cumulative frequency is approximately [[4]], so 4 students.",
+          "(d) At 30 minutes the cumulative frequency is about 18, so [[50-18=32]] students took longer.",
+          "(e) Between 40 and 60 minutes: [[42-28=14]] students."
+        ],
         "sourcePage": 684,
         "sourcePdfPage": 693
       }
@@ -2630,12 +2699,10 @@ window.TEXTBOOK_CONTENT = {
           "width": 754,
           "height": 446
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p135-example1-solution.webp",
-          "width": 754,
-          "height": 350
-        },
-        "steps": [],
+        "steps": [
+          "(a) The computer-games sector is [[120^\\circ]], so the fraction is [[\\frac{120}{360}=\\frac13]].",
+          "(b) Sleeping occupies [[210^\\circ]], so the time is [[\\frac{210}{360}\\times24=14]] hours."
+        ],
         "sourcePage": 135,
         "sourcePdfPage": 147
       }
@@ -2789,12 +2856,11 @@ window.TEXTBOOK_CONTENT = {
           "width": 741,
           "height": 136
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p771-example1-solution.webp",
-          "width": 741,
-          "height": 152
-        },
-        "steps": [],
+        "steps": [
+          "(a) [[y=\\sqrt{2x-1}]] requires [[2x-1\\ge0]]. Domain: [[x\\ge\\frac12]]. Range: [[y\\ge0]].",
+          "(b) [[y=\\frac{3x}{2x+1}]] requires [[2x+1\\ne0]]. Domain: all real [[x\\ne-\\frac12]].",
+          "Rearrange: [[y(2x+1)=3x]], so [[x=\\frac{y}{3-2y}]]. Thus [[y\\ne\\frac32]]. Range: all real numbers except [[\\frac32]]."
+        ],
         "sourcePage": 771,
         "sourcePdfPage": 780
       }
@@ -3008,6 +3074,19 @@ window.TEXTBOOK_CONTENT = {
         "steps": [],
         "sourcePage": 294,
         "sourcePdfPage": 306
+      },
+      {
+        "prompt": "In a class of 33 students, 20 like chess, 12 like draughts and 5 like neither. Find how many like both, then how many like only one game.",
+        "steps": [
+          "At least one game: [[33-5=28]].",
+          "Both: [[20+12-28=4]].",
+          "Chess only: [[20-4=16]]; draughts only: [[12-4=8]].",
+          "Exactly one game: [[16+8=24]]."
+        ],
+        "source": "Bettison & Taylor, Exam Success (2021), p. 16; Worked example",
+        "sourcePage": 16,
+        "sourcePdfPage": 18,
+        "sourceBook": "oxford"
       }
     ],
     "practiceAssignment": "Scheme of work: page 286  Ex 9.10  page 288 Ex 9.11  page 291-292 Ex 9.12  page 294-295 Ex 9.13\nStart with the first questions, then work towards applications and reasoning. Show clear working.",
@@ -3065,12 +3144,10 @@ window.TEXTBOOK_CONTENT = {
           "width": 743,
           "height": 154
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p746-example1-solution.webp",
-          "width": 743,
-          "height": 168
-        },
-        "steps": [],
+        "steps": [
+          "[[y=kx^3]]. Substitute [[x=2,y=32]]: [[32=8k]], so [[k=4]].",
+          "The relationship is [[y=4x^3]]. When [[x=5]], [[y=4(125)=500]]."
+        ],
         "sourcePage": 746,
         "sourcePdfPage": 755
       },
@@ -3082,12 +3159,10 @@ window.TEXTBOOK_CONTENT = {
           "width": 742,
           "height": 125
         },
-        "sourceSolution": {
-          "image": "assets/textbook/cambridge-p746-example2-solution.webp",
-          "width": 742,
-          "height": 27
-        },
-        "steps": [],
+        "steps": [
+          "[[F=\\frac{k}{d^2}]]. Substitute [[d=3,F=12]]: [[12=\\frac{k}{9}]], so [[k=108]].",
+          "When [[d=4]], [[F=\\frac{108}{16}=6.75]]."
+        ],
         "sourcePage": 746,
         "sourcePdfPage": 755
       }
