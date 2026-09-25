@@ -35,14 +35,14 @@ function quadratic(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<8){c
 if(i<16){const b=2*(2+k%4),c=-7+k;const h=b/2,constant=c-h*h;return Q("Write [[x^2+"+b+"x"+(c>=0?"+":"")+c+"]] in completed-square form.",["Half the coefficient of x: [["+h+"]].","[[x^2+"+b+"x=(x+"+h+")^2-"+(h*h)+"]].","Final form: [[(x+"+h+")^2"+(constant>=0?"+":"")+constant+"]]."])}
 if(i<24){const a=2+k%3,b=1+k,c=-(2+k%5),D=b*b-4*a*c;return Q("Solve [["+a+"x^2+"+b+"x"+c+"=0]] using the quadratic formula.",["Identify [[a="+a+",b="+b+",c="+c+"]].","Discriminant [[="+D+"]].","[[x=\\frac{-"+b+"\\pm\\sqrt{"+D+"}}{"+(2*a)+"}]]."])}
 const w=2+k%4,add=3+k%3,area=w*(w+add);return Q("A rectangle has width [[x]] and length [[x+"+add+"]]. Its area is "+area+". Find x.",["[[x(x+"+add+")="+area+"]].","[[x^2+"+add+"x-"+area+"=0]].","Factorise: [[(x-"+w+")(x+"+(w+add)+")=0]].","The positive root is [[x="+w+"]]."])});}
-function fractionalEq(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<8){const a=3+k,b=1+k%4,x=4+k,c=x/a+b;return Q("Solve [[\\frac{x}{"+a+"}+"+b+"="+t(c)+"]].",["Subtract "+b+".","Multiply by "+a+".","[[x="+x+"]]."])}
+function fractionalEq(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<8){const a=3+k,b=1+k%4,x=4+k,c=x/a+b;return Q("Solve [[\\frac{x}{"+a+"}+"+b+"="+frac(x+a*b,a)+"]].",["Subtract "+b+".","Multiply by "+a+".","[[x="+x+"]]."])}
 if(i<16){const b=1+k%4,c=2+k%3,x=b+2;const a=c*(x-b);return Q("Solve [[\\frac{"+a+"}{x-"+b+"}="+c+"]].",["State [[x\\ne"+b+"]].","[[ "+a+"="+c+"(x-"+b+") ]].","[[x-"+b+"="+(x-b)+"]].","[[x="+x+"]]."])}
 if(i<24){const b=1+k%3,d=2+k%4,a=2+k,c=3+k%4,num=-(a*d+c*b),den=a-c;return Q("Solve [[\\frac{"+a+"}{x-"+b+"}=\\frac{"+c+"}{x+"+d+"}]].",["Restrictions: [[x\\ne"+b+",-"+d+"]].","[["+a+"(x+"+d+")="+c+"(x-"+b+")]].","[["+(a-c)+"x="+num+"]].","[[x="+frac(num,den)+"]]."])}
 const a=3+k,b=4+(k%3),d=5+k,L=a*b,num=d*L+a,den=a+b;return Q("Solve [[\\frac{x}{"+a+"}+\\frac{x-1}{"+b+"}="+d+"]].",["Multiply by [["+L+"]]: [["+b+"x+"+a+"(x-1)="+(d*L)+"]].","[["+(a+b)+"x-"+a+"="+(d*L)+"]].","[["+(a+b)+"x="+num+"]].","[[x="+frac(num,den)+"]]."])});}
 function simultaneous(linearOnly=true){return Array.from({length:32},(_,i)=>{const k=i%8;if(!linearOnly){const circle=[
  [1,1,25,[[3,4],[-4,-3]]],
  [1,-1,13,[[3,2],[-2,-3]]],
- [-1,2,13,[[-1,3],[3,-1]]],
+ [-1,2,10,[[-1,3],[3,-1]]],
  [0,3,25,[[4,3],[-4,3]]]
 ],para=[
  [1,2,-4,[[3,5],[-2,0]]],
@@ -66,7 +66,7 @@ function rearrange(){const arr=[
 ];return cycle(arr);}
 function numberline(){const specs=[[-2,4,false,true],[-1,5,true,false],[1,6,true,true],[-4,2,false,false],[0,3,false,true],[2,7,true,false],[-5,-1,true,true],[-3,3,false,false]];
 return cycle(specs.map(([a,b,cl,cr])=>()=>Q("Represent [["+a+(cl?"\\le":"<")+"x"+(cr?"\\le":"<")+b+"]] on a number line.",["Use a "+(cl?"closed":"open")+" circle at "+a+".","Use a "+(cr?"closed":"open")+" circle at "+b+".","Shade between the endpoints."],{kind:"numberline",a,b,cl,cr})));}
-function linearIneq(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<16){const a=[3,5,-2,4,-3,6,-5,7][k],b=[4,-7,5,-3,7,8,2,-4][k],x=2+k,c=a*x+b,sg=["<",">","\\ge","\\le"][k%4],flip=a<0;return Q("Solve [["+a+"x"+(b>=0?"+":"")+b+sg+c+"]].",["Isolate the x-term.",flip?"Divide by a negative, so reverse the sign.":"Divide by the coefficient of x.","State the solution clearly."])}
+function linearIneq(){return Array.from({length:32},(_,i)=>{const k=i%8;if(i<16){const a=[3,5,-2,4,-3,6,-5,7][k],b=[4,-7,5,-3,7,8,2,-4][k],x=2+k,c=a*x+b,sg=["<",">","\\ge","\\le"][k%4],flip=a<0;return Q("Solve [["+a+"x"+(b>=0?"+":"")+b+sg+c+"]].",["Isolate the x-term.",flip?"Divide by a negative, so reverse the sign.":"Divide by the coefficient of x.","[[x"+(flip?({"<":">",">":"<","\\ge":"\\le","\\le":"\\ge"}[sg]):sg)+x+"]]."])}
 const a=2+k%3,b=-2+k%5,lo=-3+k,hi=9+k;return Q("Solve [["+lo+"\\le"+a+"x"+(b>=0?"+":"")+b+"<"+hi+"]].",["Subtract the constant throughout.","Divide all three parts by "+a+".","Write the compound solution."])});}
 function graphIneq(region=false){const base=region?[
 ()=>Q("A region is above [[y=x]], below [[y=5]], and right of [[x=1]]. List the inequalities.",["[[y\\ge x]], [[y\\le5]], [[x\\ge1]]."],{kind:"region",v:0}),

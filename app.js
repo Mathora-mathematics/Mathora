@@ -8,6 +8,8 @@ const STARTER_ANSWERS=window.STARTER_ANSWERS||{};
 const SOW=window.SOW_MAP||{};
 const EXTRA=window.EXTRA_EXAMPLES||{};
 const EXAM=window.EXAM_SUCCESS_MAP||{};
+const BOOKS=window.TEXTBOOK_CONTENT||{};
+const VERIFIED=window.VerifiedDiagrams||{render:()=>""};
 const DIAGRAMS=window.MathoraDiagrams||{supports:()=>false,lesson:()=>"",practice:()=>"",question:()=>""};
 const QUESTION_ENGINE=window.MathoraQuestionEngine||{build:()=>({practice:[],homework:[]})};
 
@@ -120,7 +122,7 @@ function teachHTML(l,d,sm){
  const rules=(d.rules||[]).slice(0,5).map(r=>'<div class="teach-rule"><strong>'+fmt(r[0])+'</strong><span>'+fmt(r[1])+'</span></div>').join("");
  const method=(d.method||[]).slice(0,6).map((x,i)=>'<li><span>'+String(i+1).padStart(2,"0")+'</span><p>'+fmt(x)+'</p></li>').join("");
  const mistakes=(d.mistakes||[]).slice(0,5).map(x=>'<li>'+fmt(x)+'</li>').join("");
- const visuals=DIAGRAMS.supports(l.type)?'<div class="visual-models clean-visual-models"><div>'+DIAGRAMS.example(l.id,l.type,6)+'</div><div>'+DIAGRAMS.example(l.id,l.type,7)+'</div></div>':"";
+ const visuals="";
  return '<section class="notebook-page section-anchor" id="teach"><div class="page-margin-line"></div>'+
   '<div class="section-head"><div><span class="section-kicker">02</span><h2>Key ideas</h2></div></div>'+
   '<div class="teach-grid deep-teach clean-teach">'+
@@ -135,7 +137,7 @@ function teachHTML(l,d,sm){
 
 function allExamples(l,d){
  const merged=[...(d.examples||[]),...((EXTRA[l.id]||[]))];
- return merged.slice(0,5);
+ return [...(BOOKS[l.id]?.examples||[]),...merged.slice(0,5)];
 }
 function boardMarkup(id,key,teach=false){
  return '<div class="interactive-board '+(teach?"teach-whiteboard":"")+'" data-board-key="'+esc(key)+'">'+
@@ -153,17 +155,19 @@ function boardMarkup(id,key,teach=false){
  '</div>';
 }
 function exampleCard(l,d,e,i){
- const diagram=DIAGRAMS.supports(l.type)?DIAGRAMS.example(l.id,l.type,i):"";
+ const diagram=VERIFIED.render(e.verifiedDiagram);
+ const question=e.sourceQuestion?sourceImage(e.sourceQuestion,e.source):"";
+ const answer=e.sourceSolution?sourceImage(e.sourceSolution,"Original worked solution — "+e.source):"";
  return '<article class="example-card '+(i===exampleIndex?"active":"")+'" data-example="'+i+'">'+
   '<div class="example-topline"><span class="example-number">EXAMPLE '+(i+1)+'</span><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
   '<div class="example-workspace example-split-workspace clean-example-workspace">'+
-    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(e.prompt)+'</h3></div>'+
+    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(e.prompt)+'</h3></div>'+question+(e.source?'<p class="source-credit">'+esc(e.source)+'</p>':'')+
       (diagram?'<div class="example-diagram-panel">'+diagram+'</div>':"")+
     '</aside>'+
     '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
   '</div>'+
   '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Solution</button>'+
-  '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
+  '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+answer+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
  '</article>';
 }
 
@@ -176,43 +180,46 @@ function examplesHTML(l,d){
  '</section>';
 }
 
-function worksheetHeader(l,title,id,page){
+function worksheetHeader(l,title,id,page,total){
  return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print</button></div></div>'+
-  '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/2</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
+  '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
 }
 function questionCard(l,x,globalIndex,kind){
- const diagram=x.diagram&&DIAGRAMS.question?DIAGRAMS.question(x.diagram):"";
+ const diagram=VERIFIED.render(x.verifiedDiagram);
  return '<article class="worksheet-question compact-question '+(diagram?"has-diagram":"")+'">'+
   '<div class="worksheet-q-head"><span class="worksheet-q-number">'+String(globalIndex+1).padStart(2,"0")+'</span><button class="answer-toggle no-print solution-btn" data-bank="'+kind+'" data-index="'+globalIndex+'" type="button">Solution</button></div>'+
-  '<p>'+fmt(x.prompt)+'</p>'+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
+  '<p>'+fmt(x.prompt)+'</p>'+(x.source?'<p class="source-credit">'+esc(x.source)+'</p>':'')+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
  '</article>';
 }
 function solvedQuestionSets(l,d){
  const generated=QUESTION_ENGINE.build(l.type);
- const generatedPractice=(generated.practice||[]).slice(0,8);
- const generatedHomework=(generated.homework||[]).slice(0,8);
- const examples=allExamples(l,d).map(x=>({prompt:x.prompt,steps:x.steps||[],diagram:null}));
- const oldHomework=(d.homework||[]).map(x=>({prompt:x.prompt,steps:x.steps||[],diagram:null}));
- const unique=(items)=>{
-   const out=[],seen=new Set();
-   for(const item of items){
-     const key=String(item?.prompt||"").replace(/\s+/g," ").trim().toLowerCase();
-     if(!key||seen.has(key)||!item.steps?.length)continue;
-     seen.add(key);out.push(item);
-     if(out.length===16)break;
-   }
-   return out;
- };
- const practice=unique([...generatedPractice,...examples,...oldHomework,...generatedHomework]);
- const homework=unique([...generatedHomework,...oldHomework,...examples,...generatedPractice]);
+ const seen=new Set();
+ const unique=items=>items.filter(x=>{
+   const key=String(x?.prompt||"").replace(/\s+/g," ").trim().toLowerCase();
+   if(!key||seen.has(key)||!x.steps?.length)return false;
+   seen.add(key);return true;
+ });
+ // Keep homework distinct from practice and from the displayed teacher examples.
+ const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...(generated.practice||[]).slice(0,8)]);
+ const homework=unique(d.homework||[]);
  return {practice,homework};
+}
+function sourceImage(asset,alt){
+ return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+asset.width+'" height="'+asset.height+'" loading="lazy" alt="'+esc(alt)+'"></a>';
+}
+function sourceMaterials(l,kind){
+ const b=BOOKS[l.id];if(!b)return "";
+ const assets=b[kind]||[];if(!assets.length)return "";
+ const ox=kind==='homework';
+ const assigned=b[kind+'Assignment']||(ox?'Complete the questions for this topic shown below.':'Work through the selected exercise, starting with routine questions and progressing to applications.');
+ return '<section class="textbook-section print-sheet" data-print-sheet="'+kind+'"><div class="section-head"><div><span class="section-kicker">'+(ox?'EXAM SUCCESS':'CAMBRIDGE COURSEBOOK')+'</span><h2>'+(ox?'Textbook homework':'Textbook practice')+'</h2></div></div><p class="textbook-assignment">'+esc(assigned)+'</p>'+(b.supportingSelection?'<p class="source-credit">Supporting selection for this objective; the scheme of work does not specify a textbook exercise.</p>':'')+'<div class="source-pages">'+assets.map((a,i)=>'<details class="source-page" '+(i===0?'open':'')+'><summary>Page '+a.page+' · '+esc(a.heading||'Selected questions')+'</summary><p class="source-credit">'+(a.book==='oxford'?'Bettison & Taylor, Exam Success (2021)':'Morrison & Hamshaw, Cambridge IGCSE Mathematics (2023)')+' · printed p. '+a.page+' · PDF p. '+a.pdfPage+'</p>'+sourceImage(a,'Original '+(ox?'Exam Success':'Coursebook')+' questions and diagrams, printed page '+a.page)+'</details>').join('')+'</div></section>';
 }
 function practiceHTML(l,d){
  const bank=solvedQuestionSets(l,d).practice;
  window.__currentPractice=bank;
- const pages=[bank.slice(0,8),bank.slice(8,16)];
- return '<section class="section-anchor sheet-stack" id="practice">'+pages.map((page,p)=>
-  '<article class="worksheet-slide clean-question-sheet print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Practice","practice",p+1)+
+ const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
+ return '<section class="section-anchor sheet-stack" id="practice">'+sourceMaterials(l,'practice')+pages.map((page,p)=>
+  '<article class="worksheet-slide clean-question-sheet print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Further practice","practice",p+1,pages.length)+
    '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"practice")).join("")+'</div>'+
    '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+(p*8+8)+'</span><strong>Show clear working in your book.</strong></div></article>'
  ).join("")+'</section>';
@@ -220,9 +227,9 @@ function practiceHTML(l,d){
 function homeworkHTML(l,d){
  const bank=solvedQuestionSets(l,d).homework;
  window.__currentHomework=bank;
- const pages=[bank.slice(0,8),bank.slice(8,16)];
- return '<section class="section-anchor sheet-stack" id="homework">'+pages.map((page,p)=>
-  '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",p+1)+
+ const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
+ return '<section class="section-anchor sheet-stack" id="homework">'+sourceMaterials(l,'homework')+pages.map((page,p)=>
+  '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Further homework","homework",p+1,pages.length)+
    '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"homework")).join("")+'</div>'+
    '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+(p*8+8)+'</span><strong>Solutions are available on screen.</strong></div></article>'
  ).join("")+
@@ -363,7 +370,7 @@ function bindPrint(){
 }
 function ensureSolutionModal(){
  const modal=$("#solutionModal");if(!modal)return null;
- if(!modal.innerHTML)modal.innerHTML='<div class="solution-modal-card"><button class="solution-close" type="button" aria-label="Close">×</button><span class="section-kicker">HOMEWORK SOLUTION</span><h3 id="solutionTitle"></h3><div id="solutionBody"></div></div>';
+ if(!modal.innerHTML)modal.innerHTML='<div class="solution-modal-card"><button class="solution-close" type="button" aria-label="Close">×</button><span class="section-kicker">WORKED SOLUTION</span><h3 id="solutionTitle"></h3><div id="solutionBody"></div></div>';
  if(!modal.dataset.bound){
    modal.dataset.bound="1";modal.addEventListener("click",e=>{if(e.target===modal||e.target.classList.contains("solution-close")){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");}});
  }
@@ -375,6 +382,7 @@ function bindWorksheetSolutions(){
   if(!item)return;
   $("#solutionTitle").innerHTML=fmt(item.prompt);
   $("#solutionBody").innerHTML=(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("");
+  if(item.solutionDiagram)$("#solutionBody").innerHTML+=VERIFIED.render(item.solutionDiagram);
   typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");
  };
  $$(".solution-btn").forEach(btn=>btn.addEventListener("click",()=>{
@@ -384,7 +392,7 @@ function bindWorksheetSolutions(){
  $$(".reveal-all-btn").forEach(btn=>btn.addEventListener("click",()=>{
    const bank=btn.dataset.revealAll==="practice"?(window.__currentPractice||[]):(window.__currentHomework||[]);
    const page=Number(btn.dataset.page)||1,start=(page-1)*8,items=bank.slice(start,start+8);
-   $("#solutionTitle").textContent=(btn.dataset.revealAll==="practice"?"Practice":"Homework")+" solutions "+(start+1)+"–"+(start+8);
+   $("#solutionTitle").textContent=(btn.dataset.revealAll==="practice"?"Practice":"Homework")+" solutions "+(start+1)+"–"+(start+items.length);
    $("#solutionBody").innerHTML=items.map((item,i)=>'<section class="bulk-solution"><h4>'+(start+i+1)+'. '+fmt(item.prompt)+'</h4>'+(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</section>').join("");
    typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");
  }));

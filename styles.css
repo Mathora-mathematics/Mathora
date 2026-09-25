@@ -1099,3 +1099,15 @@ body.focus-mode .current-lesson-lockup{border-left:0;padding-left:0}
   body.print-practice .worksheet-q-number,
   body.print-homework .worksheet-q-number{width:6mm!important;height:6mm!important;font-size:6.5pt!important}
 }
+/* Textbook extracts retain the original mathematical notation and diagrams. */
+.textbook-section{background:#fff;border:1px solid #d2e5ec;border-radius:18px;padding:clamp(20px,4vw,48px);margin-bottom:24px}
+.textbook-assignment{font-size:18px;line-height:1.6;max-width:900px;white-space:pre-line}
+.source-credit{font-size:14px!important;line-height:1.5;color:#506875;margin:12px 0}
+.source-pages{display:grid;gap:16px}.source-page{border:1px solid #c9dde6;border-radius:10px;padding:14px 18px}
+.source-page summary{font-size:18px;font-weight:700;cursor:pointer;padding:8px 0;color:#164b60}
+.source-extract{display:block;width:100%;max-width:1040px;height:auto;margin:12px auto;background:white}
+.source-image-link{display:block}.example-question-pane .source-extract{max-height:none;width:100%;object-fit:contain}
+.example-question-pane{min-width:0}.example-question-pane h3{overflow-wrap:anywhere}
+.solution-panel .source-extract{max-width:920px}.example-diagram-panel svg{width:100%;height:auto;max-height:none}
+@media(max-width:760px){.textbook-section{padding:18px}.source-page{padding:10px}.source-credit{font-size:14px!important}.source-extract{min-width:0}}
+@media print{.textbook-section{border:0;padding:0}.source-page{break-inside:avoid}.source-page:not([open])>img{display:none}.source-credit{color:#333}}

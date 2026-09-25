@@ -1,36 +1,22 @@
-# Year 10 Mathematics Teaching Hub
+# NES Year 10 Math
 
-A responsive lesson-by-lesson Cambridge IGCSE Mathematics teaching site for New English School Year 10.
+A GitHub Pages teaching site covering the 47 Year 10 scheme-of-work objectives, Units 12–22.
 
-## Curriculum and sources
+## Teaching resources
 
-The site contains 47 sub-unit lessons, Units 12–22, in the order defined by the 2026–2027 Year 10 scheme of work. Each lesson stores its Morrison & Hamshaw Cambridge IGCSE Mathematics page/exercise reference. The private teaching build also uses selected source extracts from the supplied Cambridge Coursebook and Exam Success materials.
+- `textbook-content.js` maps the supplied Cambridge IGCSE Mathematics Coursebook (Morrison & Hamshaw, 2023) and Exam Success (Bettison & Taylor, 2021) to lessons. Printed page numbers and PDF page numbers are recorded separately.
+- Original exercise extracts preserve mathematical notation, tables and diagrams. Supporting selections are labelled wherever the scheme leaves its textbook reference blank.
+- 39 additional source examples include original extracts with separate solution reveals or a retyped question and worked solution. Existing teacher examples and drawing grids remain available.
+- `accurate-diagrams.js` draws tables and charts from each question’s actual data. Generic diagrams previously selected by slide position are no longer used in examples or worksheets.
+- `source-questions.js` adds retyped source questions with worked solutions, including histogram density and grouped data.
+- Homework and further-practice prompts are deduplicated across the two sets. Source exercise pages provide the larger question banks. Original textbook exercise extracts do not claim to include a complete solution key.
 
 ## Runtime
 
-The live site uses one stable application entrypoint:
+Open `index.html` using a static web server. The site uses KaTeX for mathematical notation, and supports lesson navigation, example slides, solution reveals, printable practice and homework, and pen-enabled grid whiteboards.
 
-- `index.html` — page shell and startup diagnostic
-- `lessons.js` — 47-lesson SoW map exposed as `window.LESSONS`
-- `app-stable.js` — navigation, teaching notes, examples, practice, homework, maths rendering and whiteboards
-- `styles.css` — responsive desktop/iPad/phone styles
-- `assets/book/` — selected textbook source extracts used in lesson pages
+## Checks and deployment
 
-KaTeX is used when available for mathematical typesetting. The lesson navigation and content engine do not depend on KaTeX loading successfully.
-
-## Reliability checks
-
-The GitHub Pages workflow validates before every deployment:
-
-- JavaScript syntax
-- exactly 47 lessons
-- unique lesson IDs
-- required lesson metadata
-- correct stable runtime reference in `index.html`
-- presence of required textbook assets
-
-A failed validation prevents a broken build from being deployed.
-
-## Live site
+Run `node scripts/validate.mjs` from the repository root. GitHub Actions also checks JavaScript syntax and asset references before deploying `main` to GitHub Pages.
 
 https://mathora-mathematics.github.io/Mathora/
