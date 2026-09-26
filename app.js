@@ -285,10 +285,10 @@ function bindTargets(){
 function buildSlides(){
  slides=[
   {section:'opening',node:$('#opening'),label:'Starter'},
-  ...$('#teach .teach-slide').map((node,i)=>({section:'teach',node,label:'Teach '+(i+1)})),
-  ...$('.example-card').map((node,i)=>({section:'examples',node,label:'Example '+(i+1)})),
-  ...$('#practice .print-sheet').map((node,i)=>({section:'practice',node,label:'Independent '+(i+1)})),
-  ...$('#homework .print-sheet').map((node,i)=>({section:'homework',node,label:'Homework '+(i+1)}))
+  ...$$("#teach .teach-slide").map((node,i)=>({section:'teach',node,label:'Teach '+(i+1)})),
+  ...$$(".example-card").map((node,i)=>({section:'examples',node,label:'Example '+(i+1)})),
+  ...$$("#practice .print-sheet").map((node,i)=>({section:'practice',node,label:'Independent '+(i+1)})),
+  ...$$("#homework .print-sheet").map((node,i)=>({section:'homework',node,label:'Homework '+(i+1)}))
  ];
  let nav=$('#slideControls');
  if(!nav){
@@ -310,21 +310,21 @@ function showSlide(index,scroll=true){
  const previous=slideIndex;
  slideIndex=index;
  const current=slides[index],direction=index>=previous?'forward':'back';
- $('.section-anchor').forEach(el=>el.hidden=el.id!==current.section);
- $('#teach .teach-slide').forEach(el=>el.hidden=current.section!=='teach'||el!==current.node);
- $('.example-card').forEach(el=>el.hidden=current.section!=='examples'||el!==current.node);
- $('#practice .print-sheet').forEach(el=>el.hidden=current.section!=='practice'||el!==current.node);
- $('#homework .print-sheet').forEach(el=>el.hidden=current.section!=='homework'||el!==current.node);
+ $$(".section-anchor").forEach(el=>el.hidden=el.id!==current.section);
+ $$("#teach .teach-slide").forEach(el=>el.hidden=current.section!=='teach'||el!==current.node);
+ $$(".example-card").forEach(el=>el.hidden=current.section!=='examples'||el!==current.node);
+ $$("#practice .print-sheet").forEach(el=>el.hidden=current.section!=='practice'||el!==current.node);
+ $$("#homework .print-sheet").forEach(el=>el.hidden=current.section!=='homework'||el!==current.node);
  current.node.hidden=false;
 
  if(current.section==='examples'){
-  exampleIndex=$('.example-card').indexOf(current.node);
-  $('.example-card').forEach((el,i)=>el.classList.toggle('active',i===exampleIndex));
-  $('#exampleDots button').forEach((el,i)=>el.classList.toggle('active',i===exampleIndex));
-  if($('#exampleCounter'))$('#exampleCounter').textContent=(exampleIndex+1)+' / '+$('.example-card').length;
+  exampleIndex=$$(".example-card").indexOf(current.node);
+  $$(".example-card").forEach((el,i)=>el.classList.toggle('active',i===exampleIndex));
+  $$("#exampleDots button").forEach((el,i)=>el.classList.toggle('active',i===exampleIndex));
+  if($('#exampleCounter'))$('#exampleCounter').textContent=(exampleIndex+1)+' / '+$$(".example-card").length;
  }
 
- $('.flow-button').forEach(b=>b.classList.toggle('active',b.dataset.target===current.section));
+ $$(".flow-button").forEach(b=>b.classList.toggle('active',b.dataset.target===current.section));
  document.body.classList.toggle('presenter-mode',current.section!=='opening');
  document.body.dataset.section=current.section;
 
