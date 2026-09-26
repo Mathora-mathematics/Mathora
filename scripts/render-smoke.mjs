@@ -37,3 +37,5 @@ smoke('year10-data.js',47);
 smoke('year9-data.js',60);
 
 smoke('year8-data.js',54);
+
+smoke('year7-data.js',69);
