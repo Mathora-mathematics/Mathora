@@ -42,3 +42,20 @@ for (const [file,expected] of [['year10-data.js',47],['year9-data.js',60],['year
   if(!bw.STARTERS||!bw.STARTER_ANSWERS) throw Error(file+' starter data');
 }
 console.log('Bundled course validation PASS: Year 10, Year 9, Year 8 and Year 7 live data files initialise correctly.');
+
+
+const sharedApp=fs.readFileSync('app.js','utf8');
+const sharedCss=fs.readFileSync('styles.css','utf8');
+for(const token of ['function boardSnapshot','function flattenCanvases','function sheetAnnotationMarkup','data-print-target="examples"','Print all / PDF']){
+  if(!sharedApp.includes(token)) throw Error('Missing print/annotation runtime: '+token);
+}
+for(const token of ['.lesson-title-date-row','.student-date-pill','.sheet-annotation-canvas','.annotate-page-btn.active']){
+  if(!sharedCss.includes(token)) throw Error('Missing classroom UI style: '+token);
+}
+for(const page of ['index.html','year9.html','year8.html','year7.html']){
+  const source=fs.readFileSync(page,'utf8');
+  if(!source.includes('id="currentLessonDate"')) throw Error(page+' missing visible lesson date');
+  if(!source.includes('app.js?v=presenter-11')||!source.includes('styles.css?v=presenter-10')) throw Error(page+' stale shared asset version');
+}
+console.log('Presenter/print validation PASS: visible dates, printable ink and full-section export are wired across Year 7–10.');
+
