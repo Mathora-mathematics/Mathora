@@ -1356,3 +1356,250 @@ body.focus-mode .wide-topbar .top-actions>*:not(#focusBtn){display:none!importan
 body.focus-mode .wide-topbar .top-actions{display:block!important}
 body.focus-mode #focusBtn{display:flex!important;background:rgba(255,255,255,.9)!important;box-shadow:0 8px 28px rgba(7,50,65,.14)}
 html[data-theme="dark"] body.focus-mode #focusBtn{background:rgba(20,42,50,.94)!important;color:#e8f4f7!important}
+
+
+/* =========================================================
+   PRESENTER FLOW v4 — quiet from the title slide + complete night theme
+   ========================================================= */
+
+/* One compact teaching header from the very first slide. */
+.wide-stage>.flow-nav{display:none!important}
+.wide-topbar{
+  height:58px!important;
+  min-height:58px!important;
+  padding:0 clamp(14px,2.2vw,28px)!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:14px!important;
+  background:rgba(249,253,254,.96)!important;
+  box-shadow:0 8px 26px rgba(7,50,65,.055);
+}
+.wide-topbar .top-school,
+.wide-topbar .top-actions .top-lesson-btn,
+.wide-topbar .year-switch{display:none!important}
+.wide-topbar .current-lesson-lockup{border-left:0!important;padding-left:0!important}
+.wide-topbar .current-lesson-lockup>span{display:none!important}
+.wide-topbar .current-lesson-lockup strong{font-size:.96rem!important}
+.wide-topbar .current-lesson-lockup small{font-size:.61rem!important}
+.wide-topbar .top-actions{gap:7px!important}
+.wide-stage{padding-top:14px!important}
+.drawer-year-switch{
+  display:inline-flex;margin-top:10px;padding:8px 11px;border-radius:10px;
+  border:1px solid var(--line);background:var(--nes-soft);color:var(--nes-dark);
+  text-decoration:none;font-size:.72rem;font-weight:900
+}
+.drawer-year-switch:hover{filter:brightness(.98)}
+
+/* The starter/title is now part of the same presentation surface. */
+.title-starter-page{min-height:calc(100dvh - 150px)!important}
+.compact-opening-brand{padding-bottom:10px!important}
+.title-starter-hero{padding-top:15px!important}
+.compact-starter-head{margin-top:10px!important}
+body:not(.focus-mode) .opening-page{margin-top:0!important}
+
+/* Day mode: high contrast for projectors / bright classrooms. */
+html[data-theme="light"]{
+  --nes:#00a9db;
+  --nes-2:#5fd4ef;
+  --nes-dark:#082f3d;
+  --nes-ink:#102c36;
+  --nes-soft:#e9f8fc;
+  --paper:#fff;
+  --page:#fff;
+  --line:#c9dfe7;
+  --muted:#5d737c;
+  --grid:rgba(0,145,194,.14);
+}
+html[data-theme="light"] body{background:linear-gradient(180deg,#f8fcfd,#eef5f7)}
+html[data-theme="light"] .notebook-page,
+html[data-theme="light"] .worksheet-slide{background-color:#fff}
+
+/* Night mode: a full palette change, not a partial dark overlay. */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --nes:#53d8ff;
+  --nes-2:#84e6ff;
+  --nes-dark:#f4fbfd;
+  --nes-ink:#f4fbfd;
+  --nes-soft:#17343e;
+  --paper:#0f2027;
+  --page:#0f2027;
+  --line:#34505a;
+  --muted:#b7c8ce;
+  --grid:rgba(104,216,248,.16);
+  --red:#f0a9a6;
+  --shadow:0 24px 70px rgba(0,0,0,.34);
+  --soft-shadow:0 10px 28px rgba(0,0,0,.2);
+}
+html[data-theme="dark"] body{
+  background:radial-gradient(circle at 30% -10%,#173844 0,#0a171c 42%,#071216 100%)!important;
+  color:#f4fbfd!important;
+}
+html[data-theme="dark"] .wide-topbar{
+  background:rgba(8,21,27,.97)!important;
+  border-bottom:1px solid #2e4852!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.3)!important;
+}
+html[data-theme="dark"] .current-lesson-lockup strong,
+html[data-theme="dark"] .current-lesson-lockup small{color:#f4fbfd!important}
+html[data-theme="dark"] .current-lesson-lockup small{color:#a8bcc4!important}
+
+/* Every major surface adopts the night palette. */
+html[data-theme="dark"] .notebook-page,
+html[data-theme="dark"] .worksheet-slide,
+html[data-theme="dark"] .textbook-section,
+html[data-theme="dark"] .note-card,
+html[data-theme="dark"] .method-card,
+html[data-theme="dark"] .teacher-board,
+html[data-theme="dark"] .question-card,
+html[data-theme="dark"] .practice-board,
+html[data-theme="dark"] .homework-item,
+html[data-theme="dark"] .lesson-end,
+html[data-theme="dark"] .source-book-card,
+html[data-theme="dark"] .source-page,
+html[data-theme="dark"] .drawer-unit,
+html[data-theme="dark"] .drawer-lesson,
+html[data-theme="dark"] .lesson-drawer-panel,
+html[data-theme="dark"] .solution-modal-card,
+html[data-theme="dark"] .mistake-strip{
+  background:#10242c!important;
+  border-color:#34505a!important;
+  color:#f4fbfd!important;
+  box-shadow:var(--soft-shadow)!important;
+}
+html[data-theme="dark"] .opening-page,
+html[data-theme="dark"] .homework-page{
+  background:
+    linear-gradient(180deg,rgba(25,58,69,.78),rgba(15,32,39,.98) 25%),
+    repeating-linear-gradient(0deg,transparent 0,transparent 27px,var(--grid) 28px,transparent 29px),
+    repeating-linear-gradient(90deg,transparent 0,transparent 27px,var(--grid) 28px,transparent 29px),
+    #0f2027!important;
+}
+html[data-theme="dark"] .cyan-note,
+html[data-theme="dark"] .soft-note,
+html[data-theme="dark"] .white-note,
+html[data-theme="dark"] .worked-step,
+html[data-theme="dark"] .final-step,
+html[data-theme="dark"] .compact-answer,
+html[data-theme="dark"] .solution-grid,
+html[data-theme="dark"] .solution-grid>div,
+html[data-theme="dark"] .lesson-focus-card{
+  background:#142c35!important;
+  border-color:#36535d!important;
+  color:#f4fbfd!important;
+}
+html[data-theme="dark"] .final-step{background:#173843!important}
+
+/* Typography and mathematical content stay genuinely bright. */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] strong,
+html[data-theme="dark"] .title-block-compact h1,
+html[data-theme="dark"] .opening-school-copy strong,
+html[data-theme="dark"] .lesson-focus-card strong,
+html[data-theme="dark"] .question-card p,
+html[data-theme="dark"] .example-question h3,
+html[data-theme="dark"] .worksheet-question p,
+html[data-theme="dark"] .worksheet-brand strong,
+html[data-theme="dark"] .drawer-lesson strong,
+html[data-theme="dark"] .source-book-card strong,
+html[data-theme="dark"] .teach-rule strong,
+html[data-theme="dark"] .worked-step p,
+html[data-theme="dark"] .katex{color:#f4fbfd!important}
+html[data-theme="dark"] p,
+html[data-theme="dark"] li,
+html[data-theme="dark"] small,
+html[data-theme="dark"] .lesson-intro,
+html[data-theme="dark"] .teach-rule span,
+html[data-theme="dark"] .source-book-card p,
+html[data-theme="dark"] .source-book-card small,
+html[data-theme="dark"] .worksheet-footer{color:#bfd0d6!important}
+html[data-theme="dark"] .section-kicker,
+html[data-theme="dark"] .overline,
+html[data-theme="dark"] .example-number,
+html[data-theme="dark"] .source-book-label,
+html[data-theme="dark"] .worksheet-brand span,
+html[data-theme="dark"] .sheet-kicker,
+html[data-theme="dark"] .board-title span{color:#53d8ff!important}
+
+/* Controls are dark too, with one consistent accent. */
+html[data-theme="dark"] .soft-button,
+html[data-theme="dark"] .lesson-picker-button,
+html[data-theme="dark"] .year-switch,
+html[data-theme="dark"] .drawer-year-switch,
+html[data-theme="dark"] .round-button,
+html[data-theme="dark"] .reveal-button,
+html[data-theme="dark"] .answer-toggle,
+html[data-theme="dark"] .sheet-action,
+html[data-theme="dark"] .mini-tool,
+html[data-theme="dark"] .drawer-close,
+html[data-theme="dark"] .drawer-search-wrap input{
+  background:#152f38!important;
+  border-color:#3a5a65!important;
+  color:#f4fbfd!important;
+}
+html[data-theme="dark"] .soft-button:hover,
+html[data-theme="dark"] .lesson-picker-button:hover,
+html[data-theme="dark"] .reveal-button:hover,
+html[data-theme="dark"] .mini-tool:hover{background:#1c3b46!important}
+html[data-theme="dark"] .start-button,
+html[data-theme="dark"] .next-lesson-button,
+html[data-theme="dark"] .round-button.dark,
+html[data-theme="dark"] .reveal-button.open,
+html[data-theme="dark"] .slide-nav-btn.primary{
+  background:#53d8ff!important;
+  border-color:#53d8ff!important;
+  color:#06202a!important;
+}
+html[data-theme="dark"] .page-tag,
+html[data-theme="dark"] .lesson-chip,
+html[data-theme="dark"] .worksheet-q-number{background:#53d8ff!important;color:#06202a!important}
+html[data-theme="dark"] .example-progress,
+html[data-theme="dark"] .question-number,
+html[data-theme="dark"] .worked-step span{background:#173a45!important;color:#7fe4ff!important}
+
+/* Whiteboards deliberately remain bright writing surfaces. */
+html[data-theme="dark"] .graph-paper,
+html[data-theme="dark"] .board-paper,
+html[data-theme="dark"] .mini-work-grid,
+html[data-theme="dark"] .square-paper{
+  background-color:#f7fbfc!important;
+  border-color:#6d8790!important;
+  background-image:
+    linear-gradient(rgba(0,145,194,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,145,194,.15) 1px,transparent 1px)!important;
+}
+html[data-theme="dark"] .board-hint{background:rgba(15,32,39,.92)!important;color:#edf8fa!important;border-color:#47636d!important}
+html[data-theme="dark"] .working-toolbar{background:#10242c!important;border-color:#34505a!important}
+
+/* Modal / drawer layers. */
+html[data-theme="dark"] .lesson-drawer{background:rgba(0,7,10,.78)!important}
+html[data-theme="dark"] .solution-modal{background:rgba(0,7,10,.72)!important}
+html[data-theme="dark"] .drawer-search-wrap input::placeholder{color:#91a8b0}
+
+/* Bottom presenter control matches the chosen theme. */
+.slide-controls{
+  background:rgba(255,255,255,.97)!important;
+  border-color:#c7dce4!important;
+}
+html[data-theme="dark"] .slide-controls{
+  background:rgba(10,25,31,.98)!important;
+  border-color:#35515c!important;
+  box-shadow:0 16px 46px rgba(0,0,0,.42)!important;
+}
+html[data-theme="dark"] .slide-controls button{background:#152f38!important;color:#f4fbfd!important;border-color:#3a5964!important}
+html[data-theme="dark"] .slide-controls .slide-nav-btn.primary{background:#53d8ff!important;color:#06202a!important}
+html[data-theme="dark"] #slideStatus{color:#c5d5da!important}
+html[data-theme="dark"] .slide-progress{background:#263e47!important}
+html[data-theme="dark"] .slide-progress span{background:#53d8ff!important}
+
+/* Keep the compact top bar usable on tablets. */
+@media(max-width:780px){
+  .wide-topbar{height:54px!important;min-height:54px!important;grid-template-columns:minmax(0,1fr) auto!important}
+  .wide-topbar .top-actions{flex-wrap:nowrap!important}
+  .wide-topbar .theme-text,.wide-topbar .focus-text{display:none!important}
+  .wide-topbar .theme-button,.wide-topbar .soft-button{min-width:40px!important;padding:8px 9px!important}
+  .wide-topbar .lesson-picker-button{padding:8px 10px!important}
+  .title-starter-page{min-height:0!important}
+}
