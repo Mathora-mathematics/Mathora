@@ -146,13 +146,13 @@ function openingHTML(l,d,sm){
  return '<section class="notebook-page opening-page title-starter-page section-anchor" id="opening"><div class="page-margin-line"></div>'+
   '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
   '<div class="title-starter-hero clean-title-hero">'+
-    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR '+COURSE_YEAR+' MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
+    '<div class="title-block-compact"><p class="overline">YEAR '+COURSE_YEAR+' MATHEMATICS • LESSON '+esc(l.id)+'</p><div class="lesson-title-date-row"><h1>'+esc(l.title)+'</h1><div class="student-date-pill"><span>DATE</span><strong>'+esc(today(false))+'</strong></div></div><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
     '<div class="lesson-focus-card"><span>KEY FOCUS</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
   '</div>'+
   '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER</span><h2>Quick start</h2></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Solutions</button></div>'+
   '<div class="starter-grid title-starter-grid">'+starterCards(l)+'</div>'+
   '<div class="reveal-panel starter-solutions" id="starterSolution">'+starterSolutions(l)+'</div>'+
-  '<div class="opening-footer compact-opening-footer"><div class="lesson-note"><span>LESSON</span><strong>'+esc(l.title)+'</strong></div><button class="start-button" data-target="teach" type="button">Continue <span>→</span></button></div>'+
+  '<div class="opening-footer compact-opening-footer"><div class="lesson-note"><span>LESSON</span><strong>'+esc(l.title)+' • '+esc(today(false))+'</strong></div><button class="start-button" data-target="teach" type="button">Continue <span>→</span></button></div>'+
  '</section>';
 }
 
@@ -199,6 +199,23 @@ function boardMarkup(id,key,teach=false){
   '<div class="graph-paper board-paper"><canvas id="'+id+'" data-board-key="'+esc(key)+'"></canvas><div class="board-hint">Write directly here with Apple Pencil, stylus, mouse or finger</div></div>'+
  '</div>';
 }
+
+function sheetAnnotationMarkup(id,key){
+ return '<div class="sheet-annotation-wrap interactive-board" data-board-key="'+esc(key)+'">'+
+  '<div class="working-toolbar sheet-annotation-toolbar no-print" data-canvas="'+id+'">'+
+   '<div class="tool-cluster"><span class="tool-label">PEN</span>'+
+    '<button class="pen-dot active" data-colour="#073241" type="button" aria-label="Dark pen"></button>'+
+    '<button class="pen-dot" data-colour="#00aee6" type="button" aria-label="Blue pen"></button>'+
+    '<button class="pen-dot" data-colour="#d85858" type="button" aria-label="Red pen"></button>'+
+    '<button class="pen-dot" data-colour="#2a9d76" type="button" aria-label="Green pen"></button>'+
+   '</div>'+
+   '<div class="tool-cluster"><button class="mini-tool size-tool active" data-size="3" type="button">Thin</button><button class="mini-tool size-tool" data-size="6" type="button">Medium</button><button class="mini-tool size-tool" data-size="10" type="button">Thick</button></div>'+
+   '<div class="tool-cluster board-actions"><button class="mini-tool eraser-tool" type="button">Eraser</button><button class="mini-tool undo-tool" type="button">Undo</button><button class="mini-tool redo-tool" type="button">Redo</button><button class="mini-tool clear-tool danger" type="button">Clear</button><button class="mini-tool done-annotate-tool" data-annotation-done="'+id+'" type="button">Done</button></div>'+
+  '</div>'+
+  '<canvas id="'+id+'" class="sheet-annotation-canvas" data-board-key="'+esc(key)+'" aria-label="Page annotation layer"></canvas>'+
+ '</div>';
+}
+
 function exampleCard(l,d,e,i){
  const diagram=VERIFIED.render(e.verifiedDiagram);
  const question=e.sourceQuestion?sourceImage(e.sourceQuestion,"Example question"):"";
@@ -219,16 +236,18 @@ function exampleCard(l,d,e,i){
 function examplesHTML(l,d){
  const ex=allExamples(l,d);
  return '<section class="notebook-page examples-page section-anchor" id="examples"><div class="page-margin-line"></div>'+
-  '<div class="section-head example-head"><div><span class="section-kicker">03</span><h2>Examples</h2></div><div class="example-nav"><button id="examplePrev" class="round-button" type="button">←</button><span id="exampleCounter">'+(exampleIndex+1)+' / '+ex.length+'</span><button id="exampleNext" class="round-button dark" type="button">→</button></div></div>'+
+  '<div class="section-head example-head"><div><span class="section-kicker">03</span><h2>Examples</h2></div><div class="example-nav"><button class="sheet-action example-print-all" type="button" data-print-target="examples">Print all / PDF</button><button id="examplePrev" class="round-button" type="button">←</button><span id="exampleCounter">'+(exampleIndex+1)+' / '+ex.length+'</span><button id="exampleNext" class="round-button dark" type="button">→</button></div></div>'+
   '<div class="example-deck" id="exampleDeck">'+ex.map((e,i)=>exampleCard(l,d,e,i)).join("")+'</div>'+
   '<div class="example-dots" id="exampleDots">'+ex.map((_,i)=>'<button class="'+(i===exampleIndex?"active":"")+'" data-example-index="'+i+'" type="button" aria-label="Example '+(i+1)+'"></button>').join("")+'</div>'+
  '</section>';
 }
 
-function worksheetHeader(l,title,id,page,total){
- return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
-  '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
+function worksheetHeader(l,title,id,page,total,annotationId){
+ const annotate=annotationId?'<button class="sheet-action annotate-page-btn" type="button" data-annotate-target="'+annotationId+'">✎ Annotate</button>':'';
+ return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button>'+annotate+'<button class="sheet-action print-all-btn" type="button" data-print-target="'+id+'">Print all / PDF</button></div></div>'+
+  '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><div class="worksheet-title-date"><h2>'+esc(l.title)+'</h2><span>'+esc(today(false))+'</span></div></div><div class="sheet-meta"><label>Name <span></span></label></div></div>';
 }
+
 function questionCard(l,x,globalIndex,kind){
  const diagram=VERIFIED.render(x.verifiedDiagram);
  return '<article class="worksheet-question compact-question '+(diagram?"has-diagram":"")+'">'+
@@ -259,27 +278,38 @@ function sourceImage(asset,alt){
 }
 function sourceMaterials(l,kind){
  const b=BOOKS[l.id];if(!b)return "";
- return (b[kind]||[]).map((a,i,arr)=>'<article class="worksheet-slide textbook-section print-sheet" data-print-sheet="'+kind+'">'+worksheetHeader(l,kind==='homework'?'Homework':'Independent practice',kind,i+1,arr.length).replace(/<button class="sheet-action reveal-all-btn"[\s\S]*?<\/button>/,'')+'<p class="textbook-assignment">'+esc(b[kind+'Assignment']||'Complete the questions below. Show clear working.')+'</p>'+sourceImage(a,'Questions and diagrams')+'</article>').join('');
+ return (b[kind]||[]).map((a,i,arr)=>{
+  const aid=kind+'SourceAnnot'+i;
+  return '<article class="worksheet-slide textbook-section print-sheet annotatable-sheet" data-print-sheet="'+kind+'">'+worksheetHeader(l,kind==='homework'?'Homework':'Independent practice',kind,i+1,arr.length,aid).replace(/<button class="sheet-action reveal-all-btn"[\s\S]*?<\/button>/,'')+'<p class="textbook-assignment">'+esc(b[kind+'Assignment']||'Complete the questions below. Show clear working.')+'</p>'+sourceImage(a,'Questions and diagrams')+sheetAnnotationMarkup(aid,l.id+'-'+kind+'-source-'+i)+'</article>';
+ }).join('');
 }
+
 function practiceHTML(l,d){
  const bank=solvedQuestionSets(l,d).practice;
  window.__currentPractice=bank;
  const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
- return '<section class="section-anchor sheet-stack" id="practice">'+sourceMaterials(l,'practice')+pages.map((page,p)=>
-  '<article class="worksheet-slide clean-question-sheet print-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Independent practice","practice",p+1,pages.length)+
+ const sourceCount=(BOOKS[l.id]?.practice||[]).length;
+ const total=sourceCount+pages.length;
+ return '<section class="section-anchor sheet-stack" id="practice">'+sourceMaterials(l,'practice')+pages.map((page,p)=>{
+  const aid='practiceAnnot'+p;
+  return '<article class="worksheet-slide clean-question-sheet print-sheet annotatable-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Independent practice","practice",sourceCount+p+1,total,aid)+
    '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"practice")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Show clear working in your book.</strong></div></article>'
- ).join("")+'</section>';
+   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Show clear working in your book.</strong></div>'+sheetAnnotationMarkup(aid,l.id+'-practice-page-'+p)+'</article>';
+ }).join("")+'</section>';
 }
+
 function homeworkHTML(l,d){
  const bank=solvedQuestionSets(l,d).homework;
  window.__currentHomework=bank;
  const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
- return '<section class="section-anchor sheet-stack" id="homework">'+sourceMaterials(l,'homework')+pages.map((page,p)=>
-  '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",p+1,pages.length)+
+ const sourceCount=(BOOKS[l.id]?.homework||[]).length;
+ const total=sourceCount+pages.length;
+ return '<section class="section-anchor sheet-stack" id="homework">'+sourceMaterials(l,'homework')+pages.map((page,p)=>{
+  const aid='homeworkAnnot'+p;
+  return '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet annotatable-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",sourceCount+p+1,total,aid)+
    '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"homework")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Solutions are available on screen.</strong></div></article>'
- ).join("")+
+   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Solutions are available on screen.</strong></div>'+sheetAnnotationMarkup(aid,l.id+'-homework-page-'+p)+'</article>';
+ }).join("")+
  '<div class="lesson-end no-print"><div><span>FINISHED</span><strong>'+esc(l.title)+'</strong></div><button id="nextFromHomework" class="next-lesson-button" type="button">Next lesson <span>→</span></button></div></section>';
 }
 
@@ -288,7 +318,7 @@ function renderNotebook(){
  if(!l||!d){root.innerHTML='<div class="page-loading">This lesson pack is missing from the content data.</div>';return;}
  boardStates.forEach(state=>{state.ro?.disconnect();});
  root.innerHTML=openingHTML(l,d,sm)+teachHTML(l,d,sm)+examplesHTML(l,d)+practiceHTML(l,d)+homeworkHTML(l,d);
- bindRevealButtons();bindTargets();bindExamples();bindPrint();bindWorksheetSolutions();buildSlides();
+ bindRevealButtons();bindTargets();bindExamples();bindPrint();bindWorksheetSolutions();bindAnnotationButtons();buildSlides();
  $("#nextFromHomework")?.addEventListener("click",()=>goLesson(1));
 }
 
@@ -455,22 +485,140 @@ function bindBoard(canvas){
 }
 function bindBoards(root=document){$$("canvas[data-board-key]",root).filter(c=>c.getBoundingClientRect().width>0).forEach(bindBoard);}
 
-function bindPrint(){
- $$("[data-print-target]").forEach(button=>button.addEventListener("click",async()=>{
-  const sheet=button.closest('.print-sheet');if(!sheet)return;
-  const frame=document.createElement('iframe');frame.className='print-frame';frame.title='Printable worksheet';document.body.append(frame);
-  const doc=frame.contentDocument,copy=sheet.cloneNode(true);copy.hidden=false;
-  copy.querySelectorAll('.no-print,button,.source-credit').forEach(el=>el.remove());
-  copy.querySelectorAll('img').forEach(img=>{img.src=new URL(img.getAttribute('src'),location.href).href;img.loading='eager';});
-  const ready=new Promise(resolve=>frame.onload=resolve);
-  doc.open();doc.write('<!doctype html><html><head><title>'+esc(lesson().title)+' — '+(button.dataset.printTarget==='homework'?'Homework':'Independent practice')+'</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><style>@page{size:A4 portrait;margin:12mm}*{box-sizing:border-box}body{margin:0;font:12pt Arial,sans-serif;color:#153b4a}h2{font-size:21pt;margin:10px 0}p{line-height:1.5} .worksheet-brand span,.sheet-kicker{font-size:10pt;display:block}.worksheet-brand strong{font-size:15pt}.sheet-meta{display:flex;justify-content:space-between;margin:12px 0 20px}.sheet-meta label:first-child{min-width:55%;border-bottom:1px solid #abc}.worksheet-question-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.worksheet-question{break-inside:avoid;border-top:1px solid #bcd;padding:10px 4px;min-height:48mm}.worksheet-question p{font-size:12pt}.worksheet-q-number{font-weight:bold}.question-diagram svg{width:100%;height:auto;max-height:52mm}.source-extract{display:block;width:100%;height:auto;max-height:225mm;object-fit:contain;object-position:top}.source-image-link{display:block}.textbook-assignment{font-size:10pt;margin:8px 0}.worksheet-footer{font-size:9pt;border-top:1px solid #ccc;margin-top:14px;padding-top:8px;display:flex;justify-content:space-between}.worksheet-logo{display:none}.math{display:inline-block}.katex{font-size:1.05em}.worksheet-top{border-bottom:2px solid #7dc8de;padding-bottom:10px}</style></head><body>'+copy.outerHTML+'</body></html>');doc.close();
-  await ready;
-  await Promise.all(Array.from(doc.images).map(img=>img.decode().catch(()=>{})));
-  await doc.fonts.ready;
-  frame.contentWindow.addEventListener('afterprint',()=>frame.remove(),{once:true});
-  frame.contentWindow.focus();frame.contentWindow.print();
- }));
+
+function bindAnnotationButtons(){
+ $$("[data-annotate-target]").forEach(button=>{
+  if(button.dataset.annotationBound)return;button.dataset.annotationBound="1";
+  button.addEventListener("click",()=>{
+   const canvas=document.getElementById(button.dataset.annotateTarget);if(!canvas)return;
+   const wrap=canvas.closest(".sheet-annotation-wrap");if(!wrap)return;
+   const open=!wrap.classList.contains("annotating");
+   $$(".sheet-annotation-wrap.annotating").forEach(x=>x!==wrap&&x.classList.remove("annotating"));
+   $$(".annotate-page-btn").forEach(x=>{if(x!==button){x.classList.remove("active");x.textContent="✎ Annotate";}});
+   wrap.classList.toggle("annotating",open);
+   button.classList.toggle("active",open);
+   button.textContent=open?"Done annotating":"✎ Annotate";
+   if(open){bindBoard(canvas);setTimeout(()=>resizeBoard(loadBoardState(canvas)),40);}
+  });
+ });
+ $$("[data-annotation-done]").forEach(done=>{
+  if(done.dataset.annotationBound)return;done.dataset.annotationBound="1";
+  done.addEventListener("click",()=>{
+   const canvas=document.getElementById(done.dataset.annotationDone);if(!canvas)return;
+   canvas.closest(".sheet-annotation-wrap")?.classList.remove("annotating");
+   const button=$$("[data-annotate-target]").find(x=>x.dataset.annotateTarget===done.dataset.annotationDone);
+   if(button){button.classList.remove("active");button.textContent="✎ Annotate";}
+  });
+ });
 }
+
+function storedStrokes(canvas){
+ const key=boardStorageKey(canvas),live=boardStates.get(key);
+ if(live?.strokes)return live.strokes;
+ try{
+  const saved=JSON.parse(localStorage.getItem(key)||"null");
+  return Array.isArray(saved?.strokes)?saved.strokes:[];
+ }catch(e){return [];}
+}
+
+function boardSnapshot(canvas){
+ const strokes=storedStrokes(canvas),annotation=canvas.classList.contains("sheet-annotation-canvas");
+ const visible=canvas.getBoundingClientRect(),fallbackRatio=annotation?(297/210):1.58;
+ const ratio=visible.width>20&&visible.height>20?visible.width/visible.height:fallbackRatio;
+ const width=annotation?1680:1600,height=Math.max(600,Math.round(width/ratio));
+ const surface=document.createElement("canvas");surface.width=width;surface.height=height;
+ const ctx=surface.getContext("2d");
+ ctx.clearRect(0,0,width,height);
+ const scale=width/900;
+ strokes.forEach(s=>{
+  if(!s?.points?.length)return;
+  ctx.save();ctx.globalCompositeOperation=s.tool==="erase"?"destination-out":"source-over";
+  ctx.strokeStyle=s.colour||"#073241";ctx.fillStyle=s.colour||"#073241";ctx.lineCap="round";ctx.lineJoin="round";
+  if(s.points.length===1){
+   const p=s.points[0];ctx.beginPath();ctx.arc(p.x*width,p.y*height,(s.size||3)*scale*(.7+(p.p||.5)*.55),0,Math.PI*2);ctx.fill();
+  }else{
+   for(let i=1;i<s.points.length;i++){
+    const a=s.points[i-1],b=s.points[i],pressure=(a.p+b.p)/2||.5;
+    ctx.lineWidth=(s.size||3)*scale*(.72+pressure*.65);
+    ctx.beginPath();ctx.moveTo(a.x*width,a.y*height);ctx.lineTo(b.x*width,b.y*height);ctx.stroke();
+   }
+  }
+  ctx.restore();
+ });
+ return {url:surface.toDataURL("image/png"),empty:strokes.length===0,annotation};
+}
+
+function flattenCanvases(original,copy){
+ const originals=Array.from(original.querySelectorAll("canvas[data-board-key]"));
+ const copies=Array.from(copy.querySelectorAll("canvas[data-board-key]"));
+ originals.forEach((canvas,i)=>{
+  const target=copies[i];if(!target)return;
+  const snap=boardSnapshot(canvas);
+  if(snap.annotation&&snap.empty){target.closest(".sheet-annotation-wrap")?.remove();return;}
+  const img=document.createElement("img");
+  img.src=snap.url;img.alt=snap.annotation?"Handwritten page annotations":"Handwritten whiteboard annotations";
+  img.className=snap.annotation?"print-annotation-capture":"print-board-capture";
+  target.replaceWith(img);
+ });
+}
+
+function preparePrintCopy(original){
+ const copy=original.cloneNode(true);copy.hidden=false;copy.removeAttribute("hidden");
+ copy.querySelectorAll(".no-print,button,.source-credit,.board-hint").forEach(el=>el.remove());
+ copy.querySelectorAll(".sheet-annotation-wrap").forEach(el=>el.classList.remove("annotating"));
+ flattenCanvases(original,copy);
+ copy.querySelectorAll("img").forEach(img=>{
+  const raw=img.getAttribute("src");if(raw&&!raw.startsWith("data:"))img.src=new URL(raw,location.href).href;
+  img.loading="eager";
+ });
+ return copy;
+}
+
+function buildPrintDocument(target){
+ const l=lesson(),wrapper=document.createElement("main");
+ wrapper.className="print-document print-"+target;
+ if(target==="examples"){
+  const source=$("#examples");typeset(source);
+  $$(".example-card",source).forEach((card,i)=>{
+   const page=document.createElement("section");page.className="print-example-page";
+   page.innerHTML='<header class="print-example-header"><div><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+' • LESSON '+esc(l.id)+'</span><h1>'+esc(l.title)+'</h1></div><div><span>DATE</span><strong>'+esc(today(false))+'</strong><small>Example '+(i+1)+'</small></div></header>';
+   const copy=preparePrintCopy(card);copy.classList.add("active");copy.style.position="relative";copy.style.inset="auto";copy.style.opacity="1";copy.style.transform="none";
+   copy.querySelectorAll(".solution-panel,.example-solution-toggle").forEach(el=>el.remove());
+   page.append(copy);wrapper.append(page);
+  });
+ }else{
+  const source=$("#"+target);typeset(source);
+  $$(".print-sheet",source).forEach(sheet=>{
+   const copy=preparePrintCopy(sheet);copy.classList.add("print-export-sheet");wrapper.append(copy);
+  });
+ }
+ return wrapper;
+}
+
+function bindPrint(){
+ $$("[data-print-target]").forEach(button=>{
+  if(button.dataset.printBound)return;button.dataset.printBound="1";
+  button.addEventListener("click",async()=>{
+   const target=button.dataset.printTarget;
+   if(!["examples","practice","homework"].includes(target))return;
+   const frame=document.createElement("iframe");frame.className="print-frame";frame.title="Printable lesson pages";document.body.append(frame);
+   const doc=frame.contentDocument,content=buildPrintDocument(target),l=lesson();
+   const ready=new Promise(resolve=>frame.addEventListener("load",resolve,{once:true}));
+   const cssHref=new URL("styles.css?v=presenter-10",location.href).href;
+   const title=l.title+" — "+(target==="examples"?"Examples":target==="homework"?"Homework":"Independent practice");
+   doc.open();doc.write('<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>'+esc(title)+'</title><link rel="stylesheet" href="'+cssHref+'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><style>'+
+    '@page{size:A4 landscape;margin:7mm}html,body{background:#fff!important;color:#153b4a!important}body{margin:0!important;padding:0!important;font-family:Arial,sans-serif!important}.print-document{display:block!important}.print-export-sheet,.print-example-page{width:100%!important;height:196mm!important;min-height:196mm!important;max-height:196mm!important;margin:0!important;padding:6mm 7mm!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;background:#fff!important;position:relative!important}.print-export-sheet:last-child,.print-example-page:last-child{break-after:auto!important;page-break-after:auto!important}.print-example-header{height:23mm;display:flex;align-items:flex-start;justify-content:space-between;gap:10mm;border-bottom:1px solid #cfe2e8;padding-bottom:3mm;margin-bottom:4mm}.print-example-header span{display:block;font-size:7pt;letter-spacing:.12em;font-weight:800;color:#5e8c99}.print-example-header h1{font-family:Georgia,serif;font-size:22pt;font-weight:500;line-height:1.05;margin:2mm 0 0;color:#073241}.print-example-header>div:last-child{text-align:right}.print-example-header strong{display:block;font-size:10pt;margin-top:1mm}.print-example-header small{display:block;font-size:8pt;margin-top:2mm;color:#657f88}.print-example-page .example-card{height:160mm!important;min-height:0!important;position:relative!important;inset:auto!important;opacity:1!important;transform:none!important;pointer-events:auto!important}.print-example-page .example-workspace{height:151mm!important;display:grid!important;grid-template-columns:36% 64%!important;gap:5mm!important}.print-example-page .example-question-pane{min-height:0!important;overflow:hidden!important}.print-example-page .example-question h3{font-size:16pt!important}.print-example-page .example-board-panel{height:100%!important;min-height:0!important}.print-example-page .interactive-board{height:100%!important}.print-example-page .board-paper{height:138mm!important;min-height:138mm!important;border:1px solid #cbdde3!important;border-radius:3mm!important;background-color:#fff!important;background-image:linear-gradient(rgba(0,174,230,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,174,230,.12) 1px,transparent 1px)!important;background-size:6mm 6mm!important;position:relative!important;overflow:hidden!important}.print-board-capture{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:4!important}.print-annotation-capture{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:50!important;pointer-events:none!important}.sheet-annotation-wrap{position:absolute!important;inset:0!important;z-index:50!important;pointer-events:none!important}.sheet-annotation-toolbar{display:none!important}.worksheet-slide::before{display:none!important}.print-export-sheet .worksheet-top{padding-bottom:2.5mm!important}.print-export-sheet .worksheet-logo{width:29mm!important;height:15mm!important}.print-export-sheet .worksheet-brand span{font-size:7pt!important}.print-export-sheet .worksheet-brand strong{font-size:14pt!important}.print-export-sheet .worksheet-title-row{padding:2.5mm 0 2mm!important;align-items:center!important}.print-export-sheet .worksheet-title-row h2{font-size:17pt!important}.print-export-sheet .worksheet-title-date{display:flex!important;align-items:baseline!important;gap:4mm!important}.print-export-sheet .worksheet-title-date>span{font-size:8pt!important}.print-export-sheet .sheet-meta label{font-size:8pt!important}.print-export-sheet .sixteen-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;grid-template-rows:repeat(4,1fr)!important;height:148mm!important;min-height:148mm!important;gap:2mm!important}.print-export-sheet .compact-question{min-height:0!important;padding:2mm 2.4mm!important;border-radius:1.5mm!important;box-shadow:none!important}.print-export-sheet .compact-question>p{font-size:10.5pt!important;line-height:1.22!important;margin:1.2mm 0!important}.print-export-sheet .compact-question .question-diagram{height:19mm!important}.print-export-sheet .question-math-diagram{max-height:18mm!important}.print-export-sheet .worksheet-footer{font-size:7pt!important;margin-top:1.6mm!important;padding-top:1mm!important}.print-export-sheet.textbook-section .source-extract{display:block!important;width:100%!important;height:auto!important;max-height:145mm!important;object-fit:contain!important;object-position:top!important}.print-export-sheet.textbook-section .source-book-card{box-shadow:none!important;min-height:125mm!important}.print-export-sheet .textbook-assignment{font-size:9pt!important;margin:2mm 0!important}.no-print{display:none!important}'+
+   '</style></head><body>'+content.outerHTML+'</body></html>');doc.close();
+   await ready.catch(()=>{});
+   await Promise.all(Array.from(doc.images).map(img=>img.decode?.().catch(()=>{})||Promise.resolve()));
+   if(doc.fonts?.ready)await doc.fonts.ready;
+   await new Promise(resolve=>setTimeout(resolve,120));
+   frame.contentWindow.addEventListener("afterprint",()=>frame.remove(),{once:true});
+   frame.contentWindow.focus();frame.contentWindow.print();
+  });
+ });
+}
+
 function ensureSolutionModal(){
  const modal=$("#solutionModal");if(!modal)return null;
  if(!modal.innerHTML)modal.innerHTML='<div class="solution-modal-card"><button class="solution-close" type="button" aria-label="Close">×</button><span class="section-kicker">WORKED SOLUTION</span><h3 id="solutionTitle"></h3><div id="solutionBody"></div></div>';
@@ -505,12 +653,14 @@ function updateHeader(){
  const l=lesson(),sm=sow();if(!l)return;
  $("#currentUnit").textContent="UNIT "+l.u+" • "+l.unit.toUpperCase();
  $("#currentLessonTitle").textContent=l.title;
+ if($("#currentLessonDate"))$("#currentLessonDate").textContent=today(false);
  $("#currentLessonId").textContent="Lesson "+l.id+" • "+(currentIndex+1)+" of "+LESSONS.length;
  $("#courseProgress").textContent=(currentIndex+1)+" of "+LESSONS.length+" selected";
  if($("#openLessonsBtn"))$("#openLessonsBtn").innerHTML="Year "+COURSE_YEAR+" <span>• Lessons ⌄</span>";
  $("#prevLessonBtn").disabled=currentIndex===0;$("#nextLessonBtn").disabled=currentIndex===LESSONS.length-1;
  document.title=l.id+" "+l.title+" | NES";
 }
+
 function goLesson(delta){
  const next=currentIndex+delta;if(next<0||next>=LESSONS.length)return;
  currentIndex=next;exampleIndex=0;location.hash=LESSONS[currentIndex].id;renderAll();window.scrollTo({top:0,behavior:"smooth"});
