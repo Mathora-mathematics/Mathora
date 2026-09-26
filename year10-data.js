@@ -1,4 +1,8 @@
-window.COURSE_YEAR="10";window.EXPECTED_LESSONS=47;\n\n/* ===== lessons.js ===== */\nwindow.LESSONS = [
+window.COURSE_YEAR="10";window.EXPECTED_LESSONS=47;
+
+/* ===== lessons.js ===== */
+(function(){
+window.LESSONS = [
 {u:"12",unit:"Surds",id:"12.1",title:"Understand and simplify surds",type:"surds",src:"Morrison & Hamshaw pp. 276–277 Ex 9.7; pp. 281–282 Ex 9.8 Q1–4",prior:["Square numbers and prime factors","Simplifying numerical roots","Index laws"],obj:["Recognise exact surd form","Simplify surds using factor pairs","Multiply and divide surds","Combine like surds"]},
 {u:"12",unit:"Surds",id:"12.2",title:"Rationalise the denominator",type:"rationalise",src:"Morrison & Hamshaw pp. 282–284 Ex 9.8 Q5–7, Ex 9.9",prior:["Simplifying surds","Difference of two squares","Equivalent fractions"],obj:["Rationalise a single surd denominator","Use conjugates for binomial denominators","Simplify final exact answers"]},
 
@@ -56,7 +60,12 @@ window.COURSE_YEAR="10";window.EXPECTED_LESSONS=47;\n\n/* ===== lessons.js =====
 {u:"21",unit:"Sets",id:"21.1",title:"Set language, notation and Venn diagrams",type:"sets",src:"Morrison & Hamshaw pp.286–295 Ex 9.10–9.13",prior:["Basic set notation","Factors and multiples","Probability language"],obj:["Use ∪, ∩, complement and subset notation","Complete two- and three-set Venn diagrams","Apply De Morgan relationships"]},
 
 {u:"22",unit:"Proportion",id:"22.1",title:"Direct and inverse proportion",type:"proportion",src:"Morrison & Hamshaw pp.747–749 Ex 21.12",prior:["Ratio","Powers and roots","Solving equations"],obj:["Model direct proportion","Model inverse proportion","Use square, cube and root relationships","Find constants and unknown quantities"]}
-];\n;\n\n/* ===== sow-map.js ===== */\nwindow.SOW_MAP={
+];
+})();
+
+/* ===== sow-map.js ===== */
+(function(){
+window.SOW_MAP={
   "12.1": {
     "objective": "Understand and use surds, including simplifying expressions.",
     "notes": "",
@@ -340,7 +349,12 @@ window.COURSE_YEAR="10";window.EXPECTED_LESSONS=47;\n\n/* ===== lessons.js =====
     "textbook": "pages 747-749 Ex 21.12"
   }
 };
-\n;\n\n/* ===== content-core.js ===== */\nwindow.LESSON_CONTENT = window.LESSON_CONTENT || {};
+
+})();
+
+/* ===== content-core.js ===== */
+(function(){
+window.LESSON_CONTENT = window.LESSON_CONTENT || {};
 window.MathoraContent = {
   E(prompt, steps, opts={}) {
     return {prompt, steps, ...opts};
@@ -365,7 +379,12 @@ window.MathoraContent = {
     };
   }
 };
-\n;\n\n/* ===== content-12-17.js ===== */\n(()=>{
+
+})();
+
+/* ===== content-12-17.js ===== */
+(function(){
+(()=>{
 const {C,E,H}=window.MathoraContent, M=window.LESSON_CONTENT;
 
 M["12.1"]=C({
@@ -1091,7 +1110,12 @@ M["17.4"]=C({
  sourceImages:["sector-area.webp"]
 });
 
-})();\n;\n\n/* ===== content-18-22.js ===== */\n(()=>{
+})();
+})();
+
+/* ===== content-18-22.js ===== */
+(function(){
+(()=>{
 const {C,E,H}=window.MathoraContent, M=window.LESSON_CONTENT;
 
 M["18.1"]=C({
@@ -1792,7 +1816,12 @@ M["22.1"]=C({
  sourceImages:["proportion.webp"]
 });
 
-})();\n;\n\n/* ===== starters.js ===== */\nwindow.STARTERS={
+})();
+})();
+
+/* ===== starters.js ===== */
+(function(){
+window.STARTERS={
 "12.1":["Write [[72]] as a product containing the largest square factor.","Simplify [[\\sqrt{49}]].","List the first six square numbers.","Evaluate [[3^2\\times3^4]]."],
 "12.2":["Simplify [[\\sqrt{48}]].","Expand [[(x+5)(x-5)]].","Write a fraction equivalent to [[3/7]].","Simplify [[\\sqrt3\\times\\sqrt{12}]]."],
 "13.1":["Factorise [[6x+18]].","Factorise [[x^2+7x+12]].","Simplify [[18/24]].","State the value excluded from [[1/(x-4)]]."],
@@ -1840,7 +1869,12 @@ M["22.1"]=C({
 "20.3":["If [[f(x)=x+1]], find [[f(3)]].","Which function acts first in [[g(f(x))]]?","Evaluate [[2(x+3)]] when x=4.","Why should brackets be used when substituting an expression?"],
 "21.1":["What does [[A\\cup B]] mean?","What does [[A\\cap B]] mean?","What does [[A']] mean?","If 20 students are in A and 8 are in A∩B, why should the overlap not be counted twice?"],
 "22.1":["Simplify the ratio 12:18.","If y doubles when x doubles, what type of relationship might this suggest?","Evaluate [[3^2]] and [[\\sqrt{49}]].","What symbol means 'is proportional to'?"]
-};\n;\n\n/* ===== starter-answers.js ===== */\nwindow.STARTER_ANSWERS={
+};
+})();
+
+/* ===== starter-answers.js ===== */
+(function(){
+window.STARTER_ANSWERS={
 "12.1":["[[72=36\\times2]] (or another correct square-factor decomposition).","7.","1, 4, 9, 16, 25, 36.","[[3^6=729]]."],
 "12.2":["[[4\\sqrt3]].","[[x^2-25]].","For example [[6/14]].","6."],
 "13.1":["[[6(x+3)]].","[[(x+3)(x+4)]].","[[3/4]].","[[x\\ne4]]."],
@@ -1888,7 +1922,12 @@ M["22.1"]=C({
 "20.3":["4.","f.","14.","So the whole substituted expression is treated as one input."],
 "21.1":["Elements in A or B or both.","Elements in both A and B.","Elements not in A (within the universal set).","Because adding the set totals would otherwise count shared elements twice."],
 "22.1":["2:3.","Direct proportion may be possible.","9 and 7.","[[\\propto]]."]
-};\n;\n\n/* ===== enhancements.js ===== */\n(function(){
+};
+})();
+
+/* ===== enhancements.js ===== */
+(function(){
+(function(){
 const X=(prompt,steps,source,diagram)=>({prompt,steps,source,diagram});
 window.EXAM_SUCCESS_MAP={
  "12":"Exam Success • Chapter 1 Number (powers, roots and exact values)",
@@ -2093,7 +2132,12 @@ window.EXTRA_EXAMPLES={
  X("[[t]] is inversely proportional to [[\\sqrt v]]. Given [[t=10]] when [[v=25]], find t when [[v=100]].",["[[t=\\frac{k}{\\sqrt v}]].","[[10=k/5]], so [[k=50]].","At [[v=100]], [[t=50/10=5]]."],"SoW square-root inverse proportion",2)
 ]
 };
-})();\n;\n\n/* ===== diagrams.js ===== */\n(function(){
+})();
+})();
+
+/* ===== diagrams.js ===== */
+(function(){
+(function(){
 const C={ink:"#0b3442",blue:"#00aee6",pale:"#e8f8fc",grid:"#c9e7ef",red:"#d85858",gold:"#e9b949",green:"#2a9d76",muted:"#78939c",white:"#ffffff"};
 const svg=(body,view="0 0 640 320")=>'<svg class="lesson-diagram-svg" viewBox="'+view+'" role="img" aria-label="Mathematics teaching diagram">'+body+'</svg>';
 const line=(x1,y1,x2,y2,extra='')=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" '+extra+'/>';
@@ -2399,7 +2443,12 @@ window.MathoraDiagrams={
  lesson(type,variant=0){return routes[type]?routes[type](variant):"";},
  practice(type,variant=0){return routes[type]?routes[type](variant+3):"";}
 };
-})();\n;\n\n/* ===== book-diagrams.js ===== */\n(function(){
+})();
+})();
+
+/* ===== book-diagrams.js ===== */
+(function(){
+(function(){
 const C={ink:"#0a3442",blue:"#00aee6",blue2:"#6ed8f2",pale:"#eaf9fd",paper:"#ffffff",grid:"#cfe8ef",red:"#d45757",gold:"#e2b43f",green:"#299873",purple:"#7b6bb7",muted:"#75909a",grey:"#dce9ed"};
 const svg=(body,view="0 0 640 360")=>'<svg class="lesson-diagram-svg" viewBox="'+view+'" role="img" aria-label="Mathematical diagram">'+body+'</svg>';
 const L=(x1,y1,x2,y2,o='')=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" '+o+'/>';
@@ -2821,7 +2870,12 @@ window.MathoraDiagrams={
  lesson(type,variant=0){return lessonVisual("",type,variant);},
  practice(id,type,variant=0){return lessonVisual(id,type,variant+2);}
 };
-})();\n;\n\n/* ===== question-diagrams.js ===== */\n(function(){
+})();
+})();
+
+/* ===== question-diagrams.js ===== */
+(function(){
+(function(){
 "use strict";
 const C={ink:"#123642",blue:"#00aee6",pale:"#edf9fc",grid:"#d4eaf0",red:"#d85a5a",gold:"#dfb03c",green:"#2a9b75",muted:"#758e98",white:"#fff"};
 const svg=(b)=>'<svg class="question-math-diagram" viewBox="0 0 520 260" role="img" aria-label="Question diagram">'+b+'</svg>';
@@ -2922,7 +2976,12 @@ window.MathoraDiagrams={
    return old.example?old.example(id,type,variant):(old.lesson?old.lesson(type,variant):"");
  }
 };
-})();\n;\n\n/* ===== question-engine.js ===== */\n(function(){
+})();
+})();
+
+/* ===== question-engine.js ===== */
+(function(){
+(function(){
 "use strict";
 const Q=(p,s,d=null)=>({prompt:p,steps:s,diagram:d});
 const t=n=>Number.isInteger(n)?String(n):String(+n.toFixed(3));
@@ -3365,7 +3424,12 @@ function build(type){
  return [];
 }
 window.MathoraQuestionEngine={build(type){const all=build(type);return{practice:all.slice(0,16),homework:all.slice(16,32)}}};
-})();\n;\n\n/* ===== textbook-content.js ===== */\nwindow.TEXTBOOK_CONTENT = {
+})();
+})();
+
+/* ===== textbook-content.js ===== */
+(function(){
+window.TEXTBOOK_CONTENT = {
   "12.1": {
     "schemeReference": "pages 276-277\nEx 9.7\n\npages 281-282 \nEx 9.8 (Qu 1-4)",
     "supportingSelection": false,
@@ -6538,7 +6602,12 @@ window.MathoraQuestionEngine={build(type){const all=build(type);return{practice:
     "homeworkAssignment": "Complete the questions matching this lesson on the pages below. Show working and explain any conclusions in context."
   }
 };
-\n;\n\n/* ===== accurate-diagrams.js ===== */\n/* Diagrams are attached to the question data, never selected by slide position. */
+
+})();
+
+/* ===== accurate-diagrams.js ===== */
+(function(){
+/* Diagrams are attached to the question data, never selected by slide position. */
 (function(){
 'use strict';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -6578,7 +6647,12 @@ const maps={
 for(const [id,map] of Object.entries(maps)){const all=[...(window.LESSON_CONTENT[id]?.examples||[]),...(window.EXTRA_EXAMPLES[id]||[])];for(const [i,d] of Object.entries(map))if(all[i])all[i].verifiedDiagram=d}
 window.VerifiedDiagrams={render};
 })();
-\n;\n\n/* ===== source-questions.js ===== */\n(function(){
+
+})();
+
+/* ===== source-questions.js ===== */
+(function(){
+(function(){
 'use strict';
 const q=(prompt,steps,page,exercise,verifiedDiagram)=>({prompt,steps,source:`Morrison & Hamshaw (2023), p. ${page}, ${exercise}`,verifiedDiagram});
 const hist=q('At a school fundraising event, 140 people guessed the number of sweets in a jar. Calculate the frequency density for each class and draw a histogram.',[
@@ -6601,4 +6675,5 @@ window.SOURCE_QUESTIONS={
 '18.3':[seeds],'19.5':[seeds],'19.7':[hist],'19.8':[hist]
 };
 })();
-\n;\n
+
+})();
