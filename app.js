@@ -56,6 +56,25 @@ function data(){const l=lesson();return l?CONTENT[l.id]||null:null;}
 function sow(){const l=lesson();return l?SOW[l.id]||{}:{};}
 function sourcePill(t){return '<span class="source-pill">'+esc(t)+'</span>';}
 
+function setTheme(theme,persist=true){
+ const next=theme==="dark"?"dark":"light";
+ document.documentElement.dataset.theme=next;
+ if(persist){try{localStorage.setItem("mathora-theme",next);}catch(e){}}
+ const btn=$("#themeBtn");
+ if(btn){
+   btn.setAttribute("aria-label",next==="dark"?"Switch to day view":"Switch to night view");
+   const icon=$(".theme-icon",btn),label=$(".theme-text",btn);
+   if(icon)icon.textContent=next==="dark"?"☀":"☾";
+   if(label)label.textContent=next==="dark"?"Day":"Night";
+ }
+}
+function initTheme(){
+ let saved="light";
+ try{saved=localStorage.getItem("mathora-theme")||document.documentElement.dataset.theme||"light";}catch(e){}
+ setTheme(saved,false);
+}
+function toggleTheme(){setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");}
+
 function openDrawer(){
  const d=$("#lessonDrawer");if(!d)return;
  d.classList.add("open");d.setAttribute("aria-hidden","false");
@@ -125,16 +144,22 @@ function teachHTML(l,d,sm){
  const rules=(d.rules||[]).slice(0,5).map(r=>'<div class="teach-rule"><strong>'+fmt(r[0])+'</strong><span>'+fmt(r[1])+'</span></div>').join("");
  const method=(d.method||[]).slice(0,6).map((x,i)=>'<li><span>'+String(i+1).padStart(2,"0")+'</span><p>'+fmt(x)+'</p></li>').join("");
  const mistakes=(d.mistakes||[]).slice(0,5).map(x=>'<li>'+fmt(x)+'</li>').join("");
- const visuals="";
- return '<section class="notebook-page section-anchor" id="teach"><div class="page-margin-line"></div>'+
-  '<div class="section-head"><div><span class="section-kicker">02</span><h2>Key ideas</h2></div></div>'+
-  '<div class="teach-grid deep-teach clean-teach">'+
-   '<article class="note-card cyan-note"><small>LEARN</small><h3>Key points</h3><ul class="teach-list">'+key+'</ul></article>'+
-   '<article class="note-card white-note"><small>KEEP</small><h3>Rules</h3><div class="teach-rules">'+rules+'</div></article>'+
-   '<article class="note-card soft-note"><small>CHECK</small><h3>Common mistakes</h3><ul class="teach-list mistakes">'+mistakes+'</ul></article>'+
-  '</div>'+visuals+
-  '<div class="method-card clean-method"><div><span class="section-kicker">METHOD</span><h3>Steps</h3></div><ol>'+method+'</ol></div>'+
-  '<div class="teacher-board"><div class="board-title"><div><span>WHITEBOARD</span><strong>Working space</strong></div><small>Apple Pencil / touch</small></div>'+boardMarkup("teachCanvas","teach",true)+'</div>'+
+ return '<section class="section-anchor teach-section" id="teach">'+
+  '<article class="notebook-page teach-slide teach-concept-slide" data-teach-step="1"><div class="page-margin-line"></div>'+
+   '<div class="section-head"><div><span class="section-kicker">02 • TEACH</span><h2>Understand the idea</h2></div><span class="page-tag">1 / 2</span></div>'+
+   '<div class="teach-focus-grid">'+
+    '<article class="note-card cyan-note"><small>LEARN</small><h3>Key points</h3><ul class="teach-list">'+key+'</ul></article>'+
+    '<article class="note-card white-note"><small>KEEP</small><h3>Rules</h3><div class="teach-rules">'+rules+'</div></article>'+
+   '</div>'+
+   '<article class="mistake-strip"><div><span class="section-kicker">WATCH OUT</span><h3>Common mistakes</h3></div><ul class="teach-list mistakes">'+mistakes+'</ul></article>'+
+  '</article>'+
+  '<article class="notebook-page teach-slide teach-method-slide" data-teach-step="2" hidden><div class="page-margin-line"></div>'+
+   '<div class="section-head"><div><span class="section-kicker">02 • TEACH</span><h2>Model the method</h2></div><span class="page-tag">2 / 2</span></div>'+
+   '<div class="teach-method-layout">'+
+    '<div class="method-card clean-method"><div><span class="section-kicker">METHOD</span><h3>Steps</h3></div><ol>'+method+'</ol></div>'+
+    '<div class="teacher-board"><div class="board-title"><div><span>WHITEBOARD</span><strong>Model it here</strong></div><small>Apple Pencil / touch</small></div>'+boardMarkup("teachCanvas","teach",true)+'</div>'+
+   '</div>'+
+  '</article>'+
  '</section>';
 }
 
@@ -184,7 +209,7 @@ function examplesHTML(l,d){
 }
 
 function worksheetHeader(l,title,id,page,total){
- return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR "+COURSE_YEAR+"</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
+ return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
   '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
 }
 function questionCard(l,x,globalIndex,kind){
@@ -258,27 +283,65 @@ function bindTargets(){
  $$("[data-target]").forEach(btn=>{btn.onclick=()=>{const n=slides.findIndex(x=>x.section===btn.dataset.target);if(n>=0)showSlide(n);};});
 }
 function buildSlides(){
- slides=[{section:'opening',node:$('#opening'),label:'Starter'},{section:'teach',node:$('#teach'),label:'Key ideas'},
- ...$$('.example-card').map((node,i)=>({section:'examples',node,label:'Example '+(i+1)})),
- ...$$('#practice .print-sheet').map((node,i)=>({section:'practice',node,label:'Independent practice '+(i+1)})),
- ...$$('#homework .print-sheet').map((node,i)=>({section:'homework',node,label:'Homework '+(i+1)}))];
- let nav=$('#slideControls');if(!nav){nav=document.createElement('nav');nav.id='slideControls';nav.className='slide-controls no-print';nav.setAttribute('aria-label','Slide navigation');nav.innerHTML='<button id="slidePrev" type="button">← Previous</button><span id="slideStatus" aria-live="polite"></span><button id="slideNext" type="button">Next →</button>';document.body.append(nav);$('#slidePrev').onclick=()=>showSlide(slideIndex-1);$('#slideNext').onclick=()=>showSlide(slideIndex+1);}
+ slides=[
+  {section:'opening',node:$('#opening'),label:'Starter'},
+  ...$('#teach .teach-slide').map((node,i)=>({section:'teach',node,label:'Teach '+(i+1)})),
+  ...$('.example-card').map((node,i)=>({section:'examples',node,label:'Example '+(i+1)})),
+  ...$('#practice .print-sheet').map((node,i)=>({section:'practice',node,label:'Independent '+(i+1)})),
+  ...$('#homework .print-sheet').map((node,i)=>({section:'homework',node,label:'Homework '+(i+1)}))
+ ];
+ let nav=$('#slideControls');
+ if(!nav){
+   nav=document.createElement('nav');
+   nav.id='slideControls';
+   nav.className='slide-controls no-print';
+   nav.setAttribute('aria-label','Slide navigation');
+   nav.innerHTML='<button id="slidePrev" class="slide-nav-btn" type="button"><span>←</span><strong>Previous</strong></button>'+
+    '<div class="slide-centre"><span id="slideStatus" aria-live="polite"></span><div class="slide-progress"><span id="slideProgressBar"></span></div></div>'+
+    '<button id="slideNext" class="slide-nav-btn primary" type="button"><strong>Next</strong><span>→</span></button>';
+   document.body.append(nav);
+   $('#slidePrev').onclick=()=>showSlide(slideIndex-1);
+   $('#slideNext').onclick=()=>showSlide(slideIndex+1);
+ }
  showSlide(0,false);
 }
 function showSlide(index,scroll=true){
- if(index<0||index>=slides.length)return;slideIndex=index;const current=slides[index];
- $$('.section-anchor').forEach(el=>el.hidden=el.id!==current.section);
- slides.forEach(x=>{if(x.section!=='opening'&&x.section!=='teach')x.node.hidden=x!==current;});
+ if(index<0||index>=slides.length)return;
+ const previous=slideIndex;
+ slideIndex=index;
+ const current=slides[index],direction=index>=previous?'forward':'back';
+ $('.section-anchor').forEach(el=>el.hidden=el.id!==current.section);
+ $('#teach .teach-slide').forEach(el=>el.hidden=current.section!=='teach'||el!==current.node);
+ $('.example-card').forEach(el=>el.hidden=current.section!=='examples'||el!==current.node);
+ $('#practice .print-sheet').forEach(el=>el.hidden=current.section!=='practice'||el!==current.node);
+ $('#homework .print-sheet').forEach(el=>el.hidden=current.section!=='homework'||el!==current.node);
+ current.node.hidden=false;
+
  if(current.section==='examples'){
-  exampleIndex=$$('.example-card').indexOf(current.node);
-  $$('.example-card').forEach((c,i)=>c.classList.toggle('active',i===exampleIndex));
-  $$('#exampleDots button').forEach((c,i)=>c.classList.toggle('active',i===exampleIndex));
-  $('#exampleCounter').textContent=(exampleIndex+1)+' / '+$$('.example-card').length;
+  exampleIndex=$('.example-card').indexOf(current.node);
+  $('.example-card').forEach((el,i)=>el.classList.toggle('active',i===exampleIndex));
+  $('#exampleDots button').forEach((el,i)=>el.classList.toggle('active',i===exampleIndex));
+  if($('#exampleCounter'))$('#exampleCounter').textContent=(exampleIndex+1)+' / '+$('.example-card').length;
  }
- $$('.flow-button').forEach(b=>b.classList.toggle('active',b.dataset.target===current.section));
- $('#slideStatus').textContent=current.label+' · '+(index+1)+' / '+slides.length;
- $('#slidePrev').disabled=index===0;$('#slideNext').disabled=index===slides.length-1;
- typeset(current.node);requestAnimationFrame(()=>bindBoards(current.node));
+
+ $('.flow-button').forEach(b=>b.classList.toggle('active',b.dataset.target===current.section));
+ document.body.classList.toggle('presenter-mode',current.section!=='opening');
+ document.body.dataset.section=current.section;
+
+ const status=$('#slideStatus');
+ if(status)status.textContent=current.label+' · '+(index+1)+' / '+slides.length;
+ const progress=$('#slideProgressBar');
+ if(progress)progress.style.width=(((index+1)/slides.length)*100)+'%';
+ $('#slidePrev').disabled=index===0;
+ $('#slideNext').disabled=index===slides.length-1;
+
+ current.node.classList.remove('slide-enter-forward','slide-enter-back');
+ void current.node.offsetWidth;
+ current.node.classList.add(direction==='forward'?'slide-enter-forward':'slide-enter-back');
+ setTimeout(()=>current.node.classList.remove('slide-enter-forward','slide-enter-back'),420);
+
+ typeset(current.node);
+ requestAnimationFrame(()=>bindBoards(current.node));
  if(scroll)window.scrollTo({top:0,behavior:'instant'});
 }
 function bindExamples(){
@@ -441,16 +504,29 @@ function renderAll(){
  updateHeader();renderLessonDrawer($("#lessonSearch")?.value||"");renderNotebook();
 }
 function start(){
+ initTheme();
  if(!validate()){ $("#notebook").innerHTML='<div class="page-loading">The SoW/content map is incomplete. Refresh after deployment.</div>';return;}
  initFromHash();
  $("#lessonSearch")?.addEventListener("input",e=>renderLessonDrawer(e.target.value));
  $("#openLessonsBtn")?.addEventListener("click",openDrawer);$("#closeLessonsBtn")?.addEventListener("click",closeDrawer);
  $("#lessonDrawer")?.addEventListener("click",e=>{if(e.target.id==="lessonDrawer")closeDrawer();});
  document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();$$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");$("#solutionModal")?.classList.remove("open");$("#solutionModal")?.setAttribute("aria-hidden","true");}});
- $("#focusBtn")?.addEventListener("click",e=>{document.body.classList.toggle("focus-mode");$(".focus-text",e.currentTarget).textContent=document.body.classList.contains("focus-mode")?"Exit focus":"Focus";});
+ $("#focusBtn")?.addEventListener("click",e=>{
+   document.body.classList.toggle("focus-mode");
+   $(".focus-text",e.currentTarget).textContent=document.body.classList.contains("focus-mode")?"Exit focus":"Focus";
+ });
+ $("#themeBtn")?.addEventListener("click",toggleTheme);
  $("#prevLessonBtn")?.addEventListener("click",()=>goLesson(-1));$("#nextLessonBtn")?.addEventListener("click",()=>goLesson(1));
  window.addEventListener("hashchange",()=>{const old=currentIndex;initFromHash();if(old!==currentIndex){exampleIndex=0;renderAll();}});
- document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA","SELECT","BUTTON"].includes(e.target.tagName)||$(".solution-modal.open")||$(".lesson-drawer.open"))return;if(e.key==="ArrowRight"){e.preventDefault();showSlide(slideIndex+1);}if(e.key==="ArrowLeft"){e.preventDefault();showSlide(slideIndex-1);}});
+ document.addEventListener("keydown",e=>{if(["INPUT","TEXTAREA","SELECT","BUTTON"].includes(e.target.tagName)||$(".solution-modal.open")||$(".lesson-drawer.open"))return;if(e.key==="ArrowRight"||e.key==="PageDown"){e.preventDefault();showSlide(slideIndex+1);}if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();showSlide(slideIndex-1);}});
+ let swipeStartX=null,swipeStartY=null;
+ document.addEventListener("touchstart",e=>{if(e.touches.length!==1)return;swipeStartX=e.touches[0].clientX;swipeStartY=e.touches[0].clientY;},{passive:true});
+ document.addEventListener("touchend",e=>{
+   if(swipeStartX===null||!e.changedTouches?.length)return;
+   const dx=e.changedTouches[0].clientX-swipeStartX,dy=e.changedTouches[0].clientY-swipeStartY;
+   swipeStartX=swipeStartY=null;
+   if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.35)showSlide(slideIndex+(dx<0?1:-1));
+ },{passive:true});
  renderAll();document.documentElement.dataset.ready="1";
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
