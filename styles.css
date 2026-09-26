@@ -1760,3 +1760,254 @@ html[data-theme="dark"] .drawer-year-tabs .active{
   color:#06202a;
   box-shadow:0 8px 22px rgba(83,216,255,.18);
 }
+
+
+/* =========================================================
+   PRESENTER 10 — CLEAN CLASSROOM UI + PRINTABLE INK
+   ========================================================= */
+:root{
+  --classroom-radius:14px;
+  --classroom-shadow:0 18px 46px rgba(7,50,65,.075);
+}
+
+/* Keep lesson identity readable at a glance */
+.current-lesson-lockup{min-width:0!important}
+.current-title-row{
+  min-width:0;
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+}
+.current-title-row>strong{
+  min-width:0;
+  flex:1 1 auto;
+  margin-top:3px;
+}
+.current-title-row>time{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:4px 9px;
+  border:1px solid #c9e3ea;
+  border-radius:999px;
+  background:rgba(232,248,252,.92);
+  color:var(--nes-dark);
+  font-size:.62rem;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+
+/* Title and date behave as one visual unit on the student-facing opener */
+.lesson-title-date-row{
+  min-width:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:22px;
+}
+.lesson-title-date-row h1{
+  min-width:0;
+  flex:1 1 auto;
+}
+.student-date-pill{
+  flex:0 0 auto;
+  min-width:126px;
+  padding:9px 12px 9px 14px;
+  border-left:3px solid var(--nes);
+  border-radius:0 12px 12px 0;
+  background:rgba(255,255,255,.82);
+}
+.student-date-pill span{
+  display:block;
+  color:#6c8c96;
+  font-size:.5rem;
+  font-weight:950;
+  letter-spacing:.15em;
+}
+.student-date-pill strong{
+  display:block;
+  margin-top:3px;
+  color:var(--nes-dark);
+  font-size:.88rem;
+  line-height:1.15;
+}
+.title-block-compact>.overline{margin-bottom:9px!important}
+.clean-title-hero{align-items:center!important}
+.lesson-focus-card{border-radius:var(--classroom-radius)!important;box-shadow:none!important}
+
+/* Simplified, calmer surface treatment */
+.notebook-page,.worksheet-slide{
+  box-shadow:var(--classroom-shadow)!important;
+}
+.flow-button{
+  box-shadow:none!important;
+}
+.flow-button:not(.active){background:rgba(255,255,255,.84)!important}
+.sheet-action{
+  box-shadow:none!important;
+  border-radius:10px!important;
+}
+.sheet-action.print-all-btn,.example-print-all{
+  background:var(--nes-dark)!important;
+  border-color:var(--nes-dark)!important;
+  color:#fff!important;
+}
+.example-nav{flex-wrap:wrap;justify-content:flex-end}
+.example-print-all{margin-right:4px}
+
+/* Worksheet title + date stay together */
+.worksheet-title-date{
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:10px;
+  min-width:0;
+}
+.worksheet-title-date h2{min-width:0}
+.worksheet-title-date>span{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  padding:4px 9px;
+  border:1px solid #cae3ea;
+  border-radius:999px;
+  background:var(--nes-soft);
+  color:var(--nes-dark);
+  font-size:.65rem;
+  font-weight:900;
+  white-space:nowrap;
+}
+.worksheet-title-row{align-items:center!important}
+.sheet-meta{margin-left:auto}
+.annotate-page-btn.active{
+  background:var(--nes-dark)!important;
+  border-color:var(--nes-dark)!important;
+  color:#fff!important;
+}
+
+/* Full-page ink layer for independent practice, textbook extracts and homework */
+.annotatable-sheet{position:relative!important}
+.sheet-annotation-wrap{
+  position:absolute!important;
+  inset:0!important;
+  z-index:28!important;
+  pointer-events:none!important;
+}
+.sheet-annotation-canvas{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  width:100%!important;
+  height:100%!important;
+  pointer-events:none!important;
+  touch-action:none!important;
+  cursor:crosshair;
+}
+.sheet-annotation-toolbar{
+  position:absolute!important;
+  top:78px;
+  right:18px;
+  z-index:3!important;
+  width:auto;
+  max-width:calc(100% - 36px);
+  margin:0!important;
+  padding:8px 10px!important;
+  border:1px solid #c8dfe6!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.98)!important;
+  box-shadow:0 14px 34px rgba(7,50,65,.16)!important;
+  opacity:0;
+  transform:translateY(-6px);
+  pointer-events:none!important;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.sheet-annotation-wrap.annotating{
+  pointer-events:auto!important;
+}
+.sheet-annotation-wrap.annotating .sheet-annotation-canvas{
+  pointer-events:auto!important;
+}
+.sheet-annotation-wrap.annotating .sheet-annotation-toolbar{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto!important;
+}
+.done-annotate-tool{
+  background:var(--nes-dark)!important;
+  border-color:var(--nes-dark)!important;
+  color:#fff!important;
+}
+.sheet-annotation-toolbar .tool-cluster{flex-wrap:nowrap}
+
+/* Whiteboards: reliable controls, larger click/touch targets */
+.interactive-board .mini-tool{min-height:34px}
+.interactive-board .pen-dot{flex:0 0 auto}
+.board-paper{isolation:isolate}
+.board-paper canvas{z-index:2}
+.board-hint{z-index:1;pointer-events:none}
+.working-toolbar{position:relative;z-index:5}
+
+/* Print captures are deliberately image layers so ink survives browser PDF export */
+.print-board-capture,.print-annotation-capture{
+  display:block;
+  max-width:none!important;
+}
+.print-annotation-capture{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:fill!important;
+  pointer-events:none!important;
+}
+
+/* Dark mode retains hierarchy without making paper feel heavy */
+html[data-theme="dark"] .current-title-row>time,
+html[data-theme="dark"] .student-date-pill,
+html[data-theme="dark"] .worksheet-title-date>span{
+  background:#15333d;
+  border-color:#31505a;
+  color:#eef9fb;
+}
+html[data-theme="dark"] .student-date-pill{border-left-color:#53d8ff}
+html[data-theme="dark"] .sheet-annotation-toolbar{background:#102229!important;border-color:#35515a!important}
+
+/* Responsive title/date pairing */
+@media(max-width:1100px){
+  .wide-topbar{
+    grid-template-columns:minmax(180px,.65fr) minmax(280px,1.35fr) auto!important;
+    gap:16px!important;
+  }
+  .top-actions{gap:6px!important}
+}
+@media(max-width:860px){
+  .current-title-row{align-items:flex-start;flex-direction:column;gap:4px}
+  .current-title-row>time{padding:3px 7px;font-size:.57rem}
+  .lesson-title-date-row{align-items:flex-start;flex-direction:column;gap:10px}
+  .student-date-pill{
+    min-width:0;
+    border-left:0;
+    border-top:2px solid var(--nes);
+    border-radius:0 0 10px 10px;
+    padding:7px 10px;
+  }
+  .worksheet-title-row{align-items:flex-start!important}
+}
+@media(max-width:620px){
+  .worksheet-title-date{align-items:flex-start;flex-direction:column;gap:5px}
+  .sheet-annotation-toolbar{
+    top:66px;
+    left:10px;
+    right:10px;
+    max-width:none;
+    overflow-x:auto;
+  }
+}
+
+/* Printing should never expose editing chrome */
+@media print{
+  .sheet-annotation-toolbar,.annotate-page-btn,.example-print-all{display:none!important}
+}
