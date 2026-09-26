@@ -12,6 +12,8 @@ const BOOKS=window.TEXTBOOK_CONTENT||{};
 const VERIFIED=window.VerifiedDiagrams||{render:()=>""};
 const DIAGRAMS=window.MathoraDiagrams||{supports:()=>false,lesson:()=>"",practice:()=>"",question:()=>""};
 const QUESTION_ENGINE=window.MathoraQuestionEngine||{build:()=>({practice:[],homework:[]})};
+const COURSE_YEAR=String(window.COURSE_YEAR||"10");
+const EXPECTED_LESSONS=Number(window.EXPECTED_LESSONS||47);
 
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -106,9 +108,9 @@ function starterSolutions(l){
 
 function openingHTML(l,d,sm){
  return '<section class="notebook-page opening-page title-starter-page section-anchor" id="opening"><div class="page-margin-line"></div>'+
-  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
+  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR "+COURSE_YEAR+"</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
   '<div class="title-starter-hero clean-title-hero">'+
-    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR 10 MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
+    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR "+COURSE_YEAR+" MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
     '<div class="lesson-focus-card"><span>KEY FOCUS</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
   '</div>'+
   '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER</span><h2>Quick start</h2></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Solutions</button></div>'+
@@ -182,7 +184,7 @@ function examplesHTML(l,d){
 }
 
 function worksheetHeader(l,title,id,page,total){
- return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
+ return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR "+COURSE_YEAR+"</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
   '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
 }
 function questionCard(l,x,globalIndex,kind){
@@ -201,12 +203,14 @@ function solvedQuestionSets(l,d){
    seen.add(key);return true;
  });
  // Keep homework distinct from practice and from the displayed teacher examples.
- const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...(generated.practice||[]).slice(0,8)]);
+ const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...(d.practice||[]),...(generated.practice||[]).slice(0,8)]);
  const homework=unique(d.homework||[]);
  return {practice,homework};
 }
 function sourceImage(asset,alt){
- return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+asset.width+'" height="'+asset.height+'" style="max-width:'+Math.min(1040,Math.max(360,asset.width))+'px" loading="lazy" decoding="async" alt="'+esc(alt)+'"></a>';
+ if(asset?.image) return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+(asset.width||900)+'" height="'+(asset.height||1200)+'" style="max-width:'+Math.min(1040,Math.max(360,asset.width||900))+'px" loading="lazy" decoding="async" alt="'+esc(alt)+'"></a>';
+ if(asset?.url) return '<a class="source-book-card" href="'+esc(asset.url)+'" target="_blank" rel="noopener"><span class="source-book-label">'+esc(asset.bookTitle||"Textbook source")+'</span><strong>'+esc(asset.heading||alt)+'</strong>'+(asset.page?'<small>Page / section: '+esc(asset.page)+'</small>':'')+(asset.excerpt?'<p>'+fmt(asset.excerpt)+'</p>':'')+'<em>Open source ↗</em></a>';
+ return "";
 }
 function sourceMaterials(l,kind){
  const b=BOOKS[l.id];if(!b)return "";
@@ -431,7 +435,7 @@ function initFromHash(){
  const id=decodeURIComponent(location.hash.replace(/^#/,"")),i=LESSONS.findIndex(l=>l.id===id);if(i>=0)currentIndex=i;
 }
 function validate(){
- return LESSONS.length===47&&LESSONS.every(l=>CONTENT[l.id]&&SOW[l.id]);
+ return LESSONS.length===EXPECTED_LESSONS&&LESSONS.every(l=>CONTENT[l.id]&&SOW[l.id]);
 }
 function renderAll(){
  updateHeader();renderLessonDrawer($("#lessonSearch")?.value||"");renderNotebook();
