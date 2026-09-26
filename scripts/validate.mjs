@@ -46,6 +46,12 @@ console.log('Bundled course validation PASS: Year 10, Year 9, Year 8 and Year 7 
 
 const sharedApp=fs.readFileSync('app.js','utf8');
 const sharedCss=fs.readFileSync('styles.css','utf8');
+const invalidSelectorLines=sharedApp.split('\n').filter(line=>(/(^|[^$])\$\([^)]*\)\.forEach/).test(line));
+if(invalidSelectorLines.length) throw Error('Single-element selector used as a list: '+invalidSelectorLines.join(' | '));
+for(const token of ['toolbar.addEventListener("click"','eraser-tool','undo-tool','redo-tool','grid-tool','clear-tool','expand-tool']){
+  if(!sharedApp.includes(token)) throw Error('Missing whiteboard control binding: '+token);
+}
+
 for(const token of ['function boardSnapshot','function flattenCanvases','function sheetAnnotationMarkup','data-print-target="examples"','Print all / PDF']){
   if(!sharedApp.includes(token)) throw Error('Missing print/annotation runtime: '+token);
 }
@@ -55,7 +61,7 @@ for(const token of ['.lesson-title-date-row','.student-date-pill','.sheet-annota
 for(const page of ['index.html','year9.html','year8.html','year7.html']){
   const source=fs.readFileSync(page,'utf8');
   if(!source.includes('id="currentLessonDate"')) throw Error(page+' missing visible lesson date');
-  if(!source.includes('app.js?v=presenter-11')||!source.includes('styles.css?v=presenter-10')) throw Error(page+' stale shared asset version');
+  if(!source.includes('app.js?v=presenter-12')||!source.includes('styles.css?v=presenter-11')) throw Error(page+' stale shared asset version');
 }
 console.log('Presenter/print validation PASS: visible dates, printable ink and full-section export are wired across Year 7–10.');
 
