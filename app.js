@@ -525,6 +525,7 @@ function renderAll(){
  updateHeader();renderLessonDrawer($("#lessonSearch")?.value||"");renderNotebook();
 }
 function start(){
+ try{
  initTheme();
  if(!validate()){ $("#notebook").innerHTML='<div class="page-loading">The SoW/content map is incomplete. Refresh after deployment.</div>';return;}
  initFromHash();
@@ -553,6 +554,11 @@ function start(){
    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.35)showSlide(slideIndex+(dx<0?1:-1));
  },{passive:true});
  renderAll();document.documentElement.dataset.ready="1";
+ }catch(error){
+   console.error("Lesson renderer failed",error);
+   const root=$("#notebook");
+   if(root)root.innerHTML='<div class="page-loading load-error"><strong>Lesson could not load.</strong><span>Please refresh this page. If it continues, open All lessons and choose the lesson again.</span></div>';
+ }
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
 })();
