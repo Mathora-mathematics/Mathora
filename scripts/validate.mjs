@@ -20,7 +20,10 @@ for(const l of w.LESSONS){
   if(q.verifiedDiagram&&!w.VerifiedDiagrams.render(q.verifiedDiagram).includes('<svg'))throw Error('Diagram '+l.id);
  }
 }
-const html=fs.readFileSync('index.html','utf8');for(const f of [...files,'app'])if(!html.includes(f+'.js'))throw Error('Missing runtime script '+f);
+const html=fs.readFileSync('index.html','utf8');
+if(!html.includes('year10-data.js')||!html.includes('app.js'))throw Error('Missing Year 10 live runtime scripts');
+const html9=fs.readFileSync('year9.html','utf8');
+if(!html9.includes('year9-data.js')||!html9.includes('app.js'))throw Error('Missing Year 9 live runtime scripts');
 console.log(`PASS: 47 mapped lessons; ${examples} source examples; ${assets.size} referenced extracts; data-driven diagrams and worked solutions.`);
 
 
