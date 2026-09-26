@@ -510,7 +510,11 @@ function start(){
  $("#lessonSearch")?.addEventListener("input",e=>renderLessonDrawer(e.target.value));
  $("#openLessonsBtn")?.addEventListener("click",openDrawer);$("#closeLessonsBtn")?.addEventListener("click",closeDrawer);
  $("#lessonDrawer")?.addEventListener("click",e=>{if(e.target.id==="lessonDrawer")closeDrawer();});
- document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();$$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");$("#solutionModal")?.classList.remove("open");$("#solutionModal")?.setAttribute("aria-hidden","true");}});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"){
+   closeDrawer();$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");
+   $("#solutionModal")?.classList.remove("open");$("#solutionModal")?.setAttribute("aria-hidden","true");
+   if(document.body.classList.contains("focus-mode")){document.body.classList.remove("focus-mode");const t=$("#focusBtn .focus-text");if(t)t.textContent="Focus";}
+ }});
  $("#focusBtn")?.addEventListener("click",e=>{
    document.body.classList.toggle("focus-mode");
    $(".focus-text",e.currentTarget).textContent=document.body.classList.contains("focus-mode")?"Exit focus":"Focus";
