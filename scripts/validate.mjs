@@ -52,16 +52,16 @@ for(const token of ['toolbar.addEventListener("click"','eraser-tool','undo-tool'
   if(!sharedApp.includes(token)) throw Error('Missing whiteboard control binding: '+token);
 }
 
-for(const token of ['function boardSnapshot','function flattenCanvases','function sheetAnnotationMarkup','data-print-target="examples"','Print all / PDF']){
+for(const token of ['function boardSnapshot','function flattenCanvases','function sheetAnnotationMarkup','data-print-target="examples"','Print all / PDF','const pageSize=4']){
   if(!sharedApp.includes(token)) throw Error('Missing print/annotation runtime: '+token);
 }
-for(const token of ['.lesson-title-date-row','.student-date-pill','.sheet-annotation-canvas','.annotate-page-btn.active']){
+for(const token of ['.lesson-title-date-row','.student-date-pill','.sheet-annotation-canvas','.annotate-page-btn.active','.powerpoint-question-grid','PRESENTER 12 — TRUE 16:9 CLASSROOM DECK']){
   if(!sharedCss.includes(token)) throw Error('Missing classroom UI style: '+token);
 }
 for(const page of ['index.html','year9.html','year8.html','year7.html']){
   const source=fs.readFileSync(page,'utf8');
   if(!source.includes('id="currentLessonDate"')) throw Error(page+' missing visible lesson date');
-  if(!source.includes('app.js?v=presenter-12')||!source.includes('styles.css?v=presenter-11')) throw Error(page+' stale shared asset version');
+  if(!source.includes('app.js?v=presenter-13')||!source.includes('styles.css?v=presenter-12')) throw Error(page+' stale shared asset version');
 }
 console.log('Presenter/print validation PASS: visible dates, printable ink and full-section export are wired across Year 7–10.');
 
