@@ -88,7 +88,7 @@ function themeInk(colour){
  return map[raw]||raw;
 }
 function refreshBoardTheme(){
- $(".pen-dot").forEach(dot=>{dot.style.background=themeInk(dot.dataset.colour);});
+ $$(".pen-dot").forEach(dot=>{dot.style.background=themeInk(dot.dataset.colour);});
  boardStates.forEach(state=>{if(state?.ctx)redrawBoard(state);});
 }
 
@@ -443,46 +443,116 @@ function resizeBoard(state){
  state.ctx=c.getContext("2d");state.ctx.setTransform(dpr,0,0,dpr,0,0);redrawBoard(state);
 }
 function bindBoard(canvas){
- if(!canvas||canvas.dataset.bound)return;canvas.dataset.bound="1";
- const state=loadBoardState(canvas),toolbar=document.querySelector('[data-canvas="'+canvas.id+'"]'),wrap=canvas.closest(".interactive-board");
+ if(!canvas||canvas.dataset.bound)return;
+ canvas.dataset.bound="1";
+ const state=loadBoardState(canvas);
+ const toolbar=document.querySelector('[data-canvas="'+canvas.id+'"]');
+ const wrap=canvas.closest(".interactive-board");
  resizeBoard(state);
- if(window.ResizeObserver){state.ro=new ResizeObserver(()=>resizeBoard(state));state.ro.observe(canvas.parentElement);}
+ if(window.ResizeObserver){
+  state.ro=new ResizeObserver(()=>resizeBoard(state));
+  state.ro.observe(canvas.parentElement);
+ }
+
  let drawing=false,current=null;
  const addPoint=e=>{
-   const r=canvas.getBoundingClientRect();return{x:Math.max(0,Math.min(1,(e.clientX-r.left)/r.width)),y:Math.max(0,Math.min(1,(e.clientY-r.top)/r.height)),p:Math.max(.15,e.pressure||.45)};
+  const r=canvas.getBoundingClientRect();
+  return{
+   x:Math.max(0,Math.min(1,(e.clientX-r.left)/Math.max(1,r.width))),
+   y:Math.max(0,Math.min(1,(e.clientY-r.top)/Math.max(1,r.height))),
+   p:Math.max(.15,e.pressure||.45)
+  };
  };
+ const finishStroke=e=>{
+  if(!drawing)return;
+  e?.preventDefault?.();
+  drawing=false;current=null;saveBoard(state);
+ };
+
  canvas.addEventListener("contextmenu",e=>e.preventDefault());
  canvas.addEventListener("pointerdown",e=>{
-   if(e.pointerType==="pen")state.lastPen=Date.now();
-   if(e.pointerType==="touch"&&Date.now()-state.lastPen<5000)return;
-   e.preventDefault();drawing=true;canvas.setPointerCapture?.(e.pointerId);
-   current={tool:state.tool,colour:state.colour,size:state.size,points:[addPoint(e)]};state.strokes.push(current);state.redo=[];
-   drawOneStroke(state,current);
+  if(e.pointerType==="pen")state.lastPen=Date.now();
+  if(e.pointerType==="touch"&&Date.now()-state.lastPen<1400)return;
+  e.preventDefault();
+  drawing=true;
+  canvas.setPointerCapture?.(e.pointerId);
+  current={tool:state.tool,colour:state.colour,size:state.size,points:[addPoint(e)]};
+  state.strokes.push(current);state.redo=[];
+  drawOneStroke(state,current);
  });
  canvas.addEventListener("pointermove",e=>{
-   if(!drawing||!current)return;e.preventDefault();
-   const events=e.getCoalescedEvents?e.getCoalescedEvents():[e];
-   for(const ev of events)current.points.push(addPoint(ev));
-   redrawBoard(state);
+  if(!drawing||!current)return;
+  e.preventDefault();
+  const events=e.getCoalescedEvents?e.getCoalescedEvents():[e];
+  events.forEach(ev=>current.points.push(addPoint(ev)));
+  redrawBoard(state);
  });
- const stop=e=>{if(!drawing)return;e?.preventDefault?.();drawing=false;current=null;saveBoard(state);};
- ["pointerup","pointercancel"].forEach(ev=>canvas.addEventListener(ev,stop));
- if(toolbar){
-   $(".pen-dot",toolbar).forEach(dot=>{dot.style.background=themeInk(dot.dataset.colour);dot.addEventListener("click",()=>{state.tool="pen";state.colour=dot.dataset.colour;$$(".pen-dot",toolbar).forEach(x=>x.classList.toggle("active",x===dot));$(".eraser-tool",toolbar)?.classList.remove("active");});});
-   $$(".size-tool",toolbar).forEach(btn=>btn.addEventListener("click",()=>{state.size=Number(btn.dataset.size)||3;$$(".size-tool",toolbar).forEach(x=>x.classList.toggle("active",x===btn));}));
-   $(".eraser-tool",toolbar)?.addEventListener("click",e=>{state.tool="erase";e.currentTarget.classList.add("active");});
-   $(".undo-tool",toolbar)?.addEventListener("click",()=>{const x=state.strokes.pop();if(x)state.redo.push(x);redrawBoard(state);saveBoard(state);});
-   $(".redo-tool",toolbar)?.addEventListener("click",()=>{const x=state.redo.pop();if(x)state.strokes.push(x);redrawBoard(state);saveBoard(state);});
-   $(".clear-tool",toolbar)?.addEventListener("click",()=>{state.strokes=[];state.redo=[];redrawBoard(state);saveBoard(state);});
-   $(".grid-tool",toolbar)?.addEventListener("click",e=>{wrap?.classList.toggle("no-grid");e.currentTarget.classList.toggle("active",!wrap?.classList.contains("no-grid"));});
-   $(".expand-tool",toolbar)?.addEventListener("click",e=>{
-     const card=canvas.closest(".example-card")||canvas.closest(".teacher-board");
-     if(!card)return;
-     const open=card.classList.toggle("board-expanded");document.body.classList.toggle("board-open",open);e.currentTarget.textContent=open?"Close":"Expand";
-     setTimeout(()=>resizeBoard(state),120);
-   });
- }
+ ["pointerup","pointercancel","lostpointercapture"].forEach(ev=>canvas.addEventListener(ev,finishStroke));
+
+ if(!toolbar)return;
+
+ const syncToolUI=()=>{
+  $$(".pen-dot",toolbar).forEach(dot=>{
+   dot.style.background=themeInk(dot.dataset.colour);
+   dot.classList.toggle("active",state.tool==="pen"&&String(dot.dataset.colour).toLowerCase()===String(state.colour).toLowerCase());
+  });
+  $$(".size-tool",toolbar).forEach(btn=>btn.classList.toggle("active",Number(btn.dataset.size)===Number(state.size)));
+  $(".eraser-tool",toolbar)?.classList.toggle("active",state.tool==="erase");
+  const undo=$(".undo-tool",toolbar),redo=$(".redo-tool",toolbar);
+  if(undo)undo.disabled=state.strokes.length===0;
+  if(redo)redo.disabled=state.redo.length===0;
+ };
+ syncToolUI();
+
+ toolbar.addEventListener("click",e=>{
+  const button=e.target.closest("button");
+  if(!button||!toolbar.contains(button))return;
+  e.preventDefault();
+
+  if(button.classList.contains("pen-dot")){
+   state.tool="pen";
+   state.colour=button.dataset.colour||"#073241";
+   syncToolUI();return;
+  }
+  if(button.classList.contains("size-tool")){
+   state.size=Number(button.dataset.size)||3;
+   syncToolUI();return;
+  }
+  if(button.classList.contains("eraser-tool")){
+   state.tool=state.tool==="erase"?"pen":"erase";
+   syncToolUI();return;
+  }
+  if(button.classList.contains("undo-tool")){
+   const stroke=state.strokes.pop();
+   if(stroke)state.redo.push(stroke);
+   redrawBoard(state);saveBoard(state);syncToolUI();return;
+  }
+  if(button.classList.contains("redo-tool")){
+   const stroke=state.redo.pop();
+   if(stroke)state.strokes.push(stroke);
+   redrawBoard(state);saveBoard(state);syncToolUI();return;
+  }
+  if(button.classList.contains("clear-tool")){
+   state.strokes=[];state.redo=[];
+   redrawBoard(state);saveBoard(state);syncToolUI();return;
+  }
+  if(button.classList.contains("grid-tool")){
+   wrap?.classList.toggle("no-grid");
+   button.classList.toggle("active",!wrap?.classList.contains("no-grid"));
+   return;
+  }
+  if(button.classList.contains("expand-tool")){
+   const card=canvas.closest(".example-card")||canvas.closest(".teacher-board");
+   if(!card)return;
+   const open=card.classList.toggle("board-expanded");
+   document.body.classList.toggle("board-open",open);
+   button.classList.toggle("active",open);
+   button.textContent=open?"Close":"Expand";
+   setTimeout(()=>resizeBoard(state),120);
+  }
+ });
 }
+
 function bindBoards(root=document){$$("canvas[data-board-key]",root).filter(c=>c.getBoundingClientRect().width>0).forEach(bindBoard);}
 
 
@@ -683,7 +753,7 @@ function start(){
  $("#openLessonsBtn")?.addEventListener("click",openDrawer);$("#closeLessonsBtn")?.addEventListener("click",closeDrawer);
  $("#lessonDrawer")?.addEventListener("click",e=>{if(e.target.id==="lessonDrawer")closeDrawer();});
  document.addEventListener("keydown",e=>{if(e.key==="Escape"){
-   closeDrawer();$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");
+   closeDrawer();$$(".board-expanded").forEach(x=>x.classList.remove("board-expanded"));document.body.classList.remove("board-open");
    $("#solutionModal")?.classList.remove("open");$("#solutionModal")?.setAttribute("aria-hidden","true");
    if(document.body.classList.contains("focus-mode")){document.body.classList.remove("focus-mode");const t=$("#focusBtn .focus-text");if(t)t.textContent="Focus";}
  }});
