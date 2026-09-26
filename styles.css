@@ -2453,3 +2453,452 @@ html[data-theme="dark"] .current-title-row>time{
   }
   .tool-cluster{flex:0 0 auto!important}
 }
+
+
+/* =========================================================
+   PRESENTER 12 — TRUE 16:9 CLASSROOM DECK
+   ========================================================= */
+:root{
+  --deck-width:min(1600px, calc(100vw - 34px), calc((100dvh - 138px) * 1.7778));
+}
+
+/* The live lesson is a centred 16:9 deck, not a scrolling webpage. */
+.wide-stage,
+.lesson-stage{
+  max-width:none!important;
+  padding:10px 16px 92px!important;
+}
+.wide-notebook,
+.notebook{
+  display:block!important;
+}
+.notebook-page,
+.worksheet-slide{
+  width:var(--deck-width)!important;
+  max-width:1600px!important;
+  aspect-ratio:16 / 9!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0 auto!important;
+  padding:clamp(20px,2.1vw,34px) clamp(28px,3vw,50px)!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+}
+.page-margin-line{display:none!important}
+body.presenter-mode .notebook-page,
+body.presenter-mode .worksheet-slide{
+  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+}
+.section-head{
+  margin-bottom:clamp(10px,1vw,16px)!important;
+}
+.section-head h2{
+  font-size:clamp(1.9rem,2.6vw,2.8rem)!important;
+  line-height:1!important;
+}
+.section-kicker{
+  font-size:clamp(.56rem,.75vw,.72rem)!important;
+}
+
+/* Starter slide: large, clean and readable from the back of a classroom. */
+.title-starter-page{
+  width:var(--deck-width)!important;
+  min-height:0!important;
+  max-width:1600px!important;
+  padding:clamp(20px,2vw,32px) clamp(28px,3vw,52px)!important;
+}
+.compact-opening-brand{
+  grid-template-columns:76px 1fr auto!important;
+  min-height:48px!important;
+  padding-bottom:8px!important;
+}
+.cover-logo{width:76px!important;height:45px!important}
+.opening-school-copy span{font-size:.55rem!important}
+.opening-school-copy strong{font-size:.88rem!important}
+.lesson-title-date-row{
+  align-items:flex-end!important;
+  gap:22px!important;
+}
+.lesson-title-date-row h1{
+  font-size:clamp(2.7rem,4vw,4.7rem)!important;
+  line-height:.98!important;
+  letter-spacing:-.045em!important;
+}
+.student-date-pill{
+  min-width:128px!important;
+  padding-left:12px!important;
+}
+.student-date-pill strong{font-size:.92rem!important}
+.compact-intro{
+  margin-top:8px!important;
+  max-width:1160px!important;
+  font-size:clamp(.86rem,1vw,1.02rem)!important;
+  line-height:1.38!important;
+}
+.clean-title-hero{padding:12px 0 10px!important}
+.compact-starter-head{
+  margin:8px 0 7px!important;
+  padding-top:9px!important;
+}
+.compact-starter-head h2{
+  font-size:clamp(1.45rem,1.8vw,1.9rem)!important;
+}
+.title-starter-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-rows:1fr!important;
+  gap:10px!important;
+}
+.title-starter-grid .question-card{
+  min-height:clamp(145px,18vh,190px)!important;
+  padding:14px 16px!important;
+}
+.title-starter-grid .question-card p{
+  font-size:clamp(1.12rem,1.42vw,1.45rem)!important;
+  line-height:1.35!important;
+}
+.title-starter-grid .question-number{
+  width:31px!important;height:31px!important;font-size:.72rem!important;
+}
+.title-starter-grid .mini-work-grid{
+  min-height:58px!important;
+  margin-top:8px!important;
+}
+.compact-opening-footer{
+  margin-top:8px!important;
+  padding-top:4px!important;
+}
+
+/* Teach slides: fewer words per line and projector-scale text. */
+.teach-slide{
+  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  aspect-ratio:16/9!important;
+  min-height:0!important;
+  padding:clamp(24px,2.5vw,42px) clamp(32px,3.2vw,56px)!important;
+}
+.teach-focus-grid{
+  grid-template-columns:1fr 1fr!important;
+  gap:16px!important;
+}
+.teach-focus-grid .note-card{
+  padding:clamp(20px,2vw,30px)!important;
+}
+.teach-focus-grid .note-card h3{
+  font-size:clamp(1.5rem,2vw,2.05rem)!important;
+  margin-bottom:10px!important;
+}
+.teach-focus-grid .teach-list{
+  margin-top:8px!important;
+}
+.teach-focus-grid .teach-list li{
+  font-size:clamp(1.08rem,1.45vw,1.45rem)!important;
+  line-height:1.45!important;
+  margin-bottom:7px!important;
+}
+.teach-focus-grid .teach-rule{
+  padding:9px 0!important;
+}
+.teach-focus-grid .teach-rule strong{
+  font-size:clamp(1.08rem,1.45vw,1.4rem)!important;
+}
+.teach-focus-grid .teach-rule span{
+  font-size:clamp(.95rem,1.15vw,1.16rem)!important;
+  line-height:1.38!important;
+}
+.mistake-strip{
+  margin-top:12px!important;
+  padding:14px 18px!important;
+  grid-template-columns:190px 1fr!important;
+  gap:14px!important;
+}
+.mistake-strip h3{font-size:1.22rem!important}
+.mistake-strip .teach-list{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:5px 18px!important;
+}
+.mistake-strip .teach-list li{
+  font-size:clamp(.9rem,1vw,1.05rem)!important;
+  line-height:1.32!important;
+}
+
+/* Method/whiteboard teaching slide uses the full 16:9 canvas. */
+.teach-method-layout{
+  grid-template-columns:minmax(290px,.31fr) minmax(0,.69fr)!important;
+  gap:16px!important;
+  height:calc(100% - 68px)!important;
+}
+.teach-method-layout .method-card{
+  min-height:0!important;
+  height:100%!important;
+  padding:22px!important;
+  overflow:hidden!important;
+}
+.teach-method-layout .method-card h3{
+  font-size:clamp(1.55rem,2vw,2rem)!important;
+}
+.teach-method-layout .method-card ol{
+  gap:7px!important;
+}
+.teach-method-layout .method-card li p{
+  font-size:clamp(1rem,1.25vw,1.24rem)!important;
+  line-height:1.38!important;
+}
+.teach-method-layout .teacher-board{
+  height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.teach-method-layout .teach-whiteboard{
+  flex:1!important;
+  min-height:0!important;
+}
+.teach-method-layout .teach-whiteboard .board-paper{
+  height:100%!important;
+  min-height:0!important;
+}
+
+/* Examples are PowerPoint slides: big question on the left, huge board on the right. */
+.examples-page{
+  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  aspect-ratio:16/9!important;
+  height:auto!important;
+  padding:clamp(20px,2vw,32px) clamp(28px,2.8vw,46px)!important;
+}
+.examples-page .section-head{
+  margin-bottom:8px!important;
+}
+.examples-page .section-head h2{
+  font-size:clamp(1.8rem,2.2vw,2.35rem)!important;
+}
+.example-deck{
+  min-height:0!important;
+  height:calc(100% - 60px)!important;
+}
+.example-card{
+  height:100%!important;
+}
+.clean-example-workspace,
+.example-split-workspace{
+  height:100%!important;
+  min-height:0!important;
+  grid-template-columns:minmax(300px,.34fr) minmax(0,.66fr)!important;
+  gap:15px!important;
+}
+.example-question-pane{
+  min-height:0!important;
+  overflow:hidden!important;
+}
+.example-question-pane .example-question h3{
+  font-size:clamp(1.8rem,2.5vw,2.65rem)!important;
+  line-height:1.18!important;
+}
+.example-question-pane .example-question p{
+  font-size:clamp(.95rem,1.1vw,1.12rem)!important;
+  line-height:1.4!important;
+}
+.example-question-pane .example-diagram-panel{
+  max-height:43vh!important;
+  overflow:hidden!important;
+}
+.example-board-panel{
+  height:100%!important;
+  min-height:0!important;
+}
+.example-board-panel .interactive-board{
+  height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.example-board-panel .board-paper,
+.example-split-workspace .board-paper{
+  flex:1!important;
+  height:auto!important;
+  min-height:0!important;
+}
+.board-prompt-pin strong{
+  font-size:clamp(1.02rem,1.25vw,1.3rem)!important;
+}
+
+/* Independent practice/homework: 4 large questions per landscape slide. */
+.presentation-sheet{
+  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  aspect-ratio:16/9!important;
+  min-height:0!important;
+  padding:clamp(18px,1.7vw,28px) clamp(24px,2.4vw,40px)!important;
+}
+.presentation-sheet .worksheet-top{
+  min-height:48px!important;
+  padding-bottom:6px!important;
+}
+.presentation-sheet .worksheet-logo{
+  width:70px!important;height:40px!important;
+}
+.presentation-sheet .worksheet-brand span{font-size:.52rem!important}
+.presentation-sheet .worksheet-brand strong{
+  font-size:clamp(1rem,1.3vw,1.28rem)!important;
+}
+.presentation-sheet .worksheet-title-row{
+  padding:7px 0 8px!important;
+}
+.presentation-sheet .worksheet-title-row h2{
+  font-size:clamp(1.45rem,1.9vw,2rem)!important;
+}
+.presentation-sheet .sheet-kicker{font-size:.52rem!important}
+.powerpoint-question-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+  height:calc(100% - 128px)!important;
+  min-height:0!important;
+}
+.powerpoint-question-grid .compact-question{
+  min-height:0!important;
+  height:auto!important;
+  padding:14px 16px!important;
+  border:1px solid #dbe8ec!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+}
+.powerpoint-question-grid .worksheet-q-head{
+  min-height:31px!important;
+}
+.powerpoint-question-grid .worksheet-q-number{
+  width:32px!important;height:32px!important;
+  font-size:.72rem!important;
+}
+.powerpoint-question-grid .answer-toggle{
+  min-height:29px!important;
+  padding:5px 9px!important;
+  font-size:.65rem!important;
+}
+.powerpoint-question-grid .compact-question>p{
+  margin:8px 0 5px!important;
+  font-size:clamp(1.25rem,1.7vw,1.72rem)!important;
+  line-height:1.32!important;
+}
+.powerpoint-question-grid .compact-question.has-diagram>p{
+  font-size:clamp(1.08rem,1.35vw,1.38rem)!important;
+}
+.powerpoint-question-grid .compact-question .question-diagram{
+  flex:1 1 auto!important;
+  height:auto!important;
+  min-height:90px!important;
+  max-height:160px!important;
+  margin-top:5px!important;
+}
+.powerpoint-question-grid .question-math-diagram{
+  max-height:150px!important;
+}
+.presentation-sheet .worksheet-footer{
+  min-height:25px!important;
+  margin-top:6px!important;
+  padding-top:5px!important;
+  font-size:.62rem!important;
+}
+
+/* Textbook-source slides are still landscape, with a large readable extract/card. */
+.textbook-section{
+  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  aspect-ratio:16/9!important;
+  min-height:0!important;
+  max-width:none!important;
+  margin:0 auto!important;
+  padding:clamp(20px,2vw,32px) clamp(28px,2.6vw,44px)!important;
+  overflow:hidden!important;
+}
+.textbook-section .textbook-assignment{
+  font-size:clamp(1rem,1.25vw,1.25rem)!important;
+  line-height:1.42!important;
+  margin:10px 0!important;
+}
+.textbook-section .source-extract{
+  max-height:calc(100% - 145px)!important;
+  object-fit:contain!important;
+}
+
+/* Bottom controls stay small and out of the teaching content. */
+.slide-controls{
+  bottom:10px!important;
+  width:min(720px,calc(100vw - 20px))!important;
+  padding:7px 9px!important;
+  border-radius:14px!important;
+}
+.slide-controls .slide-nav-btn{
+  min-width:115px!important;
+  min-height:38px!important;
+  padding:8px 12px!important;
+}
+.slide-progress{height:3px!important}
+#slideStatus{font-size:.7rem!important}
+
+/* Laptop landscape: use the extra width for larger text, not bigger margins. */
+@media(min-width:1200px) and (orientation:landscape){
+  .wide-stage,.lesson-stage{padding-left:12px!important;padding-right:12px!important}
+  .powerpoint-question-grid .compact-question>p{font-size:clamp(1.4rem,1.6vw,1.72rem)!important}
+}
+
+/* iPad landscape: keep 16:9 and all whiteboard tools visible. */
+@media(max-width:1100px) and (orientation:landscape){
+  :root{--deck-width:min(calc(100vw - 20px), calc((100dvh - 122px) * 1.7778))}
+  .wide-stage,.lesson-stage{padding:8px 10px 82px!important}
+  .notebook-page,.worksheet-slide,
+  .teach-slide,.examples-page,.presentation-sheet,.textbook-section{
+    width:var(--deck-width)!important;
+    padding:18px 22px!important;
+  }
+  .lesson-title-date-row h1{font-size:clamp(2.35rem,4.2vw,3.5rem)!important}
+  .compact-intro{font-size:.84rem!important}
+  .title-starter-grid .question-card{
+    padding:11px 12px!important;
+    min-height:120px!important;
+  }
+  .title-starter-grid .question-card p{
+    font-size:clamp(1rem,1.55vw,1.25rem)!important;
+  }
+  .teach-focus-grid .teach-list li{font-size:clamp(1rem,1.5vw,1.22rem)!important}
+  .teach-method-layout{grid-template-columns:minmax(245px,.32fr) minmax(0,.68fr)!important}
+  .clean-example-workspace,.example-split-workspace{
+    grid-template-columns:minmax(250px,.35fr) minmax(0,.65fr)!important;
+  }
+  .example-question-pane .example-question h3{
+    font-size:clamp(1.45rem,2.45vw,2rem)!important;
+  }
+  .powerpoint-question-grid{
+    gap:9px!important;
+    height:calc(100% - 112px)!important;
+  }
+  .powerpoint-question-grid .compact-question{
+    padding:10px 12px!important;
+  }
+  .powerpoint-question-grid .compact-question>p{
+    font-size:clamp(1.08rem,1.65vw,1.35rem)!important;
+  }
+  .working-toolbar{
+    min-height:38px!important;
+    padding:4px 5px!important;
+    gap:4px!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+  }
+  .mini-tool{min-height:28px!important;padding:4px 7px!important;font-size:.58rem!important}
+  .pen-dot{width:24px!important;height:24px!important}
+}
+
+/* Portrait devices still work, but landscape is the intended classroom presentation. */
+@media(orientation:portrait) and (max-width:1100px){
+  .notebook-page,.worksheet-slide,.teach-slide,.examples-page,.presentation-sheet,.textbook-section{
+    width:calc(100vw - 20px)!important;
+    aspect-ratio:auto!important;
+    min-height:calc(100dvh - 140px)!important;
+    overflow:auto!important;
+  }
+  .title-starter-grid{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important}
+  .powerpoint-question-grid{grid-template-columns:1fr!important;grid-template-rows:none!important;height:auto!important}
+}
+
+/* Keep browser/PDF export independent from the live 16:9 deck geometry. */
+@media print{
+  .notebook-page,.worksheet-slide,.presentation-sheet,.textbook-section{
+    aspect-ratio:auto!important;
+  }
+}
