@@ -1697,3 +1697,66 @@ html[data-theme="dark"] .pen-dot{
 html[data-theme="dark"] .pen-dot.active{
   box-shadow:0 0 0 3px rgba(83,216,255,.5)!important;
 }
+
+
+/* =========================================================
+   THREE-YEAR COURSE SELECTOR
+   ========================================================= */
+.drawer-year-tabs{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+  margin-top:12px;
+  padding:5px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(234,249,253,.72);
+}
+.drawer-year-tabs a,
+.drawer-year-tabs span{
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 10px;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.01em;
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+.drawer-year-tabs a{
+  color:var(--nes-dark);
+  background:rgba(255,255,255,.72);
+  border:1px solid transparent;
+}
+.drawer-year-tabs a:hover{
+  transform:translateY(-1px);
+  background:#fff;
+  border-color:var(--line);
+  box-shadow:0 7px 18px rgba(7,50,65,.07);
+}
+.drawer-year-tabs .active{
+  background:var(--nes-dark);
+  color:#fff;
+  box-shadow:0 7px 18px rgba(7,50,65,.14);
+}
+html[data-theme="dark"] .drawer-year-tabs{
+  background:#0c1d24;
+  border-color:#35535e;
+}
+html[data-theme="dark"] .drawer-year-tabs a{
+  background:#142d36;
+  color:#dcecf1;
+  border-color:#304c56;
+}
+html[data-theme="dark"] .drawer-year-tabs a:hover{
+  background:#1b3944;
+  border-color:#4b6a75;
+}
+html[data-theme="dark"] .drawer-year-tabs .active{
+  background:#53d8ff;
+  color:#06202a;
+  box-shadow:0 8px 22px rgba(83,216,255,.18);
+}
