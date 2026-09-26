@@ -1603,3 +1603,97 @@ html[data-theme="dark"] .slide-progress span{background:#53d8ff!important}
   .wide-topbar .lesson-picker-button{padding:8px 10px!important}
   .title-starter-page{min-height:0!important}
 }
+
+
+/* =========================================================
+   THEME + COURSE SWITCH v7
+   ========================================================= */
+
+/* Night mode uses a dark writing surface and theme-aware canvas ink. */
+html[data-theme="dark"] .graph-paper,
+html[data-theme="dark"] .board-paper,
+html[data-theme="dark"] .square-paper,
+html[data-theme="dark"] .mini-work-grid{
+  background-color:#0b1a20!important;
+  border-color:#3e5c67!important;
+  background-image:
+    linear-gradient(rgba(83,216,255,.13) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(83,216,255,.13) 1px,transparent 1px)!important;
+}
+html[data-theme="dark"] .board-hint{
+  background:rgba(7,18,22,.9)!important;
+  color:#dcecf1!important;
+  border-color:#36535e!important;
+}
+html[data-theme="dark"] .working-toolbar{
+  background:#10242c!important;
+  border-color:#34515c!important;
+}
+
+/* Keep diagrams readable because many SVGs use intentional dark textbook ink. */
+html[data-theme="dark"] .example-diagram-panel,
+html[data-theme="dark"] .question-diagram,
+html[data-theme="dark"] .visual-models>div{
+  background:#f8fcfd!important;
+  border-color:#5a737c!important;
+  color:#102c36!important;
+}
+html[data-theme="dark"] .example-diagram-panel svg,
+html[data-theme="dark"] .question-diagram svg,
+html[data-theme="dark"] .visual-models svg{color:#102c36!important}
+
+/* Catch remaining hard-coded copy colours throughout lesson and worksheet views. */
+html[data-theme="dark"] .title-meta-line,
+html[data-theme="dark"] .lesson-note,
+html[data-theme="dark"] .lesson-note strong,
+html[data-theme="dark"] .example-topline,
+html[data-theme="dark"] .worksheet-top,
+html[data-theme="dark"] .sheet-meta,
+html[data-theme="dark"] .worksheet-question,
+html[data-theme="dark"] .worksheet-q-head,
+html[data-theme="dark"] .textbook-assignment,
+html[data-theme="dark"] .source-page summary,
+html[data-theme="dark"] .drawer-unit-head,
+html[data-theme="dark"] .drawer-unit-head small,
+html[data-theme="dark"] .drawer-lesson,
+html[data-theme="dark"] .bulk-solution,
+html[data-theme="dark"] .solution-grid,
+html[data-theme="dark"] .lesson-end{
+  color:#f0f8fa!important;
+}
+html[data-theme="dark"] .worksheet-question{
+  background:#10242c!important;
+  border-color:#34505a!important;
+}
+html[data-theme="dark"] .worksheet-title-row,
+html[data-theme="dark"] .worksheet-top,
+html[data-theme="dark"] .worksheet-footer{border-color:#36545f!important}
+html[data-theme="dark"] .worksheet-slide::before{opacity:.32}
+html[data-theme="dark"] .source-page{background:#10242c!important}
+html[data-theme="dark"] .source-book-card em{color:#53d8ff!important}
+
+/* Course switch is prominent inside the lesson picker but absent from teaching chrome. */
+.drawer-year-switch{
+  margin-top:12px!important;
+  min-height:38px;
+  padding:9px 14px!important;
+  border-radius:12px!important;
+  background:var(--nes-dark)!important;
+  border-color:var(--nes-dark)!important;
+  color:#fff!important;
+}
+html[data-theme="dark"] .drawer-year-switch{
+  background:#53d8ff!important;
+  border-color:#53d8ff!important;
+  color:#06202a!important;
+}
+.lesson-picker-button span{margin-left:3px;color:inherit}
+
+/* Pen chips keep a visible ring even when the selected night ink is nearly white. */
+html[data-theme="dark"] .pen-dot{
+  border-color:#10242c!important;
+  box-shadow:0 0 0 1px #56717b!important;
+}
+html[data-theme="dark"] .pen-dot.active{
+  box-shadow:0 0 0 3px rgba(83,216,255,.5)!important;
+}
