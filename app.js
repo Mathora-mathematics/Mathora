@@ -245,7 +245,10 @@ function solvedQuestionSets(l,d){
    seen.add(key);return true;
  });
  // Keep homework distinct from practice and from the displayed teacher examples.
- const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...(d.practice||[]),...(generated.practice||[]).slice(0,8)]);
+ const authoredPractice=Array.isArray(d.practice)
+   ? d.practice.filter(x=>x&&typeof x==="object"&&x.prompt&&Array.isArray(x.steps)&&x.steps.length)
+   : [];
+ const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...authoredPractice,...(generated.practice||[]).slice(0,8)]);
  const homework=unique(d.homework||[]);
  return {practice,homework};
 }
