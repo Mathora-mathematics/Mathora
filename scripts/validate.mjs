@@ -26,11 +26,13 @@ const html9=fs.readFileSync('year9.html','utf8');
 if(!html9.includes('year9-data.js')||!html9.includes('app.js'))throw Error('Missing Year 9 live runtime scripts');
 const html8=fs.readFileSync('year8.html','utf8');
 if(!html8.includes('year8-data.js')||!html8.includes('app.js'))throw Error('Missing Year 8 live runtime scripts');
+const html7=fs.readFileSync('year7.html','utf8');
+if(!html7.includes('year7-data.js')||!html7.includes('app.js'))throw Error('Missing Year 7 live runtime scripts');
 console.log(`PASS: 47 mapped lessons; ${examples} source examples; ${assets.size} referenced extracts; data-driven diagrams and worked solutions.`);
 
 
 // Bundled course validation: these are the exact data files loaded by the live Year 10 and Year 9 pages.
-for (const [file,expected] of [['year10-data.js',47],['year9-data.js',60],['year8-data.js',54]]) {
+for (const [file,expected] of [['year10-data.js',47],['year9-data.js',60],['year8-data.js',54],['year7-data.js',69]]) {
   const bctx={window:{}}; vm.createContext(bctx);
   vm.runInContext(fs.readFileSync(file,'utf8'),bctx,{filename:file});
   const bw=bctx.window;
@@ -39,4 +41,4 @@ for (const [file,expected] of [['year10-data.js',47],['year9-data.js',60],['year
   if(Object.keys(bw.SOW_MAP||{}).length<expected) throw Error(file+' SOW coverage');
   if(!bw.STARTERS||!bw.STARTER_ANSWERS) throw Error(file+' starter data');
 }
-console.log('Bundled course validation PASS: Year 10, Year 9 and Year 8 live data files initialise correctly.');
+console.log('Bundled course validation PASS: Year 10, Year 9, Year 8 and Year 7 live data files initialise correctly.');
