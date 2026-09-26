@@ -287,28 +287,32 @@ function sourceMaterials(l,kind){
 function practiceHTML(l,d){
  const bank=solvedQuestionSets(l,d).practice;
  window.__currentPractice=bank;
- const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
+ const pageSize=4;
+ const pages=Array.from({length:Math.ceil(bank.length/pageSize)},(_,i)=>bank.slice(i*pageSize,i*pageSize+pageSize));
  const sourceCount=(BOOKS[l.id]?.practice||[]).length;
  const total=sourceCount+pages.length;
  return '<section class="section-anchor sheet-stack" id="practice">'+sourceMaterials(l,'practice')+pages.map((page,p)=>{
   const aid='practiceAnnot'+p;
-  return '<article class="worksheet-slide clean-question-sheet print-sheet annotatable-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Independent practice","practice",sourceCount+p+1,total,aid)+
-   '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"practice")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Show clear working in your book.</strong></div>'+sheetAnnotationMarkup(aid,l.id+'-practice-page-'+p)+'</article>';
+  const start=p*pageSize;
+  return '<article class="worksheet-slide clean-question-sheet print-sheet annotatable-sheet presentation-sheet" data-print-sheet="practice">'+worksheetHeader(l,"Independent practice","practice",sourceCount+p+1,total,aid)+
+   '<div class="worksheet-question-grid powerpoint-question-grid">'+page.map((x,i)=>questionCard(l,x,start+i,"practice")).join("")+'</div>'+
+   '<div class="worksheet-footer"><span>Questions '+(start+1)+'–'+Math.min(start+pageSize,bank.length)+'</span><strong>Show clear working.</strong></div>'+sheetAnnotationMarkup(aid,l.id+'-practice-page-'+p)+'</article>';
  }).join("")+'</section>';
 }
 
 function homeworkHTML(l,d){
  const bank=solvedQuestionSets(l,d).homework;
  window.__currentHomework=bank;
- const pages=Array.from({length:Math.ceil(bank.length/8)},(_,i)=>bank.slice(i*8,i*8+8));
+ const pageSize=4;
+ const pages=Array.from({length:Math.ceil(bank.length/pageSize)},(_,i)=>bank.slice(i*pageSize,i*pageSize+pageSize));
  const sourceCount=(BOOKS[l.id]?.homework||[]).length;
  const total=sourceCount+pages.length;
  return '<section class="section-anchor sheet-stack" id="homework">'+sourceMaterials(l,'homework')+pages.map((page,p)=>{
   const aid='homeworkAnnot'+p;
-  return '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet annotatable-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",sourceCount+p+1,total,aid)+
-   '<div class="worksheet-question-grid sixteen-grid">'+page.map((x,i)=>questionCard(l,x,p*8+i,"homework")).join("")+'</div>'+
-   '<div class="worksheet-footer"><span>Questions '+(p*8+1)+'–'+Math.min(p*8+8,bank.length)+'</span><strong>Solutions are available on screen.</strong></div>'+sheetAnnotationMarkup(aid,l.id+'-homework-page-'+p)+'</article>';
+  const start=p*pageSize;
+  return '<article class="worksheet-slide homework-sheet clean-question-sheet print-sheet annotatable-sheet presentation-sheet" data-print-sheet="homework">'+worksheetHeader(l,"Homework","homework",sourceCount+p+1,total,aid)+
+   '<div class="worksheet-question-grid powerpoint-question-grid">'+page.map((x,i)=>questionCard(l,x,start+i,"homework")).join("")+'</div>'+
+   '<div class="worksheet-footer"><span>Questions '+(start+1)+'–'+Math.min(start+pageSize,bank.length)+'</span><strong>Solutions are available on screen.</strong></div>'+sheetAnnotationMarkup(aid,l.id+'-homework-page-'+p)+'</article>';
  }).join("")+
  '<div class="lesson-end no-print"><div><span>FINISHED</span><strong>'+esc(l.title)+'</strong></div><button id="nextFromHomework" class="next-lesson-button" type="button">Next lesson <span>→</span></button></div></section>';
 }
