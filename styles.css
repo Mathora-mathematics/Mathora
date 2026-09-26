@@ -1329,3 +1329,30 @@ body.presenter-mode .worksheet-slide{max-width:1360px;margin:0 auto!important}
  .slide-enter-forward,.slide-enter-back{animation:none!important}
  .slide-progress span{transition:none}
 }
+
+/* Presenter polish: readable dark headings and a visible Focus exit. */
+html[data-theme="dark"] .title-copy h1,
+html[data-theme="dark"] .section-head h2,
+html[data-theme="dark"] .starter-header h2,
+html[data-theme="dark"] .note-card h3,
+html[data-theme="dark"] .method-card h3,
+html[data-theme="dark"] .example-question h3,
+html[data-theme="dark"] .worksheet-title-row h2,
+html[data-theme="dark"] .worksheet-brand strong,
+html[data-theme="dark"] .source-book-card strong,
+html[data-theme="dark"] .drawer-head h2,
+html[data-theme="dark"] .drawer-unit-head strong,
+html[data-theme="dark"] .board-title strong,
+html[data-theme="dark"] .lesson-focus-card strong,
+html[data-theme="dark"] .opening-school-copy strong{color:#e8f4f7!important}
+body.focus-mode .wide-topbar{
+ display:flex!important;position:fixed!important;top:10px!important;right:12px!important;left:auto!important;
+ width:auto!important;height:auto!important;min-height:0!important;padding:0!important;background:transparent!important;
+ border:0!important;box-shadow:none!important;z-index:210!important
+}
+body.focus-mode .wide-topbar .top-school,
+body.focus-mode .wide-topbar .current-lesson-lockup,
+body.focus-mode .wide-topbar .top-actions>*:not(#focusBtn){display:none!important}
+body.focus-mode .wide-topbar .top-actions{display:block!important}
+body.focus-mode #focusBtn{display:flex!important;background:rgba(255,255,255,.9)!important;box-shadow:0 8px 28px rgba(7,50,65,.14)}
+html[data-theme="dark"] body.focus-mode #focusBtn{background:rgba(20,42,50,.94)!important;color:#e8f4f7!important}
