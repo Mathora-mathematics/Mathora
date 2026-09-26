@@ -2459,7 +2459,7 @@ html[data-theme="dark"] .current-title-row>time{
    PRESENTER 12 — TRUE 16:9 CLASSROOM DECK
    ========================================================= */
 :root{
-  --deck-width:min(1600px, calc(100vw - 34px), calc((100dvh - 138px) * 1.7778));
+  --deck-width:min(1600px, calc(100vw - 34px), calc(177.78dvh - 245px));
 }
 
 /* The live lesson is a centred 16:9 deck, not a scrolling webpage. */
@@ -2487,7 +2487,7 @@ html[data-theme="dark"] .current-title-row>time{
 .page-margin-line{display:none!important}
 body.presenter-mode .notebook-page,
 body.presenter-mode .worksheet-slide{
-  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  width:min(1600px, calc(100vw - 28px), calc(177.78dvh - 222px))!important;
 }
 .section-head{
   margin-bottom:clamp(10px,1vw,16px)!important;
@@ -2570,7 +2570,7 @@ body.presenter-mode .worksheet-slide{
 
 /* Teach slides: fewer words per line and projector-scale text. */
 .teach-slide{
-  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  width:min(1600px, calc(100vw - 28px), calc(177.78dvh - 222px))!important;
   aspect-ratio:16/9!important;
   min-height:0!important;
   padding:clamp(24px,2.5vw,42px) clamp(32px,3.2vw,56px)!important;
@@ -2658,7 +2658,7 @@ body.presenter-mode .worksheet-slide{
 
 /* Examples are PowerPoint slides: big question on the left, huge board on the right. */
 .examples-page{
-  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  width:min(1600px, calc(100vw - 28px), calc(177.78dvh - 222px))!important;
   aspect-ratio:16/9!important;
   height:auto!important;
   padding:clamp(20px,2vw,32px) clamp(28px,2.8vw,46px)!important;
@@ -2720,7 +2720,7 @@ body.presenter-mode .worksheet-slide{
 
 /* Independent practice/homework: 4 large questions per landscape slide. */
 .presentation-sheet{
-  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  width:min(1600px, calc(100vw - 28px), calc(177.78dvh - 222px))!important;
   aspect-ratio:16/9!important;
   min-height:0!important;
   padding:clamp(18px,1.7vw,28px) clamp(24px,2.4vw,40px)!important;
@@ -2798,7 +2798,7 @@ body.presenter-mode .worksheet-slide{
 
 /* Textbook-source slides are still landscape, with a large readable extract/card. */
 .textbook-section{
-  width:min(1600px, calc(100vw - 28px), calc((100dvh - 125px) * 1.7778))!important;
+  width:min(1600px, calc(100vw - 28px), calc(177.78dvh - 222px))!important;
   aspect-ratio:16/9!important;
   min-height:0!important;
   max-width:none!important;
@@ -2839,7 +2839,7 @@ body.presenter-mode .worksheet-slide{
 
 /* iPad landscape: keep 16:9 and all whiteboard tools visible. */
 @media(max-width:1100px) and (orientation:landscape){
-  :root{--deck-width:min(calc(100vw - 20px), calc((100dvh - 122px) * 1.7778))}
+  :root{--deck-width:min(calc(100vw - 20px), calc(177.78dvh - 217px))}
   .wide-stage,.lesson-stage{padding:8px 10px 82px!important}
   .notebook-page,.worksheet-slide,
   .teach-slide,.examples-page,.presentation-sheet,.textbook-section{
