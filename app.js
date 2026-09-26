@@ -67,6 +67,7 @@ function setTheme(theme,persist=true){
    if(icon)icon.textContent=next==="dark"?"☀":"☾";
    if(label)label.textContent=next==="dark"?"Day":"Night";
  }
+ requestAnimationFrame(()=>refreshBoardTheme());
 }
 function initTheme(){
  let saved="light";
@@ -74,6 +75,22 @@ function initTheme(){
  setTheme(saved,false);
 }
 function toggleTheme(){setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");}
+
+function themeInk(colour){
+ const raw=String(colour||"#073241").toLowerCase();
+ if(document.documentElement.dataset.theme!=="dark")return raw;
+ const map={
+   "#073241":"#f4fbfd",
+   "#00aee6":"#53d8ff",
+   "#d85858":"#ff9696",
+   "#2a9d76":"#72e0ad"
+ };
+ return map[raw]||raw;
+}
+function refreshBoardTheme(){
+ $(".pen-dot").forEach(dot=>{dot.style.background=themeInk(dot.dataset.colour);});
+ boardStates.forEach(state=>{if(state?.ctx)redrawBoard(state);});
+}
 
 function openDrawer(){
  const d=$("#lessonDrawer");if(!d)return;
@@ -356,7 +373,7 @@ function bindExamples(){
  dots.forEach(dot=>dot.addEventListener("click",()=>show(Number(dot.dataset.exampleIndex))));
 }
 
-function boardStorageKey(canvas){return "mathora-board:"+lesson().id+":"+(canvas.dataset.boardKey||canvas.id);}
+function boardStorageKey(canvas){return "mathora-board:y"+COURSE_YEAR+":"+lesson().id+":"+(canvas.dataset.boardKey||canvas.id);}
 function loadBoardState(canvas){
  const key=boardStorageKey(canvas);
  if(boardStates.has(key)){const state=boardStates.get(key);state.canvas=canvas;state.ctx=null;return state;}
@@ -370,7 +387,7 @@ function saveBoard(state){
 function drawOneStroke(state,s){
  const ctx=state.ctx,canvas=state.canvas,rect=canvas.getBoundingClientRect();
  if(!ctx||!rect.width||!s.points?.length)return;
- ctx.save();ctx.globalCompositeOperation=s.tool==="erase"?"destination-out":"source-over";ctx.strokeStyle=s.colour||"#073241";ctx.lineCap="round";ctx.lineJoin="round";
+ ctx.save();ctx.globalCompositeOperation=s.tool==="erase"?"destination-out":"source-over";ctx.strokeStyle=themeInk(s.colour||"#073241");ctx.lineCap="round";ctx.lineJoin="round";
  if(s.points.length===1){
    const p=s.points[0];ctx.beginPath();ctx.arc(p.x*rect.width,p.y*rect.height,(s.size||3)*(0.7+(p.p||.5)*.55),0,Math.PI*2);ctx.fillStyle=s.tool==="erase"?"rgba(0,0,0,1)":ctx.strokeStyle;ctx.fill();ctx.restore();return;
  }
@@ -418,7 +435,7 @@ function bindBoard(canvas){
  const stop=e=>{if(!drawing)return;e?.preventDefault?.();drawing=false;current=null;saveBoard(state);};
  ["pointerup","pointercancel"].forEach(ev=>canvas.addEventListener(ev,stop));
  if(toolbar){
-   $$(".pen-dot",toolbar).forEach(dot=>{dot.style.background=dot.dataset.colour;dot.addEventListener("click",()=>{state.tool="pen";state.colour=dot.dataset.colour;$$(".pen-dot",toolbar).forEach(x=>x.classList.toggle("active",x===dot));$(".eraser-tool",toolbar)?.classList.remove("active");});});
+   $(".pen-dot",toolbar).forEach(dot=>{dot.style.background=themeInk(dot.dataset.colour);dot.addEventListener("click",()=>{state.tool="pen";state.colour=dot.dataset.colour;$$(".pen-dot",toolbar).forEach(x=>x.classList.toggle("active",x===dot));$(".eraser-tool",toolbar)?.classList.remove("active");});});
    $$(".size-tool",toolbar).forEach(btn=>btn.addEventListener("click",()=>{state.size=Number(btn.dataset.size)||3;$$(".size-tool",toolbar).forEach(x=>x.classList.toggle("active",x===btn));}));
    $(".eraser-tool",toolbar)?.addEventListener("click",e=>{state.tool="erase";e.currentTarget.classList.add("active");});
    $(".undo-tool",toolbar)?.addEventListener("click",()=>{const x=state.strokes.pop();if(x)state.redo.push(x);redrawBoard(state);saveBoard(state);});
@@ -487,6 +504,7 @@ function updateHeader(){
  $("#currentLessonTitle").textContent=l.title;
  $("#currentLessonId").textContent="Lesson "+l.id+" • "+(currentIndex+1)+" of "+LESSONS.length;
  $("#courseProgress").textContent=(currentIndex+1)+" of "+LESSONS.length+" selected";
+ if($("#openLessonsBtn"))$("#openLessonsBtn").innerHTML="Year "+COURSE_YEAR+" <span>• Lessons ⌄</span>";
  $("#prevLessonBtn").disabled=currentIndex===0;$("#nextLessonBtn").disabled=currentIndex===LESSONS.length-1;
  document.title=l.id+" "+l.title+" | NES";
 }
