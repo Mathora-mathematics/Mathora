@@ -162,13 +162,13 @@ function exampleCard(l,d,e,i){
  return '<article class="example-card '+(i===exampleIndex?"active":"")+'" data-example="'+i+'">'+
   '<div class="example-topline"><span class="example-number">EXAMPLE '+(i+1)+'</span><span class="example-progress">'+(i+1)+' / '+allExamples(l,d).length+'</span></div>'+
   '<div class="example-workspace example-split-workspace clean-example-workspace">'+
-    '<aside class="example-question-pane"><div class="example-question"><h3>'+fmt(/^Coursebook worked example/.test(e.prompt)?'Work through the question below.':e.prompt)+'</h3></div>'+question+
+    '<aside class="example-question-pane">'+(e.sourceQuestion&&/^Coursebook worked example/.test(e.prompt)?'':'<div class="example-question"><h3>'+fmt(e.prompt)+'</h3></div>')+question+
       (diagram?'<div class="example-diagram-panel">'+diagram+'</div>':"")+
     '</aside>'+
-    '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(/^Coursebook worked example/.test(e.prompt)?'Work through the question below.':e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
-  '</div>'+
   '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Solution</button>'+
   '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+answer+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
+    '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(/^Coursebook worked example/.test(e.prompt)?'Work through the question below.':e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
+  '</div>'+
  '</article>';
 }
 
@@ -206,7 +206,7 @@ function solvedQuestionSets(l,d){
  return {practice,homework};
 }
 function sourceImage(asset,alt){
- return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+asset.width+'" height="'+asset.height+'" loading="lazy" decoding="async" alt="'+esc(alt)+'"></a>';
+ return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+asset.width+'" height="'+asset.height+'" style="max-width:'+Math.min(1040,Math.max(360,asset.width))+'px" loading="lazy" decoding="async" alt="'+esc(alt)+'"></a>';
 }
 function sourceMaterials(l,kind){
  const b=BOOKS[l.id];if(!b)return "";
@@ -239,7 +239,7 @@ function renderNotebook(){
  if(!l||!d){root.innerHTML='<div class="page-loading">This lesson pack is missing from the content data.</div>';return;}
  boardStates.forEach(state=>{state.ro?.disconnect();});
  root.innerHTML=openingHTML(l,d,sm)+teachHTML(l,d,sm)+examplesHTML(l,d)+practiceHTML(l,d)+homeworkHTML(l,d);
- bindRevealButtons();bindTargets();bindExamples();bindBoards();bindPrint();bindWorksheetSolutions();buildSlides();
+ bindRevealButtons();bindTargets();bindExamples();bindPrint();bindWorksheetSolutions();buildSlides();
  $("#nextFromHomework")?.addEventListener("click",()=>goLesson(1));
 }
 

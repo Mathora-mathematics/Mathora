@@ -1138,3 +1138,6 @@ body{padding-bottom:88px}
 .print-frame{position:fixed;width:1px;height:1px;bottom:0;left:0;border:0;opacity:0;pointer-events:none}
 @media(max-width:760px){.slide-controls{gap:8px;padding:10px}.slide-controls button{font-size:14px;padding:10px}#slideStatus{font-size:13px;min-width:0;flex:1}.top-actions{flex-wrap:wrap}.top-lesson-btn{font-size:12px!important}.clean-example-workspace{grid-template-columns:1fr!important}.compact-question>p{font-size:19px!important}.notebook-page,.worksheet-slide{padding:18px!important}.worked-step p{font-size:18px!important}.solution-modal-card{padding:18px!important}}
 @media print{.slide-controls{display:none!important}}
+.examples-page{padding:26px 38px!important}.examples-page .section-head{margin-bottom:16px!important}.examples-page h2{font-size:34px!important}.example-topline{margin:8px 0!important}.example-solution-toggle{margin:0!important}.clean-example-workspace{gap:12px!important}
+.teach-rule strong{font-size:21px!important;line-height:1.5!important}.teach-rule>span{font-size:16px!important;line-height:1.5!important}
+@media(max-width:760px){.examples-page{padding:18px!important}.teach-grid{grid-template-columns:1fr!important}.method-card ol{grid-template-columns:1fr!important}}
