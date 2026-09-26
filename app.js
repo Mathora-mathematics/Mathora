@@ -12,6 +12,8 @@ const BOOKS=window.TEXTBOOK_CONTENT||{};
 const VERIFIED=window.VerifiedDiagrams||{render:()=>""};
 const DIAGRAMS=window.MathoraDiagrams||{supports:()=>false,lesson:()=>"",practice:()=>"",question:()=>""};
 const QUESTION_ENGINE=window.MathoraQuestionEngine||{build:()=>({practice:[],homework:[]})};
+const COURSE_YEAR=Number(window.COURSE_YEAR||10);
+const EXPECTED_LESSONS=Number(window.EXPECTED_LESSONS||(COURSE_YEAR===9?60:47));
 
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -106,9 +108,9 @@ function starterSolutions(l){
 
 function openingHTML(l,d,sm){
  return '<section class="notebook-page opening-page title-starter-page section-anchor" id="opening"><div class="page-margin-line"></div>'+
-  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
+  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
   '<div class="title-starter-hero clean-title-hero">'+
-    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR 10 MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
+    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR '+COURSE_YEAR+' MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
     '<div class="lesson-focus-card"><span>KEY FOCUS</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
   '</div>'+
   '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER</span><h2>Quick start</h2></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Solutions</button></div>'+
@@ -182,7 +184,7 @@ function examplesHTML(l,d){
 }
 
 function worksheetHeader(l,title,id,page,total){
- return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR 10</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
+ return '<div class="worksheet-top"><div class="worksheet-brand"><div class="worksheet-logo"></div><div><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(title)+'</strong></div></div><div class="worksheet-actions no-print"><button class="sheet-action reveal-all-btn" type="button" data-reveal-all="'+id+'" data-page="'+page+'">Show solutions</button><button class="sheet-action" type="button" data-print-target="'+id+'">Print / PDF</button></div></div>'+
   '<div class="worksheet-title-row"><div><span class="sheet-kicker">LESSON '+esc(l.id)+' • '+page+'/'+total+'</span><h2>'+esc(l.title)+'</h2></div><div class="sheet-meta"><label>Name <span></span></label><label>Date <strong>'+esc(today(false))+'</strong></label></div></div>';
 }
 function questionCard(l,x,globalIndex,kind){
@@ -421,7 +423,7 @@ function updateHeader(){
  $("#currentLessonId").textContent="Lesson "+l.id+" • "+(currentIndex+1)+" of "+LESSONS.length;
  $("#courseProgress").textContent=(currentIndex+1)+" of "+LESSONS.length+" selected";
  $("#prevLessonBtn").disabled=currentIndex===0;$("#nextLessonBtn").disabled=currentIndex===LESSONS.length-1;
- document.title=l.id+" "+l.title+" | NES";
+ document.title=l.id+" "+l.title+" | Year "+COURSE_YEAR+" NES";
 }
 function goLesson(delta){
  const next=currentIndex+delta;if(next<0||next>=LESSONS.length)return;
@@ -431,12 +433,17 @@ function initFromHash(){
  const id=decodeURIComponent(location.hash.replace(/^#/,"")),i=LESSONS.findIndex(l=>l.id===id);if(i>=0)currentIndex=i;
 }
 function validate(){
- return LESSONS.length===47&&LESSONS.every(l=>CONTENT[l.id]&&SOW[l.id]);
+ return LESSONS.length===EXPECTED_LESSONS&&LESSONS.every(l=>CONTENT[l.id]&&SOW[l.id]);
 }
 function renderAll(){
  updateHeader();renderLessonDrawer($("#lessonSearch")?.value||"");renderNotebook();
 }
 function start(){
+ const yearLabel="Year "+COURSE_YEAR;
+ const schoolYear=$(".top-school-copy strong");if(schoolYear)schoolYear.textContent=yearLabel+" Mathematics";
+ const drawerYear=$(".drawer-head span");if(drawerYear)drawerYear.textContent="YEAR "+COURSE_YEAR+" • 2026–27";
+ const search=$("#lessonSearch");if(search)search.placeholder="Search all "+LESSONS.length+" Scheme of Work lessons…";
+ const toggle=$("#yearToggle");if(toggle){toggle.textContent=COURSE_YEAR===9?"Year 10":"Year 9";toggle.title="Switch to "+toggle.textContent;toggle.addEventListener("click",()=>{location.href=COURSE_YEAR===9?"?year=10":"?year=9";});}
  if(!validate()){ $("#notebook").innerHTML='<div class="page-loading">The SoW/content map is incomplete. Refresh after deployment.</div>';return;}
  initFromHash();
  $("#lessonSearch")?.addEventListener("input",e=>renderLessonDrawer(e.target.value));
