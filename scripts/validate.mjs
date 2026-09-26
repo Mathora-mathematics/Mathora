@@ -22,3 +22,16 @@ for(const l of w.LESSONS){
 }
 const html=fs.readFileSync('index.html','utf8');for(const f of [...files,'app'])if(!html.includes(f+'.js'))throw Error('Missing runtime script '+f);
 console.log(`PASS: 47 mapped lessons; ${examples} source examples; ${assets.size} referenced extracts; data-driven diagrams and worked solutions.`);
+
+
+// Bundled course validation: these are the exact data files loaded by the live Year 10 and Year 9 pages.
+for (const [file,expected] of [['year10-data.js',47],['year9-data.js',60]]) {
+  const bctx={window:{}}; vm.createContext(bctx);
+  vm.runInContext(fs.readFileSync(file,'utf8'),bctx,{filename:file});
+  const bw=bctx.window;
+  if(bw.LESSONS?.length!==expected) throw Error(file+' lesson count');
+  if(Object.keys(bw.LESSON_CONTENT||{}).length<expected) throw Error(file+' content coverage');
+  if(Object.keys(bw.SOW_MAP||{}).length<expected) throw Error(file+' SOW coverage');
+  if(!bw.STARTERS||!bw.STARTER_ANSWERS) throw Error(file+' starter data');
+}
+console.log('Bundled course validation PASS: Year 10 and Year 9 live data files initialise correctly.');
