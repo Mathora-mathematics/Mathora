@@ -108,9 +108,9 @@ function starterSolutions(l){
 
 function openingHTML(l,d,sm){
  return '<section class="notebook-page opening-page title-starter-page section-anchor" id="opening"><div class="page-margin-line"></div>'+
-  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR "+COURSE_YEAR+"</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
+  '<div class="opening-brand compact-opening-brand"><div class="cover-logo"></div><div class="opening-school-copy"><span>NEW ENGLISH SCHOOL • YEAR '+COURSE_YEAR+'</span><strong>'+esc(l.unit.toUpperCase())+'</strong></div><div class="lesson-chip">LESSON '+esc(l.id)+'</div></div>'+
   '<div class="title-starter-hero clean-title-hero">'+
-    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR "+COURSE_YEAR+" MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
+    '<div class="title-block-compact"><div class="title-meta-line"><span>'+esc(today(true))+'</span></div><p class="overline">YEAR '+COURSE_YEAR+' MATHEMATICS</p><h1>'+esc(l.title)+'</h1><p class="lesson-intro compact-intro">'+fmt(d.explain)+'</p></div>'+
     '<div class="lesson-focus-card"><span>KEY FOCUS</span><strong>'+esc((l.obj||[]).slice(0,4).join(" • "))+'</strong></div>'+
   '</div>'+
   '<div class="starter-header compact-starter-head"><div><span class="section-kicker">STARTER</span><h2>Quick start</h2></div><button class="reveal-button" data-reveal="starterSolution" type="button"><span class="reveal-icon">＋</span>Solutions</button></div>'+
