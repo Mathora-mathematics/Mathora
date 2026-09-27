@@ -2902,3 +2902,22 @@ body.presenter-mode .worksheet-slide{
     aspect-ratio:auto!important;
   }
 }
+
+/* Content 14: readable answers without competing grid children. */
+.example-question-pane{overflow:auto!important;overscroll-behavior:contain;padding-bottom:8px!important}
+.example-question-pane .example-question h3{font-size:clamp(23px,2vw,32px)!important;line-height:1.35!important}
+.example-question-pane .example-solution-toggle{position:sticky!important;bottom:0;z-index:2;margin-top:12px!important;background:#dff4fc!important;color:#073241!important;border:1px solid #acd8e6!important}
+.example-question-pane .example-diagram-panel{overflow:visible!important;max-height:none!important}
+.curriculum-diagram{width:100%;height:auto;max-height:280px;border-radius:10px;display:block}
+.question-diagram{height:auto!important;min-height:80px!important}
+.question-diagram svg{width:100%;height:auto;max-height:170px!important}
+.compact-question{overflow:auto!important}
+.solution-modal{position:fixed!important;inset:0!important;z-index:20000!important;isolation:isolate}
+.solution-modal-card{overflow:auto!important;max-height:90dvh!important;color:#163b49}
+.solution-modal-card .curriculum-diagram{max-height:300px;margin:18px auto}
+.solution-close{position:sticky!important;top:0!important;float:right;z-index:5}
+html[data-theme="dark"] .solution-modal-card{color:#edf8fb!important}
+html[data-theme="dark"] .curriculum-diagram{background:#fff!important;color:#163b49!important}
+canvas[data-board-key]{touch-action:none;user-select:none}
+@media(prefers-reduced-motion:reduce){.slide-enter-forward,.slide-enter-back{animation:none!important;transition:none!important}}
+@media(max-width:760px){.examples-page{aspect-ratio:auto!important;min-height:80dvh!important;height:auto!important}.clean-example-workspace{height:auto!important;display:flex!important;flex-direction:column!important}.example-question-pane{max-height:none!important}.example-board-panel{min-height:360px!important}.example-card{height:auto!important}.example-deck{height:auto!important}.curriculum-diagram{max-height:240px}}

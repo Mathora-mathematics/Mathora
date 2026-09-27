@@ -61,7 +61,7 @@ for(const token of ['.lesson-title-date-row','.student-date-pill','.sheet-annota
 for(const page of ['index.html','year9.html','year8.html','year7.html']){
   const source=fs.readFileSync(page,'utf8');
   if(!source.includes('id="currentLessonDate"')) throw Error(page+' missing visible lesson date');
-  if(!source.includes('app.js?v=presenter-13')||!source.includes('styles.css?v=presenter-12')) throw Error(page+' stale shared asset version');
+  if(!source.includes('app.js?v=content-14')||!source.includes('styles.css?v=content-14')) throw Error(page+' stale shared asset version');
 }
 console.log('Presenter/print validation PASS: visible dates, printable ink and full-section export are wired across Year 7–10.');
 

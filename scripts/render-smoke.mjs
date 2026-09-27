@@ -21,6 +21,8 @@ function smoke(file,expected){
   };
   vm.createContext(ctx);
   vm.runInContext(fs.readFileSync(file,'utf8'),ctx,{filename:file});
+  vm.runInContext(fs.readFileSync(file.replace('-data','-enrichment'),'utf8'),ctx);
+  vm.runInContext(fs.readFileSync('curriculum-diagrams.js','utf8'),ctx);
   vm.runInContext(appSource,ctx,{filename:'app.js'});
   if(!ctx.window.__debug.validate()) throw Error(file+' validate() failed');
   if(ctx.window.LESSONS.length!==expected) throw Error(file+' unexpected lesson count');

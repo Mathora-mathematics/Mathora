@@ -41,7 +41,7 @@ function fmt(text){
 function typeset(root=document){
  $$(".math[data-tex]",root).forEach(el=>{
    if(el.dataset.done)return;
-   const tex=el.dataset.tex||"";
+   const tex=(el.dataset.tex||"").replace(/\\\\(?=[A-Za-z])/g,"\\").replace(/(?<!\\)%/g,"\\%");
    if(window.katex){
      try{katex.render(tex,el,{throwOnError:false,strict:"ignore",trust:false});el.dataset.done="1";return;}catch(e){}
    }
@@ -181,8 +181,12 @@ function teachHTML(l,d,sm){
 }
 
 function allExamples(l,d){
- const merged=[...(d.examples||[]),...((EXTRA[l.id]||[]))];
- return [...(BOOKS[l.id]?.examples||[]),...merged.slice(0,5)];
+ const seen=new Set();
+ return [...(d.examples||[]),...(EXTRA[l.id]||[]),...(BOOKS[l.id]?.examples||[])].filter(e=>{
+  const key=String(e.prompt||'').trim();
+  if(!key||seen.has(key)||!e.steps?.length||e.sourceSolution)return false;
+  seen.add(key);return true;
+ });
 }
 function boardMarkup(id,key,teach=false){
  return '<div class="interactive-board '+(teach?"teach-whiteboard":"")+'" data-board-key="'+esc(key)+'">'+
@@ -225,9 +229,7 @@ function exampleCard(l,d,e,i){
   '<div class="example-workspace example-split-workspace clean-example-workspace">'+
     '<aside class="example-question-pane">'+(e.sourceQuestion&&/^Coursebook worked example/.test(e.prompt)?'':'<div class="example-question"><h3>'+fmt(e.prompt)+'</h3></div>')+question+
       (diagram?'<div class="example-diagram-panel">'+diagram+'</div>':"")+
-    '</aside>'+
-  '<button class="reveal-button full-width example-solution-toggle" data-reveal="exampleSolution'+i+'" type="button"><span class="reveal-icon">＋</span>Solution</button>'+
-  '<div class="reveal-panel solution-panel" id="exampleSolution'+i+'">'+answer+(e.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(e.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</div>'+
+  '<button class="reveal-button full-width example-solution-toggle" data-example-solution="'+i+'" type="button"><span class="reveal-icon">＋</span>Solution</button></aside>'+
     '<div class="example-board-panel"><div class="board-prompt-pin"><strong>'+fmt(/^Coursebook worked example/.test(e.prompt)?'Work through the question below.':e.prompt)+'</strong></div>'+boardMarkup("exampleCanvas"+i,l.id+"-example-"+i,false)+'</div>'+
   '</div>'+
  '</article>';
@@ -255,41 +257,35 @@ function questionCard(l,x,globalIndex,kind){
   '<p>'+fmt(x.prompt)+'</p>'+(diagram?'<div class="question-diagram">'+diagram+'</div>':"")+
  '</article>';
 }
+const questionSetCache=new Map();
 function solvedQuestionSets(l,d){
+ if(questionSetCache.has(l.id))return questionSetCache.get(l.id);
  const generated=QUESTION_ENGINE.build(l.type);
  const seen=new Set();
  const unique=items=>items.filter(x=>{
-   const key=String(x?.prompt||"").replace(/\s+/g," ").trim().toLowerCase();
-   if(!key||seen.has(key)||!x.steps?.length)return false;
-   seen.add(key);return true;
+  const key=String(x?.prompt||'').replace(/\s+/g,' ').trim().toLowerCase();
+  if(!key||seen.has(key)||!x.steps?.length)return false;
+  seen.add(key);return true;
  });
- // Keep homework distinct from practice and from the displayed teacher examples.
- const authoredPractice=Array.isArray(d.practice)
-   ? d.practice.filter(x=>x&&typeof x==="object"&&x.prompt&&Array.isArray(x.steps)&&x.steps.length)
-   : [];
- const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...authoredPractice,...(generated.practice||[]).slice(0,8)]);
+ const authored=Array.isArray(d.practice)?d.practice:[];
+ // Reserve homework first so a practice duplicate cannot erase the homework sheet.
  const homework=unique(d.homework||[]);
- return {practice,homework};
+ const practice=unique([...(window.SOURCE_QUESTIONS?.[l.id]||[]),...authored,...(generated.practice||[]).slice(0,8)]);
+ const result={practice,homework};questionSetCache.set(l.id,result);return result;
 }
 function sourceImage(asset,alt){
  if(asset?.image) return '<a class="source-image-link" href="'+esc(asset.image)+'" target="_blank" rel="noopener" title="Open full-size extract"><img class="source-extract" src="'+esc(asset.image)+'" width="'+(asset.width||900)+'" height="'+(asset.height||1200)+'" style="max-width:'+Math.min(1040,Math.max(360,asset.width||900))+'px" loading="lazy" decoding="async" alt="'+esc(alt)+'"></a>';
  if(asset?.url) return '<a class="source-book-card" href="'+esc(asset.url)+'" target="_blank" rel="noopener"><span class="source-book-label">'+esc(asset.bookTitle||"Textbook source")+'</span><strong>'+esc(asset.heading||alt)+'</strong>'+(asset.page?'<small>Page / section: '+esc(asset.page)+'</small>':'')+(asset.excerpt?'<p>'+fmt(asset.excerpt)+'</p>':'')+'<em>Open source ↗</em></a>';
  return "";
 }
-function sourceMaterials(l,kind){
- const b=BOOKS[l.id];if(!b)return "";
- return (b[kind]||[]).map((a,i,arr)=>{
-  const aid=kind+'SourceAnnot'+i;
-  return '<article class="worksheet-slide textbook-section print-sheet annotatable-sheet" data-print-sheet="'+kind+'">'+worksheetHeader(l,kind==='homework'?'Homework':'Independent practice',kind,i+1,arr.length,aid).replace(/<button class="sheet-action reveal-all-btn"[\s\S]*?<\/button>/,'')+'<p class="textbook-assignment">'+esc(b[kind+'Assignment']||'Complete the questions below. Show clear working.')+'</p>'+sourceImage(a,'Questions and diagrams')+sheetAnnotationMarkup(aid,l.id+'-'+kind+'-source-'+i)+'</article>';
- }).join('');
-}
+function sourceMaterials(){return "";}
 
 function practiceHTML(l,d){
  const bank=solvedQuestionSets(l,d).practice;
  window.__currentPractice=bank;
  const pageSize=4;
  const pages=Array.from({length:Math.ceil(bank.length/pageSize)},(_,i)=>bank.slice(i*pageSize,i*pageSize+pageSize));
- const sourceCount=(BOOKS[l.id]?.practice||[]).length;
+ const sourceCount=0;
  const total=sourceCount+pages.length;
  return '<section class="section-anchor sheet-stack" id="practice">'+sourceMaterials(l,'practice')+pages.map((page,p)=>{
   const aid='practiceAnnot'+p;
@@ -305,7 +301,7 @@ function homeworkHTML(l,d){
  window.__currentHomework=bank;
  const pageSize=4;
  const pages=Array.from({length:Math.ceil(bank.length/pageSize)},(_,i)=>bank.slice(i*pageSize,i*pageSize+pageSize));
- const sourceCount=(BOOKS[l.id]?.homework||[]).length;
+ const sourceCount=0;
  const total=sourceCount+pages.length;
  return '<section class="section-anchor sheet-stack" id="homework">'+sourceMaterials(l,'homework')+pages.map((page,p)=>{
   const aid='homeworkAnnot'+p;
@@ -443,6 +439,7 @@ function redrawBoard(state){
 function resizeBoard(state){
  const c=state.canvas,r=c.parentElement.getBoundingClientRect(),dpr=Math.min(3,window.devicePixelRatio||1);
  if(r.width<10||r.height<10)return;
+ if(c.width===Math.round(r.width*dpr)&&c.height===Math.round(r.height*dpr)&&state.ctx)return;
  c.width=Math.round(r.width*dpr);c.height=Math.round(r.height*dpr);c.style.width=r.width+"px";c.style.height=r.height+"px";
  state.ctx=c.getContext("2d");state.ctx.setTransform(dpr,0,0,dpr,0,0);redrawBoard(state);
 }
@@ -458,7 +455,7 @@ function bindBoard(canvas){
   state.ro.observe(canvas.parentElement);
  }
 
- let drawing=false,current=null;
+ let drawing=false,current=null,activePointer=null;
  const addPoint=e=>{
   const r=canvas.getBoundingClientRect();
   return{
@@ -470,26 +467,31 @@ function bindBoard(canvas){
  const finishStroke=e=>{
   if(!drawing)return;
   e?.preventDefault?.();
-  drawing=false;current=null;saveBoard(state);
+  if(e?.pointerId!=null&&e.pointerId!==activePointer)return;
+  drawing=false;current=null;activePointer=null;saveBoard(state);syncToolUI();
  };
 
  canvas.addEventListener("contextmenu",e=>e.preventDefault());
  canvas.addEventListener("pointerdown",e=>{
+  if(drawing||e.button>0)return;
   if(e.pointerType==="pen")state.lastPen=Date.now();
   if(e.pointerType==="touch"&&Date.now()-state.lastPen<1400)return;
   e.preventDefault();
-  drawing=true;
+  drawing=true;activePointer=e.pointerId;
   canvas.setPointerCapture?.(e.pointerId);
   current={tool:state.tool,colour:state.colour,size:state.size,points:[addPoint(e)]};
   state.strokes.push(current);state.redo=[];
   drawOneStroke(state,current);
  });
  canvas.addEventListener("pointermove",e=>{
-  if(!drawing||!current)return;
+  if(!drawing||!current||e.pointerId!==activePointer)return;
   e.preventDefault();
-  const events=e.getCoalescedEvents?e.getCoalescedEvents():[e];
-  events.forEach(ev=>current.points.push(addPoint(ev)));
-  redrawBoard(state);
+  const batch=e.getCoalescedEvents?.()||[];
+  const events=batch.length?batch:[e];
+  const tail=current.points[current.points.length-1];
+  const points=events.map(addPoint);
+  current.points.push(...points);
+  drawOneStroke(state,{...current,points:[tail,...points]});
  });
  ["pointerup","pointercancel","lostpointercapture"].forEach(ev=>canvas.addEventListener(ev,finishStroke));
 
@@ -678,10 +680,11 @@ function bindPrint(){
    const frame=document.createElement("iframe");frame.className="print-frame";frame.title="Printable lesson pages";document.body.append(frame);
    const doc=frame.contentDocument,content=buildPrintDocument(target),l=lesson();
    const ready=new Promise(resolve=>frame.addEventListener("load",resolve,{once:true}));
-   const cssHref=new URL("styles.css?v=presenter-10",location.href).href;
+   const cssHref=new URL("styles.css?v=content-14",location.href).href;
    const title=l.title+" — "+(target==="examples"?"Examples":target==="homework"?"Homework":"Independent practice");
    doc.open();doc.write('<!doctype html><html data-theme="light"><head><meta charset="utf-8"><title>'+esc(title)+'</title><link rel="stylesheet" href="'+cssHref+'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"><style>'+
     '@page{size:A4 landscape;margin:7mm}html,body{background:#fff!important;color:#153b4a!important}body{margin:0!important;padding:0!important;font-family:Arial,sans-serif!important}.print-document{display:block!important}.print-export-sheet,.print-example-page{width:100%!important;height:196mm!important;min-height:196mm!important;max-height:196mm!important;margin:0!important;padding:6mm 7mm!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important;break-after:page!important;page-break-after:always!important;background:#fff!important;position:relative!important}.print-export-sheet:last-child,.print-example-page:last-child{break-after:auto!important;page-break-after:auto!important}.print-example-header{height:23mm;display:flex;align-items:flex-start;justify-content:space-between;gap:10mm;border-bottom:1px solid #cfe2e8;padding-bottom:3mm;margin-bottom:4mm}.print-example-header span{display:block;font-size:7pt;letter-spacing:.12em;font-weight:800;color:#5e8c99}.print-example-header h1{font-family:Georgia,serif;font-size:22pt;font-weight:500;line-height:1.05;margin:2mm 0 0;color:#073241}.print-example-header>div:last-child{text-align:right}.print-example-header strong{display:block;font-size:10pt;margin-top:1mm}.print-example-header small{display:block;font-size:8pt;margin-top:2mm;color:#657f88}.print-example-page .example-card{height:160mm!important;min-height:0!important;position:relative!important;inset:auto!important;opacity:1!important;transform:none!important;pointer-events:auto!important}.print-example-page .example-workspace{height:151mm!important;display:grid!important;grid-template-columns:36% 64%!important;gap:5mm!important}.print-example-page .example-question-pane{min-height:0!important;overflow:hidden!important}.print-example-page .example-question h3{font-size:16pt!important}.print-example-page .example-board-panel{height:100%!important;min-height:0!important}.print-example-page .interactive-board{height:100%!important}.print-example-page .board-paper{height:138mm!important;min-height:138mm!important;border:1px solid #cbdde3!important;border-radius:3mm!important;background-color:#fff!important;background-image:linear-gradient(rgba(0,174,230,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(0,174,230,.12) 1px,transparent 1px)!important;background-size:6mm 6mm!important;position:relative!important;overflow:hidden!important}.print-board-capture{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:4!important}.print-annotation-capture{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:fill!important;z-index:50!important;pointer-events:none!important}.sheet-annotation-wrap{position:absolute!important;inset:0!important;z-index:50!important;pointer-events:none!important}.sheet-annotation-toolbar{display:none!important}.worksheet-slide::before{display:none!important}.print-export-sheet .worksheet-top{padding-bottom:2.5mm!important}.print-export-sheet .worksheet-logo{width:29mm!important;height:15mm!important}.print-export-sheet .worksheet-brand span{font-size:7pt!important}.print-export-sheet .worksheet-brand strong{font-size:14pt!important}.print-export-sheet .worksheet-title-row{padding:2.5mm 0 2mm!important;align-items:center!important}.print-export-sheet .worksheet-title-row h2{font-size:17pt!important}.print-export-sheet .worksheet-title-date{display:flex!important;align-items:baseline!important;gap:4mm!important}.print-export-sheet .worksheet-title-date>span{font-size:8pt!important}.print-export-sheet .sheet-meta label{font-size:8pt!important}.print-export-sheet .powerpoint-question-grid,.print-export-sheet .sixteen-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;grid-template-rows:repeat(2,1fr)!important;height:148mm!important;min-height:148mm!important;gap:3mm!important}.print-export-sheet .compact-question{min-height:0!important;padding:3mm 3.2mm!important;border-radius:2mm!important;box-shadow:none!important}.print-export-sheet .compact-question>p{font-size:14pt!important;line-height:1.28!important;margin:2mm 0!important}.print-export-sheet .compact-question .question-diagram{height:19mm!important}.print-export-sheet .question-math-diagram{max-height:18mm!important}.print-export-sheet .worksheet-footer{font-size:7pt!important;margin-top:1.6mm!important;padding-top:1mm!important}.print-export-sheet.textbook-section .source-extract{display:block!important;width:100%!important;height:auto!important;max-height:145mm!important;object-fit:contain!important;object-position:top!important}.print-export-sheet.textbook-section .source-book-card{box-shadow:none!important;min-height:125mm!important}.print-export-sheet .textbook-assignment{font-size:9pt!important;margin:2mm 0!important}.no-print{display:none!important}'+
+   '@media print{.print-export-sheet,.print-example-page{height:auto!important;max-height:none!important;min-height:185mm!important;overflow:visible!important}.print-export-sheet .powerpoint-question-grid{height:auto!important;min-height:140mm!important;grid-template-rows:repeat(2,minmax(64mm,auto))!important}.compact-question{break-inside:avoid!important}.print-export-sheet .question-diagram{height:auto!important;min-height:26mm!important}.print-export-sheet .question-diagram svg{max-height:34mm!important;width:100%!important}.print-example-page .example-question-pane{overflow:visible!important}.print-example-page .example-workspace{height:auto!important;min-height:145mm!important}.print-export-sheet .compact-question>p{font-size:12pt!important}}'+
    '</style></head><body>'+content.outerHTML+'</body></html>');doc.close();
    await ready.catch(()=>{});
    await Promise.all(Array.from(doc.images).map(img=>img.decode?.().catch(()=>{})||Promise.resolve()));
@@ -707,16 +710,17 @@ function bindWorksheetSolutions(){
   if(!item)return;
   $("#solutionTitle").innerHTML=fmt(item.prompt);
   $("#solutionBody").innerHTML=(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("");
-  if(item.solutionDiagram)$("#solutionBody").innerHTML+=VERIFIED.render(item.solutionDiagram);
+  if(item.solutionDiagram||item.verifiedDiagram)$("#solutionBody").innerHTML+=VERIFIED.render(item.solutionDiagram||item.verifiedDiagram);
   typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");$(".solution-close",modal)?.focus();
  };
+ $$("[data-example-solution]").forEach(btn=>btn.addEventListener("click",()=>openSolution(allExamples(lesson(),data())[Number(btn.dataset.exampleSolution)])));
  $$(".solution-btn").forEach(btn=>btn.addEventListener("click",()=>{
   const bank=btn.dataset.bank==="practice"?(window.__currentPractice||[]):(window.__currentHomework||[]);
   openSolution(bank[Number(btn.dataset.index)]);
  }));
  $$(".reveal-all-btn").forEach(btn=>btn.addEventListener("click",()=>{
    const bank=btn.dataset.revealAll==="practice"?(window.__currentPractice||[]):(window.__currentHomework||[]);
-   const page=Number(btn.dataset.page)||1,start=(page-1)*8,items=bank.slice(start,start+8);
+   const page=Number(btn.dataset.page)||1,start=(page-1)*4,items=bank.slice(start,start+4);
    $("#solutionTitle").textContent=(btn.dataset.revealAll==="practice"?"Practice":"Homework")+" solutions "+(start+1)+"–"+(start+items.length);
    $("#solutionBody").innerHTML=items.map((item,i)=>'<section class="bulk-solution"><h4>'+(start+i+1)+'. '+fmt(item.prompt)+'</h4>'+(item.steps||[]).map((s,j)=>'<div class="worked-step '+(j===(item.steps||[]).length-1?"final-step":"")+'"><span>'+(j+1)+'</span><p>'+fmt(s)+'</p></div>').join("")+'</section>').join("");
    typeset(modal);modal.classList.add("open");modal.setAttribute("aria-hidden","false");$(".solution-close",modal)?.focus();
