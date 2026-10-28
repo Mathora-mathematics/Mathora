@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "levels": {
+    "GCSE": {
+      "topics": [
+        "Number & calculation",
+        "Fractions, decimals & percentages",
+        "Ratio, proportion & rates",
+        "Algebra & equations",
+        "Functions, graphs & sequences",
+        "Geometry & measures",
+        "Trigonometry & Pythagoras",
+        "Probability",
+        "Statistics"
+      ],
+      "objectives": [
+        "AO1 Fluency",
+        "AO2 Reasoning",
+        "AO3 Problem solving"
+      ],
+      "tiers": [
+        "Foundation",
+        "Higher"
+      ],
+      "forms": [
+        "single-step",
+        "linked-parts",
+        "explain-why",
+        "prove",
+        "model-a-context",
+        "diagram-analysis",
+        "multi-step"
+      ]
+    },
+    "IGCSE": {
+      "topics": [
+        "Number",
+        "Algebra & graphs",
+        "Coordinate geometry",
+        "Geometry",
+        "Mensuration",
+        "Trigonometry",
+        "Transformations & vectors",
+        "Probability",
+        "Statistics"
+      ],
+      "objectives": [
+        "AO1 Techniques",
+        "AO2 Interpretation, analysis & communication"
+      ],
+      "tiers": [
+        "Core",
+        "Extended",
+        "Foundation",
+        "Higher",
+        "Extension"
+      ],
+      "forms": [
+        "structured",
+        "unstructured",
+        "explain",
+        "exact-answer",
+        "show-working",
+        "diagram",
+        "model-a-context"
+      ]
+    },
+    "AS_A_LEVEL": {
+      "topics": [
+        "Pure algebra & functions",
+        "Coordinate geometry",
+        "Trigonometry",
+        "Sequences & series",
+        "Exponentials & logarithms",
+        "Calculus",
+        "Vectors",
+        "Statistics & probability",
+        "Mechanics",
+        "Further Pure"
+      ],
+      "objectives": [
+        "Fluency",
+        "Mathematical reasoning",
+        "Problem solving"
+      ],
+      "tiers": [
+        "AS",
+        "A2",
+        "Further"
+      ],
+      "forms": [
+        "multi-part proof",
+        "calculation",
+        "modelling",
+        "interpretation",
+        "justification"
+      ]
+    }
+  }
+}
