@@ -122,6 +122,22 @@
 <label>Editorial notes<textarea id="bank-author-note" rows="2" maxlength="1500" placeholder="Syllabus point, diagram checks, expected error patterns"></textarea></label>
 <button class="button primary" id="bank-author-save" type="submit">Save unpublished question</button></form>
 <p class="feedback" id="bank-author-feedback" role="status"></p></article>
+<article class="card mock-admin" id="mock-admin"><p class="overline">GROVE EXAM · PRIVATE CONTROL ROOM</p><h2>Assemble and assign timed mock papers.</h2>
+<p class="subtext">First approve enough original questions for the same board and tier. A pack can publish only when its exact mark total, breadth and examiner schemes pass the database checks.</p>
+<form id="mock-build-form">
+<div class="mock-admin-grid"><label>Qualification<select id="mock-build-qual"><option value="GCSE">GCSE</option><option value="IGCSE">IGCSE</option><option value="A_LEVEL">AS / A Level</option></select></label>
+<label>Exam board<select id="mock-build-board" required></select></label><label>Academic tier<select id="mock-build-tier" required></select></label>
+<label>Paper title<input id="mock-build-title" maxlength="160" required placeholder="Cambridge Extended · Original Paper A"></label>
+<label>Paper code<input id="mock-build-code" maxlength="30" required placeholder="P2-A"></label>
+<label>Duration (minutes)<input id="mock-build-minutes" type="number" min="15" max="180" value="120" required></label>
+<label>Exact target marks<input id="mock-build-target" type="number" min="20" max="150" value="100" required></label>
+<label class="mock-calculator"><input id="mock-build-calc" type="checkbox"> Calculator permitted</label></div>
+<p class="card-kicker">APPROVED ORIGINAL QUESTIONS · SELECT IN PAPER ORDER</p>
+<div id="mock-question-pool" class="mock-question-pool">No original items have passed moderation yet.</div>
+<p class="mock-selected">Chosen: <strong id="mock-selected-count">0 questions</strong> · <strong id="mock-selected-marks">0 marks</strong></p>
+<button type="submit" id="mock-build-save" class="button primary">Save complete paper as draft</button></form>
+<p id="mock-admin-feedback" class="feedback" role="status"></p>
+<div class="mock-admin-list"><h3>Mock publication and assignment</h3><div id="mock-admin-packs"></div></div></article>
 <div class="card bank-mocks"><p class="overline">ORIGINAL MOCKS · DEVELOPMENT REGISTER</p><h2>Paper blueprint directory</h2><p class="subtext">These are format/mark/time targets only. They are not assembled papers and cannot be assigned to a student. Approved questions and a server-controlled hard-stop timer are required before publishing real mocks.</p><div id="bank-mock-list" class="bank-mock-list"></div></div>
 </section>
 <section data-panel="marking" class="panel" hidden>
