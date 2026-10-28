@@ -186,6 +186,9 @@ $('invite-email').addEventListener('blur',()=>{
  if(state.pending.some(p=>p.email===email))loadPendingIntoForm(email)
 });
 async function loadAttempts(){
+ // Finalise server-expired mocks before the examiner reads the queue.
+ // An absent stage-two RPC is expected on projects not yet upgraded.
+ await db.rpc('finalize_expired_mock_sessions').then(()=>{},()=>{});
  const {data,error}=await db.from('attempts').select('id,student_id,org_id,qualification,status,started_at,submitted_at')
   .eq('org_id',state.membership.org_id).order('started_at',{ascending:false}).limit(150);
  if(error)throw error;
