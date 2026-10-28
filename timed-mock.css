@@ -40,3 +40,13 @@
 .mock-admin-row>div:last-child{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 @media(max-width:850px){.mock-admin-grid{grid-template-columns:repeat(2,1fr)}.mock-offer,.mock-admin-row{display:grid;grid-template-columns:1fr}.mock-offer .button{justify-self:start}}
 @media(max-width:560px){.mock-admin-grid{grid-template-columns:1fr}.mock-clock-bar{gap:8px;flex-wrap:wrap}.mock-clock-bar #mock-time-remaining{font-size:30px}.mock-clock-bar .button{min-width:0}}
+
+.tier-library-header{margin:10px 0 23px}
+.tier-library-header h2{font:400 34px "Instrument Serif",Georgia,serif;color:#213B57;margin:7px 0 18px}
+.tier-library-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tier-library-card{background:#F8F5EF;border:1px solid #DFD5C8;padding:20px;border-radius:10px}
+.tier-library-card span{font-size:9px;font-weight:800;letter-spacing:.13em;color:#967E5E}
+.tier-library-card h3{font:400 27px "Instrument Serif",Georgia,serif;color:#1E3650;margin:12px 0 9px}
+.tier-library-card p{font-size:11px;line-height:1.7;color:#53677C}
+.tier-library-card small{display:block;font-size:10px;line-height:1.7;color:#8895A4;margin-top:12px}
+@media(max-width:900px){.tier-library-cards{grid-template-columns:1fr}}
