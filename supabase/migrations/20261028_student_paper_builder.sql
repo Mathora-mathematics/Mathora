@@ -68,6 +68,55 @@ begin
  new.updated_at=now();
  return new;
 end; $$;
+-- Build a complete student paper in one transaction; no partial/orphan papers.
+create or replace function public.create_student_paper(
+ p_mode text,p_topic text,p_difficulty text,p_requested_count integer,p_questions uuid[]
+) returns uuid language plpgsql security definer set search_path='' as $$
+declare
+ v_user uuid := (select auth.uid());
+ v_org uuid;
+ v_qual text;
+ v_attempt uuid;
+ v_question uuid;
+ v_i integer;
+begin
+ if v_user is null then raise exception 'Authentication required'; end if;
+ if p_mode not in ('daily','weekly','mock','topic') or
+    p_difficulty not in ('mixed','foundation','standard','challenge') or
+    coalesce(length(p_topic),0)>140 or
+    p_requested_count not between 1 and 20 then
+   raise exception 'Invalid student paper options';
+ end if;
+ if p_questions is null or array_length(p_questions,1) is null or
+    array_length(p_questions,1) not between 1 and 20 or
+    array_length(p_questions,1)>p_requested_count or
+    (select count(distinct q) from unnest(p_questions) as q)<>array_length(p_questions,1) then
+   raise exception 'Select valid, distinct questions';
+ end if;
+ select m.org_id into v_org from public.memberships m
+ where m.user_id=v_user and m.member_role='student' limit 1;
+ if v_org is null then raise exception 'Verified student membership required'; end if;
+ select p.qualification into v_qual from public.student_preferences p where p.student_id=v_user;
+ if v_qual is null then raise exception 'Save your exam pathway first'; end if;
+ for v_i in 1..array_length(p_questions,1) loop
+  v_question:=p_questions[v_i];
+  if not exists(select 1 from public.question_bank q where
+    q.id=v_question and q.qualification=v_qual and q.active) then
+    raise exception 'Unavailable or mismatched paper question';
+  end if;
+ end loop;
+ insert into public.attempts(org_id,student_id,qualification,status,paper_mode,focus_topic,target_difficulty,requested_count)
+ values(v_org,v_user,v_qual,'draft',p_mode,coalesce(p_topic,''),p_difficulty,p_requested_count)
+ returning id into v_attempt;
+ for v_i in 1..array_length(p_questions,1) loop
+  insert into public.paper_questions(attempt_id,question_id,position)
+  values(v_attempt,p_questions[v_i],v_i);
+ end loop;
+ return v_attempt;
+end; $$;
+revoke all on function public.create_student_paper(text,text,text,integer,uuid[]) from public,anon;
+grant execute on function public.create_student_paper(text,text,text,integer,uuid[]) to authenticated;
+
 commit;
 
 -- Security note: paper_questions are assigned at creation and must not be edited
