@@ -1,4 +1,17 @@
 # MathsGrove — Admin & Examiner Studio
+
+## New MathsGrove Supabase project created (28 October 2026)
+
+**Project URL:** `https://nwakgkxytovprrrwyahs.supabase.co` (public project identifier, not a secret).
+
+**Simplified initial setup:** open **SQL Editor → New query**, copy all of `supabase/INSTALL_FRESH_MATHSGROVE.sql`, and run it **once** on this new empty MathsGrove project. This one file combines the four migrations listed below in dependency order and wraps them in a single transaction.
+
+Next, copy `supabase/VERIFY_INSTALL.sql` to a second new SQL query. Expected check results: 11 public tables, 11 RLS-enabled tables, 10 original pilot questions, 1 private storage bucket, 0 direct-staff-status policies. Do not proceed if any count differs.
+
+The public Supabase project URL has already been entered in `mathsgrove-config.js`. **The publishable browser key is still blank**. Get only the `sb_publishable_...` value from **Project Settings → API Keys** or the **Connect** dialog and configure it in the browser config after policy review. Never put `sb_secret_...` or any `service_role` credential in GitHub or chat.
+
+After installing the database, deploy the invitation Edge Function, set its allowed website origin, configure the Supabase Auth redirect URL, set up an appropriate SMTP sender, and initialise your first administrator using the documented owner bootstrap. All real email/key operations remain disabled until those steps are complete.
+
 ## What is ready in GitHub
 The private administration interface is at `/studio.html`. It requires a verified Supabase login with an `admin`, `partner` or `examiner` membership in an organisation.
 

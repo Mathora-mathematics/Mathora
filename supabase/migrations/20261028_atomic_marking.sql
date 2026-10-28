@@ -84,6 +84,11 @@ $$;
 revoke all on function public.save_marking_review(uuid,jsonb,boolean) from public,anon;
 grant execute on function public.save_marking_review(uuid,jsonb,boolean) to authenticated;
 
+-- Prevent direct status changes from bypassing the examiner review workflow.
+-- Student submission remains permitted; staff release is performed only by the
+-- security-definer save_marking_review transaction above.
+drop policy if exists attempts_staff_mark on public.attempts;
+
 -- Prevent student browsers and ordinary staff from circumventing the review workflow.
 revoke insert,update,delete on public.reviews from authenticated;
 -- Only the staff-only database function above can create or release marks.
