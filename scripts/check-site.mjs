@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'node:fs';
-const pages=['index.html','portal.html','studio.html'];
-const publicAssets=['mathsgrove.css','brand-refresh.css','portal.css','studio.css','private-refresh.css','mathsgrove.js','portal.js','studio.js','mathsgrove-config.js','mathsgrove-icon.svg'];
+const pages=['index.html','portal.html','studio.html','sample.html'];
+const publicAssets=['mathsgrove.css','brand-refresh.css','marketing-services.css','portal.css','studio.css','private-refresh.css','student-features.css','sample.css','whiteboard.js','marketing.js','sample.js','portal.js','studio.js','mathsgrove-config.js','mathsgrove-icon.svg'];
 let errors=[];
 for (const name of [...pages,...publicAssets]) if (!existsSync(name)) errors.push('Missing '+name);
 for (const page of pages) {
@@ -16,7 +16,8 @@ for (const page of pages) {
 }
 const landing=readFileSync('index.html','utf8');
 if (landing.includes('£')||/\bpricing\b/i.test(landing)) errors.push('Public homepage must not advertise prices');
-for (const needed of ['id="demo-overlay"','id="mobile-toggle"','id="primary-nav"','id="panel-student"','id="panel-examiner"','id="panel-report"','id="panel-partner"']) {
+if (/partner dashboard|demo-overlay|id="panel-partner"/i.test(landing)) errors.push('Old public partner dashboard found');
+for (const needed of ['id="mobile-toggle"','id="primary-nav"','id="services"','href="./sample.html"','id="student-preview"']) {
   if (!landing.includes(needed)) errors.push('Missing preview/interaction element '+needed);
 }
 const config=readFileSync('mathsgrove-config.js','utf8');
