@@ -177,7 +177,7 @@ begin
  end loop;
  return v_attempt;
 end;
-$;
+$$;
 create or replace function public.save_marking_review(
   p_attempt uuid,
   p_items jsonb,
@@ -262,5 +262,5 @@ begin
 
   return jsonb_build_object('ok',true,'saved_count',v_index,'released',p_release);
 end;
-$;
+$$;
 commit;
