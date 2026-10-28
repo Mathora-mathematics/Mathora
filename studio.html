@@ -6,8 +6,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./studio.css">
-<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css"><link rel="stylesheet" href="./admin-learner.css"><link rel="stylesheet" href="./content-bank.css"><link rel="stylesheet" href="./content-bank.css">
-<script src="./mathsgrove-config.js" defer></script><script src="./maths-render.js" defer></script><script src="./studio.js" type="module"></script></head>
+<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css"><link rel="stylesheet" href="./admin-learner.css"><link rel="stylesheet" href="./content-bank.css"><link rel="stylesheet" href="./timed-mock.css"><link rel="stylesheet" href="./content-bank.css">
+<script src="./mathsgrove-config.js" defer></script><script src="./maths-render.js" defer></script><datalist id="mg-exam-board-codes"><option value="AQA_8300" label="AQA GCSE 8300"></option><option value="EDEXCEL_1MA1" label="Pearson GCSE"></option><option value="OCR_J560" label="OCR GCSE"></option><option value="EDUQAS_C300" label="Eduqas GCSE"></option><option value="CAMBRIDGE_0580" label="Cambridge IGCSE 0580"></option><option value="CAMBRIDGE_0980" label="Cambridge IGCSE 0980"></option><option value="EDEXCEL_4MA1" label="Pearson IGCSE linear"></option><option value="EDEXCEL_4XMA1" label="Pearson IGCSE modular"></option><option value="OXFORDAQA_9260" label="OxfordAQA IGCSE"></option></datalist>
+<script src="./studio.js" type="module"></script></head>
 <body class="mg-private-studio">
 <div class="shell">
 <aside class="sidebar">
@@ -42,7 +43,7 @@
 <label>Qualification<select id="invite-qualification" required>
 <option value="">Select qualification</option><option value="GCSE">GCSE Mathematics</option><option value="IGCSE">IGCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics AA</option><option value="IB_AI">IB Mathematics AI</option><option value="TMUA">TMUA</option>
 </select></label>
-<label>Exam board / route<input id="invite-board" maxlength="80" placeholder="e.g. Edexcel, Cambridge, AQA"></label>
+<label>Exam board / route (choose code for mocks)<input id="invite-board" list="mg-exam-board-codes" maxlength="80" placeholder="e.g. Edexcel, Cambridge, AQA"></label>
 <label>Academic tier / level<input id="invite-level" maxlength="60" placeholder="e.g. Higher, Extended, HL, SL"></label>
 <label>MathsGrove programme<select id="invite-programme" required>
 <option value="weekly">Grove Weekly · 4 weekly sets + monthly report</option><option value="daily">Grove Daily · daily focus + weekly report</option><option value="exam">Grove Exam · Daily + timed mock and exam outlook</option>
@@ -71,7 +72,7 @@
 <label>Enrolled student<select id="programme-student" required><option value="">Choose a verified student</option></select></label>
 <label>Qualification<select id="programme-qualification" required>
 <option value="GCSE">GCSE Mathematics</option><option value="IGCSE">IGCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics AA</option><option value="IB_AI">IB Mathematics AI</option><option value="TMUA">TMUA</option></select></label>
-<label>Exam board / route<input id="programme-board" maxlength="80" placeholder="Exam board"></label>
+<label>Exam board / route<input id="programme-board" list="mg-exam-board-codes" maxlength="80" placeholder="Exam board"></label>
 <label>Academic tier / level<input id="programme-level" maxlength="60" placeholder="Higher / Extended / HL / SL"></label>
 <label>MathsGrove programme<select id="programme-tier"><option value="weekly">Grove Weekly</option><option value="daily">Grove Daily</option><option value="exam">Grove Exam</option></select></label>
 <label>Access until<input id="programme-until" type="date" required></label>
