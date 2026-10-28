@@ -1,8 +1,7 @@
 -- MathsGrove 120 public, original, low-stakes DAILY and WEEKLY practice questions.
--- Not confidential unseen Grove Exam papers; source and indicative schemes
--- are in the public code repository. A human examiner must moderate before
--- using any score to infer formal examination readiness.
--- Prerequisite: UPGRADE_TIER_MOCKS.sql. Run once on backed-up project.
+-- PUBLIC practice questions and indicative schemes are NOT unseen Grove Exam
+-- content and should not be used to infer formal grade readiness without review.
+-- Run AFTER UPGRADE_TIER_MOCKS.sql, once, on a backed-up pilot database.
 BEGIN;
 CREATE TABLE IF NOT EXISTS public.practice_question_labels(
  question_id uuid PRIMARY KEY REFERENCES public.question_bank(id) ON DELETE CASCADE,
@@ -14,1450 +13,489 @@ ALTER TABLE public.practice_question_labels ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON public.practice_question_labels FROM anon,authenticated;
 GRANT SELECT ON public.practice_question_labels TO authenticated;
 DROP POLICY IF EXISTS practice_labels_member_read ON public.practice_question_labels;
-CREATE POLICY practice_labels_member_read ON public.practice_question_labels FOR SELECT TO authenticated
- USING(EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=(SELECT auth.uid())));
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,'GCSE','Number · Fractions','Evaluate \(\frac{3}{4}+\frac{1}{6}\). Give your answer as a fraction in its simplest form.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,'Expected answer: 11/12. M1 Choose a common denominator. M1 Add correctly adjusted numerators. A1 Fully simplified fraction.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,'GCD-FR-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,'GCSE','Number · Percentages','A bicycle accessory costs £120. It is reduced by \(15\%\). Find its new sale price.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,'Expected answer: £102.00. M1 Use percentage decrease multiplier. M1 Calculate reduced amount. A1 Money answer.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,'GCD-PC-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,'GCSE','Algebra · Linear equations','Solve \(3(x+2)=21\). Show the first step clearly.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,'Expected answer: x=5. M1 Divide both sides or expand. M1 Rearrange constants. A1 Correct solution.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,'GCD-EQ-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,'GCSE','Ratio · Sharing','£63 is shared in the ratio \(2:5\). Find both shares, including units.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,'Expected answer: £18 and £45. M1 Find total parts. M1 Find one part''s value. A1 Correct two amounts.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,'GCD-RA-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,'GCSE','Algebra · Sequences','An arithmetic sequence starts \(4,\ 7,\ 10,\ldots\). Find its \(11\)th term.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,'Expected answer: 34. M1 Identify common difference. M1 Use nth term relationship. A1 Correct term.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,'GCD-SQ-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,'GCSE','Geometry · Pythagoras','A right-angled triangle has perpendicular sides \(3\text{ cm}\) and \(4\text{ cm}\). Find its hypotenuse.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,'Expected answer: 5 cm. M1 Square and add shorter sides. M1 Take positive square root. A1 Length and units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,'GCD-PY-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,'GCSE','Algebra · Indices','Assuming \(x\ne 0\), simplify \(x^{3}\times x^{4}\) and state the index rule.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,'Expected answer: x^7. M1 Recognise same base. M1 Add exponents. A1 Correct power.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,'GCD-IN-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,'GCSE','Statistics · Mean','Four scores are \(7,\ 8,\ 9,\ 12\). Calculate their arithmetic mean and show your working.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,'Expected answer: 9/1. M1 Sum observations. M1 Divide by four. A1 Mean.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,'GCD-ME-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,'GCSE','Probability · Single selection','A bag contains \(3\) red and \(5\) blue counters. One counter is chosen at random. Find \(P(\text{red})\) in simplest form.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,'Expected answer: 3/8. M1 Count favourable outcomes. M1 Count all outcomes. A1 Simplified probability.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,'GCD-PR-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,'GCSE','Geometry · Area','A trapezium has parallel sides \(6\text{ cm}\), \(10\text{ cm}\), and perpendicular height \(5\text{ cm}\). Find its area.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,'Expected answer: 40 cm². M1 Recall trapezium formula. M1 Substitute correctly. A1 Square units and result.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,'GCD-AR-1','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,'GCSE','Number · Fractions','Evaluate \(\frac{5}{6}+\frac{2}{9}\). Give your answer as a fraction in its simplest form.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,'Expected answer: 19/18. M1 Choose a common denominator. M1 Add correctly adjusted numerators. A1 Fully simplified fraction.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,'GCD-FR-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,'GCSE','Number · Percentages','A bicycle accessory costs £160. It is reduced by \(25\%\). Find its new sale price.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,'Expected answer: £120.00. M1 Use percentage decrease multiplier. M1 Calculate reduced amount. A1 Money answer.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,'GCD-PC-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,'GCSE','Algebra · Linear equations','Solve \(4(x+3)=28\). Show the first step clearly.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,'Expected answer: x=4. M1 Divide both sides or expand. M1 Rearrange constants. A1 Correct solution.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,'GCD-EQ-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,'GCSE','Ratio · Sharing','£84 is shared in the ratio \(3:4\). Find both shares, including units.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,'Expected answer: £36 and £48. M1 Find total parts. M1 Find one part''s value. A1 Correct two amounts.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,'GCD-RA-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,'GCSE','Algebra · Sequences','An arithmetic sequence starts \(7,\ 12,\ 17,\ldots\). Find its \(13\)th term.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,'Expected answer: 67. M1 Identify common difference. M1 Use nth term relationship. A1 Correct term.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,'GCD-SQ-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,'GCSE','Geometry · Pythagoras','A right-angled triangle has perpendicular sides \(6\text{ cm}\) and \(8\text{ cm}\). Find its hypotenuse.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,'Expected answer: 10 cm. M1 Square and add shorter sides. M1 Take positive square root. A1 Length and units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,'GCD-PY-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,'GCSE','Algebra · Indices','Assuming \(x\ne 0\), simplify \(x^{5}\times x^{2}\) and state the index rule.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,'Expected answer: x^7. M1 Recognise same base. M1 Add exponents. A1 Correct power.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,'GCD-IN-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,'GCSE','Statistics · Mean','Four scores are \(4,\ 9,\ 11,\ 16\). Calculate their arithmetic mean and show your working.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,'Expected answer: 10/1. M1 Sum observations. M1 Divide by four. A1 Mean.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,'GCD-ME-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,'GCSE','Probability · Single selection','A bag contains \(4\) red and \(7\) blue counters. One counter is chosen at random. Find \(P(\text{red})\) in simplest form.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,'Expected answer: 4/11. M1 Count favourable outcomes. M1 Count all outcomes. A1 Simplified probability.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,'GCD-PR-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,'GCSE','Geometry · Area','A trapezium has parallel sides \(8\text{ cm}\), \(12\text{ cm}\), and perpendicular height \(7\text{ cm}\). Find its area.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,'Expected answer: 70 cm². M1 Recall trapezium formula. M1 Substitute correctly. A1 Square units and result.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,'GCD-AR-2','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,'GCSE','Number · Fractions','Evaluate \(\frac{7}{8}+\frac{3}{10}\). Give your answer as a fraction in its simplest form.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,'Expected answer: 47/40. M1 Choose a common denominator. M1 Add correctly adjusted numerators. A1 Fully simplified fraction.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,'GCD-FR-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,'GCSE','Number · Percentages','A bicycle accessory costs £250. It is reduced by \(30\%\). Find its new sale price.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,'Expected answer: £175.00. M1 Use percentage decrease multiplier. M1 Calculate reduced amount. A1 Money answer.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,'GCD-PC-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,'GCSE','Algebra · Linear equations','Solve \(5(x+4)=50\). Show the first step clearly.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,'Expected answer: x=6. M1 Divide both sides or expand. M1 Rearrange constants. A1 Correct solution.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,'GCD-EQ-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,'GCSE','Ratio · Sharing','£66 is shared in the ratio \(4:7\). Find both shares, including units.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,'Expected answer: £24 and £42. M1 Find total parts. M1 Find one part''s value. A1 Correct two amounts.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,'GCD-RA-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,'GCSE','Algebra · Sequences','An arithmetic sequence starts \(9,\ 13,\ 17,\ldots\). Find its \(17\)th term.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,'Expected answer: 73. M1 Identify common difference. M1 Use nth term relationship. A1 Correct term.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,'GCD-SQ-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,'GCSE','Geometry · Pythagoras','A right-angled triangle has perpendicular sides \(9\text{ cm}\) and \(12\text{ cm}\). Find its hypotenuse.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,'Expected answer: 15 cm. M1 Square and add shorter sides. M1 Take positive square root. A1 Length and units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,'GCD-PY-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,'GCSE','Algebra · Indices','Assuming \(x\ne 0\), simplify \(x^{4}\times x^{6}\) and state the index rule.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,'Expected answer: x^10. M1 Recognise same base. M1 Add exponents. A1 Correct power.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,'GCD-IN-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,'GCSE','Statistics · Mean','Four scores are \(6,\ 10,\ 14,\ 18\). Calculate their arithmetic mean and show your working.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,'Expected answer: 12/1. M1 Sum observations. M1 Divide by four. A1 Mean.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,'GCD-ME-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,'GCSE','Probability · Single selection','A bag contains \(5\) red and \(8\) blue counters. One counter is chosen at random. Find \(P(\text{red})\) in simplest form.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,'Expected answer: 5/13. M1 Count favourable outcomes. M1 Count all outcomes. A1 Simplified probability.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,'GCD-PR-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,'GCSE','Geometry · Area','A trapezium has parallel sides \(11\text{ cm}\), \(15\text{ cm}\), and perpendicular height \(4\text{ cm}\). Find its area.',3,2,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,'Expected answer: 52 cm². M1 Recall trapezium formula. M1 Substitute correctly. A1 Square units and result.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,'GCD-AR-3','daily',180)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,NULL,'','any',180,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,'IGCSE','Surds · Exact simplification','Simplify \(\sqrt{12}\) completely, giving the answer in the form \(a\sqrt{b}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,'Expected answer: 2√3. M1 Identify greatest square factor. M1 Take its square root. A1 Simplified radical.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,'ICD-SUR-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,'IGCSE','Indices · Fractional powers','Evaluate \(16^{\frac{3}{4}}\) exactly and explain the role of the denominator.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,'Expected answer: 8. M1 Interpret fractional index as root. M1 Raise result to numerator power. A1 Exact integer.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,'ICD-IND-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,'IGCSE','Number · Bounds','A measurement is \(4.2\text{ cm}\), correct to the nearest \(0.1\text{ cm}\). Give its lower and upper bounds using inequalities.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,'Expected answer: 4.15≤L<4.25. M1 Find half-unit error. M1 Inclusive lower bound. A1 Exclusive upper bound.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,'ICD-BND-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,'IGCSE','Algebra · Equations','Solve \(3(x+2)=24\) using an algebraic method. State \(x\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,'Expected answer: x=6. M1 Expand or divide. M1 Rearrange. A1 Correct value.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,'ICD-EQN-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,'IGCSE','Vectors · Coordinates','Points \(A(2,1)\) and \(B(8,7)\) are given. Calculate the displacement vector \(\overrightarrow{AB}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,'Expected answer: (6,6). M1 Use B minus A. M1 Subtract corresponding coordinates. A1 Correct vector.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,'ICD-VEC-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,'IGCSE','Sequences · Arithmetic','An arithmetic sequence starts with \(3\) and has common difference \(4\). Find \(u_{12}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,'Expected answer: 47. M1 Use general formula. M1 Substitute values. A1 Correct term.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,'ICD-SEQ-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,'IGCSE','Mensuration · Cone','A cone has radius \(2\text{ cm}\) and height \(6\text{ cm}\). Calculate its volume exactly in terms of \(\pi\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,'Expected answer: 8π cm³. M1 Recall cone volume. M1 Substitute values. A1 Exact volume.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,'ICD-CON-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,'IGCSE','Ratio · Direct proportion','It is known that \(y\propto x\). When \(x=5\), \(y=15\). Find \(y\) when \(x=7\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,'Expected answer: 21. M1 Determine constant. M1 Use proportional relation. A1 Correct output.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,'ICD-DIR-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,'IGCSE','Algebra · Simultaneous equations','Solve \(x+y=5\) and \(2x-y=1\) simultaneously. Show elimination.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,'Expected answer: x=2, y=3. M1 Eliminate y. M1 Solve x. A1 Obtain both unknowns.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,'ICD-SIM-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,'IGCSE','Trigonometry · Exact ratios','A right triangle has an acute angle of \(60^\circ\) and hypotenuse \(8\text{ cm}\). Calculate the side adjacent to the angle exactly.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,'Expected answer: 4 cm. M1 Select cosine. M1 Evaluate exact cos60°. A1 Correct length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,'ICD-TRI-1','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,'IGCSE','Surds · Exact simplification','Simplify \(\sqrt{20}\) completely, giving the answer in the form \(a\sqrt{b}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,'Expected answer: 2√5. M1 Identify greatest square factor. M1 Take its square root. A1 Simplified radical.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,'ICD-SUR-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,'IGCSE','Indices · Fractional powers','Evaluate \(27^{\frac{2}{3}}\) exactly and explain the role of the denominator.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,'Expected answer: 9. M1 Interpret fractional index as root. M1 Raise result to numerator power. A1 Exact integer.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,'ICD-IND-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,'IGCSE','Number · Bounds','A measurement is \(6.8\text{ cm}\), correct to the nearest \(0.1\text{ cm}\). Give its lower and upper bounds using inequalities.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,'Expected answer: 6.75≤L<6.85. M1 Find half-unit error. M1 Inclusive lower bound. A1 Exclusive upper bound.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,'ICD-BND-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,'IGCSE','Algebra · Equations','Solve \(4(x+3)=44\) using an algebraic method. State \(x\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,'Expected answer: x=8. M1 Expand or divide. M1 Rearrange. A1 Correct value.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,'ICD-EQN-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,'IGCSE','Vectors · Coordinates','Points \(A(-3,5)\) and \(B(3,2)\) are given. Calculate the displacement vector \(\overrightarrow{AB}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,'Expected answer: (6,-3). M1 Use B minus A. M1 Subtract corresponding coordinates. A1 Correct vector.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,'ICD-VEC-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,'IGCSE','Sequences · Arithmetic','An arithmetic sequence starts with \(6\) and has common difference \(7\). Find \(u_{15}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,'Expected answer: 104. M1 Use general formula. M1 Substitute values. A1 Correct term.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,'ICD-SEQ-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,'IGCSE','Mensuration · Cone','A cone has radius \(3\text{ cm}\) and height \(9\text{ cm}\). Calculate its volume exactly in terms of \(\pi\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,'Expected answer: 27π cm³. M1 Recall cone volume. M1 Substitute values. A1 Exact volume.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,'ICD-CON-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,'IGCSE','Ratio · Direct proportion','It is known that \(y\propto x\). When \(x=8\), \(y=24\). Find \(y\) when \(x=9\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,'Expected answer: 27. M1 Determine constant. M1 Use proportional relation. A1 Correct output.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,'ICD-DIR-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,'IGCSE','Algebra · Simultaneous equations','Solve \(x+y=6\) and \(2x-y=6\) simultaneously. Show elimination.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,'Expected answer: x=4, y=2. M1 Eliminate y. M1 Solve x. A1 Obtain both unknowns.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,'ICD-SIM-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,'IGCSE','Trigonometry · Exact ratios','A right triangle has an acute angle of \(60^\circ\) and hypotenuse \(12\text{ cm}\). Calculate the side adjacent to the angle exactly.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,'Expected answer: 6 cm. M1 Select cosine. M1 Evaluate exact cos60°. A1 Correct length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,'ICD-TRI-2','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,'IGCSE','Surds · Exact simplification','Simplify \(\sqrt{45}\) completely, giving the answer in the form \(a\sqrt{b}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,'Expected answer: 3√5. M1 Identify greatest square factor. M1 Take its square root. A1 Simplified radical.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,'ICD-SUR-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,'IGCSE','Indices · Fractional powers','Evaluate \(81^{\frac{3}{4}}\) exactly and explain the role of the denominator.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,'Expected answer: 27. M1 Interpret fractional index as root. M1 Raise result to numerator power. A1 Exact integer.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,'ICD-IND-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,'IGCSE','Number · Bounds','A measurement is \(12.5\text{ cm}\), correct to the nearest \(0.1\text{ cm}\). Give its lower and upper bounds using inequalities.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,'Expected answer: 12.45≤L<12.55. M1 Find half-unit error. M1 Inclusive lower bound. A1 Exclusive upper bound.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,'ICD-BND-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,'IGCSE','Algebra · Equations','Solve \(5(x+4)=70\) using an algebraic method. State \(x\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,'Expected answer: x=10. M1 Expand or divide. M1 Rearrange. A1 Correct value.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,'ICD-EQN-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,'IGCSE','Vectors · Coordinates','Points \(A(4,-2)\) and \(B(10,6)\) are given. Calculate the displacement vector \(\overrightarrow{AB}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,'Expected answer: (6,8). M1 Use B minus A. M1 Subtract corresponding coordinates. A1 Correct vector.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,'ICD-VEC-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,'IGCSE','Sequences · Arithmetic','An arithmetic sequence starts with \(8\) and has common difference \(5\). Find \(u_{20}\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,'Expected answer: 103. M1 Use general formula. M1 Substitute values. A1 Correct term.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,'ICD-SEQ-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,'IGCSE','Mensuration · Cone','A cone has radius \(4\text{ cm}\) and height \(12\text{ cm}\). Calculate its volume exactly in terms of \(\pi\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,'Expected answer: 64π cm³. M1 Recall cone volume. M1 Substitute values. A1 Exact volume.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,'ICD-CON-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,'IGCSE','Ratio · Direct proportion','It is known that \(y\propto x\). When \(x=12\), \(y=36\). Find \(y\) when \(x=11\).',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,'Expected answer: 33. M1 Determine constant. M1 Use proportional relation. A1 Correct output.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,'ICD-DIR-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,'IGCSE','Algebra · Simultaneous equations','Solve \(x+y=11\) and \(2x-y=4\) simultaneously. Show elimination.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,'Expected answer: x=5, y=6. M1 Eliminate y. M1 Solve x. A1 Obtain both unknowns.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,'ICD-SIM-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,'IGCSE','Trigonometry · Exact ratios','A right triangle has an acute angle of \(60^\circ\) and hypotenuse \(20\text{ cm}\). Calculate the side adjacent to the angle exactly.',3,3,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,'Expected answer: 10 cm. M1 Select cosine. M1 Evaluate exact cos60°. A1 Correct length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,'ICD-TRI-3','daily',240)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,NULL,'','any',240,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,'GCSE','Algebra · Quadratic factorisation','Solve \(x^2-7x+10=0\) by factorisation. Give both roots.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,'Expected answer: x=2 or 5. M1 Find two suitable numbers. M1 Factorise the quadratic. M1 Find first root. A1 Find second root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,'GCW-QUA-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,'GCSE','Algebra · Simultaneous equations','Solve \(3x+2y=17\) and \(x-y=-1\). Show enough working for both variables.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,'Expected answer: x=3, y=4. M1 Set up elimination/substitution. M1 Reduce to one variable. M1 Find x. A1 Find y.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,'GCW-SIM-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,'GCSE','Algebra · Completing the square','Write \(x^2-6x+16\) in completed-square form. Hence state the minimum of the expression.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,'Expected answer: (x−3)²+7; min 7. M1 Halve the x coefficient. M1 Complete square with correction. M1 Recognise square nonnegative. A1 Correct minimum.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,'GCW-SQR-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,'GCSE','Trigonometry · Cosine rule','Triangle \(ABC\) has \(AB=5\text{ cm}\), \(AC=8\text{ cm}\), and \(\angle BAC=60^\circ\). Find \(BC\) exactly.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,'Expected answer: √49 cm. M1 Set up cosine rule. M1 Substitute sides and angle. M1 Simplify BC squared. A1 Positive root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,'GCW-COS-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,'GCSE','Ratio · Compound change','£1000 is invested at \(5\%\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,'Expected answer: £1102.50. M1 Determine multiplier. M1 Square for two years. M1 Apply to capital. A1 Correct value.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,'GCW-INT-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,'GCSE','Geometry · Sector area','A circular sector has radius \(6\text{ cm}\) and central angle \(60^\circ\). Find its area exactly in terms of \(\pi\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,'Expected answer: 6π cm². M1 Calculate fraction of full circle. M1 Use area of circle. M1 Simplify coefficient. A1 Exact area with units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,'GCW-SEC-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,'GCSE','Algebra · Quadratic inequalities','Solve \(x^2-5x+4<0\). State one interval and justify its endpoints.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,'Expected answer: 1<x<4. M1 Factorise. M1 Find roots. M1 Select negative region. A1 Strict interval.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,'GCW-INE-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,'GCSE','Geometry · Similar triangles','Two similar triangles have corresponding lengths \(3\text{ cm}\) and \(6\text{ cm}\). The smaller has area \(12\text{ cm}^2\). Find the area of the larger.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,'Expected answer: 48 cm². M1 Linear scale factor. M1 Square scale for area. M1 Multiply. A1 Correct units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,'GCW-SIMI-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,'GCSE','Probability · Conditional selection','A bag contains \(4\) red and \(3\) blue counters. Two are chosen without replacement. Find the probability that both are red.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,'Expected answer: 2/7. M1 First draw probability. M1 Second conditional probability. M1 Multiply probabilities. A1 Simplify.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,'GCW-DEP-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,'GCSE','Functions · Inverse','For \(f(x)=2x-5\), find \(f^{-1}(x)\) and verify by simplifying \(f(f^{-1}(x))\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,'Expected answer: (x+5)/2; composite x. M1 Set y=f(x). M1 Solve for x. M1 State inverse. A1 Verify composition.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,'GCW-INV-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,'GCSE','Algebra · Quadratic factorisation','Solve \(x^2-10x+21=0\) by factorisation. Give both roots.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,'Expected answer: x=3 or 7. M1 Find two suitable numbers. M1 Factorise the quadratic. M1 Find first root. A1 Find second root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,'GCW-QUA-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,'GCSE','Algebra · Simultaneous equations','Solve \(3x+2y=19\) and \(x-y=3\). Show enough working for both variables.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,'Expected answer: x=5, y=2. M1 Set up elimination/substitution. M1 Reduce to one variable. M1 Find x. A1 Find y.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,'GCW-SIM-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,'GCSE','Algebra · Completing the square','Write \(x^2-8x+25\) in completed-square form. Hence state the minimum of the expression.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,'Expected answer: (x−4)²+9; min 9. M1 Halve the x coefficient. M1 Complete square with correction. M1 Recognise square nonnegative. A1 Correct minimum.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,'GCW-SQR-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,'GCSE','Trigonometry · Cosine rule','Triangle \(ABC\) has \(AB=7\text{ cm}\), \(AC=10\text{ cm}\), and \(\angle BAC=60^\circ\). Find \(BC\) exactly.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,'Expected answer: √79 cm. M1 Set up cosine rule. M1 Substitute sides and angle. M1 Simplify BC squared. A1 Positive root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,'GCW-COS-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,'GCSE','Ratio · Compound change','£2000 is invested at \(10\%\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,'Expected answer: £2420.00. M1 Determine multiplier. M1 Square for two years. M1 Apply to capital. A1 Correct value.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,'GCW-INT-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,'GCSE','Geometry · Sector area','A circular sector has radius \(9\text{ cm}\) and central angle \(40^\circ\). Find its area exactly in terms of \(\pi\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,'Expected answer: 9π cm². M1 Calculate fraction of full circle. M1 Use area of circle. M1 Simplify coefficient. A1 Exact area with units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,'GCW-SEC-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,'GCSE','Algebra · Quadratic inequalities','Solve \(x^2-7x+10<0\). State one interval and justify its endpoints.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,'Expected answer: 2<x<5. M1 Factorise. M1 Find roots. M1 Select negative region. A1 Strict interval.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,'GCW-INE-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,'GCSE','Geometry · Similar triangles','Two similar triangles have corresponding lengths \(4\text{ cm}\) and \(12\text{ cm}\). The smaller has area \(8\text{ cm}^2\). Find the area of the larger.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,'Expected answer: 72 cm². M1 Linear scale factor. M1 Square scale for area. M1 Multiply. A1 Correct units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,'GCW-SIMI-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,'GCSE','Probability · Conditional selection','A bag contains \(5\) red and \(4\) blue counters. Two are chosen without replacement. Find the probability that both are red.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,'Expected answer: 5/18. M1 First draw probability. M1 Second conditional probability. M1 Multiply probabilities. A1 Simplify.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,'GCW-DEP-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,'GCSE','Functions · Inverse','For \(f(x)=3x-7\), find \(f^{-1}(x)\) and verify by simplifying \(f(f^{-1}(x))\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,'Expected answer: (x+7)/3; composite x. M1 Set y=f(x). M1 Solve for x. M1 State inverse. A1 Verify composition.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,'GCW-INV-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,'GCSE','Algebra · Quadratic factorisation','Solve \(x^2-13x+36=0\) by factorisation. Give both roots.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,'Expected answer: x=4 or 9. M1 Find two suitable numbers. M1 Factorise the quadratic. M1 Find first root. A1 Find second root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,'GCW-QUA-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,'GCSE','Algebra · Simultaneous equations','Solve \(3x+2y=32\) and \(x-y=-1\). Show enough working for both variables.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,'Expected answer: x=6, y=7. M1 Set up elimination/substitution. M1 Reduce to one variable. M1 Find x. A1 Find y.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,'GCW-SIM-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,'GCSE','Algebra · Completing the square','Write \(x^2-10x+37\) in completed-square form. Hence state the minimum of the expression.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,'Expected answer: (x−5)²+12; min 12. M1 Halve the x coefficient. M1 Complete square with correction. M1 Recognise square nonnegative. A1 Correct minimum.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,'GCW-SQR-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,'GCSE','Trigonometry · Cosine rule','Triangle \(ABC\) has \(AB=9\text{ cm}\), \(AC=12\text{ cm}\), and \(\angle BAC=60^\circ\). Find \(BC\) exactly.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,'Expected answer: √117 cm. M1 Set up cosine rule. M1 Substitute sides and angle. M1 Simplify BC squared. A1 Positive root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,'GCW-COS-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,'GCSE','Ratio · Compound change','£800 is invested at \(25\%\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,'Expected answer: £1250.00. M1 Determine multiplier. M1 Square for two years. M1 Apply to capital. A1 Correct value.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,'GCW-INT-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,'GCSE','Geometry · Sector area','A circular sector has radius \(12\text{ cm}\) and central angle \(30^\circ\). Find its area exactly in terms of \(\pi\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,'Expected answer: 12π cm². M1 Calculate fraction of full circle. M1 Use area of circle. M1 Simplify coefficient. A1 Exact area with units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,'GCW-SEC-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,'GCSE','Algebra · Quadratic inequalities','Solve \(x^2-10x+21<0\). State one interval and justify its endpoints.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,'Expected answer: 3<x<7. M1 Factorise. M1 Find roots. M1 Select negative region. A1 Strict interval.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,'GCW-INE-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,'GCSE','Geometry · Similar triangles','Two similar triangles have corresponding lengths \(6\text{ cm}\) and \(18\text{ cm}\). The smaller has area \(20\text{ cm}^2\). Find the area of the larger.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,'Expected answer: 180 cm². M1 Linear scale factor. M1 Square scale for area. M1 Multiply. A1 Correct units.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,'GCW-SIMI-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,'GCSE','Probability · Conditional selection','A bag contains \(6\) red and \(5\) blue counters. Two are chosen without replacement. Find the probability that both are red.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,'Expected answer: 3/11. M1 First draw probability. M1 Second conditional probability. M1 Multiply probabilities. A1 Simplify.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,'GCW-DEP-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,'GCSE','Functions · Inverse','For \(f(x)=5x-9\), find \(f^{-1}(x)\) and verify by simplifying \(f(f^{-1}(x))\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,'Expected answer: (x+9)/5; composite x. M1 Set y=f(x). M1 Solve for x. M1 State inverse. A1 Verify composition.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,'GCW-INV-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,'IGCSE','Surds · Rationalising','Rationalise the denominator of \(\frac{5}{\sqrt{5}-1}\). Leave your answer in exact form.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,'Expected answer: 5(√5+1)/4. M1 Multiply by conjugate. M1 Apply difference of squares. M1 Simplify denominator. A1 Exact result.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,'ICW-RAD-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,'IGCSE','Algebra · Algebraic fractions','Simplify \(\frac{x^2-9}{x^2-3x}\), stating all values of \(x\) excluded from the original expression.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,'Expected answer: (x+3)/x, x≠0,3. M1 Factorise numerator. M1 Factorise denominator. M1 Cancel common factor. A1 Original restrictions.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,'ICW-FRC-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,'IGCSE','Algebra · Non-monic quadratics','Solve \(2x^2-5x+3=0\) by factorisation, giving both roots.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,'Expected answer: x=1, x=3/2. M1 Split middle term. M1 Factorise into two linear factors. M1 One root. A1 Other root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,'ICW-QUA-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,'IGCSE','Functions · Composite functions','For \(f(x)=2x+1\) and \(g(x)=x^2-2\), find and simplify \(f(g(x))\) and \(g(f(x))\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,'Expected answer: 2x²+-3; 4x²+4x+-1. M1 Substitute g into f. M1 Simplify first composite. M1 Substitute f into g. A1 Simplify second composite.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,'ICW-COM-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,'IGCSE','Trigonometry · Sine rule','In triangle \(ABC\), \(\angle A=30^\circ\), \(\angle B=60^\circ\) and side \(a=8\text{ cm}\) is opposite \(A\). Find side \(b\) opposite \(B\) exactly.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,'Expected answer: 8√3 cm. M1 Set up sine rule. M1 Substitute correct values. M1 Evaluate exact ratios. A1 Correct exact length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,'ICW-SIN-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,'IGCSE','Geometry · 3D Pythagoras','A cuboid has edges \(6\text{ cm}\), \(8\text{ cm}\) and \(24\text{ cm}\). Find its space diagonal, showing two applications of Pythagoras.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,'Expected answer: 26 cm. M1 Find base diagonal. M1 Set up second triangle. M1 Square and sum. A1 Correct length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,'ICW-CUB-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,'IGCSE','Probability · Without replacement','A box contains \(5\) white and \(3\) black counters. Two are drawn without replacement. Find the probability of exactly one black.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,'Expected answer: 15/28. M1 White then black probability. M1 Black then white probability. M1 Add both orders. A1 Simplified fraction.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,'ICW-PRO-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,'IGCSE','Algebra · Non-linear simultaneous','Solve \(y=x+1\) and \(x^2+y^2=5\) simultaneously. Give both ordered pairs.',5,5,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,'Expected answer: (1,2), (-2,-1). M1 Substitute straight-line relation. M1 Form quadratic. M1 Solve for x. M1 Find y for each root. A1 Both ordered pairs.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,'ICW-NON-1','weekly',480)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,NULL,'','any',480,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,'IGCSE','Algebra · Quadratic inequalities','Solve \(x^2-7x+10\le 0\). Explain whether the boundary values are included.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,'Expected answer: 2≤x≤5. M1 Factorise. M1 Find the roots. M1 Choose between-roots region. A1 Include endpoints.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,'ICW-INE-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,'IGCSE','Trigonometry · Exact area','Two sides of a triangle are \(6\text{ cm}\) and \(10\text{ cm}\) with an included angle of \(30^\circ\). Find its exact area.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,'Expected answer: 15 cm². M1 Use ½ab sinC. M1 Substitute lengths. M1 Evaluate sin30°. A1 Correct area.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,'ICW-ARE-1','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,'IGCSE','Surds · Rationalising','Rationalise the denominator of \(\frac{7}{\sqrt{7}-1}\). Leave your answer in exact form.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,'Expected answer: 7(√7+1)/6. M1 Multiply by conjugate. M1 Apply difference of squares. M1 Simplify denominator. A1 Exact result.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,'ICW-RAD-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,'IGCSE','Algebra · Algebraic fractions','Simplify \(\frac{x^2-16}{x^2-4x}\), stating all values of \(x\) excluded from the original expression.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,'Expected answer: (x+4)/x, x≠0,4. M1 Factorise numerator. M1 Factorise denominator. M1 Cancel common factor. A1 Original restrictions.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,'ICW-FRC-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,'IGCSE','Algebra · Non-monic quadratics','Solve \(2x^2-9x+10=0\) by factorisation, giving both roots.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,'Expected answer: x=2, x=5/2. M1 Split middle term. M1 Factorise into two linear factors. M1 One root. A1 Other root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,'ICW-QUA-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,'IGCSE','Functions · Composite functions','For \(f(x)=3x+2\) and \(g(x)=x^2-3\), find and simplify \(f(g(x))\) and \(g(f(x))\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,'Expected answer: 3x²+-7; 9x²+12x+1. M1 Substitute g into f. M1 Simplify first composite. M1 Substitute f into g. A1 Simplify second composite.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,'ICW-COM-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,'IGCSE','Trigonometry · Sine rule','In triangle \(ABC\), \(\angle A=30^\circ\), \(\angle B=60^\circ\) and side \(a=12\text{ cm}\) is opposite \(A\). Find side \(b\) opposite \(B\) exactly.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,'Expected answer: 12√3 cm. M1 Set up sine rule. M1 Substitute correct values. M1 Evaluate exact ratios. A1 Correct exact length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,'ICW-SIN-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,'IGCSE','Geometry · 3D Pythagoras','A cuboid has edges \(12\text{ cm}\), \(16\text{ cm}\) and \(48\text{ cm}\). Find its space diagonal, showing two applications of Pythagoras.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,'Expected answer: 52 cm. M1 Find base diagonal. M1 Set up second triangle. M1 Square and sum. A1 Correct length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,'ICW-CUB-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,'IGCSE','Probability · Without replacement','A box contains \(6\) white and \(4\) black counters. Two are drawn without replacement. Find the probability of exactly one black.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,'Expected answer: 8/15. M1 White then black probability. M1 Black then white probability. M1 Add both orders. A1 Simplified fraction.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,'ICW-PRO-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,'IGCSE','Algebra · Non-linear simultaneous','Solve \(y=x+1\) and \(x^2+y^2=13\) simultaneously. Give both ordered pairs.',5,5,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,'Expected answer: (2,3), (-3,-2). M1 Substitute straight-line relation. M1 Form quadratic. M1 Solve for x. M1 Find y for each root. A1 Both ordered pairs.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,'ICW-NON-2','weekly',480)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,NULL,'','any',480,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,'IGCSE','Algebra · Quadratic inequalities','Solve \(x^2-10x+21\le 0\). Explain whether the boundary values are included.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,'Expected answer: 3≤x≤7. M1 Factorise. M1 Find the roots. M1 Choose between-roots region. A1 Include endpoints.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,'ICW-INE-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,'IGCSE','Trigonometry · Exact area','Two sides of a triangle are \(8\text{ cm}\) and \(12\text{ cm}\) with an included angle of \(30^\circ\). Find its exact area.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,'Expected answer: 24 cm². M1 Use ½ab sinC. M1 Substitute lengths. M1 Evaluate sin30°. A1 Correct area.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,'ICW-ARE-2','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,'IGCSE','Surds · Rationalising','Rationalise the denominator of \(\frac{9}{\sqrt{11}-1}\). Leave your answer in exact form.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,'Expected answer: 9(√11+1)/10. M1 Multiply by conjugate. M1 Apply difference of squares. M1 Simplify denominator. A1 Exact result.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,'ICW-RAD-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,'IGCSE','Algebra · Algebraic fractions','Simplify \(\frac{x^2-25}{x^2-5x}\), stating all values of \(x\) excluded from the original expression.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,'Expected answer: (x+5)/x, x≠0,5. M1 Factorise numerator. M1 Factorise denominator. M1 Cancel common factor. A1 Original restrictions.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,'ICW-FRC-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,'IGCSE','Algebra · Non-monic quadratics','Solve \(2x^2-13x+21=0\) by factorisation, giving both roots.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,'Expected answer: x=3, x=7/2. M1 Split middle term. M1 Factorise into two linear factors. M1 One root. A1 Other root.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,'ICW-QUA-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,'IGCSE','Functions · Composite functions','For \(f(x)=4x+3\) and \(g(x)=x^2-4\), find and simplify \(f(g(x))\) and \(g(f(x))\).',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,'Expected answer: 4x²+-13; 16x²+24x+5. M1 Substitute g into f. M1 Simplify first composite. M1 Substitute f into g. A1 Simplify second composite.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,'ICW-COM-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,'IGCSE','Trigonometry · Sine rule','In triangle \(ABC\), \(\angle A=30^\circ\), \(\angle B=60^\circ\) and side \(a=16\text{ cm}\) is opposite \(A\). Find side \(b\) opposite \(B\) exactly.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,'Expected answer: 16√3 cm. M1 Set up sine rule. M1 Substitute correct values. M1 Evaluate exact ratios. A1 Correct exact length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,'ICW-SIN-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,'IGCSE','Geometry · 3D Pythagoras','A cuboid has edges \(18\text{ cm}\), \(24\text{ cm}\) and \(72\text{ cm}\). Find its space diagonal, showing two applications of Pythagoras.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,'Expected answer: 78 cm. M1 Find base diagonal. M1 Set up second triangle. M1 Square and sum. A1 Correct length.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,'ICW-CUB-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,'IGCSE','Probability · Without replacement','A box contains \(7\) white and \(5\) black counters. Two are drawn without replacement. Find the probability of exactly one black.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,'Expected answer: 35/66. M1 White then black probability. M1 Black then white probability. M1 Add both orders. A1 Simplified fraction.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,'ICW-PRO-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,'IGCSE','Algebra · Non-linear simultaneous','Solve \(y=x+1\) and \(x^2+y^2=25\) simultaneously. Give both ordered pairs.',5,5,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,'Expected answer: (3,4), (-4,-3). M1 Substitute straight-line relation. M1 Form quadratic. M1 Solve for x. M1 Find y for each root. A1 Both ordered pairs.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,'ICW-NON-3','weekly',480)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,NULL,'','any',480,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,'IGCSE','Algebra · Quadratic inequalities','Solve \(x^2-13x+36\le 0\). Explain whether the boundary values are included.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,'Expected answer: 4≤x≤9. M1 Factorise. M1 Find the roots. M1 Choose between-roots region. A1 Include endpoints.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,'ICW-INE-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
-INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,'IGCSE','Trigonometry · Exact area','Two sides of a triangle are \(10\text{ cm}\) and \(14\text{ cm}\) with an included angle of \(30^\circ\). Find its exact area.',4,4,true)
- ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
-INSERT INTO public.mark_schemes(question_id,scheme)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,'Expected answer: 35 cm². M1 Use ½ab sinC. M1 Substitute lengths. M1 Evaluate sin30°. A1 Correct area.')
- ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
-INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,'ICW-ARE-3','weekly',360)
- ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
-INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note)
- VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,NULL,'','any',360,'approved','PUBLIC reusable original practice item; no unseen mock usage.')
- ON CONFLICT(question_id) DO NOTHING;
+CREATE POLICY practice_labels_member_read ON public.practice_question_labels FOR SELECT TO authenticated USING(EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=(SELECT auth.uid())));
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,'GCSE','Number · Fractions','Evaluate \(\frac{3}{4}+\frac{1}{6}\). Give your answer as a fraction in its simplest form.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,'Expected answer: 11/12. M1 Choose a common denominator. M1 Add correctly adjusted numerators. A1 Fully simplified fraction.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,'GCD-FR-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-FR-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,'GCSE','Number · Percentages','A bicycle accessory costs £120. It is reduced by \(15\%\). Find its new sale price.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,'Expected answer: £102.00. M1 Use percentage decrease multiplier. M1 Calculate reduced amount. A1 Money answer.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,'GCD-PC-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PC-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,'GCSE','Algebra · Linear equations','Solve \(3(x+2)=21\). Show the first step clearly.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,'Expected answer: x=5. M1 Divide both sides or expand. M1 Rearrange constants. A1 Correct solution.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,'GCD-EQ-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-EQ-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,'GCSE','Ratio · Sharing','£63 is shared in the ratio \(2:5\). Find both shares, including units.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,'Expected answer: £18 and £45. M1 Find total parts. M1 Find one part''s value. A1 Correct two amounts.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,'GCD-RA-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-RA-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,'GCSE','Algebra · Sequences','An arithmetic sequence starts \(4,\ 7,\ 10,\ldots\). Find its \(11\)th term.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,'Expected answer: 34. M1 Identify common difference. M1 Use nth term relationship. A1 Correct term.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,'GCD-SQ-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-SQ-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,'GCSE','Geometry · Pythagoras','A right-angled triangle has perpendicular sides \(3\text{ cm}\) and \(4\text{ cm}\). Find its hypotenuse.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,'Expected answer: 5 cm. M1 Square and add shorter sides. M1 Take positive square root. A1 Length and units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,'GCD-PY-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PY-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,'GCSE','Algebra · Indices','Assuming \(x\ne 0\), simplify \(x^{3}\times x^{4}\) and state the index rule.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,'Expected answer: x^7. M1 Recognise same base. M1 Add exponents. A1 Correct power.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,'GCD-IN-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-IN-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,'GCSE','Statistics · Mean','Four scores are \(7,\ 8,\ 9,\ 12\). Calculate their arithmetic mean and show your working.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,'Expected answer: 9/1. M1 Sum observations. M1 Divide by four. A1 Mean.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,'GCD-ME-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-ME-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,'GCSE','Probability · Single selection','A bag contains \(3\) red and \(5\) blue counters. One counter is chosen at random. Find \(P(\text{red})\) in simplest form.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,'Expected answer: 3/8. M1 Count favourable outcomes. M1 Count all outcomes. A1 Simplified probability.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,'GCD-PR-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PR-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,'GCSE','Geometry · Area','A trapezium has parallel sides \(6\text{ cm}\), \(10\text{ cm}\), and perpendicular height \(5\text{ cm}\). Find its area.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,'Expected answer: 40 cm². M1 Recall trapezium formula. M1 Substitute correctly. A1 Square units and result.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,'GCD-AR-1','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-AR-1')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,'GCSE','Number · Fractions','Evaluate \(\frac{5}{6}+\frac{2}{9}\). Give your answer as a fraction in its simplest form.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,'Expected answer: 19/18. M1 Choose a common denominator. M1 Add correctly adjusted numerators. A1 Fully simplified fraction.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,'GCD-FR-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-FR-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,'GCSE','Number · Percentages','A bicycle accessory costs £160. It is reduced by \(25\%\). Find its new sale price.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,'Expected answer: £120.00. M1 Use percentage decrease multiplier. M1 Calculate reduced amount. A1 Money answer.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,'GCD-PC-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PC-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,'GCSE','Algebra · Linear equations','Solve \(4(x+3)=28\). Show the first step clearly.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,'Expected answer: x=4. M1 Divide both sides or expand. M1 Rearrange constants. A1 Correct solution.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,'GCD-EQ-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-EQ-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,'GCSE','Ratio · Sharing','£84 is shared in the ratio \(3:4\). Find both shares, including units.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,'Expected answer: £36 and £48. M1 Find total parts. M1 Find one part''s value. A1 Correct two amounts.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,'GCD-RA-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-RA-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,'GCSE','Algebra · Sequences','An arithmetic sequence starts \(7,\ 12,\ 17,\ldots\). Find its \(13\)th term.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,'Expected answer: 67. M1 Identify common difference. M1 Use nth term relationship. A1 Correct term.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,'GCD-SQ-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-SQ-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,'GCSE','Geometry · Pythagoras','A right-angled triangle has perpendicular sides \(6\text{ cm}\) and \(8\text{ cm}\). Find its hypotenuse.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,'Expected answer: 10 cm. M1 Square and add shorter sides. M1 Take positive square root. A1 Length and units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,'GCD-PY-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PY-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,'GCSE','Algebra · Indices','Assuming \(x\ne 0\), simplify \(x^{5}\times x^{2}\) and state the index rule.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,'Expected answer: x^7. M1 Recognise same base. M1 Add exponents. A1 Correct power.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,'GCD-IN-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-IN-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,'GCSE','Statistics · Mean','Four scores are \(4,\ 9,\ 11,\ 16\). Calculate their arithmetic mean and show your working.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,'Expected answer: 10/1. M1 Sum observations. M1 Divide by four. A1 Mean.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,'GCD-ME-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-ME-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,'GCSE','Probability · Single selection','A bag contains \(4\) red and \(7\) blue counters. One counter is chosen at random. Find \(P(\text{red})\) in simplest form.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,'Expected answer: 4/11. M1 Count favourable outcomes. M1 Count all outcomes. A1 Simplified probability.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,'GCD-PR-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PR-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,'GCSE','Geometry · Area','A trapezium has parallel sides \(8\text{ cm}\), \(12\text{ cm}\), and perpendicular height \(7\text{ cm}\). Find its area.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,'Expected answer: 70 cm². M1 Recall trapezium formula. M1 Substitute correctly. A1 Square units and result.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,'GCD-AR-2','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-AR-2')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,'GCSE','Number · Fractions','Evaluate \(\frac{7}{8}+\frac{3}{10}\). Give your answer as a fraction in its simplest form.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,'Expected answer: 47/40. M1 Choose a common denominator. M1 Add correctly adjusted numerators. A1 Fully simplified fraction.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,'GCD-FR-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-FR-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,'GCSE','Number · Percentages','A bicycle accessory costs £250. It is reduced by \(30\%\). Find its new sale price.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,'Expected answer: £175.00. M1 Use percentage decrease multiplier. M1 Calculate reduced amount. A1 Money answer.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,'GCD-PC-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PC-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,'GCSE','Algebra · Linear equations','Solve \(5(x+4)=50\). Show the first step clearly.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,'Expected answer: x=6. M1 Divide both sides or expand. M1 Rearrange constants. A1 Correct solution.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,'GCD-EQ-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-EQ-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,'GCSE','Ratio · Sharing','£66 is shared in the ratio \(4:7\). Find both shares, including units.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,'Expected answer: £24 and £42. M1 Find total parts. M1 Find one part''s value. A1 Correct two amounts.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,'GCD-RA-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-RA-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,'GCSE','Algebra · Sequences','An arithmetic sequence starts \(9,\ 13,\ 17,\ldots\). Find its \(17\)th term.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,'Expected answer: 73. M1 Identify common difference. M1 Use nth term relationship. A1 Correct term.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,'GCD-SQ-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-SQ-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,'GCSE','Geometry · Pythagoras','A right-angled triangle has perpendicular sides \(9\text{ cm}\) and \(12\text{ cm}\). Find its hypotenuse.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,'Expected answer: 15 cm. M1 Square and add shorter sides. M1 Take positive square root. A1 Length and units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,'GCD-PY-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PY-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,'GCSE','Algebra · Indices','Assuming \(x\ne 0\), simplify \(x^{4}\times x^{6}\) and state the index rule.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,'Expected answer: x^10. M1 Recognise same base. M1 Add exponents. A1 Correct power.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,'GCD-IN-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-IN-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,'GCSE','Statistics · Mean','Four scores are \(6,\ 10,\ 14,\ 18\). Calculate their arithmetic mean and show your working.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,'Expected answer: 12/1. M1 Sum observations. M1 Divide by four. A1 Mean.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,'GCD-ME-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-ME-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,'GCSE','Probability · Single selection','A bag contains \(5\) red and \(8\) blue counters. One counter is chosen at random. Find \(P(\text{red})\) in simplest form.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,'Expected answer: 5/13. M1 Count favourable outcomes. M1 Count all outcomes. A1 Simplified probability.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,'GCD-PR-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-PR-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,'GCSE','Geometry · Area','A trapezium has parallel sides \(11\text{ cm}\), \(15\text{ cm}\), and perpendicular height \(4\text{ cm}\). Find its area.',3,2,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,'Expected answer: 52 cm². M1 Recall trapezium formula. M1 Substitute correctly. A1 Square units and result.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,'GCD-AR-3','daily',180) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCD-AR-3')::uuid,NULL,'','any',180,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,'IGCSE','Surds · Exact simplification','Simplify \(\sqrt{12}\) completely, giving the answer in the form \(a\sqrt{b}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,'Expected answer: 2√3. M1 Identify greatest square factor. M1 Take its square root. A1 Simplified radical.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,'ICD-SUR-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SUR-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,'IGCSE','Indices · Fractional powers','Evaluate \(16^{\frac{3}{4}}\) exactly and explain the role of the denominator.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,'Expected answer: 8. M1 Interpret fractional index as root. M1 Raise result to numerator power. A1 Exact integer.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,'ICD-IND-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-IND-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,'IGCSE','Number · Bounds','A measurement is \(4.2\text{ cm}\), correct to the nearest \(0.1\text{ cm}\). Give its lower and upper bounds using inequalities.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,'Expected answer: 4.15≤L<4.25. M1 Find half-unit error. M1 Inclusive lower bound. A1 Exclusive upper bound.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,'ICD-BND-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-BND-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,'IGCSE','Algebra · Equations','Solve \(3(x+2)=24\) using an algebraic method. State \(x\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,'Expected answer: x=6. M1 Expand or divide. M1 Rearrange. A1 Correct value.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,'ICD-EQN-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-EQN-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,'IGCSE','Vectors · Coordinates','Points \(A(2,1)\) and \(B(8,7)\) are given. Calculate the displacement vector \(\overrightarrow{AB}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,'Expected answer: (6,6). M1 Use B minus A. M1 Subtract corresponding coordinates. A1 Correct vector.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,'ICD-VEC-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-VEC-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,'IGCSE','Sequences · Arithmetic','An arithmetic sequence starts with \(3\) and has common difference \(4\). Find \(u_{12}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,'Expected answer: 47. M1 Use general formula. M1 Substitute values. A1 Correct term.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,'ICD-SEQ-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SEQ-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,'IGCSE','Mensuration · Cone','A cone has radius \(2\text{ cm}\) and height \(6\text{ cm}\). Calculate its volume exactly in terms of \(\pi\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,'Expected answer: 8π cm³. M1 Recall cone volume. M1 Substitute values. A1 Exact volume.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,'ICD-CON-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-CON-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,'IGCSE','Ratio · Direct proportion','It is known that \(y\propto x\). When \(x=5\), \(y=15\). Find \(y\) when \(x=7\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,'Expected answer: 21. M1 Determine constant. M1 Use proportional relation. A1 Correct output.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,'ICD-DIR-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-DIR-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,'IGCSE','Algebra · Simultaneous equations','Solve \(x+y=5\) and \(2x-y=1\) simultaneously. Show elimination.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,'Expected answer: x=2, y=3. M1 Eliminate y. M1 Solve x. A1 Obtain both unknowns.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,'ICD-SIM-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SIM-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,'IGCSE','Trigonometry · Exact ratios','A right triangle has an acute angle of \(60^\circ\) and hypotenuse \(8\text{ cm}\). Calculate the side adjacent to the angle exactly.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,'Expected answer: 4 cm. M1 Select cosine. M1 Evaluate exact cos60°. A1 Correct length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,'ICD-TRI-1','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-TRI-1')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,'IGCSE','Surds · Exact simplification','Simplify \(\sqrt{20}\) completely, giving the answer in the form \(a\sqrt{b}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,'Expected answer: 2√5. M1 Identify greatest square factor. M1 Take its square root. A1 Simplified radical.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,'ICD-SUR-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SUR-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,'IGCSE','Indices · Fractional powers','Evaluate \(27^{\frac{2}{3}}\) exactly and explain the role of the denominator.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,'Expected answer: 9. M1 Interpret fractional index as root. M1 Raise result to numerator power. A1 Exact integer.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,'ICD-IND-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-IND-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,'IGCSE','Number · Bounds','A measurement is \(6.8\text{ cm}\), correct to the nearest \(0.1\text{ cm}\). Give its lower and upper bounds using inequalities.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,'Expected answer: 6.75≤L<6.85. M1 Find half-unit error. M1 Inclusive lower bound. A1 Exclusive upper bound.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,'ICD-BND-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-BND-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,'IGCSE','Algebra · Equations','Solve \(4(x+3)=44\) using an algebraic method. State \(x\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,'Expected answer: x=8. M1 Expand or divide. M1 Rearrange. A1 Correct value.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,'ICD-EQN-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-EQN-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,'IGCSE','Vectors · Coordinates','Points \(A(-3,5)\) and \(B(3,2)\) are given. Calculate the displacement vector \(\overrightarrow{AB}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,'Expected answer: (6,-3). M1 Use B minus A. M1 Subtract corresponding coordinates. A1 Correct vector.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,'ICD-VEC-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-VEC-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,'IGCSE','Sequences · Arithmetic','An arithmetic sequence starts with \(6\) and has common difference \(7\). Find \(u_{15}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,'Expected answer: 104. M1 Use general formula. M1 Substitute values. A1 Correct term.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,'ICD-SEQ-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SEQ-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,'IGCSE','Mensuration · Cone','A cone has radius \(3\text{ cm}\) and height \(9\text{ cm}\). Calculate its volume exactly in terms of \(\pi\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,'Expected answer: 27π cm³. M1 Recall cone volume. M1 Substitute values. A1 Exact volume.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,'ICD-CON-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-CON-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,'IGCSE','Ratio · Direct proportion','It is known that \(y\propto x\). When \(x=8\), \(y=24\). Find \(y\) when \(x=9\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,'Expected answer: 27. M1 Determine constant. M1 Use proportional relation. A1 Correct output.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,'ICD-DIR-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-DIR-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,'IGCSE','Algebra · Simultaneous equations','Solve \(x+y=6\) and \(2x-y=6\) simultaneously. Show elimination.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,'Expected answer: x=4, y=2. M1 Eliminate y. M1 Solve x. A1 Obtain both unknowns.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,'ICD-SIM-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SIM-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,'IGCSE','Trigonometry · Exact ratios','A right triangle has an acute angle of \(60^\circ\) and hypotenuse \(12\text{ cm}\). Calculate the side adjacent to the angle exactly.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,'Expected answer: 6 cm. M1 Select cosine. M1 Evaluate exact cos60°. A1 Correct length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,'ICD-TRI-2','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-TRI-2')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,'IGCSE','Surds · Exact simplification','Simplify \(\sqrt{45}\) completely, giving the answer in the form \(a\sqrt{b}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,'Expected answer: 3√5. M1 Identify greatest square factor. M1 Take its square root. A1 Simplified radical.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,'ICD-SUR-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SUR-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,'IGCSE','Indices · Fractional powers','Evaluate \(81^{\frac{3}{4}}\) exactly and explain the role of the denominator.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,'Expected answer: 27. M1 Interpret fractional index as root. M1 Raise result to numerator power. A1 Exact integer.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,'ICD-IND-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-IND-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,'IGCSE','Number · Bounds','A measurement is \(12.5\text{ cm}\), correct to the nearest \(0.1\text{ cm}\). Give its lower and upper bounds using inequalities.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,'Expected answer: 12.45≤L<12.55. M1 Find half-unit error. M1 Inclusive lower bound. A1 Exclusive upper bound.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,'ICD-BND-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-BND-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,'IGCSE','Algebra · Equations','Solve \(5(x+4)=70\) using an algebraic method. State \(x\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,'Expected answer: x=10. M1 Expand or divide. M1 Rearrange. A1 Correct value.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,'ICD-EQN-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-EQN-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,'IGCSE','Vectors · Coordinates','Points \(A(4,-2)\) and \(B(10,6)\) are given. Calculate the displacement vector \(\overrightarrow{AB}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,'Expected answer: (6,8). M1 Use B minus A. M1 Subtract corresponding coordinates. A1 Correct vector.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,'ICD-VEC-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-VEC-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,'IGCSE','Sequences · Arithmetic','An arithmetic sequence starts with \(8\) and has common difference \(5\). Find \(u_{20}\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,'Expected answer: 103. M1 Use general formula. M1 Substitute values. A1 Correct term.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,'ICD-SEQ-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SEQ-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,'IGCSE','Mensuration · Cone','A cone has radius \(4\text{ cm}\) and height \(12\text{ cm}\). Calculate its volume exactly in terms of \(\pi\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,'Expected answer: 64π cm³. M1 Recall cone volume. M1 Substitute values. A1 Exact volume.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,'ICD-CON-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-CON-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,'IGCSE','Ratio · Direct proportion','It is known that \(y\propto x\). When \(x=12\), \(y=36\). Find \(y\) when \(x=11\).',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,'Expected answer: 33. M1 Determine constant. M1 Use proportional relation. A1 Correct output.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,'ICD-DIR-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-DIR-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,'IGCSE','Algebra · Simultaneous equations','Solve \(x+y=11\) and \(2x-y=4\) simultaneously. Show elimination.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,'Expected answer: x=5, y=6. M1 Eliminate y. M1 Solve x. A1 Obtain both unknowns.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,'ICD-SIM-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-SIM-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,'IGCSE','Trigonometry · Exact ratios','A right triangle has an acute angle of \(60^\circ\) and hypotenuse \(20\text{ cm}\). Calculate the side adjacent to the angle exactly.',3,3,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,'Expected answer: 10 cm. M1 Select cosine. M1 Evaluate exact cos60°. A1 Correct length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,'ICD-TRI-3','daily',240) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICD-TRI-3')::uuid,NULL,'','any',240,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,'GCSE','Algebra · Quadratic factorisation','Solve \(x^2-7x+10=0\) by factorisation. Give both roots.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,'Expected answer: x=2 or 5. M1 Find two suitable numbers. M1 Factorise the quadratic. M1 Find first root. A1 Find second root.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,'GCW-QUA-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-QUA-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,'GCSE','Algebra · Simultaneous equations','Solve \(3x+2y=17\) and \(x-y=-1\). Show enough working for both variables.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,'Expected answer: x=3, y=4. M1 Set up elimination/substitution. M1 Reduce to one variable. M1 Find x. A1 Find y.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,'GCW-SIM-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SIM-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,'GCSE','Algebra · Completing the square','Write \(x^2-6x+16\) in completed-square form. Hence state the minimum of the expression.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,'Expected answer: (x−3)²+7; min 7. M1 Halve the x coefficient. M1 Complete square with correction. M1 Recognise square nonnegative. A1 Correct minimum.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,'GCW-SQR-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SQR-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,'GCSE','Trigonometry · Cosine rule','Triangle \(ABC\) has \(AB=5\text{ cm}\), \(AC=8\text{ cm}\), and \(\angle BAC=60^\circ\). Find \(BC\) exactly, using the cosine rule.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,'Expected answer: 7 cm. M1 Set up cosine rule for the included angle. M1 Substitute the lengths and exact cosine. M1 Simplify the resulting squared length. A1 Positive exact length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,'GCW-COS-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-COS-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,'GCSE','Ratio · Compound change','£1000 is invested at \(5\%\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,'Expected answer: £1102.50. M1 Determine multiplier. M1 Square for two years. M1 Apply to capital. A1 Correct value.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,'GCW-INT-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INT-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,'GCSE','Geometry · Sector area','A circular sector has radius \(6\text{ cm}\) and central angle \(60^\circ\). Find its area exactly in terms of \(\pi\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,'Expected answer: 6π cm². M1 Calculate fraction of full circle. M1 Use area of circle. M1 Simplify coefficient. A1 Exact area with units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,'GCW-SEC-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SEC-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,'GCSE','Algebra · Quadratic inequalities','Solve \(x^2-5x+4<0\). State one interval and justify its endpoints.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,'Expected answer: 1<x<4. M1 Factorise. M1 Find roots. M1 Select negative region. A1 Strict interval.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,'GCW-INE-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INE-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,'GCSE','Geometry · Similar triangles','Two similar triangles have corresponding lengths \(3\text{ cm}\) and \(6\text{ cm}\). The smaller has area \(12\text{ cm}^2\). Find the area of the larger.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,'Expected answer: 48 cm². M1 Linear scale factor. M1 Square scale for area. M1 Multiply. A1 Correct units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,'GCW-SIMI-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SIMI-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,'GCSE','Probability · Conditional selection','A bag contains \(4\) red and \(3\) blue counters. Two are chosen without replacement. Find the probability that both are red.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,'Expected answer: 2/7. M1 First draw probability. M1 Second conditional probability. M1 Multiply probabilities. A1 Simplify.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,'GCW-DEP-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-DEP-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,'GCSE','Functions · Inverse','For \(f(x)=2x-5\), find \(f^{-1}(x)\) and verify by simplifying \(f(f^{-1}(x))\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,'Expected answer: (x+5)/2; composite x. M1 Set y=f(x). M1 Solve for x. M1 State inverse. A1 Verify composition.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,'GCW-INV-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INV-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,'GCSE','Algebra · Quadratic factorisation','Solve \(x^2-10x+21=0\) by factorisation. Give both roots.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,'Expected answer: x=3 or 7. M1 Find two suitable numbers. M1 Factorise the quadratic. M1 Find first root. A1 Find second root.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,'GCW-QUA-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-QUA-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,'GCSE','Algebra · Simultaneous equations','Solve \(3x+2y=19\) and \(x-y=3\). Show enough working for both variables.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,'Expected answer: x=5, y=2. M1 Set up elimination/substitution. M1 Reduce to one variable. M1 Find x. A1 Find y.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,'GCW-SIM-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SIM-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,'GCSE','Algebra · Completing the square','Write \(x^2-8x+25\) in completed-square form. Hence state the minimum of the expression.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,'Expected answer: (x−4)²+9; min 9. M1 Halve the x coefficient. M1 Complete square with correction. M1 Recognise square nonnegative. A1 Correct minimum.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,'GCW-SQR-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SQR-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,'GCSE','Trigonometry · Cosine rule','Triangle \(ABC\) has \(AB=10\text{ cm}\), \(AC=16\text{ cm}\), and \(\angle BAC=60^\circ\). Find \(BC\) exactly, using the cosine rule.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,'Expected answer: 14 cm. M1 Set up cosine rule for the included angle. M1 Substitute the lengths and exact cosine. M1 Simplify the resulting squared length. A1 Positive exact length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,'GCW-COS-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-COS-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,'GCSE','Ratio · Compound change','£2000 is invested at \(10\%\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,'Expected answer: £2420.00. M1 Determine multiplier. M1 Square for two years. M1 Apply to capital. A1 Correct value.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,'GCW-INT-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INT-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,'GCSE','Geometry · Sector area','A circular sector has radius \(9\text{ cm}\) and central angle \(40^\circ\). Find its area exactly in terms of \(\pi\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,'Expected answer: 9π cm². M1 Calculate fraction of full circle. M1 Use area of circle. M1 Simplify coefficient. A1 Exact area with units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,'GCW-SEC-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SEC-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,'GCSE','Algebra · Quadratic inequalities','Solve \(x^2-7x+10<0\). State one interval and justify its endpoints.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,'Expected answer: 2<x<5. M1 Factorise. M1 Find roots. M1 Select negative region. A1 Strict interval.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,'GCW-INE-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INE-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,'GCSE','Geometry · Similar triangles','Two similar triangles have corresponding lengths \(4\text{ cm}\) and \(12\text{ cm}\). The smaller has area \(8\text{ cm}^2\). Find the area of the larger.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,'Expected answer: 72 cm². M1 Linear scale factor. M1 Square scale for area. M1 Multiply. A1 Correct units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,'GCW-SIMI-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SIMI-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,'GCSE','Probability · Conditional selection','A bag contains \(5\) red and \(4\) blue counters. Two are chosen without replacement. Find the probability that both are red.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,'Expected answer: 5/18. M1 First draw probability. M1 Second conditional probability. M1 Multiply probabilities. A1 Simplify.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,'GCW-DEP-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-DEP-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,'GCSE','Functions · Inverse','For \(f(x)=3x-7\), find \(f^{-1}(x)\) and verify by simplifying \(f(f^{-1}(x))\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,'Expected answer: (x+7)/3; composite x. M1 Set y=f(x). M1 Solve for x. M1 State inverse. A1 Verify composition.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,'GCW-INV-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INV-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,'GCSE','Algebra · Quadratic factorisation','Solve \(x^2-13x+36=0\) by factorisation. Give both roots.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,'Expected answer: x=4 or 9. M1 Find two suitable numbers. M1 Factorise the quadratic. M1 Find first root. A1 Find second root.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,'GCW-QUA-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-QUA-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,'GCSE','Algebra · Simultaneous equations','Solve \(3x+2y=32\) and \(x-y=-1\). Show enough working for both variables.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,'Expected answer: x=6, y=7. M1 Set up elimination/substitution. M1 Reduce to one variable. M1 Find x. A1 Find y.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,'GCW-SIM-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SIM-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,'GCSE','Algebra · Completing the square','Write \(x^2-10x+37\) in completed-square form. Hence state the minimum of the expression.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,'Expected answer: (x−5)²+12; min 12. M1 Halve the x coefficient. M1 Complete square with correction. M1 Recognise square nonnegative. A1 Correct minimum.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,'GCW-SQR-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SQR-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,'GCSE','Trigonometry · Cosine rule','Triangle \(ABC\) has \(AB=15\text{ cm}\), \(AC=24\text{ cm}\), and \(\angle BAC=60^\circ\). Find \(BC\) exactly, using the cosine rule.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,'Expected answer: 21 cm. M1 Set up cosine rule for the included angle. M1 Substitute the lengths and exact cosine. M1 Simplify the resulting squared length. A1 Positive exact length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,'GCW-COS-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-COS-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,'GCSE','Ratio · Compound change','£800 is invested at \(25\%\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,'Expected answer: £1250.00. M1 Determine multiplier. M1 Square for two years. M1 Apply to capital. A1 Correct value.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,'GCW-INT-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INT-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,'GCSE','Geometry · Sector area','A circular sector has radius \(12\text{ cm}\) and central angle \(30^\circ\). Find its area exactly in terms of \(\pi\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,'Expected answer: 12π cm². M1 Calculate fraction of full circle. M1 Use area of circle. M1 Simplify coefficient. A1 Exact area with units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,'GCW-SEC-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SEC-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,'GCSE','Algebra · Quadratic inequalities','Solve \(x^2-10x+21<0\). State one interval and justify its endpoints.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,'Expected answer: 3<x<7. M1 Factorise. M1 Find roots. M1 Select negative region. A1 Strict interval.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,'GCW-INE-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INE-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,'GCSE','Geometry · Similar triangles','Two similar triangles have corresponding lengths \(6\text{ cm}\) and \(18\text{ cm}\). The smaller has area \(20\text{ cm}^2\). Find the area of the larger.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,'Expected answer: 180 cm². M1 Linear scale factor. M1 Square scale for area. M1 Multiply. A1 Correct units.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,'GCW-SIMI-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-SIMI-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,'GCSE','Probability · Conditional selection','A bag contains \(6\) red and \(5\) blue counters. Two are chosen without replacement. Find the probability that both are red.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,'Expected answer: 3/11. M1 First draw probability. M1 Second conditional probability. M1 Multiply probabilities. A1 Simplify.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,'GCW-DEP-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-DEP-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,'GCSE','Functions · Inverse','For \(f(x)=5x-9\), find \(f^{-1}(x)\) and verify by simplifying \(f(f^{-1}(x))\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,'Expected answer: (x+9)/5; composite x. M1 Set y=f(x). M1 Solve for x. M1 State inverse. A1 Verify composition.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,'GCW-INV-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:GCW-INV-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,'IGCSE','Surds · Rationalising','Rationalise the denominator of \(\frac{5}{\sqrt{5}-1}\). Leave your answer in exact form.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,'Expected answer: 5(√5+1)/4. M1 Multiply by conjugate. M1 Apply difference of squares. M1 Simplify denominator. A1 Exact result.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,'ICW-RAD-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-RAD-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,'IGCSE','Algebra · Algebraic fractions','Simplify \(\frac{x^2-9}{x^2-3x}\), stating all values of \(x\) excluded from the original expression.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,'Expected answer: (x+3)/x, x≠0,3. M1 Factorise numerator. M1 Factorise denominator. M1 Cancel common factor. A1 Original restrictions.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,'ICW-FRC-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-FRC-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,'IGCSE','Algebra · Non-monic quadratics','Solve \(2x^2-5x+3=0\) by factorisation, giving both roots.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,'Expected answer: x=1, x=3/2. M1 Split middle term. M1 Factorise into two linear factors. M1 One root. A1 Other root.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,'ICW-QUA-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-QUA-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,'IGCSE','Functions · Composite functions','For \(f(x)=2x+1\) and \(g(x)=x^2-2\), find and simplify \(f(g(x))\) and \(g(f(x))\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,'Expected answer: 2x²+-3; 4x²+4x+-1. M1 Substitute g into f. M1 Simplify first composite. M1 Substitute f into g. A1 Simplify second composite.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,'ICW-COM-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-COM-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,'IGCSE','Trigonometry · Sine rule','In triangle \(ABC\), \(\angle A=30^\circ\), \(\angle B=60^\circ\) and side \(a=8\text{ cm}\) is opposite \(A\). Find side \(b\) opposite \(B\) exactly.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,'Expected answer: 8√3 cm. M1 Set up sine rule. M1 Substitute correct values. M1 Evaluate exact ratios. A1 Correct exact length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,'ICW-SIN-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-SIN-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,'IGCSE','Geometry · 3D Pythagoras','A cuboid has edges \(6\text{ cm}\), \(8\text{ cm}\) and \(24\text{ cm}\). Find its space diagonal, showing two applications of Pythagoras.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,'Expected answer: 26 cm. M1 Find base diagonal. M1 Set up second triangle. M1 Square and sum. A1 Correct length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,'ICW-CUB-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-CUB-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,'IGCSE','Probability · Without replacement','A box contains \(5\) white and \(3\) black counters. Two are drawn without replacement. Find the probability of exactly one black.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,'Expected answer: 15/28. M1 White then black probability. M1 Black then white probability. M1 Add both orders. A1 Simplified fraction.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,'ICW-PRO-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-PRO-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,'IGCSE','Algebra · Non-linear simultaneous','Solve \(y=x+1\) and \(x^2+y^2=5\) simultaneously. Give both ordered pairs.',5,5,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,'Expected answer: (1,2), (-2,-1). M1 Substitute straight-line relation. M1 Form quadratic. M1 Solve for x. M1 Find y for each root. A1 Both ordered pairs.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,'ICW-NON-1','weekly',480) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-NON-1')::uuid,NULL,'','any',480,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,'IGCSE','Algebra · Quadratic inequalities','Solve \(x^2-7x+10\le 0\). Explain whether the boundary values are included.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,'Expected answer: 2≤x≤5. M1 Factorise. M1 Find the roots. M1 Choose between-roots region. A1 Include endpoints.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,'ICW-INE-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-INE-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,'IGCSE','Trigonometry · Exact area','Two sides of a triangle are \(6\text{ cm}\) and \(10\text{ cm}\) with an included angle of \(30^\circ\). Find its exact area.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,'Expected answer: 15 cm². M1 Use ½ab sinC. M1 Substitute lengths. M1 Evaluate sin30°. A1 Correct area.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,'ICW-ARE-1','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-ARE-1')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,'IGCSE','Surds · Rationalising','Rationalise the denominator of \(\frac{7}{\sqrt{7}-1}\). Leave your answer in exact form.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,'Expected answer: 7(√7+1)/6. M1 Multiply by conjugate. M1 Apply difference of squares. M1 Simplify denominator. A1 Exact result.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,'ICW-RAD-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-RAD-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,'IGCSE','Algebra · Algebraic fractions','Simplify \(\frac{x^2-16}{x^2-4x}\), stating all values of \(x\) excluded from the original expression.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,'Expected answer: (x+4)/x, x≠0,4. M1 Factorise numerator. M1 Factorise denominator. M1 Cancel common factor. A1 Original restrictions.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,'ICW-FRC-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-FRC-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,'IGCSE','Algebra · Non-monic quadratics','Solve \(2x^2-9x+10=0\) by factorisation, giving both roots.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,'Expected answer: x=2, x=5/2. M1 Split middle term. M1 Factorise into two linear factors. M1 One root. A1 Other root.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,'ICW-QUA-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-QUA-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,'IGCSE','Functions · Composite functions','For \(f(x)=3x+2\) and \(g(x)=x^2-3\), find and simplify \(f(g(x))\) and \(g(f(x))\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,'Expected answer: 3x²+-7; 9x²+12x+1. M1 Substitute g into f. M1 Simplify first composite. M1 Substitute f into g. A1 Simplify second composite.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,'ICW-COM-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-COM-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,'IGCSE','Trigonometry · Sine rule','In triangle \(ABC\), \(\angle A=30^\circ\), \(\angle B=60^\circ\) and side \(a=12\text{ cm}\) is opposite \(A\). Find side \(b\) opposite \(B\) exactly.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,'Expected answer: 12√3 cm. M1 Set up sine rule. M1 Substitute correct values. M1 Evaluate exact ratios. A1 Correct exact length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,'ICW-SIN-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-SIN-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,'IGCSE','Geometry · 3D Pythagoras','A cuboid has edges \(12\text{ cm}\), \(16\text{ cm}\) and \(48\text{ cm}\). Find its space diagonal, showing two applications of Pythagoras.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,'Expected answer: 52 cm. M1 Find base diagonal. M1 Set up second triangle. M1 Square and sum. A1 Correct length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,'ICW-CUB-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-CUB-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,'IGCSE','Probability · Without replacement','A box contains \(6\) white and \(4\) black counters. Two are drawn without replacement. Find the probability of exactly one black.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,'Expected answer: 8/15. M1 White then black probability. M1 Black then white probability. M1 Add both orders. A1 Simplified fraction.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,'ICW-PRO-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-PRO-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,'IGCSE','Algebra · Non-linear simultaneous','Solve \(y=x+1\) and \(x^2+y^2=13\) simultaneously. Give both ordered pairs.',5,5,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,'Expected answer: (2,3), (-3,-2). M1 Substitute straight-line relation. M1 Form quadratic. M1 Solve for x. M1 Find y for each root. A1 Both ordered pairs.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,'ICW-NON-2','weekly',480) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-NON-2')::uuid,NULL,'','any',480,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,'IGCSE','Algebra · Quadratic inequalities','Solve \(x^2-10x+21\le 0\). Explain whether the boundary values are included.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,'Expected answer: 3≤x≤7. M1 Factorise. M1 Find the roots. M1 Choose between-roots region. A1 Include endpoints.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,'ICW-INE-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-INE-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,'IGCSE','Trigonometry · Exact area','Two sides of a triangle are \(8\text{ cm}\) and \(12\text{ cm}\) with an included angle of \(30^\circ\). Find its exact area.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,'Expected answer: 24 cm². M1 Use ½ab sinC. M1 Substitute lengths. M1 Evaluate sin30°. A1 Correct area.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,'ICW-ARE-2','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-ARE-2')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,'IGCSE','Surds · Rationalising','Rationalise the denominator of \(\frac{9}{\sqrt{11}-1}\). Leave your answer in exact form.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,'Expected answer: 9(√11+1)/10. M1 Multiply by conjugate. M1 Apply difference of squares. M1 Simplify denominator. A1 Exact result.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,'ICW-RAD-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-RAD-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,'IGCSE','Algebra · Algebraic fractions','Simplify \(\frac{x^2-25}{x^2-5x}\), stating all values of \(x\) excluded from the original expression.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,'Expected answer: (x+5)/x, x≠0,5. M1 Factorise numerator. M1 Factorise denominator. M1 Cancel common factor. A1 Original restrictions.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,'ICW-FRC-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-FRC-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,'IGCSE','Algebra · Non-monic quadratics','Solve \(2x^2-13x+21=0\) by factorisation, giving both roots.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,'Expected answer: x=3, x=7/2. M1 Split middle term. M1 Factorise into two linear factors. M1 One root. A1 Other root.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,'ICW-QUA-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-QUA-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,'IGCSE','Functions · Composite functions','For \(f(x)=4x+3\) and \(g(x)=x^2-4\), find and simplify \(f(g(x))\) and \(g(f(x))\).',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,'Expected answer: 4x²+-13; 16x²+24x+5. M1 Substitute g into f. M1 Simplify first composite. M1 Substitute f into g. A1 Simplify second composite.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,'ICW-COM-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-COM-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,'IGCSE','Trigonometry · Sine rule','In triangle \(ABC\), \(\angle A=30^\circ\), \(\angle B=60^\circ\) and side \(a=16\text{ cm}\) is opposite \(A\). Find side \(b\) opposite \(B\) exactly.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,'Expected answer: 16√3 cm. M1 Set up sine rule. M1 Substitute correct values. M1 Evaluate exact ratios. A1 Correct exact length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,'ICW-SIN-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-SIN-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,'IGCSE','Geometry · 3D Pythagoras','A cuboid has edges \(18\text{ cm}\), \(24\text{ cm}\) and \(72\text{ cm}\). Find its space diagonal, showing two applications of Pythagoras.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,'Expected answer: 78 cm. M1 Find base diagonal. M1 Set up second triangle. M1 Square and sum. A1 Correct length.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,'ICW-CUB-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-CUB-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,'IGCSE','Probability · Without replacement','A box contains \(7\) white and \(5\) black counters. Two are drawn without replacement. Find the probability of exactly one black.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,'Expected answer: 35/66. M1 White then black probability. M1 Black then white probability. M1 Add both orders. A1 Simplified fraction.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,'ICW-PRO-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-PRO-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,'IGCSE','Algebra · Non-linear simultaneous','Solve \(y=x+1\) and \(x^2+y^2=25\) simultaneously. Give both ordered pairs.',5,5,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,'Expected answer: (3,4), (-4,-3). M1 Substitute straight-line relation. M1 Form quadratic. M1 Solve for x. M1 Find y for each root. A1 Both ordered pairs.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,'ICW-NON-3','weekly',480) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-NON-3')::uuid,NULL,'','any',480,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,'IGCSE','Algebra · Quadratic inequalities','Solve \(x^2-13x+36\le 0\). Explain whether the boundary values are included.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,'Expected answer: 4≤x≤9. M1 Factorise. M1 Find the roots. M1 Choose between-roots region. A1 Include endpoints.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,'ICW-INE-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-INE-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
+INSERT INTO public.question_bank(id,qualification,topic,prompt,marks,difficulty,active) VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,'IGCSE','Trigonometry · Exact area','Two sides of a triangle are \(10\text{ cm}\) and \(14\text{ cm}\) with an included angle of \(30^\circ\). Find its exact area.',4,4,true) ON CONFLICT(id) DO UPDATE SET prompt=excluded.prompt,topic=excluded.topic,marks=excluded.marks,difficulty=excluded.difficulty,active=true;
+INSERT INTO public.mark_schemes(question_id,scheme) VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,'Expected answer: 35 cm². M1 Use ½ab sinC. M1 Substitute lengths. M1 Evaluate sin30°. A1 Correct area.') ON CONFLICT(question_id) DO UPDATE SET scheme=excluded.scheme;
+INSERT INTO public.practice_question_labels(question_id,item_code,programme,suggested_seconds) VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,'ICW-ARE-3','weekly',360) ON CONFLICT(question_id) DO UPDATE SET programme=excluded.programme,suggested_seconds=excluded.suggested_seconds;
+INSERT INTO public.question_editorial(question_id,owner_org,board_key,exam_tier,suggested_seconds,review_status,editorial_note) VALUES(md5('mg-public-practice-2026:ICW-ARE-3')::uuid,NULL,'','any',360,'approved','PUBLIC original low-stakes maths practice; not an unseen examination mock.') ON CONFLICT(question_id) DO NOTHING;
 
--- Enforce type labels on the server, not just in browser filters.
+-- Enforce Daily vs Weekly labels in a server-side security definer.
 create or replace function public.create_student_paper(
  p_mode text,p_topic text,p_difficulty text,p_requested_count integer,p_questions uuid[]
 ) returns uuid language plpgsql security definer set search_path='' as $$
@@ -1515,10 +553,9 @@ begin
  for v_i in 1..array_length(p_questions,1) loop
   v_question:=p_questions[v_i];
   IF EXISTS(SELECT 1 FROM public.practice_question_labels pl WHERE pl.question_id=v_question)
-   AND NOT EXISTS(SELECT 1 FROM public.practice_question_labels pl
-    WHERE pl.question_id=v_question
+   AND NOT EXISTS(SELECT 1 FROM public.practice_question_labels pl WHERE pl.question_id=v_question
     AND pl.programme=CASE WHEN p_mode='daily' THEN 'daily' ELSE 'weekly' END) THEN
-    RAISE EXCEPTION 'This question belongs to a different MathsGrove programme';
+    RAISE EXCEPTION 'Question is assigned to another Grove practice tier';
   END IF;
   if not exists(select 1 from public.question_bank q where
     q.id=v_question and q.qualification=v_qual and q.active
