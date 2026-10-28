@@ -146,7 +146,7 @@
       "tier": "Higher",
       "marks": 6,
       "suggested_minutes": 8,
-      "prompt": "A cuboid measures 6 cm by 8 cm by 24 cm. A spider travels in a straight line through the interior from one vertex to the opposite vertex. Calculate the length of its route. A second spider travels along the two adjacent faces by the shortest unfolded route. Calculate that route and compare both lengths.",
+      "prompt": "A cuboid measures 6 cm by 8 cm by 24 cm. A spider travels in a straight line through the interior from one vertex to the opposite vertex. Calculate the length of its route. A second spider must stay on the two side faces measuring 6 cm by 24 cm and 8 cm by 24 cm, crossing their common 24 cm edge. It follows the shortest surface route across these faces. Calculate that route and compare both lengths.",
       "status": "unmoderated_public_specimen",
       "available_to_students": false,
       "question_requirements": [
