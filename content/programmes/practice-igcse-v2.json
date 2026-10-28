@@ -1,0 +1,2067 @@
+{
+  "version": 2,
+  "qualification": "IGCSE",
+  "notice": "PUBLIC OPEN PRACTICE. Answers are visible in GitHub; never use these questions in unseen timed mocks. Editorial approval required.",
+  "items": [
+    {
+      "id": "MG-I-DAILY-INDICES-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Index laws",
+      "question_family": "INDICES",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{a^{3}\\times a^{4}}{a^{2}}\\), assuming \\(a\\ne 0\\). Give the result as a single power of \\(a\\).",
+      "answer": "\\(a^{5}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add exponents when multiplying equal bases."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the denominator exponent."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(a^{5}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-HCF-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Number · HCF and LCM",
+      "question_family": "HCF",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Use prime factorisation to find both the highest common factor and the lowest common multiple of \\(84\\) and \\(126\\). Show enough working to justify both answers.",
+      "answer": "\\(\\operatorname{HCF}=42,\\quad\\operatorname{LCM}=252\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Produce a correct prime factorisation or equivalent common-divisor method."
+        },
+        {
+          "code": "B1",
+          "text": "Find HCF \\(42\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find LCM \\(252\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-CYLINDER-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Volume",
+      "question_family": "CYLINDER",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A right circular cylinder has radius \\(2\\text{ cm}\\) and height \\(4\\text{ cm}\\). Calculate its exact volume in terms of \\(\\pi\\), with units.",
+      "answer": "\\(16\\pi\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2 h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\pi(2)^2(4)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(16\\pi\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-FREQU-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations with fractions",
+      "question_family": "FREQU",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(\\frac{x+1}{2}=4\\) without using a calculator. Show how you remove the denominator.",
+      "answer": "\\(x=7\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply both sides by \\(2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Rearrange \\(x+1=8\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=7\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-ALGFR-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "question_family": "ALGFR",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{x^2-4}{x^2-2x}\\) by factorisation. State all excluded values of \\(x\\) in the original expression.",
+      "answer": "\\(\\frac{x+2}{x},\\quad x\\ne 0,\\ x\\ne 2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factor the numerator as \\((x-2)(x+2)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Factor denominator as \\(x(x-2)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Simplify to \\(\\frac{x+2}{x}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Exclude \\(x=0\\) and \\(x=2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRIAREA-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Area of a triangle",
+      "question_family": "TRIAREA",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two sides of a triangle are \\(8\\text{ cm}\\) and \\(10\\text{ cm}\\). The angle between them is \\(30^\\circ\\). Find its exact area using trigonometry, including units.",
+      "answer": "\\(20\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12 ab\\sin C\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(8)(10)\\sin30^\\circ\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(20\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-COMPOS-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Compositions",
+      "question_family": "COMPOS",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Let \\(f(x)=2x+3\\) and \\(g(x)=x^2+1\\). Simplify both \\(f(g(x))\\) and \\(g(f(x))\\), showing substitutions.",
+      "answer": "\\(f(g(x))=2x^2+5,\\qquad g(f(x))=4x^2+12x+10\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g(x) correctly into f."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(f(g(x))=2x^2+5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute f(x) into g and expand the square."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(g(f(x))=4x^2+12x+10\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-NOREPLACE-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "question_family": "NOREPLACE",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 4 red counters and 3 blue counters. Two counters are drawn without replacement. Find the probability that both are red, giving a simplified exact fraction. Explain why the second probability changes.",
+      "answer": "\\(\\frac{2}{7}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First probability \\(\\frac{4}{7}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Second probability conditional on red: \\(\\frac{1}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the conditional probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{2}{7}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CIRCLE-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Nonlinear simultaneous equations",
+      "question_family": "CIRCLE",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Solve simultaneously \\[\\begin{aligned}y&=x+1\\\\x^2+y^2&=13\\end{aligned}\\] Give both ordered pairs. Verify one pair in the original circle equation.",
+      "answer": "\\((x,y)=(2,3)\\quad\\text{or}\\quad(-3,-2)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute \\(y=x+1\\) into the circle."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain and simplify \\(x^2+(x+1)^2=13\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the two roots \\(x=2\\) and \\(x=-3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find corresponding y-values \\(3\\) and \\(-2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "State both ordered pairs."
+        },
+        {
+          "code": "A1",
+          "text": "Verify at least one by substituting to obtain \\(13\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-RADS-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising denominators",
+      "question_family": "RADS",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Rationalise the denominator of \\(\\frac{2}{\\sqrt{5}-1}\\). Give your answer in exact surd form and show why the denominator becomes rational.",
+      "answer": "\\(\\frac{1(\\sqrt{5}+1)}{2}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply top and bottom by the conjugate \\(\\sqrt{5}+1\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the difference of squares to obtain denominator \\(5-1=4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Distribute the numerator correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify to \\(\\frac{1(\\sqrt{5}+1)}{2}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SEQ-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Sequences · Quadratic nth term",
+      "question_family": "SEQ",
+      "marks": 5,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "The first four terms of a sequence are \\(6\\), \\(11\\), \\(18\\), \\(27\\). Find an expression for its \\(n\\)th term and explain how the second differences support your method.",
+      "answer": "\\(u_n=1n^2+2n+3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the first differences correctly."
+        },
+        {
+          "code": "B1",
+          "text": "Show second difference \\(2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Deduce that the coefficient of n² is half the second difference."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute initial terms to determine the linear and constant coefficients."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(u_n=1n^2+2n+3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SCALE-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Geometry · Similar solids",
+      "question_family": "SCALE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Two similar solid shapes have corresponding lengths in the ratio \\(2:3\\) (smaller : larger). The smaller solid has volume \\(16\\text{ cm}^3\\). Calculate the volume of the larger solid and explain why the length ratio must be cubed.",
+      "answer": "\\(54\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify linear scale factor \\(\\frac{3}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Cube the linear scale factor for volumes."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(V_{\\text{large}}=16\\left(\\frac{3}{2}\\right)^3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(54\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-INDICES-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Index laws",
+      "question_family": "INDICES",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{a^{4}\\times a^{5}}{a^{3}}\\), assuming \\(a\\ne 0\\). Give the result as a single power of \\(a\\).",
+      "answer": "\\(a^{6}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add exponents when multiplying equal bases."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the denominator exponent."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(a^{6}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-HCF-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Number · HCF and LCM",
+      "question_family": "HCF",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Use prime factorisation to find both the highest common factor and the lowest common multiple of \\(48\\) and \\(72\\). Show enough working to justify both answers.",
+      "answer": "\\(\\operatorname{HCF}=24,\\quad\\operatorname{LCM}=144\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Produce a correct prime factorisation or equivalent common-divisor method."
+        },
+        {
+          "code": "B1",
+          "text": "Find HCF \\(24\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find LCM \\(144\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-CYLINDER-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Volume",
+      "question_family": "CYLINDER",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A right circular cylinder has radius \\(3\\text{ cm}\\) and height \\(5\\text{ cm}\\). Calculate its exact volume in terms of \\(\\pi\\), with units.",
+      "answer": "\\(45\\pi\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2 h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\pi(3)^2(5)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(45\\pi\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-FREQU-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations with fractions",
+      "question_family": "FREQU",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(\\frac{x+2}{3}=5\\) without using a calculator. Show how you remove the denominator.",
+      "answer": "\\(x=13\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply both sides by \\(3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Rearrange \\(x+2=15\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=13\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-ALGFR-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "question_family": "ALGFR",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{x^2-9}{x^2-3x}\\) by factorisation. State all excluded values of \\(x\\) in the original expression.",
+      "answer": "\\(\\frac{x+3}{x},\\quad x\\ne 0,\\ x\\ne 3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factor the numerator as \\((x-3)(x+3)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Factor denominator as \\(x(x-3)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Simplify to \\(\\frac{x+3}{x}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Exclude \\(x=0\\) and \\(x=3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRIAREA-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Area of a triangle",
+      "question_family": "TRIAREA",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two sides of a triangle are \\(10\\text{ cm}\\) and \\(12\\text{ cm}\\). The angle between them is \\(30^\\circ\\). Find its exact area using trigonometry, including units.",
+      "answer": "\\(30\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12 ab\\sin C\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(10)(12)\\sin30^\\circ\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(30\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-COMPOS-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Compositions",
+      "question_family": "COMPOS",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Let \\(f(x)=3x+4\\) and \\(g(x)=x^2+2\\). Simplify both \\(f(g(x))\\) and \\(g(f(x))\\), showing substitutions.",
+      "answer": "\\(f(g(x))=3x^2+10,\\qquad g(f(x))=9x^2+24x+18\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g(x) correctly into f."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(f(g(x))=3x^2+10\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute f(x) into g and expand the square."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(g(f(x))=9x^2+24x+18\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-NOREPLACE-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "question_family": "NOREPLACE",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 5 red counters and 4 blue counters. Two counters are drawn without replacement. Find the probability that both are red, giving a simplified exact fraction. Explain why the second probability changes.",
+      "answer": "\\(\\frac{5}{18}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First probability \\(\\frac{5}{9}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Second probability conditional on red: \\(\\frac{1}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the conditional probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{5}{18}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CIRCLE-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Nonlinear simultaneous equations",
+      "question_family": "CIRCLE",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Solve simultaneously \\[\\begin{aligned}y&=x+2\\\\x^2+y^2&=34\\end{aligned}\\] Give both ordered pairs. Verify one pair in the original circle equation.",
+      "answer": "\\((x,y)=(3,5)\\quad\\text{or}\\quad(-5,-3)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute \\(y=x+2\\) into the circle."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain and simplify \\(x^2+(x+2)^2=34\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the two roots \\(x=3\\) and \\(x=-5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find corresponding y-values \\(5\\) and \\(-3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "State both ordered pairs."
+        },
+        {
+          "code": "A1",
+          "text": "Verify at least one by substituting to obtain \\(34\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-RADS-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising denominators",
+      "question_family": "RADS",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Rationalise the denominator of \\(\\frac{3}{\\sqrt{10}-1}\\). Give your answer in exact surd form and show why the denominator becomes rational.",
+      "answer": "\\(\\frac{1(\\sqrt{10}+1)}{3}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply top and bottom by the conjugate \\(\\sqrt{10}+1\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the difference of squares to obtain denominator \\(10-1=9\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Distribute the numerator correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify to \\(\\frac{1(\\sqrt{10}+1)}{3}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SEQ-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Sequences · Quadratic nth term",
+      "question_family": "SEQ",
+      "marks": 5,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "The first four terms of a sequence are \\(9\\), \\(18\\), \\(31\\), \\(48\\). Find an expression for its \\(n\\)th term and explain how the second differences support your method.",
+      "answer": "\\(u_n=2n^2+3n+4\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the first differences correctly."
+        },
+        {
+          "code": "B1",
+          "text": "Show second difference \\(4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Deduce that the coefficient of n² is half the second difference."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute initial terms to determine the linear and constant coefficients."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(u_n=2n^2+3n+4\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SCALE-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Geometry · Similar solids",
+      "question_family": "SCALE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Two similar solid shapes have corresponding lengths in the ratio \\(3:4\\) (smaller : larger). The smaller solid has volume \\(27\\text{ cm}^3\\). Calculate the volume of the larger solid and explain why the length ratio must be cubed.",
+      "answer": "\\(64\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify linear scale factor \\(\\frac{4}{3}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Cube the linear scale factor for volumes."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(V_{\\text{large}}=27\\left(\\frac{4}{3}\\right)^3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(64\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-INDICES-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Index laws",
+      "question_family": "INDICES",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{a^{5}\\times a^{6}}{a^{4}}\\), assuming \\(a\\ne 0\\). Give the result as a single power of \\(a\\).",
+      "answer": "\\(a^{7}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add exponents when multiplying equal bases."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the denominator exponent."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(a^{7}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-HCF-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Number · HCF and LCM",
+      "question_family": "HCF",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Use prime factorisation to find both the highest common factor and the lowest common multiple of \\(90\\) and \\(150\\). Show enough working to justify both answers.",
+      "answer": "\\(\\operatorname{HCF}=30,\\quad\\operatorname{LCM}=450\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Produce a correct prime factorisation or equivalent common-divisor method."
+        },
+        {
+          "code": "B1",
+          "text": "Find HCF \\(30\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find LCM \\(450\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-CYLINDER-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Volume",
+      "question_family": "CYLINDER",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A right circular cylinder has radius \\(4\\text{ cm}\\) and height \\(6\\text{ cm}\\). Calculate its exact volume in terms of \\(\\pi\\), with units.",
+      "answer": "\\(96\\pi\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2 h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\pi(4)^2(6)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(96\\pi\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-FREQU-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations with fractions",
+      "question_family": "FREQU",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(\\frac{x+3}{4}=6\\) without using a calculator. Show how you remove the denominator.",
+      "answer": "\\(x=21\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply both sides by \\(4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Rearrange \\(x+3=24\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=21\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-ALGFR-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "question_family": "ALGFR",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{x^2-16}{x^2-4x}\\) by factorisation. State all excluded values of \\(x\\) in the original expression.",
+      "answer": "\\(\\frac{x+4}{x},\\quad x\\ne 0,\\ x\\ne 4\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factor the numerator as \\((x-4)(x+4)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Factor denominator as \\(x(x-4)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Simplify to \\(\\frac{x+4}{x}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Exclude \\(x=0\\) and \\(x=4\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRIAREA-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Area of a triangle",
+      "question_family": "TRIAREA",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two sides of a triangle are \\(12\\text{ cm}\\) and \\(14\\text{ cm}\\). The angle between them is \\(30^\\circ\\). Find its exact area using trigonometry, including units.",
+      "answer": "\\(42\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12 ab\\sin C\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(12)(14)\\sin30^\\circ\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(42\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-COMPOS-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Compositions",
+      "question_family": "COMPOS",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Let \\(f(x)=4x+5\\) and \\(g(x)=x^2+3\\). Simplify both \\(f(g(x))\\) and \\(g(f(x))\\), showing substitutions.",
+      "answer": "\\(f(g(x))=4x^2+17,\\qquad g(f(x))=16x^2+40x+28\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g(x) correctly into f."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(f(g(x))=4x^2+17\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute f(x) into g and expand the square."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(g(f(x))=16x^2+40x+28\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-NOREPLACE-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "question_family": "NOREPLACE",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 6 red counters and 5 blue counters. Two counters are drawn without replacement. Find the probability that both are red, giving a simplified exact fraction. Explain why the second probability changes.",
+      "answer": "\\(\\frac{3}{11}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First probability \\(\\frac{6}{11}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Second probability conditional on red: \\(\\frac{1}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the conditional probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{3}{11}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CIRCLE-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Nonlinear simultaneous equations",
+      "question_family": "CIRCLE",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Solve simultaneously \\[\\begin{aligned}y&=x+3\\\\x^2+y^2&=65\\end{aligned}\\] Give both ordered pairs. Verify one pair in the original circle equation.",
+      "answer": "\\((x,y)=(4,7)\\quad\\text{or}\\quad(-7,-4)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute \\(y=x+3\\) into the circle."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain and simplify \\(x^2+(x+3)^2=65\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the two roots \\(x=4\\) and \\(x=-7\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find corresponding y-values \\(7\\) and \\(-4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "State both ordered pairs."
+        },
+        {
+          "code": "A1",
+          "text": "Verify at least one by substituting to obtain \\(65\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-RADS-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising denominators",
+      "question_family": "RADS",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Rationalise the denominator of \\(\\frac{4}{\\sqrt{13}-2}\\). Give your answer in exact surd form and show why the denominator becomes rational.",
+      "answer": "\\(\\frac{4(\\sqrt{13}+2)}{9}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply top and bottom by the conjugate \\(\\sqrt{13}+2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the difference of squares to obtain denominator \\(13-4=9\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Distribute the numerator correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify to \\(\\frac{4(\\sqrt{13}+2)}{9}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SEQ-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Sequences · Quadratic nth term",
+      "question_family": "SEQ",
+      "marks": 5,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "The first four terms of a sequence are \\(12\\), \\(25\\), \\(44\\), \\(69\\). Find an expression for its \\(n\\)th term and explain how the second differences support your method.",
+      "answer": "\\(u_n=3n^2+4n+5\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the first differences correctly."
+        },
+        {
+          "code": "B1",
+          "text": "Show second difference \\(6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Deduce that the coefficient of n² is half the second difference."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute initial terms to determine the linear and constant coefficients."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(u_n=3n^2+4n+5\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SCALE-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Geometry · Similar solids",
+      "question_family": "SCALE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Two similar solid shapes have corresponding lengths in the ratio \\(2:5\\) (smaller : larger). The smaller solid has volume \\(8\\text{ cm}^3\\). Calculate the volume of the larger solid and explain why the length ratio must be cubed.",
+      "answer": "\\(125\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify linear scale factor \\(\\frac{5}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Cube the linear scale factor for volumes."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(V_{\\text{large}}=8\\left(\\frac{5}{2}\\right)^3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(125\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-INDICES-4",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Index laws",
+      "question_family": "INDICES",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{a^{6}\\times a^{7}}{a^{5}}\\), assuming \\(a\\ne 0\\). Give the result as a single power of \\(a\\).",
+      "answer": "\\(a^{8}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add exponents when multiplying equal bases."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the denominator exponent."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(a^{8}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-HCF-4",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Number · HCF and LCM",
+      "question_family": "HCF",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Use prime factorisation to find both the highest common factor and the lowest common multiple of \\(96\\) and \\(144\\). Show enough working to justify both answers.",
+      "answer": "\\(\\operatorname{HCF}=48,\\quad\\operatorname{LCM}=288\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Produce a correct prime factorisation or equivalent common-divisor method."
+        },
+        {
+          "code": "B1",
+          "text": "Find HCF \\(48\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find LCM \\(288\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-CYLINDER-4",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Volume",
+      "question_family": "CYLINDER",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A right circular cylinder has radius \\(5\\text{ cm}\\) and height \\(7\\text{ cm}\\). Calculate its exact volume in terms of \\(\\pi\\), with units.",
+      "answer": "\\(175\\pi\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2 h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\pi(5)^2(7)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(175\\pi\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-FREQU-4",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations with fractions",
+      "question_family": "FREQU",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(\\frac{x+4}{5}=7\\) without using a calculator. Show how you remove the denominator.",
+      "answer": "\\(x=31\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply both sides by \\(5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Rearrange \\(x+4=35\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=31\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-ALGFR-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "question_family": "ALGFR",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{x^2-25}{x^2-5x}\\) by factorisation. State all excluded values of \\(x\\) in the original expression.",
+      "answer": "\\(\\frac{x+5}{x},\\quad x\\ne 0,\\ x\\ne 5\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factor the numerator as \\((x-5)(x+5)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Factor denominator as \\(x(x-5)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Simplify to \\(\\frac{x+5}{x}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Exclude \\(x=0\\) and \\(x=5\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRIAREA-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Area of a triangle",
+      "question_family": "TRIAREA",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two sides of a triangle are \\(14\\text{ cm}\\) and \\(16\\text{ cm}\\). The angle between them is \\(30^\\circ\\). Find its exact area using trigonometry, including units.",
+      "answer": "\\(56\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12 ab\\sin C\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(14)(16)\\sin30^\\circ\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(56\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-COMPOS-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Compositions",
+      "question_family": "COMPOS",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Let \\(f(x)=5x+6\\) and \\(g(x)=x^2+4\\). Simplify both \\(f(g(x))\\) and \\(g(f(x))\\), showing substitutions.",
+      "answer": "\\(f(g(x))=5x^2+26,\\qquad g(f(x))=25x^2+60x+40\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g(x) correctly into f."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(f(g(x))=5x^2+26\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute f(x) into g and expand the square."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(g(f(x))=25x^2+60x+40\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-NOREPLACE-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "question_family": "NOREPLACE",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 7 red counters and 6 blue counters. Two counters are drawn without replacement. Find the probability that both are red, giving a simplified exact fraction. Explain why the second probability changes.",
+      "answer": "\\(\\frac{7}{26}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First probability \\(\\frac{7}{13}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Second probability conditional on red: \\(\\frac{1}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the conditional probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{7}{26}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CIRCLE-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Nonlinear simultaneous equations",
+      "question_family": "CIRCLE",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Solve simultaneously \\[\\begin{aligned}y&=x+4\\\\x^2+y^2&=106\\end{aligned}\\] Give both ordered pairs. Verify one pair in the original circle equation.",
+      "answer": "\\((x,y)=(5,9)\\quad\\text{or}\\quad(-9,-5)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute \\(y=x+4\\) into the circle."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain and simplify \\(x^2+(x+4)^2=106\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the two roots \\(x=5\\) and \\(x=-9\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find corresponding y-values \\(9\\) and \\(-5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "State both ordered pairs."
+        },
+        {
+          "code": "A1",
+          "text": "Verify at least one by substituting to obtain \\(106\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-RADS-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising denominators",
+      "question_family": "RADS",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Rationalise the denominator of \\(\\frac{5}{\\sqrt{7}-1}\\). Give your answer in exact surd form and show why the denominator becomes rational.",
+      "answer": "\\(\\frac{5(\\sqrt{7}+1)}{6}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply top and bottom by the conjugate \\(\\sqrt{7}+1\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the difference of squares to obtain denominator \\(7-1=6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Distribute the numerator correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify to \\(\\frac{5(\\sqrt{7}+1)}{6}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SEQ-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Sequences · Quadratic nth term",
+      "question_family": "SEQ",
+      "marks": 5,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "The first four terms of a sequence are \\(15\\), \\(32\\), \\(57\\), \\(90\\). Find an expression for its \\(n\\)th term and explain how the second differences support your method.",
+      "answer": "\\(u_n=4n^2+5n+6\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the first differences correctly."
+        },
+        {
+          "code": "B1",
+          "text": "Show second difference \\(8\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Deduce that the coefficient of n² is half the second difference."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute initial terms to determine the linear and constant coefficients."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(u_n=4n^2+5n+6\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SCALE-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Geometry · Similar solids",
+      "question_family": "SCALE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Two similar solid shapes have corresponding lengths in the ratio \\(3:5\\) (smaller : larger). The smaller solid has volume \\(27\\text{ cm}^3\\). Calculate the volume of the larger solid and explain why the length ratio must be cubed.",
+      "answer": "\\(125\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify linear scale factor \\(\\frac{5}{3}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Cube the linear scale factor for volumes."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(V_{\\text{large}}=27\\left(\\frac{5}{3}\\right)^3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(125\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-INDICES-5",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Index laws",
+      "question_family": "INDICES",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{a^{7}\\times a^{8}}{a^{6}}\\), assuming \\(a\\ne 0\\). Give the result as a single power of \\(a\\).",
+      "answer": "\\(a^{9}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add exponents when multiplying equal bases."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the denominator exponent."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(a^{9}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-HCF-5",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Number · HCF and LCM",
+      "question_family": "HCF",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Use prime factorisation to find both the highest common factor and the lowest common multiple of \\(75\\) and \\(105\\). Show enough working to justify both answers.",
+      "answer": "\\(\\operatorname{HCF}=15,\\quad\\operatorname{LCM}=525\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Produce a correct prime factorisation or equivalent common-divisor method."
+        },
+        {
+          "code": "B1",
+          "text": "Find HCF \\(15\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find LCM \\(525\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-CYLINDER-5",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Volume",
+      "question_family": "CYLINDER",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A right circular cylinder has radius \\(6\\text{ cm}\\) and height \\(8\\text{ cm}\\). Calculate its exact volume in terms of \\(\\pi\\), with units.",
+      "answer": "\\(288\\pi\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2 h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\pi(6)^2(8)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(288\\pi\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-DAILY-FREQU-5",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations with fractions",
+      "question_family": "FREQU",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(\\frac{x+5}{6}=8\\) without using a calculator. Show how you remove the denominator.",
+      "answer": "\\(x=43\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply both sides by \\(6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Rearrange \\(x+5=48\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=43\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-ALGFR-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "question_family": "ALGFR",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Simplify \\(\\frac{x^2-36}{x^2-6x}\\) by factorisation. State all excluded values of \\(x\\) in the original expression.",
+      "answer": "\\(\\frac{x+6}{x},\\quad x\\ne 0,\\ x\\ne 6\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factor the numerator as \\((x-6)(x+6)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Factor denominator as \\(x(x-6)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Simplify to \\(\\frac{x+6}{x}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Exclude \\(x=0\\) and \\(x=6\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRIAREA-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Area of a triangle",
+      "question_family": "TRIAREA",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two sides of a triangle are \\(16\\text{ cm}\\) and \\(18\\text{ cm}\\). The angle between them is \\(30^\\circ\\). Find its exact area using trigonometry, including units.",
+      "answer": "\\(72\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12 ab\\sin C\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(16)(18)\\sin30^\\circ\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(72\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-COMPOS-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Compositions",
+      "question_family": "COMPOS",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Let \\(f(x)=6x+7\\) and \\(g(x)=x^2+5\\). Simplify both \\(f(g(x))\\) and \\(g(f(x))\\), showing substitutions.",
+      "answer": "\\(f(g(x))=6x^2+37,\\qquad g(f(x))=36x^2+84x+54\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g(x) correctly into f."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(f(g(x))=6x^2+37\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute f(x) into g and expand the square."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(g(f(x))=36x^2+84x+54\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-NOREPLACE-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "question_family": "NOREPLACE",
+      "marks": 4,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 8 red counters and 7 blue counters. Two counters are drawn without replacement. Find the probability that both are red, giving a simplified exact fraction. Explain why the second probability changes.",
+      "answer": "\\(\\frac{4}{15}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First probability \\(\\frac{8}{15}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Second probability conditional on red: \\(\\frac{1}{2}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the conditional probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{4}{15}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CIRCLE-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Nonlinear simultaneous equations",
+      "question_family": "CIRCLE",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Solve simultaneously \\[\\begin{aligned}y&=x+5\\\\x^2+y^2&=157\\end{aligned}\\] Give both ordered pairs. Verify one pair in the original circle equation.",
+      "answer": "\\((x,y)=(6,11)\\quad\\text{or}\\quad(-11,-6)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute \\(y=x+5\\) into the circle."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain and simplify \\(x^2+(x+5)^2=157\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the two roots \\(x=6\\) and \\(x=-11\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find corresponding y-values \\(11\\) and \\(-6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "State both ordered pairs."
+        },
+        {
+          "code": "A1",
+          "text": "Verify at least one by substituting to obtain \\(157\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-RADS-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising denominators",
+      "question_family": "RADS",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Rationalise the denominator of \\(\\frac{6}{\\sqrt{17}-1}\\). Give your answer in exact surd form and show why the denominator becomes rational.",
+      "answer": "\\(\\frac{3(\\sqrt{17}+1)}{8}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply top and bottom by the conjugate \\(\\sqrt{17}+1\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the difference of squares to obtain denominator \\(17-1=16\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Distribute the numerator correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify to \\(\\frac{3(\\sqrt{17}+1)}{8}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SEQ-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Sequences · Quadratic nth term",
+      "question_family": "SEQ",
+      "marks": 5,
+      "suggested_minutes": 9,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "The first four terms of a sequence are \\(18\\), \\(39\\), \\(70\\), \\(111\\). Find an expression for its \\(n\\)th term and explain how the second differences support your method.",
+      "answer": "\\(u_n=5n^2+6n+7\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the first differences correctly."
+        },
+        {
+          "code": "B1",
+          "text": "Show second difference \\(10\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Deduce that the coefficient of n² is half the second difference."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute initial terms to determine the linear and constant coefficients."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(u_n=5n^2+6n+7\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-SCALE-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Extended",
+      "topic": "Geometry · Similar solids",
+      "question_family": "SCALE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Two similar solid shapes have corresponding lengths in the ratio \\(4:5\\) (smaller : larger). The smaller solid has volume \\(64\\text{ cm}^3\\). Calculate the volume of the larger solid and explain why the length ratio must be cubed.",
+      "answer": "\\(125\\text{ cm}^3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify linear scale factor \\(\\frac{5}{4}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Cube the linear scale factor for volumes."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(V_{\\text{large}}=64\\left(\\frac{5}{4}\\right)^3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(125\\text{ cm}^3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    }
+  ]
+}
