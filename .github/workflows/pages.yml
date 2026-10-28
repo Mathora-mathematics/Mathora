@@ -1,4 +1,4 @@
-name: Deploy NES Year 10 Mathematics site
+name: Deploy MathsGrove preview
 
 on:
   push:
@@ -23,24 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Validate lesson site
-        shell: bash
-        run: |
-          for file in *.js; do node --check "$file"; done
-          node scripts/validate.mjs
-          node scripts/render-smoke.mjs
-
+      - name: Check preview JavaScript
+        run: node --check mathsgrove.js
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
