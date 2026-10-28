@@ -1,4 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
+import { initContentBank } from './content-bank.js';
 const $ = id => document.getElementById(id);
 const config = window.MATHSGROVE_CONFIG || {};
 const connected = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') && !!config.publishableKey;
@@ -48,6 +49,7 @@ async function init(){
    $('invite-feedback').textContent='Only an authorised partner administrator can issue or revoke student invitation keys.';
   }
   await refresh();
+  initContentBank(db,state);
   setTab('overview');
  }catch(e){showStatus('Could not open the studio.','The secure connection could not verify your permissions: '+(e?.message||'Unknown error'));}
 }
