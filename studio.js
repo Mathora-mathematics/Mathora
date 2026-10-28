@@ -232,7 +232,7 @@ async function openReview(attempt){
    const answer=answers[i],q=qmap.get(answer.question_id);if(!q)continue;
    const section=make('section','review-question');
    section.append(make('h3','','Question '+(i+1)+' · '+q.topic+' · '+q.marks+' marks'));
-   section.append(make('p','prompt',q.prompt));
+   const prompt=make('p','prompt');if(window.MathsGroveMath)window.MathsGroveMath.write(prompt,q.prompt);else prompt.textContent=q.prompt;section.append(prompt);
    const work=make('div','student-work',answer.typed_answer||'No typed response; check the student’s attached working.');
    section.append(work);
    section.append(make('p','reflection','Student confidence: '+(answer.confidence||'Not provided')+'  ·  Difficulty: '+(answer.difficulty||'Not provided')+'  ·  Clarity: '+(answer.clarity||'Not provided')));
@@ -240,13 +240,21 @@ async function openReview(attempt){
    if(scheme){const details=make('details');const summary=make('summary','','Approved marking guidance');const guidance=make('p','student-work',scheme);details.append(summary,guidance);section.append(details)}
    const attachments=make('div','files');
    for(const file of (fr.data||[]).filter(f=>f.question_id===q.id)){
-    const b=make('button','','View '+file.original_name+' ↗');b.type='button';
-    b.onclick=async()=>{try{
-     const {data,error}=await db.storage.from('student-work').createSignedUrl(file.storage_path,60);
-     if(error)throw error;
-     window.open(data.signedUrl,'_blank','noopener,noreferrer');
-    }catch(e){inform('Could not open student working: '+e.message,true)}};
-    attachments.append(b);
+     const details=make('details','examiner-attachment');
+     const summary=make('summary','','View '+(file.file_kind==='drawing'?'graph-paper drawing':'notebook photograph')+' · '+file.original_name);
+     details.append(summary);
+     details.addEventListener('toggle',async()=>{
+       if(!details.open||details.dataset.loaded)return;
+       try{
+         const {data,error}=await db.storage.from('student-work').createSignedUrl(file.storage_path,120);
+         if(error)throw error;
+         const img=make('img');img.loading='lazy';img.alt='Student-submitted '+(file.file_kind==='drawing'?'digital working':'photograph of handwritten work');
+         img.src=data.signedUrl;
+         const link=make('a','link-action','Open full-size image ↗');link.href=data.signedUrl;link.target='_blank';link.rel='noopener noreferrer';
+         details.append(img,link);details.dataset.loaded='true';
+       }catch(e){inform('Unable to preview attached working: '+e.message,true)}
+     });
+     attachments.append(details);
    }
    section.append(attachments);
    const fields=make('div','review-fields');
