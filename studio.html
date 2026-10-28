@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./studio.css">
-<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css">
+<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css"><link rel="stylesheet" href="./admin-learner.css">
 <script src="./mathsgrove-config.js" defer></script><script src="./maths-render.js" defer></script><script src="./studio.js" type="module"></script></head>
 <body class="mg-private-studio">
 <div class="shell">
@@ -32,23 +32,59 @@
     <section data-panel="overview" class="panel">
       <div class="heading"><div><p class="overline">YOUR PRIVATE COMMAND CENTRE</p><h1>Welcome to your studio.</h1><p>Enrol students, oversee submissions and keep examiner feedback beautifully organised.</p></div><button data-goto="students" class="button primary" type="button">+ Issue an invitation</button></div>
       <div class="stat-grid"><article><span>ENROLLED STUDENTS</span><strong id="s-students">—</strong><small>Verified student memberships</small></article><article><span>INVITATIONS AWAITING CLAIM</span><strong id="s-invites">—</strong><small>Unredeemed access codes</small></article><article><span>PAPERS AWAITING MARKING</span><strong id="s-awaiting">—</strong><small>Submitted student work</small></article><article><span>REVIEWS RELEASED</span><strong id="s-marked">—</strong><small>Marked submissions</small></article></div>
-      <div class="split"><article class="card"><p class="overline">LATEST SUBMISSIONS</p><h2>Marking queue</h2><div id="recent-attempts" class="records"></div><button data-goto="marking" class="link-action" type="button">Open marking board →</button></article><article class="card dark-card"><p class="overline">THE MATHSGROVE WORKFLOW</p><h2>From invitation to insight.</h2><div class="timeline"><span>01 <b>Issue an access code</b><small>Bound to a specific email address</small></span><span>02 <b>Student selects an exam route</b><small>IGCSE, GCSE, A Level, IB, TMUA</small></span><span>03 <b>Review written solutions</b><small>Typed working, photographs and whiteboard</small></span><span>04 <b>Release examiner findings</b><small>Marks and learning recommendations</small></span></div></article></div>
+      <div class="split"><article class="card"><p class="overline">LATEST SUBMISSIONS</p><h2>Marking queue</h2><div id="recent-attempts" class="records"></div><button data-goto="marking" class="link-action" type="button">Open marking board →</button></article><article class="card dark-card"><p class="overline">THE MATHSGROVE WORKFLOW</p><h2>From invitation to insight.</h2><div class="timeline"><span>01 <b>Issue an access code</b><small>Bound to a specific email address</small></span><span>02 <b>Admin assigns the exam route</b><small>Board, level and plan configured before invitation</small></span><span>03 <b>Review written solutions</b><small>Typed working, photographs and whiteboard</small></span><span>04 <b>Release examiner findings</b><small>Marks and learning recommendations</small></span></div></article></div>
     </section>
     <section data-panel="students" class="panel" hidden>
       <div class="heading"><div><p class="overline">PRIVATE ENROLMENT</p><h1>Students &amp; invitations.</h1><p>Issue single-use keys to verified email addresses. Each student receives their own permanent dashboard.</p></div></div>
       <div class="split split-top"><article class="card"><p class="overline">CREATE PERSONAL ACCESS</p><h2>Generate a student key</h2><form id="invite-form"><label for="invite-email">Student's registered email</label><input id="invite-email" type="email" autocomplete="off" placeholder="student@example.com" maxlength="250" required>
-      <label for="invite-note">Student reference (optional, for your own notes)</label><input id="invite-note" type="text" maxlength="100" placeholder="e.g. Year 11 IGCSE" aria-describedby="note-help"><small id="note-help">Not included in the invitation code or sent to Supabase.</small>
-      <button id="invite-submit" class="button gold-button" type="submit">Generate private key ↗</button></form>
+      <p class="setup-intro">Complete the student's academic and programme settings <strong>before issuing the code</strong>. They will be applied when the verified email redeems it.</p>
+<div class="setup-grid">
+<label>Qualification<select id="invite-qualification" required>
+<option value="">Select qualification</option><option value="GCSE">GCSE Mathematics</option><option value="IGCSE">IGCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics AA</option><option value="IB_AI">IB Mathematics AI</option><option value="TMUA">TMUA</option>
+</select></label>
+<label>Exam board / route<input id="invite-board" maxlength="80" placeholder="e.g. Edexcel, Cambridge, AQA"></label>
+<label>Academic tier / level<input id="invite-level" maxlength="60" placeholder="e.g. Higher, Extended, HL, SL"></label>
+<label>MathsGrove programme<select id="invite-programme" required>
+<option value="weekly">Grove Weekly · 4 weekly sets + monthly report</option><option value="daily">Grove Daily · daily focus + weekly report</option><option value="exam">Grove Exam · Daily + timed mock and exam outlook</option>
+</select></label>
+<label>Access until<input id="invite-until" type="date" required></label>
+<label>Priority topics<input id="invite-focus" maxlength="500" placeholder="e.g. Quadratics, probability"></label>
+</div>
+<fieldset class="setup-addons"><legend>Separate human-reviewed assessments</legend>
+<p>Not included automatically in any recurring plan. Select only assessments agreed privately.</p>
+<div class="addon-grid">
+<label>Signature · GCSE / IGCSE<input id="invite-signature" type="number" min="0" max="20" value="0"></label>
+<label>Signature Advanced · A Level / Further Maths / IB<input id="invite-advanced" type="number" min="0" max="20" value="0"></label>
+<label>Specialist Review · proof / advanced reasoning<input id="invite-specialist" type="number" min="0" max="20" value="0"></label>
+</div></fieldset>
+<label>Private administrator notes<textarea id="invite-notes" rows="2" maxlength="1200" placeholder="Internal scope, support needs or agreed arrangements; not shown to the learner"></textarea></label>
+<p class="setup-caption">Payments and wholesale pricing remain outside MathsGrove. Only the administrator may change these settings.</p>
+<button id="invite-submit" class="button gold-button" type="submit">Save learner setup &amp; generate key ↗</button></form>
       <div class="key-result" id="key-result" hidden><div class="key-tag">NEW CODE · COPY BEFORE CLOSING</div><strong id="new-code"></strong><p>This code is shown once. It is tied to the email above and expires after 14 days.</p><div class="key-buttons"><button type="button" id="copy-code" class="button primary">Copy code</button><button type="button" id="copy-message" class="button outline">Copy invitation message</button></div></div>
       <div id="invite-feedback" class="feedback" role="status"></div></article>
       <article class="card"><p class="overline">INVITATION MANAGEMENT</p><h2>Issued keys</h2><p class="subtext">You can track, expire and revoke invitations. For security, previously issued plaintext codes cannot be displayed again.</p><div id="invite-table" class="records"><p class="muted">Connect Supabase to load invitations.</p></div></article></div>
-      <article id="programme-admin" class="card programme-admin"><p class="overline">PRIVATE PROGRAMME MANAGEMENT</p><h2>Assign student access.</h2><p class="subtext">Your tutoring company handles payments privately. Only authorised staff assign Weekly, Daily or Exam access here; no checkout or payment details are stored.</p>
-<form id="programme-form" class="programme-form">
+      <article id="programme-admin" class="card programme-admin"><p class="overline">STUDENT CONFIGURATION · EDIT ANYTIME</p>
+<h2>Manage an enrolled learner.</h2>
+<p class="subtext">Select a student and change the programme, exam board, academic level or add-ons without creating a new login. Previous submissions and reports are retained. Student settings are controlled by the administrator.</p>
+<form id="programme-form" class="student-setup-editor">
+<div class="setup-grid">
 <label>Enrolled student<select id="programme-student" required><option value="">Choose a verified student</option></select></label>
-<label>Learning programme<select id="programme-tier"><option value="weekly">Grove Weekly</option><option value="daily">Grove Daily</option><option value="exam">Grove Exam</option></select></label>
-<label>Access ends<input id="programme-until" type="date" required></label>
-<label>Signature Review credits<input id="programme-credits" type="number" min="0" max="20" value="0" required></label>
-<button type="submit" class="button primary" id="programme-save">Assign programme</button></form>
+<label>Qualification<select id="programme-qualification" required>
+<option value="GCSE">GCSE Mathematics</option><option value="IGCSE">IGCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics AA</option><option value="IB_AI">IB Mathematics AI</option><option value="TMUA">TMUA</option></select></label>
+<label>Exam board / route<input id="programme-board" maxlength="80" placeholder="Exam board"></label>
+<label>Academic tier / level<input id="programme-level" maxlength="60" placeholder="Higher / Extended / HL / SL"></label>
+<label>MathsGrove programme<select id="programme-tier"><option value="weekly">Grove Weekly</option><option value="daily">Grove Daily</option><option value="exam">Grove Exam</option></select></label>
+<label>Access until<input id="programme-until" type="date" required></label>
+<label>Priority topics<input id="programme-focus" maxlength="500" placeholder="Mathematical focus"></label>
+</div>
+<fieldset class="setup-addons"><legend>Separate Signature assessments</legend><div class="addon-grid">
+<label>Signature · GCSE / IGCSE<input id="programme-credits" type="number" min="0" max="20" value="0"></label>
+<label>Signature Advanced<input id="programme-advanced" type="number" min="0" max="20" value="0"></label>
+<label>Specialist Review<input id="programme-specialist" type="number" min="0" max="20" value="0"></label>
+</div></fieldset>
+<label>Private administrator notes<textarea id="programme-notes" rows="3" maxlength="1200" placeholder="Visible only to authorised staff"></textarea></label>
+<div class="setup-actions"><button type="submit" class="button primary" id="programme-save">Save student changes</button><span>Any changes to a learner's exam route affect future paper selection, not historical results.</span></div>
+</form>
 <p id="programme-feedback" class="feedback" role="status"></p></article>
 <article class="card"><div class="card-header"><div><p class="overline">STUDENT DIRECTORY</p><h2>Enrolled learners</h2></div><input id="student-search" type="search" placeholder="Search students" aria-label="Search students"></div><div class="table-scroll"><table><thead><tr><th>Name</th><th>Member reference</th><th>Exam pathway</th><th>Active papers</th></tr></thead><tbody id="students-body"><tr><td colspan="4">No students loaded.</td></tr></tbody></table></div></article>
     </section>

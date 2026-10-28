@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'node:fs';
 const pages=['index.html','portal.html','studio.html','sample.html'];
-const publicAssets=['mathsgrove.css','brand-refresh.css','marketing-services.css','portal.css','studio.css','private-refresh.css','student-features.css','sample.css','sample-extras.css','sample-extras.js','maths-render.js','evidence-theme.css','whiteboard.js','marketing.js','sample.js','portal.js','studio.js','mathsgrove-config.js','mathsgrove-icon.svg'];
+const publicAssets=['mathsgrove.css','brand-refresh.css','marketing-services.css','portal.css','studio.css','admin-learner.css','private-refresh.css','student-features.css','sample.css','sample-extras.css','sample-extras.js','maths-render.js','evidence-theme.css','whiteboard.js','marketing.js','sample.js','portal.js','studio.js','mathsgrove-config.js','mathsgrove-icon.svg'];
 let errors=[];
 for (const name of [...pages,...publicAssets]) if (!existsSync(name)) errors.push('Missing '+name);
 for (const page of pages) {

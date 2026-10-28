@@ -3,7 +3,7 @@
 const $=id=>document.getElementById(id);
 const plans={
  weekly:{name:"Grove Weekly",summary:"Four focused weekly paper opportunities per month. All progress and reviewed work stays in your learning record.",next:["Weekly paper"]},
- daily:{name:"Grove Daily",summary:"Up to five short Daily Focus sessions each week, with topic-based recovery activities and an evolving learning record.",next:["Daily Focus","Daily Focus","Recovery","Daily Focus","Daily Focus"]},
+ daily:{name:"Grove Daily",summary:"Seven days of Daily Focus opportunities each week, with topic-based recovery activities and an evolving learning record.",next:["Daily Focus","Recovery","Daily Focus","Daily Focus","Recovery","Daily Focus","Daily Focus"]},
  exam:{name:"Grove Exam",summary:"Daily Focus with weekly structured practice and one mock-preview opportunity monthly; Signature Review may be added separately.",next:["Daily Focus","Weekly paper","Daily Focus","Review","Mock preview"]}
 };
 const scores=[{name:"Paper 1",value:60},{name:"Paper 2",value:65},{name:"Paper 3",value:71},{name:"Paper 4",value:78}];
@@ -12,7 +12,7 @@ function calendar(plan){
  const root=$("demo-calendar");root.replaceChildren();
  const now=new Date();now.setHours(12,0,0,0);
  const weekday=new Intl.DateTimeFormat("en-GB",{weekday:"short"});
- let slots=plan==="weekly"?[3]:plan==="daily"?[0,1,2,3,4]:[0,1,2,4,6];
+ let slots=plan==="weekly"?[3]:plan==="daily"?[0,1,2,3,4,5,6]:[0,1,2,4,6];
  for(let i=0;i<7;i++){
   const d=new Date(now);d.setDate(d.getDate()+i);
   const box=document.createElement("div");box.className="demo-day"+(slots.includes(i)?" has-task":"");
@@ -33,7 +33,7 @@ function applyTier(){
    ["YOUR RECORD", "Method-led review", "Monitor progress through the questions and feedback you receive."],
    ["OPTIONAL", "Signature Review", "Detailed human-marked assessments arranged separately."]
  ]:plan==="daily"?[
-   ["PRACTICE", "Up to 5 days / week", "Short questions and recovery topics to encourage regular study."],
+   ["PRACTICE", "Daily · 7 days / week", "Short questions and recovery topics to encourage regular study."],
    ["YOUR RECORD", "Confidence tracking", "Monitor topic difficulties and reflect after each question."],
    ["OPTIONAL", "Signature Review", "Add a dedicated report when a marked assessment is needed."]
  ]:[

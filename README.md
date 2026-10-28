@@ -71,3 +71,8 @@ MathsGrove is invitation-only. The public website offers Daily Focus, Weekly Pap
 ## Compliance
 
 Do not collect real student information until security, privacy, safeguarding, retention, backup and data-processing checks are completed. This is not an official exam board service.
+## Administrator-managed learner enrolment (private leaflet structure)
+
+The admin studio now collects each student's exam qualification, exam board, academic tier, Grove Weekly/Daily/Exam programme, end date, priority topics, private staff notes and separate Signature / Signature Advanced / Specialist Review allocations **before generating a key**. Administrators can edit an enrolled student's configuration later without erasing their historical work. These choices are server-controlled, never paid from the student dashboard. The student can update their display name but cannot edit the assigned academic route.
+
+**Supabase upgrade required:** [`supabase/UPGRADE_MATHSGROVE_ADMIN.sql`](supabase/UPGRADE_MATHSGROVE_ADMIN.sql). This one atomic script bundles three previously uninstalled migrations in the right order; check existing migration state before running. Follow [`docs/ADMIN_LEARNER_SETUP.md`](docs/ADMIN_LEARNER_SETUP.md) for the full workflow and limitations. No wholesale pricing or checkout is exposed on the public pages. The private partner leaflet's teacher/guardian accounts and scheduled reporting remain future work, not functioning features.

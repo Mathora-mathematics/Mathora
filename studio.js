@@ -3,8 +3,8 @@ const $ = id => document.getElementById(id);
 const config = window.MATHSGROVE_CONFIG || {};
 const connected = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') && !!config.publishableKey;
 const db = connected ? createClient(config.url, config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
-const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],entitlements:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
-const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
+const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],entitlements:[],academic:[],addons:[],pending:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
+const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
 const date=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
 const fmt=s=>String(s||'').trim();
 const status={submitted:'Awaiting marking',marked:'Released',draft:'In progress'};
@@ -52,7 +52,7 @@ async function init(){
  }catch(e){showStatus('Could not open the studio.','The secure connection could not verify your permissions: '+(e?.message||'Unknown error'));}
 }
 async function refresh(){
- const results=await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites(),loadProgrammes()]);
+ const results=await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites(),loadProgrammes(),loadStudentSetups()]);
  const failures=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Unknown error');
  if(failures.length)inform('Some studio data could not load: '+failures.join(' | '),true);
  renderOverview();renderRoster();renderInvites();renderProgrammes();renderQueue();renderReleased();
@@ -77,39 +77,112 @@ async function loadProgrammes(){
  if(error){state.entitlements=[];return}
  state.entitlements=data||[];
 }
+async function loadStudentSetups(){
+ if(!adminRole()){state.academic=[];state.addons=[];state.pending=[];return}
+ const [academic,addons,pending]=await Promise.all([
+  db.from('student_academic_settings').select('student_id,org_id,focus_topics,staff_notes').eq('org_id',state.membership.org_id).limit(200),
+  db.from('student_service_addons').select('student_id,service_type,quantity').eq('org_id',state.membership.org_id).limit(600),
+  db.from('pending_student_setups').select('org_id,email,qualification,exam_board,exam_tier,programme,ends_at,focus_topics,staff_notes,add_ons').eq('org_id',state.membership.org_id).limit(200)
+ ]);
+ // The interface is also safe during database upgrade: the save RPC will explain
+ // that the new migration must be installed before issuing configured keys.
+ state.academic=academic.data||[];state.addons=addons.data||[];state.pending=pending.data||[];
+}
+const setupSuffix=['signature','advanced','specialist'];
+const programmeDesc={
+ weekly:'4 marked weekly question sets · monthly progress report',
+ daily:'Fresh daily opportunities (7 days per week) · weekly progress report',
+ exam:'Grove Daily plus one timed mock each month · exam outlook · proposed linked tutor/guardian access'
+};
+const defaultAccessDate=()=>{
+ const d=new Date();d.setMonth(d.getMonth()+1);return d.toISOString().slice(0,10)
+};
+function setupAddons(prefix){
+ const values=setupSuffix.map(k=>Number($(prefix+'-'+(k==='signature'&&prefix==='programme'?'credits':k)).value));
+ if(values.some(v=>!Number.isInteger(v)||v<0||v>20))throw Error('Add-on quantities must be whole numbers between 0 and 20.');
+ return{signature:values[0],signature_advanced:values[1],specialist_review:values[2]};
+}
+function setupArgs(prefix,student){
+ const p=prefix==='invite'?'invite-programme':'programme-tier';
+ const until=$(prefix+'-until').value;
+ if(!until)throw Error('Choose an access end date.');
+ const expiry=new Date(until+'T23:59:59.000Z');
+ if(!(expiry>new Date()))throw Error('Access end date must be in the future.');
+ return{
+  p_qualification:$(prefix+'-qualification').value,
+  p_board:$(prefix+'-board').value.trim(),
+  p_level:$(prefix+'-level').value.trim(),
+  p_programme:$(p).value,p_ends_at:expiry.toISOString(),
+  p_focus:$(prefix+'-focus').value.trim(),
+  p_notes:$(prefix+'-notes').value.trim(),
+  p_addons:setupAddons(prefix),
+  ...(prefix==='invite'?{p_org:state.membership.org_id,p_email:$('invite-email').value.trim().toLowerCase()}:{p_student:student})
+ };
+}
+function fillAddons(prefix,addons){
+ const lookup={signature:'signature',advanced:'signature_advanced',specialist:'specialist_review'};
+ for(const k of setupSuffix){
+  const id=prefix+'-'+(prefix==='programme'&&k==='signature'?'credits':k);
+  $(id).value=Number(addons?.[lookup[k]]||0);
+ }
+}
 function renderProgrammes(){
- const select=$('programme-student'),previous=select.value;select.replaceChildren();
- select.add(new Option('Choose a verified student',''));
+ const select=$('programme-student'),previous=select.value;
+ select.replaceChildren(new Option('Choose a verified student',''));
  for(const student of state.students)select.add(new Option(student.name+' · '+shortId(student.id),student.id));
  if([...select.options].some(o=>o.value===previous))select.value=previous;
- const chosen=state.entitlements.find(e=>e.student_id===select.value);
- if(chosen){$('programme-tier').value=chosen.tier;$('programme-credits').value=chosen.signature_credits}
+ if(select.value)fillStudentEditor(select.value);
+ if(!$('invite-until').value)$('invite-until').value=defaultAccessDate();
 }
-$('programme-student').onchange=()=>{
- const chosen=state.entitlements.find(e=>e.student_id===$('programme-student').value);
- $('programme-tier').value=chosen?.tier||'weekly';
- $('programme-credits').value=chosen?.signature_credits??0;
- $('programme-until').value=chosen?.ends_at?chosen.ends_at.slice(0,10):'';
-};
+function fillStudentEditor(id){
+ const st=state.students.find(x=>x.id===id),plan=state.entitlements.find(x=>x.student_id===id),
+   extra=state.academic.find(x=>x.student_id===id);
+ if(!st)return;
+ const pref=st.pref||{};
+ $('programme-qualification').value=pref.qualification||'GCSE';
+ $('programme-board').value=pref.exam_board||'';
+ $('programme-level').value=pref.tier||'';
+ $('programme-tier').value=plan?.tier||'weekly';
+ $('programme-until').value=plan?.ends_at?plan.ends_at.slice(0,10):defaultAccessDate();
+ $('programme-focus').value=extra?.focus_topics||'';
+ $('programme-notes').value=extra?.staff_notes||'';
+ const addons={};for(const a of state.addons.filter(x=>x.student_id===id))addons[a.service_type]=a.quantity;
+ fillAddons('programme',addons);
+}
+$('programme-student').onchange=()=>fillStudentEditor($('programme-student').value);
 $('programme-form').onsubmit=async e=>{
- e.preventDefault();
- if(!adminRole())return;
- const student=$('programme-student').value,tier=$('programme-tier').value,until=$('programme-until').value,credits=Number($('programme-credits').value);
- if(!student||!until||!Number.isInteger(credits)||credits<0||credits>20){inform('Select a student, an end date and valid Signature credits.',true,'programme-feedback');return}
- const end=new Date(until+'T23:59:59.000Z');
- if(!(end>new Date())){inform('Access end date must be in the future.',true,'programme-feedback');return}
- const button=$('programme-save');button.disabled=true;
+ e.preventDefault();if(!adminRole())return;
+ const button=$('programme-save'),student=$('programme-student').value;
+ if(!student){inform('Select a verified student first.',true,'programme-feedback');return}
+ button.disabled=true;
  try{
-  const {data,error}=await db.rpc('assign_student_programme',{
-   p_student:student,p_tier:tier,p_starts_at:new Date().toISOString(),
-   p_ends_at:end.toISOString(),p_signature_credits:credits
-  });
-  if(error||!data?.ok)throw Error(error?.message||'Could not allocate programme. Check that the evidence and entitlement SQL migration is installed.');
-  await loadProgrammes();renderProgrammes();
-  inform('Programme saved. Student access changes immediately; payments stay outside MathsGrove.',false,'programme-feedback');
+  const payload=setupArgs('programme',student);
+  const {data,error}=await db.rpc('update_student_setup',payload);
+  if(error||!data?.ok)throw Error(error?.message||'Student settings could not be saved. Install the new administrator setup migration first.');
+  await Promise.all([loadRoster(),loadProgrammes(),loadStudentSetups()]);
+  renderRoster();renderProgrammes();
+  inform('Updated student exam settings, programme and separate add-ons. Previous submissions and reports remain unchanged.',false,'programme-feedback');
  }catch(err){inform(err.message,true,'programme-feedback')}
  finally{button.disabled=false}
 };
+function loadPendingIntoForm(email){
+ const p=state.pending.find(x=>x.email===email);if(!p)return;
+ $('invite-email').value=p.email;
+ $('invite-qualification').value=p.qualification;
+ $('invite-board').value=p.exam_board||'';
+ $('invite-level').value=p.exam_tier||'';
+ $('invite-programme').value=p.programme;
+ $('invite-until').value=p.ends_at.slice(0,10);
+ $('invite-focus').value=p.focus_topics||'';
+ $('invite-notes').value=p.staff_notes||'';
+ fillAddons('invite',p.add_ons);
+ $('invite-form').scrollIntoView({behavior:'smooth',block:'start'});
+ inform('Pending configuration loaded. Saving will replace any existing unused key for this email.',false,'invite-feedback');
+}
+$('invite-email').addEventListener('blur',()=>{
+ const email=$('invite-email').value.trim().toLowerCase();
+ if(state.pending.some(p=>p.email===email))loadPendingIntoForm(email)
+});
 async function loadAttempts(){
  const {data,error}=await db.from('attempts').select('id,student_id,org_id,qualification,status,started_at,submitted_at')
   .eq('org_id',state.membership.org_id).order('started_at',{ascending:false}).limit(150);
@@ -145,7 +218,15 @@ function renderRoster(){
   const ref=make('td','',shortId(student.id));
   const route=make('td','',student.pref?(examLabels[student.pref.qualification]||student.pref.qualification)+(student.pref.exam_board?' · '+student.pref.exam_board:''):'Not selected');
   const count=state.attempts.filter(x=>x.student_id===student.id&&x.status==='draft').length;
-  const plan=state.entitlements.find(e=>e.student_id===student.id);const programmeNote=make('small','',plan?'Programme: '+plan.tier.toUpperCase():'Programme: not yet assigned');name.append(programmeNote);row.append(name,ref,route,make('td','',count));root.append(row);
+  const plan=state.entitlements.find(e=>e.student_id===student.id);
+  const programmeNote=make('small','',plan?'Programme: '+({weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'}[plan.tier]||plan.tier):'Programme: not yet assigned');
+  name.append(programmeNote);
+  if(adminRole()){
+   const edit=make('button','link-action roster-edit','Edit learner ↗');
+   edit.type='button';edit.onclick=()=>{setTab('students');$('programme-student').value=student.id;fillStudentEditor(student.id);$('programme-admin').scrollIntoView({behavior:'smooth',block:'start'})};
+   name.append(edit);
+  }
+  row.append(name,ref,route,make('td','',count));root.append(row);
  }
 }
 $('student-search').oninput=renderRoster;
@@ -163,22 +244,35 @@ function renderInvites(){
      revoke.disabled=true;try{await edge('revoke',{orgId:state.membership.org_id,invitationId:inv.id});inform('Invitation revoked.');await loadInvites();renderInvites();renderOverview()}catch(e){inform(e.message,true)}finally{revoke.disabled=false}};
    group.append(revoke);
   }
-  root.append(itemRow(inv.email,date(inv.created_at)+' · Expires '+date(inv.expires_at),group));
+  const assigned=state.pending.find(p=>p.email===inv.email);
+  const description=date(inv.created_at)+' · Expires '+date(inv.expires_at)+
+   (assigned?' · '+({weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'}[assigned.programme]||assigned.programme)+
+   ' · '+(examLabels[assigned.qualification]||assigned.qualification):'');
+  if(assigned&&label==='Awaiting claim'){
+   const edit=make('button','link-action','Edit setup');edit.type='button';
+   edit.onclick=()=>loadPendingIntoForm(inv.email);group.append(edit);
+  }
+  root.append(itemRow(inv.email,description,group));
  })
 }
 $('invite-form').onsubmit=async e=>{
- e.preventDefault();
- if(!adminRole())return;
+ e.preventDefault();if(!adminRole())return;
  const email=$('invite-email').value.trim().toLowerCase();
- if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){inform('Enter a valid registered student email.',true,'invite-feedback');return}
- const button=$('invite-submit');button.disabled=true;
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+  inform('Enter a valid student email.',true,'invite-feedback');return}
+ const button=$('invite-submit');button.disabled=true;$('key-result').hidden=true;
  try{
-  const r=await edge('issue',{email,orgId:state.membership.org_id});
-  state.lastCode=r.code;state.lastEmail=email;
-  $('new-code').textContent=r.code;
-  $('key-result').hidden=false;
-  inform('One-time key generated successfully. Copy it now and share it securely.','','invite-feedback');
-  await loadInvites();renderInvites();renderOverview();
+  // Programme configuration is saved before issuing a key. If this RPC fails
+  // (e.g., migration missing), do not create an incomplete invitation.
+  const setup=setupArgs('invite');
+  const {data:configured,error:setupError}=await db.rpc('save_pending_student_setup',setup);
+  if(setupError||!configured?.ok)throw Error(setupError?.message||'Setup was not saved. Install the administrator SQL migration before issuing keys.');
+  const response=await edge('issue',{email,orgId:state.membership.org_id});
+  state.lastCode=response.code;state.lastEmail=email;
+  $('new-code').textContent=response.code;$('key-result').hidden=false;
+  inform('Academic route and programme saved. Single-use code generated; copy it now and send privately.',false,'invite-feedback');
+  await Promise.all([loadInvites(),loadStudentSetups()]);
+  renderInvites();renderOverview();
  }catch(err){inform(err.message,true,'invite-feedback')}
  finally{button.disabled=false}
 };

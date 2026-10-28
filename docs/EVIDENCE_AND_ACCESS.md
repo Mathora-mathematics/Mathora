@@ -9,7 +9,7 @@ Authorised admins assign the *access entitlement*, not a payment, from the priva
 | Plan | Backend limits | Intended experience |
 | --- | --- | --- |
 | Grove Weekly | Up to 4 weekly/topic attempts per calendar month | Regular structured practice |
-| Grove Daily | Up to 5 daily attempts per week and 4 weekly/topic attempts per month | Frequent short questions and recovery |
+| Grove Daily | Up to 7 daily attempts per week and 4 weekly/topic attempts per month | Frequent short questions and recovery |
 | Grove Exam | Daily and weekly allocations above, plus 1 mock-preview paper per month | Examination preparation and evidence collection |
 | Signature Review | Administrator records credits separately (0-20) | Human marking and detailed narrative handled privately |
 
