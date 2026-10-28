@@ -85,7 +85,17 @@ export function initContentBank(db,studio){
  function mockTierOptions(){
   const board=bank.boards.find(b=>b.key===$('mock-build-board').value);
   setOptions($('mock-build-tier'),(board?.tierLabels||[]).map(t=>({label:t,value:t})),'Choose tier');
-  renderMockPool();
+  mockPaperOptions();renderMockPool();
+ }
+ function mockPaperOptions(){
+  const board=bank.boards.find(b=>b.key===$('mock-build-board').value);
+  const tier=$('mock-build-tier').value;
+  const papers=(board?.papers||[]).filter(p=>!p.tier||p.tier===tier);
+  setOptions($('mock-build-code'),papers.map(p=>({label:p.title+' · '+p.minutes+' min · '+p.marks+' marks',value:p.code})),'Choose official component');
+  const selected=papers.find(p=>p.code===$('mock-build-code').value);
+  $('mock-build-minutes').value=selected?.minutes||'';
+  $('mock-build-target').value=selected?.marks||'';
+  $('mock-build-calc').checked=Boolean(selected?.calculator);
  }
  function renderMockPool(){
   const root=$('mock-question-pool');root.replaceChildren();
@@ -156,7 +166,8 @@ export function initContentBank(db,studio){
  }
  $('mock-build-qual').addEventListener('change',mockBoardOptions);
  $('mock-build-board').addEventListener('change',mockTierOptions);
- $('mock-build-tier').addEventListener('change',renderMockPool);
+ $('mock-build-tier').addEventListener('change',()=>{mockPaperOptions();renderMockPool()});
+ $('mock-build-code').addEventListener('change',mockPaperOptions);
  $('mock-build-form').addEventListener('submit',async e=>{
   e.preventDefault();if(!admin||!bank.hasEditorial)return;
   const ids=[...$('mock-question-pool').querySelectorAll('input:checked')].map(x=>x.value);
