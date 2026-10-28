@@ -1,0 +1,46 @@
+/* Student-centric paper configuration, graph-paper workspace, and private report. */
+.paper-builder{background:#fff;border:1px solid #E5DED4!important}
+.paper-builder-intro{display:flex;align-items:start;justify-content:space-between;gap:18px;margin-bottom:27px}
+.paper-builder-intro h2{margin-bottom:8px}
+.builder-label{font-size:9px;color:#957A56;letter-spacing:.11em;font-weight:800;white-space:nowrap;padding:9px 11px;background:#F5EFE5;border-radius:6px}
+.paper-builder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px}
+.paper-builder-grid label{font-size:11px;color:#526379;font-weight:700}
+.paper-builder-grid select{width:100%;display:block;margin-top:8px;padding:13px 12px;background:#FCFBF9;border:1px solid #DCE1E5;border-radius:7px;color:#233B55}
+.paper-builder-grid select:disabled{opacity:.5}
+.paper-honesty{padding:15px 17px;margin:23px 0 7px;background:#F4F0E9;border-left:3px solid #C3AD8E;border-radius:3px;color:#6A7685!important;font-size:12px!important;line-height:1.7}
+.paper-builder>.button{margin-top:16px}
+.board-tutorial{font-size:10px;color:#7B899C}
+.board-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#F8F9FB;padding:13px 15px;border:1px solid #E1E6EC;border-bottom:0;border-radius:8px 8px 0 0}
+.board-toolbar button{border:1px solid #D5DEE8;border-radius:6px;background:#FFF;color:#3C516E;padding:8px 10px;font-size:10px;min-height:34px}
+.board-toolbar button[aria-pressed=true]{background:#172943;color:white;border-color:#172943}
+.board-toolbar .board-tools{display:flex;gap:5px}
+.board-toolbar .board-colors{display:flex;gap:6px;align-items:center}
+.board-toolbar .board-colors button{background:var(--swatch);width:24px;height:24px;min-height:24px;border:2px solid white;border-radius:50%;outline:1px solid #BBC6D2;padding:0}
+.board-toolbar .board-colors button[aria-pressed=true]{outline:2px solid #172943}
+.board-small-label{display:flex;align-items:center;gap:6px;font-size:10px;color:#5A6B81;font-weight:700}
+.board-small-label select{border:1px solid #D6DFE8;border-radius:5px;padding:7px;background:#FFF;color:#293E55;font-size:10px}
+.board-small-label input{width:65px;accent-color:#1B3655}
+canvas#student-canvas{width:100%;height:auto;aspect-ratio:1100/390;display:block;border:1px solid #DDE4EC;border-radius:0 0 8px 8px;cursor:crosshair;touch-action:none;background-color:#FFF;background-image:linear-gradient(#E2EAF2 1px,transparent 1px),linear-gradient(90deg,#E2EAF2 1px,transparent 1px);background-size:24px 24px}
+canvas#student-canvas[data-grid=line]{background-image:linear-gradient(#E2EAF2 1px,transparent 1px);background-size:100% 28px}
+canvas#student-canvas[data-grid=blank]{background-image:none}
+.board-save-note{font-size:11px!important;color:#7F8C9D!important;line-height:1.6!important;margin-top:10px}
+.report-detail{border:1px solid #DDD5C9!important;background:#FFF;scroll-margin-top:20px}
+.report-detail>h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:34px}
+.record-intro{max-width:760px}
+.record-score{display:flex;align-items:center;gap:20px;background:#172A44;color:white;border-radius:8px;padding:21px 24px;margin:20px 0}
+.record-score strong{font:400 43px "Instrument Serif",Georgia,serif}
+.record-score span{color:#D1C0A4;font-size:12px}
+.record-question{border-top:1px solid #EAE4D9;padding:25px 0}
+.record-question h3{font:400 25px "Instrument Serif",Georgia,serif;color:#24374E}
+.record-question>p{line-height:1.75;color:#566B80;font-size:13px}
+.record-question>small{display:block;color:#8B775A;font-size:10px;margin-bottom:10px}
+.record-working{white-space:pre-wrap;background:#F7F8FA;padding:16px;border-radius:7px;border:1px solid #EBEDF0;font-size:12px;color:#344C66;line-height:1.8;margin:15px 0}
+.record-examiner{padding:15px 17px;border-left:3px solid #BFA98A;background:#F5F0E7;border-radius:4px;margin:15px 0}
+.record-examiner strong{font-size:12px;color:#1D3755}
+.record-examiner p{font-size:12px;line-height:1.75;color:#556A80;margin:8px 0 0}
+.record-attachment{margin:6px 8px 5px 0}
+.record-next{background:#EDE6DA;padding:18px;border-radius:7px;font-size:12px;line-height:1.8;color:#59667A}
+.record-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}
+.record-actions .button{margin:0!important}
+@media(max-width:700px){.paper-builder-grid{grid-template-columns:1fr}.paper-builder-intro{display:block}.builder-label{display:inline-block;margin-top:10px}.board-toolbar{gap:8px}.board-tutorial{display:none}.record-score{display:block}.record-score span{display:block}}
+@media print{@page{size:A4;margin:15mm}body.mg-private-portal .topbar,body.mg-private-portal .sidebar,body.mg-private-portal .portal-footer,body.mg-private-portal .dash-top,body.mg-private-portal .dash-panel:not(#progress-panel),body.mg-private-portal .panel-heading,body.mg-private-portal #progress-list,body.mg-private-portal .record-actions{display:none!important}body.mg-private-portal .dashboard-shell{display:block}body.mg-private-portal .dashboard-main{max-width:unset;padding:0}body.mg-private-portal #progress-panel,body.mg-private-portal #report-detail{display:block!important}body.mg-private-portal .report-detail{border:0!important;box-shadow:none;padding:0}body.mg-private-portal .record-question,body.mg-private-portal .record-score{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
