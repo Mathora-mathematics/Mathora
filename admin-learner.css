@@ -24,3 +24,8 @@
 #invite-submit{margin-top:13px;width:100%;justify-content:center}
 .mg-private-studio .record-actions{flex-wrap:wrap}
 @media(max-width:760px){.setup-grid{grid-template-columns:1fr}.addon-grid{grid-template-columns:1fr}.setup-actions .button{width:100%}}
+
+/* Override the former horizontal five-field programme form. */
+.mg-private-studio .programme-form.student-setup-editor{display:block;grid-template-columns:none;align-items:initial}
+.mg-private-studio .programme-form.student-setup-editor .setup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){.mg-private-studio .programme-form.student-setup-editor .setup-grid{grid-template-columns:1fr}}
