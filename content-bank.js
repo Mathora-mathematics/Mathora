@@ -83,7 +83,7 @@ export function initContentBank(db,studio){
    const e=editorialFor(q.id),status=e?.review_status||'legacy_unmapped';
    const matchQual=qual==='AS_A_LEVEL'?['A_LEVEL','FURTHER_MATHS'].includes(q.qualification):q.qualification===qual;
    const query=(q.topic+' '+q.prompt+' '+q.qualification).toLowerCase();
-   return matchQual&&(!search||query.includes(search))&&(review==='all'||status===review)&&(!board||!e?.board_key||e.board_key===board);
+   return matchQual&&(!search||query.includes(search))&&(review==='all'||status===review)&&(!board||e?.board_key===board);
   });
  }
  function renderQuestions(){
@@ -205,7 +205,7 @@ export function initContentBank(db,studio){
    });
    if(error||!data?.ok)throw Error(error?.message||'Moderation action failed');
    $('bank-detail').hidden=true;bank.selected=null;await load();
-   say('Moderation change saved. Only approved original questions become available for live student practice.');
+   say('Editorial status saved. Questions remain unpublished until a board-specific paper is moderated and explicitly released.');
   }catch(err){say(err?.message||'Could not moderate question',true)}
   finally{button.disabled=false}
  }));
