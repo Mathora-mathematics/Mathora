@@ -13,6 +13,10 @@ create table if not exists public.student_entitlements(
  updated_at timestamptz not null default now(),
  check(ends_at is null or ends_at>starts_at)
 );
+-- Only the atomic server-side paper builder may write a frozen question list.
+-- Stop browser clients extending a selected paper after creation.
+revoke insert on public.paper_questions from authenticated;
+drop policy if exists paper_questions_insert on public.paper_questions;
 alter table public.student_entitlements enable row level security;
 revoke all on public.student_entitlements from anon,authenticated;
 grant select on public.student_entitlements to authenticated;
@@ -155,7 +159,12 @@ begin
  for v_i in 1..array_length(p_questions,1) loop
   v_question:=p_questions[v_i];
   if not exists(select 1 from public.question_bank q where
-    q.id=v_question and q.qualification=v_qual and q.active) then
+    q.id=v_question and q.qualification=v_qual and q.active
+    and (coalesce(p_topic,'')='' or q.topic=p_topic)
+    and (p_difficulty='mixed' or
+      (p_difficulty='foundation' and q.difficulty in (1,2)) or
+      (p_difficulty='standard' and q.difficulty in (2,3)) or
+      (p_difficulty='challenge' and q.difficulty in (3,4,5)))) then
     raise exception 'Unavailable or mismatched paper question';
   end if;
  end loop;
