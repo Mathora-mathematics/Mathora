@@ -177,6 +177,10 @@ async function openReview(attempt){
   for(const r of [ar,qr,fr,rr])if(r.error)throw r.error;
   const answers=ar.data||[],qmap=new Map((qr.data||[]).map(x=>[x.id,x]));
   const rmap=new Map((rr.data||[]).map(x=>[x.question_id,x]));
+  const questionIds=answers.map(x=>x.question_id);
+  const {data:schemes,error:schemeErr}=await db.from('mark_schemes').select('question_id,scheme').in('question_id',questionIds);
+  if(schemeErr)throw schemeErr;
+  const schemeMap=new Map((schemes||[]).map(x=>[x.question_id,x.scheme]));
   const root=$('review-questions');clear(root);state.reviewFields=[];
   const name=state.students.find(x=>x.id===attempt.student_id)?.name||'Student';
   $('review-title').textContent=name+' — '+(examLabels[attempt.qualification]||attempt.qualification);
@@ -190,6 +194,8 @@ async function openReview(attempt){
    const work=make('div','student-work',answer.typed_answer||'No typed response; check the student’s attached working.');
    section.append(work);
    section.append(make('p','reflection','Student confidence: '+(answer.confidence||'Not provided')+'  ·  Difficulty: '+(answer.difficulty||'Not provided')+'  ·  Clarity: '+(answer.clarity||'Not provided')));
+   const scheme=schemeMap.get(q.id);
+   if(scheme){const details=make('details');const summary=make('summary','','Approved marking guidance');const guidance=make('p','student-work',scheme);details.append(summary,guidance);section.append(details)}
    const attachments=make('div','files');
    for(const file of (fr.data||[]).filter(f=>f.question_id===q.id)){
     const b=make('button','','View '+file.original_name+' ↗');b.type='button';
@@ -213,6 +219,8 @@ async function openReview(attempt){
   }
   $('review-confirm').checked=false;$('review-card').hidden=false;
   $('release-review').disabled=attempt.status==='marked';
+  $('save-review').disabled=attempt.status==='marked';
+  if(attempt.status==='marked'){for(const field of state.reviewFields){field.mark.readOnly=true;field.comment.readOnly=true}}
   $('review-card').scrollIntoView({behavior:'smooth',block:'start'});
  }catch(err){inform('Unable to load the paper: '+err.message,true)}
 }
@@ -229,23 +237,25 @@ async function writeReview(releasing){
  try{
   validateReview(releasing);
   const attempt=state.activeReview;
-  if(attempt.status==='marked'&&releasing)throw Error('This report is already released.');
-  for(const field of state.reviewFields){
-   const data={marks_awarded:Number(field.mark.value),feedback:field.comment.value.trim()};
-   let result;
-   if(field.existing)result=await db.from('reviews').update(data).eq('id',field.existing.id);
-   else result=await db.from('reviews').insert({...data,attempt_id:attempt.id,question_id:field.question.id,reviewer_id:state.user.id});
-   if(result.error)throw result.error;
-  }
+  if(attempt.status==='marked')throw Error('This report is already released and locked.');
+  const items=state.reviewFields.map(field=>({
+   question_id:field.question.id,
+   marks_awarded:Number(field.mark.value),
+   feedback:field.comment.value.trim()
+  }));
+  // One Postgres transaction validates all marks and saves/release all at once.
+  const {data,error}=await db.rpc('save_marking_review',{
+    p_attempt:attempt.id,p_items:items,p_release:releasing
+  });
+  if(error)throw error;
+  if(!data?.ok)throw Error('The database did not confirm that the review was saved.');
   if(releasing){
-   const {error}=await db.from('attempts').update({status:'marked'}).eq('id',attempt.id).eq('status','submitted');
-   if(error)throw error;
    $('review-card').hidden=true;state.activeReview=null;
    inform('Examiner assessment released to the student dashboard.');
   }else{inform('Draft examiner marks saved privately. They are not yet visible to the student.')}
   await loadAttempts();renderOverview();renderQueue();renderReleased();
  }catch(err){inform('Review not saved: '+err.message,true)}
- finally{buttons.forEach(b=>b.disabled=false)}
+ finally{buttons.forEach(b=>b.disabled=false);if(state.activeReview?.status==='marked')buttons.forEach(b=>b.disabled=true)}
 }
 $('save-review').onclick=()=>void writeReview(false);
 $('release-review').onclick=()=>void writeReview(true);
