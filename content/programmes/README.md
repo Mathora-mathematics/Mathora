@@ -73,3 +73,7 @@ The browser countdown is not the security boundary. Supabase RLS, triggers, cont
 The counted total is **180**, as shown above: 20 + 20 + 20 + 40 + 40 + 40 = 180.
 
 These items have mathematical TeX where appropriate and answer breakdowns. They are **open exam-style practice**, not fully moderated unseen assessment papers. Administrators may review them in the Maths bank, and can install them into the qualified student practice pool using the transactional `supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql` upgrade. The server checks product entitlement and academic level; Grove Exam learners alone get additional exam preparation (untimed), separately from assigned strictly timed mock papers.
+
+## Additional practice batch: 120 variations
+
+Four supplement sets, 30 questions each: GCSE Daily, IGCSE Daily, GCSE Weekly, IGCSE Weekly. These are **40 mathematical skill families with three numerical versions each**, not 120 independent topics. Each item has a statement using TeX where appropriate, a checked answer, difficulty, suggested time and indicative marking criteria. The `extra-practice-120.json` catalogue is compatible with the existing admin **Open Practice** directory. The add-on SQL `supabase/ADD_120_ORIGINAL_PRACTICE_VARIANTS.sql` needs the v2 180-question upgrade installed first. Public practice questions must not become unseen Grove Exam mocks.

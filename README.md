@@ -110,3 +110,9 @@ The three **MathsGrove products** are Grove Weekly, Grove Daily and Grove Exam. 
 - **Quality boundary:** these are programmatically checked OPEN PRACTICE candidates, not official or human-moderated exam questions; never use them as confidential unseen mocks. Examiner approval and board-syllabus checking remain required for true mock publication.
 
 All existing pupil authentication, whiteboard/photos and marking submission data must be retained and tested before production use.
+
+## Supplementary numerical practice bank (120 more items)
+
+Alongside the existing 180 open-practice items, there are now **120 further original, answer-checked numerical variations** (40 skill families × 3 variants). The expanded administrator catalogue displays **300 public practice candidates**, distributed across GCSE and IGCSE Daily and Weekly programmes, plus **12 more multi-part Grove Exam editorial drafts**. These are not confidential or approved full timed mocks.
+
+To add the extra variants to the Supabase student question bank, first install and verify the existing combined `supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql` (which contains the original 180), then run `supabase/ADD_120_ORIGINAL_PRACTICE_VARIANTS.sql`. **Neither script is installed by a GitHub deployment.** The second installer is idempotent and uses the existing `practice_content_index`, preserving the server-side tier/qualification checks. Review and back up the database before execution.
