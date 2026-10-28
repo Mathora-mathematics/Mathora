@@ -29,12 +29,20 @@ jobs:
           node --input-type=module --check < portal.js
           node --input-type=module --check < studio.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
+      - name: Assemble only MathsGrove public assets
+        shell: bash
+        run: |
+          mkdir -p site
+          cp index.html mathsgrove.css mathsgrove.js mathsgrove-icon.svg site/
+          cp portal.html portal.css portal.js mathsgrove-config.js site/
+          cp studio.html studio.css studio.js site/
+          touch site/.nojekyll
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: site
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
