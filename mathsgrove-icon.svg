@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0D1B32"/><path d="M13 45V19l13 16 12-16v26" fill="none" stroke="#D8C29A" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="49" cy="45" r="5" fill="#D8C29A"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-labelledby="title">
+<title id="title">MathsGrove geometric growth monogram</title>
+<rect x="1" y="1" width="70" height="70" rx="17" fill="#F7F4EF" stroke="#DED8CF" stroke-width="2"/>
+<path d="M14 51V22l22 16 22-16v29" fill="none" stroke="#0D1B32" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M36 52c-8-2-12-7-12-15 7 1 11 5 12 12 1-7 5-11 12-12 0 8-4 13-12 15Z" fill="#CDBBA0"/>
+<path d="M36 47V32" fill="none" stroke="#0D1B32" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M36 16l5.5 5.5L36 27l-5.5-5.5Z" fill="#CDBBA0"/>
+</svg>
