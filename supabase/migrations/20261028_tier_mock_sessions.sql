@@ -348,7 +348,7 @@ GRANT EXECUTE ON FUNCTION public.finish_mock_session(uuid) TO authenticated;
 -- Examiner/admin can finalise unattended expired sittings before loading the
 -- marking queue. A separate database scheduler is recommended for production.
 CREATE OR REPLACE FUNCTION public.finalize_expired_mock_sessions()
-RETURNS integer LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+RETURNS integer LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_actor uuid:=(SELECT auth.uid());v_total integer;
 BEGIN
  IF v_actor IS NULL THEN RAISE EXCEPTION 'Authentication required';END IF;
@@ -359,7 +359,7 @@ BEGIN
   AND m.user_id=v_actor AND m.member_role IN ('admin','partner','examiner'));
  GET DIAGNOSTICS v_total=ROW_COUNT;
  RETURN v_total;
-END;$;
+END;$$;
 REVOKE ALL ON FUNCTION public.finalize_expired_mock_sessions() FROM public,anon;
 GRANT EXECUTE ON FUNCTION public.finalize_expired_mock_sessions() TO authenticated;
 
