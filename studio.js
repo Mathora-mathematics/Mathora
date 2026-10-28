@@ -336,7 +336,7 @@ async function openReview(attempt){
    section.append(work);
    section.append(make('p','reflection','Student confidence: '+(answer.confidence||'Not provided')+'  ·  Difficulty: '+(answer.difficulty||'Not provided')+'  ·  Clarity: '+(answer.clarity||'Not provided')));
    const scheme=schemeMap.get(q.id);
-   if(scheme){const details=make('details');const summary=make('summary','','Approved marking guidance');const guidance=make('p','student-work',scheme);details.append(summary,guidance);section.append(details)}
+   if(scheme){const details=make('details');const summary=make('summary','','Approved marking guidance');const guidance=make('p','student-work');if(window.MathsGroveMath)window.MathsGroveMath.write(guidance,scheme);else guidance.textContent=scheme;details.append(summary,guidance);section.append(details)}
    const attachments=make('div','files');
    for(const file of (fr.data||[]).filter(f=>f.question_id===q.id)){
      const details=make('details','examiner-attachment');

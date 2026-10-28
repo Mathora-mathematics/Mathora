@@ -1,0 +1,1987 @@
+{
+  "version": 2,
+  "qualification": "GCSE",
+  "notice": "PUBLIC OPEN PRACTICE. Answers are not secret; never use these questions in unseen timed mock examinations. Editorial approval is separate.",
+  "items": [
+    {
+      "id": "MG-G-DAILY-FRAC-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "question_family": "FRAC",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Evaluate \\(\\frac{1}{3}+\\frac{1}{4}\\). Give your answer as a fraction in lowest terms.",
+      "answer": "\\(\\frac{7}{12}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find a common denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{7}{12}\\) in lowest terms."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-LINEAR-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "question_family": "LINEAR",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(2(x-1)+4=8\\). Show your intermediate equations.",
+      "answer": "\\(x=3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or rearrange the bracket term."
+        },
+        {
+          "code": "B1",
+          "text": "Isolate x using correct inverse operations."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PERCENT-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "question_family": "PERCENT",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A school has 180 pupils. \\(10\\%\\) travel by bus. Calculate how many travel by bus.",
+      "answer": "\\(18\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert the percentage into a fractional multiplier."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(18\\) pupils."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PROB-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Simple events",
+      "question_family": "PROB",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 3 red and 5 blue tokens. One token is selected at random. Find the probability that it is red, as a simplified fraction.",
+      "answer": "\\(\\frac{3}{8}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify 3 favourable outcomes out of 8."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{3}{8}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SIMUL-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "question_family": "SIMUL",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Solve \\[\\begin{aligned}2x+y&=5\\\\x-y&=1\\end{aligned}\\] Show elimination or substitution.",
+      "answer": "\\((x,y)=(2,1)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y or substitute consistently."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(3x=6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(y=1\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-QUAD-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratics",
+      "question_family": "QUAD",
+      "marks": 4,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Factorise and solve \\(x^2-6x+5=0\\). State both real roots.",
+      "answer": "\\(x=1\\ \\text{or}\\ x=5\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose two values with the correct sum and product."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\((x-1)(x-5)=0\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=1\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(x=5\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-PYTH-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "question_family": "PYTH",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A right-angled triangle has perpendicular sides \\(3\\text{ cm}\\) and \\(4\\text{ cm}\\). Calculate the hypotenuse exactly, showing your working.",
+      "answer": "\\(5\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(c^2=3^2+4^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(c^2=25\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(5\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SPEED-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound measures",
+      "question_family": "SPEED",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A delivery van travels at \\(40\\text{ km/h}\\) for \\(45\\text{ minutes}\\). Calculate the distance it covers in kilometres, showing the unit conversion.",
+      "answer": "\\(30\\text{ km}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert minutes to hours."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(s=vt\\) with consistent units."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(30\\text{ km}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-BOUNDS-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Number · Bounds",
+      "question_family": "BOUNDS",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "The measured length and width of a rectangle are \\(4.2\\text{ m}\\) and \\(2.7\\text{ m}\\), each rounded to the nearest \\(0.1\\text{ m}\\). Find the exact upper bound for its area and explain your choice of bounds.",
+      "answer": "\\(11.6875\\text{ m}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Upper length bound \\(4.25\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Upper width bound \\(2.75\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the two upper bounds."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(11.6875\\text{ m}^2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that the actual dimensions could exceed the recorded dimensions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-VERTEX-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "question_family": "VERTEX",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Write \\(x^2-4x+(1)\\) in completed-square form. Find the minimum value and the value of \\(x\\) at which it occurs.",
+      "answer": "\\((x-2)^2-3;\\ \\min=-3\\ \\text{at}\\ x=2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify half the linear coefficient."
+        },
+        {
+          "code": "B1",
+          "text": "Complete the square and correct the constant."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\((x-2)^2-3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Recognise that the squared term is non-negative."
+        },
+        {
+          "code": "A1",
+          "text": "State minimum \\(-3\\) at \\(x=2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-COSINE-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "question_family": "COSINE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "In triangle \\(ABC\\), \\(AB=3\\text{ cm}\\), \\(AC=8\\text{ cm}\\) and \\(\\angle BAC=60^\\circ\\). Use the cosine rule to find \\(BC\\) exactly. Explain why it is appropriate.",
+      "answer": "\\(BC=7\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise two sides and their included angle."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(BC^2=3^2+8^2-2(3)(8)\\cos60^\\circ\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(BC^2=49\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(BC=7\\text{ cm}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The sine rule has no known opposite side–angle pair."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-SPACE-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "question_family": "SPACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "A cuboid has perpendicular edges \\(2\\text{ cm}\\), \\(3\\text{ cm}\\) and \\(6\\text{ cm}\\). Find the length of the straight-line segment joining opposite vertices. Show two applications of Pythagoras.",
+      "answer": "\\(7\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the base diagonal squared: \\(2^2+3^2=13\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use a second right-angled triangle with the vertical edge."
+        },
+        {
+          "code": "B1",
+          "text": "Find total squared distance \\(49\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Give \\(7\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-FRAC-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "question_family": "FRAC",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Evaluate \\(\\frac{2}{5}+\\frac{1}{6}\\). Give your answer as a fraction in lowest terms.",
+      "answer": "\\(\\frac{17}{30}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find a common denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{17}{30}\\) in lowest terms."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-LINEAR-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "question_family": "LINEAR",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(3(x-2)+5=11\\). Show your intermediate equations.",
+      "answer": "\\(x=4\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or rearrange the bracket term."
+        },
+        {
+          "code": "B1",
+          "text": "Isolate x using correct inverse operations."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=4\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PERCENT-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "question_family": "PERCENT",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A school has 200 pupils. \\(15\\%\\) travel by bus. Calculate how many travel by bus.",
+      "answer": "\\(30\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert the percentage into a fractional multiplier."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(30\\) pupils."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PROB-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Simple events",
+      "question_family": "PROB",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 4 red and 6 blue tokens. One token is selected at random. Find the probability that it is red, as a simplified fraction.",
+      "answer": "\\(\\frac{2}{5}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify 4 favourable outcomes out of 10."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{2}{5}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SIMUL-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "question_family": "SIMUL",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Solve \\[\\begin{aligned}2x+y&=8\\\\x-y&=1\\end{aligned}\\] Show elimination or substitution.",
+      "answer": "\\((x,y)=(3,2)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y or substitute consistently."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(3x=9\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(y=2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-QUAD-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratics",
+      "question_family": "QUAD",
+      "marks": 4,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Factorise and solve \\(x^2-8x+12=0\\). State both real roots.",
+      "answer": "\\(x=2\\ \\text{or}\\ x=6\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose two values with the correct sum and product."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\((x-2)(x-6)=0\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(x=6\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-PYTH-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "question_family": "PYTH",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A right-angled triangle has perpendicular sides \\(5\\text{ cm}\\) and \\(12\\text{ cm}\\). Calculate the hypotenuse exactly, showing your working.",
+      "answer": "\\(13\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(c^2=5^2+12^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(c^2=169\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(13\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SPEED-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound measures",
+      "question_family": "SPEED",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A delivery van travels at \\(48\\text{ km/h}\\) for \\(30\\text{ minutes}\\). Calculate the distance it covers in kilometres, showing the unit conversion.",
+      "answer": "\\(24\\text{ km}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert minutes to hours."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(s=vt\\) with consistent units."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(24\\text{ km}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-BOUNDS-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Number · Bounds",
+      "question_family": "BOUNDS",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "The measured length and width of a rectangle are \\(5.3\\text{ m}\\) and \\(3.6\\text{ m}\\), each rounded to the nearest \\(0.1\\text{ m}\\). Find the exact upper bound for its area and explain your choice of bounds.",
+      "answer": "\\(19.5275\\text{ m}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Upper length bound \\(5.35\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Upper width bound \\(3.65\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the two upper bounds."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(19.5275\\text{ m}^2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that the actual dimensions could exceed the recorded dimensions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-VERTEX-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "question_family": "VERTEX",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Write \\(x^2-6x+(5)\\) in completed-square form. Find the minimum value and the value of \\(x\\) at which it occurs.",
+      "answer": "\\((x-3)^2-4;\\ \\min=-4\\ \\text{at}\\ x=3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify half the linear coefficient."
+        },
+        {
+          "code": "B1",
+          "text": "Complete the square and correct the constant."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\((x-3)^2-4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Recognise that the squared term is non-negative."
+        },
+        {
+          "code": "A1",
+          "text": "State minimum \\(-4\\) at \\(x=3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-COSINE-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "question_family": "COSINE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "In triangle \\(ABC\\), \\(AB=5\\text{ cm}\\), \\(AC=8\\text{ cm}\\) and \\(\\angle BAC=60^\\circ\\). Use the cosine rule to find \\(BC\\) exactly. Explain why it is appropriate.",
+      "answer": "\\(BC=7\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise two sides and their included angle."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(BC^2=5^2+8^2-2(5)(8)\\cos60^\\circ\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(BC^2=49\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(BC=7\\text{ cm}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The sine rule has no known opposite side–angle pair."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-SPACE-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "question_family": "SPACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "A cuboid has perpendicular edges \\(3\\text{ cm}\\), \\(4\\text{ cm}\\) and \\(12\\text{ cm}\\). Find the length of the straight-line segment joining opposite vertices. Show two applications of Pythagoras.",
+      "answer": "\\(13\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the base diagonal squared: \\(3^2+4^2=25\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use a second right-angled triangle with the vertical edge."
+        },
+        {
+          "code": "B1",
+          "text": "Find total squared distance \\(169\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Give \\(13\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-FRAC-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "question_family": "FRAC",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Evaluate \\(\\frac{3}{8}+\\frac{1}{4}\\). Give your answer as a fraction in lowest terms.",
+      "answer": "\\(\\frac{5}{8}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find a common denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{5}{8}\\) in lowest terms."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-LINEAR-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "question_family": "LINEAR",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(4(x-1)+6=22\\). Show your intermediate equations.",
+      "answer": "\\(x=5\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or rearrange the bracket term."
+        },
+        {
+          "code": "B1",
+          "text": "Isolate x using correct inverse operations."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=5\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PERCENT-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "question_family": "PERCENT",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A school has 250 pupils. \\(20\\%\\) travel by bus. Calculate how many travel by bus.",
+      "answer": "\\(50\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert the percentage into a fractional multiplier."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(50\\) pupils."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PROB-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Simple events",
+      "question_family": "PROB",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 5 red and 7 blue tokens. One token is selected at random. Find the probability that it is red, as a simplified fraction.",
+      "answer": "\\(\\frac{5}{12}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify 5 favourable outcomes out of 12."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{5}{12}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SIMUL-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "question_family": "SIMUL",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Solve \\[\\begin{aligned}2x+y&=11\\\\x-y&=1\\end{aligned}\\] Show elimination or substitution.",
+      "answer": "\\((x,y)=(4,3)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y or substitute consistently."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(3x=12\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=4\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(y=3\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-QUAD-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratics",
+      "question_family": "QUAD",
+      "marks": 4,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Factorise and solve \\(x^2-10x+21=0\\). State both real roots.",
+      "answer": "\\(x=3\\ \\text{or}\\ x=7\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose two values with the correct sum and product."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\((x-3)(x-7)=0\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(x=7\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-PYTH-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "question_family": "PYTH",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A right-angled triangle has perpendicular sides \\(8\\text{ cm}\\) and \\(15\\text{ cm}\\). Calculate the hypotenuse exactly, showing your working.",
+      "answer": "\\(17\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(c^2=8^2+15^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(c^2=289\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(17\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SPEED-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound measures",
+      "question_family": "SPEED",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A delivery van travels at \\(60\\text{ km/h}\\) for \\(20\\text{ minutes}\\). Calculate the distance it covers in kilometres, showing the unit conversion.",
+      "answer": "\\(20\\text{ km}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert minutes to hours."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(s=vt\\) with consistent units."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(20\\text{ km}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-BOUNDS-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Number · Bounds",
+      "question_family": "BOUNDS",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "The measured length and width of a rectangle are \\(6.7\\text{ m}\\) and \\(4.8\\text{ m}\\), each rounded to the nearest \\(0.1\\text{ m}\\). Find the exact upper bound for its area and explain your choice of bounds.",
+      "answer": "\\(32.7375\\text{ m}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Upper length bound \\(6.75\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Upper width bound \\(4.85\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the two upper bounds."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(32.7375\\text{ m}^2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that the actual dimensions could exceed the recorded dimensions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-VERTEX-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "question_family": "VERTEX",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Write \\(x^2-8x+(11)\\) in completed-square form. Find the minimum value and the value of \\(x\\) at which it occurs.",
+      "answer": "\\((x-4)^2-5;\\ \\min=-5\\ \\text{at}\\ x=4\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify half the linear coefficient."
+        },
+        {
+          "code": "B1",
+          "text": "Complete the square and correct the constant."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\((x-4)^2-5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Recognise that the squared term is non-negative."
+        },
+        {
+          "code": "A1",
+          "text": "State minimum \\(-5\\) at \\(x=4\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-COSINE-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "question_family": "COSINE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "In triangle \\(ABC\\), \\(AB=7\\text{ cm}\\), \\(AC=15\\text{ cm}\\) and \\(\\angle BAC=60^\\circ\\). Use the cosine rule to find \\(BC\\) exactly. Explain why it is appropriate.",
+      "answer": "\\(BC=13\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise two sides and their included angle."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(BC^2=7^2+15^2-2(7)(15)\\cos60^\\circ\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(BC^2=169\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(BC=13\\text{ cm}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The sine rule has no known opposite side–angle pair."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-SPACE-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "question_family": "SPACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "A cuboid has perpendicular edges \\(6\\text{ cm}\\), \\(8\\text{ cm}\\) and \\(24\\text{ cm}\\). Find the length of the straight-line segment joining opposite vertices. Show two applications of Pythagoras.",
+      "answer": "\\(26\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the base diagonal squared: \\(6^2+8^2=100\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use a second right-angled triangle with the vertical edge."
+        },
+        {
+          "code": "B1",
+          "text": "Find total squared distance \\(676\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Give \\(26\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-FRAC-4",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "question_family": "FRAC",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Evaluate \\(\\frac{5}{12}+\\frac{1}{3}\\). Give your answer as a fraction in lowest terms.",
+      "answer": "\\(\\frac{3}{4}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find a common denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{3}{4}\\) in lowest terms."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-LINEAR-4",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "question_family": "LINEAR",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(2(x-2)+7=15\\). Show your intermediate equations.",
+      "answer": "\\(x=6\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or rearrange the bracket term."
+        },
+        {
+          "code": "B1",
+          "text": "Isolate x using correct inverse operations."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=6\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PERCENT-4",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "question_family": "PERCENT",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A school has 320 pupils. \\(25\\%\\) travel by bus. Calculate how many travel by bus.",
+      "answer": "\\(80\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert the percentage into a fractional multiplier."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(80\\) pupils."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PROB-4",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Simple events",
+      "question_family": "PROB",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 6 red and 5 blue tokens. One token is selected at random. Find the probability that it is red, as a simplified fraction.",
+      "answer": "\\(\\frac{6}{11}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify 6 favourable outcomes out of 11."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{6}{11}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SIMUL-4",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "question_family": "SIMUL",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Solve \\[\\begin{aligned}2x+y&=14\\\\x-y&=1\\end{aligned}\\] Show elimination or substitution.",
+      "answer": "\\((x,y)=(5,4)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y or substitute consistently."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(3x=15\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=5\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(y=4\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-QUAD-4",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratics",
+      "question_family": "QUAD",
+      "marks": 4,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Factorise and solve \\(x^2-12x+32=0\\). State both real roots.",
+      "answer": "\\(x=4\\ \\text{or}\\ x=8\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose two values with the correct sum and product."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\((x-4)(x-8)=0\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=4\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(x=8\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-PYTH-4",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "question_family": "PYTH",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A right-angled triangle has perpendicular sides \\(7\\text{ cm}\\) and \\(24\\text{ cm}\\). Calculate the hypotenuse exactly, showing your working.",
+      "answer": "\\(25\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(c^2=7^2+24^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(c^2=625\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(25\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SPEED-4",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound measures",
+      "question_family": "SPEED",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A delivery van travels at \\(72\\text{ km/h}\\) for \\(50\\text{ minutes}\\). Calculate the distance it covers in kilometres, showing the unit conversion.",
+      "answer": "\\(60\\text{ km}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert minutes to hours."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(s=vt\\) with consistent units."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(60\\text{ km}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-BOUNDS-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Number · Bounds",
+      "question_family": "BOUNDS",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "The measured length and width of a rectangle are \\(8.1\\text{ m}\\) and \\(2.5\\text{ m}\\), each rounded to the nearest \\(0.1\\text{ m}\\). Find the exact upper bound for its area and explain your choice of bounds.",
+      "answer": "\\(20.7825\\text{ m}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Upper length bound \\(8.15\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Upper width bound \\(2.55\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the two upper bounds."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(20.7825\\text{ m}^2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that the actual dimensions could exceed the recorded dimensions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-VERTEX-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "question_family": "VERTEX",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Write \\(x^2-10x+(19)\\) in completed-square form. Find the minimum value and the value of \\(x\\) at which it occurs.",
+      "answer": "\\((x-5)^2-6;\\ \\min=-6\\ \\text{at}\\ x=5\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify half the linear coefficient."
+        },
+        {
+          "code": "B1",
+          "text": "Complete the square and correct the constant."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\((x-5)^2-6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Recognise that the squared term is non-negative."
+        },
+        {
+          "code": "A1",
+          "text": "State minimum \\(-6\\) at \\(x=5\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-COSINE-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "question_family": "COSINE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "In triangle \\(ABC\\), \\(AB=8\\text{ cm}\\), \\(AC=15\\text{ cm}\\) and \\(\\angle BAC=60^\\circ\\). Use the cosine rule to find \\(BC\\) exactly. Explain why it is appropriate.",
+      "answer": "\\(BC=13\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise two sides and their included angle."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(BC^2=8^2+15^2-2(8)(15)\\cos60^\\circ\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(BC^2=169\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(BC=13\\text{ cm}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The sine rule has no known opposite side–angle pair."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-SPACE-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "question_family": "SPACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "A cuboid has perpendicular edges \\(3\\text{ cm}\\), \\(6\\text{ cm}\\) and \\(2\\text{ cm}\\). Find the length of the straight-line segment joining opposite vertices. Show two applications of Pythagoras.",
+      "answer": "\\(7\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the base diagonal squared: \\(3^2+6^2=45\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use a second right-angled triangle with the vertical edge."
+        },
+        {
+          "code": "B1",
+          "text": "Find total squared distance \\(49\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Give \\(7\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-FRAC-5",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "question_family": "FRAC",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Evaluate \\(\\frac{2}{7}+\\frac{3}{14}\\). Give your answer as a fraction in lowest terms.",
+      "answer": "\\(\\frac{1}{2}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find a common denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{1}{2}\\) in lowest terms."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-LINEAR-5",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "question_family": "LINEAR",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Solve \\(3(x-1)+8=26\\). Show your intermediate equations.",
+      "answer": "\\(x=7\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or rearrange the bracket term."
+        },
+        {
+          "code": "B1",
+          "text": "Isolate x using correct inverse operations."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(x=7\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PERCENT-5",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "question_family": "PERCENT",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A school has 275 pupils. \\(40\\%\\) travel by bus. Calculate how many travel by bus.",
+      "answer": "\\(110\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert the percentage into a fractional multiplier."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(110\\) pupils."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-DAILY-PROB-5",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Simple events",
+      "question_family": "PROB",
+      "marks": 2,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 7 red and 6 blue tokens. One token is selected at random. Find the probability that it is red, as a simplified fraction.",
+      "answer": "\\(\\frac{7}{13}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify 7 favourable outcomes out of 13."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{7}{13}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SIMUL-5",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "question_family": "SIMUL",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Solve \\[\\begin{aligned}2x+y&=17\\\\x-y&=1\\end{aligned}\\] Show elimination or substitution.",
+      "answer": "\\((x,y)=(6,5)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y or substitute consistently."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(3x=18\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=6\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(y=5\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-QUAD-5",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratics",
+      "question_family": "QUAD",
+      "marks": 4,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Factorise and solve \\(x^2-14x+45=0\\). State both real roots.",
+      "answer": "\\(x=5\\ \\text{or}\\ x=9\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose two values with the correct sum and product."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\((x-5)(x-9)=0\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(x=5\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Find \\(x=9\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-PYTH-5",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "question_family": "PYTH",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A right-angled triangle has perpendicular sides \\(9\\text{ cm}\\) and \\(12\\text{ cm}\\). Calculate the hypotenuse exactly, showing your working.",
+      "answer": "\\(15\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(c^2=9^2+12^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(c^2=225\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(15\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-WEEKLY-SPEED-5",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound measures",
+      "question_family": "SPEED",
+      "marks": 3,
+      "suggested_minutes": 5,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A delivery van travels at \\(80\\text{ km/h}\\) for \\(15\\text{ minutes}\\). Calculate the distance it covers in kilometres, showing the unit conversion.",
+      "answer": "\\(20\\text{ km}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Convert minutes to hours."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(s=vt\\) with consistent units."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(20\\text{ km}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-BOUNDS-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Number · Bounds",
+      "question_family": "BOUNDS",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "The measured length and width of a rectangle are \\(3.4\\text{ m}\\) and \\(7.2\\text{ m}\\), each rounded to the nearest \\(0.1\\text{ m}\\). Find the exact upper bound for its area and explain your choice of bounds.",
+      "answer": "\\(25.0125\\text{ m}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Upper length bound \\(3.45\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Upper width bound \\(7.25\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply the two upper bounds."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(25.0125\\text{ m}^2\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that the actual dimensions could exceed the recorded dimensions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-VERTEX-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "question_family": "VERTEX",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "Write \\(x^2-12x+(29)\\) in completed-square form. Find the minimum value and the value of \\(x\\) at which it occurs.",
+      "answer": "\\((x-6)^2-7;\\ \\min=-7\\ \\text{at}\\ x=6\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify half the linear coefficient."
+        },
+        {
+          "code": "B1",
+          "text": "Complete the square and correct the constant."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\((x-6)^2-7\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Recognise that the squared term is non-negative."
+        },
+        {
+          "code": "A1",
+          "text": "State minimum \\(-7\\) at \\(x=6\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-COSINE-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "question_family": "COSINE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": true,
+      "prompt": "In triangle \\(ABC\\), \\(AB=5\\text{ cm}\\), \\(AC=16\\text{ cm}\\) and \\(\\angle BAC=60^\\circ\\). Use the cosine rule to find \\(BC\\) exactly. Explain why it is appropriate.",
+      "answer": "\\(BC=\\sqrt{201}\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise two sides and their included angle."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(BC^2=5^2+16^2-2(5)(16)\\cos60^\\circ\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Evaluate \\(BC^2=201\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(BC=\\sqrt{201}\\text{ cm}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The sine rule has no known opposite side–angle pair."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-SPACE-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "question_family": "SPACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 4,
+      "calculator_allowed": false,
+      "prompt": "A cuboid has perpendicular edges \\(4\\text{ cm}\\), \\(6\\text{ cm}\\) and \\(12\\text{ cm}\\). Find the length of the straight-line segment joining opposite vertices. Show two applications of Pythagoras.",
+      "answer": "\\(14\\text{ cm}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find the base diagonal squared: \\(4^2+6^2=52\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use a second right-angled triangle with the vertical edge."
+        },
+        {
+          "code": "B1",
+          "text": "Find total squared distance \\(196\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Give \\(14\\text{ cm}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    }
+  ]
+}
