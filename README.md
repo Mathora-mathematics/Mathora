@@ -16,6 +16,8 @@
 - mathsgrove.css — responsive premium styling
 - mathsgrove.js — public interactive demonstration; browser-only, with no student data storage
 - portal.html, portal.css, portal.js — invitation-only individual dashboards, qualification selection, private submissions and partner review when Supabase is configured
+- studio.html, studio.css, studio.js — private partner administration, key-generation and examiner marking studio
+- docs/ADMIN_STUDIO_SETUP.md — free-tier activation, required migrations and secure onboarding instructions
 - mathsgrove-config.js — public configuration placeholder; never put any secret keys here
 - supabase/migrations/20261028_private_student_portal.sql — protected database tables and RLS policies
 - supabase/functions/invitations/index.ts — one-time email-bound invitation service
@@ -34,7 +36,7 @@ Run `python3 -m http.server 8000` at the repository root, then visit `http://loc
 
 See `docs/STUDENT_PORTAL_SETUP.md` for precise setup instructions. Until configured, portal.html displays a setup notice instead of accepting student credentials or work.
 
-The MathsGrove React + TypeScript starter produced for this project includes a SQL schema for student accounts and examiner marking. The next development step is to migrate that code into this same repository and set up a new Supabase project.
+The MathsGrove React + TypeScript starter produced for this project includes a SQL schema for student accounts and examiner marking. The next development step is to connect a new Supabase project and verify the student and examiner workflows.
 
 1. Use invitation-only Supabase Auth; provision students, tutors, examiners and partners through trusted administration.
 2. Establish RLS, private storage, organisation boundaries and examiner assignment checks. Test isolation using multiple organisations.
