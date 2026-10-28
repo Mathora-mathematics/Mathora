@@ -95,6 +95,10 @@ DROP POLICY IF EXISTS questions_select ON public.question_bank;
 CREATE POLICY questions_select ON public.question_bank FOR SELECT TO authenticated
 USING(private.can_read_maths_question(id));
 
+-- A student must not bypass the server-enforced weekly/daily/mock quota by
+-- inserting arbitrary attempts directly. Both create RPCs are SECURITY DEFINER.
+REVOKE INSERT ON public.attempts FROM authenticated;
+
 -- Return genuine remaining time as a database-generated response.
 CREATE OR REPLACE FUNCTION public.mock_session_clock(p_attempt uuid)
 RETURNS TABLE(deadline_at timestamptz,seconds_remaining integer,is_expired boolean)
@@ -269,7 +273,10 @@ BEGIN
  IF NOT EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=p_student
   AND m.org_id=v_p.org_id AND m.member_role='student') THEN RAISE EXCEPTION 'Student not in your organisation';END IF;
  SELECT qualification INTO v_qual FROM public.student_preferences WHERE student_id=p_student;
- IF v_qual<>v_p.qualification THEN RAISE EXCEPTION 'Mock qualification does not match student';END IF;
+ IF v_qual<>v_p.qualification OR NOT EXISTS(
+ SELECT 1 FROM public.student_preferences sp WHERE sp.student_id=p_student
+ AND sp.exam_board=v_p.board_key AND sp.tier=v_p.exam_tier) THEN
+ RAISE EXCEPTION 'Student qualification, exam board and academic tier must match the mock';END IF;
  INSERT INTO public.mock_assignments(pack_id,student_id,org_id,assigned_by)
  VALUES(p_pack,p_student,v_p.org_id,v_actor)
  ON CONFLICT(pack_id,student_id) DO NOTHING;
@@ -338,6 +345,24 @@ END;$$;
 REVOKE ALL ON FUNCTION public.finish_mock_session(uuid) FROM public,anon;
 GRANT EXECUTE ON FUNCTION public.finish_mock_session(uuid) TO authenticated;
 
+-- Examiner/admin can finalise unattended expired sittings before loading the
+-- marking queue. A separate database scheduler is recommended for production.
+CREATE OR REPLACE FUNCTION public.finalize_expired_mock_sessions()
+RETURNS integer LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+DECLARE v_actor uuid:=(SELECT auth.uid());v_total integer;
+BEGIN
+ IF v_actor IS NULL THEN RAISE EXCEPTION 'Authentication required';END IF;
+ UPDATE public.attempts a SET status='submitted',submitted_at=a.deadline_at,mock_expired=true
+ WHERE a.paper_mode='mock' AND a.mock_pack_id IS NOT NULL AND a.status='draft'
+ AND a.deadline_at<=now()
+ AND EXISTS(SELECT 1 FROM public.memberships m WHERE m.org_id=a.org_id
+  AND m.user_id=v_actor AND m.member_role IN ('admin','partner','examiner'));
+ GET DIAGNOSTICS v_total=ROW_COUNT;
+ RETURN v_total;
+END;$;
+REVOKE ALL ON FUNCTION public.finalize_expired_mock_sessions() FROM public,anon;
+GRANT EXECUTE ON FUNCTION public.finalize_expired_mock_sessions() TO authenticated;
+
 -- Enforce mock expiry even if the browser is closed, clocks are tampered with,
 -- users refresh, or uploads arrive after the deadline.
 CREATE OR REPLACE FUNCTION private.is_editable_attempt(p_attempt uuid)
@@ -386,7 +411,12 @@ CREATE OR REPLACE FUNCTION private.guard_mock_attempt_fields()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 BEGIN
  IF OLD.mock_pack_id IS NOT NULL AND
- (NEW.mock_pack_id IS DISTINCT FROM OLD.mock_pack_id
+ (NEW.started_at IS DISTINCT FROM OLD.started_at
+ OR NEW.student_id IS DISTINCT FROM OLD.student_id
+ OR NEW.org_id IS DISTINCT FROM OLD.org_id
+ OR NEW.qualification IS DISTINCT FROM OLD.qualification
+ OR NEW.requested_count IS DISTINCT FROM OLD.requested_count
+ OR NEW.mock_pack_id IS DISTINCT FROM OLD.mock_pack_id
  OR NEW.deadline_at IS DISTINCT FROM OLD.deadline_at
  OR NEW.duration_seconds IS DISTINCT FROM OLD.duration_seconds
  OR NEW.paper_mode IS DISTINCT FROM OLD.paper_mode) THEN
