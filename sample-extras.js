@@ -51,10 +51,12 @@ function scenario(){
  $("grade-projection-note").textContent="Illustrative 5-paper mean: "+avg+"%";
  const label=$("sample-grade-label");
  // A working RANGE is shown; not a certified GCSE prediction.
- const band=avg<48?"Developing fundamentals":avg<65?"Approaching secure":"Building exam confidence";
+ // Fictional calibration solely for product demonstration. These are NOT
+ // Pearson/AQA/OCR boundaries and must never be used for a real prediction.
+ const band=avg<35?"2–3":avg<45?"3–4":avg<55?"4–5":avg<65?"5–6":avg<75?"6–7":avg<85?"7–8":"8–9";
  label.replaceChildren();
- const text=document.createTextNode(band),span=document.createElement("span");
- span.textContent="Example learning band · NOT an official grade";
+ const text=document.createTextNode("Grade "+band),span=document.createElement("span");
+ span.textContent="Hypothetical model only · NOT an official predicted grade";
  label.append(text,span);
 }
 slider.addEventListener("input",scenario);
