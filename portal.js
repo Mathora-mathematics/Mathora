@@ -27,7 +27,7 @@ const programmeNames={weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam
 const programmeDescriptions={
  weekly:'Up to four selected weekly or topic-focused papers per calendar month.',
  daily:'Daily Focus opportunities seven days per week, with a weekly progress report when supported.',
- exam:'Grove Daily plus one timed mock-preview assessment per month and an exam-readiness outlook when enough assessed evidence is available.'
+ exam:'Grove Daily plus one administrator-assigned, server-timed mock session per month once a full paper has passed moderation.'
 };
 async function loadProgrammeAndEvidence(){
  state.entitlement=null;
@@ -58,7 +58,7 @@ function showPracticeDiary(e,active){
   const day=document.createElement('div');day.className='practice-day'+(days.includes(i)?' scheduled':'');
   const name=document.createElement('small');name.textContent=d.toLocaleDateString('en-GB',{weekday:'short'});
   const number=document.createElement('strong');number.textContent=d.getDate();
-  const task=document.createElement('span');task.textContent=days.includes(i)?(e.tier==='weekly'?'Paper':'Focus'):'Review';
+  const task=document.createElement('span');task.textContent=days.includes(i)?(e.tier==='weekly'?'Weekly':'Focus'):'Review';
   day.append(name,number,task);root.append(day);
  }
 }
