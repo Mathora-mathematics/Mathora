@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const config=window.MATHSGROVE_CONFIG||{};
 const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(config.url)&&!config.url.includes('YOUR_PROJECT'));
 const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}}):null;
-const state={user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false};
+const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false};
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
 function show(id){['configure-view','login-view','claim-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
@@ -21,7 +21,85 @@ async function redeem(code){const {data,error}=await sb.functions.invoke('invita
 async function loadMembership(){let {data,error}=await sb.from('memberships').select('org_id,member_role').eq('user_id',state.user.id).limit(10);if(error)throw error;state.members=data||[];state.member=state.members.find(x=>x.member_role==='student')||state.members[0]||null;return state.member}
 async function boot(){if(!sb){show('configure-view');return}try{const {data:{session},error}=await sb.auth.getSession();if(error)throw error;if(!session?.user){show('login-view');return}state.user=session.user;await loadMembership();if(!state.member){const pending=sessionStorage.getItem('mathsgrove_pending_code');if(pending){try{await redeem(pending);await loadMembership()}catch(err){message('claim-message',friendlyError(err),true)}}}if(!state.member){show('claim-view');return}await dashboard()}catch(err){show('login-view');message('login-message',friendlyError(err),true)}}
 async function dashboard(){if(isStaff()){location.replace('./studio.html');return}const [p,org,prof]=await Promise.all([sb.from('profiles').select('id,display_name').eq('id',state.user.id).maybeSingle(),sb.from('organisations').select('id,name').eq('id',state.member.org_id).maybeSingle(),sb.from('student_preferences').select('qualification,exam_board,tier').eq('student_id',state.user.id).maybeSingle()]);if(p.error||org.error||prof.error)throw(p.error||org.error||prof.error);state.profile=p.data||{display_name:'Student'};state.preference=prof.data||null;$('student-name').value=state.profile.display_name==='Student'?'':(state.profile.display_name||'');text('organisation-label',org.data?.name?.toUpperCase()||'YOUR PROGRAMME');text('sidebar-name',state.profile.display_name||'Student');text('sidebar-role',state.member.member_role.toUpperCase());text('member-initials',initials(state.profile.display_name));text('welcome-text','Welcome'+(state.profile.display_name?' back, '+state.profile.display_name.split(' ')[0]:'')+'.');text('membership-pill',state.member.member_role==='student'?'Student access':'Organisation team');$('pathway-form').hidden=isStaff();$('begin-paper').disabled=isStaff();if(state.preference){$('qualification-select').value=state.preference.qualification||'';$('exam-board').value=state.preference.exam_board||'';$('exam-tier').value=state.preference.tier||''}show('dashboard-view');await refresh();showPanel('overview')}
-async function refresh(){if(!state.member)return;let query=sb.from('attempts').select('*').eq('org_id',state.member.org_id).order('started_at',{ascending:false}).limit(80);if(!isStaff())query=query.eq('student_id',state.user.id);let {data,error}=await query;if(error)throw error;state.attempts=data||[];text('metric-progress',state.attempts.filter(a=>a.status==='draft').length);text('metric-submitted',state.attempts.filter(a=>a.status==='submitted').length);text('metric-marked',state.attempts.filter(a=>a.status==='marked').length);const q=state.preference?.qualification;text('paper-availability',q?('Your selected pathway: '+quals[q]+'. Only original pilot questions are currently available; board-specific past papers are not yet provided.'): 'Save your examination pathway first to build a pilot paper.');$('begin-paper').disabled=!q||isStaff();if(q)await loadTopicOptions(q)}
+async function refresh(){if(!state.member)return;let query=sb.from('attempts').select('*').eq('org_id',state.member.org_id).order('started_at',{ascending:false}).limit(80);if(!isStaff())query=query.eq('student_id',state.user.id);let {data,error}=await query;if(error)throw error;state.attempts=data||[];text('metric-progress',state.attempts.filter(a=>a.status==='draft').length);text('metric-submitted',state.attempts.filter(a=>a.status==='submitted').length);text('metric-marked',state.attempts.filter(a=>a.status==='marked').length);const q=state.preference?.qualification;text('paper-availability',q?('Your selected pathway: '+quals[q]+'. Only original pilot questions are currently available; board-specific past papers are not yet provided.'): 'Save your examination pathway first to build a pilot paper.');if(q)await loadTopicOptions(q);await loadProgrammeAndEvidence()}
+
+const programmeNames={weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'};
+const programmeDescriptions={
+ weekly:'Up to four selected weekly or topic-focused papers per calendar month.',
+ daily:'Up to five short Daily Focus sessions per week, plus weekly practice.',
+ exam:'Daily Focus, weekly practice and one mock-preview paper per month.'
+};
+async function loadProgrammeAndEvidence(){
+ state.entitlement=null;
+ const {data:e,error}=await sb.from('student_entitlements')
+  .select('tier,signature_credits,starts_at,ends_at').eq('student_id',state.user.id).maybeSingle();
+ const active=e&&!error&&new Date(e.starts_at)<=new Date()&&(!e.ends_at||new Date(e.ends_at)>new Date());
+ if(active)state.entitlement=e;
+ $('student-programme-title').textContent=active?programmeNames[e.tier]||'Private programme':'Programme awaiting activation';
+ $('student-programme-description').textContent=active?programmeDescriptions[e.tier]:'Your tutor assigns Weekly, Daily or Exam access. Until your programme is activated, no new paper can be created.';
+ $('student-programme-expiry').textContent=active?(e.ends_at?'Active until '+new Date(e.ends_at).toLocaleDateString('en-GB'):'Access currently active'):'Ask your tutor to confirm programme access';
+ $('student-signature-credits').textContent='Signature Reviews: '+(active?e.signature_credits:'—');
+ $('membership-pill').textContent=active?programmeNames[e.tier]:'Invited · pending access';
+ const allowed=active?(e.tier==='weekly'?['weekly','topic']:e.tier==='daily'?['daily','weekly','topic']:['daily','weekly','topic','mock']):[];
+ for(const option of $('paper-mode').options)option.disabled=!allowed.includes(option.value);
+ if(!allowed.includes($('paper-mode').value))$('paper-mode').value=allowed[0]||'weekly';
+ $('paper-mode').dispatchEvent(new Event('change'));
+ $('begin-paper').disabled=!active||!state.preference?.qualification;
+ showPracticeDiary(e,Boolean(active));
+ await renderEvidence();
+}
+function showPracticeDiary(e,active){
+ const root=$('student-calendar');root.replaceChildren();
+ if(!active){root.textContent='Your next practice pattern will appear when your tutor activates a programme.';return}
+ const now=new Date();now.setHours(12,0,0,0);
+ const days=e.tier==='weekly'?[3]:e.tier==='daily'?[0,1,2,3,4]:[0,1,2,4,6];
+ for(let i=0;i<7;i++){
+  const d=new Date(now);d.setDate(d.getDate()+i);
+  const day=document.createElement('div');day.className='practice-day'+(days.includes(i)?' scheduled':'');
+  const name=document.createElement('small');name.textContent=d.toLocaleDateString('en-GB',{weekday:'short'});
+  const number=document.createElement('strong');number.textContent=d.getDate();
+  const task=document.createElement('span');task.textContent=days.includes(i)?(e.tier==='weekly'?'Paper':'Focus'):'Review';
+  day.append(name,number,task);root.append(day);
+ }
+}
+async function renderEvidence(){
+ const root=$('student-evidence');root.replaceChildren();
+ const marked=state.attempts.filter(x=>x.status==='marked').slice(0,8);
+ if(!marked.length){root.textContent='No released reviews yet. Your first examiner-marked paper will start your learning record.';return}
+ try{
+  const ids=marked.map(a=>a.id);
+  const [rv,qResult]=await Promise.all([
+   sb.from('reviews').select('attempt_id,question_id,marks_awarded').in('attempt_id',ids),
+   sb.from('question_bank').select('id,marks').eq('qualification',state.preference?.qualification||marked[0].qualification)
+  ]);
+  if(rv.error||qResult.error)throw rv.error||qResult.error;
+  const maximum=new Map((qResult.data||[]).map(q=>[q.id,q.marks]));
+  const rows=marked.map(a=>{
+   const parts=(rv.data||[]).filter(r=>r.attempt_id===a.id);
+   const earned=parts.reduce((x,r)=>x+Number(r.marks_awarded||0),0);
+   const available=parts.reduce((x,r)=>x+Number(maximum.get(r.question_id)||0),0);
+   return{a,earned,available,percent:available?Math.round(earned/available*100):0};
+  }).filter(x=>x.available>0).reverse();
+  if(!rows.length){root.textContent='Marks are not yet available for your reviewed papers.';return}
+  const total=rows.reduce((a,x)=>a+x.earned,0),outOf=rows.reduce((a,x)=>a+x.available,0);
+  const summary=document.createElement('p');summary.className='evidence-overview';
+  summary.textContent=rows.length+' reviewed paper(s) · '+total+'/'+outOf+' marks across reviewed questions · '+Math.round(total/outOf*100)+'% mark-weighted score';
+  root.append(summary);
+  const chart=document.createElement('div');chart.className='student-trend';
+  for(const x of rows){
+    const item=document.createElement('div');item.className='student-trend-col';
+    const val=document.createElement('strong');val.textContent=x.percent+'%';
+    const bar=document.createElement('i');bar.style.height=(25+x.percent*1.25)+'px';
+    const when=document.createElement('small');when.textContent=new Date(x.a.started_at).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    item.append(val,bar,when);chart.append(item);
+  }
+  root.append(chart);
+  const caveat=document.createElement('p');caveat.className='insight-disclaimer';
+  caveat.textContent=rows.length>=3&&outOf>=60?'Multiple marked papers are available. A formal predicted grade still requires representative timed assessments and moderated board-specific grade boundaries.':'Predicted grade unavailable: at least three substantial reviewed papers plus board-specific calibration are needed.';
+  root.append(caveat);
+ }catch(err){root.textContent='Evidence summary unavailable. Your saved papers remain accessible in My progress.'}
+}
+
 $('invite-login-form').addEventListener('submit',requestLink);
 $('existing-member').addEventListener('click',()=>{let code=$('access-code');code.required=false;code.value='';code.placeholder='No invitation code needed for existing members';message('login-message','Enter your registered email to receive a secure sign-in link.')});
 $('claim-form').addEventListener('submit',async e=>{e.preventDefault();try{await redeem($('claim-code').value);await loadMembership();if(!state.member)throw Error('Enrolment pending.');message('claim-message','Invitation accepted.');await dashboard()}catch(err){message('claim-message',friendlyError(err),true)}});
@@ -103,7 +181,7 @@ async function resume(a){
   await showQuestion();
  }catch(err){message('global-message',friendlyError(err),true)}
 }
-async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
+async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');window.MathsGroveMath?.write($('work-prompt'),q.prompt) ?? text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
 async function persistAnswer(){if(!state.attempt||!state.questions.length)return;const q=state.questions[state.question];const fields={typed_answer:$('work-text').value.slice(0,20000),difficulty:$('work-difficulty').value||null,confidence:$('work-confidence').value||null,clarity:$('work-clarity').value||null};let data,error;if(state.answer){({data,error}=await sb.from('answers').update(fields).eq('id',state.answer.id).select().single())}else{({data,error}=await sb.from('answers').insert({...fields,attempt_id:state.attempt.id,question_id:q.id,student_id:state.user.id}).select().single())}if(error)throw error;state.answer=data;text('save-status','Saved securely');return data}
 let saving=false;async function autosave(){if(!state.attempt||saving)return;saving=true;try{await persistAnswer()}catch(err){text('save-status','Save failed — '+friendlyError(err))}finally{saving=false}}
 ['work-text','work-difficulty','work-confidence','work-clarity'].forEach(id=>$(id).addEventListener(id==='work-text'?'input':'change',()=>{if(state.autosave)clearTimeout(state.autosave);text('save-status','Saving…');state.autosave=setTimeout(autosave,1300)}));
