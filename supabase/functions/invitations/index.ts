@@ -4,7 +4,7 @@
 // NEVER embed the service-role key in browser code.
 import {createClient} from 'npm:@supabase/supabase-js@2';
 const url=Deno.env.get('SUPABASE_URL')||'';
-const secret=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')||'';
+const secret=Deno.env.get('SUPABASE_SECRET_KEY')||Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')||'';
 const origins=(Deno.env.get('APP_ORIGINS')||'').split(',').map(s=>s.trim()).filter(Boolean);
 const admin=createClient(url,secret,{auth:{persistSession:false,autoRefreshToken:false}});
 const encode=new TextEncoder();
