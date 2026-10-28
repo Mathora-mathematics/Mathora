@@ -17,7 +17,7 @@
 6. Integrity: no publication of answers/mark scheme until authorized release, no browser-visible privileged service keys; never place confidential unseen mock solutions on public GitHub Pages.
 
 ## Paper creation & editorial safeguards
-- Admin selects board, year, grade tier, paper code, calculator rule, and approved original question set.
+- Admin selects board, year, grade tier, paper code, calculator rule, and a set of editorially approved original questions. Paper publication is a separate server-controlled action.
 - Check total marks EXACTLY against board target, no repeated question family, correct AO and topics, skill progression, and appropriate context/diagram coverage.
 - Lock question list when assigned. Teacher review of answer key and full mark scheme required before 'publish'.
 - Learners can select only mock packs actually assigned to them; no random 8-question pilot paper should be presented as a full official-format 100-mark mock.
