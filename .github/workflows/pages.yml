@@ -41,12 +41,12 @@ jobs:
         run: |
           mkdir -p site
           cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg site/
-          cp portal.html portal.css private-refresh.css student-features.css evidence-theme.css timed-mock.css portal.js maths-render.js mathsgrove-config.js whiteboard.js site/
-          cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css site/
+          cp portal.html portal.css private-refresh.css student-features.css evidence-theme.css timed-mock.css maths-notation.css portal.js maths-render.js mathsgrove-config.js whiteboard.js site/
+          cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css site/
           mkdir -p site/content
           cp content/boards.json content/paper-blueprints.json site/content/
           mkdir -p site/content/programmes
-          cp content/programmes/service-tiers.json content/programmes/draft-questions.json site/content/programmes/
+          cp content/programmes/service-tiers.json content/programmes/draft-questions.json content/programmes/practice-gcse-v2.json content/programmes/practice-igcse-v2.json site/content/programmes/
           mkdir -p site/content/GCSE site/content/IGCSE
           cp content/GCSE/draft-exemplars.json site/content/GCSE/
           cp content/IGCSE/draft-exemplars.json site/content/IGCSE/
