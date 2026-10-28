@@ -1,0 +1,47 @@
+/* MathsGrove — evidence, programme and detailed report extensions */
+.student-programme{display:flex;align-items:center;justify-content:space-between;gap:22px;background:#EEE8DF!important}
+.student-programme h2{margin:0 0 10px;font:400 32px "Instrument Serif",Georgia,serif}
+.student-programme p:not(.card-kicker){font-size:12px;color:#65768A;line-height:1.75;max-width:650px}
+.programme-facts{display:grid;gap:8px;min-width:195px;font-size:11px;color:#213C58}
+.programme-facts span{display:block;border:1px solid #D6C6B1;border-radius:6px;padding:10px;background:#FBF8F3}
+.student-insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.student-insight-grid .card h2{font:400 28px "Instrument Serif",Georgia,serif}
+.insight-disclaimer{font-size:10px!important;color:#8190A0!important;line-height:1.7!important;margin:15px 0 0}
+.mini-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:17px}
+.practice-day{background:#F8F7F5;text-align:center;border:1px solid #E9E5DE;border-radius:6px;padding:8px 2px;min-height:87px}
+.practice-day.scheduled{background:#E9E2D5;border-color:#CFBFA7}
+.practice-day small,.practice-day span{display:block;font-size:9px;color:#7F8FA1}
+.practice-day strong{display:block;font:400 23px "Instrument Serif",Georgia,serif;color:#1E3651;margin:6px 0}
+.evidence-overview{color:#566C85;font-size:12px;line-height:1.8}
+.student-trend{display:flex;gap:12px;align-items:flex-end;height:178px;margin-top:12px;border-bottom:1px solid #E9E3DA}
+.student-trend-col{flex:1;min-width:0;text-align:center}
+.student-trend-col strong{display:block;font-size:11px;color:#526D85;margin-bottom:6px}
+.student-trend-col i{background:#C9B99F;display:block;width:min(48px,75%);margin:auto;border-radius:5px 5px 0 0}
+.student-trend-col:last-child i{background:#182F4A}
+.student-trend-col small{display:block;font-size:9px;color:#8998A7;margin:7px 0}
+.typeset-maths math{font-size:1.12em;vertical-align:middle;white-space:nowrap}
+.programme-admin{border-left:4px solid #CDBBA0!important}
+.programme-admin h2{font:400 29px "Instrument Serif",Georgia,serif!important}
+.programme-form{display:grid;grid-template-columns:2fr 1fr 1fr .7fr auto;gap:13px;align-items:end;margin-top:20px}
+.programme-form label{font-size:11px;font-weight:700;color:#4B6077;display:grid;gap:8px}
+.programme-form select,.programme-form input{display:block;width:100%;border:1px solid #D6DCE4;border-radius:6px;padding:11px 12px;background:#FDFCFB;color:#19344D}
+.programme-form .button{white-space:nowrap}
+.review-narrative{border:1px solid #E1D7C9;border-radius:10px;background:#FAF8F3;padding:28px;margin:25px 0}
+.review-narrative h2{font:400 34px "Instrument Serif",Georgia,serif!important;color:#1D344E}
+.review-narrative label{font-size:12px;font-weight:700;color:#435B75;display:block;margin-top:19px}
+.review-narrative textarea{display:block;width:100%;margin-top:8px;padding:12px 14px;border:1px solid #D9D7D2;border-radius:6px;background:white;color:#233A53;line-height:1.75;font-size:12px}
+.examiner-attachment{border:1px solid #E0E5EB;border-radius:7px;padding:12px;margin:9px 0;background:#F9FAFC}
+.examiner-attachment summary{font-size:11px;color:#1C3E63;font-weight:700;cursor:pointer}
+.examiner-attachment img{display:block;width:100%;max-height:540px;object-fit:contain;background:white;margin-top:12px;border:1px solid #E2E6EB;border-radius:5px}
+.review-report-intro{font-size:12px;color:#5B7088;line-height:1.8;margin:8px 0 24px}
+.review-summary-card{border:1px solid #E5D7C5;background:#F7F1E7;padding:23px;margin:20px 0;border-radius:8px}
+.review-summary-card h3{font:400 26px "Instrument Serif",Georgia,serif;margin:0 0 12px;color:#233951}
+.review-summary-card p{white-space:pre-wrap;font-size:12px;color:#51667A;line-height:1.8}
+.review-summary-card strong{font-weight:800;color:#203E5C}
+.review-report-score{display:flex;align-items:center;gap:21px;padding:21px 24px;background:#172A44;color:white;border-radius:8px;margin:22px 0}
+.review-report-score strong{font:400 43px "Instrument Serif",Georgia,serif}
+.review-report-score span{font-size:11px;color:#D8C5A8}
+@media(max-width:1100px){.programme-form{grid-template-columns:1fr 1fr}.programme-form .button{justify-self:start}}
+@media(max-width:850px){.student-programme,.student-insight-grid{display:grid;grid-template-columns:1fr}.programme-facts{grid-template-columns:1fr 1fr}.mini-calendar{gap:4px}}
+@media(max-width:560px){.programme-form{grid-template-columns:1fr}.programme-facts{grid-template-columns:1fr}.practice-day{padding:7px 1px;min-height:70px}.practice-day strong{font-size:19px}.review-narrative{padding:18px}}
+@media print{.review-summary-card,.review-report-score{break-inside:avoid}}
