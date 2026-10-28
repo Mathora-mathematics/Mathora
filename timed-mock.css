@@ -50,3 +50,13 @@
 .tier-library-card p{font-size:11px;line-height:1.7;color:#53677C}
 .tier-library-card small{display:block;font-size:10px;line-height:1.7;color:#8895A4;margin-top:12px}
 @media(max-width:900px){.tier-library-cards{grid-template-columns:1fr}}
+
+/* Mathematics-first reading style for mixed prose + TeX questions */
+.typeset-maths,.bank-prompt,.bank-draft-item p,.bank-table td small{font-variant-numeric:lining-nums;overflow-wrap:anywhere}
+.mg-math-inline{display:inline-block;vertical-align:-.18em;margin:0 .07em;max-width:100%}
+.mg-math-display{display:block;overflow-x:auto;max-width:100%;padding:10px 0;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:4px 0;margin:.7em 0}
+.bank-prompt .katex,.typeset-maths .katex{font-size:1.09em}
+#work-prompt{line-height:1.85;letter-spacing:0}
+#work-prompt .mg-math-display{font-size:1.1em}
+@media(max-width:600px){#work-prompt .katex{font-size:1em}.mg-math-display{overflow-x:auto}}
