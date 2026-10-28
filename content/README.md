@@ -14,7 +14,7 @@
 - [quality-gates.md](quality-gates.md): checking correctness, syllabus mapping, method marks, ambiguity, diagrams, and secure release.
 
 ## Content lifecycle
-**Research syllabus → draft original question → solve independently → check mark allocation → label board/tier/AO/calculator/skills → review mathematical language and diagram → approve for student practice → assemble new mock → check total marks/time/coverage → second-person moderation → publish.**
+**Research syllabus → draft original question → solve independently → check mark allocation → label board/tier/AO/calculator/skills → review mathematical language and diagram → approve editorially → validate board and publish separately → assemble new mock → check total marks/time/coverage → second-person moderation → publish.**
 
 An administrator can review the existing ten pilot items in the live Studio. The separate optional SQL migration `supabase/migrations/20261028_question_content_studio.sql` adds a tenant-isolated original-question authoring and moderation workflow. **Running this migration requires a backup and access-control tests; GitHub deployment does not install it.**
 
