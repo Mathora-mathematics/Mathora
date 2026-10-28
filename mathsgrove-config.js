@@ -3,6 +3,6 @@
 // A publishable key is permitted in client code when Row Level Security is enabled and tested.
 // NEVER place a secret or service_role key here.
 window.MATHSGROVE_CONFIG = {
-  url: "",
+  url: "https://nwakgkxytovprrrwyahs.supabase.co",
   publishableKey: ""
 };
