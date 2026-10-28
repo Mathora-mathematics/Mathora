@@ -130,10 +130,10 @@
 <div class="mock-admin-grid"><label>Qualification<select id="mock-build-qual"><option value="GCSE">GCSE</option><option value="IGCSE">IGCSE</option><option value="A_LEVEL">AS / A Level</option></select></label>
 <label>Exam board<select id="mock-build-board" required></select></label><label>Academic tier<select id="mock-build-tier" required></select></label>
 <label>Paper title<input id="mock-build-title" maxlength="160" required placeholder="Cambridge Extended · Original Paper A"></label>
-<label>Paper code<input id="mock-build-code" maxlength="30" required placeholder="P2-A"></label>
-<label>Duration (minutes)<input id="mock-build-minutes" type="number" min="15" max="180" value="120" required></label>
-<label>Exact target marks<input id="mock-build-target" type="number" min="20" max="150" value="100" required></label>
-<label class="mock-calculator"><input id="mock-build-calc" type="checkbox"> Calculator permitted</label></div>
+<label>Official paper component<select id="mock-build-code" required><option value="">Choose board and tier first</option></select></label>
+<label>Board duration (minutes)<input id="mock-build-minutes" type="number" min="15" max="180" value="120" required readonly></label>
+<label>Exact board mark total<input id="mock-build-target" type="number" min="20" max="150" value="100" required readonly></label>
+<label class="mock-calculator"><input id="mock-build-calc" type="checkbox" disabled> Calculator permitted by board</label></div>
 <p class="card-kicker">APPROVED ORIGINAL QUESTIONS · SELECT IN PAPER ORDER</p>
 <div id="mock-question-pool" class="mock-question-pool">No original items have passed moderation yet.</div>
 <p class="mock-selected">Chosen: <strong id="mock-selected-count">0 questions</strong> · <strong id="mock-selected-marks">0 marks</strong></p>
