@@ -1,34 +1,54 @@
-/* Accessibility-first MathsGrove maths typesetting.
- * Uses DOM text nodes and native MathML, never untrusted HTML injection.
- * Supports exponents and small numeric fractions in ORIGINAL pilot prompts.
- * The source content remains accessible as text if MathML isn't supported. */
+/* MathsGrove mathematical notation, edition 2.
+ * Prefer properly typeset KaTeX for explicitly delimited TeX,
+ * falling back safely to text and native MathML for existing pilot questions.
+ * No student-authored TeX is injected as HTML; trust:false is mandatory.
+ */
 (function(){
 "use strict";
 const NS="http://www.w3.org/1998/Math/MathML";
-function node(tag,content){const el=document.createElementNS(NS,tag);el.textContent=content;return el}
-function math(kind,x,y){
- const el=document.createElementNS(NS,"math");el.setAttribute("display","inline");
- el.setAttribute("aria-label",kind==="fraction"?x+" divided by "+y:x+" to the power of "+(y==="²"?"2":"3"));
- if(kind==="fraction"){
-  const frac=document.createElementNS(NS,"mfrac");
-  frac.append(node("mn",x),node("mn",y));el.append(frac);
- } else {
-  const sup=document.createElementNS(NS,"msup");sup.append(node("mi",x),node("mn",y==="²"?"2":"3"));el.append(sup);
- }
- return el;
+function n(tag,text){const e=document.createElementNS(NS,tag);e.textContent=text;return e}
+function simple(kind,a,b){
+ const root=document.createElementNS(NS,"math");root.setAttribute("display","inline");
+ const wrap=document.createElementNS(NS,kind==="frac"?"mfrac":"msup");
+ if(kind==="frac"){wrap.append(n("mn",a),n("mn",b));root.setAttribute("aria-label",a+" over "+b)}
+ else{wrap.append(n("mi",a),n("mn",b==="²"?"2":"3"));root.setAttribute("aria-label",a+" to the power of "+(b==="²"?"two":"three"))}
+ root.append(wrap);return root;
 }
-function write(el,source){
- el.replaceChildren();
- const s=String(source??"");
- const re=/(\b\d{1,3})\/(\d{1,3}\b)|([a-zA-Z])([²³])/g;
- let start=0;
- for(const m of s.matchAll(re)){
-  if(m.index>start)el.append(document.createTextNode(s.slice(start,m.index)));
-  el.append(m[1]?math("fraction",m[1],m[2]):math("exponent",m[3],m[4]));
-  start=m.index+m[0].length;
+function legacy(target,source){
+ const re=/(\\b\\d{1,4})\\/(\\d{1,4}\\b)|([a-zA-Z])([²³])/g;
+ let from=0;
+ for(const m of source.matchAll(re)){
+  if(m.index>from)target.append(document.createTextNode(source.slice(from,m.index)));
+  target.append(m[1]?simple("frac",m[1],m[2]):simple("sup",m[3],m[4]));
+  from=m.index+m[0].length;
  }
- if(start<s.length)el.append(document.createTextNode(s.slice(start)));
- if(!el.childNodes.length)el.textContent=s;
+ if(from<source.length)target.append(document.createTextNode(source.slice(from)));
 }
-window.MathsGroveMath={write};
+function renderExpression(parent,source,display){
+ const el=document.createElement(display?"div":"span");
+ el.className=display?"mg-math-display":"mg-math-inline";
+ if(window.katex&&typeof window.katex.render==="function"){
+  try{window.katex.render(source,el,{
+   displayMode:display,throwOnError:true,strict:"warn",trust:false,
+   output:"htmlAndMathml",maxExpand:250,maxSize:10
+  });parent.append(el);return}
+  catch(_){/* Show the source, not error-derived HTML. */}
+ }
+ el.textContent=source;el.setAttribute("aria-label",source);parent.append(el);
+}
+function write(element,source){
+ if(!element)return;
+ element.replaceChildren();
+ const input=String(source??"").slice(0,8000);
+ const re=/(\\\[[\s\S]*?\\\]|\\\([\s\S]*?\\\))/g;
+ let from=0;
+ for(const m of input.matchAll(re)){
+  if(m.index>from)legacy(element,input.slice(from,m.index));
+  const display=m[0].startsWith("\\[");
+  renderExpression(element,m[0].slice(2,-2),display);
+  from=m.index+m[0].length;
+ }
+ if(from<input.length)legacy(element,input.slice(from));
+}
+window.MathsGroveMath={write,renderExpression};
 })();
