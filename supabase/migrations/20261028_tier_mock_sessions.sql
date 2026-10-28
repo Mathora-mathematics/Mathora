@@ -8,6 +8,64 @@ ALTER TABLE public.attempts ADD COLUMN IF NOT EXISTS mock_pack_id uuid;
 ALTER TABLE public.attempts ADD COLUMN IF NOT EXISTS deadline_at timestamptz;
 ALTER TABLE public.attempts ADD COLUMN IF NOT EXISTS duration_seconds integer;
 ALTER TABLE public.attempts ADD COLUMN IF NOT EXISTS mock_expired boolean NOT NULL DEFAULT false;
+CREATE TABLE IF NOT EXISTS public.mock_board_templates(
+ board_key text NOT NULL, exam_tier text NOT NULL, paper_code text NOT NULL,
+ qualification text NOT NULL, duration_seconds integer NOT NULL,
+ target_marks integer NOT NULL, calculator_allowed boolean NOT NULL,
+ source_url text NOT NULL, PRIMARY KEY(board_key,exam_tier,paper_code)
+);
+ALTER TABLE public.mock_board_templates ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public.mock_board_templates FROM anon,authenticated;
+GRANT SELECT ON public.mock_board_templates TO authenticated;
+CREATE POLICY mock_board_templates_read ON public.mock_board_templates
+ FOR SELECT TO authenticated USING(true);
+INSERT INTO public.mock_board_templates(board_key,exam_tier,paper_code,qualification,
+ duration_seconds,target_marks,calculator_allowed,source_url)
+ VALUES
+('AQA_8300','Foundation','P1','GCSE',5400,80,false,'https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance'),
+('AQA_8300','Higher','P1','GCSE',5400,80,false,'https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance'),
+('AQA_8300','Foundation','P2','GCSE',5400,80,true,'https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance'),
+('AQA_8300','Higher','P2','GCSE',5400,80,true,'https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance'),
+('AQA_8300','Foundation','P3','GCSE',5400,80,true,'https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance'),
+('AQA_8300','Higher','P3','GCSE',5400,80,true,'https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance'),
+('EDEXCEL_1MA1','Foundation','P1','GCSE',5400,80,false,'https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html'),
+('EDEXCEL_1MA1','Higher','P1','GCSE',5400,80,false,'https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html'),
+('EDEXCEL_1MA1','Foundation','P2','GCSE',5400,80,true,'https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html'),
+('EDEXCEL_1MA1','Higher','P2','GCSE',5400,80,true,'https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html'),
+('EDEXCEL_1MA1','Foundation','P3','GCSE',5400,80,true,'https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html'),
+('EDEXCEL_1MA1','Higher','P3','GCSE',5400,80,true,'https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html'),
+('OCR_J560','Foundation','F1','GCSE',5400,100,true,'https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/'),
+('OCR_J560','Foundation','F2','GCSE',5400,100,false,'https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/'),
+('OCR_J560','Foundation','F3','GCSE',5400,100,true,'https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/'),
+('OCR_J560','Higher','H4','GCSE',5400,100,true,'https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/'),
+('OCR_J560','Higher','H5','GCSE',5400,100,false,'https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/'),
+('OCR_J560','Higher','H6','GCSE',5400,100,true,'https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/'),
+('EDUQAS_C300','Foundation','C1','GCSE',8100,120,false,'https://www.eduqas.co.uk/articles/gcse-maths-with-eduqas-a-guide-for-parents-teachers-and-learners/'),
+('EDUQAS_C300','Higher','C1','GCSE',8100,120,false,'https://www.eduqas.co.uk/articles/gcse-maths-with-eduqas-a-guide-for-parents-teachers-and-learners/'),
+('EDUQAS_C300','Foundation','C2','GCSE',8100,120,true,'https://www.eduqas.co.uk/articles/gcse-maths-with-eduqas-a-guide-for-parents-teachers-and-learners/'),
+('EDUQAS_C300','Higher','C2','GCSE',8100,120,true,'https://www.eduqas.co.uk/articles/gcse-maths-with-eduqas-a-guide-for-parents-teachers-and-learners/'),
+('CAMBRIDGE_0580','Core','P1','IGCSE',5400,80,false,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/'),
+('CAMBRIDGE_0580','Core','P3','IGCSE',5400,80,true,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/'),
+('CAMBRIDGE_0580','Extended','P2','IGCSE',7200,100,false,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/'),
+('CAMBRIDGE_0580','Extended','P4','IGCSE',7200,100,true,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/'),
+('CAMBRIDGE_0980','Core','P1','IGCSE',5400,80,false,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-9-1-0980/'),
+('CAMBRIDGE_0980','Core','P3','IGCSE',5400,80,true,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-9-1-0980/'),
+('CAMBRIDGE_0980','Extended','P2','IGCSE',7200,100,false,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-9-1-0980/'),
+('CAMBRIDGE_0980','Extended','P4','IGCSE',7200,100,true,'https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-9-1-0980/'),
+('EDEXCEL_4MA1','Foundation','P1F','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2016.html'),
+('EDEXCEL_4MA1','Foundation','P2F','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2016.html'),
+('EDEXCEL_4MA1','Higher','P1H','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2016.html'),
+('EDEXCEL_4MA1','Higher','P2H','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2016.html'),
+('EDEXCEL_4XMA1','Foundation','U1F','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html'),
+('EDEXCEL_4XMA1','Foundation','U2F','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html'),
+('EDEXCEL_4XMA1','Higher','U1H','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html'),
+('EDEXCEL_4XMA1','Higher','U2H','IGCSE',7200,100,true,'https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html'),
+('OXFORDAQA_9260','Core','1C','IGCSE',5400,80,true,'https://www.oxfordaqa.com/qualification/international-gcse-mathematics-9260/'),
+('OXFORDAQA_9260','Core','2C','IGCSE',5400,80,true,'https://www.oxfordaqa.com/qualification/international-gcse-mathematics-9260/'),
+('OXFORDAQA_9260','Extension','1E','IGCSE',7200,100,true,'https://www.oxfordaqa.com/qualification/international-gcse-mathematics-9260/'),
+('OXFORDAQA_9260','Extension','2E','IGCSE',7200,100,true,'https://www.oxfordaqa.com/qualification/international-gcse-mathematics-9260/')
+ON CONFLICT(board_key,exam_tier,paper_code) DO NOTHING;
+
 CREATE TABLE IF NOT EXISTS public.mock_packs (
  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
  org_id uuid NOT NULL REFERENCES public.organisations(id),
@@ -224,6 +282,11 @@ BEGIN
  AND EXISTS(SELECT 1 FROM public.mark_schemes ms WHERE ms.question_id=q.id AND length(trim(ms.scheme))>=20);
  IF v_count<>array_length(p_questions,1) OR v_sum<>p_target THEN
  RAISE EXCEPTION 'Question set must be unique, approved for this board/tier, and total exactly % marks',p_target;END IF;
+ IF NOT EXISTS(SELECT 1 FROM public.mock_board_templates t
+ WHERE t.board_key=p_board AND t.exam_tier=p_tier AND t.paper_code=p_code
+ AND t.qualification=p_qualification AND t.duration_seconds=p_minutes*60
+ AND t.target_marks=p_target AND t.calculator_allowed=coalesce(p_calculator,true))
+ THEN RAISE EXCEPTION 'Paper component must match the verified board specification: exact marks, minutes and calculator rule';END IF;
  INSERT INTO public.mock_packs(org_id,qualification,board_key,exam_tier,title,paper_code,
  calculator_allowed,duration_seconds,target_marks,created_by)
  VALUES(p_org,p_qualification,p_board,p_tier,p_title,p_code,coalesce(p_calculator,true),
