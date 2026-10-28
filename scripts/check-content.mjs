@@ -27,6 +27,37 @@ for(const m of blueprints){
  const paper=board.papers.find(p=>p.code===m.paper_code);
  assert(paper&&paper.minutes===m.minutes&&paper.marks===m.target_marks&&paper.calculator===m.calculator,'Mock format differs from board record: '+m.id);
 }
+const newGCSE=read('content/programmes/practice-gcse-v2.json').items;
+const newIGCSE=read('content/programmes/practice-igcse-v2.json').items;
+const foundationCore=read('content/programmes/practice-foundation-core-v2.json').items;
+assert(foundationCore.length===60,'Missing Foundation/Core coverage');
+const practice=[...newGCSE,...newIGCSE,...foundationCore];
+const practiceIds=new Set();
+assert(newGCSE.length===60&&newIGCSE.length===60,'Need 60 original practice items per qualification');
+for(const q of practice){
+ assert(!practiceIds.has(q.id),'Duplicate practice id: '+q.id);practiceIds.add(q.id);
+ assert(['daily','weekly','exam'].includes(q.programme),'Invalid Grove service tier '+q.id);
+ assert(['Foundation','Higher','Core','Extended'].includes(q.exam_tier),'Missing academic level '+q.id);
+ assert(Number.isInteger(q.marks)&&q.marks>=2&&q.marks<=9,'Bad mark allocation '+q.id);
+ assert(q.mark_scheme.length===q.marks,'Mark count and guidance must match '+q.id);
+ assert(q.mark_scheme.every(s=>/^[MAB]1$/.test(s.code)&&s.text.length>=10),'Incomplete mark scheme '+q.id);
+ assert(q.prompt.length>=50&&q.answer.length>=3,'Incomplete mathematical question '+q.id);
+ assert(q.student_ready===false&&q.unseen_mock_eligible===false,'Open candidates may not be unseen timed mocks '+q.id);
+ assert(q.answer.includes('\\('),'Missing accessible TeX notation '+q.id);
+}
+for(const qual of ['GCSE','IGCSE']){
+ for(const tier of ['daily','weekly','exam']){
+  const expected=qual==='GCSE'?(tier==='exam'?40:20):(tier==='daily'?20:40);
+  assert(practice.filter(q=>q.qualification===qual&&q.programme===tier).length===expected,'Incorrect practice coverage '+qual+' '+tier);
+ }
+}
+const seed=readFileSync('supabase/SEED_GROVE_OPEN_PRACTICE.sql','utf8')+readFileSync('supabase/ADD_FOUNDATION_CORE_PRACTICE.sql','utf8');
+for(const q of practice)assert(seed.includes(q.id),'Missing SQL seed item '+q.id);
+assert(seed.includes('exam_practice')&&seed.includes('practice_content_index'),'Server practice-tier restrictions missing');
+const upgraded=readFileSync('supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql','utf8');
+assert((upgraded.match(/^BEGIN;$/gm)||[]).length===1&&(upgraded.match(/^COMMIT;$/gm)||[]).length===1,'Combined upgrade must be transactional');
+assert(upgraded.includes('start_mock_session')&&upgraded.includes('practice_content_index'),'Combined upgrade missing timed mocks or practice questions');
+
 const mockSql=readFileSync('supabase/UPGRADE_TIER_MOCKS.sql','utf8');
 for(const test of ['start_mock_session','finish_mock_session','mock_session_clock',
  'REVOKE INSERT ON public.attempts','timed_attachment_guard','private.is_editable_attempt',
@@ -44,4 +75,4 @@ for(const id of ['mocks-panel','mock-clock-bar','mock-time-remaining','work-ques
  assert(portal.includes('id="'+id+'"'),'Missing student workspace control: '+id);
 for(const id of ['mock-build-form','mock-question-pool','mock-admin-packs','tier-library-cards'])
  assert(studio.includes('id="'+id+'"'),'Missing admin content control: '+id);
-console.log('MathsGrove content checks passed: 3 service tiers, '+drafts.length+' draft question stems, '+blueprints.length+' unpublished mock outlines, and server deadline safeguards present.');
+console.log('MathsGrove content checks passed: 3 service tiers, '+drafts.length+' early draft stems, '+practice.length+' original worked practice candidates, '+blueprints.length+' unpublished mock blueprints, and server deadline safeguards present.');
