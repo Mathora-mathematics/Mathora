@@ -44,6 +44,9 @@ jobs:
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css site/
           mkdir -p site/content
           cp content/boards.json content/paper-blueprints.json site/content/
+          mkdir -p site/content/GCSE site/content/IGCSE
+          cp content/GCSE/draft-exemplars.json site/content/GCSE/
+          cp content/IGCSE/draft-exemplars.json site/content/IGCSE/
           cp sample.html sample.css sample-extras.css sample.js sample-extras.js site/
           touch site/.nojekyll
       - name: Configure Pages
