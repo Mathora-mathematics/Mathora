@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./studio.css">
-<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css"><link rel="stylesheet" href="./admin-learner.css">
+<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css"><link rel="stylesheet" href="./admin-learner.css"><link rel="stylesheet" href="./content-bank.css">
 <script src="./mathsgrove-config.js" defer></script><script src="./maths-render.js" defer></script><script src="./studio.js" type="module"></script></head>
 <body class="mg-private-studio">
 <div class="shell">
@@ -17,7 +17,7 @@
     <button data-tab="overview" class="active"><span>▦</span> Overview</button>
     <button data-tab="students"><span>♙</span> Students &amp; invitations</button>
     <button data-tab="marking"><span>✎</span> Marking board</button>
-    <button data-tab="reports"><span>◇</span> Reports &amp; quality</button>
+    <button data-tab="reports"><span>◇</span> Reports &amp; quality</button><button data-tab="bank"><span>▧</span> Mathematics bank</button>
   </nav>
   <div class="nav-footer"><a href="./portal.html">Student portal ↗</a><a href="./index.html">Public website ↗</a><button id="logout" type="button" hidden>Sign out →</button><p>INTELLIGENT PRACTICE<br>EXPERT JUDGEMENT</p></div>
 </aside>
@@ -88,7 +88,42 @@
 <p id="programme-feedback" class="feedback" role="status"></p></article>
 <article class="card"><div class="card-header"><div><p class="overline">STUDENT DIRECTORY</p><h2>Enrolled learners</h2></div><input id="student-search" type="search" placeholder="Search students" aria-label="Search students"></div><div class="table-scroll"><table><thead><tr><th>Name</th><th>Member reference</th><th>Exam pathway</th><th>Active papers</th></tr></thead><tbody id="students-body"><tr><td colspan="4">No students loaded.</td></tr></tbody></table></div></article>
     </section>
-    <section data-panel="marking" class="panel" hidden>
+    <section data-panel="bank" class="panel" hidden>
+<div class="heading"><div><p class="overline">EXAMINER CONTENT LIBRARY</p><h1>Your mathematics bank.</h1><p>Inspect original questions and private examiner guidance, organise by exam board and monitor mock-paper development.</p></div><button class="button outline" type="button" id="bank-refresh">Refresh library ↻</button></div>
+<div class="bank-status" id="bank-status" role="status">Open the library to load your original questions securely.</div>
+<div class="bank-metrics"><article><span>EXISTING QUESTIONS</span><strong id="bank-question-count">—</strong><small>Available in your Supabase project</small></article><article><span>BOARD FORMATS</span><strong id="bank-board-count">—</strong><small>Research and specification outlines</small></article><article><span>MOCK OUTLINES</span><strong id="bank-mock-count">—</strong><small>Not completed student papers</small></article></div>
+<div class="card bank-board-card"><div class="card-header"><div><p class="overline">EXAM BOARD RESEARCH</p><h2>Format &amp; component directory</h2></div></div>
+<div class="bank-toolbar"><label>Academic level<select id="bank-level"><option value="GCSE">GCSE</option><option value="IGCSE">IGCSE</option><option value="AS_A_LEVEL">AS &amp; A Level · planned</option></select></label><label>Exam board<select id="bank-board"><option value="">All boards</option></select></label></div>
+<div id="bank-board-list" class="bank-board-list"></div>
+</div>
+<div class="card"><div class="card-header"><div><p class="overline">PRIVATE SUPABASE CONTENT</p><h2>Question catalogue</h2><p class="subtext">Every question is stored with its mark allocation and examiner-only marking scheme. Drafts require moderation before publication.</p></div></div>
+<div class="bank-toolbar"><label>Search maths topics or wording<input id="bank-search" type="search" placeholder="e.g. simultaneous equations, bounds, surds"></label><label>Review status<select id="bank-review-filter"><option value="all">All statuses</option><option value="approved">Approved</option><option value="draft">Draft</option><option value="in_review">In review</option><option value="legacy_unmapped">Legacy pilot</option></select></label></div>
+<div class="bank-table-wrap"><table class="bank-table"><thead><tr><th>Qualification</th><th>Topic &amp; question</th><th>Marks</th><th>Difficulty</th><th>Editorial state</th><th>Review</th></tr></thead><tbody id="bank-questions"><tr><td colspan="6">Open the bank to load questions.</td></tr></tbody></table></div></div>
+<article class="card bank-detail" id="bank-detail" hidden><div class="card-header"><div><p class="overline">EDITORIAL PREVIEW</p><h2 id="bank-detail-title">Question</h2></div><button id="bank-detail-close" class="button outline" type="button">Close</button></div>
+<div id="bank-detail-meta" class="bank-tags"></div><div id="bank-detail-prompt" class="bank-prompt"></div>
+<details class="bank-scheme"><summary>Open examiner-only marking guidance</summary><p id="bank-detail-scheme"></p></details>
+<div id="bank-moderation" class="bank-moderation" hidden>
+<label>Reviewer's notes<textarea id="bank-review-note" rows="3" maxlength="1500" placeholder="Verify every answer, method mark, tier, board and calculator requirement before approval."></textarea></label>
+<div class="bank-actions"><button type="button" class="button outline" data-bank-decision="draft">Return to draft</button><button type="button" class="button outline" data-bank-decision="in_review">Needs review</button><button type="button" class="button primary" data-bank-decision="approved">Approve for practice</button></div></div>
+</article>
+<article class="card bank-author" id="bank-author" hidden><p class="overline">ADD AN ORIGINAL ITEM</p><h2>Write a question for your own bank.</h2><p class="subtext">Author the question and examiner-only scheme here. New questions start unpublished. They become available to students only after an administrator approves them.</p>
+<form id="bank-author-form"><div class="bank-author-grid">
+<label>Qualification<select id="bank-author-qual"><option value="GCSE">GCSE</option><option value="IGCSE">IGCSE</option><option value="A_LEVEL">AS / A Level (later phase)</option></select></label>
+<label>Board<select id="bank-author-board" required></select></label>
+<label>Tier<select id="bank-author-tier" required></select></label>
+<label>Topic<input id="bank-author-topic" maxlength="140" required placeholder="e.g. Trigonometry · Cosine rule"></label>
+<label>Marks<input id="bank-author-marks" type="number" min="1" max="30" value="4" required></label>
+<label>Difficulty (1–5)<input id="bank-author-difficulty" type="number" min="1" max="5" value="3" required></label>
+<label>Suggested time (minutes)<input id="bank-author-minutes" type="number" min="1" max="30" value="5" required></label>
+<label class="bank-checkbox"><input id="bank-author-calculator" type="checkbox"> Calculator required/allowed for this item</label></div>
+<label>Original question and all parts<textarea id="bank-author-prompt" rows="5" minlength="20" maxlength="5000" required placeholder="Write precise mathematical wording. Label all subparts and indicate diagram requirements."></textarea></label>
+<label>Examiner-only mark scheme<textarea id="bank-author-scheme" rows="5" minlength="20" maxlength="5000" required placeholder="M1 for valid substitution, A1 for correct result; specify accepted equivalents, alternative methods and follow-through."></textarea></label>
+<label>Editorial notes<textarea id="bank-author-note" rows="2" maxlength="1500" placeholder="Syllabus point, diagram checks, expected error patterns"></textarea></label>
+<button class="button primary" id="bank-author-save" type="submit">Save unpublished question</button></form>
+<p class="feedback" id="bank-author-feedback" role="status"></p></article>
+<div class="card bank-mocks"><p class="overline">ORIGINAL MOCKS · DEVELOPMENT REGISTER</p><h2>Paper blueprint directory</h2><p class="subtext">These are format/mark/time targets only. They are not assembled papers and cannot be assigned to a student. Approved questions and a server-controlled hard-stop timer are required before publishing real mocks.</p><div id="bank-mock-list" class="bank-mock-list"></div></div>
+</section>
+<section data-panel="marking" class="panel" hidden>
       <div class="heading"><div><p class="overline">PROFESSIONAL EXAMINATION REVIEW</p><h1>The marking board.</h1><p>Review original working, enter marks against the question maximum and record actionable feedback.</p></div><button type="button" class="button outline" id="refresh-marking">Refresh queue ↻</button></div>
       <div class="card"><div class="card-header"><div><p class="overline">SUBMISSIONS</p><h2>Paper queue</h2></div><select id="marking-filter" aria-label="Filter marking queue"><option value="submitted">Awaiting marking</option><option value="marked">Already released</option><option value="all">All papers</option></select></div><div id="marking-queue" class="records"></div></div>
       <article id="review-card" class="card review-card" hidden><div class="card-header"><div><p class="overline">EXAMINER REVIEW</p><h2 id="review-title">Paper assessment</h2><p id="review-caption" class="subtext"></p></div><button type="button" id="close-review" class="button outline">Close</button></div><div id="review-questions"></div>
