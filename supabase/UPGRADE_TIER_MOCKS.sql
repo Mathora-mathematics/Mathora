@@ -1,10 +1,9 @@
--- MathsGrove secure content bank + Grove Exam timed mock upgrade
--- Only for projects where UPGRADE_MATHSGROVE_ADMIN.sql succeeded, but
--- question-content studio and mock session migrations have NOT yet been run.
--- Make a backup and test with adult accounts. No question pack is published.
+-- MathsGrove secure original question authoring and timed Grove Exam mock sittings.
+-- Only after previous administrator upgrade; make a backup; verify with adult test accounts.
+-- Does not install or publish any finished student mock papers.
 BEGIN;
 
--- ===== supabase/migrations/20261028_question_content_studio.sql =====
+-- SOURCE supabase/migrations/20261028_question_content_studio.sql
 -- MathsGrove content studio, phase 1: private question moderation.
 -- Run only after UPGRADE_MATHSGROVE_ADMIN.sql. Do not run without a backup.
 -- No secret questions or answers are placed in the public static website.
@@ -156,7 +155,7 @@ GRANT EXECUTE ON FUNCTION public.moderate_bank_question(uuid,text,text) TO authe
 
 
 
--- ===== supabase/migrations/20261028_tier_mock_sessions.sql =====
+-- SOURCE supabase/migrations/20261028_tier_mock_sessions.sql
 -- MathsGrove Tier Assessment v2
 -- Requires the deployed administrator upgrade AND content-studio migration.
 -- Adds server-controlled timed Grove Exam mock sittings. NO mock packs are
@@ -507,7 +506,7 @@ GRANT EXECUTE ON FUNCTION public.finish_mock_session(uuid) TO authenticated;
 -- Examiner/admin can finalise unattended expired sittings before loading the
 -- marking queue. A separate database scheduler is recommended for production.
 CREATE OR REPLACE FUNCTION public.finalize_expired_mock_sessions()
-RETURNS integer LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+RETURNS integer LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_actor uuid:=(SELECT auth.uid());v_total integer;
 BEGIN
  IF v_actor IS NULL THEN RAISE EXCEPTION 'Authentication required';END IF;
@@ -518,7 +517,7 @@ BEGIN
   AND m.user_id=v_actor AND m.member_role IN ('admin','partner','examiner'));
  GET DIAGNOSTICS v_total=ROW_COUNT;
  RETURN v_total;
-END;$;
+END;$$;
 REVOKE ALL ON FUNCTION public.finalize_expired_mock_sessions() FROM public,anon;
 GRANT EXECUTE ON FUNCTION public.finalize_expired_mock_sessions() TO authenticated;
 
