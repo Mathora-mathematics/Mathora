@@ -13,15 +13,16 @@ The administrator enters the student's registered email and presses **Generate p
 
 A code is **not** a password. Each student subsequently uses their own verified Supabase identity. Their access is determined by organisation membership and PostgreSQL Row Level Security, not by a publicly discoverable page URL.
 
-The first-time administrator account is created by signing into `portal.html`, then completing the one-time owner bootstrap from `docs/STUDENT_PORTAL_SETUP.md`.
+The first-time administrator account is created by signing into `portal.html`, then completing the one-time owner bootstrap from `docs/STUDENT_PORTAL_SETUP.md`. After that, open `studio.html`.
 
 ### SQL migrations — apply in this exact order
 Execute these in a **new Supabase project only**, using SQL Editor:
 1. `supabase/migrations/20261028_private_student_portal.sql`
 2. `supabase/migrations/20261028_admin_invitation_lifecycle.sql`
-3. `supabase/migrations/20261028_atomic_marking.sql`
+3. `supabase/migrations/20261028_atomic_invitation_claim.sql`
+4. `supabase/migrations/20261028_atomic_marking.sql`
 
-The last migration adds a server-validated, transactional marking function `save_marking_review`. It prevents one student from changing examiners' marks, checks each awarded mark against the permitted maximum, requires feedback before release, and locks released reviews. The student portal's earlier embedded marking area now sends reviewers to the dedicated Studio.
+The third migration makes invitation redemption atomic (membership and code redemption happen together). The fourth adds a server-validated, transactional marking function `save_marking_review`. It prevents one student from changing examiners' marks, checks each awarded mark against the permitted maximum, requires feedback before release, and locks released reviews. The student portal's earlier embedded marking area now sends reviewers to the dedicated Studio. Only a verified admin/partner can issue/revoke codes; examiner members can mark but cannot create invitations.
 
 ### Edge Function
 Deploy `supabase/functions/invitations/index.ts` using the Supabase CLI or the Supabase app. It provides four authenticated actions:
