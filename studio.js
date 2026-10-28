@@ -99,7 +99,7 @@ function renderRoster(){
  if(!filtered.length){const row=make('tr'),cell=make('td','','No enrolled students match your search.');cell.colSpan=4;row.append(cell);root.append(row);return}
  for(const student of filtered){
   const row=make('tr');
-  const name=make('td');name.append(make('strong','',student.name));
+  const name=make('td');name.append(make('strong','',student.name));if(adminRole()){const issued=state.invites.find(i=>i.redeemed_by===student.id);if(issued)name.append(make('small','',issued.email))}
   const ref=make('td','',shortId(student.id));
   const route=make('td','',student.pref?(examLabels[student.pref.qualification]||student.pref.qualification)+(student.pref.exam_board?' · '+student.pref.exam_board:''):'Not selected');
   const count=state.attempts.filter(x=>x.student_id===student.id&&x.status==='draft').length;
