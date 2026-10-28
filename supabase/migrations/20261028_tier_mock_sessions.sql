@@ -61,33 +61,39 @@ CREATE POLICY mock_assignment_read ON public.mock_assignments FOR SELECT TO auth
 
 -- Stop previewing unseen mock questions through normal question_bank SELECT.
 -- The student gains question access only once an actual session has started.
+-- RLS on editorial metadata protects private notes. This helper deliberately
+-- checks visibility as the database owner to avoid an RLS join hiding all
+-- student question text. It never returns question solutions or metadata.
+CREATE OR REPLACE FUNCTION private.can_read_maths_question(p_question uuid)
+RETURNS boolean LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path='' AS $$
+DECLARE v_actor uuid:=(SELECT auth.uid());v_active boolean;v_e public.question_editorial%rowtype;
+BEGIN
+ IF v_actor IS NULL OR NOT EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=v_actor)
+ THEN RETURN false;END IF;
+ SELECT active INTO v_active FROM public.question_bank WHERE id=p_question;
+ IF NOT found THEN RETURN false;END IF;
+ SELECT * INTO v_e FROM public.question_editorial WHERE question_id=p_question;
+ IF v_e.question_id IS NULL OR v_e.owner_org IS NULL THEN RETURN v_active;END IF;
+ IF private.is_staff(v_e.owner_org) THEN RETURN true;END IF;
+ IF NOT EXISTS(SELECT 1 FROM public.memberships m
+  WHERE m.user_id=v_actor AND m.org_id=v_e.owner_org AND m.member_role='student')
+ THEN RETURN false;END IF;
+ IF NOT v_active OR v_e.review_status<>'approved' THEN RETURN false;END IF;
+ IF EXISTS(SELECT 1 FROM public.mock_pack_questions mpq
+   JOIN public.mock_packs mp ON mp.id=mpq.pack_id
+   WHERE mpq.question_id=p_question AND mp.status='published')
+ THEN
+  RETURN EXISTS(SELECT 1 FROM public.attempts a
+     JOIN public.paper_questions pq ON pq.attempt_id=a.id
+     WHERE a.student_id=v_actor AND pq.question_id=p_question AND a.mock_pack_id IS NOT NULL);
+ END IF;
+ RETURN true;
+END;$$;
+REVOKE ALL ON FUNCTION private.can_read_maths_question(uuid) FROM public,anon;
+GRANT EXECUTE ON FUNCTION private.can_read_maths_question(uuid) TO authenticated;
 DROP POLICY IF EXISTS questions_select ON public.question_bank;
 CREATE POLICY questions_select ON public.question_bank FOR SELECT TO authenticated
-USING(
- EXISTS(SELECT 1 FROM public.question_editorial qe
- WHERE qe.question_id=question_bank.id
- AND (
- (qe.owner_org IS NULL AND question_bank.active
-  AND EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=(SELECT auth.uid())))
- OR
- (qe.owner_org IS NOT NULL AND EXISTS(SELECT 1 FROM public.memberships m
-  WHERE m.org_id=qe.owner_org AND m.user_id=(SELECT auth.uid()))
-  AND (
-    private.is_staff(qe.owner_org)
-    OR (question_bank.active AND qe.review_status='approved'
-      AND (
-        NOT EXISTS(SELECT 1 FROM public.mock_pack_questions mpq
-         JOIN public.mock_packs mp ON mp.id=mpq.pack_id
-         WHERE mpq.question_id=question_bank.id AND mp.status='published')
-        OR EXISTS(SELECT 1 FROM public.attempts a
-         JOIN public.paper_questions pq ON pq.attempt_id=a.id
-         WHERE pq.question_id=question_bank.id AND a.student_id=(SELECT auth.uid())
-         AND a.mock_pack_id IS NOT NULL)
-      )
-    )
-  ))
- )))
-);
+USING(private.can_read_maths_question(id));
 
 -- Return genuine remaining time as a database-generated response.
 CREATE OR REPLACE FUNCTION public.mock_session_clock(p_attempt uuid)
@@ -167,7 +173,10 @@ begin
      or exists(select 1 from public.question_editorial qe
        join public.student_preferences sp on sp.student_id=v_user
        where qe.question_id=q.id and qe.owner_org=v_org and qe.review_status='approved'
-       and qe.board_key=sp.exam_board and qe.exam_tier=sp.tier))
+       and qe.board_key=sp.exam_board and qe.exam_tier=sp.tier
+       and not exists(select 1 from public.mock_pack_questions mpq
+        join public.mock_packs mp on mp.id=mpq.pack_id
+        where mpq.question_id=q.id and mp.status='published')))
     and (coalesce(p_topic,'')='' or q.topic=p_topic)
     and (p_difficulty='mixed' or
       (p_difficulty='foundation' and q.difficulty in (1,2)) or
