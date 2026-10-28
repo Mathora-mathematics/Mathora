@@ -25,12 +25,38 @@ Deno.serve(async req=>{
   const user=auth?.user;
   if(authError||!user?.id||!user.email_confirmed_at)return json({error:'Verified session required'},401,origin);
   const body=await req.json().catch(()=>({}));
+  if(body.action==='list' || body.action==='revoke'){
+   const orgId=String(body.orgId||'');
+   if(!/^[a-f0-9-]{36}$/i.test(orgId))return json({error:'Valid organisation required'},400,origin);
+   const {data:role,error:roleErr}=await admin.from('memberships').select('member_role').eq('org_id',orgId).eq('user_id',user.id).maybeSingle();
+   if(roleErr||!['partner','admin'].includes(role?.member_role))return json({error:'Not authorised for invitation management'},403,origin);
+   if(body.action==='list'){
+    const {data,error}=await admin.from('invitations')
+      .select('id,email,created_at,expires_at,redeemed_at,redeemed_by,revoked_at')
+      .eq('org_id',orgId).order('created_at',{ascending:false}).limit(100);
+    if(error)return json({error:'Unable to load invitation register'},500,origin);
+    return json({ok:true,invitations:data||[]},200,origin);
+   }
+   const invitationId=String(body.invitationId||'');
+   if(!/^[a-f0-9-]{36}$/i.test(invitationId))return json({error:'Invitation reference required'},400,origin);
+   const {data:revoked,error}=await admin.from('invitations').update({revoked_at:new Date().toISOString()})
+     .eq('id',invitationId).eq('org_id',orgId).is('redeemed_at',null).is('revoked_at',null)
+     .select('id').maybeSingle();
+   if(error)return json({error:'Could not revoke invitation'},500,origin);
+   if(!revoked)return json({error:'Invitation is already used, revoked or unavailable'},409,origin);
+   return json({ok:true},200,origin);
+  }
   if(body.action==='issue'){
    const email=String(body.email||'').trim().toLowerCase();
    const orgId=String(body.orgId||'');
    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)||email.length>250||!/^[a-f0-9-]{36}$/i.test(orgId))return json({error:'Valid student email and organisation required'},400,origin);
    const {data:role,error:roleErr}=await admin.from('memberships').select('member_role').eq('org_id',orgId).eq('user_id',user.id).maybeSingle();
    if(roleErr||!['admin','partner'].includes(role?.member_role))return json({error:'Not authorised for this organisation'},403,origin);
+   // Only the most recently issued unused code for this email remains valid.
+   const {error:revokeOldError}=await admin.from('invitations')
+     .update({revoked_at:new Date().toISOString()})
+     .eq('org_id',orgId).eq('email',email).is('redeemed_at',null).is('revoked_at',null);
+   if(revokeOldError)return json({error:'Unable to replace an existing invitation'},500,origin);
    const code=makeCode(),hash=await codeHash(code);
    const {error}=await admin.from('invitations').insert({org_id:orgId,email,code_hash:hash,issued_by:user.id});
    if(error)return json({error:'Unable to create invitation'},500,origin);
@@ -40,15 +66,12 @@ Deno.serve(async req=>{
    const code=String(body.code||'').trim().toUpperCase();
    if(!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))return json({error:'Invalid invitation'},400,origin);
    const hash=await codeHash(code);
-   const {data:invite,error}=await admin.from('invitations').select('id,org_id,email,expires_at,redeemed_at').eq('code_hash',hash).maybeSingle();
-   if(error||!invite||invite.redeemed_at||new Date(invite.expires_at)<=new Date()||invite.email!==String(user.email).toLowerCase())return json({error:'Invalid or expired invitation for this email'},403,origin);
-   const {data:existing,error:existingErr}=await admin.from('memberships').select('org_id,member_role').eq('user_id',user.id);
-   if(existingErr)return json({error:'Could not check memberships'},500,origin);
-   if(existing?.some(m=>m.member_role==='student'&&m.org_id!==invite.org_id))return json({error:'This student account is enrolled with another partner'},409,origin);
-   const {data:claimed,error:claimErr}=await admin.from('invitations').update({redeemed_at:new Date().toISOString(),redeemed_by:user.id}).eq('id',invite.id).is('redeemed_at',null).select('id').maybeSingle();
-   if(claimErr||!claimed)return json({error:'Invitation has already been used'},409,origin);
-   const {error:membershipErr}=await admin.from('memberships').upsert({org_id:invite.org_id,user_id:user.id,member_role:'student'},{onConflict:'org_id,user_id'});
-   if(membershipErr)return json({error:'Enrolment could not be completed; contact your tutor for a replacement invitation'},500,origin);
+   // A single database transaction validates the invited email, locks the code,
+   // creates the student membership and consumes the invitation.
+   const {data:orgId,error:claimError}=await admin.rpc('claim_student_invitation',{
+     p_code_hash:hash,p_user_id:user.id
+   });
+   if(claimError||!orgId)return json({error:'This invitation could not be redeemed. It may be expired, already used or for another email.'},403,origin);
    return json({ok:true},200,origin);
   }
   return json({error:'Unknown request'},400,origin);
