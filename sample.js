@@ -22,7 +22,7 @@ function displayQuestion(){
  const q=sampleQuestions[current],note=paperNotes[current];
  $("sample-question-number").textContent=String(current+1);
  $("sample-question-marks").textContent=q.marks+" MARKS";
- $("sample-question").textContent=q.prompt;
+ if(window.MathsGroveMath)window.MathsGroveMath.write($("sample-question"),q.prompt);else $("sample-question").textContent=q.prompt;
  $("sample-answer").value=note.text;
  $("sample-feeling").value=note.feeling;
  $("sample-confidence").value=note.confidence;
