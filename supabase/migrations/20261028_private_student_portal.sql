@@ -234,7 +234,9 @@ create policy memberships_select on public.memberships for select to authenticat
 using(user_id=(select auth.uid()) or private.is_staff(org_id));
 
 create policy preferences_select on public.student_preferences for select to authenticated
-using(student_id=(select auth.uid()));
+using(student_id=(select auth.uid()) or exists(
+  select 1 from public.memberships m where m.user_id=student_preferences.student_id
+   and private.is_staff(m.org_id)));
 create policy preferences_insert on public.student_preferences for insert to authenticated
 with check(student_id=(select auth.uid()) and exists(
   select 1 from public.memberships m where m.user_id=(select auth.uid()) and m.member_role='student'));
