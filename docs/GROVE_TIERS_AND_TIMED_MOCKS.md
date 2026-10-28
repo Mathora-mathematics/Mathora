@@ -48,3 +48,7 @@ All four should be null before the upgrade. Back up first. Do not run the script
 After upgrade, test with controlled adult accounts: students cannot self-assign packs or bypass tier quota, mock deadlines cannot be changed from browser, late direct answer and storage writes fail, cross-organisation data isolation holds, signed image access expires, staff marking remains permission-restricted, and previous learning records remain intact.
 
 This is an implemented and deployed DEVELOPMENT workflow that still needs Supabase activation, substantial original maths content and end-to-end security tests before children use it.
+
+## Content breadth update (supplementary v3)
+
+The administrator's public practice catalogue now contains 300 **candidates**: the earlier 180 prepared across Grove Daily/Weekly/Exam preparation, plus 120 additional GCSE/IGCSE Daily/Weekly numerical variations. Twelve more multi-part Exam drafts have also been added to the separate unpublished editorial queue. To load the 120 supplementary items into the database use `ADD_120_ORIGINAL_PRACTICE_VARIANTS.sql` *after* the main maths v2 upgrade. None of these public samples constitute confidential unseen timed mocks or verified grade-standard assessments.
