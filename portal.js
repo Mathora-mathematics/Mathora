@@ -181,7 +181,7 @@ async function resume(a){
   await showQuestion();
  }catch(err){message('global-message',friendlyError(err),true)}
 }
-async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');window.MathsGroveMath?.write($('work-prompt'),q.prompt) ?? text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
+async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');if(window.MathsGroveMath)window.MathsGroveMath.write($('work-prompt'),q.prompt);else text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
 async function persistAnswer(){if(!state.attempt||!state.questions.length)return;const q=state.questions[state.question];const fields={typed_answer:$('work-text').value.slice(0,20000),difficulty:$('work-difficulty').value||null,confidence:$('work-confidence').value||null,clarity:$('work-clarity').value||null};let data,error;if(state.answer){({data,error}=await sb.from('answers').update(fields).eq('id',state.answer.id).select().single())}else{({data,error}=await sb.from('answers').insert({...fields,attempt_id:state.attempt.id,question_id:q.id,student_id:state.user.id}).select().single())}if(error)throw error;state.answer=data;text('save-status','Saved securely');return data}
 let saving=false;async function autosave(){if(!state.attempt||saving)return;saving=true;try{await persistAnswer()}catch(err){text('save-status','Save failed — '+friendlyError(err))}finally{saving=false}}
 ['work-text','work-difficulty','work-confidence','work-clarity'].forEach(id=>$(id).addEventListener(id==='work-text'?'input':'change',()=>{if(state.autosave)clearTimeout(state.autosave);text('save-status','Saving…');state.autosave=setTimeout(autosave,1300)}));
@@ -217,11 +217,12 @@ async function viewPaperRecord(attempt){
  const root=$('report-detail');root.hidden=false;root.replaceChildren();
  const loading=document.createElement('p');loading.textContent='Opening your private paper record…';root.append(loading);
  try{
-  const [answers,reviewResult,files,questions]=await Promise.all([
+  const [answers,reviewResult,files,questions,summaryResult]=await Promise.all([
    sb.from('answers').select('question_id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',attempt.id),
    sb.from('reviews').select('question_id,marks_awarded,feedback').eq('attempt_id',attempt.id),
    sb.from('answer_files').select('question_id,original_name,storage_path,file_kind').eq('attempt_id',attempt.id),
-   sb.from('question_bank').select('id,topic,prompt,marks').eq('qualification',attempt.qualification)
+   sb.from('question_bank').select('id,topic,prompt,marks').eq('qualification',attempt.qualification),
+   sb.from('review_summaries').select('overview,strengths,gaps,next_steps,readiness_note,released_at').eq('attempt_id',attempt.id).maybeSingle()
   ]);
   for(const r of [answers,reviewResult,files,questions])if(r.error)throw r.error;
   root.replaceChildren();
@@ -237,6 +238,23 @@ async function viewPaperRecord(attempt){
    const scoreValue=document.createElement('strong');scoreValue.textContent=actual+' / '+maximum;
    const scoreNote=document.createElement('span');scoreNote.textContent=maximum?Math.round(100*actual/maximum)+'% · Marks recorded by your examiner':'Examiner marks recorded';
    score.append(scoreValue,scoreNote);root.append(score);
+   const summary=summaryResult?.data;
+   if(summary){
+    const heading=document.createElement('h3');heading.className='report-narrative-title';heading.textContent='Your detailed examiner review';root.append(heading);
+    const parts=[['Examiner overview',summary.overview],['Your mathematical strengths',summary.strengths],
+      ['Misconceptions and lost marks',summary.gaps],['Your individual next steps',summary.next_steps],
+      ['Exam-readiness evidence',summary.readiness_note]];
+    for(const [label,value] of parts){
+     if(!value)continue;
+     const sec=document.createElement('section');sec.className='review-summary-card';
+     const h=document.createElement('h3');h.textContent=label;
+     const p=document.createElement('p');p.textContent=value;sec.append(h,p);root.append(sec);
+    }
+   }else{
+    const note=document.createElement('p');note.className='record-intro';
+    note.textContent='This paper contains released question marks. A narrative report has not yet been added; ask your examiner for a full Signature Review.';
+    root.append(note);
+   }
   }
   const sorted=(answers.data||[]).sort((a,b)=>String(qs.get(a.question_id)?.topic||'').localeCompare(String(qs.get(b.question_id)?.topic||'')));
   for(let i=0;i<sorted.length;i++){
