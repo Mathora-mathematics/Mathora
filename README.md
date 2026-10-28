@@ -42,6 +42,16 @@ Deep navy **#0D1B32**, soft beige **#CDBBA0**, ivory **#F7F4EF**. Typography: In
 
 Run `python3 -m http.server 8000` at the repository root, then visit `http://localhost:8000/`.
 
+## Evidence dashboard and examiner reporting
+
+- `sample.html` now contains a fully populated fictional dashboard with Weekly / Daily / Exam programme switcher, progress graph, practice calendar, and clearly hypothetical grade-scenario calculator.
+- `sample.html#report` contains a detailed specimen Signature Review with mathematical working in native MathML, method and accuracy observations, strengths, misconceptions and a recovery plan.
+- `maths-render.js` typesets basic powers and fractions safely without inserting untrusted HTML.
+- `portal.html` shows the real student's **admin-assigned** programme, upcoming suggested practice days and mark-weighted results. Uploaded whiteboard images, photographed notebook work and examiner remarks remain attached to the correct student/paper/question.
+- `studio.html` has staff-only programme activation, image previews, mandatory examiner narrative fields and server-validated marking release.
+- `supabase/migrations/20261028_entitlements_and_report_narrative.sql` must be run **after** `20261028_student_paper_builder.sql`. These upgrades are **not installed automatically by GitHub**.
+- See `docs/EVIDENCE_AND_ACCESS.md` for data/security checks, entitlement limits, and the distinction between illustrative grades and valid predicted grades. **No checkout or public prices.**
+
 ## Supabase and production roadmap
 
 See `docs/STUDENT_PORTAL_SETUP.md` and `docs/STUDENT_FIRST_EXPERIENCE.md` for the installation and remaining verification. The Supabase project URL and browser publishable key are configured. Real sign-in is currently limited by the Supabase default email service, while invitation Edge Functions and all cross-account policies still need end-to-end verification.

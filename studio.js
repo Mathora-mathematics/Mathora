@@ -3,7 +3,7 @@ const $ = id => document.getElementById(id);
 const config = window.MATHSGROVE_CONFIG || {};
 const connected = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') && !!config.publishableKey;
 const db = connected ? createClient(config.url, config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
-const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
+const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],entitlements:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
 const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
 const date=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
 const fmt=s=>String(s||'').trim();
@@ -43,6 +43,7 @@ async function init(){
   $('status-screen').hidden=true;$('application').hidden=false;
   // Restrict sensitive administrative actions to organisation owners/partners.
   if(!adminRole()){
+   $('programme-form').querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
    $('invite-form').querySelectorAll('input,button').forEach(x=>x.disabled=true);
    $('invite-feedback').textContent='Only an authorised partner administrator can issue or revoke student invitation keys.';
   }
@@ -51,10 +52,10 @@ async function init(){
  }catch(e){showStatus('Could not open the studio.','The secure connection could not verify your permissions: '+(e?.message||'Unknown error'));}
 }
 async function refresh(){
- const results=await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites()]);
+ const results=await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites(),loadProgrammes()]);
  const failures=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Unknown error');
  if(failures.length)inform('Some studio data could not load: '+failures.join(' | '),true);
- renderOverview();renderRoster();renderInvites();renderQueue();renderReleased();
+ renderOverview();renderRoster();renderInvites();renderProgrammes();renderQueue();renderReleased();
 }
 async function loadRoster(){
  const {data,error}=await db.from('memberships').select('user_id,member_role').eq('org_id',state.membership.org_id).eq('member_role','student').limit(200);
@@ -70,6 +71,45 @@ async function loadRoster(){
  const prefs=new Map((q.data||[]).map(x=>[x.student_id,x]));
  state.students=ids.map(id=>({id,name:names.get(id)||'Enrolled student',pref:prefs.get(id)||null}));
 }
+async function loadProgrammes(){
+ const {data,error}=await db.from('student_entitlements')
+ .select('student_id,org_id,tier,signature_credits,starts_at,ends_at').eq('org_id',state.membership.org_id).limit(200);
+ if(error){state.entitlements=[];return}
+ state.entitlements=data||[];
+}
+function renderProgrammes(){
+ const select=$('programme-student'),previous=select.value;select.replaceChildren();
+ select.add(new Option('Choose a verified student',''));
+ for(const student of state.students)select.add(new Option(student.name+' · '+shortId(student.id),student.id));
+ if([...select.options].some(o=>o.value===previous))select.value=previous;
+ const chosen=state.entitlements.find(e=>e.student_id===select.value);
+ if(chosen){$('programme-tier').value=chosen.tier;$('programme-credits').value=chosen.signature_credits}
+}
+$('programme-student').onchange=()=>{
+ const chosen=state.entitlements.find(e=>e.student_id===$('programme-student').value);
+ $('programme-tier').value=chosen?.tier||'weekly';
+ $('programme-credits').value=chosen?.signature_credits??0;
+ $('programme-until').value=chosen?.ends_at?chosen.ends_at.slice(0,10):'';
+};
+$('programme-form').onsubmit=async e=>{
+ e.preventDefault();
+ if(!adminRole())return;
+ const student=$('programme-student').value,tier=$('programme-tier').value,until=$('programme-until').value,credits=Number($('programme-credits').value);
+ if(!student||!until||!Number.isInteger(credits)||credits<0||credits>20){inform('Select a student, an end date and valid Signature credits.',true,'programme-feedback');return}
+ const end=new Date(until+'T23:59:59.000Z');
+ if(!(end>new Date())){inform('Access end date must be in the future.',true,'programme-feedback');return}
+ const button=$('programme-save');button.disabled=true;
+ try{
+  const {data,error}=await db.rpc('assign_student_programme',{
+   p_student:student,p_tier:tier,p_starts_at:new Date().toISOString(),
+   p_ends_at:end.toISOString(),p_signature_credits:credits
+  });
+  if(error||!data?.ok)throw Error(error?.message||'Could not allocate programme. Check that the evidence and entitlement SQL migration is installed.');
+  await loadProgrammes();renderProgrammes();
+  inform('Programme saved. Student access changes immediately; payments stay outside MathsGrove.',false,'programme-feedback');
+ }catch(err){inform(err.message,true,'programme-feedback')}
+ finally{button.disabled=false}
+};
 async function loadAttempts(){
  const {data,error}=await db.from('attempts').select('id,student_id,org_id,qualification,status,started_at,submitted_at')
   .eq('org_id',state.membership.org_id).order('started_at',{ascending:false}).limit(150);
@@ -105,7 +145,7 @@ function renderRoster(){
   const ref=make('td','',shortId(student.id));
   const route=make('td','',student.pref?(examLabels[student.pref.qualification]||student.pref.qualification)+(student.pref.exam_board?' · '+student.pref.exam_board:''):'Not selected');
   const count=state.attempts.filter(x=>x.student_id===student.id&&x.status==='draft').length;
-  row.append(name,ref,route,make('td','',count));root.append(row);
+  const plan=state.entitlements.find(e=>e.student_id===student.id);const programmeNote=make('small','',plan?'Programme: '+plan.tier.toUpperCase():'Programme: not yet assigned');name.append(programmeNote);row.append(name,ref,route,make('td','',count));root.append(row);
  }
 }
 $('student-search').oninput=renderRoster;
@@ -192,7 +232,7 @@ async function openReview(attempt){
    const answer=answers[i],q=qmap.get(answer.question_id);if(!q)continue;
    const section=make('section','review-question');
    section.append(make('h3','','Question '+(i+1)+' · '+q.topic+' · '+q.marks+' marks'));
-   section.append(make('p','prompt',q.prompt));
+   const prompt=make('p','prompt');if(window.MathsGroveMath)window.MathsGroveMath.write(prompt,q.prompt);else prompt.textContent=q.prompt;section.append(prompt);
    const work=make('div','student-work',answer.typed_answer||'No typed response; check the student’s attached working.');
    section.append(work);
    section.append(make('p','reflection','Student confidence: '+(answer.confidence||'Not provided')+'  ·  Difficulty: '+(answer.difficulty||'Not provided')+'  ·  Clarity: '+(answer.clarity||'Not provided')));
@@ -200,13 +240,21 @@ async function openReview(attempt){
    if(scheme){const details=make('details');const summary=make('summary','','Approved marking guidance');const guidance=make('p','student-work',scheme);details.append(summary,guidance);section.append(details)}
    const attachments=make('div','files');
    for(const file of (fr.data||[]).filter(f=>f.question_id===q.id)){
-    const b=make('button','','View '+file.original_name+' ↗');b.type='button';
-    b.onclick=async()=>{try{
-     const {data,error}=await db.storage.from('student-work').createSignedUrl(file.storage_path,60);
-     if(error)throw error;
-     window.open(data.signedUrl,'_blank','noopener,noreferrer');
-    }catch(e){inform('Could not open student working: '+e.message,true)}};
-    attachments.append(b);
+     const details=make('details','examiner-attachment');
+     const summary=make('summary','','View '+(file.file_kind==='drawing'?'graph-paper drawing':'notebook photograph')+' · '+file.original_name);
+     details.append(summary);
+     details.addEventListener('toggle',async()=>{
+       if(!details.open||details.dataset.loaded)return;
+       try{
+         const {data,error}=await db.storage.from('student-work').createSignedUrl(file.storage_path,120);
+         if(error)throw error;
+         const img=make('img');img.loading='lazy';img.alt='Student-submitted '+(file.file_kind==='drawing'?'digital working':'photograph of handwritten work');
+         img.src=data.signedUrl;
+         const link=make('a','link-action','Open full-size image ↗');link.href=data.signedUrl;link.target='_blank';link.rel='noopener noreferrer';
+         details.append(img,link);details.dataset.loaded='true';
+       }catch(e){inform('Unable to preview attached working: '+e.message,true)}
+     });
+     attachments.append(details);
    }
    section.append(attachments);
    const fields=make('div','review-fields');
@@ -218,6 +266,12 @@ async function openReview(attempt){
    comment.placeholder='What did the student understand? What should they improve next?';comment.value=existing?.feedback||'';
    commentlabel.append(comment);fields.append(marklabel,commentlabel);section.append(fields);root.append(section);
    state.reviewFields.push({question:q,mark,comment,existing});
+  }
+  const {data:summary,error:summaryError}=await db.from('review_summaries')
+   .select('overview,strengths,gaps,next_steps,readiness_note').eq('attempt_id',attempt.id).maybeSingle();
+  if(summaryError)inform('Detailed report fields unavailable until the new Supabase migration is installed.',true);
+  for(const [id,key] of [['n-overview','overview'],['n-strengths','strengths'],['n-gaps','gaps'],['n-next-steps','next_steps'],['n-readiness','readiness_note']]){
+   $(id).value=summary?.[key]||'';$(id).readOnly=attempt.status==='marked';
   }
   $('review-confirm').checked=false;$('review-card').hidden=false;
   $('release-review').disabled=attempt.status==='marked';
@@ -232,6 +286,10 @@ function validateReview(releasing){
   if(field.mark.value===''||!Number.isInteger(value)||value<0||value>field.question.marks)throw Error('Enter a whole-number mark from 0 to '+field.question.marks+' for each question.');
   if(releasing&&!field.comment.value.trim())throw Error('Enter feedback for every question before releasing the paper.');
  }
+ if(releasing){
+  const needed=[['n-overview',25],['n-strengths',15],['n-gaps',15],['n-next-steps',15]];
+  for(const [id,len] of needed)if($(id).value.trim().length<len)throw Error('Complete the detailed examiner report before release (minimum '+len+' characters per required section).');
+ }
  if(releasing&&!$('review-confirm').checked)throw Error('Confirm you have checked all marks and feedback.');
 }
 async function writeReview(releasing){
@@ -245,7 +303,14 @@ async function writeReview(releasing){
    marks_awarded:Number(field.mark.value),
    feedback:field.comment.value.trim()
   }));
-  // One Postgres transaction validates all marks and saves/release all at once.
+  const {data:summarySaved,error:summaryError}=await db.rpc('save_review_summary',{
+  p_attempt:attempt.id,
+  p_overview:$('n-overview').value.trim(),p_strengths:$('n-strengths').value.trim(),
+  p_gaps:$('n-gaps').value.trim(),p_next_steps:$('n-next-steps').value.trim(),
+  p_readiness_note:$('n-readiness').value.trim()
+ });
+ if(summaryError||!summarySaved?.ok)throw Error(summaryError?.message||'Examiner narrative could not be saved.');
+ // One Postgres transaction validates all marks and saves/release all at once.
   const {data,error}=await db.rpc('save_marking_review',{
     p_attempt:attempt.id,p_items:items,p_release:releasing
   });

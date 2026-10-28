@@ -6,8 +6,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./studio.css">
-<link rel="stylesheet" href="./private-refresh.css">
-<script src="./mathsgrove-config.js" defer></script><script src="./studio.js" type="module"></script></head>
+<link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css">
+<script src="./mathsgrove-config.js" defer></script><script src="./maths-render.js" defer></script><script src="./studio.js" type="module"></script></head>
 <body class="mg-private-studio">
 <div class="shell">
 <aside class="sidebar">
@@ -42,14 +42,29 @@
       <div class="key-result" id="key-result" hidden><div class="key-tag">NEW CODE · COPY BEFORE CLOSING</div><strong id="new-code"></strong><p>This code is shown once. It is tied to the email above and expires after 14 days.</p><div class="key-buttons"><button type="button" id="copy-code" class="button primary">Copy code</button><button type="button" id="copy-message" class="button outline">Copy invitation message</button></div></div>
       <div id="invite-feedback" class="feedback" role="status"></div></article>
       <article class="card"><p class="overline">INVITATION MANAGEMENT</p><h2>Issued keys</h2><p class="subtext">You can track, expire and revoke invitations. For security, previously issued plaintext codes cannot be displayed again.</p><div id="invite-table" class="records"><p class="muted">Connect Supabase to load invitations.</p></div></article></div>
-      <article class="card"><div class="card-header"><div><p class="overline">STUDENT DIRECTORY</p><h2>Enrolled learners</h2></div><input id="student-search" type="search" placeholder="Search students" aria-label="Search students"></div><div class="table-scroll"><table><thead><tr><th>Name</th><th>Member reference</th><th>Exam pathway</th><th>Active papers</th></tr></thead><tbody id="students-body"><tr><td colspan="4">No students loaded.</td></tr></tbody></table></div></article>
+      <article id="programme-admin" class="card programme-admin"><p class="overline">PRIVATE PROGRAMME MANAGEMENT</p><h2>Assign student access.</h2><p class="subtext">Your tutoring company handles payments privately. Only authorised staff assign Weekly, Daily or Exam access here; no checkout or payment details are stored.</p>
+<form id="programme-form" class="programme-form">
+<label>Enrolled student<select id="programme-student" required><option value="">Choose a verified student</option></select></label>
+<label>Learning programme<select id="programme-tier"><option value="weekly">Grove Weekly</option><option value="daily">Grove Daily</option><option value="exam">Grove Exam</option></select></label>
+<label>Access ends<input id="programme-until" type="date" required></label>
+<label>Signature Review credits<input id="programme-credits" type="number" min="0" max="20" value="0" required></label>
+<button type="submit" class="button primary" id="programme-save">Assign programme</button></form>
+<p id="programme-feedback" class="feedback" role="status"></p></article>
+<article class="card"><div class="card-header"><div><p class="overline">STUDENT DIRECTORY</p><h2>Enrolled learners</h2></div><input id="student-search" type="search" placeholder="Search students" aria-label="Search students"></div><div class="table-scroll"><table><thead><tr><th>Name</th><th>Member reference</th><th>Exam pathway</th><th>Active papers</th></tr></thead><tbody id="students-body"><tr><td colspan="4">No students loaded.</td></tr></tbody></table></div></article>
     </section>
     <section data-panel="marking" class="panel" hidden>
       <div class="heading"><div><p class="overline">PROFESSIONAL EXAMINATION REVIEW</p><h1>The marking board.</h1><p>Review original working, enter marks against the question maximum and record actionable feedback.</p></div><button type="button" class="button outline" id="refresh-marking">Refresh queue ↻</button></div>
       <div class="card"><div class="card-header"><div><p class="overline">SUBMISSIONS</p><h2>Paper queue</h2></div><select id="marking-filter" aria-label="Filter marking queue"><option value="submitted">Awaiting marking</option><option value="marked">Already released</option><option value="all">All papers</option></select></div><div id="marking-queue" class="records"></div></div>
-      <article id="review-card" class="card review-card" hidden><div class="card-header"><div><p class="overline">EXAMINER REVIEW</p><h2 id="review-title">Paper assessment</h2><p id="review-caption" class="subtext"></p></div><button type="button" id="close-review" class="button outline">Close</button></div><div id="review-questions"></div><div class="review-footer"><label class="checkbox-line"><input type="checkbox" id="review-confirm"> I have checked the marks and feedback against the student’s submitted work.</label><div class="review-buttons"><button id="save-review" class="button outline" type="button">Save draft marks</button><button id="release-review" class="button primary" type="button">Release reviewed paper →</button></div></div></article>
+      <article id="review-card" class="card review-card" hidden><div class="card-header"><div><p class="overline">EXAMINER REVIEW</p><h2 id="review-title">Paper assessment</h2><p id="review-caption" class="subtext"></p></div><button type="button" id="close-review" class="button outline">Close</button></div><div id="review-questions"></div>
+<div class="review-narrative"><p class="overline">THE SIGNATURE EXAMINER REPORT</p><h2>A proper explanation of the mathematics.</h2><p class="subtext">Use specific evidence from submitted drawings, photographs and written responses. A release requires meaningful narrative in the first four sections.</p>
+<label>Overall examiner judgement<textarea id="n-overview" rows="3" maxlength="3000" placeholder="Summarise attainment against this particular paper, not an unsupported official grade."></textarea></label>
+<label>Demonstrated strengths<textarea id="n-strengths" rows="3" maxlength="3000" placeholder="Which methods and mathematical ideas were secure? Refer to question numbers."></textarea></label>
+<label>Misconceptions and lost marks<textarea id="n-gaps" rows="3" maxlength="3000" placeholder="Explain the exact mathematical misconception or missing reasoning."></textarea></label>
+<label>Individual recovery plan<textarea id="n-next-steps" rows="3" maxlength="3000" placeholder="Recommend topics, numbers of questions, and how progress will be rechecked."></textarea></label>
+<label>Readiness and grade-evidence note<textarea id="n-readiness" rows="2" maxlength="2000" placeholder="Distinguish the short-paper percentage from an official exam-board prediction."></textarea></label>
+</div><div class="review-footer"><label class="checkbox-line"><input type="checkbox" id="review-confirm"> I have checked the marks and feedback against the student’s submitted work.</label><div class="review-buttons"><button id="save-review" class="button outline" type="button">Save draft marks</button><button id="release-review" class="button primary" type="button">Release reviewed paper →</button></div></div></article>
     </section>
-    <section data-panel="reports" class="panel" hidden><div class="heading"><div><p class="overline">ACADEMIC QUALITY CONTROL</p><h1>Released assessments.</h1><p>A private register of completed reviews. Downloadable Signature Report PDFs are the next production milestone.</p></div></div><div class="card"><div id="released-list" class="records"></div></div></section>
+    <section data-panel="reports" class="panel" hidden><div class="heading"><div><p class="overline">ACADEMIC QUALITY CONTROL</p><h1>Released assessments.</h1><p>A private register of completed reviews. Released reports include marks, question-level feedback, examiner observations and a printable student-facing report.</p></div></div><div class="card"><div id="released-list" class="records"></div></div></section>
     <div id="app-message" class="feedback" role="status"></div>
   </div>
 </main></div>

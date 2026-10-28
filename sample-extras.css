@@ -1,0 +1,62 @@
+.tier-demonstrator{background:#EAE3D8;border:1px solid #D8CBB9;border-radius:10px;margin-bottom:20px;padding:18px 22px;display:flex;justify-content:space-between;gap:24px;align-items:center}
+.tier-demonstrator .eyebrow{margin:0 0 4px;font-size:9px}
+.tier-demonstrator strong{display:block;font:400 24px "Instrument Serif",Georgia,serif;color:#13243B}
+.tier-demonstrator small{display:block;color:#718095;font-size:10px;margin-top:5px}
+.tier-demonstrator label{font-size:10px;font-weight:800;color:#57667B;flex:none}
+.tier-demonstrator select{display:block;margin-top:8px;background:white;border:1px solid #CCBDAA;border-radius:6px;padding:12px 13px;min-width:190px;color:#172943;font-size:12px}
+.tier-feature-ribbon{background:#14243D;color:#fff;border-radius:9px;padding:18px 22px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:17px}
+.tier-feature-ribbon strong{display:block;font:400 26px "Instrument Serif",Georgia,serif}
+.tier-feature-ribbon p{font-size:11px;color:#C5D0DC;margin:6px 0 0}
+.tier-feature-ribbon span{font-size:9px;color:#DCC8AB;font-weight:700;letter-spacing:.1em}
+.intelligence-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.demo-trend{display:flex;align-items:flex-end;gap:14px;min-height:180px;padding:18px 8px 4px;background:repeating-linear-gradient(to top,#EFF1F4 0 1px,transparent 1px 37px)}
+.demo-trend .trend-col{flex:1;text-align:center;min-width:0}
+.demo-trend .trend-value{display:block;font-size:11px;font-weight:800;color:#34465D;margin-bottom:6px}
+.demo-trend .trend-bar{display:block;max-width:56px;margin:auto;background:#D6C3A4;border-radius:5px 5px 0 0;min-height:14px}
+.demo-trend .trend-col:last-child .trend-bar{background:#193552}
+.demo-trend .trend-label{display:block;font-size:9px;color:#7A8A9D;margin-top:8px}
+.trend-foot{display:flex;justify-content:space-between;color:#8B98A6;font-size:10px;margin:11px 0}
+.demo-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.demo-day{border:1px solid #E5DED4;border-radius:6px;padding:8px 2px;text-align:center;background:#FCFBFA;min-height:88px}
+.demo-day small{font-size:9px;color:#8996A6;display:block}
+.demo-day strong{display:block;font:400 23px "Instrument Serif",Georgia,serif;color:#22354D;margin:4px 0}
+.demo-day span{display:block;font-size:8px;color:#A38B6D;line-height:1.3}
+.demo-day.has-task{background:#EDE5D9;border-color:#D2BDA0}
+.quiet-note{font-size:10px!important;color:#8B98A7!important;line-height:1.7}
+.evidence-card{margin-top:0}
+.evidence-chip{font-size:9px;letter-spacing:.1em;border:1px solid #D9BE94;padding:7px;color:#8A704F;border-radius:99px;font-weight:800}
+.evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:27px}
+.grade-preview{font:400 44px "Instrument Serif",Georgia,serif;color:#1D344D;line-height:1.1}
+.grade-preview span{display:block;font:700 9px "DM Sans",sans-serif;letter-spacing:.13em;color:#998163;margin-top:10px}
+.evidence-grid label{font-size:11px;font-weight:700;color:#40536D;display:block}
+.evidence-grid input{width:100%;accent-color:#1F3655;margin:18px 0 5px}
+.projection-totals{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.projection-totals strong{font:400 30px "Instrument Serif",Georgia,serif}
+.projection-totals span{color:#687E94;font-size:10px}
+.signature-extended{margin:25px 0 0}
+.report-explainer{font-size:12px;line-height:1.85;color:#697A8A}
+.method-table{border-collapse:collapse;width:100%;font-size:11px;margin:19px 0 25px;table-layout:fixed}
+.method-table th{background:#F2EEE7;text-align:left;font-size:9px;letter-spacing:.08em;color:#826C52}
+.method-table th,.method-table td{padding:12px;border:1px solid #E5DFD5;vertical-align:top;overflow-wrap:anywhere}
+.method-table th:first-child{width:23%}.method-table th:nth-child(2){width:58%}
+.method-table tfoot th{background:#162B47;color:white;font-size:11px}
+.worked-example{border:1px solid #E4DCCF;border-left:4px solid #BDAB90;padding:21px;background:#FCFAF6;border-radius:7px}
+.worked-label{font-size:9px;letter-spacing:.15em;color:#866A49;font-weight:800}
+.worked-example>p{font-size:14px;margin:18px 0 10px;color:#273D56}
+.math-lines{overflow-x:auto;max-width:100%;padding:6px 4px}
+.math-lines math{font-size:21px;max-width:100%}
+.worked-example .worked-mark{font-size:11px;color:#6D7E90}
+.report-diagnosis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.report-diagnosis>div{padding:17px;border:1px solid #E7E0D6;border-radius:7px;background:#FFFEFC}
+.report-diagnosis span{font-size:9px;color:#947B5B;letter-spacing:.1em;font-weight:800}
+.report-diagnosis p{font-size:11px;color:#65768A;line-height:1.7;margin:11px 0 0}
+@media(max-width:800px){.intelligence-grid{grid-template-columns:1fr}.tier-demonstrator{align-items:stretch;flex-direction:column}.tier-demonstrator select{width:100%}.evidence-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.tier-feature-ribbon{display:block}.tier-feature-ribbon span{display:block;margin-top:12px}.demo-calendar{gap:3px}.demo-day{padding:7px 1px;min-height:78px}.demo-day strong{font-size:19px}.report-diagnosis{grid-template-columns:1fr}.method-table{font-size:9px}.method-table th,.method-table td{padding:7px}.math-lines math{font-size:16px}}
+@media print{.tier-demonstrator,.tier-feature-ribbon,.intelligence-grid,.evidence-card{display:none!important}.signature-extended,.worked-example,.report-diagnosis>div{break-inside:avoid}.method-table thead{display:table-header-group}}
+
+.tier-dash-panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 18px}
+.tier-dash-card{border:1px solid #E5DDD2;border-radius:8px;background:#FFF;padding:19px}
+.tier-dash-card small{display:block;color:#947B5E;font-weight:800;font-size:9px;letter-spacing:.12em}
+.tier-dash-card strong{display:block;color:#1A314A;font:400 26px "Instrument Serif",Georgia,serif;margin-top:11px}
+.tier-dash-card p{color:#708196;font-size:11px;line-height:1.7;margin:8px 0 0}
+@media(max-width:700px){.tier-dash-panels{grid-template-columns:1fr}}
