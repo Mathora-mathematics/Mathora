@@ -48,13 +48,16 @@ The *academic* labels (Foundation, Higher, Core, Extended, AS etc.) must never b
 
 - `content/GCSE/draft-exemplars.json` and `content/IGCSE/draft-exemplars.json`: first 24 public draft examples.
 - `content/programmes/draft-questions.json`: additional **24 original, programme-tagged public draft stems** (8 each for Daily, Weekly, Exam).
-- **48 public original draft examples overall**; these are NOT in the private approved question bank and are NOT full unseen mocks.
+- `content/programmes/exam-reasoning-drafts-12.json`: **12 multi-part Grove Exam editorial examples**, not unseen mock questions.
+- `content/programmes/operational-*.json`: **120 public original reusable GCSE/IGCSE practice questions** with indicative answers and schemes (30 per qualification/tier combination, excluding Exam).
+- `supabase/INSTALL_ORIGINAL_PRACTICE_120.sql`: server-side seed installed **after** the timing/content upgrade.
+- **60 public original draft examples overall**; these are NOT in the private approved question bank and are NOT full unseen mocks.
 - `content/paper-blueprints.json`: 68 board-specific A/B **outlines**. No board exam paper is claimed finished.
 - `content/programmes/service-tiers.json`: editable product blueprint for the admin viewer.
 
 Once each item has a fully checked solution, a proper examiner mark scheme and matching board metadata, staff can author its private operational version in Supabase. Do not put unseen question keys or private mock files into public GitHub.
 
 ## Activation and security
-The required SQL is `supabase/UPGRADE_TIER_MOCKS.sql` (after the previously installed administrator upgrade). It installs the private content-bank authoring tools AND the mock-session schema. **It is not installed by publishing GitHub.** Run it only after reviewing a backup and testing against adult pilot users.
+The required first SQL is `supabase/UPGRADE_TIER_MOCKS.sql`, followed by `supabase/INSTALL_ORIGINAL_PRACTICE_120.sql` for actual Daily/Weekly question content. (after the previously installed administrator upgrade). It installs the private content-bank authoring tools AND the mock-session schema. **It is not installed by publishing GitHub.** Run it only after reviewing a backup and testing against adult pilot users.
 
 The browser countdown is not the security boundary. Supabase RLS, triggers, controlled stored procedures and private file-storage checks are. The sitting is NOT remotely invigilated or proven cheating-resistant. It remains an internal pilot until negative tests (expiry, resume, multi-organisation isolation, quota and late-upload rejection) pass.
