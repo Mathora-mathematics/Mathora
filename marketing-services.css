@@ -1,0 +1,49 @@
+/* Student-first commercial marketing additions: no pricing or partner dashboard. */
+.mg-services{background:#F8F6F1}
+.mg-services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mg-service-card{background:#fff;border:1px solid #E6E0D7;border-radius:11px;padding:31px 28px;display:flex;flex-direction:column;min-height:520px;position:relative}
+.mg-service-card.mg-service-featured{background:#12243D;color:white;border-color:#12243D}
+.mg-service-top{display:flex;align-items:center;justify-content:space-between;gap:16px;color:#927B5F;font-size:9px;font-weight:800;letter-spacing:.14em}
+.mg-service-featured .mg-service-top{color:#D0BDA2}
+.mg-service-icon{font:400 28px "Instrument Serif",Georgia,serif;color:#C9B598}
+.mg-service-card h3{font:400 42px/1.1 "Instrument Serif",Georgia,serif;letter-spacing:-.02em;margin:27px 0 14px;color:#12243D}
+.mg-service-card.mg-service-featured h3{color:white}
+.mg-service-card>p{color:#68798E;font-size:13px;line-height:1.9;margin-bottom:20px;min-height:99px}
+.mg-service-card.mg-service-featured>p{color:#BCCADA}
+.mg-service-card ul{padding:20px 0 10px 18px;margin:0 0 20px;border-top:1px solid #E8E2D9;display:grid;gap:12px}
+.mg-service-card.mg-service-featured ul{border-color:#41546B}
+.mg-service-card li{color:#475A72;font-size:12px;line-height:1.65;padding-left:5px}
+.mg-service-card li::marker{color:#B9A080}
+.mg-service-card.mg-service-featured li{color:#D1D8E2}
+.mg-service-tail{margin-top:auto;border-top:1px solid #E8E2D9;padding-top:21px;font-size:9px;color:#917A5C;font-weight:800;letter-spacing:.14em}
+.mg-service-featured .mg-service-tail{color:#D1BFA3;border-color:#41546B}
+.mg-service-foot{border:1px solid #E4DDD4;background:#EFE8DE;display:flex;justify-content:space-between;align-items:center;gap:30px;padding:34px;margin-top:17px;border-radius:10px}
+.mg-service-foot>div{max-width:770px}
+.mg-service-foot .mg-kicker{margin-bottom:10px}
+.mg-service-foot h3{font:400 34px "Instrument Serif",Georgia,serif;color:#13253D;margin:0 0 10px}
+.mg-service-foot p:not(.mg-kicker){font-size:12px;line-height:1.8;color:#69788A;margin:0}
+.mg-service-foot .mg-button{flex:none}
+.mg-service-disclaimer{font-size:11px;color:#8A93A0;line-height:1.75;margin-top:21px}
+.mg-student-preview{background:#F1EBE1}
+.mg-student-preview-inner{display:grid;grid-template-columns:1fr .9fr;gap:80px;align-items:center}
+.mg-student-preview h2{font:400 clamp(48px,4.7vw,75px)/1.04 "Instrument Serif",Georgia,serif;color:#13253D;margin:0 0 23px}
+.mg-student-preview h2 em{color:#9F896D;font-style:normal}
+.mg-student-preview-inner>div:first-child>p:not(.mg-kicker){font-size:14px;color:#687A90;line-height:1.85;max-width:540px;margin-bottom:30px}
+.mg-student-preview-inner>div:first-child>small{font-size:10px;color:#8997A7;display:block;margin-top:21px}
+.mg-preview-cards{background:#fff;border:1px solid #E4DDD3;border-radius:12px;box-shadow:0 20px 55px #2234480c;padding:31px}
+.mg-preview-header{display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:.12em;font-weight:800;color:#9B8569;border-bottom:1px solid #ECE6DC;padding-bottom:19px}
+.mg-preview-cards h3{font:400 35px "Instrument Serif",Georgia,serif;color:#182A43;margin:23px 0}
+.mg-preview-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.mg-preview-stat-row>div{border:1px solid #E8E2DA;padding:19px;border-radius:8px}
+.mg-preview-stat-row small{display:block;font-size:8px;color:#977E60;letter-spacing:.1em;font-weight:800}
+.mg-preview-stat-row strong{display:block;font:400 30px "Instrument Serif",Georgia,serif;margin:10px 0;color:#162C46}
+.mg-preview-stat-row span{display:block;font-size:10px;color:#8B98A6}
+.mg-preview-mini-card{background:#F7F4EF;border-radius:8px;padding:20px;margin-top:13px}
+.mg-preview-mini-card>span{font-size:9px;color:#927A5A;letter-spacing:.12em;font-weight:800}
+.mg-preview-mini-card p{font-size:12px;line-height:1.7;margin:12px 0;color:#445973}
+.mg-preview-lines{display:grid;gap:6px}
+.mg-preview-lines i{height:5px;width:100%;background:#D6DDE4;border-radius:5px}
+.mg-preview-lines i:nth-child(2){width:74%;background:#CDBBA0}.mg-preview-lines i:nth-child(3){width:45%;background:#D6DDE4}
+@media(max-width:1000px){.mg-services-grid{grid-template-columns:1fr 1fr}.mg-service-card{min-height:480px}.mg-student-preview-inner{grid-template-columns:1fr;gap:35px}.mg-preview-cards{max-width:720px}}
+@media(max-width:700px){.mg-services-grid{grid-template-columns:1fr}.mg-service-card{min-height:0}.mg-service-card>p{min-height:0}.mg-service-foot{display:grid;padding:24px}.mg-service-foot .mg-button{justify-self:start}.mg-preview-cards{padding:20px}}
+@media(max-width:430px){.mg-preview-stat-row{grid-template-columns:1fr}.mg-student-preview .mg-button{width:100%}}

@@ -25,7 +25,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Check app JavaScript and website integrity
         run: |
-          node --check mathsgrove.js
+          node --check marketing.js
+          node --check whiteboard.js
+          node --check sample.js
           node --input-type=module --check < portal.js
           node --input-type=module --check < studio.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
@@ -34,9 +36,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p site
-          cp index.html mathsgrove.css brand-refresh.css mathsgrove.js mathsgrove-icon.svg site/
-          cp portal.html portal.css private-refresh.css portal.js mathsgrove-config.js site/
+          cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg site/
+          cp portal.html portal.css private-refresh.css student-features.css portal.js mathsgrove-config.js whiteboard.js site/
           cp studio.html studio.css studio.js site/
+          cp sample.html sample.css sample.js site/
           touch site/.nojekyll
       - name: Configure Pages
         uses: actions/configure-pages@v5
