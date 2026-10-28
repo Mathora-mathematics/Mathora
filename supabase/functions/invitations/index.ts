@@ -66,16 +66,12 @@ Deno.serve(async req=>{
    const code=String(body.code||'').trim().toUpperCase();
    if(!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))return json({error:'Invalid invitation'},400,origin);
    const hash=await codeHash(code);
-   const {data:invite,error}=await admin.from('invitations').select('id,org_id,email,expires_at,redeemed_at,revoked_at').eq('code_hash',hash).maybeSingle();
-   if(error||!invite||invite.redeemed_at||invite.revoked_at||new Date(invite.expires_at)<=new Date()||invite.email!==String(user.email).toLowerCase())return json({error:'Invalid or expired invitation for this email'},403,origin);
-   const {data:existing,error:existingErr}=await admin.from('memberships').select('org_id,member_role').eq('user_id',user.id);
-   if(existingErr)return json({error:'Could not check memberships'},500,origin);
-   if(existing?.some(m=>m.member_role!=='student'))return json({error:'This account is already registered as a staff member'},409,origin);
-   if(existing?.some(m=>m.member_role==='student'))return json({error:'This student already has a membership. Sign in without a new invitation.'},409,origin);
-   const {data:claimed,error:claimErr}=await admin.from('invitations').update({redeemed_at:new Date().toISOString(),redeemed_by:user.id}).eq('id',invite.id).is('redeemed_at',null).is('revoked_at',null).select('id').maybeSingle();
-   if(claimErr||!claimed)return json({error:'Invitation has already been used'},409,origin);
-   const {error:membershipErr}=await admin.from('memberships').upsert({org_id:invite.org_id,user_id:user.id,member_role:'student'},{onConflict:'org_id,user_id'});
-   if(membershipErr)return json({error:'Enrolment could not be completed; contact your tutor for a replacement invitation'},500,origin);
+   // A single database transaction validates the invited email, locks the code,
+   // creates the student membership and consumes the invitation.
+   const {data:orgId,error:claimError}=await admin.rpc('claim_student_invitation',{
+     p_code_hash:hash,p_user_id:user.id
+   });
+   if(claimError||!orgId)return json({error:'This invitation could not be redeemed. It may be expired, already used or for another email.'},403,origin);
    return json({ok:true},200,origin);
   }
   return json({error:'Unknown request'},400,origin);
