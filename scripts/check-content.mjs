@@ -33,6 +33,11 @@ for(const test of ['start_mock_session','finish_mock_session','mock_session_cloc
  'mock_pack_questions','student_entitlements','finalize_expired_mock_sessions']){
  assert(mockSql.includes(test),'Missing server timing or entitlement requirement: '+test);
 }
+const fnCount=[...mockSql.matchAll(/CREATE OR REPLACE FUNCTION\\s+[^\\(\\s]+/gi)].length;
+const delimiterCount=(mockSql.match(/\\$\\$/g)||[]).length;
+assert(delimiterCount===fnCount*2,'SQL function delimiters must pair exactly for every function');
+assert((mockSql.match(/^BEGIN;$/gm)||[]).length===1 && (mockSql.match(/^COMMIT;$/gm)||[]).length===1,
+ 'One atomic migration transaction is required');
 const portal=readFileSync('portal.html','utf8');
 const studio=readFileSync('studio.html','utf8');
 for(const id of ['mocks-panel','mock-clock-bar','mock-time-remaining','work-question-elapsed','work-photos','student-canvas'])
