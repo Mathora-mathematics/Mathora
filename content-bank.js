@@ -1,6 +1,6 @@
-/* MathsGrove private mathematics library.
-   No answer keys are bundled in GitHub Pages. Mark schemes are fetched on demand
-   from the staff-restricted Supabase mark_schemes table. */
+/* MathsGrove maths library. Public open-practice candidates include public
+   answer guides, never eligible for unseen timed mocks. Actual confidential
+   student assessments load schemes from staff-restricted Supabase tables. */
 export function initContentBank(db,studio){
  const $=id=>document.getElementById(id);
  const admin=['admin','partner'].includes(studio.membership?.member_role);
@@ -223,8 +223,8 @@ export function initContentBank(db,studio){
   for(const q of list){
    const item=txt('article','','bank-draft-item');
    item.append(txt('strong',q.id+' · '+q.topic),
-    txt('small',(q.programme?'Grove '+q.programme.toUpperCase()+' · ':'')+q.tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min · '+(q.calculator||'Calculator rule to check')+' · NOT APPROVED'),
-    txt('p',q.prompt));
+    txt('small',(q.programme?'Grove '+q.programme.toUpperCase()+' · ':'')+q.tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min · NOT APPROVED'));
+   const preview=txt('p','');if(window.MathsGroveMath)window.MathsGroveMath.write(preview,q.prompt);else preview.textContent=q.prompt;item.append(preview);
    root.append(item);
   }
   if(!list.length)root.append(txt('p','No draft exemplars at this stage. AS/A Level comes later.'));
