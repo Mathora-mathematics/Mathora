@@ -176,7 +176,8 @@ begin
   values(v_attempt,p_questions[v_i],v_i);
  end loop;
  return v_attempt;
-end; $;
+end;
+$;
 create or replace function public.save_marking_review(
   p_attempt uuid,
   p_items jsonb,
