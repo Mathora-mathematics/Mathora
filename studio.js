@@ -51,7 +51,9 @@ async function init(){
  }catch(e){showStatus('Could not open the studio.','The secure connection could not verify your permissions: '+(e?.message||'Unknown error'));}
 }
 async function refresh(){
- await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites()]);
+ const results=await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites()]);
+ const failures=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Unknown error');
+ if(failures.length)inform('Some studio data could not load: '+failures.join(' | '),true);
  renderOverview();renderRoster();renderInvites();renderQueue();renderReleased();
 }
 async function loadRoster(){
