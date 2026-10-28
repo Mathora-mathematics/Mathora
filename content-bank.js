@@ -140,10 +140,10 @@ export function initContentBank(db,studio){
    if(pack.status==='published'){
     const select=document.createElement('select');select.setAttribute('aria-label','Choose student for '+pack.title);
     select.add(new Option('Assign to student',''));
-    for(const student of studio.students||[])if(student.pref?.qualification===pack.qualification)select.add(new Option(student.name,student.id));
+    for(const student of studio.students||[])if(student.pref?.qualification===pack.qualification&&student.pref?.exam_board===pack.board_key&&student.pref?.tier===pack.exam_tier)select.add(new Option(student.name,student.id));
     const btn=txt('button','Assign mock','button primary');btn.type='button';
     btn.onclick=async()=>{
-     if(!select.value){say('Choose a learner whose qualification matches the paper.',true,'mock-admin-feedback');return}
+     if(!select.value){say('Choose a learner whose qualification, board code and academic level exactly match this mock. Update the learner in Students & invitations if needed.',true,'mock-admin-feedback');return}
      btn.disabled=true;
      const {error}=await db.rpc('assign_mock_pack',{p_pack:pack.id,p_student:select.value});
      say(error?error.message:'Mock assigned successfully. Student may start the timed session from Grove Exam.',Boolean(error),'mock-admin-feedback');
