@@ -4,7 +4,7 @@
 export function initContentBank(db,studio){
  const $=id=>document.getElementById(id);
  const admin=['admin','partner'].includes(studio.membership?.member_role);
- const bank={boards:[],blueprints:[],drafts:[],serviceTiers:null,questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false,mockPacks:[],selectedMockQuestions:[]};
+ const bank={boards:[],blueprints:[],drafts:[],serviceTiers:null,questions:[],practiceLabels:[],editorial:[],selected:null,loaded:false,hasEditorial:false,mockPacks:[],selectedMockQuestions:[]};
  const say=(message,error=false,id='bank-status')=>{const node=$(id);node.textContent=message;node.classList.toggle('is-error',error)};
  const txt=(tag,value,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;node.textContent=String(value??'');return node};
  const clear=id=>$(id).replaceChildren();
@@ -196,7 +196,9 @@ export function initContentBank(db,studio){
    const item=txt('article','','bank-draft-item');
    item.append(txt('strong',q.id+' · '+q.topic),
     txt('small',(q.programme?'Grove '+q.programme.toUpperCase()+' · ':'')+q.tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min · '+(q.calculator||'Calculator rule to check')+' · NOT APPROVED'),
-    txt('p',q.prompt));
+    txt('p',''));
+   const questionText=item.lastElementChild;
+   if(window.MathsGroveMath)window.MathsGroveMath.write(questionText,q.prompt);else questionText.textContent=q.prompt;
    root.append(item);
   }
   if(!list.length)root.append(txt('p','No draft exemplars at this stage. AS/A Level comes later.'));
@@ -209,7 +211,7 @@ export function initContentBank(db,studio){
    const e=editorialFor(q.id),status=e?.review_status||'legacy_unmapped';
    const matchQual=qual==='AS_A_LEVEL'?['A_LEVEL','FURTHER_MATHS'].includes(q.qualification):q.qualification===qual;
    const query=(q.topic+' '+q.prompt+' '+q.qualification).toLowerCase();
-   return matchQual&&(!search||query.includes(search))&&(review==='all'||status===review)&&(!board||e?.board_key===board);
+   return matchQual&&(!search||query.includes(search))&&(review==='all'||status===review)&&(!board||!e?.board_key||e.board_key===board);
   });
  }
  function renderQuestions(){
@@ -218,11 +220,13 @@ export function initContentBank(db,studio){
   for(const q of list){
    const row=document.createElement('tr');const e=editorialFor(q.id);
    const status=e?.review_status||'legacy_unmapped';
+   const p=bank.practiceLabels.find(x=>x.question_id===q.id);
    const cols=[qualText(q.qualification),q.topic+'|'+q.prompt,q.marks,'Level '+q.difficulty,status,''];
    cols.forEach((value,index)=>{
     const td=document.createElement('td');
     if(index===1){
-     td.append(txt('strong',q.topic),txt('small',q.prompt.length>110?q.prompt.slice(0,110)+'…':q.prompt));
+     td.append(txt('strong',(p?'Grove '+p.programme.toUpperCase()+' · ':'')+q.topic));
+     const excerpt=txt('small','');if(window.MathsGroveMath)window.MathsGroveMath.write(excerpt,q.prompt.length>125?q.prompt.slice(0,125)+'…':q.prompt);else excerpt.textContent=q.prompt.slice(0,125);td.append(excerpt);
     }else if(index===4)td.append(txt('span',status.replaceAll('_',' '),'bank-status-pill '+status));
     else if(index===5){
      const button=txt('button','Inspect','button outline');button.type='button';
@@ -243,11 +247,11 @@ export function initContentBank(db,studio){
   bank.selected=id;
   $('bank-detail').hidden=false;
   $('bank-detail-title').textContent=q.topic;
-  const e=editorialFor(id),tags=$('bank-detail-meta');tags.replaceChildren();
+  const e=editorialFor(id),p=bank.practiceLabels.find(x=>x.question_id===id),tags=$('bank-detail-meta');tags.replaceChildren();
   [qualText(q.qualification),e?.board_key?boardName(e.board_key):'No board mapping',
    e?.exam_tier||'Tier not mapped',q.marks+' marks','Difficulty '+q.difficulty,
    e?.suggested_seconds?Math.ceil(e.suggested_seconds/60)+' min suggested':'Time not set',
-   e?.review_status||'Legacy pilot'].forEach(x=>tags.append(txt('span',x)));
+   e?.review_status||'Legacy pilot',p?'Grove '+p.programme.toUpperCase()+' · public practice':''].filter(Boolean).forEach(x=>tags.append(txt('span',x)));
   const prompt=$('bank-detail-prompt');
   if(window.MathsGroveMath)window.MathsGroveMath.write(prompt,q.prompt);else prompt.textContent=q.prompt;
   $('bank-detail-scheme').textContent='Loading private examiner guidance…';
@@ -284,6 +288,8 @@ export function initContentBank(db,studio){
      .select('question_id,owner_org,board_key,exam_tier,calculator_required,suggested_seconds,review_status,editorial_note')
      .limit(500);
    bank.hasEditorial=!meta.error;bank.editorial=meta.data||[];
+   const labelResult=await db.from('practice_question_labels').select('question_id,programme,suggested_seconds').limit(500);
+   bank.practiceLabels=labelResult.data||[];
    updateBoardOptions();updateAuthorOptions();mockBoardOptions();await loadMockPacks();
    if(!admin){$('bank-author').hidden=true;$('mock-admin').hidden=true}
    else{$('bank-author').hidden=false;$('mock-admin').hidden=false}
