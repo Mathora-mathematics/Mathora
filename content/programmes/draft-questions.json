@@ -163,7 +163,7 @@
       "tier": "Higher",
       "marks": 6,
       "suggested_minutes": 8,
-      "prompt": "A school purchases n identical calculators at £14 each and pays a fixed £25 delivery charge. It has a budget of £300. Form and solve an inequality to find the greatest integer n it can buy. A supplier offers free delivery but charges £15.50 per calculator. Compare the greatest affordable quantities.",
+      "prompt": "A school purchases n identical calculators at £14 each and pays a fixed £25 delivery charge. It has a budget of £300. Form and solve an inequality to find the greatest integer n it can buy. A supplier offers free delivery but charges £15 per calculator. Compare the greatest affordable quantities.",
       "status": "unmoderated_public_specimen",
       "available_to_students": false,
       "question_requirements": [
