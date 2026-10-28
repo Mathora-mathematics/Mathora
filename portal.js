@@ -120,6 +120,103 @@ const board=window.MathsGroveBoard.setup({
  onChange:()=>{state.drawingChanged=true;text('save-status','Whiteboard changes not yet saved')}
 });
 function clearCanvas(){board.clear()}
-async function renderProgress(){const el=$('progress-list');el.replaceChildren();if(!state.attempts.length){el.textContent='Your progress history will appear here after your first submitted assessment.';return}for(const a of state.attempts){const row=document.createElement('div');row.className='report-entry';row.innerHTML='<strong>'+safe(quals[a.qualification]||a.qualification)+'</strong> · '+safe(labelState(a.status))+'<p>'+new Date(a.started_at).toLocaleString()+'</p>';el.append(row);if(a.status==='marked'){const {data}=await sb.from('reviews').select('marks_awarded,feedback,question_id').eq('attempt_id',a.id);if(data?.length){const note=document.createElement('div');note.className='notice-inline';note.textContent=data.map(r=>'Awarded '+r.marks_awarded+' mark(s). '+(r.feedback||'')).join(' | ');el.append(note)}}}}
+async function renderProgress(){
+ const el=$('progress-list');el.replaceChildren();$('report-detail').hidden=true;
+ if(!state.attempts.length){el.textContent='You have no saved papers yet. Create your first practice set from Overview to begin building your personal learning record.';return}
+ for(const attempt of state.attempts){
+  const row=document.createElement('div');row.className='paper-row';
+  const details=document.createElement('div'),name=document.createElement('strong'),meta=document.createElement('small');
+  name.textContent=quals[attempt.qualification]||attempt.qualification;
+  const mode=({daily:'Daily Focus',weekly:'Weekly Paper',mock:'Mock Preview',topic:'Topic Focus'})[attempt.paper_mode]||'Practice paper';
+  meta.textContent=mode+' · '+labelState(attempt.status)+' · '+new Date(attempt.started_at).toLocaleDateString();
+  details.append(name,meta);
+  const btn=document.createElement('button');btn.type='button';btn.className='button button-muted';
+  btn.textContent=attempt.status==='marked'?'Open examiner report':'View saved work';
+  btn.onclick=()=>viewPaperRecord(attempt);row.append(details,btn);el.append(row);
+ }
+}
+async function viewPaperRecord(attempt){
+ const root=$('report-detail');root.hidden=false;root.replaceChildren();
+ const loading=document.createElement('p');loading.textContent='Opening your private paper record…';root.append(loading);
+ try{
+  const [answers,reviewResult,files,questions]=await Promise.all([
+   sb.from('answers').select('question_id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',attempt.id),
+   sb.from('reviews').select('question_id,marks_awarded,feedback').eq('attempt_id',attempt.id),
+   sb.from('answer_files').select('question_id,original_name,storage_path,file_kind').eq('attempt_id',attempt.id),
+   sb.from('question_bank').select('id,topic,prompt,marks').eq('qualification',attempt.qualification)
+  ]);
+  for(const r of [answers,reviewResult,files,questions])if(r.error)throw r.error;
+  root.replaceChildren();
+  const qs=new Map((questions.data||[]).map(q=>[q.id,q])),reviews=new Map((reviewResult.data||[]).map(r=>[r.question_id,r]));
+  const label=document.createElement('p');label.className='card-kicker';label.textContent=attempt.status==='marked'?'YOUR RELEASED EXAMINER REVIEW':'YOUR SAVED WORK';
+  const title=document.createElement('h2');title.textContent=(quals[attempt.qualification]||attempt.qualification)+' · '+(attempt.paper_mode||'practice');
+  const note=document.createElement('p');note.className='record-intro';note.textContent=attempt.status==='marked'?'This report reflects examiner marks and feedback saved to your own account.':'Your paper is saved in your private history. Question-by-question examiner feedback appears here after review.';
+  root.append(label,title,note);
+  const actual=(answers.data||[]).reduce((sum,r)=>sum+(reviews.get(r.question_id)?.marks_awarded||0),0);
+  const maximum=(answers.data||[]).reduce((sum,r)=>sum+(qs.get(r.question_id)?.marks||0),0);
+  if(attempt.status==='marked'){
+   const score=document.createElement('div');score.className='record-score';
+   const scoreValue=document.createElement('strong');scoreValue.textContent=actual+' / '+maximum;
+   const scoreNote=document.createElement('span');scoreNote.textContent=maximum?Math.round(100*actual/maximum)+'% · Marks recorded by your examiner':'Examiner marks recorded';
+   score.append(scoreValue,scoreNote);root.append(score);
+  }
+  const sorted=(answers.data||[]).sort((a,b)=>String(qs.get(a.question_id)?.topic||'').localeCompare(String(qs.get(b.question_id)?.topic||'')));
+  for(let i=0;i<sorted.length;i++){
+   const a=sorted[i],q=qs.get(a.question_id),r=reviews.get(a.question_id);
+   const section=document.createElement('section');section.className='record-question';
+   const h=document.createElement('h3');h.textContent='Question '+(i+1)+' · '+(q?.topic||'Mathematics');
+   const prompt=document.createElement('p');prompt.textContent=q?.prompt||'Original question';
+   const response=document.createElement('div');response.className='record-working';response.textContent=a.typed_answer||'Handwritten working was supplied separately.';
+   const refl=document.createElement('small');refl.textContent='Your reflection: '+(a.difficulty||'not recorded')+' · confidence '+(a.confidence||'not recorded');
+   section.append(h,prompt,response,refl);
+   if(attempt.status==='marked'){
+    const examiner=document.createElement('div');examiner.className='record-examiner';
+    const marks=document.createElement('strong');marks.textContent='Examiner marks: '+(r?.marks_awarded??'—')+' / '+(q?.marks??'—');
+    const feedback=document.createElement('p');feedback.textContent=r?.feedback||'No written comment recorded for this question.';
+    examiner.append(marks,feedback);section.append(examiner);
+   }
+   for(const file of (files.data||[]).filter(x=>x.question_id===a.question_id)){
+    const btn=document.createElement('button');btn.type='button';btn.className='small-button record-attachment';btn.textContent='View saved '+(file.file_kind==='drawing'?'graph-paper working':'photo')+' · '+file.original_name+' ↗';
+    btn.onclick=async()=>{
+      try{const {data,error}=await sb.storage.from('student-work').createSignedUrl(file.storage_path,60);if(error)throw error;window.open(data.signedUrl,'_blank','noopener,noreferrer')}
+      catch(err){message('global-message',friendlyError(err),true)}
+    };
+    section.append(btn);
+   }
+   root.append(section);
+  }
+  if(!(answers.data||[]).length){const p=document.createElement('p');p.textContent='No saved answers were found for this paper.';root.append(p)}
+  if(attempt.status==='marked'){
+   const tip=document.createElement('div');tip.className='record-next';tip.textContent='Your next step: revisit questions where method or accuracy marks were lost, then select a new practice paper from your Dashboard.';root.append(tip);
+  }
+  const actions=document.createElement('div');actions.className='record-actions';
+  const print=document.createElement('button');print.type='button';print.className='button button-primary';print.textContent='Print / Save this record as PDF';print.onclick=()=>window.print();
+  const sample=document.createElement('a');sample.className='button button-muted';sample.href='./sample.html#report';sample.textContent='Compare specimen report ↗';
+  actions.append(print,sample);root.append(actions);
+  root.scrollIntoView({behavior:'smooth',block:'start'});
+ }catch(err){root.replaceChildren();message('global-message','Unable to open your private record: '+friendlyError(err),true)}
+}
+$('export-history').addEventListener('click',async()=>{
+ try{
+  const [answers,files,reviews]=await Promise.all([
+   sb.from('answers').select('attempt_id,question_id,typed_answer,difficulty,confidence,clarity,updated_at').eq('student_id',state.user.id).limit(500),
+   sb.from('answer_files').select('attempt_id,question_id,original_name,file_kind,created_at').eq('student_id',state.user.id).limit(500),
+   sb.from('reviews').select('attempt_id,question_id,marks_awarded,feedback').limit(500)
+  ]);
+  for(const result of [answers,files,reviews])if(result.error)throw result.error;
+  const ids=new Set(state.attempts.map(a=>a.id));
+  const record={label:'MathsGrove private student record',exported_at:new Date().toISOString(),
+    note:'JSON contains records and attachment names, but does not include photograph image binaries.',
+    profile:{display_name:state.profile?.display_name||'',qualification:state.preference?.qualification||'',exam_board:state.preference?.exam_board||'',tier:state.preference?.tier||''},
+    papers:state.attempts,
+    answers:(answers.data||[]).filter(x=>ids.has(x.attempt_id)),
+    attachments:(files.data||[]).filter(x=>ids.has(x.attempt_id)),
+    released_reviews:(reviews.data||[]).filter(x=>ids.has(x.attempt_id))
+  };
+  const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));
+  const link=document.createElement('a');link.href=url;link.download='MathsGrove_my_learning_record.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  message('global-message','Your learning record JSON has been downloaded. Uploaded photographs remain private in Supabase.');
+ }catch(err){message('global-message',friendlyError(err),true)}
+});
 await boot();
 $('sign-out').hidden=!state.user;
