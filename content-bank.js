@@ -4,7 +4,7 @@
 export function initContentBank(db,studio){
  const $=id=>document.getElementById(id);
  const admin=['admin','partner'].includes(studio.membership?.member_role);
- const bank={boards:[],blueprints:[],drafts:[],questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false,mockPacks:[],selectedMockQuestions:[]};
+ const bank={boards:[],blueprints:[],drafts:[],serviceTiers:null,questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false,mockPacks:[],selectedMockQuestions:[]};
  const say=(message,error=false,id='bank-status')=>{const node=$(id);node.textContent=message;node.classList.toggle('is-error',error)};
  const txt=(tag,value,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;node.textContent=String(value??'');return node};
  const clear=id=>$(id).replaceChildren();
@@ -62,6 +62,19 @@ export function initContentBank(db,studio){
    item.append(name,sub);root.append(item);
   }
   if(!list.length)root.append(txt('p','No paper blueprints for this selection. AS / A Level will be researched in stage three.'));
+ }
+ function renderServiceTiers(){
+  const root=$('tier-library-cards');root.replaceChildren();
+  const plans=bank.serviceTiers?.plans||{};
+  for(const key of ['weekly','daily','exam']){
+   const plan=plans[key];if(!plan)continue;
+   const card=txt('article','','tier-library-card');
+   const caption=txt('span',key==='exam'?'TIMED ASSESSMENTS':key==='daily'?'DAILY PRACTICE':'WEEKLY PAPERS');
+   const heading=txt('h3',plan.name);
+   const p=txt('p',plan.cadence+' · '+plan.student_goal);
+   const desc=txt('small',plan.status);
+   card.append(caption,heading,p,desc);root.append(card);
+  }
  }
  function mockBoardOptions(){
   const qual=$('mock-build-qual').value;
@@ -167,11 +180,11 @@ export function initContentBank(db,studio){
 
  function renderDrafts(){
   const root=$('bank-draft-list');root.replaceChildren();
-  const list=bank.drafts.filter(q=>q.qualification===$('bank-level').value);
+  const programme=$('bank-programme').value;const list=bank.drafts.filter(q=>q.qualification===$('bank-level').value&&(programme==='all'||q.programme===programme));
   for(const q of list){
    const item=txt('article','','bank-draft-item');
    item.append(txt('strong',q.id+' · '+q.topic),
-    txt('small',q.tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min · '+q.calculator+' · NOT APPROVED'),
+    txt('small',(q.programme?'Grove '+q.programme.toUpperCase()+' · ':'')+q.tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min · '+(q.calculator||'Calculator rule to check')+' · NOT APPROVED'),
     txt('p',q.prompt));
    root.append(item);
   }
@@ -240,14 +253,17 @@ export function initContentBank(db,studio){
  async function load(){
   say('Loading official board formats and your private question catalogue…');
   try{
-   const [b,p,g,i]=await Promise.all([
+   const [b,p,g,i,tierInfo,tierDrafts]=await Promise.all([
     fetch('./content/boards.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Board catalogue unavailable');return r.json()}),
     fetch('./content/paper-blueprints.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blueprint register unavailable');return r.json()}),
     fetch('./content/GCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
-    fetch('./content/IGCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
+    fetch('./content/IGCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/programmes/service-tiers.json',{cache:'no-store'}).then(r=>r.ok?r.json():{plans:{}}),
+    fetch('./content/programmes/draft-questions.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
    ]);
-   bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];
-   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE'}))];
+   bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];bank.serviceTiers=tierInfo;
+   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE',programme:'weekly'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE',programme:'weekly'})),...(tierDrafts.items||[])];
+   renderServiceTiers();
    const {data:questions,error}=await db.from('question_bank')
      .select('id,qualification,topic,prompt,marks,difficulty,active,created_at')
      .order('created_at',{ascending:false}).limit(500);
@@ -270,6 +286,7 @@ export function initContentBank(db,studio){
  $('bank-board').addEventListener('change',()=>{renderBoards();renderQuestions();renderMockBlueprints()});
  $('bank-search').addEventListener('input',renderQuestions);
  $('bank-review-filter').addEventListener('change',renderQuestions);
+ $('bank-programme').addEventListener('change',renderDrafts);
  $('bank-refresh').addEventListener('click',()=>void load());
  $('bank-detail-close').addEventListener('click',()=>{$('bank-detail').hidden=true;bank.selected=null});
  $('bank-author-qual').addEventListener('change',updateAuthorOptions);
