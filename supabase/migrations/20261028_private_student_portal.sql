@@ -216,6 +216,7 @@ alter table public.reviews enable row level security;
 -- Revoke broad default Supabase grants; regrant only required operations.
 revoke all on public.organisations,public.profiles,public.memberships,public.invitations,public.student_preferences,public.question_bank,public.mark_schemes,public.attempts,public.answers,public.answer_files,public.reviews from anon,authenticated;
 grant select on public.organisations,public.profiles,public.memberships,public.student_preferences,public.question_bank,public.attempts,public.answers,public.answer_files,public.reviews to authenticated;
+grant update(display_name) on public.profiles to authenticated;
 grant insert on public.student_preferences,public.attempts,public.answers,public.answer_files,public.reviews to authenticated;
 grant update on public.student_preferences to authenticated;
 grant update(status,submitted_at) on public.attempts to authenticated;
@@ -227,6 +228,8 @@ using(private.is_member(id));
 create policy profiles_select on public.profiles for select to authenticated
 using(id=(select auth.uid()) or exists(
   select 1 from public.memberships m where m.user_id=profiles.id and private.is_staff(m.org_id)));
+create policy profiles_update_self on public.profiles for update to authenticated
+using(id=(select auth.uid())) with check(id=(select auth.uid()));
 create policy memberships_select on public.memberships for select to authenticated
 using(user_id=(select auth.uid()) or private.is_staff(org_id));
 
