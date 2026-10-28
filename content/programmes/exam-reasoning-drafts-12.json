@@ -1,0 +1,149 @@
+{
+  "notice": "PUBLIC ORIGINAL EXAM-STYLE EXEMPLARS FOR EDITORIAL REVIEW ONLY. NOT unseen mock content.",
+  "items": [
+    {
+      "id": "MG-EXD-001",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Quadratics and inequalities",
+      "marks": 8,
+      "suggested_minutes": 12,
+      "prompt": "Given \\(f(x)=x^2-7x+10\\): (a) factorise \\(f(x)\\); (b) solve \\(f(x)=0\\); (c) solve \\(f(x)<0\\), justifying the interval.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-002",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Percentage reasoning",
+      "marks": 8,
+      "suggested_minutes": 12,
+      "prompt": "A jacket is £120. (a) Its price rises by \\(15\\%\\). Calculate the new price. (b) This new price falls by \\(20\\%\\). Find the final price. (c) Explain why the original price is not restored.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-003",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Similarity and area",
+      "marks": 8,
+      "suggested_minutes": 12,
+      "prompt": "Two similar triangles have corresponding sides \\(4\\text{ cm}\\) and \\(10\\text{ cm}\\). The smaller area is \\(12\\text{ cm}^2\\). (a) Find the length scale factor. (b) Find the larger area. (c) Explain the relationship between length scale and area scale.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-004",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Composite and inverse functions",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "Let \\(f(x)=3x-7\\), \\(g(x)=x^2+2\\). (a) Find \\(f(g(x))\\). (b) Find \\(g(f(x))\\). (c) Determine \\(f^{-1}(x)\\) and verify a composition.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-005",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Geometry in three dimensions",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "A cuboid measures \\(3\\text{ cm}\\) by \\(4\\text{ cm}\\) by \\(12\\text{ cm}\\). (a) Find its space diagonal. (b) Unfold the two side faces measuring \\(3\\times12\\) and \\(4\\times12\\) cm; find the shortest route between opposite vertices along these two faces. (c) Compare the two routes.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-006",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Modelling with quadratics",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "The height of a ball is \\(h(t)=-5t^2+20t+1\\), where \\(t\\ge0\\). (a) Complete the square. (b) Find the maximum height and time. (c) Explain why the model must stop applying at some future time.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-007",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Surds and exact values",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "(a) Simplify \\(3\\sqrt{12}-\\sqrt{27}\\). (b) Rationalise \\(\\frac5{\\sqrt5-1}\\). (c) Explain why the conjugate removes the irrational denominator.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-008",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Algebraic fractions and restrictions",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "Let \\(f(x)=\\frac{x^2-9}{x^2-3x}\\). (a) Simplify \\(f(x)\\). (b) State all excluded inputs from the original fraction. (c) Solve \\(f(x)=2\\), checking restrictions.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-009",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Non-linear simultaneous equations",
+      "marks": 10,
+      "suggested_minutes": 14,
+      "prompt": "The line \\(y=x+1\\) intersects \\(x^2+y^2=13\\). (a) Eliminate \\(y\\). (b) Find both intersection points. (c) Verify one solution in the two original equations.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-010",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Functions and composite algebra",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "Let \\(f(x)=2x+1\\), \\(g(x)=x^2-2\\). (a) Find \\(f(g(x))\\). (b) Find \\(g(f(x))\\). (c) Solve \\(f(g(x))=7\\) for all real \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-011",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Exact trigonometry",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "In triangle \\(ABC\\), \\(\\angle A=30^\\circ\\), \\(\\angle B=60^\\circ\\) and \\(a=8\\text{ cm}\\), opposite \\(A\\). (a) Find angle \\(C\\). (b) Find side \\(b\\) exactly. (c) Calculate the area exactly.",
+      "status": "editorial_draft",
+      "available_to_students": false
+    },
+    {
+      "id": "MG-EXD-012",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Vector geometry",
+      "marks": 9,
+      "suggested_minutes": 13,
+      "prompt": "Let \\(\\vec{OA}=\\mathbf a\\), \\(\\vec{OB}=\\mathbf b\\). Point \\(M\\) is the midpoint of \\(AB\\). Point \\(N\\) lies on \\(OA\\) with \\(\\vec{ON}=\\frac13\\mathbf a\\). Express (a) \\(\\vec{OM}\\), (b) \\(\\vec{NM}\\), (c) \\(\\vec{BM}\\) in terms of \\(\\mathbf a,\\mathbf b\\).",
+      "status": "editorial_draft",
+      "available_to_students": false
+    }
+  ]
+}
