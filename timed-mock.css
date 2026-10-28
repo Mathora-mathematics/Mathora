@@ -1,0 +1,42 @@
+/* Grove product levels and protected timed mock workspace */
+.mock-notice{background:#F5EFE6!important;border-left:4px solid #C3AC87!important}
+.mock-notice h2{font:400 31px "Instrument Serif",Georgia,serif;color:#213B58}
+.mock-notice p:not(.card-kicker){font-size:12px;line-height:1.85;color:#576F85}
+.mock-list{display:grid;gap:13px;margin:20px 0}
+.mock-list>p{color:#78899D;font-size:13px;line-height:1.8}
+.mock-offer{background:#FFF;border:1px solid #DCD6CD;border-radius:9px;padding:20px;display:flex;gap:15px;align-items:center;justify-content:space-between}
+.mock-offer h3{font:400 26px "Instrument Serif",Georgia,serif;color:#1D3751;margin:0 0 8px}
+.mock-offer p{font-size:11px;line-height:1.7;color:#677F95;margin:0}
+.mock-honesty{font-size:11px;color:#8493A5;line-height:1.8;margin:17px 0}
+.mock-clock-bar{position:sticky;top:6px;z-index:5;background:#142742;color:#FFF;border:1px solid #40536D;border-radius:8px;padding:13px 17px;margin:12px 0 17px;display:flex;gap:17px;align-items:center;justify-content:space-between;box-shadow:0 9px 20px #0F28401E}
+.mock-clock-bar[hidden]{display:none!important}
+.mock-clock-bar strong{font-size:10px;letter-spacing:.09em}
+.mock-clock-bar small{font-size:9px;color:#BAC9D9;display:block;margin-top:5px}
+.mock-clock-bar #mock-time-remaining{font:400 35px "Instrument Serif",Georgia,serif;letter-spacing:.02em;white-space:nowrap}
+.mock-clock-bar .button{min-width:125px;background:#FFF;color:#1C3550}
+.mock-clock-bar.clock-critical{background:#823D43;border-color:#9A5A5E}
+.mock-clock-bar.clock-critical #mock-time-remaining{font-weight:700}
+#work-question-elapsed{display:inline-flex;align-items:center;color:#8B785A;gap:6px;font-size:10px;font-weight:700}
+.mock-admin{border:1px solid #C8BAA7!important;background:#FCFAF6}
+.mock-admin h2{font:400 32px "Instrument Serif",Georgia,serif;color:#1A314A}
+.mock-admin-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:19px 0}
+.mock-admin-grid label{font-size:11px;line-height:1.6;color:#51637B;font-weight:700;display:flex;flex-direction:column;gap:7px}
+.mock-admin-grid input,.mock-admin-grid select,.mock-admin-row select{border:1px solid #D8DDE4;border-radius:6px;padding:10px;background:#FFF;color:#1D344E;min-height:43px;font-size:12px;min-width:0}
+.mock-calculator{display:flex!important;flex-direction:row!important;align-items:center;padding-top:20px}
+.mock-calculator input{min-height:unset}
+.mock-question-pool{border:1px solid #E4DFD8;background:white;border-radius:8px;padding:10px;display:grid;gap:7px;max-height:360px;overflow-y:auto;margin:16px 0}
+.mock-pool-option{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #EAE6DF;cursor:pointer}
+.mock-pool-option input{accent-color:#233F5D;width:17px;height:17px}
+.mock-pool-option span{flex:1}
+.mock-pool-option strong{display:block;font-size:11px;color:#263B52}
+.mock-pool-option small{display:block;color:#758498;font-size:10px;margin-top:5px;line-height:1.55}
+.mock-selected{font-size:12px;color:#536D86;padding:0 0 13px}
+.mock-selected strong{color:#1D3854}
+.mock-admin-list{margin-top:25px}
+.mock-admin-list h3{font:400 24px "Instrument Serif",Georgia,serif;color:#1C344D}
+.mock-admin-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid #E6DED4}
+.mock-admin-row strong{display:block;color:#263F58;font-size:12px}
+.mock-admin-row small{display:block;font-size:10px;color:#7A8B9C;margin-top:6px}
+.mock-admin-row>div:last-child{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+@media(max-width:850px){.mock-admin-grid{grid-template-columns:repeat(2,1fr)}.mock-offer,.mock-admin-row{display:grid;grid-template-columns:1fr}.mock-offer .button{justify-self:start}}
+@media(max-width:560px){.mock-admin-grid{grid-template-columns:1fr}.mock-clock-bar{gap:8px;flex-wrap:wrap}.mock-clock-bar #mock-time-remaining{font-size:30px}.mock-clock-bar .button{min-width:0}}
