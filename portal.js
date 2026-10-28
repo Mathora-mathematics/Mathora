@@ -143,13 +143,31 @@ $('begin-paper').addEventListener('click',async()=>{
   if(!state.preference?.qualification)throw Error('Ask your tutor to assign your qualification first.');
   const mode=$('paper-mode').value,topic=$('paper-topic').disabled?'':$('paper-topic').value,level=$('paper-level').value;
   const wanted=Number($('paper-length').value)||3;
-  const {data:q,error}=await sb.from('question_bank').select('id,qualification,topic,prompt,marks,difficulty').eq('qualification',state.preference.qualification).eq('active',true).order('difficulty',{ascending:true}).limit(100);
+  const [{data:q,error},{data:labels,error:labelError}]=await Promise.all([
+   sb.from('question_bank').select('id,qualification,topic,prompt,marks,difficulty').eq('qualification',state.preference.qualification).eq('active',true).limit(400),
+   sb.from('practice_question_labels').select('question_id,programme,suggested_seconds').limit(500)
+  ]);
   if(error)throw error;
+  const byId=new Map((labels||[]).map(x=>[x.question_id,x]));
+  const requestedProgramme=mode==='daily'?'daily':'weekly';
   const allowed={foundation:[1,2],standard:[2,3],challenge:[3,4,5]};
-  let chosen=(q||[]).filter(x=>(!topic||x.topic===topic)&&(!allowed[level]||allowed[level].includes(x.difficulty)));
-  if(!chosen.length)throw Error('No original pilot questions match those settings yet. Try Mixed topics or Balanced mix.');
-  // Deterministic within difficulty; do not imply psychometric adaptation.
+  const eligible=(q||[]).filter(x=>(!topic||x.topic===topic)&&(!allowed[level]||allowed[level].includes(x.difficulty)));
+  const planTagged=eligible.filter(x=>byId.get(x.id)?.programme===requestedProgramme);
+  // Real programme-tagged content is preferred; legacy pilot items are
+  // available only when there is not enough original tier-specific coverage.
+  let chosen=planTagged.length?planTagged:eligible.filter(x=>!byId.has(x.id));
+  if(!chosen.length)throw Error('No original questions match these settings yet. Try another topic or Balanced mix.');
+  // Fisher–Yates avoids serving the same easiest questions every time.
+  chosen=[...chosen];
+  for(let j=chosen.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[chosen[j],chosen[k]]=[chosen[k],chosen[j]]}
+  // Prefer a balanced topic mix for a longer Weekly set.
+  if(mode!=='daily'&&!topic){
+   const grouped=new Map();for(const x of chosen){const a=grouped.get(x.topic)||[];a.push(x);grouped.set(x.topic,a)}
+   const balanced=[];while(grouped.size){for(const [name,items] of grouped){balanced.push(items.shift());if(!items.length)grouped.delete(name)}}
+   chosen=balanced;
+  }
   chosen=chosen.slice(0,wanted);
+  if(labelError&&labelError.code!=='42P01')text('paper-availability','The programme-labelled practice bank is being prepared.');
   const ids=chosen.map(x=>x.id);
   const {data:id,error:createError}=await sb.rpc('create_student_paper',{p_mode:mode,p_topic:topic,p_difficulty:level,p_requested_count:wanted,p_questions:ids});
   if(createError)throw Error(createError.message||'The selected paper could not be created.');
