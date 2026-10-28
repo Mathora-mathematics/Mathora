@@ -6,6 +6,8 @@
 - [Grove Weekly / Daily / Exam](programmes/README.md) — service tiers, allocated practice, original question examples and timed mock behaviour. These three are **not** GCSE/IGCSE/A Level.
 - [Programme configuration JSON](programmes/service-tiers.json) — cadence, duration and intended maths question mix.
 - [24 additional original tier-specific draft stems](programmes/draft-questions.json) — review-only, not secure unseen mocks.
+- [12 Grove Exam multi-part editorial problems](programmes/exam-reasoning-drafts-12.json) — review-only, not yet full mocks.
+- **120 mathematically formatted, reusable practice items** in four operational JSON packs (GCSE/IGCSE Daily and Weekly) and the [Supabase installation script](../supabase/INSTALL_ORIGINAL_PRACTICE_120.sql).
 
 ## Academic pathways inside any of the three programmes
 - [GCSE](GCSE/README.md) — English GCSE (9–1): AQA 8300, Pearson Edexcel 1MA1, OCR J560, Eduqas; Wales WJEC maintained separately pending precise reformed assessment verification.
