@@ -35,6 +35,7 @@ async function loadProgrammeAndEvidence(){
   .select('tier,signature_credits,starts_at,ends_at').eq('student_id',state.user.id).maybeSingle();
  const active=e&&!error&&new Date(e.starts_at)<=new Date()&&(!e.ends_at||new Date(e.ends_at)>new Date());
  if(active)state.entitlement=e;
+ updateExamPracticeAvailability();
  $('student-programme-title').textContent=active?programmeNames[e.tier]||'Private programme':'Programme awaiting activation';
  $('student-programme-description').textContent=active?programmeDescriptions[e.tier]:'Your tutor assigns Weekly, Daily or Exam access. Until your programme is activated, no new paper can be created.';
  $('student-programme-expiry').textContent=active?(e.ends_at?'Active until '+new Date(e.ends_at).toLocaleDateString('en-GB'):'Access currently active'):'Ask your tutor to confirm programme access';
@@ -129,7 +130,7 @@ async function loadTopicOptions(qualification){
  if([...el.options].some(o=>o.value===previous))el.value=previous;
  const count=(data||[]).length;
  if(count)text('paper-availability',count+' original questions currently available for '+(quals[qualification]||qualification)+'. The programme and exam-level filters determine which questions you can receive. Full timed mocks are assigned separately.');
- else text('paper-availability','No original pilot questions are available for this pathway yet. Your administrator can still enrol you, but the question bank needs expanding.');
+ else text('paper-availability','No suitable questions have been published for this academic pathway yet. Your administrator can expand the original practice library.');
 }
 function updateExamPracticeAvailability(){
  const option=[...$('paper-mode').options].find(o=>o.value==='exam_practice');
