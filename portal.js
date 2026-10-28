@@ -3,7 +3,7 @@ const $=id=>document.getElementById(id);
 const config=window.MATHSGROVE_CONFIG||{};
 const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(config.url)&&!config.url.includes('YOUR_PROJECT'));
 const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}}):null;
-const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false,mockClock:null,mockSeconds:0,mockAnchor:0,mockFinalizing:false,mockQuestionTimes:{}};
+const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false,mockClock:null,mockSeconds:0,mockAnchor:0,mockFinalizing:false,mockQuestionTimes:{},questionTimer:null,questionActiveId:null,questionEntered:0,questionElapsed:{}};
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
 function show(id){['configure-view','login-view','claim-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
@@ -160,13 +160,30 @@ $('begin-paper').addEventListener('click',async()=>{
   if(chosen.length<wanted)message('global-message','Created a pilot paper with '+chosen.length+' of '+wanted+' requested questions. More original questions are being prepared.');
  }catch(err){message('global-message',friendlyError(err),true)}finally{btn.disabled=!state.preference?.qualification}
 });
+function stopQuestionTimer(){
+ if(state.questionTimer)clearInterval(state.questionTimer);
+ state.questionTimer=null;
+ if(state.questionActiveId&&state.questionEntered){
+  state.questionElapsed[state.questionActiveId]=(state.questionElapsed[state.questionActiveId]||0)+(performance.now()-state.questionEntered)/1000;
+ }
+ state.questionActiveId=null;state.questionEntered=0;
+}
+function beginQuestionTimer(question){
+ stopQuestionTimer();
+ state.questionActiveId=question.id;state.questionEntered=performance.now();
+ const paint=()=>{
+  const seconds=Math.floor((state.questionElapsed[question.id]||0)+(performance.now()-state.questionEntered)/1000);
+  text('work-question-elapsed','On question '+Math.floor(seconds/60).toString().padStart(2,'0')+':'+(seconds%60).toString().padStart(2,'0'));
+ };
+ paint();state.questionTimer=setInterval(paint,1000);
+}
 function mockMode(){return Boolean(state.attempt?.mock_pack_id)}
 function stopMockClock(){
  if(state.mockClock)clearInterval(state.mockClock);
  state.mockClock=null;$('mock-clock-bar').hidden=true;
 }
 function formatRemaining(sec){const n=Math.max(0,Math.ceil(sec));return Math.floor(n/3600).toString().padStart(2,'0')+':'+Math.floor(n%3600/60).toString().padStart(2,'0')+':'+(n%60).toString().padStart(2,'0')}
-function lockTimedWorkspace(){
+function lockTimedWorkspace(){stopQuestionTimer();
  $('work-text').disabled=true;$('work-photos').disabled=true;
  $('save-and-next').disabled=true;$('previous-work').disabled=true;
  $('mock-submit-early').disabled=true;
@@ -211,7 +228,7 @@ async function expireMock(){
  try{
   const {data,error}=await sb.rpc('finish_mock_session',{p_attempt:state.attempt.id});
   if(error)throw error;
-  stopMockClock();state.attempt=null;state.questions=[];$('question-workspace').hidden=true;
+  stopQuestionTimer();stopMockClock();state.attempt=null;state.questions=[];$('question-workspace').hidden=true;
   await refresh();showPanel('progress');
   message('global-message','Time is over. The mock is now submitted. Only work saved before the server deadline is included.');
  }catch(err){
@@ -307,7 +324,7 @@ async function resume(a){
   await showQuestion();
  }catch(err){message('global-message',friendlyError(err),true)}
 }
-async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');text('work-suggested-time','Suggested '+Math.ceil((state.mockQuestionTimes[q.id]||q.marks*65)/60)+' min');if(window.MathsGroveMath)window.MathsGroveMath.write($('work-prompt'),q.prompt);else text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
+async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');text('work-suggested-time','Suggested '+Math.ceil((state.mockQuestionTimes[q.id]||q.marks*65)/60)+' min');if(window.MathsGroveMath)window.MathsGroveMath.write($('work-prompt'),q.prompt);else text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();beginQuestionTimer(q);text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
 async function persistAnswer(){if(!state.attempt||!state.questions.length)return;if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)throw Error('Mock time has expired; work can no longer be saved.');const q=state.questions[state.question];const fields={typed_answer:$('work-text').value.slice(0,20000),difficulty:$('work-difficulty').value||null,confidence:$('work-confidence').value||null,clarity:$('work-clarity').value||null};let data,error;if(state.answer){({data,error}=await sb.from('answers').update(fields).eq('id',state.answer.id).select().single())}else{({data,error}=await sb.from('answers').insert({...fields,attempt_id:state.attempt.id,question_id:q.id,student_id:state.user.id}).select().single())}if(error)throw error;state.answer=data;text('save-status','Saved securely');return data}
 let saving=false;async function autosave(){if(!state.attempt||saving)return;if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)return;saving=true;try{await persistAnswer()}catch(err){text('save-status','Save failed — '+friendlyError(err))}finally{saving=false}}
 ['work-text','work-difficulty','work-confidence','work-clarity'].forEach(id=>$(id).addEventListener(id==='work-text'?'input':'change',()=>{if(state.autosave)clearTimeout(state.autosave);text('save-status','Saving…');state.autosave=setTimeout(autosave,1300)}));
@@ -315,7 +332,7 @@ async function uploadOne(file,kind){if(mockMode()&&state.mockSeconds-(performanc
 async function uploadPending(){if(!state.photos.length&&!state.drawingChanged)return;if(state.photos.length>3)throw Error('Maximum three photographs per question.');for(const file of state.photos)await uploadOne(file,'photo');state.photos=[];if(state.drawingChanged){const blob=await board.exportBlob();if(!blob)throw Error('Could not save whiteboard image.');await uploadOne(new File([blob],'whiteboard.png',{type:'image/png'}),'drawing');state.drawingChanged=false}await showFiles()}
 async function showFiles(){const q=state.questions[state.question];const {data,error}=await sb.from('answer_files').select('id,original_name,storage_path,file_kind').eq('attempt_id',state.attempt.id).eq('question_id',q.id);if(error)throw error;const el=$('attached-files');el.replaceChildren();for(const f of data||[]){const btn=document.createElement('button');btn.type='button';btn.className='small-button';btn.textContent='📎 '+f.original_name+' ↗';btn.onclick=async()=>{const {data:d,error:e}=await sb.storage.from('student-work').createSignedUrl(f.storage_path,60);if(e){message('global-message',friendlyError(e),true);return}window.open(d.signedUrl,'_blank','noopener,noreferrer')};el.append(btn)}if(state.photos.length){const pending=document.createElement('span');pending.textContent=state.photos.length+' photo(s) selected for upload';el.append(pending)}}
 $('work-photos').addEventListener('change',e=>{state.photos=Array.from(e.target.files||[]).slice(0,3);const el=$('attached-files');const row=document.createElement('span');row.textContent=state.photos.length+' new photo(s) selected; saved when you continue.';el.append(row);e.target.value=''});
-async function saveNext(){if(state.autosave)clearTimeout(state.autosave);const btn=$('save-and-next');btn.disabled=true;try{await persistAnswer();await uploadPending();if(state.question<state.questions.length-1){state.question++;await showQuestion()}else{if(mockMode()){await finishMockEarly();return}if(!confirm('Submit your paper for examiner review? You will not be able to edit it afterwards.'))return;const {error}=await sb.from('attempts').update({status:'submitted',submitted_at:new Date().toISOString()}).eq('id',state.attempt.id);if(error)throw error;state.attempt=null;state.questions=[];$('question-workspace').hidden=true;await refresh();await renderPaperList();showPanel('progress');message('global-message','Your paper has been submitted and saved for authorised examiner review.')}}catch(err){message('global-message',friendlyError(err),true)}finally{btn.disabled=false}}
+async function saveNext(){if(state.autosave)clearTimeout(state.autosave);const btn=$('save-and-next');btn.disabled=true;try{await persistAnswer();await uploadPending();if(state.question<state.questions.length-1){state.question++;await showQuestion()}else{if(mockMode()){await finishMockEarly();return}if(!confirm('Submit your paper for examiner review? You will not be able to edit it afterwards.'))return;const {error}=await sb.from('attempts').update({status:'submitted',submitted_at:new Date().toISOString()}).eq('id',state.attempt.id);if(error)throw error;stopQuestionTimer();state.attempt=null;state.questions=[];$('question-workspace').hidden=true;await refresh();await renderPaperList();showPanel('progress');message('global-message','Your paper has been submitted and saved for authorised examiner review.')}}catch(err){message('global-message',friendlyError(err),true)}finally{btn.disabled=false}}
 $('save-and-next').addEventListener('click',saveNext);
 $('previous-work').addEventListener('click',async()=>{if(state.question===0)return;try{await persistAnswer();await uploadPending();state.question--;await showQuestion()}catch(err){message('global-message',friendlyError(err),true)}});
 const board=window.MathsGroveBoard.setup({
