@@ -1,5 +1,5 @@
 # Assessment engine design — whiteboard, photos and honest timing
-**Design requirement; NOT YET IMPLEMENTED as a secure hard-stop timer.**
+**Stage 2 implementation committed in GitHub, NOT installed or end-to-end verified in Supabase.** The strict mock-session RPC, RLS and storage deadline guards are provided in `supabase/UPGRADE_TIER_MOCKS.sql`. The client timer is advisory; database checks enforce expiry only after this migration is installed and tested.
 
 ## Per-question evidence
 - One *frozen* paper question id, visible question number, marks, suggested time and a readable real-time clock.
