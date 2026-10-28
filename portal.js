@@ -119,7 +119,7 @@ $('pathway-form').addEventListener('submit',async e=>{
   message('global-message','Your display name was saved. Your tutor manages examination route and programme settings.');
  }catch(err){message('global-message',friendlyError(err),true)}
 });
-const paperTargets={daily:3,weekly:5,topic:3};
+const paperTargets={daily:3,weekly:5,topic:3,exam_practice:8};
 async function loadTopicOptions(qualification){
  const {data,error}=await sb.from('question_bank').select('topic').eq('qualification',qualification).eq('active',true).limit(100);
  if(error)return;
@@ -128,8 +128,15 @@ async function loadTopicOptions(qualification){
  for(const t of [...new Set((data||[]).map(x=>x.topic).filter(Boolean))].sort())el.add(new Option(t,t));
  if([...el.options].some(o=>o.value===previous))el.value=previous;
  const count=(data||[]).length;
- if(count)text('paper-availability',count+' original pilot question(s) available for '+(quals[qualification]||qualification)+'. Your paper may contain fewer questions than requested. Exam-board-specific past papers are not yet available.');
+ if(count)text('paper-availability',count+' original questions currently available for '+(quals[qualification]||qualification)+'. The programme and exam-level filters determine which questions you can receive. Full timed mocks are assigned separately.');
  else text('paper-availability','No original pilot questions are available for this pathway yet. Your administrator can still enrol you, but the question bank needs expanding.');
+}
+function updateExamPracticeAvailability(){
+ const option=[...$('paper-mode').options].find(o=>o.value==='exam_practice');
+ if(!option)return;
+ const permitted=state.entitlement?.tier==='exam';
+ option.hidden=!permitted;option.disabled=!permitted;
+ if(!permitted&&$('paper-mode').value==='exam_practice')$('paper-mode').value='weekly';
 }
 $('paper-mode').addEventListener('change',e=>{
  $('paper-length').value=String(paperTargets[e.target.value]||3);
@@ -143,13 +150,36 @@ $('begin-paper').addEventListener('click',async()=>{
   if(!state.preference?.qualification)throw Error('Ask your tutor to assign your qualification first.');
   const mode=$('paper-mode').value,topic=$('paper-topic').disabled?'':$('paper-topic').value,level=$('paper-level').value;
   const wanted=Number($('paper-length').value)||3;
-  const {data:q,error}=await sb.from('question_bank').select('id,qualification,topic,prompt,marks,difficulty').eq('qualification',state.preference.qualification).eq('active',true).order('difficulty',{ascending:true}).limit(100);
+  // The public open-practice index makes product tiers and academic tier
+  // server-verifiable. A full timed mock is never generated here.
+  const [{data:q,error},{data:tags,error:tagsError},{data:seenRows}]=await Promise.all([
+   sb.from('question_bank').select('id,qualification,topic,prompt,marks,difficulty')
+     .eq('qualification',state.preference.qualification).eq('active',true).limit(300),
+   sb.from('practice_content_index').select('question_id,programme,exam_tier')
+     .eq('qualification',state.preference.qualification).limit(300),
+   sb.from('answers').select('question_id').eq('student_id',state.user.id).limit(300)
+  ]);
   if(error)throw error;
+  if(tagsError&&mode==='exam_practice')throw new Error('Exam preparation content has not yet been installed by your administrator.');
+  const index=new Map((tags||[]).map(x=>[x.question_id,x]));
+  const seen=new Set((seenRows||[]).map(x=>x.question_id));
+  const levelName=(state.preference.tier||'').trim().toLowerCase();
+  const matchTier=t=>!t||t.toLowerCase()===levelName||
+   (state.preference.qualification==='GCSE'&&levelName==='higher'&&t==='Foundation')||
+   (state.preference.qualification==='IGCSE'&&levelName==='extended'&&t==='Core');
+  const requiredProgramme=mode==='topic'?'weekly':mode==='exam_practice'?'exam':mode;
   const allowed={foundation:[1,2],standard:[2,3],challenge:[3,4,5]};
-  let chosen=(q||[]).filter(x=>(!topic||x.topic===topic)&&(!allowed[level]||allowed[level].includes(x.difficulty)));
-  if(!chosen.length)throw Error('No original pilot questions match those settings yet. Try Mixed topics or Balanced mix.');
-  // Deterministic within difficulty; do not imply psychometric adaptation.
-  chosen=chosen.slice(0,wanted);
+  let chosen=(q||[]).filter(x=>{
+   const tag=index.get(x.id);
+   return (!topic||x.topic===topic)&&(!allowed[level]||allowed[level].includes(x.difficulty))
+     &&(tag?(tag.programme===requiredProgramme&&matchTier(tag.exam_tier)):
+        (mode==='weekly'||mode==='topic'));
+  });
+  if(!chosen.length)throw new Error('No suitable questions match your qualification, academic tier and Grove programme yet. Ask your tutor to expand or change the assigned practice settings.');
+  // Fisher-Yates shuffle within seen/unseen groups so the student does not
+  // repeatedly receive the easiest questions, without implying AI adaptation.
+  const mix=list=>{for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]]}return list};
+  chosen=[...mix(chosen.filter(x=>!seen.has(x.id))),...mix(chosen.filter(x=>seen.has(x.id)))].slice(0,wanted);
   const ids=chosen.map(x=>x.id);
   const {data:id,error:createError}=await sb.rpc('create_student_paper',{p_mode:mode,p_topic:topic,p_difficulty:level,p_requested_count:wanted,p_questions:ids});
   if(createError)throw Error(createError.message||'The selected paper could not be created.');
