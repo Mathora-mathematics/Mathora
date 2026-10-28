@@ -52,7 +52,7 @@ function showPracticeDiary(e,active){
  const root=$('student-calendar');root.replaceChildren();
  if(!active){root.textContent='Your next practice pattern will appear when your tutor activates a programme.';return}
  const now=new Date();now.setHours(12,0,0,0);
- const days=e.tier==='weekly'?[3]:e.tier==='daily'?[0,1,2,3,4]:[0,1,2,4,6];
+ const days=e.tier==='weekly'?[3]:e.tier==='daily'?[0,1,2,3,4,5,6]:[0,1,2,4,6];
  for(let i=0;i<7;i++){
   const d=new Date(now);d.setDate(d.getDate()+i);
   const day=document.createElement('div');day.className='practice-day'+(days.includes(i)?' scheduled':'');
