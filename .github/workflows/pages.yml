@@ -36,6 +36,8 @@ jobs:
           node --input-type=module --check < supabase/functions/invitations/index.ts
           node scripts/check-site.mjs
           node scripts/check-content.mjs
+          node scripts/check-original-practice.mjs
+          node --check maths-render.js
       - name: Assemble only MathsGrove public assets
         shell: bash
         run: |
@@ -47,6 +49,7 @@ jobs:
           cp content/boards.json content/paper-blueprints.json site/content/
           mkdir -p site/content/programmes
           cp content/programmes/service-tiers.json content/programmes/draft-questions.json site/content/programmes/
+          cp content/programmes/exam-reasoning-drafts-12.json site/content/programmes/
           mkdir -p site/content/GCSE site/content/IGCSE
           cp content/GCSE/draft-exemplars.json site/content/GCSE/
           cp content/IGCSE/draft-exemplars.json site/content/IGCSE/
