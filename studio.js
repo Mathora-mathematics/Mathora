@@ -4,7 +4,7 @@ const config = window.MATHSGROVE_CONFIG || {};
 const connected = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') && !!config.publishableKey;
 const db = connected ? createClient(config.url, config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
 const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],entitlements:[],academic:[],addons:[],pending:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
-const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
+const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
 const date=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
 const fmt=s=>String(s||'').trim();
 const status={submitted:'Awaiting marking',marked:'Released',draft:'In progress'};
@@ -218,7 +218,15 @@ function renderRoster(){
   const ref=make('td','',shortId(student.id));
   const route=make('td','',student.pref?(examLabels[student.pref.qualification]||student.pref.qualification)+(student.pref.exam_board?' · '+student.pref.exam_board:''):'Not selected');
   const count=state.attempts.filter(x=>x.student_id===student.id&&x.status==='draft').length;
-  const plan=state.entitlements.find(e=>e.student_id===student.id);const programmeNote=make('small','',plan?'Programme: '+plan.tier.toUpperCase():'Programme: not yet assigned');name.append(programmeNote);row.append(name,ref,route,make('td','',count));root.append(row);
+  const plan=state.entitlements.find(e=>e.student_id===student.id);
+  const programmeNote=make('small','',plan?'Programme: '+({weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'}[plan.tier]||plan.tier):'Programme: not yet assigned');
+  name.append(programmeNote);
+  if(adminRole()){
+   const edit=make('button','link-action roster-edit','Edit learner ↗');
+   edit.type='button';edit.onclick=()=>{setTab('students');$('programme-student').value=student.id;fillStudentEditor(student.id);$('programme-admin').scrollIntoView({behavior:'smooth',block:'start'})};
+   name.append(edit);
+  }
+  row.append(name,ref,route,make('td','',count));root.append(row);
  }
 }
 $('student-search').oninput=renderRoster;
@@ -236,7 +244,15 @@ function renderInvites(){
      revoke.disabled=true;try{await edge('revoke',{orgId:state.membership.org_id,invitationId:inv.id});inform('Invitation revoked.');await loadInvites();renderInvites();renderOverview()}catch(e){inform(e.message,true)}finally{revoke.disabled=false}};
    group.append(revoke);
   }
-  root.append(itemRow(inv.email,date(inv.created_at)+' · Expires '+date(inv.expires_at),group));
+  const assigned=state.pending.find(p=>p.email===inv.email);
+  const description=date(inv.created_at)+' · Expires '+date(inv.expires_at)+
+   (assigned?' · '+({weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'}[assigned.programme]||assigned.programme)+
+   ' · '+(examLabels[assigned.qualification]||assigned.qualification):'');
+  if(assigned&&label==='Awaiting claim'){
+   const edit=make('button','link-action','Edit setup');edit.type='button';
+   edit.onclick=()=>loadPendingIntoForm(inv.email);group.append(edit);
+  }
+  root.append(itemRow(inv.email,description,group));
  })
 }
 $('invite-form').onsubmit=async e=>{
