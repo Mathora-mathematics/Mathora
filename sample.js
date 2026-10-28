@@ -11,7 +11,7 @@ let current=0;
 function show(tab){
  document.querySelectorAll(".sample-panel").forEach(p=>p.hidden=p.id!=="sample-"+tab);
  document.querySelectorAll("[data-sample-tab]").forEach(b=>b.classList.toggle("active",b.dataset.sampleTab===tab));
- if(tab==="paper")displayQuestion();window.scrollTo({top:0,behavior:"smooth"});
+ if(tab==="paper")displayQuestion();history.replaceState(null,"",location.pathname+"#"+tab);window.scrollTo({top:0,behavior:"smooth"});
 }
 for(const b of document.querySelectorAll("[data-sample-tab]"))b.addEventListener("click",()=>show(b.dataset.sampleTab));
 for(const b of document.querySelectorAll("[data-jump]"))b.addEventListener("click",()=>show(b.dataset.jump));
@@ -44,4 +44,5 @@ $("sample-download").addEventListener("click",async()=>{
 });
 $("print-sample").addEventListener("click",()=>window.print());
 displayQuestion();
+const requested=location.hash.replace("#","");show(["home","paper","report","history"].includes(requested)?requested:"home");
 })();
