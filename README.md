@@ -97,3 +97,16 @@ See the [three-level content directory](content/README.md), [GCSE/IGCSE research
 The private Admin Studio Mathematics bank now groups original public **draft** questions by Grove Weekly/Daily/Exam and offers a future-secure mock builder. Grove Exam students have a dedicated Timed mock panel, question-by-question writing/photo uploads, a per-question advisory clock and a server-confirmed mock deadline. **This workflow requires `supabase/UPGRADE_TIER_MOCKS.sql` before it is usable.** No full mock is yet published or assigned; the admin must first approve a complete board-aligned original question set, assemble exact marks, publish and assign it.
 
 Read [the tier product structure](content/programmes/README.md) and the [assessment security specification](content/assessment-engine.md). **48 public draft exemplar stems**, 68 mock *blueprints*, 10 existing original pilot questions, and **zero approved full mock packs** are distinct quantities; don't market a blueprint as a finished paper. Do not publish confidential unseen mark schemes to GitHub.
+
+
+## GCSE & IGCSE mathematical content upgrade v2 (180 new practice items)
+
+The three **MathsGrove products** are Grove Weekly, Grove Daily and Grove Exam. GCSE/IGCSE, exam board and Foundation/Higher/Core/Extended remain separate **academic settings** within those products.
+
+- 180 additional original, **public open-practice candidates**: 20 GCSE Daily, 20 GCSE Weekly, 40 GCSE Exam-preparation (Foundation/Higher); 20 IGCSE Daily, 40 IGCSE Weekly and 40 IGCSE Exam-preparation (Core/Extended). See the true allocation by reading the JSON files; the three products are distinguished server-side.
+- Every question has mathematical TeX notation where appropriate, a calculated answer, a suggested time, marks and examiner-style guidance. The browser uses accessible KaTeX with text/MathML fallback.
+- Admin Studio → Mathematics bank → service-tier filter → **Open practice** expands to reveal questions, answers and marking guidance. A separate **Timed mock** uses unseen, private board-mapped questions only.
+- **Not yet installed in Supabase:** run `supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql` only after a backup and confirming the earlier administrator SQL was installed but the Stage 2 content/timer upgrade has not been applied. This combined upgrade installs the content bank, timed mock procedures and 180 practice items in one transaction.
+- **Quality boundary:** these are programmatically checked OPEN PRACTICE candidates, not official or human-moderated exam questions; never use them as confidential unseen mocks. Examiner approval and board-syllabus checking remain required for true mock publication.
+
+All existing pupil authentication, whiteboard/photos and marking submission data must be retained and tested before production use.
