@@ -268,16 +268,17 @@ export function initContentBank(db,studio){
  async function load(){
   say('Loading official board formats and your private question catalogue…');
   try{
-   const [b,p,g,i,tierInfo,tierDrafts]=await Promise.all([
+   const [b,p,g,i,tierInfo,tierDrafts,examDrafts]=await Promise.all([
     fetch('./content/boards.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Board catalogue unavailable');return r.json()}),
     fetch('./content/paper-blueprints.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blueprint register unavailable');return r.json()}),
     fetch('./content/GCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/IGCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/programmes/service-tiers.json',{cache:'no-store'}).then(r=>r.ok?r.json():{plans:{}}),
-    fetch('./content/programmes/draft-questions.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
+    fetch('./content/programmes/draft-questions.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/programmes/exam-reasoning-drafts-12.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
    ]);
    bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];bank.serviceTiers=tierInfo;
-   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE',programme:'weekly'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE',programme:'weekly'})),...(tierDrafts.items||[])];
+   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE',programme:'weekly'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE',programme:'weekly'})),...(tierDrafts.items||[]),...(examDrafts.items||[])];
    renderServiceTiers();
    const {data:questions,error}=await db.from('question_bank')
      .select('id,qualification,topic,prompt,marks,difficulty,active,created_at')
