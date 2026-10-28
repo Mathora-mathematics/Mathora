@@ -42,12 +42,12 @@
       "qualification": "GCSE",
       "programme": "weekly",
       "topic": "Trigonometry · Cosine rule",
-      "prompt": "Triangle \\(ABC\\) has \\(AB=5\\text{ cm}\\), \\(AC=8\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly.",
-      "answer": "√49 cm",
+      "prompt": "Triangle \\(ABC\\) has \\(AB=5\\text{ cm}\\), \\(AC=8\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly, using the cosine rule.",
+      "answer": "7 cm",
       "marks": 4,
       "difficulty": 4,
       "suggested_minutes": 6,
-      "scheme": "M1 Set up cosine rule. M1 Substitute sides and angle. M1 Simplify BC squared. A1 Positive root."
+      "scheme": "M1 Set up cosine rule for the included angle. M1 Substitute the lengths and exact cosine. M1 Simplify the resulting squared length. A1 Positive exact length."
     },
     {
       "id": "GCW-INT-1",
@@ -162,12 +162,12 @@
       "qualification": "GCSE",
       "programme": "weekly",
       "topic": "Trigonometry · Cosine rule",
-      "prompt": "Triangle \\(ABC\\) has \\(AB=7\\text{ cm}\\), \\(AC=10\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly.",
-      "answer": "√79 cm",
+      "prompt": "Triangle \\(ABC\\) has \\(AB=10\\text{ cm}\\), \\(AC=16\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly, using the cosine rule.",
+      "answer": "14 cm",
       "marks": 4,
       "difficulty": 4,
       "suggested_minutes": 6,
-      "scheme": "M1 Set up cosine rule. M1 Substitute sides and angle. M1 Simplify BC squared. A1 Positive root."
+      "scheme": "M1 Set up cosine rule for the included angle. M1 Substitute the lengths and exact cosine. M1 Simplify the resulting squared length. A1 Positive exact length."
     },
     {
       "id": "GCW-INT-2",
@@ -282,12 +282,12 @@
       "qualification": "GCSE",
       "programme": "weekly",
       "topic": "Trigonometry · Cosine rule",
-      "prompt": "Triangle \\(ABC\\) has \\(AB=9\\text{ cm}\\), \\(AC=12\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly.",
-      "answer": "√117 cm",
+      "prompt": "Triangle \\(ABC\\) has \\(AB=15\\text{ cm}\\), \\(AC=24\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly, using the cosine rule.",
+      "answer": "21 cm",
       "marks": 4,
       "difficulty": 4,
       "suggested_minutes": 6,
-      "scheme": "M1 Set up cosine rule. M1 Substitute sides and angle. M1 Simplify BC squared. A1 Positive root."
+      "scheme": "M1 Set up cosine rule for the included angle. M1 Substitute the lengths and exact cosine. M1 Simplify the resulting squared length. A1 Positive exact length."
     },
     {
       "id": "GCW-INT-3",
