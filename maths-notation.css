@@ -1,0 +1,11 @@
+/* Crisp accessible mathematical typography: Works in light / dark theme. */
+#work-prompt,.bank-prompt,.bank-draft-item p,.bank-table td,.mg-math-text{font-variant-numeric:lining-nums;line-height:2;letter-spacing:.008em;overflow-wrap:anywhere}
+.mg-math-inline{display:inline-block;vertical-align:baseline;margin:0 .08em;max-width:100%}
+.mg-math-display{display:block;text-align:center;padding:16px 10px;margin:17px 0;overflow-x:auto;overflow-y:hidden;min-height:28px}
+.mg-math-display .katex-display{margin:0}
+#work-prompt .katex,.bank-prompt .katex,.bank-draft-item .katex{font-size:1.12em}
+.mg-math-fallback{font-family:"STIX Two Math","Cambria Math",Georgia,serif;font-size:1.02em;white-space:pre-wrap}
+.mg-math-display.mg-math-fallback{border:1px dashed #D3DCE4;color:#415B73;border-radius:6px}
+.bank-draft-item p .mg-math-inline,.bank-prompt .mg-math-inline{color:#1B3650}
+.katex{white-space:normal}
+@media(max-width:650px){#work-prompt .katex,.bank-prompt .katex{font-size:1.02em}.mg-math-display{padding:12px 2px}}
