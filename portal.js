@@ -4,7 +4,7 @@ const config=window.MATHSGROVE_CONFIG||{};
 const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(config.url)&&!config.url.includes('YOUR_PROJECT'));
 const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}}):null;
 const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false};
-const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
+const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
 function show(id){['configure-view','login-view','claim-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
 function message(id,s,error=false){let e=$(id);e.textContent=s;e.classList.toggle('is-error',error)}
@@ -21,13 +21,13 @@ async function redeem(code){const {data,error}=await sb.functions.invoke('invita
 async function loadMembership(){let {data,error}=await sb.from('memberships').select('org_id,member_role').eq('user_id',state.user.id).limit(10);if(error)throw error;state.members=data||[];state.member=state.members.find(x=>x.member_role==='student')||state.members[0]||null;return state.member}
 async function boot(){if(!sb){show('configure-view');return}try{const {data:{session},error}=await sb.auth.getSession();if(error)throw error;if(!session?.user){show('login-view');return}state.user=session.user;await loadMembership();if(!state.member){const pending=sessionStorage.getItem('mathsgrove_pending_code');if(pending){try{await redeem(pending);await loadMembership()}catch(err){message('claim-message',friendlyError(err),true)}}}if(!state.member){show('claim-view');return}await dashboard()}catch(err){show('login-view');message('login-message',friendlyError(err),true)}}
 async function dashboard(){if(isStaff()){location.replace('./studio.html');return}const [p,org,prof]=await Promise.all([sb.from('profiles').select('id,display_name').eq('id',state.user.id).maybeSingle(),sb.from('organisations').select('id,name').eq('id',state.member.org_id).maybeSingle(),sb.from('student_preferences').select('qualification,exam_board,tier').eq('student_id',state.user.id).maybeSingle()]);if(p.error||org.error||prof.error)throw(p.error||org.error||prof.error);state.profile=p.data||{display_name:'Student'};state.preference=prof.data||null;$('student-name').value=state.profile.display_name==='Student'?'':(state.profile.display_name||'');text('organisation-label',org.data?.name?.toUpperCase()||'YOUR PROGRAMME');text('sidebar-name',state.profile.display_name||'Student');text('sidebar-role',state.member.member_role.toUpperCase());text('member-initials',initials(state.profile.display_name));text('welcome-text','Welcome'+(state.profile.display_name?' back, '+state.profile.display_name.split(' ')[0]:'')+'.');text('membership-pill',state.member.member_role==='student'?'Student access':'Organisation team');$('pathway-form').hidden=isStaff();$('begin-paper').disabled=isStaff();if(state.preference){$('qualification-select').value=state.preference.qualification||'';$('exam-board').value=state.preference.exam_board||'';$('exam-tier').value=state.preference.tier||''}show('dashboard-view');await refresh();showPanel('overview')}
-async function refresh(){if(!state.member)return;let query=sb.from('attempts').select('*').eq('org_id',state.member.org_id).order('started_at',{ascending:false}).limit(80);if(!isStaff())query=query.eq('student_id',state.user.id);let {data,error}=await query;if(error)throw error;state.attempts=data||[];text('metric-progress',state.attempts.filter(a=>a.status==='draft').length);text('metric-submitted',state.attempts.filter(a=>a.status==='submitted').length);text('metric-marked',state.attempts.filter(a=>a.status==='marked').length);const q=state.preference?.qualification;text('paper-availability',q?('Your selected pathway: '+quals[q]+'. Only original pilot questions are currently available; board-specific past papers are not yet provided.'): 'Save your examination pathway first to build a pilot paper.');if(q)await loadTopicOptions(q);await loadProgrammeAndEvidence()}
+async function refresh(){if(!state.member)return;let query=sb.from('attempts').select('*').eq('org_id',state.member.org_id).order('started_at',{ascending:false}).limit(80);if(!isStaff())query=query.eq('student_id',state.user.id);let {data,error}=await query;if(error)throw error;state.attempts=data||[];text('metric-progress',state.attempts.filter(a=>a.status==='draft').length);text('metric-submitted',state.attempts.filter(a=>a.status==='submitted').length);text('metric-marked',state.attempts.filter(a=>a.status==='marked').length);const q=state.preference?.qualification;text('paper-availability',q?('Your selected pathway: '+quals[q]+'. Only original pilot questions are currently available; board-specific past papers are not yet provided.'): 'Ask your administrator to assign an exam pathway before building a paper.');if(q)await loadTopicOptions(q);await loadProgrammeAndEvidence()}
 
 const programmeNames={weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'};
 const programmeDescriptions={
  weekly:'Up to four selected weekly or topic-focused papers per calendar month.',
- daily:'Up to five short Daily Focus sessions per week, plus weekly practice.',
- exam:'Daily Focus, weekly practice and one mock-preview paper per month.'
+ daily:'Daily Focus opportunities seven days per week, with a weekly progress report when supported.',
+ exam:'Grove Daily plus one timed mock-preview assessment per month and an exam-readiness outlook when enough assessed evidence is available.'
 };
 async function loadProgrammeAndEvidence(){
  state.entitlement=null;
@@ -106,7 +106,19 @@ $('existing-member').addEventListener('click',()=>{let code=$('access-code');cod
 $('claim-form').addEventListener('submit',async e=>{e.preventDefault();try{await redeem($('claim-code').value);await loadMembership();if(!state.member)throw Error('Enrolment pending.');message('claim-message','Invitation accepted.');await dashboard()}catch(err){message('claim-message',friendlyError(err),true)}});
 $('sign-out').addEventListener('click',async()=>{await sb?.auth.signOut();sessionStorage.removeItem('mathsgrove_pending_code');location.href='./portal.html'});
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.view)));
-$('pathway-form').addEventListener('submit',async e=>{e.preventDefault();try{const qualification=$('qualification-select').value;if(!quals[qualification])throw Error('Choose a valid exam qualification.');const name=$('student-name').value.trim();if(!name||name.length>100)throw Error('Enter your preferred display name.');const row={student_id:state.user.id,qualification,exam_board:$('exam-board').value.trim(),tier:$('exam-tier').value.trim()};const {error}=await sb.from('student_preferences').upsert(row,{onConflict:'student_id'});if(error)throw error;const {error:nameError}=await sb.from('profiles').update({display_name:name}).eq('id',state.user.id);if(nameError)throw nameError;state.profile.display_name=name;text('sidebar-name',name);text('member-initials',initials(name));text('welcome-text','Welcome back, '+name.split(' ')[0]+'.');state.preference=row;await refresh();message('global-message','Your name and examination pathway have been saved.')}catch(err){message('global-message',friendlyError(err),true)}});
+$('pathway-form').addEventListener('submit',async e=>{
+ e.preventDefault();
+ try{
+  const name=$('student-name').value.trim();
+  if(!name||name.length>100)throw Error('Enter a valid display name.');
+  const {error}=await sb.from('profiles').update({display_name:name}).eq('id',state.user.id);
+  if(error)throw error;
+  state.profile.display_name=name;
+  text('sidebar-name',name);text('member-initials',initials(name));
+  text('welcome-text','Welcome back, '+name.split(' ')[0]+'.');
+  message('global-message','Your display name was saved. Your tutor manages examination route and programme settings.');
+ }catch(err){message('global-message',friendlyError(err),true)}
+});
 const paperTargets={daily:3,weekly:5,topic:3,mock:8};
 async function loadTopicOptions(qualification){
  const {data,error}=await sb.from('question_bank').select('topic').eq('qualification',qualification).eq('active',true).limit(100);
@@ -117,7 +129,7 @@ async function loadTopicOptions(qualification){
  if([...el.options].some(o=>o.value===previous))el.value=previous;
  const count=(data||[]).length;
  if(count)text('paper-availability',count+' original pilot question(s) available for '+(quals[qualification]||qualification)+'. Your paper may contain fewer questions than requested. Exam-board-specific past papers are not yet available.');
- else text('paper-availability','No original pilot questions are available for this pathway yet.');
+ else text('paper-availability','No original pilot questions are available for this pathway yet. Your administrator can still enrol you, but the question bank needs expanding.');
 }
 $('paper-mode').addEventListener('change',e=>{
  $('paper-length').value=String(paperTargets[e.target.value]||3);
