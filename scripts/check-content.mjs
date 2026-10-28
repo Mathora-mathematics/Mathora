@@ -29,7 +29,9 @@ for(const m of blueprints){
 }
 const newGCSE=read('content/programmes/practice-gcse-v2.json').items;
 const newIGCSE=read('content/programmes/practice-igcse-v2.json').items;
-const practice=[...newGCSE,...newIGCSE];
+const foundationCore=read('content/programmes/practice-foundation-core-v2.json').items;
+assert(foundationCore.length===60,'Missing Foundation/Core coverage');
+const practice=[...newGCSE,...newIGCSE,...foundationCore];
 const practiceIds=new Set();
 assert(newGCSE.length===60&&newIGCSE.length===60,'Need 60 original practice items per qualification');
 for(const q of practice){
@@ -45,10 +47,11 @@ for(const q of practice){
 }
 for(const qual of ['GCSE','IGCSE']){
  for(const tier of ['daily','weekly','exam']){
-  assert(practice.filter(q=>q.qualification===qual&&q.programme===tier).length===20,'Incorrect practice coverage '+qual+' '+tier);
+  const expected=qual==='GCSE'?(tier==='exam'?40:20):(tier==='daily'?20:40);
+  assert(practice.filter(q=>q.qualification===qual&&q.programme===tier).length===expected,'Incorrect practice coverage '+qual+' '+tier);
  }
 }
-const seed=readFileSync('supabase/SEED_GROVE_OPEN_PRACTICE.sql','utf8');
+const seed=readFileSync('supabase/SEED_GROVE_OPEN_PRACTICE.sql','utf8')+readFileSync('supabase/ADD_FOUNDATION_CORE_PRACTICE.sql','utf8');
 for(const q of practice)assert(seed.includes(q.id),'Missing SQL seed item '+q.id);
 assert(seed.includes('exam_practice')&&seed.includes('practice_content_index'),'Server practice-tier restrictions missing');
 const upgraded=readFileSync('supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql','utf8');
