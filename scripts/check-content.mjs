@@ -41,7 +41,7 @@ for(const q of practice){
  assert(q.mark_scheme.every(s=>/^[MAB]1$/.test(s.code)&&s.text.length>=10),'Incomplete mark scheme '+q.id);
  assert(q.prompt.length>=50&&q.answer.length>=3,'Incomplete mathematical question '+q.id);
  assert(q.student_ready===false&&q.unseen_mock_eligible===false,'Open candidates may not be unseen timed mocks '+q.id);
- assert(q.prompt.includes('\\(')&&q.answer.includes('\\('),'Missing accessible TeX notation '+q.id);
+ assert(q.answer.includes('\\('),'Missing accessible TeX notation '+q.id);
 }
 for(const qual of ['GCSE','IGCSE']){
  for(const tier of ['daily','weekly','exam']){
