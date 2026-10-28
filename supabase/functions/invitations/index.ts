@@ -32,7 +32,7 @@ Deno.serve(async req=>{
    if(roleErr||!['partner','admin'].includes(role?.member_role))return json({error:'Not authorised for invitation management'},403,origin);
    if(body.action==='list'){
     const {data,error}=await admin.from('invitations')
-      .select('id,email,created_at,expires_at,redeemed_at,revoked_at')
+      .select('id,email,created_at,expires_at,redeemed_at,redeemed_by,revoked_at')
       .eq('org_id',orgId).order('created_at',{ascending:false}).limit(100);
     if(error)return json({error:'Unable to load invitation register'},500,origin);
     return json({ok:true,invitations:data||[]},200,origin);
