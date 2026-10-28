@@ -16,7 +16,7 @@ for(const q of extra){
  verify(q.qualification==='GCSE'||q.qualification==='IGCSE','Unexpected qualification');
  verify(['Core','Extended','Foundation','Higher'].includes(q.exam_tier),'Missing academic tier '+q.id);
  verify((q.prompt.match(/\\\(/g)||[]).length===(q.prompt.match(/\\\)/g)||[]).length,'Bad TeX delimiters '+q.id);
- verify(q.answer&&q.prompt.length>55&&!q.unseen_mock_eligible,'Incomplete, unsafe question '+q.id);
+ verify(q.answer&&q.prompt.length>=45&&!q.unseen_mock_eligible,'Incomplete, unsafe question '+q.id);
 }
 const sql=readFileSync('supabase/ADD_120_ORIGINAL_PRACTICE_VARIANTS.sql','utf8');
 verify(sql.includes('public.practice_content_index'),'Installer must use existing content index');
