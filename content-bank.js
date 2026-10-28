@@ -4,7 +4,7 @@
 export function initContentBank(db,studio){
  const $=id=>document.getElementById(id);
  const admin=['admin','partner'].includes(studio.membership?.member_role);
- const bank={boards:[],blueprints:[],drafts:[],serviceTiers:null,questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false,mockPacks:[],selectedMockQuestions:[]};
+ const bank={boards:[],blueprints:[],drafts:[],practice:[],serviceTiers:null,questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false,mockPacks:[],selectedMockQuestions:[]};
  const say=(message,error=false,id='bank-status')=>{const node=$(id);node.textContent=message;node.classList.toggle('is-error',error)};
  const txt=(tag,value,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;node.textContent=String(value??'');return node};
  const clear=id=>$(id).replaceChildren();
@@ -20,7 +20,7 @@ export function initContentBank(db,studio){
   const level=$('bank-level').value;
   const list=bank.boards.filter(x=>x.qualification===level);
   setOptions($('bank-board'),list.map(x=>({label:x.name,value:x.key})),'All boards');
-  renderBoards();renderMockBlueprints();renderQuestions();renderDrafts();
+  renderBoards();renderMockBlueprints();renderQuestions();renderDrafts();renderOpenPractice();
  }
  function updateAuthorOptions(){
   const qual=$('bank-author-qual').value;
@@ -189,6 +189,34 @@ export function initContentBank(db,studio){
   finally{btn.disabled=false}
  });
 
+ function renderOpenPractice(){
+  const root=$('open-practice-list');if(!root)return;root.replaceChildren();
+  const qual=$('bank-level').value,prog=$('bank-programme').value;
+  const list=bank.practice.filter(q=>q.qualification===qual&&(prog==='all'||q.programme===prog));
+  $('open-practice-count').textContent=list.length+' / '+bank.practice.length+' open practice items';
+  for(const q of list){
+   const details=document.createElement('details');details.className='open-practice-card';
+   const summary=document.createElement('summary');
+   summary.append(txt('strong',q.id+' · '+q.topic),txt('span',q.programme.toUpperCase()+' · '+q.exam_tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min'));
+   const question=txt('div','','mg-math-text open-practice-question');
+   if(window.MathsGroveMath)window.MathsGroveMath.write(question,q.prompt);else question.textContent=q.prompt;
+   const key=txt('div','','open-practice-key');
+   key.append(txt('strong','Public practice answer (not an unseen mock key)'));
+   const answer=txt('div','','mg-math-text');
+   if(window.MathsGroveMath)window.MathsGroveMath.write(answer,q.answer);else answer.textContent=q.answer;
+   key.append(answer,txt('strong','Examiner-style marking guidance'));
+   const steps=document.createElement('ol');
+   for(const step of q.mark_scheme){
+    const li=txt('li','');
+    li.append(txt('b',step.code+' · '));
+    const content=txt('span','');
+    if(window.MathsGroveMath)window.MathsGroveMath.write(content,step.text);else content.textContent=step.text;
+    li.append(content);steps.append(li);
+   }
+   key.append(steps);details.append(summary,question,key);root.append(details);
+  }
+  if(!list.length)root.append(txt('p','No public open practice items for this qualification and programme yet. Private unseen mock items are stored separately.'));
+ }
  function renderDrafts(){
   const root=$('bank-draft-list');root.replaceChildren();
   const programme=$('bank-programme').value;const list=bank.drafts.filter(q=>q.qualification===$('bank-level').value&&(programme==='all'||q.programme===programme));
@@ -264,16 +292,20 @@ export function initContentBank(db,studio){
  async function load(){
   say('Loading official board formats and your private question catalogue…');
   try{
-   const [b,p,g,i,tierInfo,tierDrafts]=await Promise.all([
+   const [b,p,g,i,tierInfo,tierDrafts,practiceG,practiceI]=await Promise.all([
     fetch('./content/boards.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Board catalogue unavailable');return r.json()}),
     fetch('./content/paper-blueprints.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blueprint register unavailable');return r.json()}),
     fetch('./content/GCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/IGCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/programmes/service-tiers.json',{cache:'no-store'}).then(r=>r.ok?r.json():{plans:{}}),
-    fetch('./content/programmes/draft-questions.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
+    fetch('./content/programmes/draft-questions.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/programmes/practice-gcse-v2.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/programmes/practice-igcse-v2.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
    ]);
    bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];bank.serviceTiers=tierInfo;
    bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE',programme:'weekly'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE',programme:'weekly'})),...(tierDrafts.items||[])];
+   bank.practice=[...(practiceG.items||[]),...(practiceI.items||[])];
+
    renderServiceTiers();
    const {data:questions,error}=await db.from('question_bank')
      .select('id,qualification,topic,prompt,marks,difficulty,active,created_at')
@@ -297,7 +329,7 @@ export function initContentBank(db,studio){
  $('bank-board').addEventListener('change',()=>{renderBoards();renderQuestions();renderMockBlueprints()});
  $('bank-search').addEventListener('input',renderQuestions);
  $('bank-review-filter').addEventListener('change',renderQuestions);
- $('bank-programme').addEventListener('change',renderDrafts);
+ $('bank-programme').addEventListener('change',()=>{renderDrafts();renderOpenPractice()});
  $('bank-refresh').addEventListener('click',()=>void load());
  $('bank-detail-close').addEventListener('click',()=>{$('bank-detail').hidden=true;bank.selected=null});
  $('bank-author-qual').addEventListener('change',updateAuthorOptions);
