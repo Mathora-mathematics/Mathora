@@ -58,3 +58,18 @@ Once each item has a fully checked solution, a proper examiner mark scheme and m
 The required SQL is `supabase/UPGRADE_TIER_MOCKS.sql` (after the previously installed administrator upgrade). It installs the private content-bank authoring tools AND the mock-session schema. **It is not installed by publishing GitHub.** Run it only after reviewing a backup and testing against adult pilot users.
 
 The browser countdown is not the security boundary. Supabase RLS, triggers, controlled stored procedures and private file-storage checks are. The sitting is NOT remotely invigilated or proven cheating-resistant. It remains an internal pilot until negative tests (expiry, resume, multi-organisation isolation, quota and late-upload rejection) pass.
+
+
+## Original service-tier question expansion — v2
+
+**180 original public open-practice questions with worked answers/marking outlines** are stored in the three programme datasets: `practice-gcse-v2.json`, `practice-igcse-v2.json` and `practice-foundation-core-v2.json`.
+
+| Product tier | GCSE | IGCSE | Method |
+|---|---:|---:|---|
+| Grove Daily | 20 (Foundation) | 20 (Core) | Rapid fluency and immediate error correction |
+| Grove Weekly | 20 (Foundation/Higher) | 40 (Core/Extended) | Multistep practice, longer mathematical reasoning |
+| Grove Exam preparation | 40 (Foundation/Higher) | 40 (Core/Extended) | Original longer reasoning questions; **not** the confidential timed mock bank |
+
+The counted total is **180**, as shown above: 20 + 20 + 20 + 40 + 40 + 40 = 180.
+
+These items have mathematical TeX where appropriate and answer breakdowns. They are **open exam-style practice**, not fully moderated unseen assessment papers. Administrators may review them in the Maths bank, and can install them into the qualified student practice pool using the transactional `supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql` upgrade. The server checks product entitlement and academic level; Grove Exam learners alone get additional exam preparation (untimed), separately from assigned strictly timed mock papers.
