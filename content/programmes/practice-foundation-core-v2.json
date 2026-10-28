@@ -1,0 +1,2146 @@
+{
+  "version": 2,
+  "scope": "Extra public open practice for previously underserved routes",
+  "items": [
+    {
+      "id": "MG-G-EXAM-PCTCHANGE-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Number · Successive percentage changes",
+      "question_family": "PCTCHANGE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A laptop has original price \\(\\pounds 100\\). Its price increases by \\(10\\%\\), then the new price is reduced by \\(10\\%\\). Find the final price in pounds and explain why the changes must be applied successively.",
+      "answer": "\\(\\pounds 99\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the increase multiplier \\(\\frac{11}{10}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find intermediate price \\(\\pounds 110\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the reduction multiplier \\(\\frac{9}{10}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain final price \\(\\pounds 99\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that each percentage is of the new price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-RATIO-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing and interpretation",
+      "question_family": "RATIO",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A community group shares \\(\\pounds 20\\) between Projects A and B in the ratio \\(2:3\\). Calculate both shares. A volunteer claims that each project receives the same amount; explain briefly why this is not correct.",
+      "answer": "\\(A=\\pounds 8,\\quad B=\\pounds 12\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add the ratio parts: \\(2+3=5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Determine one part \\(\\pounds 4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate A = \\(\\pounds 8\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate B = \\(\\pounds 12\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain the parts differ, so the allocations differ."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-FENCE-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Perimeter and money",
+      "question_family": "FENCE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A rectangular garden is \\(5\\text{ m}\\) long and \\(3\\text{ m}\\) wide. Fencing costs \\(\\pounds 4\\) per metre. Calculate the perimeter and total fencing cost. Explain why calculating the area would not give the amount of fencing needed.",
+      "answer": "\\(P=16\\text{ m},\\quad C=\\pounds 64\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the perimeter \\(P=2(5+3)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(16\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(16\\times 4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\pounds 64\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Fencing follows the boundary length rather than covering the area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-TWODICE-1",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Two dice",
+      "question_family": "TWODICE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two fair six-sided dice are rolled independently and their results are added. Calculate the probability that the sum is exactly \\(6\\). Explain why the sample space contains \\(36\\) ordered outcomes.",
+      "answer": "\\(\\frac{5}{36}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "List or count 5 ordered pairs summing to 6."
+        },
+        {
+          "code": "B1",
+          "text": "There are 6 × 6 equally likely ordered pairs."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\(\\frac{5}{36}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that order matters: (a,b) and (b,a) are separate when a differs from b."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-BELLS-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Lowest common multiple",
+      "question_family": "BELLS",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Two alarm lights flash together at noon. One flashes every 6 minutes and the other every 8 minutes. After how many minutes do they next flash together, and at what clock time will that occur? Show your method.",
+      "answer": "\\(24\\text{ minutes after noon}\\quad(\\text{at }12:24)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find multiples or prime factors of both periods."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\operatorname{LCM}(6,8)=24\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the LCM as the next simultaneous event."
+        },
+        {
+          "code": "A1",
+          "text": "State 24 minutes after noon, i.e. 12:24."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-PRICE-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Percentage increase",
+      "question_family": "PRICE",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": true,
+      "prompt": "A bicycle costs \\(\\pounds 120\\) before a price increase of \\(10\\%\\). Find the amount of the increase and the new price. Explain which quantity the percentage is taken from.",
+      "answer": "\\(\\pounds 132\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find \\(10\\%\\) of \\(120\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate increase \\(\\pounds 12\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate new price \\(\\pounds 132\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The percentage is of the original price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRAPEZ-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Trapezia",
+      "question_family": "TRAPEZ",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A trapezium has parallel sides of lengths \\(6\\text{ cm}\\) and \\(10\\text{ cm}\\), and perpendicular height \\(4\\text{ cm}\\). Calculate its area and include the correct units.",
+      "answer": "\\(32\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12(a+b)h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(6+10)(4)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(32\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-MEAN-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Statistics · Missing data",
+      "question_family": "MEAN",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Five assessment scores are 4, 5, 6, 7 and \\(k\\). Their mean is \\(6.8\\). Calculate \\(k\\), clearly showing the total score required.",
+      "answer": "\\(k=12\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use total score \\(5\\times 6.8=34\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the sum \\(22\\) of known scores."
+        },
+        {
+          "code": "A1",
+          "text": "Subtract to obtain \\(k=12\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-LADDER-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Geometry · Right triangles",
+      "question_family": "LADDER",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A straight ladder leans against a vertical wall. Its foot is \\(3\\text{ m}\\) from the wall, and its top touches the wall \\(4\\text{ m}\\) above the ground. Assuming the wall and ground form a right angle, calculate the ladder length. State the geometrical principle used.",
+      "answer": "\\(5\\text{ m}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise the ladder is the hypotenuse."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(L^2=3^2+4^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(L^2=25\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(5\\text{ m}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-COSTEQ-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Algebra · Modelling",
+      "question_family": "COSTEQ",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A cinema charges \\(\\pounds 4\\) per ticket plus a single booking fee of \\(\\pounds 6\\). A total payment of \\(\\pounds 18\\) is made. Form and solve an equation to find how many tickets were purchased. Explain why the number of tickets must be an integer.",
+      "answer": "\\(n=3\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Form \\(4n+6=18\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the booking fee first."
+        },
+        {
+          "code": "B1",
+          "text": "Divide by \\(4\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(n=3\\)."
+        },
+        {
+          "code": "A1",
+          "text": "A ticket cannot be bought as a fractional item in this context."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-REPLACE-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Probability · Independent draws",
+      "question_family": "REPLACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 2 red counters and 3 blue counters. Two counters are selected, and the first counter is replaced before the second selection. Calculate the probability of obtaining red twice and explain why the probabilities can be multiplied.",
+      "answer": "\\(\\frac{4}{25}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw red probability \\(\\frac{2}{5}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Replacement keeps the total and composition unchanged."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(\\frac{2}{5}\\times\\frac{2}{5}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{4}{25}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CYLSURF-1",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cylinders",
+      "question_family": "CYLSURF",
+      "marks": 4,
+      "suggested_minutes": 9,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A closed right circular cylinder has radius \\(2\\text{ cm}\\) and height \\(4\\text{ cm}\\). Find both its exact volume and its total surface area in terms of \\(\\pi\\). Show the formulae used and give units.",
+      "answer": "\\(V=16\\pi\\text{ cm}^3,\\quad S=24\\pi\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate volume \\(16\\pi\\text{ cm}^3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(S=2\\pi r^2+2\\pi rh\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Calculate surface area \\(24\\pi\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-PCTCHANGE-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Number · Successive percentage changes",
+      "question_family": "PCTCHANGE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A laptop has original price \\(\\pounds 200\\). Its price increases by \\(15\\%\\), then the new price is reduced by \\(20\\%\\). Find the final price in pounds and explain why the changes must be applied successively.",
+      "answer": "\\(\\pounds 184\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the increase multiplier \\(\\frac{23}{20}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find intermediate price \\(\\pounds 230\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the reduction multiplier \\(\\frac{4}{5}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain final price \\(\\pounds 184\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that each percentage is of the new price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-RATIO-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing and interpretation",
+      "question_family": "RATIO",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A community group shares \\(\\pounds 35\\) between Projects A and B in the ratio \\(3:4\\). Calculate both shares. A volunteer claims that each project receives the same amount; explain briefly why this is not correct.",
+      "answer": "\\(A=\\pounds 15,\\quad B=\\pounds 20\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add the ratio parts: \\(3+4=7\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Determine one part \\(\\pounds 5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate A = \\(\\pounds 15\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate B = \\(\\pounds 20\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain the parts differ, so the allocations differ."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-FENCE-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Perimeter and money",
+      "question_family": "FENCE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A rectangular garden is \\(6\\text{ m}\\) long and \\(4\\text{ m}\\) wide. Fencing costs \\(\\pounds 5\\) per metre. Calculate the perimeter and total fencing cost. Explain why calculating the area would not give the amount of fencing needed.",
+      "answer": "\\(P=20\\text{ m},\\quad C=\\pounds 100\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the perimeter \\(P=2(6+4)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(20\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(20\\times 5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\pounds 100\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Fencing follows the boundary length rather than covering the area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-TWODICE-2",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Two dice",
+      "question_family": "TWODICE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two fair six-sided dice are rolled independently and their results are added. Calculate the probability that the sum is exactly \\(7\\). Explain why the sample space contains \\(36\\) ordered outcomes.",
+      "answer": "\\(\\frac{1}{6}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "List or count 6 ordered pairs summing to 7."
+        },
+        {
+          "code": "B1",
+          "text": "There are 6 × 6 equally likely ordered pairs."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\(\\frac{1}{6}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that order matters: (a,b) and (b,a) are separate when a differs from b."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-BELLS-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Lowest common multiple",
+      "question_family": "BELLS",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Two alarm lights flash together at noon. One flashes every 8 minutes and the other every 12 minutes. After how many minutes do they next flash together, and at what clock time will that occur? Show your method.",
+      "answer": "\\(24\\text{ minutes after noon}\\quad(\\text{at }12:24)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find multiples or prime factors of both periods."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\operatorname{LCM}(8,12)=24\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the LCM as the next simultaneous event."
+        },
+        {
+          "code": "A1",
+          "text": "State 24 minutes after noon, i.e. 12:24."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-PRICE-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Percentage increase",
+      "question_family": "PRICE",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": true,
+      "prompt": "A bicycle costs \\(\\pounds 160\\) before a price increase of \\(15\\%\\). Find the amount of the increase and the new price. Explain which quantity the percentage is taken from.",
+      "answer": "\\(\\pounds 184\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find \\(15\\%\\) of \\(160\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate increase \\(\\pounds 24\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate new price \\(\\pounds 184\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The percentage is of the original price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRAPEZ-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Trapezia",
+      "question_family": "TRAPEZ",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A trapezium has parallel sides of lengths \\(7\\text{ cm}\\) and \\(11\\text{ cm}\\), and perpendicular height \\(5\\text{ cm}\\). Calculate its area and include the correct units.",
+      "answer": "\\(45\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12(a+b)h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(7+11)(5)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(45\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-MEAN-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Statistics · Missing data",
+      "question_family": "MEAN",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Five assessment scores are 5, 6, 7, 8 and \\(k\\). Their mean is \\(7.8\\). Calculate \\(k\\), clearly showing the total score required.",
+      "answer": "\\(k=13\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use total score \\(5\\times 7.8=39\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the sum \\(26\\) of known scores."
+        },
+        {
+          "code": "A1",
+          "text": "Subtract to obtain \\(k=13\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-LADDER-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Geometry · Right triangles",
+      "question_family": "LADDER",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A straight ladder leans against a vertical wall. Its foot is \\(5\\text{ m}\\) from the wall, and its top touches the wall \\(12\\text{ m}\\) above the ground. Assuming the wall and ground form a right angle, calculate the ladder length. State the geometrical principle used.",
+      "answer": "\\(13\\text{ m}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise the ladder is the hypotenuse."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(L^2=5^2+12^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(L^2=169\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(13\\text{ m}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-COSTEQ-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Algebra · Modelling",
+      "question_family": "COSTEQ",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A cinema charges \\(\\pounds 5\\) per ticket plus a single booking fee of \\(\\pounds 7\\). A total payment of \\(\\pounds 27\\) is made. Form and solve an equation to find how many tickets were purchased. Explain why the number of tickets must be an integer.",
+      "answer": "\\(n=4\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Form \\(5n+7=27\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the booking fee first."
+        },
+        {
+          "code": "B1",
+          "text": "Divide by \\(5\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(n=4\\)."
+        },
+        {
+          "code": "A1",
+          "text": "A ticket cannot be bought as a fractional item in this context."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-REPLACE-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Probability · Independent draws",
+      "question_family": "REPLACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 3 red counters and 4 blue counters. Two counters are selected, and the first counter is replaced before the second selection. Calculate the probability of obtaining red twice and explain why the probabilities can be multiplied.",
+      "answer": "\\(\\frac{9}{49}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw red probability \\(\\frac{3}{7}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Replacement keeps the total and composition unchanged."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(\\frac{3}{7}\\times\\frac{3}{7}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{9}{49}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CYLSURF-2",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cylinders",
+      "question_family": "CYLSURF",
+      "marks": 4,
+      "suggested_minutes": 9,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A closed right circular cylinder has radius \\(3\\text{ cm}\\) and height \\(5\\text{ cm}\\). Find both its exact volume and its total surface area in terms of \\(\\pi\\). Show the formulae used and give units.",
+      "answer": "\\(V=45\\pi\\text{ cm}^3,\\quad S=48\\pi\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate volume \\(45\\pi\\text{ cm}^3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(S=2\\pi r^2+2\\pi rh\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Calculate surface area \\(48\\pi\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-PCTCHANGE-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Number · Successive percentage changes",
+      "question_family": "PCTCHANGE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A laptop has original price \\(\\pounds 300\\). Its price increases by \\(20\\%\\), then the new price is reduced by \\(25\\%\\). Find the final price in pounds and explain why the changes must be applied successively.",
+      "answer": "\\(\\pounds 270\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the increase multiplier \\(\\frac{6}{5}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find intermediate price \\(\\pounds 360\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the reduction multiplier \\(\\frac{3}{4}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain final price \\(\\pounds 270\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that each percentage is of the new price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-RATIO-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing and interpretation",
+      "question_family": "RATIO",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A community group shares \\(\\pounds 54\\) between Projects A and B in the ratio \\(4:5\\). Calculate both shares. A volunteer claims that each project receives the same amount; explain briefly why this is not correct.",
+      "answer": "\\(A=\\pounds 24,\\quad B=\\pounds 30\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add the ratio parts: \\(4+5=9\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Determine one part \\(\\pounds 6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate A = \\(\\pounds 24\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate B = \\(\\pounds 30\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain the parts differ, so the allocations differ."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-FENCE-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Perimeter and money",
+      "question_family": "FENCE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A rectangular garden is \\(7\\text{ m}\\) long and \\(5\\text{ m}\\) wide. Fencing costs \\(\\pounds 6\\) per metre. Calculate the perimeter and total fencing cost. Explain why calculating the area would not give the amount of fencing needed.",
+      "answer": "\\(P=24\\text{ m},\\quad C=\\pounds 144\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the perimeter \\(P=2(7+5)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(24\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(24\\times 6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\pounds 144\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Fencing follows the boundary length rather than covering the area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-TWODICE-3",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Two dice",
+      "question_family": "TWODICE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two fair six-sided dice are rolled independently and their results are added. Calculate the probability that the sum is exactly \\(8\\). Explain why the sample space contains \\(36\\) ordered outcomes.",
+      "answer": "\\(\\frac{5}{36}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "List or count 5 ordered pairs summing to 8."
+        },
+        {
+          "code": "B1",
+          "text": "There are 6 × 6 equally likely ordered pairs."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\(\\frac{5}{36}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that order matters: (a,b) and (b,a) are separate when a differs from b."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-BELLS-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Lowest common multiple",
+      "question_family": "BELLS",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Two alarm lights flash together at noon. One flashes every 9 minutes and the other every 15 minutes. After how many minutes do they next flash together, and at what clock time will that occur? Show your method.",
+      "answer": "\\(45\\text{ minutes after noon}\\quad(\\text{at }12:45)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find multiples or prime factors of both periods."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\operatorname{LCM}(9,15)=45\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the LCM as the next simultaneous event."
+        },
+        {
+          "code": "A1",
+          "text": "State 45 minutes after noon, i.e. 12:45."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-PRICE-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Percentage increase",
+      "question_family": "PRICE",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": true,
+      "prompt": "A bicycle costs \\(\\pounds 200\\) before a price increase of \\(20\\%\\). Find the amount of the increase and the new price. Explain which quantity the percentage is taken from.",
+      "answer": "\\(\\pounds 240\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find \\(20\\%\\) of \\(200\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate increase \\(\\pounds 40\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate new price \\(\\pounds 240\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The percentage is of the original price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRAPEZ-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Trapezia",
+      "question_family": "TRAPEZ",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A trapezium has parallel sides of lengths \\(8\\text{ cm}\\) and \\(12\\text{ cm}\\), and perpendicular height \\(6\\text{ cm}\\). Calculate its area and include the correct units.",
+      "answer": "\\(60\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12(a+b)h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(8+12)(6)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(60\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-MEAN-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Statistics · Missing data",
+      "question_family": "MEAN",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Five assessment scores are 6, 7, 8, 9 and \\(k\\). Their mean is \\(8.8\\). Calculate \\(k\\), clearly showing the total score required.",
+      "answer": "\\(k=14\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use total score \\(5\\times 8.8=44\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the sum \\(30\\) of known scores."
+        },
+        {
+          "code": "A1",
+          "text": "Subtract to obtain \\(k=14\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-LADDER-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Geometry · Right triangles",
+      "question_family": "LADDER",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A straight ladder leans against a vertical wall. Its foot is \\(8\\text{ m}\\) from the wall, and its top touches the wall \\(15\\text{ m}\\) above the ground. Assuming the wall and ground form a right angle, calculate the ladder length. State the geometrical principle used.",
+      "answer": "\\(17\\text{ m}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise the ladder is the hypotenuse."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(L^2=8^2+15^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(L^2=289\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(17\\text{ m}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-COSTEQ-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Algebra · Modelling",
+      "question_family": "COSTEQ",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A cinema charges \\(\\pounds 6\\) per ticket plus a single booking fee of \\(\\pounds 8\\). A total payment of \\(\\pounds 38\\) is made. Form and solve an equation to find how many tickets were purchased. Explain why the number of tickets must be an integer.",
+      "answer": "\\(n=5\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Form \\(6n+8=38\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the booking fee first."
+        },
+        {
+          "code": "B1",
+          "text": "Divide by \\(6\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(n=5\\)."
+        },
+        {
+          "code": "A1",
+          "text": "A ticket cannot be bought as a fractional item in this context."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-REPLACE-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Probability · Independent draws",
+      "question_family": "REPLACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 4 red counters and 5 blue counters. Two counters are selected, and the first counter is replaced before the second selection. Calculate the probability of obtaining red twice and explain why the probabilities can be multiplied.",
+      "answer": "\\(\\frac{16}{81}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw red probability \\(\\frac{4}{9}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Replacement keeps the total and composition unchanged."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(\\frac{4}{9}\\times\\frac{4}{9}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{16}{81}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CYLSURF-3",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cylinders",
+      "question_family": "CYLSURF",
+      "marks": 4,
+      "suggested_minutes": 9,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A closed right circular cylinder has radius \\(4\\text{ cm}\\) and height \\(6\\text{ cm}\\). Find both its exact volume and its total surface area in terms of \\(\\pi\\). Show the formulae used and give units.",
+      "answer": "\\(V=96\\pi\\text{ cm}^3,\\quad S=80\\pi\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate volume \\(96\\pi\\text{ cm}^3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(S=2\\pi r^2+2\\pi rh\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Calculate surface area \\(80\\pi\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-PCTCHANGE-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Number · Successive percentage changes",
+      "question_family": "PCTCHANGE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A laptop has original price \\(\\pounds 400\\). Its price increases by \\(25\\%\\), then the new price is reduced by \\(10\\%\\). Find the final price in pounds and explain why the changes must be applied successively.",
+      "answer": "\\(\\pounds 450\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the increase multiplier \\(\\frac{5}{4}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find intermediate price \\(\\pounds 500\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the reduction multiplier \\(\\frac{9}{10}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain final price \\(\\pounds 450\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that each percentage is of the new price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-RATIO-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing and interpretation",
+      "question_family": "RATIO",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A community group shares \\(\\pounds 77\\) between Projects A and B in the ratio \\(5:6\\). Calculate both shares. A volunteer claims that each project receives the same amount; explain briefly why this is not correct.",
+      "answer": "\\(A=\\pounds 35,\\quad B=\\pounds 42\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add the ratio parts: \\(5+6=11\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Determine one part \\(\\pounds 7\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate A = \\(\\pounds 35\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate B = \\(\\pounds 42\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain the parts differ, so the allocations differ."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-FENCE-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Perimeter and money",
+      "question_family": "FENCE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A rectangular garden is \\(8\\text{ m}\\) long and \\(6\\text{ m}\\) wide. Fencing costs \\(\\pounds 7\\) per metre. Calculate the perimeter and total fencing cost. Explain why calculating the area would not give the amount of fencing needed.",
+      "answer": "\\(P=28\\text{ m},\\quad C=\\pounds 196\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the perimeter \\(P=2(8+6)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(28\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(28\\times 7\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\pounds 196\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Fencing follows the boundary length rather than covering the area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-TWODICE-4",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Two dice",
+      "question_family": "TWODICE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two fair six-sided dice are rolled independently and their results are added. Calculate the probability that the sum is exactly \\(9\\). Explain why the sample space contains \\(36\\) ordered outcomes.",
+      "answer": "\\(\\frac{1}{9}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "List or count 4 ordered pairs summing to 9."
+        },
+        {
+          "code": "B1",
+          "text": "There are 6 × 6 equally likely ordered pairs."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\(\\frac{1}{9}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that order matters: (a,b) and (b,a) are separate when a differs from b."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-BELLS-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Lowest common multiple",
+      "question_family": "BELLS",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Two alarm lights flash together at noon. One flashes every 10 minutes and the other every 14 minutes. After how many minutes do they next flash together, and at what clock time will that occur? Show your method.",
+      "answer": "\\(70\\text{ minutes after noon}\\quad(\\text{at }13:10)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find multiples or prime factors of both periods."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\operatorname{LCM}(10,14)=70\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the LCM as the next simultaneous event."
+        },
+        {
+          "code": "A1",
+          "text": "State 70 minutes after noon, i.e. 13:10."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-PRICE-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Percentage increase",
+      "question_family": "PRICE",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": true,
+      "prompt": "A bicycle costs \\(\\pounds 240\\) before a price increase of \\(25\\%\\). Find the amount of the increase and the new price. Explain which quantity the percentage is taken from.",
+      "answer": "\\(\\pounds 300\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find \\(25\\%\\) of \\(240\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate increase \\(\\pounds 60\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate new price \\(\\pounds 300\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The percentage is of the original price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRAPEZ-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Trapezia",
+      "question_family": "TRAPEZ",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A trapezium has parallel sides of lengths \\(9\\text{ cm}\\) and \\(13\\text{ cm}\\), and perpendicular height \\(7\\text{ cm}\\). Calculate its area and include the correct units.",
+      "answer": "\\(77\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12(a+b)h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(9+13)(7)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(77\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-MEAN-4",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Statistics · Missing data",
+      "question_family": "MEAN",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Five assessment scores are 7, 8, 9, 10 and \\(k\\). Their mean is \\(9.8\\). Calculate \\(k\\), clearly showing the total score required.",
+      "answer": "\\(k=15\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use total score \\(5\\times 9.8=49\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the sum \\(34\\) of known scores."
+        },
+        {
+          "code": "A1",
+          "text": "Subtract to obtain \\(k=15\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-LADDER-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Geometry · Right triangles",
+      "question_family": "LADDER",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A straight ladder leans against a vertical wall. Its foot is \\(7\\text{ m}\\) from the wall, and its top touches the wall \\(24\\text{ m}\\) above the ground. Assuming the wall and ground form a right angle, calculate the ladder length. State the geometrical principle used.",
+      "answer": "\\(25\\text{ m}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise the ladder is the hypotenuse."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(L^2=7^2+24^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(L^2=625\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(25\\text{ m}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-COSTEQ-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Algebra · Modelling",
+      "question_family": "COSTEQ",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A cinema charges \\(\\pounds 7\\) per ticket plus a single booking fee of \\(\\pounds 9\\). A total payment of \\(\\pounds 51\\) is made. Form and solve an equation to find how many tickets were purchased. Explain why the number of tickets must be an integer.",
+      "answer": "\\(n=6\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Form \\(7n+9=51\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the booking fee first."
+        },
+        {
+          "code": "B1",
+          "text": "Divide by \\(7\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(n=6\\)."
+        },
+        {
+          "code": "A1",
+          "text": "A ticket cannot be bought as a fractional item in this context."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-REPLACE-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Probability · Independent draws",
+      "question_family": "REPLACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 5 red counters and 6 blue counters. Two counters are selected, and the first counter is replaced before the second selection. Calculate the probability of obtaining red twice and explain why the probabilities can be multiplied.",
+      "answer": "\\(\\frac{25}{121}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw red probability \\(\\frac{5}{11}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Replacement keeps the total and composition unchanged."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(\\frac{5}{11}\\times\\frac{5}{11}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{25}{121}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CYLSURF-4",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cylinders",
+      "question_family": "CYLSURF",
+      "marks": 4,
+      "suggested_minutes": 9,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A closed right circular cylinder has radius \\(5\\text{ cm}\\) and height \\(7\\text{ cm}\\). Find both its exact volume and its total surface area in terms of \\(\\pi\\). Show the formulae used and give units.",
+      "answer": "\\(V=175\\pi\\text{ cm}^3,\\quad S=120\\pi\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate volume \\(175\\pi\\text{ cm}^3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(S=2\\pi r^2+2\\pi rh\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Calculate surface area \\(120\\pi\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-PCTCHANGE-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Number · Successive percentage changes",
+      "question_family": "PCTCHANGE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A laptop has original price \\(\\pounds 500\\). Its price increases by \\(30\\%\\), then the new price is reduced by \\(20\\%\\). Find the final price in pounds and explain why the changes must be applied successively.",
+      "answer": "\\(\\pounds 520\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the increase multiplier \\(\\frac{13}{10}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find intermediate price \\(\\pounds 650\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the reduction multiplier \\(\\frac{4}{5}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain final price \\(\\pounds 520\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that each percentage is of the new price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-RATIO-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing and interpretation",
+      "question_family": "RATIO",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A community group shares \\(\\pounds 104\\) between Projects A and B in the ratio \\(6:7\\). Calculate both shares. A volunteer claims that each project receives the same amount; explain briefly why this is not correct.",
+      "answer": "\\(A=\\pounds 48,\\quad B=\\pounds 56\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Add the ratio parts: \\(6+7=13\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Determine one part \\(\\pounds 8\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate A = \\(\\pounds 48\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate B = \\(\\pounds 56\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain the parts differ, so the allocations differ."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-FENCE-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Perimeter and money",
+      "question_family": "FENCE",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": true,
+      "prompt": "A rectangular garden is \\(9\\text{ m}\\) long and \\(7\\text{ m}\\) wide. Fencing costs \\(\\pounds 8\\) per metre. Calculate the perimeter and total fencing cost. Explain why calculating the area would not give the amount of fencing needed.",
+      "answer": "\\(P=32\\text{ m},\\quad C=\\pounds 256\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use the perimeter \\(P=2(9+7)\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(32\\text{ m}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(32\\times 8\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\pounds 256\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Fencing follows the boundary length rather than covering the area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-G-EXAM-TWODICE-5",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Two dice",
+      "question_family": "TWODICE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "Two fair six-sided dice are rolled independently and their results are added. Calculate the probability that the sum is exactly \\(10\\). Explain why the sample space contains \\(36\\) ordered outcomes.",
+      "answer": "\\(\\frac{1}{12}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "List or count 3 ordered pairs summing to 10."
+        },
+        {
+          "code": "B1",
+          "text": "There are 6 × 6 equally likely ordered pairs."
+        },
+        {
+          "code": "B1",
+          "text": "Form \\(\\frac{1}{12}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Explain that order matters: (a,b) and (b,a) are separate when a differs from b."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-BELLS-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Lowest common multiple",
+      "question_family": "BELLS",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Two alarm lights flash together at noon. One flashes every 12 minutes and the other every 18 minutes. After how many minutes do they next flash together, and at what clock time will that occur? Show your method.",
+      "answer": "\\(36\\text{ minutes after noon}\\quad(\\text{at }12:36)\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find multiples or prime factors of both periods."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(\\operatorname{LCM}(12,18)=36\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use the LCM as the next simultaneous event."
+        },
+        {
+          "code": "A1",
+          "text": "State 36 minutes after noon, i.e. 12:36."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-PRICE-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Number · Percentage increase",
+      "question_family": "PRICE",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": true,
+      "prompt": "A bicycle costs \\(\\pounds 320\\) before a price increase of \\(30\\%\\). Find the amount of the increase and the new price. Explain which quantity the percentage is taken from.",
+      "answer": "\\(\\pounds 416\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find \\(30\\%\\) of \\(320\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate increase \\(\\pounds 96\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate new price \\(\\pounds 416\\)."
+        },
+        {
+          "code": "A1",
+          "text": "The percentage is of the original price."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-TRAPEZ-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Trapezia",
+      "question_family": "TRAPEZ",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "A trapezium has parallel sides of lengths \\(10\\text{ cm}\\) and \\(14\\text{ cm}\\), and perpendicular height \\(8\\text{ cm}\\). Calculate its area and include the correct units.",
+      "answer": "\\(96\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(A=\\frac12(a+b)h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Substitute \\(\\frac12(10+14)(8)\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(96\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-WEEKLY-MEAN-5",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Core",
+      "topic": "Statistics · Missing data",
+      "question_family": "MEAN",
+      "marks": 3,
+      "suggested_minutes": 6,
+      "difficulty": 2,
+      "calculator_allowed": false,
+      "prompt": "Five assessment scores are 8, 9, 10, 11 and \\(k\\). Their mean is \\(10.8\\). Calculate \\(k\\), clearly showing the total score required.",
+      "answer": "\\(k=16\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use total score \\(5\\times 10.8=54\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find the sum \\(38\\) of known scores."
+        },
+        {
+          "code": "A1",
+          "text": "Subtract to obtain \\(k=16\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-LADDER-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Geometry · Right triangles",
+      "question_family": "LADDER",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A straight ladder leans against a vertical wall. Its foot is \\(9\\text{ m}\\) from the wall, and its top touches the wall \\(12\\text{ m}\\) above the ground. Assuming the wall and ground form a right angle, calculate the ladder length. State the geometrical principle used.",
+      "answer": "\\(15\\text{ m}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise the ladder is the hypotenuse."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(L^2=9^2+12^2\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Find \\(L^2=225\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(15\\text{ m}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-COSTEQ-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Algebra · Modelling",
+      "question_family": "COSTEQ",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A cinema charges \\(\\pounds 8\\) per ticket plus a single booking fee of \\(\\pounds 10\\). A total payment of \\(\\pounds 66\\) is made. Form and solve an equation to find how many tickets were purchased. Explain why the number of tickets must be an integer.",
+      "answer": "\\(n=7\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Form \\(8n+10=66\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Subtract the booking fee first."
+        },
+        {
+          "code": "B1",
+          "text": "Divide by \\(8\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Obtain \\(n=7\\)."
+        },
+        {
+          "code": "A1",
+          "text": "A ticket cannot be bought as a fractional item in this context."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-REPLACE-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Probability · Independent draws",
+      "question_family": "REPLACE",
+      "marks": 4,
+      "suggested_minutes": 8,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A bag contains 6 red counters and 7 blue counters. Two counters are selected, and the first counter is replaced before the second selection. Calculate the probability of obtaining red twice and explain why the probabilities can be multiplied.",
+      "answer": "\\(\\frac{36}{169}\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw red probability \\(\\frac{6}{13}\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Replacement keeps the total and composition unchanged."
+        },
+        {
+          "code": "B1",
+          "text": "Multiply \\(\\frac{6}{13}\\times\\frac{6}{13}\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain \\(\\frac{36}{169}\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MG-I-EXAM-CYLSURF-5",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cylinders",
+      "question_family": "CYLSURF",
+      "marks": 4,
+      "suggested_minutes": 9,
+      "difficulty": 3,
+      "calculator_allowed": false,
+      "prompt": "A closed right circular cylinder has radius \\(6\\text{ cm}\\) and height \\(8\\text{ cm}\\). Find both its exact volume and its total surface area in terms of \\(\\pi\\). Show the formulae used and give units.",
+      "answer": "\\(V=288\\pi\\text{ cm}^3,\\quad S=168\\pi\\text{ cm}^2\\)",
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use \\(V=\\pi r^2h\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Calculate volume \\(288\\pi\\text{ cm}^3\\)."
+        },
+        {
+          "code": "B1",
+          "text": "Use \\(S=2\\pi r^2+2\\pi rh\\)."
+        },
+        {
+          "code": "A1",
+          "text": "Calculate surface area \\(168\\pi\\text{ cm}^2\\)."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    }
+  ]
+}
