@@ -14,7 +14,12 @@
 
 - index.html — new MathsGrove homepage and example workspace
 - mathsgrove.css — responsive premium styling
-- mathsgrove.js — interactive demonstration: sample IGCSE paper, drawing, local photo previews, question reflections, sample examiner marks and PDF print preview
+- mathsgrove.js — public interactive demonstration; browser-only, with no student data storage
+- portal.html, portal.css, portal.js — invitation-only individual dashboards, qualification selection, private submissions and partner review when Supabase is configured
+- mathsgrove-config.js — public configuration placeholder; never put any secret keys here
+- supabase/migrations/20261028_private_student_portal.sql — protected database tables and RLS policies
+- supabase/functions/invitations/index.ts — one-time email-bound invitation service
+- docs/STUDENT_PORTAL_SETUP.md — full Supabase installation steps
 - .github/workflows/pages.yml — deploy this static development preview to GitHub Pages
 
 ## Visual identity
@@ -27,6 +32,8 @@ Run `python3 -m http.server 8000` at the repository root, then visit `http://loc
 
 ## Supabase and production roadmap
 
+See `docs/STUDENT_PORTAL_SETUP.md` for precise setup instructions. Until configured, portal.html displays a setup notice instead of accepting student credentials or work.
+
 The MathsGrove React + TypeScript starter produced for this project includes a SQL schema for student accounts and examiner marking. The next development step is to migrate that code into this same repository and set up a new Supabase project.
 
 1. Use invitation-only Supabase Auth; provision students, tutors, examiners and partners through trusted administration.
@@ -35,9 +42,9 @@ The MathsGrove React + TypeScript starter produced for this project includes a S
 4. Build production workflows: adaptive question bank, actual autosave, mark moderation, parent views, subscriptions as entitlements, and immutable reports.
 5. Deploy the commercial application to Cloudflare from this repository. GitHub Pages is only a temporary design preview and not an appropriate production host for commercial SaaS.
 
-## Business
+## Partner access
 
-Partners manage payments directly. Indicative wholesale: Weekly £10/student/month, Daily £18, Exam £29, Signature Report £49/standard GCSE or IGCSE assessment. No Stripe checkout.
+MathsGrove is invitation-only. Commercial terms, partner licences and invoice arrangements are managed privately and are not displayed on the public website.
 
 ## Compliance
 
