@@ -1,7 +1,13 @@
 # MathsGrove · Academic content architecture
 **Editorial research:** 28 October 2026. **Status:** Paper format research + draft mock blueprints; not a completed approved mock bank.
 
-## Three academic directories
+## THREE MathsGrove service tiers (the primary product structure)
+
+- [Grove Weekly / Daily / Exam](programmes/README.md) — service tiers, allocated practice, original question examples and timed mock behaviour. These three are **not** GCSE/IGCSE/A Level.
+- [Programme configuration JSON](programmes/service-tiers.json) — cadence, duration and intended maths question mix.
+- [24 additional original tier-specific draft stems](programmes/draft-questions.json) — review-only, not secure unseen mocks.
+
+## Academic pathways inside any of the three programmes
 - [GCSE](GCSE/README.md) — English GCSE (9–1): AQA 8300, Pearson Edexcel 1MA1, OCR J560, Eduqas; Wales WJEC maintained separately pending precise reformed assessment verification.
 - [IGCSE](IGCSE/README.md) — Cambridge 0580 and 0980, Pearson Edexcel Mathematics A linear and modular, OxfordAQA 9260. Different grading routes, calculator policy and syllabus years.
 - [AS_A_LEVEL](AS_A_LEVEL/README.md) — later stage: UK AS/A Level, Pearson International AS/IAL, Cambridge International AS/A Level and Further Mathematics. Do **not** mix with GCSE/IGCSE when building papers.

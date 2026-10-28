@@ -89,3 +89,11 @@ New **Mathematics bank** section in the private [Administrator Studio](studio.ht
 See the [three-level content directory](content/README.md), [GCSE/IGCSE research matrix](content/BOARD_RESEARCH_2026.md), [assessment timing and upload plan](content/assessment-engine.md) and [mathematical quality gates](content/quality-gates.md).
 
 **Important:** strict timed mock hard stops, server-enforced expiry, autosubmission and upload lockouts are designed but not yet implemented. The existing student portal does support per-question digital whiteboard and photograph submissions. Original MathsGrove materials are not official board-endorsed papers.
+
+## Three Grove service tiers and real timed mock workflow
+
+**Correction:** Grove Weekly, Grove Daily and Grove Exam are the three **commercial service tiers**; GCSE, IGCSE, AS/A Level and exam board are **curriculum choices inside each tier**.
+
+The private Admin Studio Mathematics bank now groups original public **draft** questions by Grove Weekly/Daily/Exam and offers a future-secure mock builder. Grove Exam students have a dedicated Timed mock panel, question-by-question writing/photo uploads, a per-question advisory clock and a server-confirmed mock deadline. **This workflow requires `supabase/UPGRADE_TIER_MOCKS.sql` before it is usable.** No full mock is yet published or assigned; the admin must first approve a complete board-aligned original question set, assemble exact marks, publish and assign it.
+
+Read [the tier product structure](content/programmes/README.md) and the [assessment security specification](content/assessment-engine.md). **48 public draft exemplar stems**, 68 mock *blueprints*, 10 existing original pilot questions, and **zero approved full mock packs** are distinct quantities; don't market a blueprint as a finished paper. Do not publish confidential unseen mark schemes to GitHub.

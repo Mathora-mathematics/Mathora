@@ -1,0 +1,414 @@
+{
+  "version": 1,
+  "notice": "Original PUBLIC development questions grouped by commercial tier, not a secure mock. No answer keys here. Draft only.",
+  "items": [
+    {
+      "id": "GD-G01",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "topic": "Number · Fractions",
+      "tier": "Foundation",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "prompt": "Evaluate 7/12 + 5/18. Give the answer as a single fraction in its lowest terms.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-G02",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "topic": "Algebra · Rearranging",
+      "tier": "Foundation",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "prompt": "Make t the subject of the equation v = u + at, assuming a ≠ 0. State the first operation you use.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-G03",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "topic": "Geometry · Area",
+      "tier": "Foundation",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "prompt": "A triangle has base 12 cm and perpendicular height 7 cm. Find its area. Another triangle has the same area and base 8 cm. Find its perpendicular height.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-G04",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "topic": "Probability · Complement",
+      "tier": "Higher",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "prompt": "An event A has probability 0.37. Find P(A′). Explain why the complement rule can be used without knowing the sample space.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-G01",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "topic": "Ratio · Compound measures",
+      "tier": "Foundation",
+      "marks": 5,
+      "suggested_minutes": 6,
+      "prompt": "A car travels 84 km in 1 hour 12 minutes at constant speed. Calculate its speed in km/h, then find how far it travels in a further 45 minutes at that speed.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-G02",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "topic": "Algebra · Quadratics",
+      "tier": "Higher",
+      "marks": 5,
+      "suggested_minutes": 6,
+      "prompt": "The height of a ball above the ground, in metres, is modelled by h(t) = −5t² + 20t + 1 for t ≥ 0. Find the maximum height and the time at which it occurs. Explain why the model should not be used for arbitrarily large t.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-G03",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "topic": "Trigonometry · Bearings",
+      "tier": "Higher",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "prompt": "A ship sails 6 km due east from A to B, then 8 km due north from B to C. Find the straight-line distance AC and the three-figure bearing of C from A, to the nearest degree.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-G04",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "topic": "Statistics · Histograms",
+      "tier": "Higher",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "prompt": "A grouped frequency distribution has intervals 0≤x<5, 5≤x<15, 15≤x<20 with frequencies 12, 30, 10. Calculate each frequency density. Identify the modal class and explain why its frequency density is relevant to a histogram.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-G01",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "topic": "Geometry · 3D Pythagoras",
+      "tier": "Higher",
+      "marks": 6,
+      "suggested_minutes": 8,
+      "prompt": "A cuboid measures 6 cm by 8 cm by 24 cm. A spider travels in a straight line through the interior from one vertex to the opposite vertex. Calculate the length of its route. A second spider must stay on the two side faces measuring 6 cm by 24 cm and 8 cm by 24 cm, crossing their common 24 cm edge. It follows the shortest surface route across these faces. Calculate that route and compare both lengths.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-G02",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "topic": "Algebra · Inequalities and modelling",
+      "tier": "Higher",
+      "marks": 6,
+      "suggested_minutes": 8,
+      "prompt": "A school purchases n identical calculators at £14 each and pays a fixed £25 delivery charge. It has a budget of £300. Form and solve an inequality to find the greatest integer n it can buy. A supplier offers free delivery but charges £15 per calculator. Compare the greatest affordable quantities.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-G03",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "topic": "Functions · Inverses and domains",
+      "tier": "Higher",
+      "marks": 6,
+      "suggested_minutes": 8,
+      "prompt": "Let f(x) = (2x − 1)/(x + 3), with x ≠ −3. Find f⁻¹(x), including any excluded input. Show that f(f⁻¹(x)) = x on its domain.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-G04",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "topic": "Probability · Without replacement",
+      "tier": "Higher",
+      "marks": 6,
+      "suggested_minutes": 8,
+      "prompt": "A bag contains 5 red, 4 blue and 3 green counters. Two counters are drawn without replacement. Find the probability that they are different colours. Explain clearly how you avoid counting the same outcome twice.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-I01",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "topic": "Indices · Laws",
+      "tier": "Core",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "prompt": "Simplify (a³b²)(a²b⁻¹), stating any necessary restriction on b.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-I02",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "topic": "Algebra · Linear equations",
+      "tier": "Core",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "prompt": "Solve 4(3x − 2) = 7x + 17, showing the equation after expanding the brackets.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-I03",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "topic": "Mensuration · Volumes",
+      "tier": "Core",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "prompt": "A cylinder has radius 3 cm and perpendicular height 7 cm. Find its exact volume in terms of π and give the unit.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GD-I04",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "topic": "Probability · Simple events",
+      "tier": "Core",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "prompt": "A fair spinner has 10 equal sectors numbered 1 to 10. Find the probability of obtaining a prime number and simplify your fraction.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-I01",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "topic": "Algebra · Rational expressions",
+      "tier": "Extended",
+      "marks": 5,
+      "suggested_minutes": 6,
+      "prompt": "Simplify (x² − 16)/(x² + x − 20). State all excluded values from the original fraction and explain why cancelled values remain excluded.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-I02",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "topic": "Trigonometry · Cosine rule",
+      "tier": "Extended",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "prompt": "In triangle ABC, AB = 10 cm, AC = 14 cm and ∠BAC = 60°. Calculate BC exactly, then give the decimal length to one decimal place.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-I03",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "topic": "Functions · Composite and inverse",
+      "tier": "Extended",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "prompt": "Let f(x) = 3x − 2 and g(x) = x² + 4. Find f(g(x)), g(f(x)) and f⁻¹(x). State why g does not have a single-valued inverse on all real inputs.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GW-I04",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "topic": "Statistics · Box plots",
+      "tier": "Extended",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "prompt": "Two classes take the same test. Class A has minimum 18, Q1 35, median 55, Q3 67 and maximum 82. Class B has minimum 22, Q1 40, median 52, Q3 65 and maximum 76. Compare their typical performance and variability using at least two calculated measures.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-I01",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "topic": "Algebra · Simultaneous equations",
+      "tier": "Extended",
+      "marks": 6,
+      "suggested_minutes": 8,
+      "prompt": "A rectangle has perimeter 26 cm and area 40 cm². Form simultaneous equations for its side lengths and find all positive side-length possibilities. Explain why order does not give a different rectangle.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-I02",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "topic": "Surds · Exact lengths",
+      "tier": "Extended",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "prompt": "A right-angled triangle has perpendicular sides √12 cm and √27 cm. Find the hypotenuse exactly in simplified surd form. Then rationalise 5/(√5 − 1) and explain why the conjugate works.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-I03",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "topic": "Vectors · Geometry reasoning",
+      "tier": "Extended",
+      "marks": 6,
+      "suggested_minutes": 8,
+      "prompt": "In triangle OAB, position vectors OA = a and OB = b. Point M is the midpoint of AB and N lies on OA such that ON = (1/3)OA. Express OM, NM and BM in terms of a and b, simplifying each expression.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    },
+    {
+      "id": "GE-I04",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "topic": "Probability · Dependent events",
+      "tier": "Extended",
+      "marks": 6,
+      "suggested_minutes": 9,
+      "prompt": "A box contains 6 white and 4 black counters. Three are drawn at random without replacement. Calculate the probability that exactly two are white and one is black. Give an exact fraction and describe the different possible colour orders.",
+      "status": "unmoderated_public_specimen",
+      "available_to_students": false,
+      "question_requirements": [
+        "clear working",
+        "appropriate method marks",
+        "original examiner mark scheme stored in Supabase after moderation"
+      ]
+    }
+  ]
+}

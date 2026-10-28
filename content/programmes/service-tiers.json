@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "clarification": "These are commercial/product service tiers, NOT GCSE/IGCSE/A Level academic levels.",
+  "study_routes": [
+    "GCSE",
+    "IGCSE",
+    "AS_A_LEVEL",
+    "Further Mathematics",
+    "IB",
+    "TMUA"
+  ],
+  "plans": {
+    "weekly": {
+      "name": "Grove Weekly",
+      "entitlement": "weekly",
+      "cadence": "Four structured sets each month",
+      "student_goal": "Build consistent exam technique and identify weaknesses.",
+      "question_design": {
+        "GCSE": {
+          "recommended_marks": 25,
+          "items": 8,
+          "minutes": 35,
+          "topic_mix": "Balanced fluency, 30% reasoning, 20% modelling"
+        },
+        "IGCSE": {
+          "recommended_marks": 25,
+          "items": 8,
+          "minutes": 35,
+          "topic_mix": "Structured and unstructured mathematical reasoning"
+        },
+        "AS_A_LEVEL": {
+          "recommended_marks": 30,
+          "items": 7,
+          "minutes": 40,
+          "topic_mix": "Pure / statistics / mechanics by assigned pathway"
+        }
+      },
+      "assessment_workflow": "Each question receives typed, whiteboard or photographic evidence; human marking/report when available",
+      "calendaring": "One suggested day each week; scheduler to be implemented",
+      "status": "pilot question bank; not full board-calibrated sets"
+    },
+    "daily": {
+      "name": "Grove Daily",
+      "entitlement": "daily",
+      "cadence": "Seven days of short practice each week, plus Weekly sets",
+      "student_goal": "Target specific errors and make mathematical working routine.",
+      "question_design": {
+        "GCSE": {
+          "recommended_marks": 10,
+          "items": 3,
+          "minutes": 12,
+          "topic_mix": "One micro-skill, then one reasoning check"
+        },
+        "IGCSE": {
+          "recommended_marks": 12,
+          "items": 3,
+          "minutes": 14,
+          "topic_mix": "Cambridge or Pearson technique and short justification"
+        },
+        "AS_A_LEVEL": {
+          "recommended_marks": 15,
+          "items": 3,
+          "minutes": 18,
+          "topic_mix": "Algebraic and applied single-skill review"
+        }
+      },
+      "assessment_workflow": "Topic recovery based on examiner feedback; no automatic high-stakes marking of handwritten proof",
+      "calendaring": "Seven-day suggested schedule, no emails or auto assignment yet",
+      "status": "existing student builder supports short practice; content expansion pending"
+    },
+    "exam": {
+      "name": "Grove Exam",
+      "entitlement": "exam",
+      "cadence": "Everything in Grove Daily plus one approved timed mock monthly",
+      "student_goal": "Practice exam conditions and gather moderated evidence of readiness.",
+      "question_design": {
+        "GCSE": {
+          "recommended_marks": "80/100/120 depending board",
+          "items": "8–20",
+          "minutes": "90–135",
+          "topic_mix": "Full-board marks, AO and calculator mapping"
+        },
+        "IGCSE": {
+          "recommended_marks": "80/100 depending board",
+          "items": "8–20",
+          "minutes": "90–120",
+          "topic_mix": "Core/Extended or Foundation/Higher syllabus mapping"
+        },
+        "AS_A_LEVEL": {
+          "recommended_marks": "Board dependent",
+          "items": "Later stage",
+          "minutes": "Board dependent",
+          "topic_mix": "Board and unit specific"
+        }
+      },
+      "assessment_workflow": "Administrator-authored, approved, published and assigned original paper; server hard-stop mock session; examiner review",
+      "calendaring": "One real mock per calendar month once approved pack available",
+      "status": "backend and web UI prepared, SQL deployment and moderation required"
+    }
+  }
+}
