@@ -277,7 +277,8 @@ create policy files_insert on public.answer_files for insert to authenticated
 with check(student_id=(select auth.uid()) and private.is_editable_attempt(attempt_id));
 
 create policy reviews_select on public.reviews for select to authenticated
-using(private.can_access_attempt(attempt_id));
+using(exists(select 1 from public.attempts a where a.id=reviews.attempt_id and
+  (private.is_staff(a.org_id) or (a.student_id=(select auth.uid()) and a.status='marked'))));
 create policy reviews_insert on public.reviews for insert to authenticated
 with check(reviewer_id=(select auth.uid()) and exists(
   select 1 from public.attempts a where a.id=reviews.attempt_id and a.status in ('submitted','marked')
