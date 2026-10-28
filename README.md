@@ -1,21 +1,21 @@
-# MathsGrove — Repository Redesign
+# MathsGrove
 
-This is the proposed redesign of the Mathora Year 10 GitHub Pages repository as **MathsGrove**, a premium mathematics assessment platform for tutoring companies.
+**MathsGrove** is a premium mathematics practice and examiner-assessment platform for tutoring companies. Its identity is midnight navy, champagne gold and warm ivory.
 
 ## Safety and status
 
-- Main remains the current Mathora teaching website until this branch is merged.
-- This branch updates the homepage to a navy-and-champagne MathsGrove preview.
+- The main branch contains the MathsGrove website preview. Original Mathora lesson code remains in Git history and is not loaded on the new homepage.
+- The public site currently provides a navy-and-champagne MathsGrove development preview.
 - The student, examiner, partner and report demos run **only in browser memory**. No real storage, login or automatic marking is connected yet.
 - **Do not upload real student data.** Demo photography is only previewed locally.
-- The existing Year 10 lesson sources are preserved on the branch for rollback and in Git history.
+- Existing Year 10 lesson sources remain in this repository for archival reference; preserve historical commits for rollback.
 
 ## Files
 
 - index.html — new MathsGrove homepage and example workspace
 - mathsgrove.css — responsive premium styling
 - mathsgrove.js — interactive demonstration: sample IGCSE paper, drawing, local photo previews, question reflections, sample examiner marks and PDF print preview
-- .github/workflows/pages.yml — deploy this static preview to GitHub Pages after merge
+- .github/workflows/pages.yml — deploy this static development preview to GitHub Pages
 
 ## Visual identity
 
