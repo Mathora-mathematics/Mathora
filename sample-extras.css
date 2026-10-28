@@ -53,3 +53,10 @@
 @media(max-width:800px){.intelligence-grid{grid-template-columns:1fr}.tier-demonstrator{align-items:stretch;flex-direction:column}.tier-demonstrator select{width:100%}.evidence-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.tier-feature-ribbon{display:block}.tier-feature-ribbon span{display:block;margin-top:12px}.demo-calendar{gap:3px}.demo-day{padding:7px 1px;min-height:78px}.demo-day strong{font-size:19px}.report-diagnosis{grid-template-columns:1fr}.method-table{font-size:9px}.method-table th,.method-table td{padding:7px}.math-lines math{font-size:16px}}
 @media print{.tier-demonstrator,.tier-feature-ribbon,.intelligence-grid,.evidence-card{display:none!important}.signature-extended,.worked-example,.report-diagnosis>div{break-inside:avoid}.method-table thead{display:table-header-group}}
+
+.tier-dash-panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 18px}
+.tier-dash-card{border:1px solid #E5DDD2;border-radius:8px;background:#FFF;padding:19px}
+.tier-dash-card small{display:block;color:#947B5E;font-weight:800;font-size:9px;letter-spacing:.12em}
+.tier-dash-card strong{display:block;color:#1A314A;font:400 26px "Instrument Serif",Georgia,serif;margin-top:11px}
+.tier-dash-card p{color:#708196;font-size:11px;line-height:1.7;margin:8px 0 0}
+@media(max-width:700px){.tier-dash-panels{grid-template-columns:1fr}}
