@@ -32,6 +32,7 @@ jobs:
           node --check maths-render.js
           node --input-type=module --check < portal.js
           node --input-type=module --check < studio.js
+          node --input-type=module --check < content-bank.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
           node scripts/check-site.mjs
       - name: Assemble only MathsGrove public assets
@@ -40,7 +41,12 @@ jobs:
           mkdir -p site
           cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg site/
           cp portal.html portal.css private-refresh.css student-features.css evidence-theme.css portal.js maths-render.js mathsgrove-config.js whiteboard.js site/
-          cp studio.html studio.css studio.js admin-learner.css site/
+          cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css site/
+          mkdir -p site/content
+          cp content/boards.json content/paper-blueprints.json site/content/
+          mkdir -p site/content/GCSE site/content/IGCSE
+          cp content/GCSE/draft-exemplars.json site/content/GCSE/
+          cp content/IGCSE/draft-exemplars.json site/content/IGCSE/
           cp sample.html sample.css sample-extras.css sample.js sample-extras.js site/
           touch site/.nojekyll
       - name: Configure Pages

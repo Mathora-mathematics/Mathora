@@ -76,3 +76,16 @@ Do not collect real student information until security, privacy, safeguarding, r
 The admin studio now collects each student's exam qualification, exam board, academic tier, Grove Weekly/Daily/Exam programme, end date, priority topics, private staff notes and separate Signature / Signature Advanced / Specialist Review allocations **before generating a key**. Administrators can edit an enrolled student's configuration later without erasing their historical work. These choices are server-controlled, never paid from the student dashboard. The student can update their display name but cannot edit the assigned academic route.
 
 **Supabase upgrade required:** [`supabase/UPGRADE_MATHSGROVE_ADMIN.sql`](supabase/UPGRADE_MATHSGROVE_ADMIN.sql). This one atomic script bundles three previously uninstalled migrations in the right order; check existing migration state before running. Follow [`docs/ADMIN_LEARNER_SETUP.md`](docs/ADMIN_LEARNER_SETUP.md) for the full workflow and limitations. No wholesale pricing or checkout is exposed on the public pages. The private partner leaflet's teacher/guardian accounts and scheduled reporting remain future work, not functioning features.
+
+## Mathematics content research, question bank and mock-paper blueprints (stage 1)
+
+New **Mathematics bank** section in the private [Administrator Studio](studio.html):
+- Official exam-board format directory for GCSE and IGCSE, including duration, marks, tier and calculator rules.
+- Browse and search Supabase question items with marks, difficulty and staff-only examiner schemes.
+- View **24 original public draft question stems**, 12 GCSE and 12 IGCSE, awaiting independently verified solutions and moderation; not published to learners.
+- View **68 A/B original mock blueprints**; they are NOT completed papers and cannot yet be assigned.
+- Optional migration: `supabase/migrations/20261028_question_content_studio.sql` enables staff-only original question creation and editorial moderation. Question texts and mark schemes are stored securely in Supabase. Editorial approval does NOT publish a question to students.
+
+See the [three-level content directory](content/README.md), [GCSE/IGCSE research matrix](content/BOARD_RESEARCH_2026.md), [assessment timing and upload plan](content/assessment-engine.md) and [mathematical quality gates](content/quality-gates.md).
+
+**Important:** strict timed mock hard stops, server-enforced expiry, autosubmission and upload lockouts are designed but not yet implemented. The existing student portal does support per-question digital whiteboard and photograph submissions. Original MathsGrove materials are not official board-endorsed papers.
