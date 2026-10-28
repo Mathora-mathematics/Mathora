@@ -9,3 +9,17 @@
 .bank-draft-item p .mg-math-inline,.bank-prompt .mg-math-inline{color:#1B3650}
 .katex{white-space:normal}
 @media(max-width:650px){#work-prompt .katex,.bank-prompt .katex{font-size:1.02em}.mg-math-display{padding:12px 2px}}
+
+.open-practice-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-height:950px;overflow:auto;padding:4px}
+.open-practice-card{border:1px solid #E1DACF;border-radius:9px;background:#FEFDFB;padding:16px;min-width:0}
+.open-practice-card summary{cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;font-size:11px}
+.open-practice-card summary strong{font-size:12px;color:#1C3753;line-height:1.6}
+.open-practice-card summary span{font-size:9px;text-align:right;color:#8C7A67;line-height:1.65}
+.open-practice-question{margin:15px 0;padding:13px 0;white-space:pre-wrap;font-size:13px;color:#324D64;border-top:1px solid #EFE9E2}
+.open-practice-key{border-top:1px solid #E9E0D4;padding:15px 0 3px}
+.open-practice-key>strong{display:block;font-size:10px;letter-spacing:.03em;color:#8C7157;margin:8px 0}
+.open-practice-key>div{font-size:13px;color:#15334E;line-height:2.1}
+.open-practice-key ol{padding-left:24px;margin:12px 0 0}
+.open-practice-key li{font-size:11px;line-height:2.1;color:#506479;margin-bottom:6px}
+.open-practice-key li b{color:#1C4C6B}
+@media(max-width:900px){.open-practice-list{grid-template-columns:1fr;max-height:1200px}}
