@@ -4,5 +4,5 @@
 // NEVER place a secret or service_role key here.
 window.MATHSGROVE_CONFIG = {
   url: "https://nwakgkxytovprrrwyahs.supabase.co",
-  publishableKey: ""
+  publishableKey: "sb_publishable_IMU48rW_VFrqdUFcEaL9Lg_3O6YA0EY"
 };
