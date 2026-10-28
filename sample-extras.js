@@ -27,6 +27,28 @@ function calendar(plan){
 function applyTier(){
  const plan=tier.value;const data=plans[plan];if(!data)return;
  ribbon.replaceChildren();
+ const dashboard=$("tier-dash-panels");dashboard.replaceChildren();
+ const cards=plan==="weekly"?[
+   ["PRACTICE", "4 weekly papers", "A focused practice paper each week, collected in your record."],
+   ["YOUR RECORD", "Method-led review", "Monitor progress through the questions and feedback you receive."],
+   ["OPTIONAL", "Signature Review", "Detailed human-marked assessments arranged separately."]
+ ]:plan==="daily"?[
+   ["PRACTICE", "Up to 5 days / week", "Short questions and recovery topics to encourage regular study."],
+   ["YOUR RECORD", "Confidence tracking", "Monitor topic difficulties and reflect after each question."],
+   ["OPTIONAL", "Signature Review", "Add a dedicated report when a marked assessment is needed."]
+ ]:[
+   ["PRACTICE", "Daily + weekly", "Daily Focus together with structured weekly paper practice."],
+   ["EXAM PREPARATION", "1 mock / month", "An extended paper opportunity, subject to validated question coverage."],
+   ["EXAMINER REVIEW", "Signature add-on", "Written evidence, method marks and a tailored recovery plan."]
+ ];
+ for(const [label,title,description] of cards){
+   const card=document.createElement("article");card.className="tier-dash-card";
+   const tag=document.createElement("small");tag.textContent=label;
+   const h=document.createElement("strong");h.textContent=title;
+   const p=document.createElement("p");p.textContent=description;
+   card.append(tag,h,p);dashboard.append(card);
+ }
+
  const info=document.createElement("div"),h=document.createElement("strong"),p=document.createElement("p"),tag=document.createElement("span");
  h.textContent=data.name;p.textContent=data.summary;tag.textContent="SAMPLE VIEW · NO PAYMENT";
  info.append(h,p);ribbon.append(info,tag);
