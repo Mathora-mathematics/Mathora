@@ -15,7 +15,7 @@ function simple(kind,a,b){
  root.append(wrap);return root;
 }
 function legacy(target,source){
- const re=/(\\b\\d{1,4})\\/(\\d{1,4}\\b)|([a-zA-Z])([²³])/g;
+ const re=/(\b\d{1,4})\/(\d{1,4}\b)|([a-zA-Z])([²³])/g;
  let from=0;
  for(const m of source.matchAll(re)){
   if(m.index>from)target.append(document.createTextNode(source.slice(from,m.index)));
