@@ -114,8 +114,9 @@ END;$$;
 REVOKE ALL ON FUNCTION public.author_bank_question(uuid,text,text,text,integer,integer,text,text,text,boolean,integer,text) FROM public,anon;
 GRANT EXECUTE ON FUNCTION public.author_bank_question(uuid,text,text,text,integer,integer,text,text,text,boolean,integer,text) TO authenticated;
 
--- Moderation controls whether a custom question enters live daily/weekly
--- selection. Existing historical answers are retained when an item is unpublished.
+-- Stage 1 moderation is editorial ONLY. Even approved custom questions stay
+-- inactive until a later, board-aware publishing gate is implemented. Historical
+-- answers are never deleted by editorial actions.
 CREATE OR REPLACE FUNCTION public.moderate_bank_question(
  p_question uuid,p_status text,p_note text
 ) RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
@@ -136,7 +137,8 @@ BEGIN
   reviewed_by=CASE WHEN p_status='approved' THEN v_actor ELSE NULL END,
   reviewed_at=CASE WHEN p_status='approved' THEN now() ELSE NULL END,
   updated_at=now() WHERE question_id=p_question;
- UPDATE public.question_bank SET active=(p_status='approved') WHERE id=p_question;
+ -- No automatic publication: verify board/year, calculator and paper selection first.
+ UPDATE public.question_bank SET active=false WHERE id=p_question;
  RETURN jsonb_build_object('ok',true,'status',p_status);
 END;$$;
 REVOKE ALL ON FUNCTION public.moderate_bank_question(uuid,text,text) FROM public,anon;
