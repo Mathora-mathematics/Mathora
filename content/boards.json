@@ -1,0 +1,425 @@
+{
+  "catalogVersion": "2026-10-28-v1",
+  "notice": "Independent original MathsGrove papers, aligned to but not endorsed by awarding bodies; board format can change. Verify against exam-series specifications.",
+  "boards": [
+    {
+      "key": "AQA_8300",
+      "qualification": "GCSE",
+      "name": "AQA GCSE Mathematics",
+      "tierLabels": [
+        "Foundation",
+        "Higher"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "P1",
+          "title": "Paper 1",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": false
+        },
+        {
+          "code": "P2",
+          "title": "Paper 2",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        },
+        {
+          "code": "P3",
+          "title": "Paper 3",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        }
+      ],
+      "source": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance",
+      "verified": true
+    },
+    {
+      "key": "EDEXCEL_1MA1",
+      "qualification": "GCSE",
+      "name": "Pearson Edexcel GCSE Mathematics",
+      "tierLabels": [
+        "Foundation",
+        "Higher"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "P1",
+          "title": "Paper 1",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": false
+        },
+        {
+          "code": "P2",
+          "title": "Paper 2",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        },
+        {
+          "code": "P3",
+          "title": "Paper 3",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        }
+      ],
+      "source": "https://qualifications.pearson.com/en/qualifications/edexcel-gcses/mathematics-2015.html",
+      "verified": true
+    },
+    {
+      "key": "OCR_J560",
+      "qualification": "GCSE",
+      "name": "OCR GCSE Mathematics",
+      "tierLabels": [
+        "Foundation",
+        "Higher"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "F1",
+          "title": "Foundation Paper 01",
+          "tier": "Foundation",
+          "minutes": 90,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "F2",
+          "title": "Foundation Paper 02",
+          "tier": "Foundation",
+          "minutes": 90,
+          "marks": 100,
+          "calculator": false
+        },
+        {
+          "code": "F3",
+          "title": "Foundation Paper 03",
+          "tier": "Foundation",
+          "minutes": 90,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "H4",
+          "title": "Higher Paper 04",
+          "tier": "Higher",
+          "minutes": 90,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "H5",
+          "title": "Higher Paper 05",
+          "tier": "Higher",
+          "minutes": 90,
+          "marks": 100,
+          "calculator": false
+        },
+        {
+          "code": "H6",
+          "title": "Higher Paper 06",
+          "tier": "Higher",
+          "minutes": 90,
+          "marks": 100,
+          "calculator": true
+        }
+      ],
+      "source": "https://www.ocr.org.uk/qualifications/gcse/mathematics-j560-from-2015/specification-at-a-glance/",
+      "verified": true
+    },
+    {
+      "key": "EDUQAS_C300",
+      "qualification": "GCSE",
+      "name": "Eduqas GCSE Mathematics",
+      "tierLabels": [
+        "Foundation",
+        "Higher"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "C1",
+          "title": "Component 1",
+          "minutes": 135,
+          "marks": 120,
+          "calculator": false
+        },
+        {
+          "code": "C2",
+          "title": "Component 2",
+          "minutes": 135,
+          "marks": 120,
+          "calculator": true
+        }
+      ],
+      "source": "https://www.eduqas.co.uk/articles/gcse-maths-with-eduqas-a-guide-for-parents-teachers-and-learners/",
+      "verified": true
+    },
+    {
+      "key": "WJEC_WALES_2025",
+      "qualification": "GCSE",
+      "name": "WJEC Mathematics & Numeracy (Wales, revised)",
+      "tierLabels": [
+        "Check syllabus"
+      ],
+      "grading": "Check session",
+      "papers": [],
+      "source": "https://filter.resources.wjec.co.uk/en/s/Mathematics%20and%20Numeracy/?qualification=mfwGcse",
+      "verified": false,
+      "notes": "2025 reform: separate Wales syllabus; verify component-level structure and examination year before scheduling a mock."
+    },
+    {
+      "key": "CAMBRIDGE_0580",
+      "qualification": "IGCSE",
+      "name": "Cambridge IGCSE Mathematics 0580 (2025–27)",
+      "tierLabels": [
+        "Core",
+        "Extended"
+      ],
+      "grading": "A*–G",
+      "papers": [
+        {
+          "code": "P1",
+          "title": "Paper 1 · Core",
+          "tier": "Core",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": false
+        },
+        {
+          "code": "P3",
+          "title": "Paper 3 · Core",
+          "tier": "Core",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        },
+        {
+          "code": "P2",
+          "title": "Paper 2 · Extended",
+          "tier": "Extended",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": false
+        },
+        {
+          "code": "P4",
+          "title": "Paper 4 · Extended",
+          "tier": "Extended",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        }
+      ],
+      "source": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/",
+      "verified": true
+    },
+    {
+      "key": "CAMBRIDGE_0980",
+      "qualification": "IGCSE",
+      "name": "Cambridge IGCSE Mathematics 0980 (9–1; 2025–27)",
+      "tierLabels": [
+        "Core",
+        "Extended"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "P1",
+          "title": "Paper 1 · Core",
+          "tier": "Core",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": false
+        },
+        {
+          "code": "P3",
+          "title": "Paper 3 · Core",
+          "tier": "Core",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        },
+        {
+          "code": "P2",
+          "title": "Paper 2 · Extended",
+          "tier": "Extended",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": false
+        },
+        {
+          "code": "P4",
+          "title": "Paper 4 · Extended",
+          "tier": "Extended",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        }
+      ],
+      "source": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-9-1-0980/",
+      "verified": true
+    },
+    {
+      "key": "EDEXCEL_4MA1",
+      "qualification": "IGCSE",
+      "name": "Pearson Edexcel International GCSE Mathematics A (linear)",
+      "tierLabels": [
+        "Foundation",
+        "Higher"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "P1F",
+          "title": "Paper 1 Foundation",
+          "tier": "Foundation",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "P2F",
+          "title": "Paper 2 Foundation",
+          "tier": "Foundation",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "P1H",
+          "title": "Paper 1 Higher",
+          "tier": "Higher",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "P2H",
+          "title": "Paper 2 Higher",
+          "tier": "Higher",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        }
+      ],
+      "source": "https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2016.html",
+      "verified": true
+    },
+    {
+      "key": "EDEXCEL_4XMA1",
+      "qualification": "IGCSE",
+      "name": "Pearson Edexcel International GCSE Mathematics A (modular)",
+      "tierLabels": [
+        "Foundation",
+        "Higher"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "U1F",
+          "title": "Unit 1 Foundation",
+          "tier": "Foundation",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "U2F",
+          "title": "Unit 2 Foundation",
+          "tier": "Foundation",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "U1H",
+          "title": "Unit 1 Higher",
+          "tier": "Higher",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "U2H",
+          "title": "Unit 2 Higher",
+          "tier": "Higher",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        }
+      ],
+      "source": "https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html",
+      "verified": true,
+      "notes": "International centres only; unit sequencing and content allocation must be checked."
+    },
+    {
+      "key": "OXFORDAQA_9260",
+      "qualification": "IGCSE",
+      "name": "OxfordAQA International GCSE Mathematics",
+      "tierLabels": [
+        "Core",
+        "Extension"
+      ],
+      "grading": "9–1",
+      "papers": [
+        {
+          "code": "1C",
+          "title": "Core Paper 1",
+          "tier": "Core",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        },
+        {
+          "code": "2C",
+          "title": "Core Paper 2",
+          "tier": "Core",
+          "minutes": 90,
+          "marks": 80,
+          "calculator": true
+        },
+        {
+          "code": "1E",
+          "title": "Extension Paper 1",
+          "tier": "Extension",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        },
+        {
+          "code": "2E",
+          "title": "Extension Paper 2",
+          "tier": "Extension",
+          "minutes": 120,
+          "marks": 100,
+          "calculator": true
+        }
+      ],
+      "source": "https://www.oxfordaqa.com/qualification/international-gcse-mathematics-9260/",
+      "verified": true
+    },
+    {
+      "key": "AS_A_LEVEL_PENDING",
+      "qualification": "AS_A_LEVEL",
+      "name": "AS & A Level (phase 3)",
+      "tierLabels": [
+        "AS",
+        "A2",
+        "Further"
+      ],
+      "grading": "By board",
+      "papers": [],
+      "source": "https://qualifications.pearson.com/en/subjects/mathematics.html",
+      "verified": false,
+      "notes": "Third-stage container only. Edexcel GCE, Pearson IAL, Cambridge 9709/9231, AQA, OCR and IB need separate routes."
+    }
+  ]
+}
