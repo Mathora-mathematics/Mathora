@@ -4,7 +4,7 @@
 export function initContentBank(db,studio){
  const $=id=>document.getElementById(id);
  const admin=['admin','partner'].includes(studio.membership?.member_role);
- const bank={boards:[],blueprints:[],questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false};
+ const bank={boards:[],blueprints:[],drafts:[],questions:[],editorial:[],selected:null,loaded:false,hasEditorial:false};
  const say=(message,error=false,id='bank-status')=>{const node=$(id);node.textContent=message;node.classList.toggle('is-error',error)};
  const txt=(tag,value,cls)=>{const node=document.createElement(tag);if(cls)node.className=cls;node.textContent=String(value??'');return node};
  const clear=id=>$(id).replaceChildren();
@@ -20,7 +20,7 @@ export function initContentBank(db,studio){
   const level=$('bank-level').value;
   const list=bank.boards.filter(x=>x.qualification===level);
   setOptions($('bank-board'),list.map(x=>({label:x.name,value:x.key})),'All boards');
-  renderBoards();renderMockBlueprints();renderQuestions();
+  renderBoards();renderMockBlueprints();renderQuestions();renderDrafts();
  }
  function updateAuthorOptions(){
   const qual=$('bank-author-qual').value;
@@ -62,6 +62,18 @@ export function initContentBank(db,studio){
    item.append(name,sub);root.append(item);
   }
   if(!list.length)root.append(txt('p','No paper blueprints for this selection. AS / A Level will be researched in stage three.'));
+ }
+ function renderDrafts(){
+  const root=$('bank-draft-list');root.replaceChildren();
+  const list=bank.drafts.filter(q=>q.qualification===$('bank-level').value);
+  for(const q of list){
+   const item=txt('article','','bank-draft-item');
+   item.append(txt('strong',q.id+' · '+q.topic),
+    txt('small',q.tier+' · '+q.marks+' marks · '+q.suggested_minutes+' min · '+q.calculator+' · NOT APPROVED'),
+    txt('p',q.prompt));
+   root.append(item);
+  }
+  if(!list.length)root.append(txt('p','No draft exemplars at this stage. AS/A Level comes later.'));
  }
  function editorialFor(id){return bank.editorial.find(x=>x.question_id===id)||null}
  function filteredQuestions(){
@@ -126,11 +138,14 @@ export function initContentBank(db,studio){
  async function load(){
   say('Loading official board formats and your private question catalogue…');
   try{
-   const [b,p]=await Promise.all([
+   const [b,p,g,i]=await Promise.all([
     fetch('./content/boards.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Board catalogue unavailable');return r.json()}),
-    fetch('./content/paper-blueprints.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blueprint register unavailable');return r.json()})
+    fetch('./content/paper-blueprints.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blueprint register unavailable');return r.json()}),
+    fetch('./content/GCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/IGCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
    ]);
    bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];
+   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE'}))];
    const {data:questions,error}=await db.from('question_bank')
      .select('id,qualification,topic,prompt,marks,difficulty,active,created_at')
      .order('created_at',{ascending:false}).limit(500);
