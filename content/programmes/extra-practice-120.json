@@ -1,0 +1,3738 @@
+{
+  "version": "v3",
+  "notice": "Public original practice variations for Daily and Weekly. Not unseen timed mocks.",
+  "items": [
+    {
+      "id": "MGX-GCD-FR-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "prompt": "Evaluate \\(\\frac{3}{4}+\\frac{1}{6}\\). Give your answer as a fraction in its simplest form.",
+      "answer": "11/12",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose a common denominator."
+        },
+        {
+          "code": "M1",
+          "text": "Add correctly adjusted numerators."
+        },
+        {
+          "code": "A1",
+          "text": "Fully simplified fraction."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PC-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "prompt": "A bicycle accessory costs £120. It is reduced by \\(15\\%\\). Find its new sale price.",
+      "answer": "£102.00",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use percentage decrease multiplier."
+        },
+        {
+          "code": "M1",
+          "text": "Calculate reduced amount."
+        },
+        {
+          "code": "A1",
+          "text": "Money answer."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-EQ-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "prompt": "Solve \\(3(x+2)=21\\). Show the first step clearly.",
+      "answer": "x=5",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Divide both sides or expand."
+        },
+        {
+          "code": "M1",
+          "text": "Rearrange constants."
+        },
+        {
+          "code": "A1",
+          "text": "Correct solution."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-RA-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing",
+      "prompt": "£63 is shared in the ratio \\(2:5\\). Find both shares, including units.",
+      "answer": "£18 and £45",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find total parts."
+        },
+        {
+          "code": "M1",
+          "text": "Find one part's value."
+        },
+        {
+          "code": "A1",
+          "text": "Correct two amounts."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-SQ-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Sequences",
+      "prompt": "An arithmetic sequence starts \\(4,\\ 7,\\ 10,\\ldots\\). Find its \\(11\\)th term.",
+      "answer": "34",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify common difference."
+        },
+        {
+          "code": "M1",
+          "text": "Use nth term relationship."
+        },
+        {
+          "code": "A1",
+          "text": "Correct term."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PY-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "prompt": "A right-angled triangle has perpendicular sides \\(3\\text{ cm}\\) and \\(4\\text{ cm}\\). Find its hypotenuse.",
+      "answer": "5 cm",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Square and add shorter sides."
+        },
+        {
+          "code": "M1",
+          "text": "Take positive square root."
+        },
+        {
+          "code": "A1",
+          "text": "Length and units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-IN-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Indices",
+      "prompt": "Assuming \\(x\\ne 0\\), simplify \\(x^{3}\\times x^{4}\\) and state the index rule.",
+      "answer": "x^7",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise same base."
+        },
+        {
+          "code": "M1",
+          "text": "Add exponents."
+        },
+        {
+          "code": "A1",
+          "text": "Correct power."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-ME-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Statistics · Mean",
+      "prompt": "Four scores are \\(7,\\ 8,\\ 9,\\ 12\\). Calculate their arithmetic mean and show your working.",
+      "answer": "9/1",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Sum observations."
+        },
+        {
+          "code": "M1",
+          "text": "Divide by four."
+        },
+        {
+          "code": "A1",
+          "text": "Mean."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PR-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Single selection",
+      "prompt": "A bag contains \\(3\\) red and \\(5\\) blue counters. One counter is chosen at random. Find \\(P(\\text{red})\\) in simplest form.",
+      "answer": "3/8",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Count favourable outcomes."
+        },
+        {
+          "code": "M1",
+          "text": "Count all outcomes."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified probability."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-AR-1",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Area",
+      "prompt": "A trapezium has parallel sides \\(6\\text{ cm}\\), \\(10\\text{ cm}\\), and perpendicular height \\(5\\text{ cm}\\). Find its area.",
+      "answer": "40 cm²",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recall trapezium formula."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Square units and result."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-FR-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "prompt": "Evaluate \\(\\frac{5}{6}+\\frac{2}{9}\\). Give your answer as a fraction in its simplest form.",
+      "answer": "19/18",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose a common denominator."
+        },
+        {
+          "code": "M1",
+          "text": "Add correctly adjusted numerators."
+        },
+        {
+          "code": "A1",
+          "text": "Fully simplified fraction."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PC-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "prompt": "A bicycle accessory costs £160. It is reduced by \\(25\\%\\). Find its new sale price.",
+      "answer": "£120.00",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use percentage decrease multiplier."
+        },
+        {
+          "code": "M1",
+          "text": "Calculate reduced amount."
+        },
+        {
+          "code": "A1",
+          "text": "Money answer."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-EQ-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "prompt": "Solve \\(4(x+3)=28\\). Show the first step clearly.",
+      "answer": "x=4",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Divide both sides or expand."
+        },
+        {
+          "code": "M1",
+          "text": "Rearrange constants."
+        },
+        {
+          "code": "A1",
+          "text": "Correct solution."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-RA-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing",
+      "prompt": "£84 is shared in the ratio \\(3:4\\). Find both shares, including units.",
+      "answer": "£36 and £48",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find total parts."
+        },
+        {
+          "code": "M1",
+          "text": "Find one part's value."
+        },
+        {
+          "code": "A1",
+          "text": "Correct two amounts."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-SQ-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Sequences",
+      "prompt": "An arithmetic sequence starts \\(7,\\ 12,\\ 17,\\ldots\\). Find its \\(13\\)th term.",
+      "answer": "67",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify common difference."
+        },
+        {
+          "code": "M1",
+          "text": "Use nth term relationship."
+        },
+        {
+          "code": "A1",
+          "text": "Correct term."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PY-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "prompt": "A right-angled triangle has perpendicular sides \\(6\\text{ cm}\\) and \\(8\\text{ cm}\\). Find its hypotenuse.",
+      "answer": "10 cm",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Square and add shorter sides."
+        },
+        {
+          "code": "M1",
+          "text": "Take positive square root."
+        },
+        {
+          "code": "A1",
+          "text": "Length and units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-IN-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Indices",
+      "prompt": "Assuming \\(x\\ne 0\\), simplify \\(x^{5}\\times x^{2}\\) and state the index rule.",
+      "answer": "x^7",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise same base."
+        },
+        {
+          "code": "M1",
+          "text": "Add exponents."
+        },
+        {
+          "code": "A1",
+          "text": "Correct power."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-ME-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Statistics · Mean",
+      "prompt": "Four scores are \\(4,\\ 9,\\ 11,\\ 16\\). Calculate their arithmetic mean and show your working.",
+      "answer": "10/1",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Sum observations."
+        },
+        {
+          "code": "M1",
+          "text": "Divide by four."
+        },
+        {
+          "code": "A1",
+          "text": "Mean."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PR-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Single selection",
+      "prompt": "A bag contains \\(4\\) red and \\(7\\) blue counters. One counter is chosen at random. Find \\(P(\\text{red})\\) in simplest form.",
+      "answer": "4/11",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Count favourable outcomes."
+        },
+        {
+          "code": "M1",
+          "text": "Count all outcomes."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified probability."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-AR-2",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Area",
+      "prompt": "A trapezium has parallel sides \\(8\\text{ cm}\\), \\(12\\text{ cm}\\), and perpendicular height \\(7\\text{ cm}\\). Find its area.",
+      "answer": "70 cm²",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recall trapezium formula."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Square units and result."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-FR-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Fractions",
+      "prompt": "Evaluate \\(\\frac{7}{8}+\\frac{3}{10}\\). Give your answer as a fraction in its simplest form.",
+      "answer": "47/40",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Choose a common denominator."
+        },
+        {
+          "code": "M1",
+          "text": "Add correctly adjusted numerators."
+        },
+        {
+          "code": "A1",
+          "text": "Fully simplified fraction."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PC-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Number · Percentages",
+      "prompt": "A bicycle accessory costs £250. It is reduced by \\(30\\%\\). Find its new sale price.",
+      "answer": "£175.00",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use percentage decrease multiplier."
+        },
+        {
+          "code": "M1",
+          "text": "Calculate reduced amount."
+        },
+        {
+          "code": "A1",
+          "text": "Money answer."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-EQ-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "prompt": "Solve \\(5(x+4)=50\\). Show the first step clearly.",
+      "answer": "x=6",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Divide both sides or expand."
+        },
+        {
+          "code": "M1",
+          "text": "Rearrange constants."
+        },
+        {
+          "code": "A1",
+          "text": "Correct solution."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-RA-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Sharing",
+      "prompt": "£66 is shared in the ratio \\(4:7\\). Find both shares, including units.",
+      "answer": "£24 and £42",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find total parts."
+        },
+        {
+          "code": "M1",
+          "text": "Find one part's value."
+        },
+        {
+          "code": "A1",
+          "text": "Correct two amounts."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-SQ-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Sequences",
+      "prompt": "An arithmetic sequence starts \\(9,\\ 13,\\ 17,\\ldots\\). Find its \\(17\\)th term.",
+      "answer": "73",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify common difference."
+        },
+        {
+          "code": "M1",
+          "text": "Use nth term relationship."
+        },
+        {
+          "code": "A1",
+          "text": "Correct term."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PY-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Pythagoras",
+      "prompt": "A right-angled triangle has perpendicular sides \\(9\\text{ cm}\\) and \\(12\\text{ cm}\\). Find its hypotenuse.",
+      "answer": "15 cm",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Square and add shorter sides."
+        },
+        {
+          "code": "M1",
+          "text": "Take positive square root."
+        },
+        {
+          "code": "A1",
+          "text": "Length and units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-IN-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Algebra · Indices",
+      "prompt": "Assuming \\(x\\ne 0\\), simplify \\(x^{4}\\times x^{6}\\) and state the index rule.",
+      "answer": "x^10",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recognise same base."
+        },
+        {
+          "code": "M1",
+          "text": "Add exponents."
+        },
+        {
+          "code": "A1",
+          "text": "Correct power."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-ME-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Statistics · Mean",
+      "prompt": "Four scores are \\(6,\\ 10,\\ 14,\\ 18\\). Calculate their arithmetic mean and show your working.",
+      "answer": "12/1",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Sum observations."
+        },
+        {
+          "code": "M1",
+          "text": "Divide by four."
+        },
+        {
+          "code": "A1",
+          "text": "Mean."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-PR-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Probability · Single selection",
+      "prompt": "A bag contains \\(5\\) red and \\(8\\) blue counters. One counter is chosen at random. Find \\(P(\\text{red})\\) in simplest form.",
+      "answer": "5/13",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Count favourable outcomes."
+        },
+        {
+          "code": "M1",
+          "text": "Count all outcomes."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified probability."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCD-AR-3",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Area",
+      "prompt": "A trapezium has parallel sides \\(11\\text{ cm}\\), \\(15\\text{ cm}\\), and perpendicular height \\(4\\text{ cm}\\). Find its area.",
+      "answer": "52 cm²",
+      "marks": 3,
+      "suggested_minutes": 3,
+      "difficulty": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recall trapezium formula."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute correctly."
+        },
+        {
+          "code": "A1",
+          "text": "Square units and result."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SUR-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Surds · Exact simplification",
+      "prompt": "Simplify \\(\\sqrt{12}\\) completely, giving the answer in the form \\(a\\sqrt{b}\\).",
+      "answer": "2√3",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify greatest square factor."
+        },
+        {
+          "code": "M1",
+          "text": "Take its square root."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified radical."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-IND-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Indices · Fractional powers",
+      "prompt": "Evaluate \\(16^{\\frac{3}{4}}\\) exactly and explain the role of the denominator.",
+      "answer": "8",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Interpret fractional index as root."
+        },
+        {
+          "code": "M1",
+          "text": "Raise result to numerator power."
+        },
+        {
+          "code": "A1",
+          "text": "Exact integer."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-BND-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Number · Bounds",
+      "prompt": "A measurement is \\(4.2\\text{ cm}\\), correct to the nearest \\(0.1\\text{ cm}\\). Give its lower and upper bounds using inequalities.",
+      "answer": "4.15≤L<4.25",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find half-unit error."
+        },
+        {
+          "code": "M1",
+          "text": "Inclusive lower bound."
+        },
+        {
+          "code": "A1",
+          "text": "Exclusive upper bound."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-EQN-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations",
+      "prompt": "Solve \\(3(x+2)=24\\) using an algebraic method. State \\(x\\).",
+      "answer": "x=6",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or divide."
+        },
+        {
+          "code": "M1",
+          "text": "Rearrange."
+        },
+        {
+          "code": "A1",
+          "text": "Correct value."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-VEC-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Vectors · Coordinates",
+      "prompt": "Points \\(A(2,1)\\) and \\(B(8,7)\\) are given. Calculate the displacement vector \\(\\overrightarrow{AB}\\).",
+      "answer": "(6,6)",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use B minus A."
+        },
+        {
+          "code": "M1",
+          "text": "Subtract corresponding coordinates."
+        },
+        {
+          "code": "A1",
+          "text": "Correct vector."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SEQ-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Sequences · Arithmetic",
+      "prompt": "An arithmetic sequence starts with \\(3\\) and has common difference \\(4\\). Find \\(u_{12}\\).",
+      "answer": "47",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use general formula."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute values."
+        },
+        {
+          "code": "A1",
+          "text": "Correct term."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-CON-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cone",
+      "prompt": "A cone has radius \\(2\\text{ cm}\\) and height \\(6\\text{ cm}\\). Calculate its volume exactly in terms of \\(\\pi\\).",
+      "answer": "8π cm³",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recall cone volume."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute values."
+        },
+        {
+          "code": "A1",
+          "text": "Exact volume."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-DIR-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Ratio · Direct proportion",
+      "prompt": "It is known that \\(y\\propto x\\). When \\(x=5\\), \\(y=15\\). Find \\(y\\) when \\(x=7\\).",
+      "answer": "21",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Determine constant."
+        },
+        {
+          "code": "M1",
+          "text": "Use proportional relation."
+        },
+        {
+          "code": "A1",
+          "text": "Correct output."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SIM-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Simultaneous equations",
+      "prompt": "Solve \\(x+y=5\\) and \\(2x-y=1\\) simultaneously. Show elimination.",
+      "answer": "x=2, y=3",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y."
+        },
+        {
+          "code": "M1",
+          "text": "Solve x."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain both unknowns."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-TRI-1",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Exact ratios",
+      "prompt": "A right triangle has an acute angle of \\(60^\\circ\\) and hypotenuse \\(8\\text{ cm}\\). Calculate the side adjacent to the angle exactly.",
+      "answer": "4 cm",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Select cosine."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate exact cos60°."
+        },
+        {
+          "code": "A1",
+          "text": "Correct length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SUR-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Surds · Exact simplification",
+      "prompt": "Simplify \\(\\sqrt{20}\\) completely, giving the answer in the form \\(a\\sqrt{b}\\).",
+      "answer": "2√5",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify greatest square factor."
+        },
+        {
+          "code": "M1",
+          "text": "Take its square root."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified radical."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-IND-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Indices · Fractional powers",
+      "prompt": "Evaluate \\(27^{\\frac{2}{3}}\\) exactly and explain the role of the denominator.",
+      "answer": "9",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Interpret fractional index as root."
+        },
+        {
+          "code": "M1",
+          "text": "Raise result to numerator power."
+        },
+        {
+          "code": "A1",
+          "text": "Exact integer."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-BND-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Number · Bounds",
+      "prompt": "A measurement is \\(6.8\\text{ cm}\\), correct to the nearest \\(0.1\\text{ cm}\\). Give its lower and upper bounds using inequalities.",
+      "answer": "6.75≤L<6.85",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find half-unit error."
+        },
+        {
+          "code": "M1",
+          "text": "Inclusive lower bound."
+        },
+        {
+          "code": "A1",
+          "text": "Exclusive upper bound."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-EQN-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations",
+      "prompt": "Solve \\(4(x+3)=44\\) using an algebraic method. State \\(x\\).",
+      "answer": "x=8",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or divide."
+        },
+        {
+          "code": "M1",
+          "text": "Rearrange."
+        },
+        {
+          "code": "A1",
+          "text": "Correct value."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-VEC-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Vectors · Coordinates",
+      "prompt": "Points \\(A(-3,5)\\) and \\(B(3,2)\\) are given. Calculate the displacement vector \\(\\overrightarrow{AB}\\).",
+      "answer": "(6,-3)",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use B minus A."
+        },
+        {
+          "code": "M1",
+          "text": "Subtract corresponding coordinates."
+        },
+        {
+          "code": "A1",
+          "text": "Correct vector."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SEQ-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Sequences · Arithmetic",
+      "prompt": "An arithmetic sequence starts with \\(6\\) and has common difference \\(7\\). Find \\(u_{15}\\).",
+      "answer": "104",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use general formula."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute values."
+        },
+        {
+          "code": "A1",
+          "text": "Correct term."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-CON-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cone",
+      "prompt": "A cone has radius \\(3\\text{ cm}\\) and height \\(9\\text{ cm}\\). Calculate its volume exactly in terms of \\(\\pi\\).",
+      "answer": "27π cm³",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recall cone volume."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute values."
+        },
+        {
+          "code": "A1",
+          "text": "Exact volume."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-DIR-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Ratio · Direct proportion",
+      "prompt": "It is known that \\(y\\propto x\\). When \\(x=8\\), \\(y=24\\). Find \\(y\\) when \\(x=9\\).",
+      "answer": "27",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Determine constant."
+        },
+        {
+          "code": "M1",
+          "text": "Use proportional relation."
+        },
+        {
+          "code": "A1",
+          "text": "Correct output."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SIM-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Simultaneous equations",
+      "prompt": "Solve \\(x+y=6\\) and \\(2x-y=6\\) simultaneously. Show elimination.",
+      "answer": "x=4, y=2",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y."
+        },
+        {
+          "code": "M1",
+          "text": "Solve x."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain both unknowns."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-TRI-2",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Exact ratios",
+      "prompt": "A right triangle has an acute angle of \\(60^\\circ\\) and hypotenuse \\(12\\text{ cm}\\). Calculate the side adjacent to the angle exactly.",
+      "answer": "6 cm",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Select cosine."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate exact cos60°."
+        },
+        {
+          "code": "A1",
+          "text": "Correct length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SUR-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Surds · Exact simplification",
+      "prompt": "Simplify \\(\\sqrt{45}\\) completely, giving the answer in the form \\(a\\sqrt{b}\\).",
+      "answer": "3√5",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Identify greatest square factor."
+        },
+        {
+          "code": "M1",
+          "text": "Take its square root."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified radical."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-IND-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Indices · Fractional powers",
+      "prompt": "Evaluate \\(81^{\\frac{3}{4}}\\) exactly and explain the role of the denominator.",
+      "answer": "27",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Interpret fractional index as root."
+        },
+        {
+          "code": "M1",
+          "text": "Raise result to numerator power."
+        },
+        {
+          "code": "A1",
+          "text": "Exact integer."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-BND-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Number · Bounds",
+      "prompt": "A measurement is \\(12.5\\text{ cm}\\), correct to the nearest \\(0.1\\text{ cm}\\). Give its lower and upper bounds using inequalities.",
+      "answer": "12.45≤L<12.55",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find half-unit error."
+        },
+        {
+          "code": "M1",
+          "text": "Inclusive lower bound."
+        },
+        {
+          "code": "A1",
+          "text": "Exclusive upper bound."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-EQN-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Equations",
+      "prompt": "Solve \\(5(x+4)=70\\) using an algebraic method. State \\(x\\).",
+      "answer": "x=10",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Expand or divide."
+        },
+        {
+          "code": "M1",
+          "text": "Rearrange."
+        },
+        {
+          "code": "A1",
+          "text": "Correct value."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-VEC-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Vectors · Coordinates",
+      "prompt": "Points \\(A(4,-2)\\) and \\(B(10,6)\\) are given. Calculate the displacement vector \\(\\overrightarrow{AB}\\).",
+      "answer": "(6,8)",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use B minus A."
+        },
+        {
+          "code": "M1",
+          "text": "Subtract corresponding coordinates."
+        },
+        {
+          "code": "A1",
+          "text": "Correct vector."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SEQ-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Sequences · Arithmetic",
+      "prompt": "An arithmetic sequence starts with \\(8\\) and has common difference \\(5\\). Find \\(u_{20}\\).",
+      "answer": "103",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use general formula."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute values."
+        },
+        {
+          "code": "A1",
+          "text": "Correct term."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-CON-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Mensuration · Cone",
+      "prompt": "A cone has radius \\(4\\text{ cm}\\) and height \\(12\\text{ cm}\\). Calculate its volume exactly in terms of \\(\\pi\\).",
+      "answer": "64π cm³",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Recall cone volume."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute values."
+        },
+        {
+          "code": "A1",
+          "text": "Exact volume."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-DIR-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Ratio · Direct proportion",
+      "prompt": "It is known that \\(y\\propto x\\). When \\(x=12\\), \\(y=36\\). Find \\(y\\) when \\(x=11\\).",
+      "answer": "33",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Determine constant."
+        },
+        {
+          "code": "M1",
+          "text": "Use proportional relation."
+        },
+        {
+          "code": "A1",
+          "text": "Correct output."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-SIM-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Core",
+      "topic": "Algebra · Simultaneous equations",
+      "prompt": "Solve \\(x+y=11\\) and \\(2x-y=4\\) simultaneously. Show elimination.",
+      "answer": "x=5, y=6",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Eliminate y."
+        },
+        {
+          "code": "M1",
+          "text": "Solve x."
+        },
+        {
+          "code": "A1",
+          "text": "Obtain both unknowns."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICD-TRI-3",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Exact ratios",
+      "prompt": "A right triangle has an acute angle of \\(60^\\circ\\) and hypotenuse \\(20\\text{ cm}\\). Calculate the side adjacent to the angle exactly.",
+      "answer": "10 cm",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "difficulty": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Select cosine."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate exact cos60°."
+        },
+        {
+          "code": "A1",
+          "text": "Correct length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-QUA-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratic factorisation",
+      "prompt": "Solve \\(x^2-7x+10=0\\) by factorisation. Give both roots.",
+      "answer": "x=2 or 5",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find two suitable numbers."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise the quadratic."
+        },
+        {
+          "code": "M1",
+          "text": "Find first root."
+        },
+        {
+          "code": "A1",
+          "text": "Find second root."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SIM-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "prompt": "Solve \\(3x+2y=17\\) and \\(x-y=-1\\). Show enough working for both variables.",
+      "answer": "x=3, y=4",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up elimination/substitution."
+        },
+        {
+          "code": "M1",
+          "text": "Reduce to one variable."
+        },
+        {
+          "code": "M1",
+          "text": "Find x."
+        },
+        {
+          "code": "A1",
+          "text": "Find y."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SQR-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "prompt": "Write \\(x^2-6x+16\\) in completed-square form. Hence state the minimum of the expression.",
+      "answer": "(x−3)²+7; min 7",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Halve the x coefficient."
+        },
+        {
+          "code": "M1",
+          "text": "Complete square with correction."
+        },
+        {
+          "code": "M1",
+          "text": "Recognise square nonnegative."
+        },
+        {
+          "code": "A1",
+          "text": "Correct minimum."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-COS-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "prompt": "Triangle \\(ABC\\) has \\(AB=5\\text{ cm}\\), \\(AC=8\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly, using the cosine rule.",
+      "answer": "7 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up cosine rule for the included angle."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute the lengths and exact cosine."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify the resulting squared length."
+        },
+        {
+          "code": "A1",
+          "text": "Positive exact length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INT-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound change",
+      "prompt": "£1000 is invested at \\(5\\%\\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.",
+      "answer": "£1102.50",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Determine multiplier."
+        },
+        {
+          "code": "M1",
+          "text": "Square for two years."
+        },
+        {
+          "code": "M1",
+          "text": "Apply to capital."
+        },
+        {
+          "code": "A1",
+          "text": "Correct value."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SEC-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Sector area",
+      "prompt": "A circular sector has radius \\(6\\text{ cm}\\) and central angle \\(60^\\circ\\). Find its area exactly in terms of \\(\\pi\\).",
+      "answer": "6π cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Calculate fraction of full circle."
+        },
+        {
+          "code": "M1",
+          "text": "Use area of circle."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify coefficient."
+        },
+        {
+          "code": "A1",
+          "text": "Exact area with units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INE-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratic inequalities",
+      "prompt": "Solve \\(x^2-5x+4<0\\). State one interval and justify its endpoints.",
+      "answer": "1<x<4",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise."
+        },
+        {
+          "code": "M1",
+          "text": "Find roots."
+        },
+        {
+          "code": "M1",
+          "text": "Select negative region."
+        },
+        {
+          "code": "A1",
+          "text": "Strict interval."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SIMI-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Similar triangles",
+      "prompt": "Two similar triangles have corresponding lengths \\(3\\text{ cm}\\) and \\(6\\text{ cm}\\). The smaller has area \\(12\\text{ cm}^2\\). Find the area of the larger.",
+      "answer": "48 cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Linear scale factor."
+        },
+        {
+          "code": "M1",
+          "text": "Square scale for area."
+        },
+        {
+          "code": "M1",
+          "text": "Multiply."
+        },
+        {
+          "code": "A1",
+          "text": "Correct units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-DEP-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Probability · Conditional selection",
+      "prompt": "A bag contains \\(4\\) red and \\(3\\) blue counters. Two are chosen without replacement. Find the probability that both are red.",
+      "answer": "2/7",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw probability."
+        },
+        {
+          "code": "M1",
+          "text": "Second conditional probability."
+        },
+        {
+          "code": "M1",
+          "text": "Multiply probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INV-1",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Functions · Inverse",
+      "prompt": "For \\(f(x)=2x-5\\), find \\(f^{-1}(x)\\) and verify by simplifying \\(f(f^{-1}(x))\\).",
+      "answer": "(x+5)/2; composite x",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set y=f(x)."
+        },
+        {
+          "code": "M1",
+          "text": "Solve for x."
+        },
+        {
+          "code": "M1",
+          "text": "State inverse."
+        },
+        {
+          "code": "A1",
+          "text": "Verify composition."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-QUA-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratic factorisation",
+      "prompt": "Solve \\(x^2-10x+21=0\\) by factorisation. Give both roots.",
+      "answer": "x=3 or 7",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find two suitable numbers."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise the quadratic."
+        },
+        {
+          "code": "M1",
+          "text": "Find first root."
+        },
+        {
+          "code": "A1",
+          "text": "Find second root."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SIM-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "prompt": "Solve \\(3x+2y=19\\) and \\(x-y=3\\). Show enough working for both variables.",
+      "answer": "x=5, y=2",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up elimination/substitution."
+        },
+        {
+          "code": "M1",
+          "text": "Reduce to one variable."
+        },
+        {
+          "code": "M1",
+          "text": "Find x."
+        },
+        {
+          "code": "A1",
+          "text": "Find y."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SQR-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "prompt": "Write \\(x^2-8x+25\\) in completed-square form. Hence state the minimum of the expression.",
+      "answer": "(x−4)²+9; min 9",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Halve the x coefficient."
+        },
+        {
+          "code": "M1",
+          "text": "Complete square with correction."
+        },
+        {
+          "code": "M1",
+          "text": "Recognise square nonnegative."
+        },
+        {
+          "code": "A1",
+          "text": "Correct minimum."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-COS-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "prompt": "Triangle \\(ABC\\) has \\(AB=10\\text{ cm}\\), \\(AC=16\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly, using the cosine rule.",
+      "answer": "14 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up cosine rule for the included angle."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute the lengths and exact cosine."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify the resulting squared length."
+        },
+        {
+          "code": "A1",
+          "text": "Positive exact length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INT-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound change",
+      "prompt": "£2000 is invested at \\(10\\%\\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.",
+      "answer": "£2420.00",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Determine multiplier."
+        },
+        {
+          "code": "M1",
+          "text": "Square for two years."
+        },
+        {
+          "code": "M1",
+          "text": "Apply to capital."
+        },
+        {
+          "code": "A1",
+          "text": "Correct value."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SEC-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Sector area",
+      "prompt": "A circular sector has radius \\(9\\text{ cm}\\) and central angle \\(40^\\circ\\). Find its area exactly in terms of \\(\\pi\\).",
+      "answer": "9π cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Calculate fraction of full circle."
+        },
+        {
+          "code": "M1",
+          "text": "Use area of circle."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify coefficient."
+        },
+        {
+          "code": "A1",
+          "text": "Exact area with units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INE-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratic inequalities",
+      "prompt": "Solve \\(x^2-7x+10<0\\). State one interval and justify its endpoints.",
+      "answer": "2<x<5",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise."
+        },
+        {
+          "code": "M1",
+          "text": "Find roots."
+        },
+        {
+          "code": "M1",
+          "text": "Select negative region."
+        },
+        {
+          "code": "A1",
+          "text": "Strict interval."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SIMI-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Similar triangles",
+      "prompt": "Two similar triangles have corresponding lengths \\(4\\text{ cm}\\) and \\(12\\text{ cm}\\). The smaller has area \\(8\\text{ cm}^2\\). Find the area of the larger.",
+      "answer": "72 cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Linear scale factor."
+        },
+        {
+          "code": "M1",
+          "text": "Square scale for area."
+        },
+        {
+          "code": "M1",
+          "text": "Multiply."
+        },
+        {
+          "code": "A1",
+          "text": "Correct units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-DEP-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Probability · Conditional selection",
+      "prompt": "A bag contains \\(5\\) red and \\(4\\) blue counters. Two are chosen without replacement. Find the probability that both are red.",
+      "answer": "5/18",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw probability."
+        },
+        {
+          "code": "M1",
+          "text": "Second conditional probability."
+        },
+        {
+          "code": "M1",
+          "text": "Multiply probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INV-2",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Functions · Inverse",
+      "prompt": "For \\(f(x)=3x-7\\), find \\(f^{-1}(x)\\) and verify by simplifying \\(f(f^{-1}(x))\\).",
+      "answer": "(x+7)/3; composite x",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set y=f(x)."
+        },
+        {
+          "code": "M1",
+          "text": "Solve for x."
+        },
+        {
+          "code": "M1",
+          "text": "State inverse."
+        },
+        {
+          "code": "A1",
+          "text": "Verify composition."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-QUA-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratic factorisation",
+      "prompt": "Solve \\(x^2-13x+36=0\\) by factorisation. Give both roots.",
+      "answer": "x=4 or 9",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find two suitable numbers."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise the quadratic."
+        },
+        {
+          "code": "M1",
+          "text": "Find first root."
+        },
+        {
+          "code": "A1",
+          "text": "Find second root."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SIM-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "prompt": "Solve \\(3x+2y=32\\) and \\(x-y=-1\\). Show enough working for both variables.",
+      "answer": "x=6, y=7",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up elimination/substitution."
+        },
+        {
+          "code": "M1",
+          "text": "Reduce to one variable."
+        },
+        {
+          "code": "M1",
+          "text": "Find x."
+        },
+        {
+          "code": "A1",
+          "text": "Find y."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SQR-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Completing the square",
+      "prompt": "Write \\(x^2-10x+37\\) in completed-square form. Hence state the minimum of the expression.",
+      "answer": "(x−5)²+12; min 12",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Halve the x coefficient."
+        },
+        {
+          "code": "M1",
+          "text": "Complete square with correction."
+        },
+        {
+          "code": "M1",
+          "text": "Recognise square nonnegative."
+        },
+        {
+          "code": "A1",
+          "text": "Correct minimum."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-COS-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Trigonometry · Cosine rule",
+      "prompt": "Triangle \\(ABC\\) has \\(AB=15\\text{ cm}\\), \\(AC=24\\text{ cm}\\), and \\(\\angle BAC=60^\\circ\\). Find \\(BC\\) exactly, using the cosine rule.",
+      "answer": "21 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up cosine rule for the included angle."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute the lengths and exact cosine."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify the resulting squared length."
+        },
+        {
+          "code": "A1",
+          "text": "Positive exact length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INT-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Ratio · Compound change",
+      "prompt": "£800 is invested at \\(25\\%\\) compound interest per year. Find its value after two years, assuming no fees or withdrawals.",
+      "answer": "£1250.00",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Determine multiplier."
+        },
+        {
+          "code": "M1",
+          "text": "Square for two years."
+        },
+        {
+          "code": "M1",
+          "text": "Apply to capital."
+        },
+        {
+          "code": "A1",
+          "text": "Correct value."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SEC-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Sector area",
+      "prompt": "A circular sector has radius \\(12\\text{ cm}\\) and central angle \\(30^\\circ\\). Find its area exactly in terms of \\(\\pi\\).",
+      "answer": "12π cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Calculate fraction of full circle."
+        },
+        {
+          "code": "M1",
+          "text": "Use area of circle."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify coefficient."
+        },
+        {
+          "code": "A1",
+          "text": "Exact area with units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INE-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Algebra · Quadratic inequalities",
+      "prompt": "Solve \\(x^2-10x+21<0\\). State one interval and justify its endpoints.",
+      "answer": "3<x<7",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise."
+        },
+        {
+          "code": "M1",
+          "text": "Find roots."
+        },
+        {
+          "code": "M1",
+          "text": "Select negative region."
+        },
+        {
+          "code": "A1",
+          "text": "Strict interval."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-SIMI-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Foundation",
+      "topic": "Geometry · Similar triangles",
+      "prompt": "Two similar triangles have corresponding lengths \\(6\\text{ cm}\\) and \\(18\\text{ cm}\\). The smaller has area \\(20\\text{ cm}^2\\). Find the area of the larger.",
+      "answer": "180 cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Linear scale factor."
+        },
+        {
+          "code": "M1",
+          "text": "Square scale for area."
+        },
+        {
+          "code": "M1",
+          "text": "Multiply."
+        },
+        {
+          "code": "A1",
+          "text": "Correct units."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-DEP-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Probability · Conditional selection",
+      "prompt": "A bag contains \\(6\\) red and \\(5\\) blue counters. Two are chosen without replacement. Find the probability that both are red.",
+      "answer": "3/11",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "First draw probability."
+        },
+        {
+          "code": "M1",
+          "text": "Second conditional probability."
+        },
+        {
+          "code": "M1",
+          "text": "Multiply probabilities."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-GCW-INV-3",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "exam_tier": "Higher",
+      "topic": "Functions · Inverse",
+      "prompt": "For \\(f(x)=5x-9\\), find \\(f^{-1}(x)\\) and verify by simplifying \\(f(f^{-1}(x))\\).",
+      "answer": "(x+9)/5; composite x",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set y=f(x)."
+        },
+        {
+          "code": "M1",
+          "text": "Solve for x."
+        },
+        {
+          "code": "M1",
+          "text": "State inverse."
+        },
+        {
+          "code": "A1",
+          "text": "Verify composition."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-RAD-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising",
+      "prompt": "Rationalise the denominator of \\(\\frac{5}{\\sqrt{5}-1}\\). Leave your answer in exact form.",
+      "answer": "5(√5+1)/4",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply by conjugate."
+        },
+        {
+          "code": "M1",
+          "text": "Apply difference of squares."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Exact result."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-FRC-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "prompt": "Simplify \\(\\frac{x^2-9}{x^2-3x}\\), stating all values of \\(x\\) excluded from the original expression.",
+      "answer": "(x+3)/x, x≠0,3",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise numerator."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise denominator."
+        },
+        {
+          "code": "M1",
+          "text": "Cancel common factor."
+        },
+        {
+          "code": "A1",
+          "text": "Original restrictions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-QUA-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Non-monic quadratics",
+      "prompt": "Solve \\(2x^2-5x+3=0\\) by factorisation, giving both roots.",
+      "answer": "x=1, x=3/2",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Split middle term."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise into two linear factors."
+        },
+        {
+          "code": "M1",
+          "text": "One root."
+        },
+        {
+          "code": "A1",
+          "text": "Other root."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-COM-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Composite functions",
+      "prompt": "For \\(f(x)=2x+1\\) and \\(g(x)=x^2-2\\), find and simplify \\(f(g(x))\\) and \\(g(f(x))\\).",
+      "answer": "2x²+-3; 4x²+4x+-1",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g into f."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify first composite."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute f into g."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify second composite."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-SIN-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Sine rule",
+      "prompt": "In triangle \\(ABC\\), \\(\\angle A=30^\\circ\\), \\(\\angle B=60^\\circ\\) and side \\(a=8\\text{ cm}\\) is opposite \\(A\\). Find side \\(b\\) opposite \\(B\\) exactly.",
+      "answer": "8√3 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up sine rule."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute correct values."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate exact ratios."
+        },
+        {
+          "code": "A1",
+          "text": "Correct exact length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-CUB-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Geometry · 3D Pythagoras",
+      "prompt": "A cuboid has edges \\(6\\text{ cm}\\), \\(8\\text{ cm}\\) and \\(24\\text{ cm}\\). Find its space diagonal, showing two applications of Pythagoras.",
+      "answer": "26 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find base diagonal."
+        },
+        {
+          "code": "M1",
+          "text": "Set up second triangle."
+        },
+        {
+          "code": "M1",
+          "text": "Square and sum."
+        },
+        {
+          "code": "A1",
+          "text": "Correct length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-PRO-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "prompt": "A box contains \\(5\\) white and \\(3\\) black counters. Two are drawn without replacement. Find the probability of exactly one black.",
+      "answer": "15/28",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "White then black probability."
+        },
+        {
+          "code": "M1",
+          "text": "Black then white probability."
+        },
+        {
+          "code": "M1",
+          "text": "Add both orders."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified fraction."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-NON-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Non-linear simultaneous",
+      "prompt": "Solve \\(y=x+1\\) and \\(x^2+y^2=5\\) simultaneously. Give both ordered pairs.",
+      "answer": "(1,2), (-2,-1)",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute straight-line relation."
+        },
+        {
+          "code": "M1",
+          "text": "Form quadratic."
+        },
+        {
+          "code": "M1",
+          "text": "Solve for x."
+        },
+        {
+          "code": "M1",
+          "text": "Find y for each root."
+        },
+        {
+          "code": "A1",
+          "text": "Both ordered pairs."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-INE-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Quadratic inequalities",
+      "prompt": "Solve \\(x^2-7x+10\\le 0\\). Explain whether the boundary values are included.",
+      "answer": "2≤x≤5",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise."
+        },
+        {
+          "code": "M1",
+          "text": "Find the roots."
+        },
+        {
+          "code": "M1",
+          "text": "Choose between-roots region."
+        },
+        {
+          "code": "A1",
+          "text": "Include endpoints."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-ARE-1",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Exact area",
+      "prompt": "Two sides of a triangle are \\(6\\text{ cm}\\) and \\(10\\text{ cm}\\) with an included angle of \\(30^\\circ\\). Find its exact area.",
+      "answer": "15 cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use ½ab sinC."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute lengths."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate sin30°."
+        },
+        {
+          "code": "A1",
+          "text": "Correct area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-RAD-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising",
+      "prompt": "Rationalise the denominator of \\(\\frac{7}{\\sqrt{7}-1}\\). Leave your answer in exact form.",
+      "answer": "7(√7+1)/6",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply by conjugate."
+        },
+        {
+          "code": "M1",
+          "text": "Apply difference of squares."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Exact result."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-FRC-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "prompt": "Simplify \\(\\frac{x^2-16}{x^2-4x}\\), stating all values of \\(x\\) excluded from the original expression.",
+      "answer": "(x+4)/x, x≠0,4",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise numerator."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise denominator."
+        },
+        {
+          "code": "M1",
+          "text": "Cancel common factor."
+        },
+        {
+          "code": "A1",
+          "text": "Original restrictions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-QUA-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Non-monic quadratics",
+      "prompt": "Solve \\(2x^2-9x+10=0\\) by factorisation, giving both roots.",
+      "answer": "x=2, x=5/2",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Split middle term."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise into two linear factors."
+        },
+        {
+          "code": "M1",
+          "text": "One root."
+        },
+        {
+          "code": "A1",
+          "text": "Other root."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-COM-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Composite functions",
+      "prompt": "For \\(f(x)=3x+2\\) and \\(g(x)=x^2-3\\), find and simplify \\(f(g(x))\\) and \\(g(f(x))\\).",
+      "answer": "3x²+-7; 9x²+12x+1",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g into f."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify first composite."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute f into g."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify second composite."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-SIN-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Sine rule",
+      "prompt": "In triangle \\(ABC\\), \\(\\angle A=30^\\circ\\), \\(\\angle B=60^\\circ\\) and side \\(a=12\\text{ cm}\\) is opposite \\(A\\). Find side \\(b\\) opposite \\(B\\) exactly.",
+      "answer": "12√3 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up sine rule."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute correct values."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate exact ratios."
+        },
+        {
+          "code": "A1",
+          "text": "Correct exact length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-CUB-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Geometry · 3D Pythagoras",
+      "prompt": "A cuboid has edges \\(12\\text{ cm}\\), \\(16\\text{ cm}\\) and \\(48\\text{ cm}\\). Find its space diagonal, showing two applications of Pythagoras.",
+      "answer": "52 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find base diagonal."
+        },
+        {
+          "code": "M1",
+          "text": "Set up second triangle."
+        },
+        {
+          "code": "M1",
+          "text": "Square and sum."
+        },
+        {
+          "code": "A1",
+          "text": "Correct length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-PRO-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "prompt": "A box contains \\(6\\) white and \\(4\\) black counters. Two are drawn without replacement. Find the probability of exactly one black.",
+      "answer": "8/15",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "White then black probability."
+        },
+        {
+          "code": "M1",
+          "text": "Black then white probability."
+        },
+        {
+          "code": "M1",
+          "text": "Add both orders."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified fraction."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-NON-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Non-linear simultaneous",
+      "prompt": "Solve \\(y=x+1\\) and \\(x^2+y^2=13\\) simultaneously. Give both ordered pairs.",
+      "answer": "(2,3), (-3,-2)",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute straight-line relation."
+        },
+        {
+          "code": "M1",
+          "text": "Form quadratic."
+        },
+        {
+          "code": "M1",
+          "text": "Solve for x."
+        },
+        {
+          "code": "M1",
+          "text": "Find y for each root."
+        },
+        {
+          "code": "A1",
+          "text": "Both ordered pairs."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-INE-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Quadratic inequalities",
+      "prompt": "Solve \\(x^2-10x+21\\le 0\\). Explain whether the boundary values are included.",
+      "answer": "3≤x≤7",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise."
+        },
+        {
+          "code": "M1",
+          "text": "Find the roots."
+        },
+        {
+          "code": "M1",
+          "text": "Choose between-roots region."
+        },
+        {
+          "code": "A1",
+          "text": "Include endpoints."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-ARE-2",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Exact area",
+      "prompt": "Two sides of a triangle are \\(8\\text{ cm}\\) and \\(12\\text{ cm}\\) with an included angle of \\(30^\\circ\\). Find its exact area.",
+      "answer": "24 cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use ½ab sinC."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute lengths."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate sin30°."
+        },
+        {
+          "code": "A1",
+          "text": "Correct area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-RAD-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Surds · Rationalising",
+      "prompt": "Rationalise the denominator of \\(\\frac{9}{\\sqrt{11}-1}\\). Leave your answer in exact form.",
+      "answer": "9(√11+1)/10",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Multiply by conjugate."
+        },
+        {
+          "code": "M1",
+          "text": "Apply difference of squares."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify denominator."
+        },
+        {
+          "code": "A1",
+          "text": "Exact result."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-FRC-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Algebraic fractions",
+      "prompt": "Simplify \\(\\frac{x^2-25}{x^2-5x}\\), stating all values of \\(x\\) excluded from the original expression.",
+      "answer": "(x+5)/x, x≠0,5",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise numerator."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise denominator."
+        },
+        {
+          "code": "M1",
+          "text": "Cancel common factor."
+        },
+        {
+          "code": "A1",
+          "text": "Original restrictions."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-QUA-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Non-monic quadratics",
+      "prompt": "Solve \\(2x^2-13x+21=0\\) by factorisation, giving both roots.",
+      "answer": "x=3, x=7/2",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Split middle term."
+        },
+        {
+          "code": "M1",
+          "text": "Factorise into two linear factors."
+        },
+        {
+          "code": "M1",
+          "text": "One root."
+        },
+        {
+          "code": "A1",
+          "text": "Other root."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-COM-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Functions · Composite functions",
+      "prompt": "For \\(f(x)=4x+3\\) and \\(g(x)=x^2-4\\), find and simplify \\(f(g(x))\\) and \\(g(f(x))\\).",
+      "answer": "4x²+-13; 16x²+24x+5",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute g into f."
+        },
+        {
+          "code": "M1",
+          "text": "Simplify first composite."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute f into g."
+        },
+        {
+          "code": "A1",
+          "text": "Simplify second composite."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-SIN-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Sine rule",
+      "prompt": "In triangle \\(ABC\\), \\(\\angle A=30^\\circ\\), \\(\\angle B=60^\\circ\\) and side \\(a=16\\text{ cm}\\) is opposite \\(A\\). Find side \\(b\\) opposite \\(B\\) exactly.",
+      "answer": "16√3 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Set up sine rule."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute correct values."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate exact ratios."
+        },
+        {
+          "code": "A1",
+          "text": "Correct exact length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-CUB-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Geometry · 3D Pythagoras",
+      "prompt": "A cuboid has edges \\(18\\text{ cm}\\), \\(24\\text{ cm}\\) and \\(72\\text{ cm}\\). Find its space diagonal, showing two applications of Pythagoras.",
+      "answer": "78 cm",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Find base diagonal."
+        },
+        {
+          "code": "M1",
+          "text": "Set up second triangle."
+        },
+        {
+          "code": "M1",
+          "text": "Square and sum."
+        },
+        {
+          "code": "A1",
+          "text": "Correct length."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-PRO-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Probability · Without replacement",
+      "prompt": "A box contains \\(7\\) white and \\(5\\) black counters. Two are drawn without replacement. Find the probability of exactly one black.",
+      "answer": "35/66",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "White then black probability."
+        },
+        {
+          "code": "M1",
+          "text": "Black then white probability."
+        },
+        {
+          "code": "M1",
+          "text": "Add both orders."
+        },
+        {
+          "code": "A1",
+          "text": "Simplified fraction."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-NON-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Non-linear simultaneous",
+      "prompt": "Solve \\(y=x+1\\) and \\(x^2+y^2=25\\) simultaneously. Give both ordered pairs.",
+      "answer": "(3,4), (-4,-3)",
+      "marks": 5,
+      "suggested_minutes": 8,
+      "difficulty": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Substitute straight-line relation."
+        },
+        {
+          "code": "M1",
+          "text": "Form quadratic."
+        },
+        {
+          "code": "M1",
+          "text": "Solve for x."
+        },
+        {
+          "code": "M1",
+          "text": "Find y for each root."
+        },
+        {
+          "code": "A1",
+          "text": "Both ordered pairs."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-INE-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Algebra · Quadratic inequalities",
+      "prompt": "Solve \\(x^2-13x+36\\le 0\\). Explain whether the boundary values are included.",
+      "answer": "4≤x≤9",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Factorise."
+        },
+        {
+          "code": "M1",
+          "text": "Find the roots."
+        },
+        {
+          "code": "M1",
+          "text": "Choose between-roots region."
+        },
+        {
+          "code": "A1",
+          "text": "Include endpoints."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    },
+    {
+      "id": "MGX-ICW-ARE-3",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "exam_tier": "Extended",
+      "topic": "Trigonometry · Exact area",
+      "prompt": "Two sides of a triangle are \\(10\\text{ cm}\\) and \\(14\\text{ cm}\\) with an included angle of \\(30^\\circ\\). Find its exact area.",
+      "answer": "35 cm²",
+      "marks": 4,
+      "suggested_minutes": 6,
+      "difficulty": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "text": "Use ½ab sinC."
+        },
+        {
+          "code": "M1",
+          "text": "Substitute lengths."
+        },
+        {
+          "code": "M1",
+          "text": "Evaluate sin30°."
+        },
+        {
+          "code": "A1",
+          "text": "Correct area."
+        }
+      ],
+      "status": "open_practice_editorial_candidate",
+      "student_ready": false,
+      "unseen_mock_eligible": false
+    }
+  ]
+}
