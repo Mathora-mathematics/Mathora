@@ -28,3 +28,8 @@ An administrator can review the existing ten pilot items in the live Studio. The
 This GitHub repository and GitHub Pages are **public**. Never put unseen paper solutions, confidential mock questions, student data, private question-bank answer keys, secrets, or images here. The private mark scheme is stored in the Supabase `mark_schemes` table behind staff RLS, not in `boards.json` or GitHub Pages assets. Public blueprints contain no unseen questions.
 
 These are independently authored MathsGrove materials **inspired by exam demands**, not official or board-endorsed exam papers. Do not copy protected past paper questions/diagrams without permission.
+
+
+## Original practice content by Grove commercial tier
+
+**Grove Daily / Grove Weekly / Grove Exam** are the three service tiers. Separate GCSE/IGCSE/AS A Level directories remain academic taxonomy. The three `content/programmes/practice-*-v2.json` datasets contain **180** new original, worked, OPEN practice candidates (not unseen mock papers). Use the [programme guide](programmes/README.md) for their allocation and [combined Supabase upgrade](../supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql) for safe installation.
