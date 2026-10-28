@@ -68,11 +68,12 @@ async function renderEvidence(){
  if(!marked.length){root.textContent='No released reviews yet. Your first examiner-marked paper will start your learning record.';return}
  try{
   const ids=marked.map(a=>a.id);
-  const [rv,qResult]=await Promise.all([
-   sb.from('reviews').select('attempt_id,question_id,marks_awarded').in('attempt_id',ids),
-   sb.from('question_bank').select('id,marks').eq('qualification',state.preference?.qualification||marked[0].qualification)
-  ]);
-  if(rv.error||qResult.error)throw rv.error||qResult.error;
+  const rv=await sb.from('reviews').select('attempt_id,question_id,marks_awarded').in('attempt_id',ids);
+  if(rv.error)throw rv.error;
+  const questionIds=[...new Set((rv.data||[]).map(x=>x.question_id))];
+  if(!questionIds.length){root.textContent='Examiner marks are not yet available for these papers.';return}
+  const qResult=await sb.from('question_bank').select('id,marks').in('id',questionIds);
+  if(qResult.error)throw qResult.error;
   const maximum=new Map((qResult.data||[]).map(q=>[q.id,q.marks]));
   const rows=marked.map(a=>{
    const parts=(rv.data||[]).filter(r=>r.attempt_id===a.id);
