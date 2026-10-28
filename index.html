@@ -1,63 +1,120 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0d1b32">
-<meta name="description" content="MathsGrove — intelligent mathematics practice, handwritten solutions and expert-reviewed assessment for tutoring partners.">
-<title>MathsGrove | Intelligent Mathematics &amp; Expert Assessment</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F7F4EF">
+<meta name="description" content="MathsGrove brings thoughtful mathematics practice, handwritten solutions and examiner-led feedback into one private learning space. GCSE, IGCSE, A Level, IB and TMUA pathways.">
 <meta property="og:site_name" content="MathsGrove">
 <meta property="og:type" content="website">
-<meta property="og:title" content="MathsGrove — Every mark has meaning">
-<meta property="og:description" content="Premium mathematics practice and expert-reviewed assessments for tutoring partners.">
+<meta property="og:title" content="MathsGrove — Your mathematics. Your own space.">
+<meta property="og:description" content="A more considered way to practise, understand and progress in mathematics.">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/svg+xml" href="./mathsgrove-icon.svg">
+<title>MathsGrove | Your mathematics. Your own space.</title>
+<link rel="icon" href="./mathsgrove-icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./mathsgrove.css">
+<link rel="stylesheet" href="./brand-refresh.css">
 <script defer src="./mathsgrove.js"></script>
 </head>
-<body>
-<div class="preview-banner"><span class="live-dot"></span> Design preview — sample questions and figures only. No student data is uploaded or securely stored.</div>
-<header class="site-header"><div class="wrap nav-row">
-<a href="#home" class="logo" aria-label="MathsGrove home"><span class="logo-symbol">M<span class="logo-dot">·</span></span>MathsGrove<span class="gold">.</span></a>
-<button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-<nav id="primary-nav" aria-label="Main navigation"><a href="#platform">Platform</a><a href="#workflow">How it works</a><a href="#access">Private access</a><a class="btn btn-small btn-ghost" href="./portal.html">Student login ↗</a></nav>
-</div></header>
-<main id="home">
-<section class="hero"><div class="hero-mesh" aria-hidden="true"></div><div class="wrap hero-layout">
-<div class="hero-copy"><p class="eyebrow"><span class="eyebrow-line"></span> PRIVATE MATHEMATICS · BY INVITATION</p>
-<h1>Every mark<br>has <em>meaning.</em></h1>
-<p class="hero-lead">Beautifully personalised mathematics practice, handwritten solutions and examiner-led insights. Designed for ambitious students. Trusted by the tutors who guide them.</p>
-<div class="hero-buttons"><button class="btn btn-gold" data-action="open-demo">Explore the student experience <span>↗</span></button><a class="btn btn-outline" href="#programmes">Private student access</a></div>
-<div class="hero-footer"><span><b>01</b> Adaptive practice</span><span><b>02</b> Human judgement</span><span><b>03</b> Visible progress</span></div>
+<body class="mg-site" id="top">
+<a href="#main-content" class="mg-skip">Skip to main content</a>
+<div class="preview-banner"><span class="live-dot"></span> Platform in development · Interactive example workspaces contain demonstration data only</div>
+<header class="site-header">
+<div class="wrap nav-row">
+<a href="#top" class="mg-brand" aria-label="MathsGrove homepage"><img src="./mathsgrove-icon.svg" width="43" height="43" alt=""><span>Maths<span class="mg-brand-accent">Grove</span></span></a>
+<button class="mobile-toggle" id="mobile-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-nav" aria-expanded="false">☰</button>
+<nav id="primary-nav" aria-label="Primary navigation">
+<a href="#experience">Experience</a>
+<a href="#how-it-works">How it works</a>
+<a href="#pathways">Examinations</a>
+<a href="#partners">For partners</a>
+<a class="mg-nav-login" href="./portal.html">Student sign in <span aria-hidden="true">↗</span></a>
+</nav>
 </div>
-<div class="hero-visual" aria-label="Illustration of MathsGrove learning dashboard"><div class="glow-ring ring-1"></div><div class="glow-ring ring-2"></div><div class="glow-ring ring-3"></div>
-<div class="float-label top-tag">SIGNATURE ASSESSMENT <span>✦</span></div>
-<div class="floating-panel"><div class="panel-top"><span class="mini-mark">MG.</span><span>STUDENT INSIGHTS</span><span class="tag">Preview</span></div><div class="panel-goldline"></div><div class="panel-caption">YOUR PERSONAL ACADEMIC PROFILE</div><h3>Progress, with<br>purpose.</h3><div class="skill-list"><div><span>Algebra</span><strong>72%</strong><i style="--progress:72%"></i></div><div><span>Geometry</span><strong>88%</strong><i style="--progress:88%"></i></div><div><span>Probability</span><strong>61%</strong><i style="--progress:61%"></i></div></div><div class="next-note"><span>✧</span><div><b>Your next focus</b><small>Factorising quadratics · 5 questions</small></div></div></div>
-<div class="float-label bottom-tag">PRECISION IN EVERY MARK ↗</div></div>
-</div></section>
-<div class="qualification-bar"><div class="wrap"><span>BUILT FOR MATHEMATICS PATHWAYS</span><div>GCSE <i>·</i> IGCSE <i>·</i> A LEVEL <i>·</i> IB <i>·</i> TMUA</div><small>Pathway coverage expands after syllabus validation.</small></div></div>
-<section id="platform" class="section ivory"><div class="wrap"><div class="section-head center"><span class="eyebrow gold-ink">THE MATHSGROVE EXPERIENCE</span><h2>Intelligence behind<br><em>every question.</em></h2><p>We combine what students write, how confident they feel and what an examiner actually finds — giving every practice session a clearer purpose.</p></div>
-<div class="feature-grid"><article class="feature-card"><span class="feature-num">01 / ADAPT</span><div class="feature-symbol">⌁</div><h3>Questions that respond.</h3><p>Practice can adjust by qualification, topic mastery, prior performance and the student's confidence signals.</p><span class="feature-foot">GROVEPATH →</span></article>
-<article class="feature-card"><span class="feature-num">02 / EXPRESS</span><div class="feature-symbol">✎</div><h3>Show every step.</h3><p>Students can work directly on a digital whiteboard, upload photographs of handwritten answers, or do both.</p><span class="feature-foot">GROVEWORKSPACE →</span></article>
-<article class="feature-card"><span class="feature-num">03 / VERIFY</span><div class="feature-symbol">✧</div><h3>Feedback with depth.</h3><p>Real examiners can award marks, explain misconceptions and guide the next tailored practice session.</p><span class="feature-foot">GROVEMARK →</span></article></div></div></section>
-<section id="workflow" class="section midnight split-section"><div class="wrap split-grid"><div class="split-copy"><span class="eyebrow champagne">THE SIGNATURE EXPERIENCE</span><h2>More than a score.<br><em>A direction.</em></h2><p>Professional marking should do more than say what went wrong. Our report concept links each piece of written work to clear, actionable next steps.</p><div class="steps"><div><span>01</span><p><b>Complete your assessment</b><small>Work on screen, on paper, or both.</small></p></div><div><span>02</span><p><b>Reflect and submit</b><small>Rate challenge, confidence and clarity.</small></p></div><div><span>03</span><p><b>Receive expert insight</b><small>See marks, misconceptions and tailored recovery.</small></p></div></div></div>
-<div class="report-card"><div class="report-card-top"><b>MathsGrove.</b><span>PRIVATE ACADEMIC REPORT</span></div><div class="gold-rule"></div><div class="report-eyebrow">SIGNATURE PERFORMANCE REVIEW</div><h3>Mathematics<br>Performance Review</h3><p>Cambridge IGCSE · Extended</p><div class="report-numbers"><div><strong>78%</strong><small>Sample score</small></div><div><strong>03</strong><small>Focus areas</small></div><div><strong>12</strong><small>Skills reviewed</small></div></div><div class="report-insight"><b>EXAMINER'S NOTE</b><p>Strong mathematical foundations. Next focus: algebraic fluency and confident equation solving.</p></div><span class="report-fine">ILLUSTRATIVE INFORMATION ONLY</span></div></div></section>
-<section class="section ivory experience-section"><div class="wrap"><div class="experience-copy"><span class="eyebrow gold-ink">A PERSONAL SPACE TO PROGRESS</span><h2>Made for the way<br>students <em>really learn.</em></h2><p>From first paper to final report, MathsGrove brings everything together in one calm, beautifully designed workspace.</p><button class="btn btn-dark" data-action="open-demo">Open interactive preview ↗</button></div><div class="experience-board"><div class="board-header"><span>✧ MATHSGROVE / STUDENT</span><span>EXAMPLE ACCOUNT</span></div><h3>Your learning at a glance.</h3><div class="metric-row"><div><span>Topic mastery</span><b>74%</b></div><div><span>Completed papers</span><b>12</b></div><div><span>Focus sessions</span><b>05</b></div></div><div class="assignment"><span>YOUR NEXT SESSION</span><h4>Algebra · Quadratic equations</h4><p>Five questions chosen to revisit a recently identified misconception.</p><span class="assignment-arrow">→</span></div></div></div></section>
-<section id="access" class="section programmes"><div class="wrap">
-<div class="section-head center"><span class="eyebrow gold-ink">PRIVATE ACCESS · BY INVITATION</span><h2>Every student deserves<br><em>their own space.</em></h2><p>MathsGrove is available through authorised tutoring partners. Students receive a personal invitation code, verify their email, choose their mathematics pathway and build their private academic profile.</p></div>
-<div class="feature-grid">
-<article class="feature-card"><span class="feature-num">01 / ENTER</span><div class="feature-symbol">✧</div><h3>Your invitation.</h3><p>Receive a unique, single-use MathsGrove code from your tutor or programme administrator.</p><span class="feature-foot">PRIVATE ENROLMENT</span></article>
-<article class="feature-card"><span class="feature-num">02 / PERSONALISE</span><div class="feature-symbol">⌁</div><h3>Your mathematics.</h3><p>Select your examination pathway — GCSE, IGCSE, A Level, IB or TMUA — and see relevant assignments in one place.</p><span class="feature-foot">YOUR LEARNING PATH</span></article>
-<article class="feature-card"><span class="feature-num">03 / PROGRESS</span><div class="feature-symbol">✎</div><h3>Your own dashboard.</h3><p>Complete papers, upload handwritten working, reflect on each question and collect examiner feedback over time.</p><span class="feature-foot">SECURE STUDENT PORTAL</span></article>
+</header>
+<main id="main-content">
+<section class="mg-hero" aria-labelledby="hero-title">
+<div class="wrap mg-hero-grid">
+<div class="mg-hero-copy">
+<p class="mg-kicker"><span class="mg-spark" aria-hidden="true">✳</span> AN INDIVIDUAL APPROACH TO MATHEMATICS</p>
+<h1 id="hero-title">Your mathematics.<br><em>Your own space.</em></h1>
+<p class="mg-hero-lead">A quieter, more thoughtful way to prepare for mathematics examinations. Personalised practice, space to show every step, and expert feedback that makes progress meaningful.</p>
+<div class="mg-actions">
+<a href="./portal.html" class="mg-button mg-button-primary">Enter your private dashboard <span aria-hidden="true">↗</span></a>
+<button data-action="open-demo" class="mg-button mg-button-secondary" type="button">Explore a sample workspace <span aria-hidden="true">↗</span></button>
 </div>
-<div class="signature-line"><div><span>READY TO BEGIN?</span><h3>Enter your private learning space.</h3><p>Have an invitation code? Sign in with the email your tutor registered for you. Tutoring partners and authorised examiners also use the secure portal.</p></div><div><a href="./portal.html" class="btn btn-dark">Student &amp; partner access ↗</a></div></div>
+<div class="mg-hero-details"><span><i aria-hidden="true"></i> Private by invitation</span><span><i aria-hidden="true"></i> Work in your own way</span><span><i aria-hidden="true"></i> Examiner-led insights</span></div>
+</div>
+<div class="mg-hero-product" aria-label="Illustrative preview of the MathsGrove student dashboard">
+<div class="mg-product-note"><span class="mg-note-dot"></span> A PREVIEW OF WHAT'S POSSIBLE <small>Sample interface</small></div>
+<div class="mg-dashboard">
+<div class="mg-dash-sidebar">
+<div class="mg-dash-brand"><img src="./mathsgrove-icon.svg" alt="" width="28" height="28"><span>MathsGrove</span></div>
+<div class="mg-dash-nav">
+<span class="active"><b aria-hidden="true">◫</b> Overview</span>
+<span><b aria-hidden="true">✎</b> My practice</span>
+<span><b aria-hidden="true">◈</b> Exam papers</span>
+<span><b aria-hidden="true">▥</b> Feedback</span>
+<span><b aria-hidden="true">◌</b> Progress</span>
+</div>
+<div class="mg-sidebar-bottom">A thoughtful way forward.</div>
+</div>
+<div class="mg-dash-main">
+<div class="mg-dash-header"><span>STUDENT SPACE / DEMONSTRATION</span><span class="mg-avatar">MG</span></div>
+<h2>Good afternoon.</h2>
+<p>Make every question count.</p>
+<div class="mg-dash-feature"><div class="mg-dash-feature-top"><span>NEXT PRACTICE</span><span class="mg-mini-tag">GCSE · Higher</span></div><h3>Quadratic equations</h3><p>Continue an original, exam-style practice set.</p><div class="mg-progress-track"><span></span></div><div class="mg-dash-feature-foot"><span>Learn through your working</span><span aria-hidden="true">↗</span></div></div>
+<div class="mg-dash-row">
+<div class="mg-dash-tile"><span>EXAMINER INSIGHT</span><strong>Understand the method.</strong><small>Marks, working and next steps — together.</small><div class="mg-tile-lines" aria-hidden="true"><i></i><i></i><i></i></div></div>
+<div class="mg-dash-tile mg-dash-tile-accent"><span>PERSONAL PATHWAY</span><strong>Your next focus.</strong><small>Practice shaped by what you need to revisit.</small><div class="mg-tile-icon" aria-hidden="true">↗</div></div>
+</div>
+</div>
+</div>
+<div class="mg-illustration-caption">Interface concept · Not a real student account or performance record</div>
+</div>
 </div></section>
-<section class="closing"><div class="wrap closing-inner"><span class="eyebrow champagne">MATHSGROVE · PREVIEW EDITION</span><h2>A more considered<br>way to achieve.</h2><p>Explore the early product experience while the secure student and examiner platform is being connected.</p><button class="btn btn-gold" data-action="open-demo">Explore the workspace ↗</button></div></section>
+<section class="mg-exam-strip" id="pathways"><div class="wrap mg-exam-strip-inner"><span>MATHEMATICS PATHWAYS</span><div aria-label="Supported examination pathways"><span>GCSE</span><span>IGCSE</span><span>A Level</span><span>IB Mathematics</span><span>TMUA</span></div><small>Pilot question coverage varies by qualification.</small></div></section>
+<section class="mg-section mg-experience" id="experience">
+<div class="wrap">
+<div class="mg-section-intro"><div><p class="mg-kicker">THE MATHSGROVE EXPERIENCE</p><h2>A little more clarity.<br><em>A lot more possibility.</em></h2></div><p>Mathematics is about more than a final answer. Our developing platform is designed to understand the working, the confidence and the reasoning behind every response.</p></div>
+<div class="mg-feature-grid">
+<article class="mg-feature"><div class="mg-feature-index">01 / PRACTISE</div><div class="mg-feature-art mg-art-path" aria-hidden="true"><svg viewBox="0 0 130 90"><path d="M16 67C34 67 38 28 65 28s28 39 49 39" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="67" r="5" fill="#CDBBA0"/><circle cx="65" cy="28" r="5" fill="#CDBBA0"/><circle cx="114" cy="67" r="5" fill="#CDBBA0"/><path d="M16 20v52m-8-8h113" stroke="#BEC8D2" stroke-width="1"/></svg></div><h3>Practice with intention.</h3><p>Choose a qualification and work through carefully structured original questions, with a path towards more responsive practice.</p></article>
+<article class="mg-feature"><div class="mg-feature-index">02 / EXPRESS</div><div class="mg-feature-art mg-art-write" aria-hidden="true"><svg viewBox="0 0 130 90"><rect x="28" y="14" width="67" height="65" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M40 31h42M40 40h35M40 50h26" stroke="#CDBBA0" stroke-width="3" stroke-linecap="round"/><path d="M65 70l20-20 6 6-20 20-10 3 4-9Z" fill="#F7F4EF" stroke="currentColor" stroke-width="2"/></svg></div><h3>Show every step.</h3><p>Write on a digital board, type your approach, or submit photographs of handwritten mathematical solutions.</p></article>
+<article class="mg-feature"><div class="mg-feature-index">03 / UNDERSTAND</div><div class="mg-feature-art mg-art-feedback" aria-hidden="true"><svg viewBox="0 0 130 90"><rect x="30" y="15" width="67" height="65" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M43 31h38M43 43h23M43 55h28" stroke="#CDBBA0" stroke-width="3" stroke-linecap="round"/><path d="m78 63 7 7 15-19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Feedback that helps.</h3><p>Examiner review can connect awarded marks, misconceptions and specific recommendations to the work you submitted.</p></article>
+<article class="mg-feature"><div class="mg-feature-index">04 / PROGRESS</div><div class="mg-feature-art mg-art-progress" aria-hidden="true"><svg viewBox="0 0 130 90"><path d="M25 69v-17m22 17V39m22 30V30m22 39V18" stroke="currentColor" stroke-width="11" stroke-linecap="round"/><path d="M21 78h84" stroke="#CDBBA0" stroke-width="2"/></svg></div><h3>Keep the bigger picture.</h3><p>Bring your assessments and progress notes into one personal space, so your next steps stay clear.</p></article>
+</div>
+</div>
+</section>
+<section class="mg-section mg-method" id="how-it-works">
+<div class="wrap mg-method-grid">
+<div class="mg-method-heading"><p class="mg-kicker">THE LEARNING JOURNEY</p><h2>Thoughtful by design.<br><em>Personal by nature.</em></h2><p>One private learning environment, from your first question to your next meaningful breakthrough.</p><button data-action="open-demo" type="button" class="mg-button mg-button-light">Experience a sample paper <span aria-hidden="true">↗</span></button></div>
+<div class="mg-method-steps">
+<div><span>01</span><section><h3>Enter your own space.</h3><p>Receive a private invitation from your tutor and select your mathematics qualification.</p></section></div>
+<div><span>02</span><section><h3>Practise and reflect.</h3><p>Show your reasoning on screen or in handwriting. Record how confident you felt about each question.</p></section></div>
+<div><span>03</span><section><h3>Get an examiner's perspective.</h3><p>Review marks and clear feedback on your methods once your assessment has been professionally reviewed.</p></section></div>
+<div><span>04</span><section><h3>Know where to go next.</h3><p>Return to targeted questions and build a more complete understanding over time.</p></section></div>
+</div>
+</div>
+</section>
+<section class="mg-section mg-report" id="feedback">
+<div class="wrap mg-report-grid">
+<div class="mg-report-visual">
+<div class="mg-paper">
+<div class="mg-paper-top"><span class="mg-paper-logo"><img src="./mathsgrove-icon.svg" width="26" height="26" alt=""> MathsGrove</span><small>ILLUSTRATIVE ASSESSMENT</small></div>
+<div class="mg-paper-rule"></div><p>THE SIGNATURE REVIEW</p><h3>A clearer picture<br>of your mathematics.</h3><div class="mg-paper-field"><span>QUALIFICATION</span><strong>IGCSE Mathematics · Extended</strong></div><div class="mg-paper-field"><span>EXAMINER OBSERVATIONS</span><strong>Reasoning and methods</strong><div class="mg-paper-lines"><i></i><i></i><i></i></div></div><div class="mg-paper-next"><span>THE NEXT STEP</span><strong>Revisit the method. Strengthen the understanding.</strong></div><div class="mg-paper-foot">Preview layout · No actual student results shown</div>
+</div>
+</div>
+<div class="mg-report-copy"><p class="mg-kicker">FEEDBACK WITH PURPOSE</p><h2>Beyond the mark.<br><em>Understand the why.</em></h2><p>Our Signature Review concept is built around the decisions an examiner makes: what earned marks, which method needs attention, and what will help a student improve.</p><div class="mg-detail-list"><p><span aria-hidden="true">↗</span> Question-by-question marking</p><p><span aria-hidden="true">↗</span> Written observations and misconception tags</p><p><span aria-hidden="true">↗</span> A personal next-practice direction</p></div><button type="button" data-action="open-demo" class="mg-text-link">See the illustrative report <span aria-hidden="true">↗</span></button></div>
+</div>
+</section>
+<section class="mg-section mg-partners" id="partners"><div class="wrap mg-partners-grid"><div><p class="mg-kicker">FOR SCHOOLS AND TUTORING PARTNERS</p><h2>Your teaching.<br><em>A clearer view of progress.</em></h2></div><div><p>MathsGrove is designed for partners who want a considered assessment experience: individual student access, an organised submission queue, and dedicated examiner review tools.</p><p>Partner arrangements are handled privately, with no checkout or prices displayed on this site.</p><a href="./portal.html" class="mg-button mg-button-primary">Enter the private portal <span aria-hidden="true">↗</span></a></div></div></section>
+<section class="mg-final"><div class="wrap"><p class="mg-kicker">MATHSGROVE</p><h2>Make room for<br><em>better understanding.</em></h2><p>One thoughtful space for mathematical practice and meaningful feedback.</p><div class="mg-final-actions"><a class="mg-button mg-button-primary" href="./portal.html">Private student access <span aria-hidden="true">↗</span></a><button type="button" data-action="open-demo" class="mg-button mg-button-secondary">Explore the preview</button></div></div></section>
 </main>
-<footer class="site-footer"><div class="wrap"><div class="logo"><span class="logo-symbol">M<span class="logo-dot">·</span></span>MathsGrove<span class="gold">.</span></div><p>Intelligent practice. Expert judgement.</p><span>© 2026 MathsGrove · Independent assessment concept · Not affiliated with examination boards.</span></div></footer>
-<div class="demo-overlay" id="demo-overlay" hidden><div class="demo-shell" role="dialog" aria-modal="true" aria-labelledby="demo-title"><div class="demo-top"><div class="logo"><span class="logo-symbol">M<span class="logo-dot">·</span></span>MathsGrove<span class="gold">.</span></div><span class="demo-mode">INTERACTIVE PREVIEW / NO SERVER STORAGE</span><button class="close-demo" id="close-demo" aria-label="Close preview">✕</button></div>
+<footer class="mg-footer"><div class="wrap mg-footer-inner"><a href="#top" class="mg-brand" aria-label="Return to MathsGrove homepage"><img src="./mathsgrove-icon.svg" width="38" height="38" alt=""><span>Maths<span class="mg-brand-accent">Grove</span></span></a><p>Intelligent practice. Expert judgement.</p><small>© 2026 MathsGrove. Independent platform concept. Not affiliated with examination boards.</small></div></footer>
+<div class="demo-overlay" id="demo-overlay" hidden><div class="demo-shell" role="dialog" aria-modal="true" aria-labelledby="demo-title"><div class="demo-top"><div class="logo"><img src="./mathsgrove-icon.svg" class="mg-overlay-mark" alt="">MathsGrove<span class="gold">.</span></div><span class="demo-mode">INTERACTIVE PREVIEW / NO SERVER STORAGE</span><button class="close-demo" id="close-demo" aria-label="Close preview">✕</button></div>
 <div class="demo-layout"><aside class="demo-sidebar"><div class="demo-identity"><span class="round-monogram">MG</span><div><strong>Sample workspace</strong><small>IGCSE Mathematics</small></div></div><div class="demo-tabs"><button class="active" data-tab="student">◈ Student workspace</button><button data-tab="examiner">✎ Examiner studio</button><button data-tab="partner">▦ Partner dashboard</button><button data-tab="report">✧ Signature report</button></div><div class="sidebar-note">Preview only. Do not enter actual student information or upload sensitive files.</div></aside>
 <div class="demo-main">
 <section class="demo-panel active" id="panel-student"><div class="demo-panel-head"><div><span class="overline">STUDENT / PAPER 01</span><h2 id="demo-title">Your personalised paper</h2><p>Original example questions · IGCSE Extended</p></div><span class="status-chip" id="paper-status">IN PROGRESS</span></div><div class="question-bar"><span id="question-count">QUESTION 1 OF 3</span><span id="question-topic">ALGEBRA</span><span id="question-marks">3 MARKS</span></div><div class="question-text"><h3 id="question-prompt"></h3><p>Show your mathematical working below. You may use both the whiteboard and a photo.</p></div><div class="answer-fields"><label for="typed-answer">Typed working or answer</label><textarea id="typed-answer" placeholder="Type your working here if you prefer…"></textarea><div class="canvas-toolbar"><b>Digital whiteboard</b><div><button id="erase-board">Eraser</button><button id="clear-board">Clear</button></div></div><canvas id="drawing-canvas" width="760" height="230" aria-label="Digital working canvas"></canvas><label class="upload-field" for="image-upload">＋ Add a photo of handwritten working <small>Local preview only · JPG / PNG / WebP</small></label><input type="file" id="image-upload" accept="image/png,image/jpeg,image/webp" multiple><div id="image-previews" class="image-previews"></div></div><div class="feedback-box"><h4>How did this question feel?</h4><div class="survey-grid"><label>Difficulty<select id="difficulty"><option value="">Select</option><option>Too easy</option><option>About right</option><option>Too hard</option></select></label><label>Confidence<select id="confidence"><option value="">Select</option><option>Confident</option><option>Not sure</option><option>Stuck</option></select></label><label>Question clarity<select id="clarity"><option value="">Select</option><option>Clear</option><option>Confusing</option></select></label></div></div><div class="paper-controls"><button class="btn btn-soft" id="previous-question">← Previous</button><div><button class="btn btn-soft" id="save-question">Save locally</button><button class="btn btn-dark" id="next-question">Next question →</button></div></div></section>
@@ -65,4 +122,6 @@
 <section class="demo-panel" id="panel-partner"><div class="demo-panel-head"><div><span class="overline">PARTNER / ORGANISATION</span><h2>A clearer view of progress.</h2><p>One overview for assignments, reports and programme allocation.</p></div></div><div class="partner-metrics"><div><span>DEMO STUDENTS</span><b>1</b></div><div><span>ASSIGNED PAPERS</span><b>1</b></div><div><span>REPORT STATUS</span><b id="partner-report-status">Not ready</b></div></div><div class="partner-paper"><div><b>IGCSE Extended · Paper 01</b><p>Sample learner · Adaptive exercise preview</p></div><span id="partner-paper-status">In progress</span></div><p class="demo-caveat">Real partner enrolment, access permissions and billing records require the Supabase backend. No customer payment integration is planned.</p></section>
 <section class="demo-panel" id="panel-report"><div class="demo-panel-head"><div><span class="overline">SIGNATURE / ACADEMIC DOSSIER</span><h2>Your performance, understood.</h2><p>Marks, topic observations and priorities generated from examiner input.</p></div><button class="btn btn-soft" id="print-report">Print / Save PDF</button></div><div id="report-body" class="report-body"><p class="empty-state">Complete a sample paper and publish examiner marks to preview the report.</p></div></section>
 </div></div></div></div>
-</body></html>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+/* Minimal MathsGrove private application theme.
+   Cosmetic only: it does not alter Supabase authentication, RLS or marking logic. */
+:root{--mg-navy:#0D1B32;--mg-ivory:#F7F4EF;--mg-beige:#CDBBA0;--mg-line:#E5DED4;--mg-serif:"Instrument Serif",Georgia,serif;--mg-sans:"DM Sans",Arial,sans-serif}
+.mg-private-mark{display:inline-block;width:40px;height:40px;object-fit:contain;border-radius:9px;flex:none}
+body.mg-private-portal,body.mg-private-studio{font-family:var(--mg-sans);background:var(--mg-ivory);color:#20324A}
+body.mg-private-portal .brand,body.mg-private-studio .brand{font-family:var(--mg-serif);font-weight:400;letter-spacing:-.012em;font-size:27px;display:inline-flex;align-items:center;gap:9px}
+body.mg-private-portal .brand .gold,body.mg-private-studio .brand .gold{color:#CDBBA0}
+body.mg-private-portal .brand .gold{color:#A18A70}
+body.mg-private-portal .topbar{background:#F7F4EF;color:#0D1B32;border-bottom:1px solid var(--mg-line);height:82px}
+body.mg-private-portal .top-label{color:#68778A;font-size:9px}
+body.mg-private-portal .subtle-btn{color:#0D1B32;background:white;border-color:#CEC7BC}
+body.mg-private-portal .access-layout{background:#F7F4EF}
+body.mg-private-portal .access-intro{background:#EEE8DE;color:#17283F;padding:clamp(60px,7vw,125px) 10%}
+body.mg-private-portal .access-intro .eyebrow{color:#8B7356}
+body.mg-private-portal .access-intro h1{font-family:var(--mg-serif);font-weight:400;font-size:clamp(53px,5.2vw,83px);letter-spacing:-.035em;line-height:1.07}
+body.mg-private-portal .access-intro h1 em{color:#9C856A;font-style:normal}
+body.mg-private-portal .access-intro>p:not(.eyebrow){color:#596A7F;max-width:530px;font-size:14px;line-height:1.85}
+body.mg-private-portal .access-foot{color:#8A775E;gap:18px;font-size:9px;letter-spacing:.08em}
+body.mg-private-portal .login-card{border:1px solid #E5DDD3;border-radius:12px;padding:clamp(27px,4vw,52px);box-shadow:0 24px 65px #192e4810;background:white}
+body.mg-private-portal .login-card h2,body.mg-private-portal .state-card h1{font-family:var(--mg-serif);font-weight:400;font-size:36px;letter-spacing:-.02em}
+body.mg-private-portal .login-card .gold-ink{color:#8A7457}
+body.mg-private-portal .login-card input,body.mg-private-portal .state-card input,body.mg-private-portal .pathway-form input,body.mg-private-portal .pathway-form select,body.mg-private-portal .field textarea,body.mg-private-portal .reflection select{background:#FCFBF9;border:1px solid #DADFE5;border-radius:7px;box-shadow:none}
+body.mg-private-portal .button{border-radius:6px;min-height:47px}
+body.mg-private-portal .button-gold{background:#0D1B32;color:white}
+body.mg-private-portal .button-gold:hover{background:#253D5B}
+body.mg-private-portal .button-primary{background:#0D1B32;color:white}
+body.mg-private-portal .button-muted{background:#F2EDE6}
+body.mg-private-portal .portal-footer{background:#F7F4EF;color:#7A8797;border-top:1px solid #E5DDD3}
+body.mg-private-portal .dashboard-shell{grid-template-columns:250px minmax(0,1fr)}
+body.mg-private-portal .sidebar{background:#13243B}
+body.mg-private-portal .side-nav button{border-radius:7px}
+body.mg-private-portal .side-nav button.active{background:#34465E;border-color:#53617A}
+body.mg-private-portal .dashboard-main{max-width:1450px}
+body.mg-private-portal .panel-heading h1{font-family:var(--mg-serif);font-size:clamp(38px,4vw,59px);font-weight:400;letter-spacing:-.035em}
+body.mg-private-portal .card,body.mg-private-portal .metric{border:1px solid #E5DDD3;box-shadow:none;border-radius:10px}
+body.mg-private-portal .card h2{font-family:var(--mg-serif);font-size:28px;font-weight:400;letter-spacing:-.02em}
+body.mg-private-portal .card-kicker{color:#8B7356!important}
+body.mg-private-portal .focus-card{background:#15253D;color:#fff;border-color:#15253D}
+body.mg-private-portal .focus-card h2{color:#fff}
+body.mg-private-portal .focus-card p{color:#AFC0D4}
+body.mg-private-portal .focus-card .button{background:#F7F4EF;color:#0D1B32}
+body.mg-private-portal .metric strong{font-family:var(--mg-serif);font-size:39px;font-weight:400}
+body.mg-private-portal #student-canvas{border-radius:8px}
+body.mg-private-portal .card .card-kicker{font-family:var(--mg-sans)}
+body.mg-private-portal .partner-paper{background:white}
+body.mg-private-portal .issued-code{background:#F2ECE2}
+body.mg-private-studio .sidebar{background:#13243B}
+body.mg-private-studio .brand small{font-family:var(--mg-sans);letter-spacing:.17em;color:#AFBDD0;font-size:8px;margin-top:4px}
+body.mg-private-studio .identity{margin-top:39px}
+body.mg-private-studio .nav button{border-radius:7px;font-size:12px}
+body.mg-private-studio .nav button.active{background:#32465F;border-color:#4C627F}
+body.mg-private-studio .nav button span{color:#D0BDA2}
+body.mg-private-studio .topbar{background:#F7F4EF;border-color:var(--mg-line)}
+body.mg-private-studio .topline{font-size:9px}
+body.mg-private-studio .status-screen,body.mg-private-studio .card,body.mg-private-studio .stat-grid article{box-shadow:none;border-color:var(--mg-line);border-radius:9px}
+body.mg-private-studio .card h2,body.mg-private-studio .dark-card h2{font-family:var(--mg-serif);font-weight:400;font-size:30px;letter-spacing:-.02em}
+body.mg-private-studio .heading h1,body.mg-private-studio .status-screen h1{font-family:var(--mg-serif);font-weight:400;letter-spacing:-.034em;font-size:clamp(41px,4.2vw,62px)}
+body.mg-private-studio .stat-grid article strong{font-family:var(--mg-serif);font-weight:400;font-size:46px}
+body.mg-private-studio .dark-card{background:#15263D;border-color:#15263D}
+body.mg-private-studio .button{border-radius:6px}
+body.mg-private-studio .button.primary{background:#0D1B32}
+body.mg-private-studio .gold-button{background:#0D1B32;color:#fff}
+body.mg-private-studio .overline{color:#8D7659}
+body.mg-private-studio .key-result{background:#F1EBE1;border-color:#D9CBBA}
+body.mg-private-studio .review-card{border-color:#D5C6B2}
+body.mg-private-studio .review-question h3{font-family:var(--mg-sans);font-weight:700;letter-spacing:0}
+body.mg-private-portal [hidden],body.mg-private-studio [hidden]{display:none!important}
+@media(max-width:960px){body.mg-private-portal .dashboard-shell{grid-template-columns:1fr}body.mg-private-portal .access-intro{padding:75px 7%}}
+@media(max-width:700px){body.mg-private-portal .brand,body.mg-private-studio .brand{font-size:25px}body.mg-private-portal .access-intro{padding:60px 7%}body.mg-private-portal .access-intro h1{font-size:55px}body.mg-private-portal .login-card{padding:27px}body.mg-private-studio .heading h1{font-size:43px}}
+@media(prefers-reduced-motion:reduce){body.mg-private-portal *,body.mg-private-studio *{scroll-behavior:auto}}

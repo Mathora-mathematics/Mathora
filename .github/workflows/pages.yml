@@ -1,4 +1,4 @@
-name: Deploy MathsGrove preview
+name: Deploy MathsGrove website
 
 on:
   push:
@@ -23,18 +23,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Check preview JavaScript
+      - name: Check app JavaScript and website integrity
         run: |
           node --check mathsgrove.js
           node --input-type=module --check < portal.js
           node --input-type=module --check < studio.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
+          node scripts/check-site.mjs
       - name: Assemble only MathsGrove public assets
         shell: bash
         run: |
           mkdir -p site
-          cp index.html mathsgrove.css mathsgrove.js mathsgrove-icon.svg site/
-          cp portal.html portal.css portal.js mathsgrove-config.js site/
+          cp index.html mathsgrove.css brand-refresh.css mathsgrove.js mathsgrove-icon.svg site/
+          cp portal.html portal.css private-refresh.css portal.js mathsgrove-config.js site/
           cp studio.html studio.css studio.js site/
           touch site/.nojekyll
       - name: Configure Pages

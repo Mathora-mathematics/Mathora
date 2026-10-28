@@ -9,13 +9,14 @@
 <link rel="icon" type="image/svg+xml" href="./mathsgrove-icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./portal.css">
+<link rel="stylesheet" href="./private-refresh.css">
 <script defer src="./mathsgrove-config.js"></script>
 <script type="module" src="./portal.js"></script>
 </head>
-<body>
-<header class="topbar"><a class="brand" href="./index.html"><span class="brand-icon">M·</span>MathsGrove<span class="gold">.</span></a><div class="top-right"><span class="top-label">PRIVATE ACADEMIC PORTAL</span><button type="button" class="subtle-btn" id="sign-out" hidden>Sign out ↗</button></div></header>
+<body class="mg-private-portal">
+<header class="topbar"><a class="brand" href="./index.html"><img class="mg-private-mark" src="./mathsgrove-icon.svg" alt="" width="40" height="40"><span>Maths<span class="gold">Grove</span></span></a><div class="top-right"><span class="top-label">PRIVATE ACADEMIC PORTAL</span><button type="button" class="subtle-btn" id="sign-out" hidden>Sign out ↗</button></div></header>
 <main>
 <section id="configure-view" class="state-card narrow" hidden><p class="eyebrow">PLATFORM SETUP</p><h1>Private access is being prepared.</h1><p>This portal is built for verified student accounts, but its Supabase project hasn't been connected yet. No codes or submissions can be processed until secure storage and authentication are configured.</p><a class="button button-primary" href="./index.html">Return to MathsGrove</a></section>
 <section id="login-view" class="access-layout" hidden><div class="access-intro"><p class="eyebrow">WELCOME TO MATHSGROVE</p><h1>Your mathematics.<br><em>Your own space.</em></h1><p>Enter the invitation code supplied by your tutor. We'll send a secure sign-in link to your registered email address.</p><div class="access-foot"><span>01 · PRIVATE INVITATION</span><span>02 · VERIFIED EMAIL</span><span>03 · PERSONALISED DASHBOARD</span></div></div><div class="login-card"><p class="eyebrow gold-ink">STUDENT ENROLMENT</p><h2>Access your dashboard</h2><form id="invite-login-form"><label for="access-code">Invitation code</label><input id="access-code" type="text" maxlength="40" autocomplete="off" placeholder="MG-XXXXXXXX-XXXXXXXX-XXXXXXXX" required><label for="access-email">Your registered email address</label><input id="access-email" type="email" placeholder="student@example.com" autocomplete="email" required><button class="button button-gold" type="submit" id="send-link">Send secure sign-in link →</button></form><p class="mini-note">Already registered? <button type="button" class="inline-button" id="existing-member">Sign in using email only</button>.</p><p class="mini-note">Your invitation code works once and is linked to your email. Never share your sign-in link.</p><div id="login-message" class="message" role="status"></div></div></section>
