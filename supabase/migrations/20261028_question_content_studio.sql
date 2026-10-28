@@ -46,7 +46,8 @@ CREATE POLICY questions_select ON public.question_bank FOR SELECT TO authenticat
 USING (
  EXISTS (
    SELECT 1 FROM public.question_editorial qe WHERE qe.question_id=question_bank.id
-   AND ((qe.owner_org IS NULL AND question_bank.active)
+   AND ((qe.owner_org IS NULL AND question_bank.active AND
+       EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=(SELECT auth.uid())))
      OR (qe.owner_org IS NOT NULL AND qe.owner_org IN(
        SELECT m.org_id FROM public.memberships m WHERE m.user_id=(SELECT auth.uid())
      ) AND (question_bank.active OR private.is_staff(qe.owner_org))))
