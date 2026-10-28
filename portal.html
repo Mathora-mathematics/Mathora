@@ -7,6 +7,9 @@
 <meta name="description" content="MathsGrove private mathematics student dashboard, exam paper workspace, saved work and examiner feedback.">
 <title>Private Access | MathsGrove</title>
 <link rel="icon" type="image/svg+xml" href="./mathsgrove-icon.svg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.css" integrity="sha384-JctiRyLzXCrSoOOzFlSoWLdyzQl7OrrRnhyeBmzB6ZWtcjccUyc8lCQJqIbs3uQX" crossorigin="anonymous">
+<link rel="stylesheet" href="./maths-notation.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js" integrity="sha384-+7Keh381hSkXmXqnjC0JBM/kzsN6TFj+wMKychSLjTvJ8/0ElMde2uKl8i6p6Buj" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -32,14 +35,14 @@
 <div class="card"><p class="card-kicker">PRACTICE DIARY · SUGGESTED</p><h2>Next practice.</h2><div id="student-calendar" class="mini-calendar"></div><p class="insight-disclaimer">Suggested dates reflect your access tier; sessions are not automatically delivered or booked.</p></div>
 <div class="card"><p class="card-kicker">EVIDENCE &amp; PROGRESS</p><h2>Building a reliable picture.</h2><div id="student-evidence" class="student-evidence"><p>Complete reviewed papers to see your evidence trend.</p></div><p class="insight-disclaimer">Raw percentages are not official grade boundaries or grade forecasts.</p></div>
 </div>
-<div class="card paper-builder"><div class="paper-builder-intro"><div><p class="card-kicker">BUILD YOUR NEXT PAPER</p><h2>Practice for your programme.</h2><p>Grove Weekly and Daily practice are separate from the strictly timed Grove Exam sitting. Choose the type of practice you want and MathsGrove will select original pilot questions from the qualification you saved above. Your question list is kept with the paper when you resume.</p></div><span class="builder-label">PERSONALISED PRACTICE</span></div>
+<div class="card paper-builder"><div class="paper-builder-intro"><div><p class="card-kicker">BUILD YOUR NEXT PAPER</p><h2>Practice for your programme.</h2><p>Grove Weekly and Daily practice are separate from the strictly timed Grove Exam sitting. Choose the type of practice you want and MathsGrove selects original questions by your assigned qualification, academic level and Grove service programme. Your latest saved attempts are considered to reduce repetition. Your question list is kept with the paper when you resume.</p></div><span class="builder-label">PERSONALISED PRACTICE</span></div>
 <div class="paper-builder-grid">
-<label>Type of paper<select id="paper-mode"><option value="daily">Daily Focus · short practice</option><option value="weekly" selected>Weekly Paper · mixed practice</option><option value="topic">Topic Focus · one topic</option></select></label>
+<label>Type of paper<select id="paper-mode"><option value="daily">Daily Focus · short practice</option><option value="weekly" selected>Weekly Paper · mixed practice</option><option value="topic">Topic Focus · one topic</option><option value="exam_practice">Exam Preparation · reasoning (Grove Exam)</option></select></label>
 <label>Topic focus<select id="paper-topic"><option value="">Mixed topics</option></select></label>
 <label>Challenge level<select id="paper-level"><option value="mixed">Balanced mix</option><option value="foundation">Gentle start</option><option value="standard">Standard</option><option value="challenge">Challenge</option></select></label>
 <label>Questions requested<select id="paper-length"><option value="3">3 questions</option><option value="5" selected>5 questions</option><option value="8">8 questions</option></select></label>
 </div>
-<p class="paper-honesty" id="paper-availability">Save your exam pathway above to see the available original pilot questions. Specific exam-board papers are not yet available.</p>
+<p class="paper-honesty" id="paper-availability">Your practice question bank is linked to the qualification and programme your administrator assigned.</p>
 <button class="button button-gold" id="begin-paper" type="button" disabled>Create my paper →</button></div></div>
 <div id="mocks-panel" class="dash-panel" hidden>
 <div class="panel-heading"><p class="eyebrow gold-ink">GROVE EXAM · CONTROLLED SITTINGS</p><h1>Timed mock examinations.</h1><p>Your administrator assigns an original, moderated paper matching your exam board and tier. Starting the paper begins its one-way countdown: refreshing or closing the tab does not pause time.</p></div>
