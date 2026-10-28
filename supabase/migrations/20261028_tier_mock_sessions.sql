@@ -53,11 +53,41 @@ CREATE POLICY mock_pack_read ON public.mock_packs FOR SELECT TO authenticated
  AND ma.student_id=(SELECT auth.uid()))));
 CREATE POLICY mock_pack_q_read ON public.mock_pack_questions FOR SELECT TO authenticated
  USING(EXISTS(SELECT 1 FROM public.mock_packs p WHERE p.id=pack_id
- AND (private.is_staff(p.org_id) OR (p.status='published'
- AND EXISTS(SELECT 1 FROM public.mock_assignments ma
- WHERE ma.pack_id=p.id AND ma.student_id=(SELECT auth.uid()))))));
+ AND (private.is_staff(p.org_id) OR
+ (p.status='published' AND EXISTS(
+ SELECT 1 FROM public.attempts a WHERE a.mock_pack_id=p.id AND a.student_id=(SELECT auth.uid()))))));
 CREATE POLICY mock_assignment_read ON public.mock_assignments FOR SELECT TO authenticated
  USING(student_id=(SELECT auth.uid()) OR private.is_staff(org_id));
+
+-- Stop previewing unseen mock questions through normal question_bank SELECT.
+-- The student gains question access only once an actual session has started.
+DROP POLICY IF EXISTS questions_select ON public.question_bank;
+CREATE POLICY questions_select ON public.question_bank FOR SELECT TO authenticated
+USING(
+ EXISTS(SELECT 1 FROM public.question_editorial qe
+ WHERE qe.question_id=question_bank.id
+ AND (
+ (qe.owner_org IS NULL AND question_bank.active
+  AND EXISTS(SELECT 1 FROM public.memberships m WHERE m.user_id=(SELECT auth.uid())))
+ OR
+ (qe.owner_org IS NOT NULL AND EXISTS(SELECT 1 FROM public.memberships m
+  WHERE m.org_id=qe.owner_org AND m.user_id=(SELECT auth.uid()))
+  AND (
+    private.is_staff(qe.owner_org)
+    OR (question_bank.active AND qe.review_status='approved'
+      AND (
+        NOT EXISTS(SELECT 1 FROM public.mock_pack_questions mpq
+         JOIN public.mock_packs mp ON mp.id=mpq.pack_id
+         WHERE mpq.question_id=question_bank.id AND mp.status='published')
+        OR EXISTS(SELECT 1 FROM public.attempts a
+         JOIN public.paper_questions pq ON pq.attempt_id=a.id
+         WHERE pq.question_id=question_bank.id AND a.student_id=(SELECT auth.uid())
+         AND a.mock_pack_id IS NOT NULL)
+      )
+    )
+  ))
+ )))
+);
 
 -- Return genuine remaining time as a database-generated response.
 CREATE OR REPLACE FUNCTION public.mock_session_clock(p_attempt uuid)
