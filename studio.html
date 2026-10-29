@@ -47,6 +47,17 @@
 <div class="card-header"><div><p class="overline">STUDENT PRIVACY · ACCOUNT LIFECYCLE</p><h2 id="mg-offboarding-heading">Student export &amp; removal</h2>
 <p>Review each student's records before offboarding. Prepare an export request first; no account or work is erased by preparing an archive.</p></div><button id="mg-offboarding-refresh" type="button">Refresh student list ↻</button></div>
 <div class="mg-offboarding-notice"><strong>Data-first protection is active.</strong> Permanent removal becomes available only after a full archive is emailed and its download confirmed. The administrator must then re-enter the student's exact email to complete removal.</div>
+<div id="mg-offboarding-email-setup" class="mg-offboarding-setup" hidden>
+  <div class="mg-offboarding-setup-header"><span class="mg-offboarding-setup-indicator">Email configuration required</span><strong>Connect your secure archive email sender</strong></div>
+  <p>The archive and removal service is installed, but it can only email learning records after you verify your own sending domain. Your students' data stays untouched until an archive is successfully delivered and acknowledged.</p>
+  <div class="mg-offboarding-setup-links">
+    <a href="https://resend.com/domains" target="_blank" rel="noopener noreferrer">1. Verify your sending domain in Resend ↗</a>
+    <a href="https://supabase.com/dashboard/project/nwakgkxytovprrrwyahs/settings/functions" target="_blank" rel="noopener noreferrer">2. Add the sender secrets in Supabase ↗</a>
+  </div>
+  <p>In <strong>Edge Functions → Secrets</strong>, save <code>RESEND_API_KEY</code> and <code>MATHSGROVE_EXPORT_FROM</code> (an address on the domain you verified). The two values are private—never add them to the website or send them in chat.</p>
+  <button id="mg-offboarding-check-email" class="button outline" type="button">Recheck email configuration ↻</button>
+  <small>Setting the secrets enables archive sending; you will still choose which learner to export. No test or student email is sent by this check.</small>
+</div>
 <div id="mg-offboarding-status" class="subtext" role="status">Checking enrolled students…</div>
 <div id="mg-offboarding-roster" class="mg-offboarding-roster" aria-live="polite"></div>
 <p class="subtext">A complete export should include original uploaded working images, assessment attempts, answers, baseline diagnostics, timing evidence, released examiner feedback and academic settings. Deletion must also remove associated Storage objects and the Supabase Auth account, without affecting other users.</p>
