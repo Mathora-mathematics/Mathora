@@ -24,8 +24,8 @@ async function requestLink(e){
  try{
   requireReady();
   const email=$('access-email').value.trim().toLowerCase();
-  if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(email)||email.length>250)throw Error('Enter a valid registered email address.');
-  const code=$('access-code').value.trim().toUpperCase().replace(/\\s/g,'');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)||email.length>250)throw Error('Enter a valid registered email address.');
+  const code=$('access-code').value.trim().toUpperCase().replace(/\s/g,'');
   if(code&&!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))throw Error('Use the full MG-... value if you have a legacy recovery key.');
   if(code)sessionStorage.setItem('mathsgrove_pending_code',code);
   else sessionStorage.removeItem('mathsgrove_pending_code');
