@@ -81,6 +81,6 @@ async function access(){
 }
 $('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();records=[];user=null;$('fa-sign-out').hidden=true;location.replace('./portal.html')});
 $('fa-retry').addEventListener('click',()=>{view('fa-loading');void access()});
-$('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;view('fa-login')});
+$('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;location.replace('./portal.html')});
 $('fa-learner-select').addEventListener('change',render);
 void access();
