@@ -23,7 +23,7 @@ function harness({allowed=true,confirmed=true,recovery=false}={}){
   from(){return {select(){return {eq(){return {limit(){return Promise.resolve({data:allowed?[{member_role:'student'}]:[],error:null})}}}}}}},
   async rpc(){return {data:{learners:[]},error:null}}
  };
- const ctx={document:{getElementById:elem},location:{hash:recovery?'#type=recovery':'',search:'',href:'https://example.test/Mathora/portal.html'},URL,URLSearchParams,Promise,console};
+ const ctx={document:{getElementById:elem},location:{hash:recovery?'#type=recovery':'',search:'',href:'https://example.test/Mathora/portal.html'},URL,URLSearchParams,Promise,console,setTimeout:fn=>Promise.resolve().then(fn)};
  const init=runInNewContext(code,ctx);
  const controller=init(sb,{show:id=>calls.views.push(id),boot:async()=>{calls.boot++}});
  return {elem,calls,controller,emit:async(id,event)=>{assert.ok(listeners.has(id+':'+event),'Missing listener '+id+':'+event);await listeners.get(id+':'+event)({preventDefault(){}})},authEvent:ev=>authCallback(ev)};
