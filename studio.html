@@ -22,7 +22,7 @@
   <nav aria-label="Studio sections" class="nav">
     <button data-tab="overview" class="active"><span>▦</span> Overview</button>
     <button data-tab="students"><span>♙</span> Students &amp; invitations</button>
-    <button id="mg-offboarding-nav" type="button" hidden><span>⇩</span> Student exports &amp; removal</button>
+    <button id="mg-offboarding-nav" type="button" hidden><span>⇩</span> Student PDF ZIP &amp; removal</button>
     <button data-tab="marking"><span>✎</span> Marking board</button>
     <button data-tab="reports"><span>◇</span> Reports &amp; quality</button><button data-tab="bank"><span>▧</span> Mathematics bank</button>
   </nav>
@@ -42,25 +42,15 @@
       <div class="split"><article class="card"><p class="overline">LATEST SUBMISSIONS</p><h2>Marking queue</h2><div id="recent-attempts" class="records"></div><button data-goto="marking" class="link-action" type="button">Open marking board →</button></article><article class="card dark-card"><p class="overline">THE MATHSGROVE WORKFLOW</p><h2>From invitation to insight.</h2><div class="timeline"><span>01 <b>Issue an access code</b><small>Bound to a specific email address</small></span><span>02 <b>Admin assigns the exam route</b><small>Board, level and plan configured before invitation</small></span><span>03 <b>Review written solutions</b><small>Typed working, photographs and whiteboard</small></span><span>04 <b>Release examiner findings</b><small>Marks and learning recommendations</small></span></div></article></div>
     </section>
     <section data-panel="students" class="panel" hidden>
-      <div class="heading"><div><p class="overline">PRIVATE ENROLMENT</p><h1>Students &amp; invitations.</h1><p>Enrol learners, manage their programme, and safely export or remove student records.</p></div><button id="mg-student-export-shortcut" class="button outline" type="button" hidden>Student exports &amp; removal ↗</button></div>
+      <div class="heading"><div><p class="overline">PRIVATE ENROLMENT</p><h1>Students &amp; invitations.</h1><p>Enrol learners, manage their programme, and safely export or remove student records.</p></div><button id="mg-student-export-shortcut" class="button outline" type="button" hidden>Student PDF ZIP &amp; removal ↗</button></div>
 <section id="mg-student-offboarding" class="mg-assigned-admin" hidden aria-labelledby="mg-offboarding-heading">
 <div class="card-header"><div><p class="overline">STUDENT PRIVACY · ACCOUNT LIFECYCLE</p><h2 id="mg-offboarding-heading">Student export &amp; removal</h2>
-<p>Review each student's records before offboarding. Prepare an export request first; no account or work is erased by preparing an archive.</p></div><button id="mg-offboarding-refresh" type="button">Refresh student list ↻</button></div>
-<div class="mg-offboarding-notice"><strong>Data-first protection is active.</strong> Permanent removal becomes available only after a full archive is emailed and its download confirmed. The administrator must then re-enter the student's exact email to complete removal.</div>
-<div id="mg-offboarding-email-setup" class="mg-offboarding-setup" hidden>
-  <div class="mg-offboarding-setup-header"><span class="mg-offboarding-setup-indicator">Email configuration required</span><strong>Connect your secure archive email sender</strong></div>
-  <p>The archive and removal service is installed, but it can only email learning records after you verify your own sending domain. Your students' data stays untouched until an archive is successfully delivered and acknowledged.</p>
-  <div class="mg-offboarding-setup-links">
-    <a href="https://resend.com/domains" target="_blank" rel="noopener noreferrer">1. Verify your sending domain in Resend ↗</a>
-    <a href="https://supabase.com/dashboard/project/nwakgkxytovprrrwyahs/settings/functions" target="_blank" rel="noopener noreferrer">2. Add the sender secrets in Supabase ↗</a>
-  </div>
-  <p>In <strong>Edge Functions → Secrets</strong>, save <code>RESEND_API_KEY</code> and <code>MATHSGROVE_EXPORT_FROM</code> (an address on the domain you verified). The two values are private—never add them to the website or send them in chat.</p>
-  <button id="mg-offboarding-check-email" class="button outline" type="button">Recheck email configuration ↻</button>
-  <small>Setting the secrets enables archive sending; you will still choose which learner to export. No test or student email is sent by this check.</small>
-</div>
+<p>Download a ZIP of printable PDF reports and all saved working evidence. Open and check your copy before removing the student. You can email the ZIP yourself.</p></div><button id="mg-offboarding-refresh" type="button">Refresh student list ↻</button></div>
+<div class="mg-offboarding-notice"><strong>Data-first protection is active.</strong> Generate and download the complete PDF ZIP first. You must explicitly confirm that you saved and checked it before the permanent removal button becomes available. MathsGrove will not email it.</div>
+<div id="mg-offboarding-email-setup" hidden></div>
 <div id="mg-offboarding-status" class="subtext" role="status">Checking enrolled students…</div>
 <div id="mg-offboarding-roster" class="mg-offboarding-roster" aria-live="polite"></div>
-<p class="subtext">A complete export should include original uploaded working images, assessment attempts, answers, baseline diagnostics, timing evidence, released examiner feedback and academic settings. Deletion must also remove associated Storage objects and the Supabase Auth account, without affecting other users.</p>
+<p class="subtext">The ZIP contains PDF reports for programme details, baseline, practice, question timing, papers, examiner comments and uploaded work; unchanged original uploads and a portable data copy are also included. You are responsible for securely sending it to the student if needed. Removal deletes the account and saved data, not the shared question bank.</p>
 </section>
       <div class="split split-top"><article class="card"><p class="overline">01 / ENROL A LEARNER</p><h2>Create their personal dashboard</h2><p class="subtext">Enter the student's name and email, assign the programme, and issue their private enrolment. They can then sign in using their verified email.</p><form id="invite-form"><label for="invite-name">Student's full name</label><input id="invite-name" type="text" autocomplete="name" placeholder="e.g. Alex Morgan" maxlength="100" required><label for="invite-email">Student's registered email</label><input id="invite-email" type="email" autocomplete="off" placeholder="student@example.com" maxlength="250" required>
       <p class="setup-intro">Complete the student's academic and programme settings <strong>before creating access</strong>. The registered email determines which private dashboard can be activated after code verification.</p>
