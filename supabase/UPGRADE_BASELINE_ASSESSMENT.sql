@@ -397,10 +397,16 @@ GRANT EXECUTE ON FUNCTION public.baseline_family_report(uuid) TO authenticated;
 -- This summary never reveals unsubmitted answers, full answer keys or raw scratch work.
 CREATE OR REPLACE FUNCTION public.baseline_admin_overview(p_org uuid)
 RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
-DECLARE v_result jsonb;
+DECLARE v_result jsonb; v_expired record;
 BEGIN
  IF (select auth.uid()) IS NULL OR NOT private.is_staff(p_org)
  THEN RAISE EXCEPTION 'Staff access required';END IF;
+ -- Expired sittings must be finalized even if the learner never returns.
+ FOR v_expired IN SELECT id FROM private.baseline_sessions
+  WHERE org_id=p_org AND status='active' AND ends_at<=now()
+ LOOP
+  PERFORM private.baseline_close(v_expired.id);
+ END LOOP;
  SELECT coalesce(jsonb_agg(t.record ORDER BY t.started_at DESC),'[]'::jsonb) INTO v_result
  FROM(
   SELECT s.started_at,
