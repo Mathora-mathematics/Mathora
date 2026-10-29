@@ -17,7 +17,7 @@ for(const q of additional){
  assert(!additionalIds.has(q.id),'Duplicate expanded question '+q.id);
  additionalIds.add(q.id);
  assert(['GCSE','IGCSE'].includes(q.qualification),'Invalid qualification');
- assert(q.prompt.includes('\\\\('),'Mathematics must have delimited TeX');
+ assert(q.prompt.includes('\\('),'Mathematics must have delimited TeX');
  assert(q.status==='editorial_draft'&&!q.available_to_students,'Drafts must not be published');
  assert(Number.isInteger(q.marks)&&q.marks>=1,'Invalid question marks');
 }
