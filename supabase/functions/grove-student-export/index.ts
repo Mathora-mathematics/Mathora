@@ -55,32 +55,36 @@ async function handle(req:Request):Promise<Response>{
   const {data:jobId,error:jobError}=await userDb.rpc('grove_offboarding_prepare',{p_org:org,p_student:student});
   // Do not assume a service-role call populates auth.uid(); use an explicitly user-scoped RPC call when needed.
   if(jobError||!jobId)return send({error:'The server could not create the export request. No data was erased.',detail:jobError?.message},409);
+  const failJob=async(message:string,status=503):Promise<Response>=>{
+   await admin.rpc('grove_export_mark_failed',{p_job:jobId,p_message:message}).catch(()=>{});
+   return send({error:message},status);
+  };
   const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
-  if(rosterError)return send({error:'Cannot check the private archive queue'},503);
+  if(rosterError)return await failJob('Cannot check the private archive queue');
   const entry=(roster?.students||[]).find((x:{student_id:string})=>x.student_id===student);
   if(!entry||entry.job_id!==jobId)return send({error:'Export request mismatch'},409);
   if(entry.status==='emailed'||entry.status==='downloaded')return send({ok:true,status:entry.status});
   if(entry.status!=='requested')return send({error:'An export is already being prepared. Try later.'},409);
   const {data:dataset,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
-  if(exportError||!dataset)return send({error:'Could not complete the private data export. No data was erased.',detail:exportError?.message},503);
+  if(exportError||!dataset)return await failJob('Could not complete the private data export. No data was erased.');
   const zip:Record<string,Uint8Array>={};
   zip['MathsGrove-archive-README.txt']=strToU8('MathsGrove personal academic export. The file data.json contains the account academic information, assessment attempts, answered questions, timing, released feedback and report history. The evidence/ directory contains uploaded workings. Passwords and other students\' data are excluded. Work that was never saved or uploaded, such as browser-only scratchpads, cannot be recovered.\n');
   zip['data.json']=strToU8(JSON.stringify(dataset,null,2));
   let total=zip['data.json'].length,files=0;
   for(const [i,item] of (dataset.uploaded_files||[]).entries()){
    const path=item.storage_path;
-   if(typeof path!=='string'||!path.startsWith(org+'/'+student+'/'))return send({error:'Archive contains an invalid uploaded-file reference; no email sent.'},409);
+   if(typeof path!=='string'||!path.startsWith(org+'/'+student+'/'))return await failJob('Archive contains an invalid uploaded-file reference; no email sent.',409);
    const result=await admin.storage.from('student-work').download(path);
-   if(result.error||!result.data)return send({error:'An uploaded working file could not be retrieved; no email sent.'},503);
+   if(result.error||!result.data)return await failJob('An uploaded working file could not be retrieved; no email sent.');
    const bytes=new Uint8Array(await result.data.arrayBuffer());
-   total+=bytes.length;if(total>maxArchiveBytes)return send({error:'The complete student archive exceeds the safe email-export size limit. Manual secure transfer is required; nothing was erased.'},413);
+   total+=bytes.length;if(total>maxArchiveBytes)return await failJob('The complete student archive exceeds the safe export size limit; manual secure transfer is required.',413);
    zip['evidence/'+String(i+1).padStart(3,'0')+'-'+title(item.original_name||'working')]=bytes;files++;
   }
   const zipped=zipSync(zip,{level:4});
-  if(zipped.length>maxArchiveBytes)return send({error:'Archive is larger than the current safe limit; use assisted export.'},413);
+  if(zipped.length>maxArchiveBytes)return await failJob('Archive is larger than the current safe limit; use assisted export.',413);
   const archivePath=org+'/'+student+'/'+jobId+'.zip';
   const upload=await admin.storage.from('grove-student-exports').upload(archivePath,zipped,{contentType:'application/zip',upsert:false});
-  if(upload.error&&!upload.error.message.toLowerCase().includes('already exists'))return send({error:'Secure archive storage failed; no email sent.'},503);
+  if(upload.error&&!upload.error.message.toLowerCase().includes('already exists'))return await failJob('Secure archive storage failed; no email sent.');
   const token=hex(crypto.getRandomValues(new Uint8Array(32))),tokenHash=await hash(token);
   const expires=new Date(Date.now()+72*3600*1000);
   const link='https://mathora-mathematics.github.io/Mathora/export.html#token='+token;
@@ -90,9 +94,9 @@ async function handle(req:Request):Promise<Response>{
     text:'Your MathsGrove administrator has prepared a private archive of your saved work, assessments and feedback. Open this secure link within 72 hours to save it: '+link+'\n\nAfter saving, confirm the download on the page. If you did not request this, contact your MathsGrove administrator.'})
   });
   const receipt=await email.json().catch(()=>({}));
-  if(!email.ok||!receipt.id)return send({error:'The archive is stored privately, but email delivery was not accepted. No student was erased.'},503);
+  if(!email.ok||!receipt.id)return await failJob('The email provider did not accept the archive delivery. No student was erased.');
   const marked=await admin.rpc('grove_export_email_record',{p_job:jobId,p_path:archivePath,p_token_hash:tokenHash,p_message_id:receipt.id,p_expires:expires.toISOString()});
-  if(marked.error)return send({error:'The email provider accepted the message, but tracking was not confirmed. Do not request removal yet.'},503);
+  if(marked.error)return await failJob('An email was accepted but tracking was not confirmed; request a fresh archive link.');
   return send({ok:true,status:'emailed',uploads:files,expires_at:expires.toISOString()});
  }
  if(action==='erase'){
