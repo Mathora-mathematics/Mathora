@@ -25,9 +25,13 @@ export function initAssignedAdmin(db,state){
     const arr=r.question_insights.slice().sort((a,b)=>(a.correct===b.correct?b.seconds_visible-a.seconds_visible:a.correct?1:-1));
     for(const q of arr){
      const line=el('div',undefined,'mg-assigned-skill');
-     line.append(el('strong','Q'+q.position+' · '+q.topic+' · '+q.skill),el('span',(q.correct?'Correct':'Incorrect')+' · '+q.seconds_visible+'s visible'));
+     const signal=!q.correct&&q.seconds_visible>=180?'Long attempt · review method':!q.correct&&q.seconds_visible<=45?'Quick incorrect · test misconception':q.correct&&q.seconds_visible>=180?'Correct, with sustained working':q.correct?'Correct':'Incorrect';
+     line.append(el('strong','Q'+q.position+' · '+q.topic+' · '+q.skill),el('span',signal+' · '+q.seconds_visible+'s visible'));
      detail.append(line);
     }
+    const gaps=arr.filter(q=>!q.correct).slice(0,3);
+    if(gaps.length)detail.append(el('p','Suggested teaching rechecks: '+gaps.map(q=>q.skill).join('; ')+'. Ask for full written working on a fresh question.'));
+    detail.append(el('p','Time signals are indicative only; idle time, assistive tools and connectivity may distort them.'));
     wrap.append(name,detail)
    }else{wrap.append(name,el('small',r.status==='scheduled'?'Will open automatically on its date.':(r.status==='active'?'Timed and saved in progress.':'Requires an approved mock.')))}
    list.append(wrap);
