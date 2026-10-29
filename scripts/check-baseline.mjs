@@ -53,6 +53,16 @@ for(const phrase of [
  'REVOKE ALL ON private.baseline_bank'
  ])assert.ok(sql.includes(phrase),'Baseline backend invariant missing: '+phrase);
 assert.ok(sql.trim().endsWith('COMMIT;'),'Database migration must be atomic');
+assert.ok(sql.includes('active boolean NOT NULL DEFAULT false'),'New baseline questions must not be active by default');
+for(const path of seedPaths){
+ const seed=read(path);
+ assert.ok(seed.includes('Development-only activation')&&seed.includes('UPDATE private.baseline_bank SET active=true'),
+  'Public demonstration seed must require explicit activation: '+path);
+}
+for(const table of ['bank','sessions','items','answers','events','accommodations'])
+ assert.ok(sql.includes('ALTER TABLE private.baseline_'+table+' ENABLE ROW LEVEL SECURITY;'),
+  'Private baseline table must have defense-in-depth RLS: '+table);
+
 const functionCount=[...sql.matchAll(/CREATE OR REPLACE FUNCTION/g)].length;
 assert.ok(functionCount>=12,'All baseline permission and report functions must exist');
 assert.equal((sql.match(/AS \$\$/g)||[]).length,functionCount,'Every Postgres function requires an opening $ delimiter');
