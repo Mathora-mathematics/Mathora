@@ -159,7 +159,7 @@ BEGIN
  END IF;
  RETURN jsonb_build_object(
   'ready',true,'session_id',v_s.id,'qualification',v_s.qualification,'level',v_s.academic_level,
-  'minutes',v_s.minutes,'server_time',now(),'started_at',v_s.started_at,'ends_at',v_s.ends_at,
+  'minutes',v_s.minutes,'calculator_allowed',(v_s.qualification<>'TMUA'),'server_time',now(),'started_at',v_s.started_at,'ends_at',v_s.ends_at,
   'status',v_s.status,'score',CASE WHEN v_s.status='active' THEN NULL ELSE v_s.score END,
   'band',v_band,'questions',v_questions,'topics',v_topics,
   'review',v_explained,'integrity',v_flags,
