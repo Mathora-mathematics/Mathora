@@ -92,6 +92,7 @@ function displayRoleChoices(choices){
  show('role-view');
 }
 async function boot(){
+ $('mg-account-link').hidden=true;
  if(!sb){show('configure-view');return}
  try{
   const {data:{session},error}=await sb.auth.getSession();
@@ -104,6 +105,8 @@ async function boot(){
    return;
   }
   state.user=verified.user;
+  $('sign-out').hidden=false;
+  $('mg-account-link').hidden=false;
   await loadMembership();
   if(!state.members.length){
    // The student invitation, not email text in the form, authorises account creation.
