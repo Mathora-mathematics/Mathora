@@ -53,6 +53,13 @@ for(const phrase of [
  'REVOKE ALL ON private.baseline_bank'
  ])assert.ok(sql.includes(phrase),'Baseline backend invariant missing: '+phrase);
 assert.ok(sql.trim().endsWith('COMMIT;'),'Database migration must be atomic');
+const functionCount=[...sql.matchAll(/CREATE OR REPLACE FUNCTION/g)].length;
+assert.ok(functionCount>=12,'All baseline permission and report functions must exist');
+assert.equal((sql.match(/AS \$\$/g)||[]).length,functionCount,'Every Postgres function requires an opening $ delimiter');
+assert.equal((sql.match(/END;\$\$;/g)||[]).length,functionCount,'Every Postgres function requires a matching closing $ delimiter');
+assert.ok(!/AS \$(?!\$)/.test(sql)&&!/END;\$(?!\$)/.test(sql),'A single $ breaks SQL function parsing');
+assert.ok(sql.includes('FOR v_expired IN SELECT id FROM private.baseline_sessions'),'The staff register must close overdue active tests');
+
 assert.ok(sql.includes('REVOKE INSERT, UPDATE ON public.student_preferences FROM authenticated'),
  'Students must not substitute their own academic level to obtain an easier test');
 assert.ok(sql.includes('baseline_set_accommodation')&&sql.includes('p_extra_percent NOT IN (0,25,50,100)'),
