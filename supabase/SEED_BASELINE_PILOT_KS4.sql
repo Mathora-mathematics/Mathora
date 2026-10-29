@@ -89,4 +89,6 @@ INSERT INTO private.baseline_bank(qualification,academic_level,position,topic,sk
 ('IGCSE','extended',19,'Number','Standard form calculations',3,'Calculate (4 × 10⁵)/(2 × 10⁻³).',jsonb_build_array('2 × 10²','2 × 10⁸','8 × 10⁸','2 × 10⁻⁸'),'2 × 10⁸','Divide coefficients and subtract powers: 4/2 × 10^(5−(−3)) = 2 × 10⁸.'),
 ('IGCSE','extended',20,'Geometry','Volume of a cone',4,'Find the exact volume of a cone with radius 3 cm and perpendicular height 4 cm.',jsonb_build_array('9π cm³','12π cm³','24π cm³','36π cm³'),'12π cm³','Volume = (1/3)πr²h = (1/3)π × 9 × 4 = 12π cm³.')
 ON CONFLICT(qualification,academic_level,position) DO UPDATE SET topic=excluded.topic,skill=excluded.skill,difficulty=excluded.difficulty,prompt=excluded.prompt,choices=excluded.choices,correct_text=excluded.correct_text,explanation=excluded.explanation,active=true;
+-- Development-only activation: knowingly enable these publicly visible pilot examples.
+UPDATE private.baseline_bank SET active=true WHERE (qualification,academic_level) IN (('GCSE','foundation'), ('IGCSE','core'), ('GCSE','higher'), ('IGCSE','extended'));
 COMMIT;
