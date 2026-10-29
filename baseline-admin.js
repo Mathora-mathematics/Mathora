@@ -39,7 +39,19 @@ export function initBaselineAdmin(db,state){
  }
  function render(){
   root.replaceChildren();
-  if(!results.length){root.append(create('p','muted','No student baselines have started yet. Newly enrolled students will receive the 20-question diagnostic after account activation.'));return}
+  const students=Array.isArray(state.students)?state.students:[];
+  const seen=new Set(results.map(r=>r.student_id));
+  const waiting=students.filter(st=>!seen.has(st.id));
+  const completed=results.filter(r=>r.status==='submitted'||r.status==='expired').length;
+  root.append(create('p','muted',completed+' completed · '+results.filter(r=>r.status==='active').length+' in progress · '+waiting.length+' not started. This register refreshes automatically while the Student section is open.'));
+  if(!results.length&&!waiting.length){root.append(create('p','muted','No enrolled learners yet. Register a student to assign the automatic baseline.'));return}
+  for(const st of waiting){
+   const section=create('div','mg-bl-row'),left=create('div');
+   left.append(create('strong','',st.name||'Enrolled student'),
+    create('small','',((qualification[st.pref?.qualification]||st.pref?.qualification||'Academic route pending')+' · '+(st.pref?.tier||'Level pending'))+' · Not started'));
+   section.append(left,create('span','mg-linked-status','Awaiting first sign-in'));
+   root.append(section);
+  }
   for(const row of results){
    const section=create('div','mg-bl-row'),left=create('div'),heading=create('strong','',row.student_name||'Student');
    const status=row.status==='submitted'?'Completed':row.status==='expired'?'Time elapsed':row.status==='active'?'In progress':'Awaiting result';
@@ -81,5 +93,9 @@ export function initBaselineAdmin(db,state){
  }
  $('mg-refresh-baselines').addEventListener('click',()=>void refresh());
  $('mg-baseline-detail-close').addEventListener('click',()=>{detail.hidden=true});
+ const isShowing=()=>!document.hidden&&!!state.membership?.org_id&&
+   !root.closest('[data-panel]')?.hidden;
+ setInterval(()=>{if(isShowing())void refresh()},60000);
+ document.addEventListener('visibilitychange',()=>{if(isShowing())void refresh()});
  return {refresh};
 }
