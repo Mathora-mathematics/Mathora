@@ -11,7 +11,7 @@ Implementation committed to the MathsGrove GitHub Pages source. **Not live until
 5. Click **Create student access**. The site saves the admin's complete pending setup, student name, nominated linked emails (if Exam), then issues a time-limited server-side invitation. The invitation code is an optional *recovery* method.
 6. Copy the email-first welcome message and send it privately to the student. The administrator cannot send account emails directly from GitHub Pages; configure a separate transactional email system if automatic enrolment emails are required.
 7. The student opens `portal.html`, enters their registered email and requests a Supabase magic link/OTP. After email verification, the secure `claim_my_student_access` RPC consumes only a matching, valid, administrator-issued student invitation and creates student membership, academic settings and tier entitlement transactionally. Their dashboard is bound to their Auth ID.
-8. Nominated Grove Exam supporters open `family.html`, each signs in with **their own email**, and `claim_my_learner_views` resolves the administrator's invitation to the activated Exam student. Parent and tutor never reuse the student's credentials or invitation key.
+8. Nominated Grove Exam supporters open `portal.html` (the one sign-in for everyone), each signs in with **their own email**, and `claim_my_learner_views` resolves the administrator's invitation to the activated Exam student. Parent and tutor never reuse the student's credentials or invitation key.
 
 ## Editing an existing learner
 In the admin Studio, select an existing student under **Manage an enrolled learner** to adjust their programme. Use **Manage parent & tutor access** to nominate, replace or revoke each linked email. This is independent of account creation; it does not erase student submissions. A downgrade from Grove Exam immediately revokes linked access, including pending viewer invitations. On a new upgrade to Exam, the administrator must reauthorise links.
@@ -28,7 +28,7 @@ The family/tutor interface never queries `attempts`, `reviews`, `profiles` or pr
 1. Back up data and verify the earlier `supabase/UPGRADE_MATHSGROVE_ADMIN.sql` was installed (requires existing `pending_student_setups`, `student_entitlements` and stage-one paper schema).
 2. Run **once**: `supabase/UPGRADE_EMAIL_FAMILY_ACCESS.sql` in the Supabase SQL editor. Stop on any error; the script is one transaction.
 3. Keep the existing `invitations` Edge Function deployed with manual JWT verification and the precise `APP_ORIGINS` allowlist. Do **not** put the service-role key in public files. The app's publishable key is permitted only when RLS is correctly configured.
-4. Configure Supabase Auth email / custom SMTP, authorised redirect URLs including `https://mathora-mathematics.github.io/Mathora/portal.html` and `https://mathora-mathematics.github.io/Mathora/family.html`, and test links in the real email client.
+4. Configure Supabase Auth email / custom SMTP and the authorised redirect URL `https://mathora-mathematics.github.io/Mathora/portal.html`. Keep `family.html` as an authenticated dashboard destination, not a separate sign-in. Test actual email links in the real client.
 5. Verify storage policies separately with two organisations; RLS tests must be carried out before accepting information about minors.
 
 ## Required real end-to-end verification (NOT YET RUN)
