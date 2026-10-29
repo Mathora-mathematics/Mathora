@@ -56,7 +56,7 @@ async function handle(req:Request):Promise<Response>{
   // Do not assume a service-role call populates auth.uid(); use an explicitly user-scoped RPC call when needed.
   if(jobError||!jobId)return send({error:'The server could not create the export request. No data was erased.',detail:jobError?.message},409);
   const failJob=async(message:string,status=503):Promise<Response>=>{
-   await admin.rpc('grove_export_mark_failed',{p_job:jobId,p_message:message}).catch(()=>{});
+   try{await admin.rpc('grove_export_mark_failed',{p_job:jobId,p_message:message})}catch{/* original failure remains authoritative */}
    return send({error:message},status);
   };
   const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
