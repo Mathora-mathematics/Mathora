@@ -1,0 +1,26 @@
+name: Check student archive security
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/grove-student-export/**'
+      - 'supabase/STUDENT_*.sql'
+      - 'supabase/REISSUE_EXPIRED_STUDENT_EXPORT.sql'
+      - 'supabase/CLEAR_DELETED_STUDENT_AUDIT_PII.sql'
+      - 'scripts/check-student-export.mjs'
+      - '.github/workflows/archive-security.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate archive safety invariants
+        run: node scripts/check-student-export.mjs
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check live Edge Function
+        run: deno check supabase/functions/grove-student-export/index.ts
