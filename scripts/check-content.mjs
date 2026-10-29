@@ -27,7 +27,7 @@ for(const tier of ['daily','weekly','exam']){
  assert(added.filter(q=>q.programme===tier).length===48,'Each programme requires 48 draft items');
  for(const qual of ['GCSE','IGCSE'])assert(added.filter(q=>q.programme===tier&&q.qualification===qual).length===24,'Tier/qualification coverage missing');
 }
-assert(added.every(q=>q.prompt.includes('\\\\(')),'All added questions require delimited mathematical notation');
+assert(added.every(q=>q.prompt.includes('\\(')),'All added questions require delimited mathematical notation');
 for(const m of blueprints){
  const board=boards.find(b=>b.key===m.board_key);
  assert(board&&board.verified,'Blueprint has unverified board: '+m.id);
