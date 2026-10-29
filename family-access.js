@@ -64,9 +64,9 @@ async function access(){
  try{
   const session=await sb.auth.getSession();
   if(session.error)throw session.error;
-  if(!session.data?.session?.user){view('fa-login');return}
+  if(!session.data?.session?.user){location.replace('./portal.html');return}
   const verify=await sb.auth.getUser();
-  if(verify.error||!verify.data?.user?.email_confirmed_at){view('fa-login');err('fa-login-message','Please verify your email using your secure sign-in link.',true);return}
+  if(verify.error||!verify.data?.user?.email_confirmed_at){location.replace('./portal.html');return}
   user=verify.data.user;$('fa-sign-out').hidden=false;
   const claim=await sb.rpc('claim_my_learner_views');
   if(claim.error)throw claim.error;
@@ -79,14 +79,7 @@ async function access(){
   }else render()
  }catch(e){view('fa-pending');err('fa-pending-message','Linked access is not available yet: '+(e.message||'Unknown error')+'. Check that the access migration is installed and your invitation is active.',true)}
 }
-$('fa-login-form').addEventListener('submit',async e=>{
- e.preventDefault();if(!sb)return;const email=$('fa-email').value.trim().toLowerCase(),button=$('fa-send');if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){err('fa-login-message','Enter a valid email address.',true);return}
- button.disabled=true;
- try{const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:new URL('./family.html',location.href).href}});if(error)throw error;err('fa-login-message','Check your inbox for a secure sign-in link. Only a verified, invited address will reveal any learner information.')}
- catch(x){err('fa-login-message',x.message||'Could not send the link.',true)}
- finally{button.disabled=false}
-});
-$('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();records=[];user=null;$('fa-sign-out').hidden=true;view('fa-login')});
+$('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();records=[];user=null;$('fa-sign-out').hidden=true;location.replace('./portal.html')});
 $('fa-retry').addEventListener('click',()=>{view('fa-loading');void access()});
 $('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;view('fa-login')});
 $('fa-learner-select').addEventListener('change',render);
