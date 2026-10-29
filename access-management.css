@@ -1,0 +1,19 @@
+/* MathsGrove private administration · enrolment and role access */
+.mg-private-studio .mg-access-viewers{border:1px solid #d9c5a9;border-radius:9px;padding:21px;margin:20px 0;background:#fbf8f2}
+.mg-private-studio .mg-access-viewers legend{font-size:12px;font-weight:800;letter-spacing:.05em;color:#836d53;padding:0 7px}
+.mg-private-studio .mg-access-viewers>p{font-size:12px;color:#66758a;line-height:1.75;margin:0 0 17px}
+.mg-private-studio .mg-access-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mg-private-studio .mg-access-pair label{font-size:12px}
+.mg-private-studio .mg-access-pair input{width:100%;margin-top:6px}
+.mg-private-studio .mg-connected-admin{margin:22px 0}
+.mg-private-studio .mg-connected-admin h2{font-family:"Instrument Serif",Georgia,serif}
+.mg-private-studio .mg-access-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+.mg-private-studio .mg-linked-list{border-top:1px solid #e6ded3;margin-top:18px;padding-top:12px}
+.mg-private-studio .mg-linked-list h3{font-size:13px;color:#364964;margin:10px 0 12px}
+.mg-private-studio .mg-linked-row{padding:12px 0;border-bottom:1px solid #ece6df;display:flex;justify-content:space-between;align-items:center;gap:13px}
+.mg-private-studio .mg-linked-row strong,.mg-private-studio .mg-linked-row small{display:block}
+.mg-private-studio .mg-linked-row strong{font-size:12px;color:#233750}
+.mg-private-studio .mg-linked-row small{font-size:10px;color:#758496;margin-top:4px}
+.mg-private-studio .mg-linked-status{font-size:10px;background:#f4f0e9;border:1px solid #e6dac9;padding:5px 9px;border-radius:20px;white-space:nowrap;color:#826d54}
+.mg-private-studio #invite-name{margin-bottom:12px}
+@media(max-width:700px){.mg-private-studio .mg-access-pair{grid-template-columns:1fr}.mg-private-studio .mg-linked-row{align-items:flex-start;flex-direction:column}}
