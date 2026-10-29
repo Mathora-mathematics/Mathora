@@ -14,6 +14,11 @@ const recovery=portal.match(/<input id="access-code"[^>]*>/)?.[0]||'';
 assert.ok(recovery&&!/\srequired(?:\s|>)/.test(recovery),'Student email login must not require a code');
 assert.ok(portal.includes('id="role-view"')&&portal.includes('id="role-options"'),'Multi-role chooser missing');
 assert.ok(portalJs.includes("getAccessChoices(state.members,linked.learners,linked.awaiting)"),'Secure linked-role router not connected');
+assert.ok(portal.includes('Email my sign-in link')&&!portal.includes('id="otp-view"'),'Unified sign-in must email a link, not ask for an OTP code');
+assert.ok(portalJs.includes('sb.auth.signInWithOtp(')&&!portalJs.includes('sb.auth.verifyOtp('),'Link sign-in must use Auth email link flow, not code verification');
+assert.ok(portalJs.includes("emailRedirectTo:new URL('./portal.html',location.href).href"),'Secure email must return to the universal sign-in');
+assert.ok(studio.includes('private sign-in email'),'Student welcome message must describe the email-link process');
+
 assert.ok(family.includes('href="./portal.html"')&&!family.includes('id="fa-login-form"'),'Family must use the universal sign-in rather than another email form');
 assert.ok(familyJs.includes("location.replace('./portal.html')"),'Unauthenticated family visits must return to single sign-in');
 assert.ok(!familyJs.includes("signInWithOtp("),'Family must not send a separate magic link');
