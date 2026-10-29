@@ -131,3 +131,9 @@ The **main `index.html` homepage** is the single public marketing journey. The p
 **Files:** `showcase-v3.css`, `showcase-v3.js`, `experience-v4.css`, `experience-v4.js` are loaded from `index.html`. The v3 JavaScript exposes limited demo state to v4; v4 owns the enhanced calendar, mock trial and additional analysis. Keep these together when editing.
 
 **Technical boundary:** No marketing demonstration transmits student work, predicts grades, grants real tutor/guardian access or publishes official examinations. The protected `portal.html` and `studio.html` remain separate applications pending security verification and production readiness.
+
+## Email-first enrolment and Grove Exam linked access (29 October 2026)
+
+The private Studio now includes student **name + email + administrator-selected programme**, with conditional parent and tutor email inputs for Grove Exam. New students request a verified email login at `portal.html`; their matching administrator-issued invitation is redeemed automatically by the database (the previous one-time key remains an optional recovery path). `family.html` serves two **distinct server-permissioned views**: a guardian's read-only released progress summary and an assigned tutor's additional released question-level feedback. Accounts do not share passwords. Downgrading from Grove Exam revokes their links and nominations.
+
+**Required deployment step:** back up and manually install `supabase/UPGRADE_EMAIL_FAMILY_ACCESS.sql` after the previous admin upgrade, then configure the Auth redirect URLs and working email delivery. This SQL is not applied by GitHub Pages. Do not onboard real minors until the cross-organisation and safeguarding tests in `docs/EMAIL_FIRST_ENROLMENT.md` have passed. No real accounts or SQL migration have been exercised end-to-end in this code-only iteration.
