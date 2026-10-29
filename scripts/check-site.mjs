@@ -1,6 +1,6 @@
 import { readFileSync, existsSync } from 'node:fs';
-const pages=['index.html','portal.html','studio.html','sample.html'];
-const publicAssets=['mathsgrove.css','brand-refresh.css','marketing-services.css','portal.css','studio.css','admin-learner.css','content-bank.css','timed-mock.css','maths-notation.css','content-bank.js','private-refresh.css','student-features.css','sample.css','sample-extras.css','sample-extras.js','maths-render.js','evidence-theme.css','whiteboard.js','marketing.js','sample.js','portal.js','studio.js','mathsgrove-config.js','mathsgrove-icon.svg'];
+const pages=['index.html','portal.html','studio.html','family.html','sample.html','journey.html'];
+const publicAssets=['mathsgrove.css','brand-refresh.css','marketing-services.css','portal.css','studio.css','admin-learner.css','content-bank.css','timed-mock.css','maths-notation.css','content-bank.js','private-refresh.css','student-features.css','sample.css','sample-extras.css','sample-extras.js','maths-render.js','evidence-theme.css','whiteboard.js','marketing.js','sample.js','portal.js','studio.js','mathsgrove-config.js','mathsgrove-icon.svg','showcase-v3.css','showcase-v3.js','experience-v4.css','experience-v4.js','access-management.css','access-management.js','family-access.css','family-access.js','journey.css','journey.js','embed-bridge.js','unified-site.js'];
 let errors=[];
 for (const name of [...pages,...publicAssets]) if (!existsSync(name)) errors.push('Missing '+name);
 for (const page of pages) {
@@ -17,7 +17,7 @@ for (const page of pages) {
 const landing=readFileSync('index.html','utf8');
 if (landing.includes('£')||/\bpricing\b/i.test(landing)) errors.push('Public homepage must not advertise prices');
 if (/partner dashboard|demo-overlay|id="panel-partner"/i.test(landing)) errors.push('Old public partner dashboard found');
-for (const needed of ['id="mobile-toggle"','id="primary-nav"','id="services"','href="./sample.html"','id="student-preview"']) {
+for (const needed of ['id="mobile-toggle"','id="primary-nav"','id="services"','id="learning-journey"','id="interactive-sample"','id="signature"']) {
   if (!landing.includes(needed)) errors.push('Missing preview/interaction element '+needed);
 }
 const config=readFileSync('mathsgrove-config.js','utf8');
