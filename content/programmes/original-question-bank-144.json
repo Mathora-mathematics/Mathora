@@ -1,0 +1,2755 @@
+{
+  "version": 2,
+  "created": "2026-10-29",
+  "notice": "Original PUBLIC editorial drafts only, NOT unseen examination papers. Mathematical solutions and marking schemes must be verified privately before student release.",
+  "questions": [
+    {
+      "id": "MG-D-G-01-LIN",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(3x+3=12\\). Show the equation you obtain after subtracting \\(3\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-01-FRA",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{3}{4}+\\frac{1}{5}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-01-PCT",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £100. Its price is reduced by 10%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{10}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-01-IND",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{3}\\times a^{2}\\div a^{1}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-02-LIN",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(4x+5=21\\). Show the equation you obtain after subtracting \\(5\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-02-FRA",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{5}{5}+\\frac{1}{6}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-02-PCT",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £120. Its price is reduced by 15%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{15}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-02-IND",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{4}\\times a^{3}\\div a^{2}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-03-LIN",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(5x+7=32\\). Show the equation you obtain after subtracting \\(7\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-03-FRA",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{7}{6}+\\frac{1}{7}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-03-PCT",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £140. Its price is reduced by 20%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{20}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-03-IND",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{5}\\times a^{4}\\div a^{3}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-04-LIN",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(6x+9=45\\). Show the equation you obtain after subtracting \\(9\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-04-FRA",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{9}{7}+\\frac{1}{8}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-04-PCT",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £160. Its price is reduced by 25%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{25}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-04-IND",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{6}\\times a^{5}\\div a^{4}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-05-LIN",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(7x+11=60\\). Show the equation you obtain after subtracting \\(11\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-05-FRA",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{11}{8}+\\frac{1}{9}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-05-PCT",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £180. Its price is reduced by 30%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{30}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-05-IND",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Higher",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{7}\\times a^{6}\\div a^{5}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-06-LIN",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(8x+13=77\\). Show the equation you obtain after subtracting \\(13\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-06-FRA",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{13}{9}+\\frac{1}{10}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-06-PCT",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £200. Its price is reduced by 35%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{35}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-G-06-IND",
+      "qualification": "GCSE",
+      "programme": "daily",
+      "tier": "Foundation",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{8}\\times a^{7}\\div a^{6}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-01-QUAD",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-7x+10=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-01-SIM",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=13\\) and \\(3x-2y=0\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-01-RAT",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 24 exercise books between two classes in the ratio \\(3:5\\). Calculate how many each class receives and show that the total remains 24.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-01-GEO",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 4 cm and 6 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-02-QUAD",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-9x+18=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-02-SIM",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=18\\) and \\(3x-2y=1\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-02-RAT",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 40 exercise books between two classes in the ratio \\(4:6\\). Calculate how many each class receives and show that the total remains 40.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-02-GEO",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 5 cm and 7 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-03-QUAD",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-11x+28=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-03-SIM",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=23\\) and \\(3x-2y=2\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-03-RAT",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 60 exercise books between two classes in the ratio \\(5:7\\). Calculate how many each class receives and show that the total remains 60.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-03-GEO",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 6 cm and 8 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-04-QUAD",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-13x+40=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-04-SIM",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=28\\) and \\(3x-2y=3\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-04-RAT",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 84 exercise books between two classes in the ratio \\(6:8\\). Calculate how many each class receives and show that the total remains 84.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-04-GEO",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 7 cm and 9 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-05-QUAD",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-15x+54=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-05-SIM",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=33\\) and \\(3x-2y=4\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-05-RAT",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 112 exercise books between two classes in the ratio \\(7:9\\). Calculate how many each class receives and show that the total remains 112.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-05-GEO",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Higher",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 8 cm and 10 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-06-QUAD",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-17x+70=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-06-SIM",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=38\\) and \\(3x-2y=5\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-06-RAT",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 144 exercise books between two classes in the ratio \\(8:10\\). Calculate how many each class receives and show that the total remains 144.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-G-06-GEO",
+      "qualification": "GCSE",
+      "programme": "weekly",
+      "tier": "Foundation",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 9 cm and 11 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-01-FUN",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=3x-4\\) and \\(g(x)=x^2+1\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-01-PROB",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 4 red and 5 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-01-3DP",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 6 cm, 8 cm and 24 cm. (a) Find the diagonal of its 6 cm by 8 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-01-MOD",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £320 to buy calculators at £15 each plus £25 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-02-FUN",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=4x-5\\) and \\(g(x)=x^2+2\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-02-PROB",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 5 red and 6 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-02-3DP",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 9 cm, 12 cm and 36 cm. (a) Find the diagonal of its 9 cm by 12 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-02-MOD",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £340 to buy calculators at £16 each plus £30 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-03-FUN",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=5x-6\\) and \\(g(x)=x^2+3\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-03-PROB",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 6 red and 7 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-03-3DP",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 12 cm, 16 cm and 48 cm. (a) Find the diagonal of its 12 cm by 16 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-03-MOD",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £360 to buy calculators at £17 each plus £35 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-04-FUN",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=6x-7\\) and \\(g(x)=x^2+4\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-04-PROB",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 7 red and 8 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-04-3DP",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 15 cm, 20 cm and 60 cm. (a) Find the diagonal of its 15 cm by 20 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-04-MOD",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £380 to buy calculators at £18 each plus £40 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-05-FUN",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=7x-8\\) and \\(g(x)=x^2+5\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-05-PROB",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 8 red and 9 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-05-3DP",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 18 cm, 24 cm and 72 cm. (a) Find the diagonal of its 18 cm by 24 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-05-MOD",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Higher",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £400 to buy calculators at £19 each plus £45 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-06-FUN",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=8x-9\\) and \\(g(x)=x^2+6\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-06-PROB",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 9 red and 10 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-06-3DP",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 21 cm, 28 cm and 84 cm. (a) Find the diagonal of its 21 cm by 28 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-G-06-MOD",
+      "qualification": "GCSE",
+      "programme": "exam",
+      "tier": "Foundation",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £420 to buy calculators at £20 each plus £50 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-01-LIN",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(3x+3=12\\). Show the equation you obtain after subtracting \\(3\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-01-FRA",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{3}{4}+\\frac{1}{5}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-01-PCT",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £100. Its price is reduced by 10%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{10}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-01-IND",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{3}\\times a^{2}\\div a^{1}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-02-LIN",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(4x+5=21\\). Show the equation you obtain after subtracting \\(5\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-02-FRA",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{5}{5}+\\frac{1}{6}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-02-PCT",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £120. Its price is reduced by 15%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{15}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-02-IND",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{4}\\times a^{3}\\div a^{2}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-03-LIN",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(5x+7=32\\). Show the equation you obtain after subtracting \\(7\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-03-FRA",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{7}{6}+\\frac{1}{7}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-03-PCT",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £140. Its price is reduced by 20%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{20}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-03-IND",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{5}\\times a^{4}\\div a^{3}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-04-LIN",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(6x+9=45\\). Show the equation you obtain after subtracting \\(9\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-04-FRA",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{9}{7}+\\frac{1}{8}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-04-PCT",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £160. Its price is reduced by 25%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{25}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-04-IND",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{6}\\times a^{5}\\div a^{4}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-05-LIN",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(7x+11=60\\). Show the equation you obtain after subtracting \\(11\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-05-FRA",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{11}{8}+\\frac{1}{9}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-05-PCT",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £180. Its price is reduced by 30%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{30}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-05-IND",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Extended",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{7}\\times a^{6}\\div a^{5}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-06-LIN",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Algebra · Linear equations",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "linear equation",
+        "inverse operations"
+      ],
+      "difficulty": 2,
+      "prompt": "Solve \\(8x+13=77\\). Show the equation you obtain after subtracting \\(13\\) from both sides, then state the value of \\(x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-06-FRA",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Number · Fractions",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "common denominator",
+        "simplifying"
+      ],
+      "difficulty": 2,
+      "prompt": "Calculate \\(\\frac{13}{9}+\\frac{1}{10}\\). Show the common denominator and give your answer as a single fraction in its lowest terms.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-06-PCT",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Number · Percentages",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": true,
+      "skills": [
+        "multipliers",
+        "percentage changes"
+      ],
+      "difficulty": 2,
+      "prompt": "A mathematics textbook costs £200. Its price is reduced by 35%. Calculate the sale price and explain the percentage multiplier \\(1-\\frac{35}{100}\\) used.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-D-I-06-IND",
+      "qualification": "IGCSE",
+      "programme": "daily",
+      "tier": "Core",
+      "topic": "Indices · Laws",
+      "marks": 3,
+      "suggested_minutes": 4,
+      "calculator": false,
+      "skills": [
+        "product of powers",
+        "quotient"
+      ],
+      "difficulty": 2,
+      "prompt": "Simplify \\(a^{8}\\times a^{7}\\div a^{6}\\) into one power of \\(a\\). State the restriction on \\(a\\) required for the original division.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-01-QUAD",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-7x+10=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-01-SIM",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=13\\) and \\(3x-2y=0\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-01-RAT",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 24 exercise books between two classes in the ratio \\(3:5\\). Calculate how many each class receives and show that the total remains 24.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-01-GEO",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 4 cm and 6 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-02-QUAD",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-9x+18=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-02-SIM",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=18\\) and \\(3x-2y=1\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-02-RAT",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 40 exercise books between two classes in the ratio \\(4:6\\). Calculate how many each class receives and show that the total remains 40.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-02-GEO",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 5 cm and 7 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-03-QUAD",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-11x+28=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-03-SIM",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=23\\) and \\(3x-2y=2\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-03-RAT",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 60 exercise books between two classes in the ratio \\(5:7\\). Calculate how many each class receives and show that the total remains 60.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-03-GEO",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 6 cm and 8 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-04-QUAD",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-13x+40=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-04-SIM",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=28\\) and \\(3x-2y=3\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-04-RAT",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 84 exercise books between two classes in the ratio \\(6:8\\). Calculate how many each class receives and show that the total remains 84.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-04-GEO",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 7 cm and 9 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-05-QUAD",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-15x+54=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-05-SIM",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=33\\) and \\(3x-2y=4\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-05-RAT",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 112 exercise books between two classes in the ratio \\(7:9\\). Calculate how many each class receives and show that the total remains 112.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-05-GEO",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Extended",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 8 cm and 10 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-06-QUAD",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Algebra · Quadratic equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "factorising",
+        "roots"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(x^2-17x+70=0\\) by factorisation. Give both values of \\(x\\), showing why either factor may be zero.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-06-SIM",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Algebra · Simultaneous equations",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": false,
+      "skills": [
+        "elimination",
+        "verification"
+      ],
+      "difficulty": 3,
+      "prompt": "Solve \\(2x+3y=38\\) and \\(3x-2y=5\\) simultaneously. Show a valid elimination method and verify one result.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-06-RAT",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Ratio · Sharing and modelling",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "sharing ratio",
+        "context"
+      ],
+      "difficulty": 3,
+      "prompt": "A school divides 144 exercise books between two classes in the ratio \\(8:10\\). Calculate how many each class receives and show that the total remains 144.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-W-I-06-GEO",
+      "qualification": "IGCSE",
+      "programme": "weekly",
+      "tier": "Core",
+      "topic": "Geometry · Area and Pythagoras",
+      "marks": 5,
+      "suggested_minutes": 7,
+      "calculator": true,
+      "skills": [
+        "area",
+        "Pythagoras"
+      ],
+      "difficulty": 3,
+      "prompt": "A right-angled triangle has perpendicular sides 9 cm and 11 cm. Find its area, then calculate its hypotenuse to two decimal places using \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-01-FUN",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=3x-4\\) and \\(g(x)=x^2+1\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-01-PROB",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 4 red and 5 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-01-3DP",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 6 cm, 8 cm and 24 cm. (a) Find the diagonal of its 6 cm by 8 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-01-MOD",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £320 to buy calculators at £15 each plus £25 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-02-FUN",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=4x-5\\) and \\(g(x)=x^2+2\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-02-PROB",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 5 red and 6 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-02-3DP",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 9 cm, 12 cm and 36 cm. (a) Find the diagonal of its 9 cm by 12 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-02-MOD",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £340 to buy calculators at £16 each plus £30 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-03-FUN",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=5x-6\\) and \\(g(x)=x^2+3\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-03-PROB",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 6 red and 7 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-03-3DP",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 12 cm, 16 cm and 48 cm. (a) Find the diagonal of its 12 cm by 16 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-03-MOD",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £360 to buy calculators at £17 each plus £35 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-04-FUN",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=6x-7\\) and \\(g(x)=x^2+4\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-04-PROB",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 7 red and 8 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-04-3DP",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 15 cm, 20 cm and 60 cm. (a) Find the diagonal of its 15 cm by 20 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-04-MOD",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £380 to buy calculators at £18 each plus £40 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-05-FUN",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=7x-8\\) and \\(g(x)=x^2+5\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-05-PROB",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 8 red and 9 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-05-3DP",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 18 cm, 24 cm and 72 cm. (a) Find the diagonal of its 18 cm by 24 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-05-MOD",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Extended",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £400 to buy calculators at £19 each plus £45 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-06-FUN",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Functions · Composite and inverse",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "inverse",
+        "composition",
+        "verification"
+      ],
+      "difficulty": 4,
+      "prompt": "Let \\(f(x)=8x-9\\) and \\(g(x)=x^2+6\\). (a) Find \\(f^{-1}(x)\\). (b) Simplify \\(f(g(x))\\). (c) Verify algebraically that \\(f(f^{-1}(x))=x\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-06-PROB",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Probability · Dependent events",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "conditional",
+        "without replacement"
+      ],
+      "difficulty": 4,
+      "prompt": "A bag contains 9 red and 10 blue counters. Two are drawn without replacement. (a) Find \\(P(\\text{both red})\\). (b) Find the probability of different colours. (c) Explain why the second denominator changes.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-06-3DP",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Geometry · Three-dimensional Pythagoras",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": false,
+      "skills": [
+        "face diagonal",
+        "space diagonal"
+      ],
+      "difficulty": 4,
+      "prompt": "A cuboid has edges 21 cm, 28 cm and 84 cm. (a) Find the diagonal of its 21 cm by 28 cm face. (b) Find the space diagonal and explain two uses of \\(a^2+b^2=c^2\\).",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    },
+    {
+      "id": "MG-E-I-06-MOD",
+      "qualification": "IGCSE",
+      "programme": "exam",
+      "tier": "Core",
+      "topic": "Algebra · Inequality modelling",
+      "marks": 7,
+      "suggested_minutes": 10,
+      "calculator": true,
+      "skills": [
+        "inequalities",
+        "integer constraint"
+      ],
+      "difficulty": 4,
+      "prompt": "A club has £420 to buy calculators at £20 each plus £50 delivery. (a) Form an inequality for the number \\(n\\) purchased. (b) Find the largest integer \\(n\\). (c) Explain the rounding decision.",
+      "status": "editorial_draft",
+      "available_to_students": false,
+      "mark_scheme_status": "requires_private_review"
+    }
+  ]
+}
