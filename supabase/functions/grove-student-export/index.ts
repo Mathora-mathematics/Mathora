@@ -92,6 +92,67 @@ async function handle(req:Request):Promise<Response>{
   if(marked.error)return send({error:'The email provider accepted the message, but tracking was not confirmed. Do not request removal yet.'},503);
   return send({ok:true,status:'emailed',uploads:files,expires_at:expires.toISOString()});
  }
+ if(action==='erase'){
+  const bearer=(req.headers.get('Authorization')||'').replace(/^Bearer /,'');
+  if(!bearer)return send({error:'Administrator sign-in required'},401);
+  const actor=client(publishKey);
+  const {data:{user},error:authError}=await actor.auth.getUser(bearer);
+  if(authError||!user?.email_confirmed_at)return send({error:'Verified administrator required'},401);
+  const org=input?.orgId,student=input?.studentId,confirmEmail=input?.confirmEmail;
+  if(typeof org!=='string'||typeof student!=='string'||typeof confirmEmail!=='string')return send({error:'Invalid student selection'},400);
+  const {data:roles}=await admin.from('memberships').select('user_id').eq('org_id',org).eq('user_id',user.id).eq('member_role','admin').limit(1);
+  if(!roles?.length)return send({error:'Only the MathsGrove organisation administrator may remove accounts'},403);
+  const {data:subject,error:subjectError}=await admin.auth.admin.getUserById(student);
+  if(subjectError||!subject?.user?.email)return send({error:'Student account not found; escalate to administrator review'},409);
+  if(subject.user.id===user.id||subject.user.email.toLowerCase()!==confirmEmail.trim().toLowerCase())return send({error:'Confirmation does not match the selected student'},409);
+  const userDb=createClient(uri,publishKey,{global:{headers:{Authorization:'Bearer '+bearer}},auth:{persistSession:false,autoRefreshToken:false}});
+  const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
+  const entry=(roster?.students||[]).find((r:{student_id:string})=>r.student_id===student);
+  if(rosterError||!entry||entry.status!=='downloaded'||!entry.job_id)return send({error:'The student must first confirm their complete archive download'},409);
+  const {data:exportData,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
+  if(exportError||!exportData)return send({error:'Cannot verify the student archive before removal'},503);
+  // Collect all attached work, including orphan objects belonging to this specific learner prefix.
+  const owned=new Set<string>();
+  for(const file of exportData.uploaded_files||[]){
+   const path=file.storage_path;
+   if(typeof path!=='string'||!path.startsWith(org+'/'+student+'/'))return send({error:'Unsafe file ownership found; removal cancelled'},409);
+   owned.add(path);
+  }
+  async function gather(prefix:string,depth=0):Promise<void>{
+   if(depth>6)throw Error('Student storage structure requires manual review');
+   for(let offset=0;offset<=5000;offset+=100){
+    const {data:objects,error}=await admin.storage.from('student-work').list(prefix,{limit:100,offset});
+    if(error)throw error;
+    const found=objects||[];
+    for(const item of found){
+     const path=prefix+'/'+item.name;
+     if(item.id)owned.add(path);
+     else await gather(path,depth+1);
+    }
+    if(found.length<100)return;
+   }
+   throw Error('Too many student files; manual export required');
+  }
+  try{await gather(org+'/'+student)}catch{return send({error:'Could not safely enumerate all student files. No removal started.'},503)}
+  const {data:job,error:beginError}=await admin.rpc('grove_offboarding_begin_removal',{p_job:entry.job_id});
+  if(beginError||job?.student_id!==student||job?.org_id!==org)return send({error:'Removal permission or download confirmation failed'},409);
+  // Delete only the verified learner's original files, never content bank or other learners' work.
+  const paths=[...owned];
+  for(let i=0;i<paths.length;i+=100){
+   const {error}=await admin.storage.from('student-work').remove(paths.slice(i,i+100));
+   if(error)return send({error:'Storage cleanup failed; specialist review is required before continuing.'},503);
+  }
+  const {error:recordsError}=await admin.rpc('grove_offboarding_remove_records',{p_job:entry.job_id});
+  if(recordsError)return send({error:'Database cleanup could not finish; specialist review required.'},503);
+  const deleted=await admin.auth.admin.deleteUser(student,false);
+  if(deleted.error)return send({error:'Account authentication removal requires manual review.'},503);
+  // A copy was acknowledged by the learner; remove the temporary server ZIP.
+  const {error:zipError}=await admin.storage.from('grove-student-exports').remove([job.archive_path]);
+  if(zipError)return send({error:'Student account removed; temporary archive cleanup needs administrator attention.'},503);
+  const {error:finishError}=await admin.rpc('grove_offboarding_record_completion',{p_job:entry.job_id});
+  if(finishError)return send({error:'Student account removed; final audit update requires review.'},503);
+  return send({ok:true,status:'purged'});
+ }
  if(action==='download'||action==='confirm'){
   const token=input?.token;
   if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test(token))return send({error:'Invalid or expired archive link'},403);
