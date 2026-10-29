@@ -64,6 +64,11 @@ CREATE INDEX IF NOT EXISTS baseline_sessions_student_idx ON private.baseline_ses
 REVOKE ALL ON private.baseline_bank,private.baseline_sessions,private.baseline_items,private.baseline_answers,private.baseline_events FROM PUBLIC,anon,authenticated;
 REVOKE ALL ON ALL SEQUENCES IN SCHEMA private FROM anon,authenticated;
 
+-- A student may update their display name but must not substitute a lower
+-- academic tier on their own after the administrator enrolled them.
+-- Enrolment / programme editor RPCs remain SECURITY DEFINER and still work.
+REVOKE INSERT, UPDATE ON public.student_preferences FROM authenticated;
+
 -- Academic route determined only from server-side enrolled preferences.
 CREATE OR REPLACE FUNCTION private.baseline_route(p_student uuid)
 RETURNS jsonb LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path='' AS $$
