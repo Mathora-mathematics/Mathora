@@ -159,7 +159,7 @@ BEGIN
  END IF;
  RETURN jsonb_build_object(
   'ready',true,'session_id',v_s.id,'qualification',v_s.qualification,'level',v_s.academic_level,
-  'minutes',v_s.minutes,'started_at',v_s.started_at,'ends_at',v_s.ends_at,
+  'minutes',v_s.minutes,'server_time',now(),'started_at',v_s.started_at,'ends_at',v_s.ends_at,
   'status',v_s.status,'score',CASE WHEN v_s.status='active' THEN NULL ELSE v_s.score END,
   'band',v_band,'questions',v_questions,'topics',v_topics,
   'review',v_explained,'integrity',v_flags,
@@ -214,7 +214,7 @@ BEGIN
      FROM jsonb_array_elements(v_item.choices) val
    )x;
   IF v_correct IS NULL OR jsonb_array_length(v_options)<>4 OR
-    (SELECT count(DISTINCT val) FROM jsonb_array_elements_text(v_item.choices) val)<>4
+    (SELECT count(DISTINCT option_text) FROM jsonb_array_elements_text(v_item.choices) AS c(option_text))<>4
   THEN RAISE EXCEPTION 'Unmoderated or invalid baseline item';END IF;
   INSERT INTO private.baseline_items(session_id,position,bank_id,topic,skill,difficulty,prompt,choices,correct_option,explanation)
   VALUES(v_session,v_item.position,v_item.id,v_item.topic,v_item.skill,v_item.difficulty,
@@ -268,6 +268,36 @@ BEGIN
  PERFORM private.baseline_close(p_session);
  RETURN private.baseline_payload(p_session);
 END;$$;
+
+
+-- Authorised partner staff can see a baseline overview for learners in their own organisation.
+-- This summary never reveals unsubmitted answers, full answer keys or raw scratch work.
+CREATE OR REPLACE FUNCTION public.baseline_admin_overview(p_org uuid)
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+DECLARE v_result jsonb;
+BEGIN
+ IF (select auth.uid()) IS NULL OR NOT private.is_staff(p_org)
+ THEN RAISE EXCEPTION 'Staff access required';END IF;
+ SELECT coalesce(jsonb_agg(t.record ORDER BY t.started_at DESC),'[]'::jsonb) INTO v_result
+ FROM(
+  SELECT s.started_at,
+   jsonb_build_object('student_id',s.student_id,'student_name',coalesce(p.display_name,'Student'),
+    'qualification',s.qualification,'level',s.academic_level,'status',s.status,
+    'score',CASE WHEN s.status='active' AND now()<s.ends_at THEN NULL ELSE s.score END,
+    'started_at',s.started_at,'ends_at',s.ends_at,'submitted_count',
+    (SELECT count(*) FROM private.baseline_answers a WHERE a.session_id=s.id),
+    'integrity',jsonb_build_object(
+      'tab_hidden',(SELECT count(*) FROM private.baseline_events e WHERE e.session_id=s.id AND e.kind='tab_hidden'),
+      'fullscreen_exit',(SELECT count(*) FROM private.baseline_events e WHERE e.session_id=s.id AND e.kind='fullscreen_exit')
+    )
+   )record
+  FROM private.baseline_sessions s JOIN public.profiles p ON p.id=s.student_id
+  WHERE s.org_id=p_org ORDER BY s.started_at DESC LIMIT 250
+ )t;
+ RETURN jsonb_build_object('ok',true,'sessions',v_result);
+END;$;
+REVOKE ALL ON FUNCTION public.baseline_admin_overview(uuid) FROM PUBLIC,anon;
+GRANT EXECUTE ON FUNCTION public.baseline_admin_overview(uuid) TO authenticated;
 
 REVOKE ALL ON FUNCTION public.baseline_status(),public.baseline_start(),public.baseline_answer(uuid,integer,text),
  public.baseline_event(uuid,text),public.baseline_finish(uuid) FROM PUBLIC,anon;
