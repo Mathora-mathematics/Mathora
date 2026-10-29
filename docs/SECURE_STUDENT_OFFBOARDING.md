@@ -1,58 +1,54 @@
-# MathsGrove — secure student archive and complete account removal
+# MathsGrove | Manual student archive and safe deletion
 
-**Project:** existing MathsGrove Supabase project, website under `/Mathora/`. **Current phase:** implemented and deployed, but real transactional email delivery has not yet been verified. Do not remove a real student until their download is confirmed and an adult pilot has passed.
+**New workflow (30 October 2026): no transactional email service needed.** The administrator creates a private ZIP of PDF reports and original submissions, downloads it, checks the archive, and may then permanently remove the student. The administrator can send the ZIP by their own secure email method.
 
-## Student lifecycle
+> **Deployment note:** The new Edge Function must report `method: "manual_zip_pdf"` in its health response before the Studio enables these controls. The database migration and website source are committed, but the latest Edge Function deployment has not yet succeeded. The website intentionally disables irreversible actions until the service is confirmed deployed.
 
-1. **Administrator Studio → Students & invitations → Student export & removal.** The enrolled list shows attempt count, uploaded working files, baseline count, scheduled sessions and archive status. Only active users with the organisation's **admin** membership may manage this.
-2. **Email complete student archive.** The server verifies the administrator and the subject's single-student role. It constructs a ZIP with `data.json`, original written questions and responses, submitted assessment attempts, initial diagnostic records, timings, results, released examiner feedback, subscriptions and each uploaded photograph/working file. Any missing upload or size cap error **stops** the email process.
-3. The server stores the ZIP in private Supabase Storage `grove-student-exports` (no anonymous/browser Storage policies), sends the **student's already verified account email** a short-lived link through Resend and records the provider's accepted-message ID. The ZIP is **not** attached to a plain email.
-4. **Student clicks the emailed link** to `export.html#token=...`, downloads the ZIP, checks that it opens and clicks **I have saved my archive**. The 256-bit bearer token travels in the URL fragment and is SHA-256-hashed before lookup. Tokens expire in 72 hours; Storage signed URLs last 90 seconds. The downloaded status records the student's explicit acknowledgement, not proof of reading every page.
-5. Only now does **Permanently remove this student** become available in the admin register. The administrator types the exact registered email and confirms again. The server rechecks admin membership, subject identity, archive confirmation and account-role isolation.
-6. Removal erases the student's uploaded original files, assessment and baseline records, session answers, question-timing evidence, released comments and feedback history, invitations, active subscriptions and student membership, then removes their Supabase Auth user and temporary ZIP archives. Shared academic question banks, organisation and administrator account are not touched. A minimal non-identifying audit record remains.
-7. On a partial storage/Auth failure, the process stops for specialist recovery rather than falsely claiming removal.
+## Administrator steps
 
-## Configure a transactional sender (required before real trial)
+1. Open [MathsGrove Student PDF ZIP & removal](https://mathora-mathematics.github.io/Mathora/studio.html#student-removal). Sign in with an administrator account.
+2. Choose the student, review their paper-attempt, baseline, upload and scheduled-practice counts, and click **Generate & download PDF ZIP**.
+3. The server verifies the administrator is authorised for this student and that the student has exactly one student membership. It creates and stores a private ZIP without changing student data. It returns a short-lived signed download URL and SHA-256 hash.
+4. The Studio fetches the ZIP, checks its SHA-256 hash, and downloads it to the administrator's computer. If the download fails, the export is not confirmed.
+5. **Open the ZIP and inspect its PDFs and original submissions.** Only then click **I saved and checked the ZIP**.
+6. The signed-in administrator acknowledges saving the checked ZIP. The database checks both the correct student and checksum before changing status to **downloaded**.
+7. To delete, click **Permanently remove student**, type the exact registered email, and accept the final warning.
+8. The Edge Function revalidates administrator membership and account isolation, the saved-archive acknowledgement, then removes that learner's original private uploads, academic records, Auth account and private temporary ZIP. The shared question banks and other accounts are not deleted.
+9. The administrator can manually email the ZIP to the student using an appropriately secure channel. Consider password-protecting the ZIP or using a private encrypted file transfer: these records may be sensitive.
 
-The server-side `grove-student-export` Edge Function is deployed with `verify_jwt=false` **only** because student download links authenticate using a cryptographically random token. Administrative `prepare` and `erase` operations independently verify the Supabase JWT and admin database role on every call.
+## ZIP content
 
-- Verify a domain in Resend (https://resend.com/domains) and obtain an API key with email-sending permission.
-- In **Supabase → Edge Functions → Secrets**, add:
-  - `RESEND_API_KEY` — your Resend secret API key
-  - `MATHSGROVE_EXPORT_FROM` — an email address on the verified domain (e.g. `records@your-verified-domain.example`)
-- Do **not** paste API keys, service-role keys or password links into ChatGPT or GitHub. The Edge Function reads the secrets at runtime; it does not expose them in the Pages website.
-- Reload Administrator Studio. The list checks sender configuration. If unavailable, email/export actions stay disabled and existing student records are unchanged.
+- `PDF_Reports/01_Profile_and_Programme.pdf`
+- `PDF_Reports/02_Baseline_Diagnostics.pdf`
+- `PDF_Reports/03_Practice_and_Timing.pdf`
+- `PDF_Reports/04_Papers_and_Answers.pdf`
+- `PDF_Reports/05_Examiner_Reports.pdf`
+- `PDF_Reports/06_Uploaded_Work_Overview.pdf` — supported JPG/PNG images also appear as readable PDF previews
+- `Original_Submissions/` — unchanged uploaded work, including file formats which cannot be rendered as PDFs
+- `Complete_Data.json` — machine-readable portable account records, excluding passwords, private answer-bank keys, and confidential staff-only notes
+- `README.txt`
 
-Resend confirms that the message is **accepted for sending**; final account deletion still requires the student's own archive-download acknowledgement.
+The archive only includes **saved** or uploaded material. Unsaved sketches and work that never reached the server cannot be recovered. The export is not a verified public examination certificate.
 
-## Controlled adult-trial checklist
+## Privacy and reliability
 
-Use only an adult-owned, verified email account that you control:
+No Resend account, sender domain or automatic outbound email is required. The private ZIP stays in Supabase Storage until final deletion, when the temporary file is cleaned up. The administrator must use a secure channel if manually emailing it. The student has not confirmed receipt, because delivery is handled outside MathsGrove.
 
-- [ ] Current GitHub Pages workflow and Edge Function deployments are active
-- [ ] The registered account appears in the roster with correct attempt/upload counts
-- [ ] Choose **Email complete student archive**; the page reports the sender accepted it
-- [ ] Receive the archive email at the verified registered address
-- [ ] Download the ZIP and open `data.json`
-- [ ] Confirm all expected attempts, answers, question prompts, uploaded original photos, reports, baseline outcomes, and practice timing evidence appear; report missing evidence before confirming
-- [ ] Click **I have saved my archive**
-- [ ] Refresh Studio; the student status now reads **Download confirmed**
-- [ ] Select **Permanently remove this student**, type the registered email and confirm
-- [ ] Verify the student is absent from administrator roster, Supabase Auth users, student-scoped database records and `student-work` and `grove-student-exports` file paths
-- [ ] Verify the administrator account, other students and shared question libraries are unchanged
-- [ ] Test another new adult account's baseline activation from scratch
+Student deletion should never be a one-click action. The export must be complete, have a matching checksum, be downloaded, and be explicitly acknowledged. A final typed-email confirmation is also required. Interrupted removals must be reviewed before retrying.
 
-**Do not use the live removal action on the current two trial accounts until the real email and archive download have been checked.**
+If an archive is too large (default 48 MB), a file is missing or cannot be read, a PDF cannot be generated, or the service is unavailable, the workflow **stops without allowing deletion**. Some database backups and operational logs can remain until their documented retention expiry.
 
-## Important boundaries
+## Current technical validation
 
-- A password and stored Auth secret are *not* exported. Downloaded ZIPs do not include material that was never uploaded/saved, such as local scratchpad sketches discarded on refresh.
-- Internal examiner drafts and third-party confidential notes are not included automatically; formal data-subject access requests may require a separate human privacy review.
-- Database backups, incident logs, deleted-account history and external email-provider metadata can remain until their normal documented retention periods. A completed purge is not a promise of instant erasure from all backups.
-- Auth-issued access JWTs are stateless until expiry, although account deletion blocks refresh; student memberships and entitlements are removed as part of the purge.
-- The ZIP contains sensitive student records: save it to a secure device and do not redistribute the link.
-- Supabase Edge and Resend need a real email-provider integration test, including recovery for partial failures, before any minors or paying families are onboarded.
+- SQL migration for manual archive status, checksum, administrator acknowledgement and permissions installed in connected Supabase.
+- Rollback-only test confirmed the guard allows removal *only after* administrator archive confirmation; no real student was removed.
+- Source-level PDF ZIP security and integration checks passed.
+- New Edge Function deployment was blocked by the available integration and has **not** been independently tested in a live browser. The Studio disables the buttons until the server advertises manual ZIP readiness.
 
-## Engineering files
+## Developer files
 
-`supabase/STUDENT_EXPORT_AND_REMOVAL.sql`, `supabase/STUDENT_REMOVAL_AFTER_ARCHIVE.sql`, `supabase/REISSUE_EXPIRED_STUDENT_EXPORT.sql`, `supabase/IMPROVE_STUDENT_ARCHIVE_QUESTION_CONTEXT.sql`, the later export confirmation and PII-clearance migrations recorded in Supabase, `supabase/functions/grove-student-export/index.ts`, `student-offboarding.js`, `export.html`, `student-export-download.js`, `scripts/check-student-export.mjs`.
+`supabase/MANUAL_STUDENT_PDF_ARCHIVE.sql`, `supabase/MANUAL_ARCHIVE_DETAILS.sql`,
+`supabase/functions/grove-student-export/index.ts`,
+`supabase/functions/grove-student-export/archive-pdfs.ts`,
+`student-offboarding.js`, `student-offboarding.css`, `studio.html`,
+`scripts/check-student-export.mjs`, `scripts/check-site.mjs`.
