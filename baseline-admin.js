@@ -7,7 +7,30 @@ export function initBaselineAdmin(db,state){
  let results=[];
  const qualification={GCSE:'GCSE',IGCSE:'IGCSE',A_LEVEL:'A Level',FURTHER_MATHS:'Further Maths',IB_AA:'IB AA',IB_AI:'IB AI',TMUA:'TMUA'};
  const format=(row)=>[qualification[row.qualification]||row.qualification,(row.level||'').toUpperCase()].filter(Boolean).join(' · ');
+ function fillAccessStudents(){
+  const select=$('mg-bl-time-student'),previous=select.value;
+  select.replaceChildren(new Option('Select student',''));
+  for(const st of state.students||[])select.add(new Option(st.name,st.id));
+  if([...select.options].some(x=>x.value===previous))select.value=previous;
+ }
+ async function saveAccess(e){
+  e.preventDefault();const student=$('mg-bl-time-student').value,pct=Number($('mg-bl-time-percent').value);
+  const btn=$('mg-bl-time-save');if(!student)return;
+  if(!['admin','partner'].includes(state.membership?.member_role)){
+   $('mg-bl-time-status').textContent='Only an authorised administrator can change assessment time.';return
+  }
+  btn.disabled=true;
+  try{
+   const {data,error}=await db.rpc('baseline_set_accommodation',{p_student:student,p_extra_percent:pct});
+   if(error||!data?.ok)throw Error(error?.message||'The time setting could not be saved.');
+   $('mg-bl-time-status').textContent=(pct?pct+'% additional time':'Standard time')+' saved for this student. The setting applies to their first sitting.';
+  }catch(error){$('mg-bl-time-status').textContent=error?.message||'Unable to save.'}
+  finally{btn.disabled=false}
+ }
+ $('mg-bl-time-form').addEventListener('submit',saveAccess);
  async function refresh(){
+  fillAccessStudents();
+  if(!['admin','partner'].includes(state.membership?.member_role))$('mg-bl-time-form').querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
   if(!db||!state.membership||!['admin','partner','examiner'].includes(state.membership.member_role))return;
   const {data,error}=await db.rpc('baseline_admin_overview',{p_org:state.membership.org_id});
   if(error){root.replaceChildren(create('p','muted','The baseline register is not yet active. Apply the MathsGrove baseline database upgrade. '+error.message));return}
