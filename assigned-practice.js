@@ -1,6 +1,6 @@
 export function initAssignedPractice(db){
  const $=id=>document.getElementById(id),list=$('mg-auto-list'),cal=$('student-calendar');
- let schedule=null,task=null,pos=1,busy=false,clock=null,lastFocus=Date.now(),drawing=null,lines=new Map();
+ let schedule=null,task=null,pos=1,busy=false,clock=null,lastFocus=Date.now(),clockOffset=0,drawing=null,lines=new Map();
  const set=(id,val)=>{if($(id))$(id).textContent=String(val??'')};
  const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
  const date=()=>{let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
@@ -11,7 +11,9 @@ export function initAssignedPractice(db){
   list.replaceChildren();cal.replaceChildren();
   if(!schedule?.ready){list.append(el('p',schedule?.reason||'Your academic programme is awaiting activation.'));return}
   set('mg-auto-programme','GROVE '+schedule.programme.toUpperCase());
-  const rows=(schedule.assignments||[]).filter(r=>r.due_date>=date()).slice(0,15);
+  const overdue=new Date();overdue.setDate(overdue.getDate()-7);
+  const floor=[overdue.getFullYear(),String(overdue.getMonth()+1).padStart(2,'0'),String(overdue.getDate()).padStart(2,'0')].join('-');
+  const rows=(schedule.assignments||[]).filter(r=>r.due_date>=floor).slice(0,20);
   for(const r of rows){
    const eligible=r.due_date<=date()&&r.mode!=='mock_pending'&&['submitted','expired'].includes(schedule.baseline_status);
    const b=el('button',undefined,'mg-auto-day'+(eligible?' available':'')+(r.status==='completed'?' completed':''));b.type='button';b.disabled=!eligible;
@@ -34,7 +36,7 @@ export function initAssignedPractice(db){
  async function open(row){
   if(busy)return;busy=true;set('mg-auto-caption','Loading your assigned mathematics…');
   try{
-   task=await rpc(row.status==='scheduled'?'grove_task_start':'grove_task_view',{p_task:row.id});pos=1;
+   task=await rpc(row.status==='scheduled'?'grove_task_start':'grove_task_view',{p_task:row.id});clockOffset=task.server_time?new Date(task.server_time).getTime()-Date.now():0;pos=1;
    const done=['completed','expired'].includes(task.status);
    $('mg-practice-workspace').hidden=done;$('mg-practice-report').hidden=!done;
    if(done)report();else{showQuestion();await focus(true);startClock()}
@@ -75,7 +77,7 @@ export function initAssignedPractice(db){
    if(task?.status!=='active')return;
    let seconds=Math.max(0,Math.floor((Date.now()-lastFocus)/1000));
    set('mg-practice-time','Current question visible: '+Math.floor(seconds/60)+'m '+seconds%60+'s');
-   if(task.ends_at){const left=Math.max(0,Math.ceil((new Date(task.ends_at).getTime()-Date.now())/1000));
+   if(task.ends_at){const left=Math.max(0,Math.ceil((new Date(task.ends_at).getTime()-(Date.now()+clockOffset))/1000));
     set('mg-practice-deadline','Timed session: '+Math.floor(left/60)+'m '+left%60+'s left');if(left===0)void finish(true)}
   },1000)
  }
