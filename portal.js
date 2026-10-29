@@ -1,11 +1,12 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
+import {getAccessChoices,preferredSingleChoice} from './access-router.js';
 const $=id=>document.getElementById(id);
 const config=window.MATHSGROVE_CONFIG||{};
 const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(config.url)&&!config.url.includes('YOUR_PROJECT'));
 const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}}):null;
 const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false,mockClock:null,mockSeconds:0,mockAnchor:0,mockFinalizing:false,mockQuestionTimes:{},questionTimer:null,questionActiveId:null,questionEntered:0,questionElapsed:{}};
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
-function show(id){['configure-view','login-view','claim-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
+function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
 function message(id,s,error=false){let e=$(id);e.textContent=s;e.classList.toggle('is-error',error)}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -16,23 +17,98 @@ function isStaff(){return state.member&&['partner','examiner','admin'].includes(
 function isPartner(){return state.member&&['partner','admin'].includes(state.member.member_role)}
 function showPanel(id){document.querySelectorAll('.dash-panel').forEach(e=>e.hidden=e.id!==id+'-panel');document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='papers')renderPaperList();if(id==='progress')renderProgress();if(id==='mocks')void loadAssignedMocks()}
 function initials(name){return (name||'Student').trim().split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()||'').join('')||'MG'}
-async function requestLink(e){e.preventDefault();try{requireReady();const email=$('access-email').value.trim().toLowerCase(),code=$('access-code').value.trim().toUpperCase().replace(/\s/g,'');if(code&&!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))throw Error('If you use a recovery invitation code, enter its complete MG-... value.');if(code)sessionStorage.setItem('mathsgrove_pending_code',code);else sessionStorage.removeItem('mathsgrove_pending_code');$('send-link').disabled=true;const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});if(error)throw error;message('login-message','Check your email for your private sign-in link. If an administrator has enrolled you, your student account activates automatically after verification.')}catch(err){message('login-message',friendlyError(err),true)}finally{$('send-link').disabled=false}}
+async function requestLink(e){e.preventDefault();try{requireReady();const email=$('access-email').value.trim().toLowerCase(),code=$('access-code').value.trim().toUpperCase().replace(/\s/g,'');if(code&&!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))throw Error('If you use a recovery invitation code, enter its complete MG-... value.');if(code)sessionStorage.setItem('mathsgrove_pending_code',code);else sessionStorage.removeItem('mathsgrove_pending_code');$('send-link').disabled=true;const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:new URL('./portal.html',location.href).href}});if(error)throw error;message('login-message','Check your inbox for your private sign-in link. Once verified, MathsGrove will recognise your authorised role and open the appropriate dashboard.')}catch(err){message('login-message',friendlyError(err),true)}finally{$('send-link').disabled=false}}
 async function redeem(code){const {data,error}=await sb.functions.invoke('invitations',{body:{action:'redeem',code:code.trim().toUpperCase()}});if(error)throw Error('Invitation could not be verified. Ensure your code matches the email address you used.');if(!data?.ok)throw Error(data?.error||'Invitation could not be redeemed.');sessionStorage.removeItem('mathsgrove_pending_code');return data}
-async function loadMembership(){let {data,error}=await sb.from('memberships').select('org_id,member_role').eq('user_id',state.user.id).limit(10);if(error)throw error;state.members=data||[];state.member=state.members.find(x=>x.member_role==='student')||state.members[0]||null;return state.member}
-async function boot(){if(!sb){show('configure-view');return}try{const {data:{session},error}=await sb.auth.getSession();if(error)throw error;if(!session?.user){show('login-view');return}state.user=session.user;await loadMembership();if(!state.member){
-  // The administrator issued this invitation to a verified email address.
-  // Database RLS and the claim_my_student_access RPC perform the actual checks.
-  const {data:automatic,error:autoError}=await sb.rpc('claim_my_student_access');
-  if(!autoError&&automatic?.ok)await loadMembership();
-  if(!state.member){
-   const pending=sessionStorage.getItem('mathsgrove_pending_code');
-   if(pending){try{await redeem(pending);await loadMembership()}catch(err){message('claim-message',friendlyError(err),true)}}
+async function loadMembership(){
+ const {data,error}=await sb.from('memberships').select('org_id,member_role').eq('user_id',state.user.id).limit(20);
+ if(error)throw error;
+ state.members=data||[];
+ state.member=state.members.find(x=>x.member_role==='student')||state.members[0]||null;
+ return state.member;
+}
+async function linkedAccess(){
+ // Role data is not supplied by the login form: it comes from verified-email,
+ // account-bound Supabase functions. A missing migration cannot grant access.
+ const claim=await sb.rpc('claim_my_learner_views');
+ if(claim.error)return {learners:[],awaiting:0,error:claim.error};
+ const view=await sb.rpc('get_my_learner_views');
+ if(view.error)return {learners:[],awaiting:0,error:view.error};
+ return {
+  learners:Array.isArray(view.data?.learners)?view.data.learners:[],
+  awaiting:Number(claim.data?.awaiting_student)||0,
+  error:null
+ };
+}
+async function enterAuthorisedSpace(choice){
+ if(!choice)return;
+ if(choice.kind==='studio'){location.replace('./studio.html');return}
+ if(choice.kind==='family'){location.replace('./family.html');return}
+ if(choice.kind==='student'){
+  state.member=choice.member;
+  await dashboard();
+  return;
+ }
+ throw Error('Invalid dashboard choice.');
+}
+function displayRoleChoices(choices){
+ const root=$('role-options');root.replaceChildren();
+ for(const choice of choices){
+  const button=document.createElement('button');button.type='button';button.className='mg-role-option';
+  const title=document.createElement('strong');title.textContent=choice.label;
+  const sub=document.createElement('span');sub.textContent=choice.description;
+  const hint=document.createElement('small');hint.textContent='CONTINUE TO PRIVATE DASHBOARD ↗';
+  button.append(title,sub,hint);
+  button.addEventListener('click',async()=>{
+   root.querySelectorAll('button').forEach(x=>x.disabled=true);
+   try{await enterAuthorisedSpace(choice)}
+   catch(err){message('role-message',friendlyError(err),true);root.querySelectorAll('button').forEach(x=>x.disabled=false)}
+  });
+  root.append(button);
+ }
+ show('role-view');
+}
+async function boot(){
+ if(!sb){show('configure-view');return}
+ try{
+  const {data:{session},error}=await sb.auth.getSession();
+  if(error)throw error;
+  if(!session?.user){show('login-view');return}
+  const {data:verified,error:verificationError}=await sb.auth.getUser();
+  if(verificationError||!verified?.user?.email_confirmed_at){
+   show('login-view');
+   message('login-message','Please verify the secure link sent to your email address before continuing.',true);
+   return;
   }
-  if(!state.member){
-   const {data:linked,error:linkedError}=await sb.rpc('claim_my_learner_views');
-   if(!linkedError&&(linked?.linked>0||linked?.awaiting_student>0)){location.replace('./family.html');return}
+  state.user=verified.user;
+  await loadMembership();
+  if(!state.members.length){
+   // The student invitation, not email text in the form, authorises account creation.
+   const {data:automatic,error:autoError}=await sb.rpc('claim_my_student_access');
+   if(!autoError&&automatic?.ok)await loadMembership();
+   if(!state.members.length){
+    const pending=sessionStorage.getItem('mathsgrove_pending_code');
+    if(pending){
+     try{await redeem(pending);await loadMembership()}
+     catch(err){message('claim-message',friendlyError(err),true)}
+    }
+   }
   }
- }if(!state.member){show('claim-view');return}await dashboard()}catch(err){show('login-view');message('login-message',friendlyError(err),true)}}
+  const linked=await linkedAccess();
+  const choices=getAccessChoices(state.members,linked.learners,linked.awaiting);
+  if(choices.length>1){displayRoleChoices(choices);return}
+  const sole=preferredSingleChoice(choices);
+  if(sole){await enterAuthorisedSpace(sole);return}
+  show('claim-view');
+  if(linked.error){
+   message('claim-message','Your email is verified, but the role-access service could not be checked. The administrator may need to activate the Supabase access upgrade. No account access has been granted.',true);
+  } else {
+   message('claim-message','Your email is verified, but it is not currently attached to a MathsGrove dashboard. Ask the administrator to confirm your enrolment or linked access.');
+  }
+ }catch(err){
+  show('login-view');
+  message('login-message',friendlyError(err),true);
+ }
+}
 async function dashboard(){if(isStaff()){location.replace('./studio.html');return}const [p,org,prof]=await Promise.all([sb.from('profiles').select('id,display_name').eq('id',state.user.id).maybeSingle(),sb.from('organisations').select('id,name').eq('id',state.member.org_id).maybeSingle(),sb.from('student_preferences').select('qualification,exam_board,tier').eq('student_id',state.user.id).maybeSingle()]);if(p.error||org.error||prof.error)throw(p.error||org.error||prof.error);state.profile=p.data||{display_name:'Student'};state.preference=prof.data||null;$('student-name').value=state.profile.display_name==='Student'?'':(state.profile.display_name||'');text('organisation-label',org.data?.name?.toUpperCase()||'YOUR PROGRAMME');text('sidebar-name',state.profile.display_name||'Student');text('sidebar-role',state.member.member_role.toUpperCase());text('member-initials',initials(state.profile.display_name));text('welcome-text','Welcome'+(state.profile.display_name?' back, '+state.profile.display_name.split(' ')[0]:'')+'.');text('membership-pill',state.member.member_role==='student'?'Student access':'Organisation team');$('pathway-form').hidden=isStaff();$('begin-paper').disabled=isStaff();if(state.preference){$('qualification-select').value=state.preference.qualification||'';$('exam-board').value=state.preference.exam_board||'';$('exam-tier').value=state.preference.tier||''}show('dashboard-view');await refresh();showPanel('overview')}
 async function refresh(){if(!state.member)return;let query=sb.from('attempts').select('*').eq('org_id',state.member.org_id).order('started_at',{ascending:false}).limit(80);if(!isStaff())query=query.eq('student_id',state.user.id);let {data,error}=await query;if(error)throw error;state.attempts=data||[];text('metric-progress',state.attempts.filter(a=>a.status==='draft').length);text('metric-submitted',state.attempts.filter(a=>a.status==='submitted').length);text('metric-marked',state.attempts.filter(a=>a.status==='marked').length);const q=state.preference?.qualification;text('paper-availability',q?('Your selected pathway: '+quals[q]+'. Only original pilot questions are currently available; board-specific past papers are not yet provided.'): 'Ask your administrator to assign an exam pathway before building a paper.');if(q)await loadTopicOptions(q);await loadProgrammeAndEvidence()}
 
@@ -117,7 +193,7 @@ async function renderEvidence(){
 
 $('invite-login-form').addEventListener('submit',requestLink);
 $('existing-member').addEventListener('click',()=>{$('access-code').value='';message('login-message','Enter your registered email to receive a secure sign-in link.')});
-$('claim-form').addEventListener('submit',async e=>{e.preventDefault();try{await redeem($('claim-code').value);await loadMembership();if(!state.member)throw Error('Enrolment pending.');message('claim-message','Invitation accepted.');await dashboard()}catch(err){message('claim-message',friendlyError(err),true)}});
+$('claim-form').addEventListener('submit',async e=>{e.preventDefault();try{await redeem($('claim-code').value);await loadMembership();if(!state.member)throw Error('Enrolment pending.');message('claim-message','Invitation accepted.');await boot()}catch(err){message('claim-message',friendlyError(err),true)}});
 $('sign-out').addEventListener('click',async()=>{await sb?.auth.signOut();sessionStorage.removeItem('mathsgrove_pending_code');location.href='./portal.html'});
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.view)));
 $('pathway-form').addEventListener('submit',async e=>{
