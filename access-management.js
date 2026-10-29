@@ -69,7 +69,7 @@ export function initAccessManagement(db,state){
   $('mg-linked-form').addEventListener('submit',save);
   $('mg-linked-copy').addEventListener('click',async()=>{
     const student=email($('mg-linked-email').value),family=email($('mg-linked-parent').value),tutor=email($('mg-linked-tutor').value);
-    const text='MathsGrove private progress access\n\nYour student is enrolled in Grove Exam. The nominated parent and tutor can open '+new URL('./portal.html',location.href).href+' and enter their own registered email to receive a secure sign-in link. No student password or access code is shared.\n\nStudent email: '+student+'\nParent: '+(family||'Not nominated')+'\nTutor: '+(tutor||'Not nominated')+'\n\nThis invitation is only valid for nominated email addresses and access is controlled by MathsGrove.';
+    const text='MathsGrove private progress access\n\nYour student is enrolled in Grove Exam. The nominated parent and tutor can open '+new URL('./portal.html',location.href).href+' and enter their own registered email to receive a one-time code. They enter that code on MathsGrove to open their own authorised dashboard. No student password is shared.\n\nStudent email: '+student+'\nParent: '+(family||'Not nominated')+'\nTutor: '+(tutor||'Not nominated')+'\n\nThis invitation is only valid for nominated email addresses and access is controlled by MathsGrove.';
     try{await navigator.clipboard.writeText(text);status('Guidance copied. Share privately with each intended recipient.')}catch{status('Copy unavailable. Please share the MathsGrove sign-in page privately.',true)}
   });
   return {refresh,syncTier,fillStudents};
