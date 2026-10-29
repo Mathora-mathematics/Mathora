@@ -90,17 +90,17 @@ GRANT EXECUTE ON FUNCTION public.grove_offboarding_prepare(uuid,uuid) TO authent
 -- Passwords, user metadata, invitation codes and other students' records are excluded.
 CREATE OR REPLACE FUNCTION public.grove_offboarding_export(p_org uuid,p_student uuid)
 RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
-DECLARE a uuid[];b uuid[];g uuid[];email text;
+DECLARE a uuid[];b uuid[];g uuid[];v_email text;
 BEGIN
  IF NOT EXISTS(SELECT 1 FROM private.grove_offboarding_jobs
    WHERE org_id=p_org AND student_id=p_student AND status IN('requested','preparing','emailed','downloaded'))
  THEN RAISE EXCEPTION 'No authorised export request';END IF;
- SELECT email INTO email FROM auth.users WHERE id=p_student;
+ SELECT u.email INTO v_email FROM auth.users u WHERE u.id=p_student;
  SELECT coalesce(array_agg(id),ARRAY[]::uuid[]) INTO a FROM public.attempts WHERE student_id=p_student AND org_id=p_org;
  SELECT coalesce(array_agg(id),ARRAY[]::uuid[]) INTO b FROM private.baseline_sessions WHERE student_id=p_student AND org_id=p_org;
  SELECT coalesce(array_agg(id),ARRAY[]::uuid[]) INTO g FROM private.grove_tasks WHERE student_id=p_student AND org_id=p_org;
  RETURN jsonb_build_object(
-  'format','MathsGrove learner data export v1','exported_at',now(),'student_email',email,
+  'format','MathsGrove learner data export v1','exported_at',now(),'student_email',v_email,
   'student_profile',(SELECT to_jsonb(t) FROM public.profiles t WHERE id=p_student),
   'academic_preferences',(SELECT to_jsonb(t) FROM public.student_preferences t WHERE student_id=p_student),
   'academic_settings',(SELECT to_jsonb(t)-'staff_notes' FROM public.student_academic_settings t WHERE student_id=p_student AND org_id=p_org),
