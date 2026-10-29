@@ -210,8 +210,8 @@ BEGIN
   SELECT jsonb_agg(jsonb_build_object('id',chr(64+x.n),'text',x.choice) ORDER BY x.n),
    max(CASE WHEN x.choice=v_item.correct_text THEN chr(64+x.n) ELSE NULL END)
    INTO v_options,v_correct FROM(
-     SELECT val #>> '{}' choice,row_number() OVER(ORDER BY random()) n
-     FROM jsonb_array_elements(v_item.choices) val
+     SELECT c.choice,row_number() OVER(ORDER BY random()) n
+     FROM jsonb_array_elements_text(v_item.choices) AS c(choice)
    )x;
   IF v_correct IS NULL OR jsonb_array_length(v_options)<>4 OR
     (SELECT count(DISTINCT option_text) FROM jsonb_array_elements_text(v_item.choices) AS c(option_text))<>4
@@ -269,6 +269,47 @@ BEGIN
  RETURN private.baseline_payload(p_session);
 END;$$;
 
+
+-- Staff only: released diagnostic summary and topic evidence, without pre-release answer keys.
+CREATE OR REPLACE FUNCTION public.baseline_staff_report(p_student uuid)
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+DECLARE v_s private.baseline_sessions%ROWTYPE;v_topics jsonb;v_flags jsonb;v_band text;
+BEGIN
+ SELECT * INTO v_s FROM private.baseline_sessions
+ WHERE student_id=p_student ORDER BY started_at DESC LIMIT 1;
+ IF v_s.id IS NULL THEN RETURN jsonb_build_object('ready',false,'reason','No baseline has been started for this learner.');END IF;
+ IF (select auth.uid()) IS NULL OR NOT private.is_staff(v_s.org_id) THEN RAISE EXCEPTION 'Staff access required';END IF;
+ IF v_s.status='active' AND now()>=v_s.ends_at THEN
+   PERFORM private.baseline_close(v_s.id);
+   SELECT * INTO v_s FROM private.baseline_sessions WHERE id=v_s.id;
+ END IF;
+ IF v_s.status='active' THEN
+   RETURN jsonb_build_object('ready',true,'status','active','qualification',v_s.qualification,
+     'level',v_s.academic_level,'submitted_count',
+     (SELECT count(*) FROM private.baseline_answers WHERE session_id=v_s.id),'minutes',v_s.minutes);
+ END IF;
+ SELECT coalesce(jsonb_agg(t.record ORDER BY t.topic),'[]'::jsonb) INTO v_topics FROM(
+  SELECT i.topic,jsonb_build_object(
+   'topic',i.topic,'correct',count(*) FILTER(WHERE a.choice=i.correct_option),
+   'total',count(*),'priority_skill',min(i.skill) FILTER(WHERE a.choice IS NULL OR a.choice<>i.correct_option)
+  )record FROM private.baseline_items i
+  LEFT JOIN private.baseline_answers a ON a.session_id=i.session_id AND a.position=i.position
+  WHERE i.session_id=v_s.id GROUP BY i.topic
+ )t;
+ SELECT jsonb_build_object(
+  'tab_hidden',count(*) FILTER(WHERE kind='tab_hidden'),
+  'fullscreen_exit',count(*) FILTER(WHERE kind='fullscreen_exit'),
+  'window_blur',count(*) FILTER(WHERE kind='window_blur')
+ ) INTO v_flags FROM private.baseline_events WHERE session_id=v_s.id;
+ v_band:=CASE WHEN v_s.score<=6 THEN 'Foundations to strengthen' WHEN v_s.score<=12 THEN 'Developing understanding'
+   WHEN v_s.score<=16 THEN 'Secure starting point' ELSE 'Strong initial performance' END;
+ RETURN jsonb_build_object('ready',true,'status',v_s.status,'qualification',v_s.qualification,
+  'level',v_s.academic_level,'score',v_s.score,'total',20,
+  'band',v_band,'topics',v_topics,'integrity',v_flags,'submitted_at',v_s.closed_at,
+  'disclaimer','This short multiple-choice diagnostic is not a predicted grade or evidence of independently verified work.');
+END;$;
+REVOKE ALL ON FUNCTION public.baseline_staff_report(uuid) FROM PUBLIC,anon;
+GRANT EXECUTE ON FUNCTION public.baseline_staff_report(uuid) TO authenticated;
 
 -- Authorised partner staff can see a baseline overview for learners in their own organisation.
 -- This summary never reveals unsubmitted answers, full answer keys or raw scratch work.
