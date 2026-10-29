@@ -17,7 +17,7 @@ const required=[
 ['Admin registered insights',schedule.includes('public.grove_admin_schedule')&&schedule.includes('seconds_visible')],
 ['Admin enrolment trigger',trigger.includes('CREATE TRIGGER grove_assign_on_entitlement')&&trigger.includes('CREATE TRIGGER grove_assign_on_academic_route')],
 ['Permission scope',schedule.includes("v_active->>'programme'<>v.programme")&&schedule.includes('private.is_staff(p_org)')],
-['Private RLS',schedule.includes('ALTER TABLE private.grove_practice_bank ENABLE ROW LEVEL SECURITY')&&schedule.includes('REVOKE ALL ON private.grove_task_answers')],
+['Private RLS',schedule.includes('ALTER TABLE private.grove_practice_bank ENABLE ROW LEVEL SECURITY')&&schedule.includes('private.grove_task_answers,private.grove_question_time FROM PUBLIC,anon,authenticated')],
 ['No leaked correct choices',!student.includes('correct_option')&&!student.includes('correct_text')],
 ['No old selectable builder in UI',portal.includes('<div class="card paper-builder" hidden')],
 ['Student assets published',workflow.includes('cp assigned-practice.js assigned-practice.css site/')],
