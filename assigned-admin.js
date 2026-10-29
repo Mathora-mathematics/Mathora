@@ -32,6 +32,22 @@ export function initAssignedAdmin(db,state){
     const gaps=arr.filter(q=>!q.correct).slice(0,3);
     if(gaps.length)detail.append(el('p','Suggested teaching rechecks: '+gaps.map(q=>q.skill).join('; ')+'. Ask for full written working on a fresh question.'));
     detail.append(el('p','Time signals are indicative only; idle time, assistive tools and connectivity may distort them.'));
+    const label=el('label','Your examiner feedback · released to the learner');
+    const input=el('textarea');input.value=r.teacher_feedback||'';
+    input.maxLength=2500;input.rows=3;input.placeholder='A strength, one or two specific priorities, and the next independent practice step…';
+    input.setAttribute('aria-label','Released examiner feedback for '+(r.student_name||'learner'));
+    const save=el('button','Save and release feedback ↗');save.type='button';
+    const feedbackStatus=el('p',r.teacher_feedback?'Previously released feedback is loaded.':'Feedback has not yet been released.');
+    save.addEventListener('click',async()=>{
+     save.disabled=true;feedbackStatus.textContent='Saving feedback…';
+     try{
+      const {data,error}=await db.rpc('grove_staff_save_feedback',{p_task:r.task_id,p_feedback:input.value.trim()});
+      if(error||!data?.ok)throw Error(error?.message||'Feedback could not be saved.');
+      feedbackStatus.textContent='Feedback saved and released. The learner will see it in their session report.';
+     }catch(error){feedbackStatus.textContent=error.message||'Please try again.'}
+     finally{save.disabled=false}
+    });
+    detail.append(label,input,save,feedbackStatus);
     wrap.append(name,detail)
    }else{wrap.append(name,el('small',r.status==='scheduled'?'Will open automatically on its date.':(r.status==='active'?'Timed and saved in progress.':'Requires an approved mock.')))}
    list.append(wrap);
