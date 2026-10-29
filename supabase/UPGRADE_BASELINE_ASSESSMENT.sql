@@ -77,6 +77,25 @@ CREATE TABLE IF NOT EXISTS private.baseline_accommodations(
 );
 REVOKE ALL ON private.baseline_accommodations FROM PUBLIC,anon,authenticated;
 
+CREATE OR REPLACE FUNCTION public.baseline_set_accommodation(p_student uuid,p_extra_percent integer)
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+DECLARE v_org uuid;
+BEGIN
+ IF (select auth.uid()) IS NULL OR p_extra_percent NOT IN (0,25,50,100)
+ THEN RAISE EXCEPTION 'Invalid access time setting';END IF;
+ SELECT org_id INTO v_org FROM public.memberships WHERE user_id=p_student AND member_role='student' LIMIT 1;
+ IF v_org IS NULL OR NOT private.is_partner(v_org) THEN RAISE EXCEPTION 'Administrator permission required';END IF;
+ IF EXISTS(SELECT 1 FROM private.baseline_sessions WHERE student_id=p_student)
+ THEN RAISE EXCEPTION 'The baseline already started: contact the academic lead';END IF;
+ INSERT INTO private.baseline_accommodations(student_id,extra_time_percent,updated_by)
+ VALUES(p_student,p_extra_percent,(select auth.uid()))
+ ON CONFLICT(student_id) DO UPDATE SET
+ extra_time_percent=excluded.extra_time_percent,updated_by=excluded.updated_by,updated_at=now();
+ RETURN jsonb_build_object('ok',true,'extra_time_percent',p_extra_percent);
+END;$;
+REVOKE ALL ON FUNCTION public.baseline_set_accommodation(uuid,integer) FROM PUBLIC,anon;
+GRANT EXECUTE ON FUNCTION public.baseline_set_accommodation(uuid,integer) TO authenticated;
+
 -- Academic route determined only from server-side enrolled preferences.
 CREATE OR REPLACE FUNCTION private.baseline_route(p_student uuid)
 RETURNS jsonb LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path='' AS $$
