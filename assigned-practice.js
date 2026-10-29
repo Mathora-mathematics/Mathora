@@ -1,6 +1,6 @@
 export function initAssignedPractice(db){
  const $=id=>document.getElementById(id),list=$('mg-auto-list'),cal=$('student-calendar');
- let schedule=null,task=null,pos=1,busy=false,clock=null,lastFocus=Date.now(),clockOffset=0,drawing=null,lines=new Map();
+ let schedule=null,task=null,pos=1,busy=false,clock=null,lastFocus=Date.now(),visibleBase=0,clockOffset=0,drawing=null,lines=new Map();
  const set=(id,val)=>{if($(id))$(id).textContent=String(val??'')};
  const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
  const date=()=>{let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
@@ -30,13 +30,18 @@ export function initAssignedPractice(db){
  }
  async function focus(visible){
   if(task?.status!=='active')return;
-  try{await rpc('grove_task_focus',{p_task:task.task_id,p_position:pos,p_visible:visible})}catch{}
+  try{
+   const data=await rpc('grove_task_focus',{p_task:task.task_id,p_position:pos,p_visible:visible});
+   if(data?.ok&&Number.isFinite(Number(data.seconds_visible))){
+    visibleBase=Number(data.seconds_visible);
+   }
+  }catch{}
   if(visible)lastFocus=Date.now()
  }
  async function open(row){
   if(busy)return;busy=true;set('mg-auto-caption','Loading your assigned mathematics…');
   try{
-   task=await rpc(row.status==='scheduled'?'grove_task_start':'grove_task_view',{p_task:row.id});clockOffset=task.server_time?new Date(task.server_time).getTime()-Date.now():0;pos=1;
+   task=await rpc(row.status==='scheduled'?'grove_task_start':'grove_task_view',{p_task:row.id});clockOffset=task.server_time?new Date(task.server_time).getTime()-Date.now():0;pos=1;visibleBase=0;
    const done=['completed','expired'].includes(task.status);
    $('mg-practice-workspace').hidden=done;$('mg-practice-report').hidden=!done;
    if(done)report();else{showQuestion();await focus(true);startClock()}
@@ -77,7 +82,7 @@ export function initAssignedPractice(db){
   if(clock)clearInterval(clock);
   clock=setInterval(()=>{
    if(task?.status!=='active')return;
-   let seconds=Math.max(0,Math.floor((Date.now()-lastFocus)/1000));
+   let seconds=visibleBase+(document.hidden?0:Math.max(0,Math.floor((Date.now()-lastFocus)/1000)));
    set('mg-practice-time','Current question visible: '+Math.floor(seconds/60)+'m '+seconds%60+'s');
    if(task.ends_at){const left=Math.max(0,Math.ceil((new Date(task.ends_at).getTime()-(Date.now()+clockOffset))/1000));
     set('mg-practice-deadline','Timed session: '+Math.floor(left/60)+'m '+left%60+'s left');if(left===0)void finish(true)}
