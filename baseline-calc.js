@@ -1,7 +1,7 @@
 /* MathsGrove on-page calculator. No eval, Function, network, or data sharing.
    Returns a finite number or throws a clear validation error. */
 export function evaluateMath(input){
- const expression=String(input??'').trim().replaceAll('×','*').replaceAll('÷','/').replaceAll('−','-');
+ const expression=String(input??'').trim().replace(/\s+/g,'').replaceAll('×','*').replaceAll('÷','/').replaceAll('−','-');
  if(!expression||expression.length>80)throw Error('Enter a valid expression (up to 80 characters).');
  const stripped=expression.replace(/(?:\d+(?:\.\d+)?|\.\d+|[+*/^()√-])/g,'');
  if(stripped)throw Error('Only numbers and supported calculator operators can be used.');
