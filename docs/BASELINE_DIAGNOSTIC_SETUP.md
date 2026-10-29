@@ -35,12 +35,12 @@ These are **independent MathsGrove diagnostics**, not official exam papers or of
 
 ## Installation (SQL Editor, existing Supabase project only)
 1. Back up production data. Verify the original platform schema, `supabase/UPGRADE_MATHSGROVE_ADMIN.sql` and `supabase/UPGRADE_EMAIL_FAMILY_ACCESS.sql` have been applied in order.
-2. Carefully review and run `supabase/UPGRADE_BASELINE_ASSESSMENT.sql` (one transaction). It creates isolated private tables and server-only RPCs. Browser/public roles receive **no direct access** to marking keys or student-response tables.
+2. **Already completed in the connected MathsGrove project.** Do not rerun the older all-in-one SQL upgrade on that existing project. If targeting a different project, inspect its schema and migration history first. Browser/public roles receive **no direct access** to marking keys or student-response tables.
 3. For **development only**, optionally load the three source-controlled seed sets in order:
    - `supabase/SEED_BASELINE_PILOT_KS4.sql`
    - `supabase/SEED_BASELINE_PILOT_ALEVEL_IBAA.sql`
    - `supabase/SEED_BASELINE_PILOT_SPECIALIST.sql`
-   Each inserts 80 rows (four 20-question routes), for 240 route-specific pilot records. A baseline only becomes startable when all 20 active items for the assigned route exist.
+   Each inserts 80 rows (four 20-question routes), for 240 route-specific pilot records. A baseline only becomes startable when all 20 active items for the assigned route exist. The connected production bank has **zero** active items; private bank items default to inactive to prevent premature use.
 4. **Do not use these publicly committed keyed pilot seeds as high-integrity, confidential or professionally invigilated assessment material.** Their correct answers can be recovered from Git history by anyone. Before onboarding live children, independently moderate the maths and distractors, commission and privately upload rotated unseen items, and keep future keyed question banks **outside the public GitHub repository**. Randomising answer order is not sufficient to make publicly visible questions secure.
 5. Confirm email sign-in, Supabase Auth, profile/membership RLS and storage policies. The baseline does not create accounts or bypass verified-email login.
 6. In the administrator Studio, assign a qualified route and full academic level. Before the first sitting, staff may set approved additional time (0%, 25%, 50%, 100%) in the baseline register. This is calculated into the **server deadline**, without storing a reason for the arrangement. Once a sitting starts, changes require individual academic review.
