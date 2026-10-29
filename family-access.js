@@ -56,6 +56,27 @@ function render(){
  $('fa-tutor-only').hidden=parent;
  const feedback=$('fa-feedback');feedback.replaceChildren();
  if(!parent){if(!p.teaching_feedback?.length)feedback.append(element('p','fa-fine','No examiner comments have been released yet.'));for(const x of p.teaching_feedback||[]){const item=element('div','fa-guidance');item.append(element('strong','',(x.topic||'Mathematics')+' · '+x.marks+' / '+x.maximum),element('p','',x.feedback||'No explanatory feedback entered.'));feedback.append(item)}}
+ const baselineRoot=$('fa-baseline-summary');baselineRoot.replaceChildren();
+ const baseline=p.baseline;
+ if(!baseline||baseline.status==='not_started'){
+   baselineRoot.append(element('p','fa-fine','The learner has not yet completed their first 20-question mathematics baseline. The summary will appear when a sitting is submitted.'));
+ }else if(baseline.status==='in_progress'){
+   baselineRoot.append(element('p','fa-fine','The learner is currently completing their baseline. Results remain private until the assessment closes.'));
+ }else if(baseline.status==='completed'){
+   const score=element('div','fa-baseline-score'),value=element('strong','',baseline.score+' / 20'),
+   band=element('span','',baseline.band||'Initial academic snapshot');score.append(value,band);baselineRoot.append(score);
+   baselineRoot.append(element('h3','','Mathematics topics sampled'));
+   const topics=Array.isArray(baseline.topics)?baseline.topics:[];
+   for(const t of topics){
+     const row=element('div','fa-baseline-row');row.append(element('strong','',t.topic),element('span','',t.correct+' / '+t.total));baselineRoot.append(row)
+   }
+   const gaps=topics.filter(t=>t.correct<t.total).sort((a,b)=>a.correct/a.total-b.correct/b.total).slice(0,3);
+   const advice=parent
+    ? 'A helpful next step is to ask '+p.student_name+' to explain how they checked a difficult answer. Celebrate corrections and revisit '+(gaps.map(x=>x.topic).join(', ')||'unfamiliar mathematics')+' without pressure.'
+    : 'Suggested targeted teaching: '+(gaps.map(x=>x.teaching_focus||x.topic).join('; ')||'introduce unfamiliar, deeper reasoning tasks')+'. Use a fresh question to confirm transfer rather than treating one multiple-choice result as full mastery.';
+   baselineRoot.append(element('p','fa-baseline-advice',advice));
+   baselineRoot.append(element('p','fa-fine',baseline.disclaimer||'This is diagnostic topic evidence, not an official grade or prediction.'));
+ }else baselineRoot.append(element('p','fa-fine','No released baseline evidence is available yet.'));
  set('fa-role-notice',parent?'Parent access is read-only: released scores and useful academic summaries only. No private tutor notes, student handwriting or draft answers.':'Assigned tutors may view released question-level examiner comments for this specific learner. This does not grant access to unmarked work, identity management, downloads or administrative functions.');
  view('fa-dashboard');
 }
@@ -73,6 +94,15 @@ async function access(){
   const result=await sb.rpc('get_my_learner_views');
   if(result.error)throw result.error;
   records=Array.isArray(result.data?.learners)?result.data.learners:[];
+  if(records.length){
+   await Promise.all(records.map(async learner=>{
+    try{
+     const {data,error}=await sb.rpc('baseline_family_report',{p_student:learner.student_id});
+     if(!error)learner.baseline=data;
+    }catch{}
+   }))
+  }
+
   if(!records.length){
     view('fa-pending');
     set('fa-pending-copy',claim.data?.awaiting_student>0?'Your invitation is confirmed, but the student has not yet activated their Grove Exam account. Please return after the student signs in.':'Your email is verified, but no active Grove Exam learner is linked to this account. Ask the administrator to check the nominated email and current programme.');
