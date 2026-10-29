@@ -346,6 +346,53 @@ END;$;
 REVOKE ALL ON FUNCTION public.baseline_staff_report(uuid) FROM PUBLIC,anon;
 GRANT EXECUTE ON FUNCTION public.baseline_staff_report(uuid) TO authenticated;
 
+-- Grove Exam supporters may read only this learner's released diagnostic summary.
+-- Verified recipient / invitation / tier and organisation are rechecked every time.
+CREATE OR REPLACE FUNCTION public.baseline_family_report(p_student uuid)
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+DECLARE v_viewer uuid:=(select auth.uid());v_role text;v_s private.baseline_sessions%ROWTYPE;
+ v_topics jsonb;v_band text;
+BEGIN
+ IF v_viewer IS NULL THEN RAISE EXCEPTION 'Sign-in required';END IF;
+ SELECT l.view_role INTO v_role FROM public.learner_view_links l
+ JOIN public.learner_view_invitations i ON i.id=l.invitation_id
+ JOIN public.student_entitlements e ON e.student_id=l.student_id AND e.org_id=l.org_id
+ JOIN public.memberships m ON m.user_id=l.student_id AND m.org_id=l.org_id AND m.member_role='student'
+ JOIN auth.users u ON u.id=v_viewer AND u.email_confirmed_at IS NOT NULL
+ JOIN auth.users student_auth ON student_auth.id=l.student_id
+ WHERE l.student_id=p_student AND l.viewer_id=v_viewer AND l.active
+ AND i.revoked_at IS NULL AND i.viewer_email=lower(u.email)
+ AND i.student_email=lower(student_auth.email) AND i.view_role=l.view_role
+ AND e.tier='exam' AND e.starts_at<=now() AND (e.ends_at IS NULL OR e.ends_at>now())
+ LIMIT 1;
+ IF v_role IS NULL THEN RAISE EXCEPTION 'No authorised active Grove Exam learner access';END IF;
+ SELECT * INTO v_s FROM private.baseline_sessions WHERE student_id=p_student ORDER BY started_at DESC LIMIT 1;
+ IF v_s.id IS NULL THEN RETURN jsonb_build_object('status','not_started','role',v_role);END IF;
+ IF v_s.status='active' AND now()>=v_s.ends_at THEN
+  PERFORM private.baseline_close(v_s.id);
+  SELECT * INTO v_s FROM private.baseline_sessions WHERE id=v_s.id;
+ END IF;
+ IF v_s.status='active' THEN
+  RETURN jsonb_build_object('status','in_progress','role',v_role,'qualification',v_s.qualification,'level',v_s.academic_level);
+ END IF;
+ SELECT coalesce(jsonb_agg(t.result ORDER BY t.topic),'[]'::jsonb) INTO v_topics FROM(
+  SELECT i.topic,
+   jsonb_build_object('topic',i.topic,'correct',count(*) FILTER(WHERE a.choice=i.correct_option),
+    'total',count(*),'teaching_focus',
+    CASE WHEN v_role='tutor' THEN min(i.skill) FILTER(WHERE a.choice IS NULL OR a.choice<>i.correct_option) ELSE NULL END) result
+  FROM private.baseline_items i LEFT JOIN private.baseline_answers a
+  ON a.session_id=i.session_id AND a.position=i.position
+  WHERE i.session_id=v_s.id GROUP BY i.topic
+ )t;
+ v_band:=CASE WHEN v_s.score<=6 THEN 'Foundations to strengthen' WHEN v_s.score<=12 THEN 'Developing understanding'
+  WHEN v_s.score<=16 THEN 'Secure starting point' ELSE 'Strong initial performance' END;
+ RETURN jsonb_build_object('status','completed','role',v_role,'score',v_s.score,'total',20,
+  'qualification',v_s.qualification,'level',v_s.academic_level,'band',v_band,'topics',v_topics,
+  'disclaimer','This 20-question diagnostic describes initial topic evidence, not an official grade or prediction.');
+END;$;
+REVOKE ALL ON FUNCTION public.baseline_family_report(uuid) FROM PUBLIC,anon;
+GRANT EXECUTE ON FUNCTION public.baseline_family_report(uuid) TO authenticated;
+
 -- Authorised partner staff can see a baseline overview for learners in their own organisation.
 -- This summary never reveals unsubmitted answers, full answer keys or raw scratch work.
 CREATE OR REPLACE FUNCTION public.baseline_admin_overview(p_org uuid)
