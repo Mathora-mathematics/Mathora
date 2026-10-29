@@ -49,6 +49,7 @@ jobs:
           mkdir -p site/content/programmes
           cp content/programmes/service-tiers.json content/programmes/draft-questions.json content/programmes/practice-gcse-v2.json content/programmes/practice-igcse-v2.json content/programmes/practice-foundation-core-v2.json site/content/programmes/
           cp content/programmes/extra-practice-120.json content/programmes/exam-reasoning-drafts-12.json site/content/programmes/
+          cp content/programmes/original-question-bank-144.json site/content/programmes/
           mkdir -p site/content/GCSE site/content/IGCSE
           cp content/GCSE/draft-exemplars.json site/content/GCSE/
           cp content/IGCSE/draft-exemplars.json site/content/IGCSE/
