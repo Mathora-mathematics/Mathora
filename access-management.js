@@ -62,7 +62,7 @@ export function initAccessManagement(db,state){
     try{
       const {data,error}=await db.rpc('configure_learner_viewers',{p_org:state.membership.org_id,p_student_email:student,p_parent_email:parent,p_tutor_email:tutor});
       if(error||!data?.ok)throw Error(error?.message||'Access permissions were not saved');
-      status('Permissions updated. Each nominated person opens the family dashboard and verifies their own email. Previous assignments have been deactivated when changed.');
+      status('Permissions updated. Each nominated person opens the single MathsGrove sign-in and verifies their own email. Previous assignments have been deactivated when changed.');
       await refresh();
     }catch(err){status(err.message||'Unable to save linked permissions.',true)}finally{button.disabled=false}
   };
