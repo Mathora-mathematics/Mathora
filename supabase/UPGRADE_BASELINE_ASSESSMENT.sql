@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS private.baseline_bank(
  choices jsonb NOT NULL CHECK(jsonb_typeof(choices)='array' AND jsonb_array_length(choices)=4),
  correct_text text NOT NULL,
  explanation text NOT NULL CHECK(length(explanation)>=10),
- active boolean NOT NULL DEFAULT true,
+ active boolean NOT NULL DEFAULT false,
  UNIQUE(qualification,academic_level,position)
 );
 CREATE TABLE IF NOT EXISTS private.baseline_sessions(
@@ -61,6 +61,11 @@ CREATE TABLE IF NOT EXISTS private.baseline_events(
 );
 CREATE INDEX IF NOT EXISTS baseline_events_session_idx ON private.baseline_events(session_id,kind,created_at);
 CREATE INDEX IF NOT EXISTS baseline_sessions_student_idx ON private.baseline_sessions(student_id,status);
+ALTER TABLE private.baseline_bank ENABLE ROW LEVEL SECURITY;
+ALTER TABLE private.baseline_sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE private.baseline_items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE private.baseline_answers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE private.baseline_events ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON private.baseline_bank,private.baseline_sessions,private.baseline_items,private.baseline_answers,private.baseline_events FROM PUBLIC,anon,authenticated;
 REVOKE ALL ON ALL SEQUENCES IN SCHEMA private FROM anon,authenticated;
 
@@ -75,6 +80,7 @@ CREATE TABLE IF NOT EXISTS private.baseline_accommodations(
  updated_by uuid REFERENCES auth.users(id),
  updated_at timestamptz NOT NULL DEFAULT now()
 );
+ALTER TABLE private.baseline_accommodations ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON private.baseline_accommodations FROM PUBLIC,anon,authenticated;
 
 CREATE OR REPLACE FUNCTION public.baseline_set_accommodation(p_student uuid,p_extra_percent integer)
