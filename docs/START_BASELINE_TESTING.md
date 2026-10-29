@@ -26,14 +26,14 @@ In your existing project, open **Supabase → SQL Editor**. Before changing an e
 If working in a different Supabase project, first inspect migration history and dependencies instead of blindly applying the historical SQL.
 
 ## Step 4 — Load 20 test questions per academic route
-**The connected production bank is currently empty and all routes are intentionally disabled.** Do not load the public pilot seeds into a real-student environment. For an isolated disposable development project with fictional adult accounts, the three sample seed files are:
+**The connected project now has 12 enabled development-only pilot routes (20 questions each). Use adult dummy accounts only.** Do not load the public pilot seeds into a real-student environment. For an isolated disposable development project with fictional adult accounts, the three sample seed files are:
 1. `supabase/SEED_BASELINE_PILOT_KS4.sql`
 2. `supabase/SEED_BASELINE_PILOT_ALEVEL_IBAA.sql`
 3. `supabase/SEED_BASELINE_PILOT_SPECIALIST.sql`
 
 They contain twelve 20-item pathway sets (240 *route records*). Some pathways intentionally reuse the same pilot content. **These are publicly committed examples with visible answer keys** and must **not** be sold or used as secure, unreleased student assessments. For real pupils, replace them with privately moderated, unseen sets stored only in Supabase.
 
-Use **`supabase/VERIFY_BASELINE_INSTALL.sql`** to check the existing installation: functions and private tables should exist and **all four browser SELECT privileges should be false**. **Zero question routes is the intended current state**; a route only appears once a confidential, academically moderated 20-item set has been imported and activated. The private bank has `active=false` as the default.
+Use **`supabase/VERIFY_BASELINE_INSTALL.sql`** to check the existing installation: functions and private tables should exist and **all four browser SELECT privileges should be false**. **12 sample routes (20 items each) is the current controlled trial state**; a route only appears once a confidential, academically moderated 20-item set has been imported and activated. The private bank has `active=false` as the default.
 
 ## Step 5 — Check sign-in emails
 In Supabase **Authentication**, make sure email delivery works and the redirect allowlist contains:
@@ -74,3 +74,9 @@ For a second adult fictional learner on Grove Exam, nominate distinct adult **pa
 **Not performed:** applying your actual Supabase migrations, emailing your account, creating real Auth sessions, testing the live deployed browser UI, checking mobile browsers, or independently mathematically moderating all question content. Those require the real environment and/or human academic review.
 
 **If a step fails:** send the exact GitHub Actions failure log or Supabase SQL error, and say which step of this guide failed. Do not send passwords, service-role keys or real student records.
+
+## Baseline controlled pilot activated · 29 October 2026
+
+Connected Supabase status: **12 routes × 20 active pilot questions (240 records)**, all structurally checked for four unique choices, one matching answer key and nonempty explanations. Live GCSE Higher route returns `ready=true`, `bank_ready=true` and `item_count=20`. A rollback-only, authenticated-session simulation exercised start, selection saving, submission and report without consuming a learner's sitting. Live session count remains zero. Expired baselines are automatically finalised by Supabase Cron job `mathsgrove-baseline-auto-close` every 2 minutes, even when the browser is closed. The Studio baseline register lists not-started, in-progress and complete learners, auto-refreshing every minute while visible. A daily ChatGPT health-check automation monitors operational regressions.
+
+**Critical pilot limitation:** these are development-only specimen questions whose answer keys are in the public GitHub repository. This is suitable for **controlled trial using adults or fictional test accounts only**, not confidential high-stakes or paid examination benchmarking. Content correctness has *structural* and selected calculation checks; it has **not received independent examiner moderation of all 240 items**, and some distinct pathways share pilot forms. Replace bank with unseen, mathematically moderated, board-specific items before admitting real minors or presenting scores as reliable grade evidence. Browser fullscreen and focus logs do not prevent AI assistance. No real emailed sign-in has yet been completed in this chat.
