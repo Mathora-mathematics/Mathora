@@ -53,6 +53,19 @@ for(const phrase of [
  'REVOKE ALL ON private.baseline_bank'
  ])assert.ok(sql.includes(phrase),'Baseline backend invariant missing: '+phrase);
 assert.ok(sql.trim().endsWith('COMMIT;'),'Database migration must be atomic');
+assert.ok(sql.includes('REVOKE INSERT, UPDATE ON public.student_preferences FROM authenticated'),
+ 'Students must not substitute their own academic level to obtain an easier test');
+assert.ok(sql.includes('baseline_set_accommodation')&&sql.includes('p_extra_percent NOT IN (0,25,50,100)'),
+ 'Administrator extra-time controls must be validated server-side');
+assert.ok(sql.includes('baseline_family_report')&&sql.includes("i.viewer_email=lower(u.email)")&&sql.includes("e.tier='exam'"),
+ 'Guardian/tutor diagnostic data must be restricted by verified email and Grove Exam');
+assert.ok(sql.includes("CASE WHEN v_role='tutor' THEN min(i.skill)"),
+ 'Tutor-only teaching cues must not be returned to parents');
+assert.ok(app.includes("document.addEventListener('visibilitychange'")&&app.includes("document.addEventListener('fullscreenchange'"),
+ 'Focus flags must be observable, without claiming tab blocking');
+assert.ok(page.includes('The clock continues if you refresh')&&page.includes('not proof of misconduct'),
+ 'Learners must see the limitations of browser integrity controls');
+
 assert.ok(app.includes("sb.auth")===false,'Baseline must use db client without bypassing auth checks');
 assert.ok(app.includes("db.auth.getUser()"),'Baseline must verify authenticated account');
 assert.ok(app.includes("db.rpc('baseline_answer'"),'Answer persistence must run on server');
