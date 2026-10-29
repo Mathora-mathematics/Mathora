@@ -275,6 +275,7 @@ export function initContentBank(db,studio){
     fetch('./content/IGCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/programmes/service-tiers.json',{cache:'no-store'}).then(r=>r.ok?r.json():{plans:{}}),
     fetch('./content/programmes/draft-questions.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/programmes/original-question-bank-144.json',{cache:'no-store'}).then(r=>r.ok?r.json():{questions:[]}),
     fetch('./content/programmes/exam-reasoning-drafts-12.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
    ]);
    bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];bank.serviceTiers=tierInfo;
