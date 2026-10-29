@@ -207,8 +207,8 @@ BEGIN
  FOR v_item IN SELECT * FROM private.baseline_bank
  WHERE active AND qualification=v_route->>'qualification' AND academic_level=v_route->>'level'
  ORDER BY position LOOP
-  SELECT jsonb_agg(jsonb_build_object('id',chr(64+x.n),'text',x.choice) ORDER BY x.n),
-   max(CASE WHEN x.choice=v_item.correct_text THEN chr(64+x.n) ELSE NULL END)
+  SELECT jsonb_agg(jsonb_build_object('id',chr((64+x.n)::integer),'text',x.choice) ORDER BY x.n),
+   max(CASE WHEN x.choice=v_item.correct_text THEN chr((64+x.n)::integer) ELSE NULL END)
    INTO v_options,v_correct FROM(
      SELECT c.choice,row_number() OVER(ORDER BY random()) n
      FROM jsonb_array_elements_text(v_item.choices) AS c(choice)
