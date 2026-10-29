@@ -39,6 +39,7 @@ jobs:
           node --input-type=module --check < content-bank.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
           node scripts/check-site.mjs
+          node scripts/check-family-access.mjs
           node scripts/check-content.mjs
           node scripts/check-original-practice.mjs
       - name: Assemble only MathsGrove public assets
