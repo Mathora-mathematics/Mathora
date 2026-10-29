@@ -13,7 +13,7 @@ const seedPaths=[
 const counts=new Map();let total=0;
 for(const path of seedPaths){
  const source=read(path);
- const re=/\('([A-Z_]+)','([a-z0-9_]+)',(\d+),'[^']*','[^']*',\d+,'/g;
+ const re=/\('([A-Z_]+)','([a-z0-9_]+)',(\d+),'(?:[^']|'')*','(?:[^']|'')*',\d+,'/g;
  let found=0;
  for(const match of source.matchAll(re)){
   const key=match[1]+':'+match[2],n=Number(match[3]);
