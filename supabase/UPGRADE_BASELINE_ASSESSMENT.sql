@@ -69,6 +69,14 @@ REVOKE ALL ON ALL SEQUENCES IN SCHEMA private FROM anon,authenticated;
 -- Enrolment / programme editor RPCs remain SECURITY DEFINER and still work.
 REVOKE INSERT, UPDATE ON public.student_preferences FROM authenticated;
 
+CREATE TABLE IF NOT EXISTS private.baseline_accommodations(
+ student_id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+ extra_time_percent smallint NOT NULL DEFAULT 0 CHECK(extra_time_percent IN (0,25,50,100)),
+ updated_by uuid REFERENCES auth.users(id),
+ updated_at timestamptz NOT NULL DEFAULT now()
+);
+REVOKE ALL ON private.baseline_accommodations FROM PUBLIC,anon,authenticated;
+
 -- Academic route determined only from server-side enrolled preferences.
 CREATE OR REPLACE FUNCTION private.baseline_route(p_student uuid)
 RETURNS jsonb LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path='' AS $$
