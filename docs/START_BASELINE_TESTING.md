@@ -20,20 +20,20 @@ The browser has a Supabase project URL and **public publishable key** configured
 
 In your existing project, open **Supabase → SQL Editor**. Before changing an existing database, **make a backup** or work in a separate test project. Confirm the foundational install `supabase/INSTALL_FRESH_MATHSGROVE.sql`, admin upgrade `supabase/UPGRADE_MATHSGROVE_ADMIN.sql` and email/family upgrade `supabase/UPGRADE_EMAIL_FAMILY_ACCESS.sql` were successfully installed. Do not rerun a completed installation without checking the migration notes and backups.
 
-## Step 3 — Add baseline tables, functions and assessment time settings
-Copy the entire file **`supabase/UPGRADE_BASELINE_ASSESSMENT.sql`** into the SQL Editor and execute it. It is a single transaction and should finish without errors. It creates private assessment/answer tables and server-side scoring functions.
+## Step 3 — Confirm existing baseline database installation
+**Already installed on the connected MathsGrove project (29 October 2026).** The private assessment tables and the student/staff/family RPC functions were applied by ChatGPT through Supabase as a sequence of reviewed migrations, after the original all-in-one script was blocked. **Do not rerun the monolithic upgrade file** on that same database. The private tables have RLS enabled and direct browser read permissions revoked.
 
-If you see an error: stop and capture the **full SQL error text and line number**. Do not remove privilege checks or make private tables readable to make the interface work.
+If working in a different Supabase project, first inspect migration history and dependencies instead of blindly applying the historical SQL.
 
 ## Step 4 — Load 20 test questions per academic route
-For a **development-only pilot with adult dummy users**, run these three SQL Editor files in order:
+**The connected production bank is currently empty and all routes are intentionally disabled.** Do not load the public pilot seeds into a real-student environment. For an isolated disposable development project with fictional adult accounts, the three sample seed files are:
 1. `supabase/SEED_BASELINE_PILOT_KS4.sql`
 2. `supabase/SEED_BASELINE_PILOT_ALEVEL_IBAA.sql`
 3. `supabase/SEED_BASELINE_PILOT_SPECIALIST.sql`
 
 They contain twelve 20-item pathway sets (240 *route records*). Some pathways intentionally reuse the same pilot content. **These are publicly committed examples with visible answer keys** and must **not** be sold or used as secure, unreleased student assessments. For real pupils, replace them with privately moderated, unseen sets stored only in Supabase.
 
-Then run **`supabase/VERIFY_BASELINE_INSTALL.sql`**. Expected: all function checks `true`; 12 route rows with `active_items=20`; **all four private-table SELECT privilege checks `false`**.
+Use **`supabase/VERIFY_BASELINE_INSTALL.sql`** to check the existing installation: functions and private tables should exist and **all four browser SELECT privileges should be false**. **Zero question routes is the intended current state**; a route only appears once a confidential, academically moderated 20-item set has been imported and activated. The private bank has `active=false` as the default.
 
 ## Step 5 — Check sign-in emails
 In Supabase **Authentication**, make sure email delivery works and the redirect allowlist contains:
