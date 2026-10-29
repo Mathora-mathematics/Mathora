@@ -72,7 +72,7 @@ export function initPasswordAccess(sb,{show,boot}){
   finally{button.disabled=false}
  });
  if(sb)sb.auth.onAuthStateChange(event=>{
-  if(event==='PASSWORD_RECOVERY'){recoveryMode=true;Promise.resolve().then(()=>boot())}
+  if(event==='PASSWORD_RECOVERY'){recoveryMode=true;setTimeout(()=>{void boot()},0)}
  });
  return {
   wantsSecurityView(){return accountRequested||recoveryMode},
