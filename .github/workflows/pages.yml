@@ -38,6 +38,7 @@ jobs:
           node --input-type=module --check < editorial-review.js
           node scripts/check-auto-assign.mjs
           node --input-type=module --check < access-router.js
+          node --input-type=module --check < auth-password.js
           node --input-type=module --check < portal.js
           node --input-type=module --check < studio.js
           node --input-type=module --check < access-management.js
@@ -48,6 +49,7 @@ jobs:
           node --input-type=module --check < supabase/functions/invitations/index.ts
           node scripts/check-site.mjs
           node scripts/check-family-access.mjs
+          node scripts/check-password-auth.mjs
           node scripts/test-access-router.mjs
           node scripts/check-baseline.mjs
           node scripts/check-baseline-seeds.mjs
@@ -59,6 +61,7 @@ jobs:
           mkdir -p site
           cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg showcase-v3.css showcase-v3.js experience-v4.css experience-v4.js site/
           cp portal.html portal.css private-refresh.css student-features.css evidence-theme.css timed-mock.css maths-notation.css portal.js maths-render.js mathsgrove-config.js whiteboard.js site/
+          cp auth-password.js auth-password.css site/
           cp assigned-practice.js assigned-practice.css site/
           cp baseline.html baseline.css baseline.js baseline-calc.js site/
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css access-management.css access-management.js access-router.js baseline-admin.js site/
