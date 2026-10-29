@@ -8,7 +8,8 @@ const blueprints=read('content/paper-blueprints.json').blueprints;
 const drafts=[
  ...read('content/GCSE/draft-exemplars.json').items.map(q=>({...q,qualification:'GCSE'})),
  ...read('content/IGCSE/draft-exemplars.json').items.map(q=>({...q,qualification:'IGCSE'})),
- ...read('content/programmes/draft-questions.json').items
+ ...read('content/programmes/draft-questions.json').items,
+ ...read('content/programmes/original-question-bank-144.json').questions
 ];
 const ids=new Set();
 for(const q of drafts){
@@ -19,7 +20,14 @@ for(const q of drafts){
  assert(q.prompt.length>=55,'Too-short question stem '+q.id);
  assert(!q.available_to_students,'Public specimens must never be marked released: '+q.id);
 }
-assert(drafts.length===48,'Expected 48 public original draft stems, not published student mocks');
+assert(drafts.length===192,'Expected 192 public draft stems, not published student mocks');
+const added=read('content/programmes/original-question-bank-144.json').questions;
+assert(added.length===144,'The expanded bank should contain 144 questions');
+for(const tier of ['daily','weekly','exam']){
+ assert(added.filter(q=>q.programme===tier).length===48,'Each programme requires 48 draft items');
+ for(const qual of ['GCSE','IGCSE'])assert(added.filter(q=>q.programme===tier&&q.qualification===qual).length===24,'Tier/qualification coverage missing');
+}
+assert(added.every(q=>q.prompt.includes('\\\\(')),'All added questions require delimited mathematical notation');
 for(const m of blueprints){
  const board=boards.find(b=>b.key===m.board_key);
  assert(board&&board.verified,'Blueprint has unverified board: '+m.id);
