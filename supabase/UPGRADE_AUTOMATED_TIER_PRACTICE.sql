@@ -150,7 +150,7 @@ BEGIN
   -- Real timed monthly mocks stay in the existing moderated mock_packs system.
   -- An unmoderated placeholder must never pretend to be an actual examination paper.
   INSERT INTO private.grove_tasks(student_id,org_id,qualification,academic_level,programme,mode,due_date,question_count)
-  VALUES(v_uid,v_org,v_route->>'qualification',v_route->>'level',v_tier,'mock_pending',v_start+27,0)
+  VALUES(v_uid,v_org,v_route->>'qualification',v_route->>'level',v_tier,'mock_pending',(date_trunc('month',v_start)::date+interval '1 month'-interval '1 day')::date,0)
   ON CONFLICT(student_id,due_date,mode) DO NOTHING;
  END IF;
  SELECT coalesce(jsonb_agg(jsonb_build_object(
@@ -166,13 +166,20 @@ GRANT EXECUTE ON FUNCTION public.grove_my_calendar() TO authenticated;
 
 CREATE OR REPLACE FUNCTION public.grove_task_start(p_task uuid)
 RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
-DECLARE v_uid uuid:=(SELECT auth.uid());v private.grove_tasks%ROWTYPE;v_baseline jsonb;v_bank record;
+DECLARE v_uid uuid:=(SELECT auth.uid());v private.grove_tasks%ROWTYPE;v_baseline jsonb;v_active jsonb;v_bank record;
  v_order integer:=0;v_options jsonb;v_correct text;
 BEGIN
  IF v_uid IS NULL THEN RAISE EXCEPTION 'Sign-in required';END IF;
  PERFORM pg_advisory_xact_lock(hashtextextended(v_uid::text,12810));
  SELECT * INTO v FROM private.grove_tasks WHERE id=p_task AND student_id=v_uid FOR UPDATE;
  IF v.id IS NULL THEN RAISE EXCEPTION 'Assignment not found or not authorised';END IF;
+ v_active:=private.baseline_route(v_uid);
+ IF NOT coalesce((v_active->>'ready')::boolean,false)
+   OR (v_active->>'org_id')::uuid<>v.org_id
+   OR v_active->>'qualification'<>v.qualification
+   OR v_active->>'level'<>v.academic_level
+   OR v_active->>'programme'<>v.programme
+ THEN RAISE EXCEPTION 'Administrator programme or academic route has changed; contact your tutor';END IF;
  IF v.mode='mock_pending' THEN RAISE EXCEPTION 'Timed exam requires a moderated, teacher-assigned mock';END IF;
  IF v.due_date>current_date THEN RAISE EXCEPTION 'This assignment has not opened yet';END IF;
  IF v.status<>'scheduled' THEN RETURN private.grove_payload(p_task);END IF;
