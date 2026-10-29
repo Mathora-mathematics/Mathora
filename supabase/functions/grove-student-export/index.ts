@@ -45,13 +45,19 @@ async function handle(req:Request):Promise<Response>{
   const scoped=client(publishKey);
   const {data:authInfo,error:scopeError}=await scoped.auth.getUser(bearer);
   if(scopeError||authInfo.user?.id!==user.id)return send({error:'Session not authorised'},403);
-  const {data:jobId,error:jobError}=await admin.rpc('grove_offboarding_prepare',{p_org:org,p_student:student});
+  const userDb=createClient(uri,publishKey,{
+   global:{headers:{Authorization:'Bearer '+bearer}},
+   auth:{persistSession:false,autoRefreshToken:false}
+  });
+  const {data:jobId,error:jobError}=await userDb.rpc('grove_offboarding_prepare',{p_org:org,p_student:student});
   // Do not assume a service-role call populates auth.uid(); use an explicitly user-scoped RPC call when needed.
   if(jobError||!jobId)return send({error:'The server could not create the export request. No data was erased.',detail:jobError?.message},409);
-  const {data:jobs,error:jError}=await admin.schema('private').from('grove_offboarding_jobs').select('id,status,recipient_email').eq('id',jobId).single();
-  if(jError||!jobs)return send({error:'Archive request unavailable'},409);
-  if(jobs.status==='emailed'||jobs.status==='downloaded')return send({ok:true,status:jobs.status});
-  if(jobs.status!=='requested')return send({error:'An export is already being prepared. Try later.'},409);
+  const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
+  if(rosterError)return send({error:'Cannot check the private archive queue'},503);
+  const entry=(roster?.students||[]).find((x:{student_id:string})=>x.student_id===student);
+  if(!entry||entry.job_id!==jobId)return send({error:'Export request mismatch'},409);
+  if(entry.status==='emailed'||entry.status==='downloaded')return send({ok:true,status:entry.status});
+  if(entry.status!=='requested')return send({error:'An export is already being prepared. Try later.'},409);
   const {data:dataset,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
   if(exportError||!dataset)return send({error:'Could not complete the private data export. No data was erased.',detail:exportError?.message},503);
   const zip:Record<string,Uint8Array>={};
@@ -92,7 +98,11 @@ async function handle(req:Request):Promise<Response>{
   const tokenHash=await hash(token);
   const {data:result,error}=await admin.rpc('grove_export_download_lookup',{p_hash:tokenHash});
   if(error||!result?.ok||typeof result.archive_path!=='string')return send({error:'Archive link is no longer available'},403);
-  if(action==='confirm')return send({ok:true,confirmed:true});
+  if(action==='confirm'){
+   const {data:confirmed,error:confirmError}=await admin.rpc('grove_export_confirm_download',{p_hash:tokenHash});
+   if(confirmError||!confirmed)return send({error:'Unable to confirm archive access'},503);
+   return send({ok:true,confirmed:true});
+  }
   const {data:signed,error:signError}=await admin.storage.from('grove-student-exports').createSignedUrl(result.archive_path,90,{download:'MathsGrove-learning-archive.zip'});
   if(signError||!signed?.signedUrl)return send({error:'Archive cannot be downloaded at present'},503);
   return send({ok:true,url:signed.signedUrl});
