@@ -1,10 +1,12 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 import { initContentBank } from './content-bank.js';
+import { initAccessManagement } from './access-management.js';
 const $ = id => document.getElementById(id);
 const config = window.MATHSGROVE_CONFIG || {};
 const connected = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') && !!config.publishableKey;
 const db = connected ? createClient(config.url, config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
 const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],entitlements:[],academic:[],addons:[],pending:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
+const linkedManager=initAccessManagement(db,state);
 const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
 const date=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
 const fmt=s=>String(s||'').trim();
@@ -45,7 +47,8 @@ async function init(){
   // Restrict sensitive administrative actions to organisation owners/partners.
   if(!adminRole()){
    $('programme-form').querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
-   $('invite-form').querySelectorAll('input,button').forEach(x=>x.disabled=true);
+   $('invite-form').querySelectorAll('input,select,textarea,button').forEach(x=>x.disabled=true);
+   $('mg-linked-form').querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
    $('invite-feedback').textContent='Only an authorised partner administrator can issue or revoke student invitation keys.';
   }
   await refresh();
@@ -58,6 +61,7 @@ async function refresh(){
  const failures=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Unknown error');
  if(failures.length)inform('Some studio data could not load: '+failures.join(' | '),true);
  renderOverview();renderRoster();renderInvites();renderProgrammes();renderQueue();renderReleased();
+ if(adminRole())await linkedManager.refresh().catch(err=>inform('Linked access not yet available: '+err.message,true));
 }
 async function loadRoster(){
  const {data,error}=await db.from('memberships').select('user_id,member_role').eq('org_id',state.membership.org_id).eq('member_role','student').limit(200);
@@ -272,22 +276,30 @@ $('invite-form').onsubmit=async e=>{
   const setup=setupArgs('invite');
   const {data:configured,error:setupError}=await db.rpc('save_pending_student_setup',setup);
   if(setupError||!configured?.ok)throw Error(setupError?.message||'Setup was not saved. Install the administrator SQL migration before issuing keys.');
+  const name=$('invite-name').value.trim();
+  if(name.length<2||name.length>100)throw Error('Enter the student’s full name (2–100 characters).');
+  const {data:nameSaved,error:nameError}=await db.rpc('set_pending_student_name',{p_org:state.membership.org_id,p_email:email,p_name:name});
+  if(nameError||!nameSaved?.ok)throw Error(nameError?.message||'Student name not saved. Install the email-first database migration.');
+  const top=setup.p_programme==='exam';
+  const parent=top?$('invite-parent-email').value.trim().toLowerCase():'';
+  const tutor=top?$('invite-tutor-email').value.trim().toLowerCase():'';
+  const {data:links,error:linkError}=await db.rpc('configure_learner_viewers',{p_org:state.membership.org_id,p_student_email:email,p_parent_email:parent,p_tutor_email:tutor});
+  if(linkError||!links?.ok)throw Error(linkError?.message||'Linked account permissions could not be saved.');
   const response=await edge('issue',{email,orgId:state.membership.org_id});
   state.lastCode=response.code;state.lastEmail=email;
   $('new-code').textContent=response.code;$('key-result').hidden=false;
-  inform('Academic route and programme saved. Single-use code generated; copy it now and send privately.',false,'invite-feedback');
+  inform('Student access created. Share the welcome message. The student signs in with their verified email; Grove Exam parent and tutor invitations become usable after student activation.',false,'invite-feedback');
   await Promise.all([loadInvites(),loadStudentSetups()]);
-  renderInvites();renderOverview();
+  renderInvites();renderOverview();await linkedManager.refresh();
  }catch(err){inform(err.message,true,'invite-feedback')}
  finally{button.disabled=false}
 };
 async function copy(t){try{await navigator.clipboard.writeText(t);inform('Copied to clipboard.','','invite-feedback')}catch{inform('Clipboard access unavailable. Select the code above and copy it manually.',true,'invite-feedback')}}
 $('copy-code').onclick=()=>state.lastCode&&copy(state.lastCode);
 $('copy-message').onclick=()=>state.lastCode&&copy(
- 'Welcome to MathsGrove. Your private invitation code is '+state.lastCode+
- '. Open '+new URL('./portal.html',location.href).href+
- ' and enter the code with your registered email ('+state.lastEmail+
- '). Verify your email to claim your private mathematics dashboard. Do not share your code or sign-in link.');
+ 'Welcome to MathsGrove. Your private mathematics dashboard has been prepared. Open '+new URL('./portal.html',location.href).href+
+ ' and enter your registered email ('+state.lastEmail+
+ ') to receive a secure sign-in link. No password or code is needed when email-first activation is enabled. Never share the sign-in link.');
 function renderQueue(){
  const root=$('marking-queue');clear(root);
  const filter=$('marking-filter').value;
