@@ -1,12 +1,14 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 import { initContentBank } from './content-bank.js';
 import { initAccessManagement } from './access-management.js';
+import { initBaselineAdmin } from './baseline-admin.js';
 const $ = id => document.getElementById(id);
 const config = window.MATHSGROVE_CONFIG || {};
 const connected = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') && !!config.publishableKey;
 const db = connected ? createClient(config.url, config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}) : null;
 const state = {user:null,org:null,membership:null,memberships:[],students:[],attempts:[],invites:[],entitlements:[],academic:[],addons:[],pending:[],activeReview:null,reviewFields:[],lastCode:null,lastEmail:null};
 const linkedManager=initAccessManagement(db,state);
+const baselineManager=initBaselineAdmin(db,state);
 const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
 const date=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
 const fmt=s=>String(s||'').trim();
@@ -62,6 +64,7 @@ async function refresh(){
  if(failures.length)inform('Some studio data could not load: '+failures.join(' | '),true);
  renderOverview();renderRoster();renderInvites();renderProgrammes();renderQueue();renderReleased();
  if(adminRole())await linkedManager.refresh().catch(err=>inform('Linked access not yet available: '+err.message,true));
+ await baselineManager.refresh().catch(err=>inform('Baseline register could not load: '+err.message,true));
 }
 async function loadRoster(){
  const {data,error}=await db.from('memberships').select('user_id,member_role').eq('org_id',state.membership.org_id).eq('member_role','student').limit(200);
