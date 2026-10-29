@@ -46,6 +46,7 @@ jobs:
           node scripts/check-family-access.mjs
           node scripts/test-access-router.mjs
           node scripts/check-baseline.mjs
+          node scripts/check-baseline-seeds.mjs
           node scripts/check-content.mjs
           node scripts/check-original-practice.mjs
       - name: Assemble only MathsGrove public assets
