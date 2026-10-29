@@ -88,4 +88,6 @@ INSERT INTO private.baseline_bank(qualification,academic_level,position,topic,sk
 ('IB_AA','hl',19,'Logarithms','Combining logarithms',4,'Solve ln x + ln(x − 1) = ln 6 for x > 1.',jsonb_build_array('2','3','4','6'),'3','ln[x(x−1)] = ln6; x²−x−6=0 gives x=3 (since x>1).'),
 ('IB_AA','hl',20,'Mechanics','Constant acceleration',3,'A particle has initial speed 5 m/s and constant acceleration 2 m/s² for 4 s. Find its displacement.',jsonb_build_array('28 m','32 m','36 m','40 m'),'36 m','s=ut+(1/2)at² =5×4+0.5×2×4² =36 m.')
 ON CONFLICT (qualification,academic_level,position) DO UPDATE SET topic=excluded.topic,skill=excluded.skill,difficulty=excluded.difficulty,prompt=excluded.prompt,choices=excluded.choices,correct_text=excluded.correct_text,explanation=excluded.explanation,active=true;
+-- Development-only activation: knowingly enable these publicly visible pilot examples.
+UPDATE private.baseline_bank SET active=true WHERE (qualification,academic_level) IN (('A_LEVEL','as'), ('A_LEVEL','a2'), ('IB_AA','sl'), ('IB_AA','hl'));
 COMMIT;
