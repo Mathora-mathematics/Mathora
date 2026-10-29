@@ -55,10 +55,12 @@ export function initAssignedPractice(db){
   let q=task.questions?.find(x=>x.position===pos);if(!q)return;
   set('mg-practice-path',task.qualification+' · '+task.level+' · '+task.programme);
   set('mg-practice-title','Administrator-assigned mathematics');set('mg-practice-progress','Question '+pos+' / '+task.question_count+' · '+q.topic);
-  set('mg-practice-question',q.prompt);
+  if(window.MathsGroveMath?.write)window.MathsGroveMath.write($('mg-practice-question'),q.prompt);else set('mg-practice-question',q.prompt);
   const root=$('mg-practice-options');root.replaceChildren();
   (q.choices||[]).forEach(c=>{let label=el('label',undefined,'mg-practice-option'+(q.selected===c.id?' selected':''));let input=el('input');input.type='radio';input.name='mg-answer';input.checked=q.selected===c.id;input.value=c.id;
-   input.addEventListener('change',()=>void save(c.id));label.append(input,el('span',c.id+' · '+c.text));root.append(label)});
+   input.addEventListener('change',()=>void save(c.id));
+   const answer=el('span');if(window.MathsGroveMath?.write)window.MathsGroveMath.write(answer,c.text);else answer.textContent=c.text;
+   label.append(input,el('strong',c.id+' ·'),answer);root.append(label)});
   $('mg-practice-back').disabled=pos===1;$('mg-practice-next').disabled=pos>=task.question_count;
   set('mg-practice-save',q.selected?'Answer securely saved; you can revise it.':'Choose one answer; it will be saved securely.');boardDraw()
  }
