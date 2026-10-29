@@ -299,7 +299,7 @@ $('copy-code').onclick=()=>state.lastCode&&copy(state.lastCode);
 $('copy-message').onclick=()=>state.lastCode&&copy(
  'Welcome to MathsGrove. Your private mathematics dashboard has been prepared. Open '+new URL('./portal.html',location.href).href+
  ' and enter your registered email ('+state.lastEmail+
- ') to receive a secure sign-in link. No password or code is needed when email-first activation is enabled. Never share the sign-in link.');
+ ') to receive a one-time email code. Enter that code on MathsGrove to open the right authorised dashboard. No password or invitation key is required. Never share the code.');
 function renderQueue(){
  const root=$('marking-queue');clear(root);
  const filter=$('marking-filter').value;
