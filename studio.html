@@ -8,7 +8,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js" integrity="sha384-+7Keh381hSkXmXqnjC0JBM/kzsN6TFj+wMKychSLjTvJ8/0ElMde2uKl8i6p6Buj" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./studio.css">
+<link rel="stylesheet" href="./studio.css"><link rel="stylesheet" href="./access-management.css">
 <link rel="stylesheet" href="./private-refresh.css"><link rel="stylesheet" href="./evidence-theme.css"><link rel="stylesheet" href="./admin-learner.css"><link rel="stylesheet" href="./content-bank.css"><link rel="stylesheet" href="./timed-mock.css"><link rel="stylesheet" href="./content-bank.css">
 <script src="./mathsgrove-config.js" defer></script><script src="./maths-render.js" defer></script><datalist id="mg-academic-levels"><option value="Foundation"></option><option value="Higher"></option><option value="Core"></option><option value="Extended"></option><option value="AS"></option><option value="A2"></option><option value="SL"></option><option value="HL"></option></datalist>
 <datalist id="mg-exam-board-codes"><option value="AQA_8300" label="AQA GCSE 8300"></option><option value="EDEXCEL_1MA1" label="Pearson GCSE"></option><option value="OCR_J560" label="OCR GCSE"></option><option value="EDUQAS_C300" label="Eduqas GCSE"></option><option value="CAMBRIDGE_0580" label="Cambridge IGCSE 0580"></option><option value="CAMBRIDGE_0980" label="Cambridge IGCSE 0980"></option><option value="EDEXCEL_4MA1" label="Pearson IGCSE linear"></option><option value="EDEXCEL_4XMA1" label="Pearson IGCSE modular"></option><option value="OXFORDAQA_9260" label="OxfordAQA IGCSE"></option></datalist>
@@ -42,7 +42,7 @@
     </section>
     <section data-panel="students" class="panel" hidden>
       <div class="heading"><div><p class="overline">PRIVATE ENROLMENT</p><h1>Students &amp; invitations.</h1><p>Issue single-use keys to verified email addresses. Each student receives their own permanent dashboard.</p></div></div>
-      <div class="split split-top"><article class="card"><p class="overline">CREATE PERSONAL ACCESS</p><h2>Generate a student key</h2><form id="invite-form"><label for="invite-email">Student's registered email</label><input id="invite-email" type="email" autocomplete="off" placeholder="student@example.com" maxlength="250" required>
+      <div class="split split-top"><article class="card"><p class="overline">01 / ENROL A LEARNER</p><h2>Create their personal dashboard</h2><p class="subtext">Enter the student's name and email, assign the programme, and issue their private enrolment. They can then sign in using their verified email.</p><form id="invite-form"><label for="invite-name">Student's full name</label><input id="invite-name" type="text" autocomplete="name" placeholder="e.g. Alex Morgan" maxlength="100" required><label for="invite-email">Student's registered email</label><input id="invite-email" type="email" autocomplete="off" placeholder="student@example.com" maxlength="250" required>
       <p class="setup-intro">Complete the student's academic and programme settings <strong>before issuing the code</strong>. They will be applied when the verified email redeems it.</p>
 <div class="setup-grid">
 <label>Qualification<select id="invite-qualification" required>
@@ -56,6 +56,8 @@
 <label>Access until<input id="invite-until" type="date" required></label>
 <label>Priority topics<input id="invite-focus" maxlength="500" placeholder="e.g. Quadratics, probability"></label>
 </div>
+<fieldset id="invite-viewers" class="mg-access-viewers" hidden><legend>Grove Exam · Connected support team</legend><p>Only Grove Exam includes separate parent and tutor logins. Each person signs in with their own verified email. Parent access is read-only; tutor access shows released marking and teaching priorities.</p>
+<div class="mg-access-pair"><label for="invite-parent-email">Parent / guardian email (optional)<input id="invite-parent-email" type="email" maxlength="250" autocomplete="off" placeholder="parent@example.com"></label><label for="invite-tutor-email">Assigned tutor / teacher email (optional)<input id="invite-tutor-email" type="email" maxlength="250" autocomplete="off" placeholder="tutor@example.com"></label></div></fieldset>
 <fieldset class="setup-addons"><legend>Separate human-reviewed assessments</legend>
 <p>Not included automatically in any recurring plan. Select only assessments agreed privately.</p>
 <div class="addon-grid">
@@ -65,8 +67,8 @@
 </div></fieldset>
 <label>Private administrator notes<textarea id="invite-notes" rows="2" maxlength="1200" placeholder="Internal scope, support needs or agreed arrangements; not shown to the learner"></textarea></label>
 <p class="setup-caption">Payments and wholesale pricing remain outside MathsGrove. Only the administrator may change these settings.</p>
-<button id="invite-submit" class="button gold-button" type="submit">Save learner setup &amp; generate key ↗</button></form>
-      <div class="key-result" id="key-result" hidden><div class="key-tag">NEW CODE · COPY BEFORE CLOSING</div><strong id="new-code"></strong><p>This code is shown once. It is tied to the email above and expires after 14 days.</p><div class="key-buttons"><button type="button" id="copy-code" class="button primary">Copy code</button><button type="button" id="copy-message" class="button outline">Copy invitation message</button></div></div>
+<button id="invite-submit" class="button gold-button" type="submit">Create student access ↗</button></form>
+      <div class="key-result" id="key-result" hidden><div class="key-tag">STUDENT ACCESS CREATED · FALLBACK CODE</div><strong id="new-code"></strong><p>The student signs in with their registered email and a secure email link. This one-time code is a fallback for older accounts, valid for 14 days.</p><div class="key-buttons"><button type="button" id="copy-code" class="button primary">Copy code</button><button type="button" id="copy-message" class="button outline">Copy email-first welcome message</button></div></div>
       <div id="invite-feedback" class="feedback" role="status"></div></article>
       <article class="card"><p class="overline">INVITATION MANAGEMENT</p><h2>Issued keys</h2><p class="subtext">You can track, expire and revoke invitations. For security, previously issued plaintext codes cannot be displayed again.</p><div id="invite-table" class="records"><p class="muted">Connect Supabase to load invitations.</p></div></article></div>
       <article id="programme-admin" class="card programme-admin"><p class="overline">STUDENT CONFIGURATION · EDIT ANYTIME</p>
@@ -92,6 +94,9 @@
 <div class="setup-actions"><button type="submit" class="button primary" id="programme-save">Save student changes</button><span>Any changes to a learner's exam route affect future paper selection, not historical results.</span></div>
 </form>
 <p id="programme-feedback" class="feedback" role="status"></p></article>
+<article class="card mg-connected-admin" id="mg-connected-admin"><p class="overline">GROVE EXAM · ROLE-SPECIFIC ACCOUNTS</p><h2>Manage parent &amp; tutor access</h2><p class="subtext">Authorise or replace linked accounts. The student keeps the same dashboard and history. Email links never grant administrative controls, and all parent/tutor access stops when the learner is no longer on Grove Exam.</p>
+<form id="mg-linked-form"><div class="setup-grid"><label>Enrolled student<select id="mg-linked-student" required><option value="">Choose a student</option></select></label><label>Student email<input type="email" id="mg-linked-email" maxlength="250" placeholder="Registered student email" required></label><label>Parent / guardian email<input type="email" id="mg-linked-parent" maxlength="250" placeholder="parent@example.com"></label><label>Assigned tutor / teacher email<input type="email" id="mg-linked-tutor" maxlength="250" placeholder="tutor@example.com"></label></div><div class="mg-access-actions"><button type="submit" id="mg-linked-save" class="button primary">Save linked permissions ↗</button><button type="button" id="mg-linked-copy" class="button outline">Copy family sign-in guidance</button></div></form>
+<p id="mg-linked-feedback" class="feedback" role="status"></p><div class="mg-linked-list" id="mg-linked-list"><p class="muted">Linked accounts will appear after the database upgrade.</p></div></article>
 <article class="card"><div class="card-header"><div><p class="overline">STUDENT DIRECTORY</p><h2>Enrolled learners</h2></div><input id="student-search" type="search" placeholder="Search students" aria-label="Search students"></div><div class="table-scroll"><table><thead><tr><th>Name</th><th>Member reference</th><th>Exam pathway</th><th>Active papers</th></tr></thead><tbody id="students-body"><tr><td colspan="4">No students loaded.</td></tr></tbody></table></div></article>
     </section>
     <section data-panel="bank" class="panel" hidden>
