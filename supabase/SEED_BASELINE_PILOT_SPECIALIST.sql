@@ -89,4 +89,6 @@ INSERT INTO private.baseline_bank(qualification,academic_level,position,topic,sk
 ('TMUA','tmua',19,'Proof','Odd number sums',4,'The sum of the first n positive odd integers is which expression?',jsonb_build_array('n(n+1)','2n−1','n²','n(n−1)/2'),'n²','The identity 1+3+⋯+(2n−1)=n² follows by induction or geometric squares.'),
 ('TMUA','tmua',20,'Optimisation','AM–GM inequality',5,'Positive reals a,b satisfy ab=16. What is the least possible value of a+b?',jsonb_build_array('4','6','8','16'),'8','By AM–GM, a+b≥2√(ab)=8, with equality at a=b=4.')
 ON CONFLICT(qualification,academic_level,position) DO UPDATE SET topic=excluded.topic,skill=excluded.skill,difficulty=excluded.difficulty,prompt=excluded.prompt,choices=excluded.choices,correct_text=excluded.correct_text,explanation=excluded.explanation,active=true;
+-- Development-only activation: knowingly enable these publicly visible pilot examples.
+UPDATE private.baseline_bank SET active=true WHERE (qualification,academic_level) IN (('IB_AI','sl'), ('IB_AI','hl'), ('FURTHER_MATHS','further'), ('TMUA','tmua'));
 COMMIT;
