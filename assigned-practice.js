@@ -88,6 +88,18 @@ export function initAssignedPractice(db){
     set('mg-practice-deadline','Timed session: '+Math.floor(left/60)+'m '+left%60+'s left');if(left===0)void finish(true)}
   },1000)
  }
+ async function loadExaminerFeedback(taskId,root){
+  try{
+   const data=await rpc('grove_my_feedback',{p_task:taskId});
+   if(task?.task_id!==taskId||!root.isConnected)return;
+   const section=el('section',undefined,'mg-staff-feedback');
+   section.append(el('strong','YOUR EXAMINER\'S FEEDBACK'));
+   section.append(el('p',data?.released
+    ?(data.feedback||'No additional comments have been written.')
+    :'Your examiner may add personalised guidance after reviewing this result.'));
+   root.append(section);
+  }catch{ /* A missing feedback service must never block the marked result. */ }
+ }
  function report(){
   let root=$('mg-practice-report-body');root.replaceChildren();
   root.append(el('p',task.score+' / '+task.question_count+' correct','mg-report-metric'));
@@ -97,6 +109,7 @@ export function initAssignedPractice(db){
   if(weaker.length)root.append(el('p','Suggested next topics: '+weaker.map(t=>t.topic).join('; ')+'. Review each method using fresh questions.','mg-report-priority'));
   for(const r of task.review||[]){const line=el('div',undefined,'mg-practice-report-row');
    line.append(el('strong','Q'+r.position+' · '+r.topic),el('span',(r.correct?'Correct':'Review')+' · '+r.seconds+'s visible'));root.append(line)}
+  if(task?.task_id)void loadExaminerFeedback(task.task_id,root);
  }
  const canvas=$('mg-practice-board'),ctx=canvas.getContext('2d');
  function pts(){if(!lines.has(pos))lines.set(pos,[]);return lines.get(pos)}
