@@ -1,14 +1,16 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 import {getAccessChoices,preferredSingleChoice} from './access-router.js';
 import {initAssignedPractice} from './assigned-practice.js';
+import {initPasswordAccess} from './auth-password.js';
 const $=id=>document.getElementById(id);
 const config=window.MATHSGROVE_CONFIG||{};
 const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(config.url)&&!config.url.includes('YOUR_PROJECT'));
 const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}}):null;
 const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false,mockClock:null,mockSeconds:0,mockAnchor:0,mockFinalizing:false,mockQuestionTimes:{},questionTimer:null,questionActiveId:null,questionEntered:0,questionElapsed:{}};
 const assignedPractice=sb?initAssignedPractice(sb):null;
+const passwordAccess=initPasswordAccess(sb,{show,boot});
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
-function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
+function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view','security-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
 function message(id,s,error=false){let e=$(id);e.textContent=s;e.classList.toggle('is-error',error)}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -117,6 +119,12 @@ async function boot(){
   }
   const linked=await linkedAccess();
   const choices=getAccessChoices(state.members,linked.learners,linked.awaiting);
+  if(passwordAccess.wantsSecurityView()){
+   if(choices.length>0){passwordAccess.showForUser(state.user.email);return}
+   show('claim-view');
+   message('claim-message','Your email is verified, but an administrator must authorise an active MathsGrove role before a password can be set.',true);
+   return;
+  }
   if(choices.length>1){displayRoleChoices(choices);return}
   const sole=preferredSingleChoice(choices);
   if(sole){await enterAuthorisedSpace(sole);return}
