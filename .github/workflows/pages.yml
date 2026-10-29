@@ -33,6 +33,9 @@ jobs:
           node --input-type=module --check < baseline.js
           node --input-type=module --check < baseline-calc.js
           node --input-type=module --check < baseline-admin.js
+          node --input-type=module --check < assigned-practice.js
+          node --input-type=module --check < assigned-admin.js
+          node scripts/check-auto-assign.mjs
           node --input-type=module --check < access-router.js
           node --input-type=module --check < portal.js
           node --input-type=module --check < studio.js
@@ -55,8 +58,10 @@ jobs:
           mkdir -p site
           cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg showcase-v3.css showcase-v3.js experience-v4.css experience-v4.js site/
           cp portal.html portal.css private-refresh.css student-features.css evidence-theme.css timed-mock.css maths-notation.css portal.js maths-render.js mathsgrove-config.js whiteboard.js site/
+          cp assigned-practice.js assigned-practice.css site/
           cp baseline.html baseline.css baseline.js baseline-calc.js site/
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css access-management.css access-management.js access-router.js baseline-admin.js site/
+          cp assigned-admin.js assigned-admin.css site/
           cp family.html family-access.css family-access.js site/
           mkdir -p site/content
           cp content/boards.json content/paper-blueprints.json site/content/
