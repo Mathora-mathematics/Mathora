@@ -35,6 +35,7 @@ jobs:
           node --input-type=module --check < baseline-admin.js
           node --input-type=module --check < assigned-practice.js
           node --input-type=module --check < assigned-admin.js
+          node --input-type=module --check < editorial-review.js
           node scripts/check-auto-assign.mjs
           node --input-type=module --check < access-router.js
           node --input-type=module --check < portal.js
@@ -62,6 +63,7 @@ jobs:
           cp baseline.html baseline.css baseline.js baseline-calc.js site/
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css access-management.css access-management.js access-router.js baseline-admin.js site/
           cp assigned-admin.js assigned-admin.css site/
+          cp editorial-review.js site/
           cp family.html family-access.css family-access.js site/
           mkdir -p site/content
           cp content/boards.json content/paper-blueprints.json site/content/
