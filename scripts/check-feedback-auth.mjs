@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const sql=readFileSync('supabase/EXAMINER_FEEDBACK_FOR_ASSIGNED_PRACTICE.sql','utf8');
+const staff=readFileSync('assigned-admin.js','utf8');
+const student=readFileSync('assigned-practice.js','utf8');
+const workflow=readFileSync('.github/workflows/pages.yml','utf8');
+for(const name of ['private.grove_task_feedback','private.grove_feedback_history'])
+ assert.ok(sql.includes('ALTER TABLE '+name+' ENABLE ROW LEVEL SECURITY')||sql.includes('ALTER TABLE '+name+' ENABLE ROW LEVEL SECURITY;'),'Missing private feedback RLS: '+name);
+assert.ok(sql.includes('REVOKE ALL ON private.grove_task_feedback,private.grove_feedback_history FROM PUBLIC,anon,authenticated'),'Private feedback tables must not have browser grants');
+assert.ok(sql.includes('private.is_staff(v.org_id)'),'Only assigned-organisation staff can publish feedback');
+assert.ok(sql.includes('student_id=(SELECT auth.uid())'),'Student must only read own released feedback');
+assert.ok(sql.includes("v.status NOT IN('completed','expired')"),'Feedback must be released only after assessment completion');
+assert.ok(sql.includes('private.grove_feedback_history'),'Feedback edits must be auditable');
+assert.ok(sql.includes("'teacher_feedback'"),'Admin report must carry existing feedback');
+assert.ok(sql.includes("'task_id',t.id"),'Admin report must bind comments to the correct attempt');
+assert.ok(staff.includes("db.rpc('grove_staff_save_feedback'"),'Studio must offer examiner feedback saving');
+assert.ok(student.includes("rpc('grove_my_feedback'"),'Student report must receive released feedback');
+assert.ok(!student.includes('private.grove_task_feedback'),'Browser must never directly query private feedback tables');
+assert.ok(workflow.includes('check-feedback-auth.mjs'),'Deploy must test feedback security invariants');
+console.log('MathsGrove feedback: 12 privacy, ownership, audit and report integration checks PASS.');
