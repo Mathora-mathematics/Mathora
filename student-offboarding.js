@@ -1,4 +1,4 @@
-/* MathsGrove student offboarding review. The UI does not delete or email private records.
+/* MathsGrove student offboarding review. The UI requests service-side email/archive delivery and removal.
  * A complete, downloaded archive is required before permanent account removal can be enabled. */
 export function initStudentOffboarding(db,state){
  const $=id=>document.getElementById(id),root=$('mg-offboarding-roster');
@@ -10,7 +10,11 @@ export function initStudentOffboarding(db,state){
    $('mg-student-offboarding').hidden=true;return;
   }
   $('mg-student-offboarding').hidden=false;
-  try{const state=await db.functions.invoke('grove-student-export',{body:{action:'health'}});emailAvailable=Boolean(!state.error&&state.data?.available)}catch{emailAvailable=false}
+  try{
+   const check=await db.functions.invoke('grove-student-export',{body:{action:'health'}});
+   emailAvailable=Boolean(!check.error&&check.data?.available);
+  }catch{emailAvailable=false}
+  $('mg-offboarding-email-setup').hidden=emailAvailable;
   const {data,error}=await db.rpc('grove_offboarding_list',{p_org:state.membership.org_id});
   root.replaceChildren();
   if(error){tell('Could not verify the private removal register: '+error.message);return}
@@ -77,5 +81,10 @@ export function initStudentOffboarding(db,state){
   }
  }
  $('mg-offboarding-refresh').addEventListener('click',()=>void refresh());
+ $('mg-offboarding-check-email').addEventListener('click',async()=>{
+  const button=$('mg-offboarding-check-email');button.disabled=true;
+  tell('Rechecking secure archive email sender. This sends no email and changes no student data.');
+  try{await refresh()}finally{button.disabled=false}
+ });
  return {refresh}
 }
