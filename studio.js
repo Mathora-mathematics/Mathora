@@ -29,6 +29,17 @@ function make(tag,cls,text){const el=document.createElement(tag);if(cls)el.class
 function pill(t,cls=''){return make('span','status-pill '+cls,t)}
 function itemRow(title,description,trailing){const row=make('div','record'),a=make('div');a.append(make('strong','',title),make('small','',description));row.append(a);if(trailing)row.append(trailing);return row}
 function setTab(tab){document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==tab);document.querySelectorAll('.nav [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));if(tab==='reports')renderReleased();if(tab==='marking')renderQueue();}
+function openStudentRemoval(){
+ if(state.membership?.member_role!=='admin'){inform('Only the organisation administrator may manage complete student data exports.',true);return}
+ setTab('students');
+ $('mg-student-offboarding').hidden=false;
+ void offboardingManager.refresh().catch(e=>inform('Student exports could not load: '+e.message,true));
+ history.replaceState(null,'',location.pathname+location.search+'#student-removal');
+ requestAnimationFrame(()=>$('mg-student-offboarding').scrollIntoView({behavior:'smooth',block:'start'}));
+}
+$('mg-offboarding-nav').addEventListener('click',openStudentRemoval);
+$('mg-student-export-shortcut').addEventListener('click',openStudentRemoval);
+
 document.querySelectorAll('.nav [data-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
 document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.goto)));
 $('logout').onclick=async()=>{if(db)await db.auth.signOut();location.href='./portal.html'};
@@ -45,6 +56,9 @@ async function init(){
   state.memberships=(memberships||[]).filter(x=>['admin','partner','examiner'].includes(x.member_role));
   if(!state.memberships.length){showStatus('Authorised staff only.','Your account is verified, but is not assigned an administrator, partner or examiner role. An existing administrator must authorise it.');return}
   state.membership=state.memberships.find(x=>x.member_role==='admin')||state.memberships[0];
+  const canOffboard=state.membership.member_role==='admin';
+  $('mg-offboarding-nav').hidden=!canOffboard;
+  $('mg-student-export-shortcut').hidden=!canOffboard;
   const {data:org,error:oe}=await db.from('organisations').select('id,name').eq('id',state.membership.org_id).single();
   if(oe)throw oe;
   state.org=org;
@@ -61,7 +75,8 @@ async function init(){
   }
   await refresh();
   initContentBank(db,state);
-  setTab('overview');
+  if(location.hash==='#student-removal' && state.membership?.member_role==='admin')openStudentRemoval();
+  else setTab('overview');
  }catch(e){showStatus('Could not open the studio.','The secure connection could not verify your permissions: '+(e?.message||'Unknown error'));}
 }
 async function refresh(){
