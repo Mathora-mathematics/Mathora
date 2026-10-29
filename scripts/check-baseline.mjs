@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
-import {evaluateMath} from '../baseline-calc.js';
+const calcSource=readFileSync(new URL('../baseline-calc.js',import.meta.url),'utf8');
+const {evaluateMath}=await import('data:text/javascript;charset=utf-8,'+encodeURIComponent(calcSource));
 const read=p=>{assert.ok(existsSync(p),'Missing baseline file: '+p);return readFileSync(p,'utf8')};
 const sql=read('supabase/UPGRADE_BASELINE_ASSESSMENT.sql');
 const app=read('baseline.js'),page=read('baseline.html'),style=read('baseline.css');
