@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS private.baseline_accommodations(
 REVOKE ALL ON private.baseline_accommodations FROM PUBLIC,anon,authenticated;
 
 CREATE OR REPLACE FUNCTION public.baseline_set_accommodation(p_student uuid,p_extra_percent integer)
-RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_org uuid;
 BEGIN
  IF (select auth.uid()) IS NULL OR p_extra_percent NOT IN (0,25,50,100)
@@ -92,7 +92,7 @@ BEGIN
  ON CONFLICT(student_id) DO UPDATE SET
  extra_time_percent=excluded.extra_time_percent,updated_by=excluded.updated_by,updated_at=now();
  RETURN jsonb_build_object('ok',true,'extra_time_percent',p_extra_percent);
-END;$;
+END;$$;
 REVOKE ALL ON FUNCTION public.baseline_set_accommodation(uuid,integer) FROM PUBLIC,anon;
 GRANT EXECUTE ON FUNCTION public.baseline_set_accommodation(uuid,integer) TO authenticated;
 
@@ -307,7 +307,7 @@ END;$$;
 
 -- Staff only: released diagnostic summary and topic evidence, without pre-release answer keys.
 CREATE OR REPLACE FUNCTION public.baseline_staff_report(p_student uuid)
-RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_s private.baseline_sessions%ROWTYPE;v_topics jsonb;v_flags jsonb;v_band text;
 BEGIN
  SELECT * INTO v_s FROM private.baseline_sessions
@@ -342,14 +342,14 @@ BEGIN
   'level',v_s.academic_level,'score',v_s.score,'total',20,
   'band',v_band,'topics',v_topics,'integrity',v_flags,'submitted_at',v_s.closed_at,
   'disclaimer','This short multiple-choice diagnostic is not a predicted grade or evidence of independently verified work.');
-END;$;
+END;$$;
 REVOKE ALL ON FUNCTION public.baseline_staff_report(uuid) FROM PUBLIC,anon;
 GRANT EXECUTE ON FUNCTION public.baseline_staff_report(uuid) TO authenticated;
 
 -- Grove Exam supporters may read only this learner's released diagnostic summary.
 -- Verified recipient / invitation / tier and organisation are rechecked every time.
 CREATE OR REPLACE FUNCTION public.baseline_family_report(p_student uuid)
-RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_viewer uuid:=(select auth.uid());v_role text;v_s private.baseline_sessions%ROWTYPE;
  v_topics jsonb;v_band text;
 BEGIN
@@ -389,14 +389,14 @@ BEGIN
  RETURN jsonb_build_object('status','completed','role',v_role,'score',v_s.score,'total',20,
   'qualification',v_s.qualification,'level',v_s.academic_level,'band',v_band,'topics',v_topics,
   'disclaimer','This 20-question diagnostic describes initial topic evidence, not an official grade or prediction.');
-END;$;
+END;$$;
 REVOKE ALL ON FUNCTION public.baseline_family_report(uuid) FROM PUBLIC,anon;
 GRANT EXECUTE ON FUNCTION public.baseline_family_report(uuid) TO authenticated;
 
 -- Authorised partner staff can see a baseline overview for learners in their own organisation.
 -- This summary never reveals unsubmitted answers, full answer keys or raw scratch work.
 CREATE OR REPLACE FUNCTION public.baseline_admin_overview(p_org uuid)
-RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_result jsonb; v_expired record;
 BEGIN
  IF (select auth.uid()) IS NULL OR NOT private.is_staff(p_org)
@@ -424,7 +424,7 @@ BEGIN
   WHERE s.org_id=p_org ORDER BY s.started_at DESC LIMIT 250
  )t;
  RETURN jsonb_build_object('ok',true,'sessions',v_result);
-END;$;
+END;$$;
 REVOKE ALL ON FUNCTION public.baseline_admin_overview(uuid) FROM PUBLIC,anon;
 GRANT EXECUTE ON FUNCTION public.baseline_admin_overview(uuid) TO authenticated;
 
