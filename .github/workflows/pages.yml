@@ -49,6 +49,7 @@ jobs:
           cp content/boards.json content/paper-blueprints.json site/content/
           mkdir -p site/content/programmes
           cp content/programmes/service-tiers.json content/programmes/draft-questions.json site/content/programmes/
+          cp content/programmes/original-question-bank-144.json site/content/programmes/
           cp content/programmes/exam-reasoning-drafts-12.json site/content/programmes/
           mkdir -p site/content/GCSE site/content/IGCSE
           cp content/GCSE/draft-exemplars.json site/content/GCSE/
