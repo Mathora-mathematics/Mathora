@@ -292,6 +292,10 @@ returns trigger language plpgsql security definer set search_path='' as $$
 begin
  if new.tier<>'exam' then
   update public.learner_view_links set active=false where student_id=new.student_id;
+  -- A later upgrade must be explicitly authorised by the administrator again.
+  update public.learner_view_invitations set revoked_at=now()
+   where revoked_at is null and org_id=new.org_id and student_email in
+    (select lower(u.email) from auth.users u where u.id=new.student_id);
  end if;
  return new;
 end;$$;
