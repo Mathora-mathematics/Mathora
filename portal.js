@@ -6,7 +6,7 @@ const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(c
 const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRefreshToken:true,persistSession:true,detectSessionInUrl:true}}):null;
 const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false,mockClock:null,mockSeconds:0,mockAnchor:0,mockFinalizing:false,mockQuestionTimes:{},questionTimer:null,questionActiveId:null,questionEntered:0,questionElapsed:{}};
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
-function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
+function show(id){['configure-view','login-view','otp-view','claim-view','role-view','dashboard-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
 function message(id,s,error=false){let e=$(id);e.textContent=s;e.classList.toggle('is-error',error)}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -17,7 +17,63 @@ function isStaff(){return state.member&&['partner','examiner','admin'].includes(
 function isPartner(){return state.member&&['partner','admin'].includes(state.member.member_role)}
 function showPanel(id){document.querySelectorAll('.dash-panel').forEach(e=>e.hidden=e.id!==id+'-panel');document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='papers')renderPaperList();if(id==='progress')renderProgress();if(id==='mocks')void loadAssignedMocks()}
 function initials(name){return (name||'Student').trim().split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()||'').join('')||'MG'}
-async function requestLink(e){e.preventDefault();try{requireReady();const email=$('access-email').value.trim().toLowerCase(),code=$('access-code').value.trim().toUpperCase().replace(/\s/g,'');if(code&&!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))throw Error('If you use a recovery invitation code, enter its complete MG-... value.');if(code)sessionStorage.setItem('mathsgrove_pending_code',code);else sessionStorage.removeItem('mathsgrove_pending_code');$('send-link').disabled=true;const {error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:new URL('./portal.html',location.href).href}});if(error)throw error;message('login-message','Check your inbox for your private sign-in link. Once verified, MathsGrove will recognise your authorised role and open the appropriate dashboard.')}catch(err){message('login-message',friendlyError(err),true)}finally{$('send-link').disabled=false}}
+let pendingOtpEmail='';
+async function sendSignInCode(email){
+ requireReady();
+ const address=String(email||'').trim().toLowerCase();
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(address)||address.length>250)throw Error('Enter a valid registered email address.');
+ const {error}=await sb.auth.signInWithOtp({
+   email:address,
+   options:{emailRedirectTo:new URL('./portal.html',location.href).href}
+ });
+ if(error)throw error;
+ pendingOtpEmail=address;
+ text('otp-destination',address);
+ $('otp-token').value='';
+ show('otp-view');
+ message('otp-message','Enter the short one-time code from your email. The code confirms that this is your account.');
+ $('otp-token').focus();
+}
+async function requestLink(e){
+ e.preventDefault();
+ const button=$('send-link');
+ button.disabled=true;
+ try{
+  const email=$('access-email').value.trim().toLowerCase();
+  const code=$('access-code').value.trim().toUpperCase().replace(/\s/g,'');
+  if(code&&!/^MG-[0-9A-F]{8}-[0-9A-F]{8}-[0-9A-F]{8}$/.test(code))throw Error('Use the complete MG-... value if you have a legacy recovery code.');
+  if(code)sessionStorage.setItem('mathsgrove_pending_code',code);
+  else sessionStorage.removeItem('mathsgrove_pending_code');
+  await sendSignInCode(email);
+ }catch(err){message('login-message',friendlyError(err),true)}
+ finally{button.disabled=false}
+}
+async function verifySignInCode(e){
+ e.preventDefault();
+ const token=$('otp-token').value.replace(/\s/g,'');
+ const button=$('verify-otp');
+ if(!pendingOtpEmail||!/^\d{6,8}$/.test(token)){
+  message('otp-message','Enter the short numeric code sent to your registered email.',true);
+  return;
+ }
+ button.disabled=true;
+ try{
+  const {data,error}=await sb.auth.verifyOtp({email:pendingOtpEmail,token,type:'email'});
+  if(error)throw error;
+  if(!data?.session?.user)throw Error('The code could not establish a verified session. Request a new code.');
+  pendingOtpEmail='';
+  await boot();
+ }catch(err){message('otp-message',friendlyError(err),true)}
+ finally{button.disabled=false}
+}
+async function resendSignInCode(){
+ const button=$('otp-resend');
+ if(!pendingOtpEmail){show('login-view');return}
+ button.disabled=true;
+ try{await sendSignInCode(pendingOtpEmail)}
+ catch(err){message('otp-message',friendlyError(err),true)}
+ finally{button.disabled=false}
+}
 async function redeem(code){const {data,error}=await sb.functions.invoke('invitations',{body:{action:'redeem',code:code.trim().toUpperCase()}});if(error)throw Error('Invitation could not be verified. Ensure your code matches the email address you used.');if(!data?.ok)throw Error(data?.error||'Invitation could not be redeemed.');sessionStorage.removeItem('mathsgrove_pending_code');return data}
 async function loadMembership(){
  const {data,error}=await sb.from('memberships').select('org_id,member_role').eq('user_id',state.user.id).limit(20);
@@ -192,6 +248,9 @@ async function renderEvidence(){
 }
 
 $('invite-login-form').addEventListener('submit',requestLink);
+$('otp-form').addEventListener('submit',verifySignInCode);
+$('otp-resend').addEventListener('click',()=>void resendSignInCode());
+$('otp-other-email').addEventListener('click',()=>{pendingOtpEmail='';$('otp-token').value='';show('login-view')});
 $('existing-member').addEventListener('click',()=>{$('access-code').value='';message('login-message','Enter your registered email to receive a secure sign-in link.')});
 $('claim-form').addEventListener('submit',async e=>{e.preventDefault();try{await redeem($('claim-code').value);await loadMembership();if(!state.member)throw Error('Enrolment pending.');message('claim-message','Invitation accepted.');await boot()}catch(err){message('claim-message',friendlyError(err),true)}});
 $('sign-out').addEventListener('click',async()=>{await sb?.auth.signOut();sessionStorage.removeItem('mathsgrove_pending_code');location.href='./portal.html'});
