@@ -47,7 +47,8 @@ The *academic* labels (Foundation, Higher, Core, Extended, AS etc.) must never b
 ## Editorial content queue
 
 - `content/GCSE/draft-exemplars.json` and `content/IGCSE/draft-exemplars.json`: first 24 public draft examples.
-- `content/programmes/draft-questions.json`: additional **24 original, programme-tagged public draft stems** (8 each for Daily, Weekly, Exam).
+- `content/programmes/draft-questions.json`: 24 original, programme-tagged public draft stems (8 per tier).
+- `content/programmes/original-question-bank-144.json`: **144 additional TeX-formatted original practice / exam-style draft questions**, 48 per Grove programme and 24 per GCSE/IGCSE route.
 - `content/programmes/exam-reasoning-drafts-12.json`: **12 multi-part Grove Exam editorial examples**, not unseen mock questions.
 - `content/programmes/operational-*.json`: **120 public original reusable GCSE/IGCSE practice questions** with indicative answers and schemes (30 per qualification/tier combination, excluding Exam).
 - `supabase/INSTALL_ORIGINAL_PRACTICE_120.sql`: server-side seed installed **after** the timing/content upgrade.
