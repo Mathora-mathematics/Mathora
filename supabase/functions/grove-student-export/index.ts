@@ -5,8 +5,11 @@ const site='https://mathora-mathematics.github.io';
 const cors={'Access-Control-Allow-Origin':site,'Access-Control-Allow-Headers':'authorization, apikey, content-type, x-client-info','Access-Control-Allow-Methods':'POST, OPTIONS','Vary':'Origin'};
 const send=(obj:unknown,status=200)=>Response.json(obj,{status,headers:{...cors,'Cache-Control':'no-store'}});
 const uri=Deno.env.get('SUPABASE_URL')||'';
-const serviceKey=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')||'';
-const publishKey=Deno.env.get('SUPABASE_ANON_KEY')||'';
+function defaultKey(name:string):string{
+ try{return JSON.parse(Deno.env.get(name)||'{}').default||''}catch{return ''}
+}
+const serviceKey=Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')||defaultKey('SUPABASE_SECRET_KEYS');
+const publishKey=Deno.env.get('SUPABASE_ANON_KEY')||defaultKey('SUPABASE_PUBLISHABLE_KEYS');
 function client(key:string){return createClient(uri,key,{auth:{persistSession:false,autoRefreshToken:false}})}
 const hex=(bytes:Uint8Array)=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 const hash=async(s:string)=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))));
