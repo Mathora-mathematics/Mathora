@@ -5,7 +5,7 @@ export function initStudentOffboarding(db,state){
  const status=text=>{$('mg-offboarding-status').textContent=text};
  const bytesToHex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
  const hexDigest=async blob=>bytesToHex(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()));
- let busy=false,readyForConfirmation=new Map();
+ let busy=false,manualServiceReady=false,readyForConfirmation=new Map();
  async function server(action,student){
   const {data,error}=await db.functions.invoke('grove-student-export',{body:{
    action,orgId:state.membership.org_id,studentId:student.student_id
@@ -78,12 +78,18 @@ export function initStudentOffboarding(db,state){
   if(state.membership?.member_role!=='admin'){$('mg-student-offboarding').hidden=true;return}
   $('mg-student-offboarding').hidden=false;
   $('mg-offboarding-email-setup').hidden=true;
-  if(resetStatus)status('Loading students. Archives are downloaded by the administrator; no email service is required.');
+  try{
+   const health=await db.functions.invoke('grove-student-export',{body:{action:'health'}});
+   manualServiceReady=Boolean(!health.error&&health.data?.method==='manual_zip_pdf');
+  }catch{manualServiceReady=false}
+  if(resetStatus)status(manualServiceReady
+   ?'Loading students. Archives are downloaded by the administrator; no email service is required.'
+   :'The new PDF ZIP export service is awaiting server deployment. Student deletion is disabled; all data remains unchanged.');
   const {data,error}=await db.rpc('grove_offboarding_list',{p_org:state.membership.org_id});
   root.replaceChildren();
   if(error){status('Cannot display the private student register: '+error.message);return}
   const students=data?.students||[];
-  if(resetStatus)status(students.length+' student account(s) · generate a PDF ZIP, verify it, then choose whether to remove the student.');
+  if(resetStatus&&manualServiceReady)status(students.length+' student account(s) · generate a PDF ZIP, verify it, then choose whether to remove the student.');
   if(!students.length){root.append(el('p','No students enrolled. The next trial will start with a new account.','subtext'));return}
   for(const student of students){
    const card=el('div',undefined,'mg-offboarding-member'),meta=el('div');
@@ -99,14 +105,17 @@ export function initStudentOffboarding(db,state){
    const actions=el('div',undefined,'mg-offboarding-actions');
    if(st==='not_started'||st==='failed'||st==='requested'||st==='ready_manual'){
     const button=makeButton(st==='ready_manual'?'Download PDF ZIP again':'Generate & download PDF ZIP',()=>void downloadArchive(student,st==='ready_manual'?'manual_download':'prepare_manual',button),false);
+    button.disabled=!manualServiceReady;
     actions.append(button);
    }
    if(st==='ready_manual'&&readyForConfirmation.has(student.student_id)){
     const confirmButton=makeButton('I saved and checked the ZIP',()=>void acknowledge(student,confirmButton),false,'mg-offboarding-confirm');
+    confirmButton.disabled=!manualServiceReady;
     actions.append(confirmButton);
    }
    if(st==='downloaded'){
     const deletion=makeButton('Permanently remove student',()=>void eraseStudent(student,deletion),false,'mg-offboarding-erase');
+    deletion.disabled=!manualServiceReady;
     actions.append(deletion)
    }
    card.append(meta,actions);root.append(card)
