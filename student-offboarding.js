@@ -31,21 +31,20 @@ export function initStudentOffboarding(db,state){
     :'Export not requested';
    meta.append(el('span',label,'mg-offboarding-state'));
    if(student.last_error)meta.append(el('p','Archive preparation issue: '+student.last_error,'mg-offboarding-details'));
-   const button=el('button',queued?'View export status':'Prepare student export');button.type='button';
+   const button=el('button',queued?'View export status':'Email complete student archive');button.type='button';
    if(!student.verified)button.disabled=true;
    button.addEventListener('click',async()=>{
     if(queued){tell('Current status: '+label+'. No records have been deleted.');return}
     if(busy)return;
-    const result=confirm('Queue a complete private export for the registered email '+student.email+'? This does NOT send an email or delete any data until the secure delivery service has been configured.');
+    const result=confirm('Prepare and email a complete private archive to '+student.email+'? No data will be deleted. If secure email delivery is not configured, this action will stop safely.');
     if(!result)return;
     busy=true;button.disabled=true;
     try{
-     const {data,error}=await db.rpc('grove_offboarding_prepare',{
-      p_org:state.membership.org_id,p_student:student.student_id
+     const {data,error}=await db.functions.invoke('grove-student-export',{
+      body:{action:'prepare',orgId:state.membership.org_id,studentId:student.student_id}
      });
-     if(error)throw error;
-     if(!data)throw Error('No export request identifier returned');
-     tell('Archive request recorded. No email has been sent and the student remains enrolled. Secure delivery configuration is still required.');
+     if(error||!data?.ok)throw Error(data?.error||error?.message||'Secure archive delivery is unavailable.');
+     tell('Archive email accepted by the delivery provider. No student has been removed.');
      await refresh()
     }catch(e){tell('Could not prepare this export: '+e.message);button.disabled=false}
     finally{busy=false}
