@@ -14,6 +14,16 @@ for (const page of pages) {
   if (duplicates.length) errors.push(page+' duplicate ids: '+[...new Set(duplicates)].join(', '));
   if (/sb_secret_[a-zA-Z0-9_-]{10,}/.test(html)) errors.push(page+' contains private key');
 }
+const studioPage=readFileSync('studio.html','utf8');
+const studioApp=readFileSync('studio.js','utf8');
+for(const id of ['mg-student-offboarding','mg-offboarding-nav','mg-student-export-shortcut'])
+  if(!studioPage.includes('id="'+id+'"')) errors.push('Studio lacks visible student offboarding entry '+id);
+if(studioPage.indexOf('id="mg-student-offboarding"')>studioPage.indexOf('id="invite-form"'))
+  errors.push('Student offboarding must be placed at the top of the student management section');
+if(!studioApp.includes("function openStudentRemoval()")||!studioApp.includes("state.membership?.member_role!=='admin'"))
+  errors.push('Studio must provide guarded student removal navigation');
+if(!studioApp.includes("location.hash==='#student-removal'"))
+  errors.push('Admin offboarding direct link is missing');
 const landing=readFileSync('index.html','utf8');
 if (landing.includes('£')||/\bpricing\b/i.test(landing)) errors.push('Public homepage must not advertise prices');
 if (/partner dashboard|demo-overlay|id="panel-partner"/i.test(landing)) errors.push('Old public partner dashboard found');
