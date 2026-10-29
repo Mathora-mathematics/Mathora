@@ -72,7 +72,7 @@ REVOKE INSERT, UPDATE ON public.student_preferences FROM authenticated;
 -- Academic route determined only from server-side enrolled preferences.
 CREATE OR REPLACE FUNCTION private.baseline_route(p_student uuid)
 RETURNS jsonb LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path='' AS $$
-DECLARE v_q text;v_level text;v_programme text;v_org uuid;v_norm text;v_route text;v_minutes integer;
+DECLARE v_q text;v_level text;v_programme text;v_org uuid;v_norm text;v_route text;v_minutes integer;v_extra integer:=0;
 BEGIN
  SELECT sp.qualification,sp.tier,e.tier,e.org_id INTO v_q,v_level,v_programme,v_org
  FROM public.student_preferences sp
@@ -100,6 +100,9 @@ BEGIN
   WHEN v_q='TMUA' THEN 45
   WHEN v_q='FURTHER_MATHS' THEN 60
   ELSE 55 END;
+ SELECT coalesce(extra_time_percent,0) INTO v_extra FROM private.baseline_accommodations WHERE student_id=p_student;
+ v_extra:=coalesce(v_extra,0);
+ v_minutes:=ceil(v_minutes*(100+v_extra)/100.0);
  RETURN jsonb_build_object('ready',true,'qualification',v_q,'level',v_route,'programme',v_programme,'org_id',v_org,'minutes',v_minutes,'calculator_allowed',(v_q<>'TMUA'));
 END;$$;
 
