@@ -26,12 +26,10 @@ BEGIN
  r:=public.baseline_finish(sid);
  IF r->>'status'<>'submitted' OR (r->>'score') IS NULL
  OR jsonb_array_length(r->'review')<>20 THEN RAISE EXCEPTION 'Marking/report failed: %',r;END IF;
- BEGIN
-  PERFORM public.baseline_answer(sid,2,'B');
-  IF (SELECT count(*) FROM private.baseline_answers WHERE session_id=sid)<>1 THEN
-   RAISE EXCEPTION 'Finished sitting should never accept new answers';END IF;
- EXCEPTION WHEN insufficient_privilege THEN NULL;
- END;
+ PERFORM public.baseline_answer(sid,2,'B');
+ r:=public.baseline_status();
+ IF (r->>'submitted_count')::integer<>1 THEN
+  RAISE EXCEPTION 'Finished sitting incorrectly accepted a second answer';END IF;
  IF (public.baseline_start()->>'session_id')::uuid<>sid THEN RAISE EXCEPTION 'Sitting retake bypass detected';END IF;
  RAISE NOTICE '20-item baseline, 25%% extra time, autosave, report and single sitting passed.';
 END
