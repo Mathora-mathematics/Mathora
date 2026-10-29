@@ -16,7 +16,7 @@ for (const page of pages) {
 }
 const studioPage=readFileSync('studio.html','utf8');
 const studioApp=readFileSync('studio.js','utf8');
-for(const id of ['mg-student-offboarding','mg-offboarding-nav','mg-student-export-shortcut'])
+for(const id of ['mg-student-offboarding','mg-offboarding-nav','mg-student-export-shortcut','mg-offboarding-email-setup','mg-offboarding-check-email'])
   if(!studioPage.includes('id="'+id+'"')) errors.push('Studio lacks visible student offboarding entry '+id);
 if(studioPage.indexOf('id="mg-student-offboarding"')>studioPage.indexOf('id="invite-form"'))
   errors.push('Student offboarding must be placed at the top of the student management section');
@@ -24,6 +24,9 @@ if(!studioApp.includes("function openStudentRemoval()")||!studioApp.includes("st
   errors.push('Studio must provide guarded student removal navigation');
 if(!studioApp.includes("location.hash==='#student-removal'"))
   errors.push('Admin offboarding direct link is missing');
+const offboardingApp=readFileSync('student-offboarding.js','utf8');
+if(!offboardingApp.includes("action:'health'")||!offboardingApp.includes("mg-offboarding-email-setup"))
+  errors.push('Student export setup status must query sender readiness without sending a student email');
 const landing=readFileSync('index.html','utf8');
 if (landing.includes('£')||/\bpricing\b/i.test(landing)) errors.push('Public homepage must not advertise prices');
 if (/partner dashboard|demo-overlay|id="panel-partner"/i.test(landing)) errors.push('Old public partner dashboard found');
