@@ -10,6 +10,20 @@ const drafts=[
  ...read('content/IGCSE/draft-exemplars.json').items.map(q=>({...q,qualification:'IGCSE'})),
  ...read('content/programmes/draft-questions.json').items
 ];
+const additional=read('content/programmes/original-question-bank-144.json').questions;
+assert(additional.length===144,'Expected 144 original tier-specific draft items');
+const additionalIds=new Set();
+for(const q of additional){
+ assert(!additionalIds.has(q.id),'Duplicate expanded question '+q.id);
+ additionalIds.add(q.id);
+ assert(['GCSE','IGCSE'].includes(q.qualification),'Invalid qualification');
+ assert(q.prompt.includes('\\\\('),'Mathematics must have delimited TeX');
+ assert(q.status==='editorial_draft'&&!q.available_to_students,'Drafts must not be published');
+ assert(Number.isInteger(q.marks)&&q.marks>=1,'Invalid question marks');
+}
+for(const tier of ['weekly','daily','exam'])for(const qual of ['GCSE','IGCSE'])
+ assert(additional.filter(q=>q.programme===tier&&q.qualification===qual).length===24,
+   'Missing tier/qualification question coverage');
 const ids=new Set();
 for(const q of drafts){
  assert(!ids.has(q.id),'Duplicate specimen question: '+q.id);ids.add(q.id);
