@@ -1,0 +1,50 @@
+name: Verify MathsGrove baseline SQL
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/UPGRADE_BASELINE_ASSESSMENT.sql'
+      - 'supabase/SEED_BASELINE_PILOT_*.sql'
+      - 'scripts/baseline-postgres-*.sql'
+      - '.github/workflows/baseline-postgres.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sql-smoke:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: postgres
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure PostgreSQL client
+        run: command -v psql || (sudo apt-get update && sudo apt-get install -y postgresql-client)
+      - name: Apply disposable schema fixture
+        run: psql -X -v ON_ERROR_STOP=1 -f scripts/baseline-postgres-fixture.sql
+      - name: Compile and apply baseline migration
+        run: psql -X -v ON_ERROR_STOP=1 -f supabase/UPGRADE_BASELINE_ASSESSMENT.sql
+      - name: Load three moderated-demo seed files
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -f supabase/SEED_BASELINE_PILOT_KS4.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/SEED_BASELINE_PILOT_ALEVEL_IBAA.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/SEED_BASELINE_PILOT_SPECIALIST.sql
+      - name: Simulate account, extra time, 20 questions, submissions and report
+        run: psql -X -v ON_ERROR_STOP=1 -f scripts/baseline-postgres-smoke.sql
