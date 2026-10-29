@@ -18,7 +18,11 @@ export function initAssignedPractice(db){
    b.append(el('small',new Date(r.due_date+'T12:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})),el('strong',titles[r.mode]||'Assigned practice'),
    el('span',r.mode==='mock_pending'?'Requires a tutor-approved full mock':r.status==='completed'||r.status==='expired'?'Completed · '+r.score+'/'+r.questions:r.status==='active'?'Continue saved session':eligible?'Ready · '+r.questions+' questions':r.due_date>date()?'Opens on this date':'Complete baseline first'));
    b.addEventListener('click',()=>void open(r));list.append(b);
-   if(r.due_date<=new Date(Date.now()+7*86400000).toISOString().slice(0,10))cal.append(b.cloneNode(true));
+   if(r.due_date<=new Date(Date.now()+7*86400000).toISOString().slice(0,10)){
+     const day=el('button',new Date(r.due_date+'T12:00:00').getDate()+' · '+(titles[r.mode]||'Assigned work'),'practice-day'+(eligible?' scheduled':''));
+     day.type='button';day.disabled=!eligible;
+     day.addEventListener('click',()=>void open(r));cal.append(day);
+   }
   }
   if(!rows.length)list.append(el('p','The next assignments appear after programme activation.'));
  }
@@ -105,6 +109,8 @@ export function initAssignedPractice(db){
  $('mg-practice-finish').addEventListener('click',()=>void finish(false));
  $('mg-report-back').addEventListener('click',()=>{$('mg-practice-report').hidden=true;void refresh()});
  document.addEventListener('visibilitychange',()=>{if(task?.status==='active')void focus(!document.hidden)});
+ window.addEventListener('blur',()=>{if(task?.status==='active')void focus(false)});
+ window.addEventListener('focus',()=>{if(task?.status==='active'&&!document.hidden)void focus(true)});
  window.addEventListener('pagehide',()=>{if(task?.status==='active')void focus(false)});
  setInterval(()=>{if(task?.status==='active'&&!document.hidden)void focus(true)},15000);
  return {refresh}
