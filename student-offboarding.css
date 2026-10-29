@@ -15,3 +15,5 @@
 .mg-offboarding-setup code{font-size:11px;background:#eee7dc;padding:2px 5px;border-radius:3px}
 .mg-offboarding-setup button{margin:10px 0!important}
 .mg-offboarding-setup small{display:block;font-size:11px;color:#657690;line-height:1.7}
+
+.mg-offboarding-actions{display:flex;flex-direction:column;gap:9px;min-width:200px;align-items:stretch}.mg-offboarding-actions button{white-space:normal!important}.mg-offboarding-actions .mg-offboarding-confirm{background:#f1f7f1;border-color:#9db8a1;color:#275b36}.mg-offboarding-actions .mg-offboarding-erase{background:#fff6f4;border:1px solid #ac6d55;color:#843d31}.mg-offboarding-member .mg-offboarding-actions button{width:100%}@media(max-width:650px){.mg-offboarding-actions{width:100%}}
