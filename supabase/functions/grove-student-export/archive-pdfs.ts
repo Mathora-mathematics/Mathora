@@ -5,7 +5,13 @@ const str=(x:unknown):string=>x===null||x===undefined?'—':typeof x==='object'?
 const date=(x:unknown)=>{if(!x)return '—';const d=new Date(String(x));return isNaN(+d)?str(x):d.toISOString().slice(0,16).replace('T',' ')+' UTC'};
 function ascii(input:string):string{
  const map:Record<string,string>={'π':'pi','Π':'Pi','√':'sqrt','×':'x','÷':'/','−':'-','–':'-','—':'-','≤':'<=','≥':'>=','≠':'!=','²':'^2','³':'^3','⁴':'^4','¹':'^1','⁰':'^0','°':' degrees','£':'GBP ','€':'EUR ','•':'-','→':'->','∞':'infinity','α':'alpha','β':'beta','θ':'theta','μ':'mu','Δ':'Delta','∑':'sum','∈':'in','∩':'intersection','∪':'union','∴':'therefore','≈':'approximately','∝':'proportional to','’':"'",'“':'"','”':'"'};
- let out='';for(const c of input.normalize('NFKD')){if(map[c])out+=map[c];else if(c.charCodeAt(0)>=32&&c.charCodeAt(0)<=126)out+=c;else if(c==='\n'||c==='\t')out+=' ';else out+='?'}return out;
+ let out='';for(const c of input){
+  if(map[c]){out+=map[c];continue}
+  if(c==='\n'||c==='\t'){out+=' ';continue}
+  const latin=c.normalize('NFKD').replace(/[\u0300-\u036f]/g,'');
+  if([...latin].every(x=>x.charCodeAt(0)>=32&&x.charCodeAt(0)<=126)){out+=latin;continue}
+  out+='?'
+ }return out;
 }
 const colors={navy:rgb(.065,.12,.22),ink:rgb(.14,.23,.34),muted:rgb(.4,.47,.55),champagne:rgb(.78,.68,.53),paper:rgb(.98,.975,.96),line:rgb(.87,.88,.88)};
 class Writer{
