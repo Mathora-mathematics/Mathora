@@ -116,3 +116,18 @@ All existing pupil authentication, whiteboard/photos and marking submission data
 Alongside the existing 180 open-practice items, there are now **120 further original, answer-checked numerical variations** (40 skill families × 3 variants). The expanded administrator catalogue displays **300 public practice candidates**, distributed across GCSE and IGCSE Daily and Weekly programmes, plus **12 more multi-part Grove Exam editorial drafts**. These are not confidential or approved full timed mocks.
 
 To add the extra variants to the Supabase student question bank, first install and verify the existing combined `supabase/UPGRADE_MATHSGROVE_MATHS_V2.sql` (which contains the original 180), then run `supabase/ADD_120_ORIGINAL_PRACTICE_VARIANTS.sql`. **Neither script is installed by a GitHub deployment.** The second installer is idempotent and uses the existing `practice_content_index`, preserving the server-side tier/qualification checks. Review and back up the database before execution.
+
+## Unified interactive marketing experience (October 2026, v4)
+
+The **main `index.html` homepage** is the single public marketing journey. The previous tall iframe embeds were removed. The page preserves the navy, champagne-beige and ivory brand and contains:
+
+- A prominent early Signature spotlight and separate detailed **Signature / Signature Advanced / Specialist Reasoning** section, based on the partner and family programme brochures. Human examiner marking is always **separately arranged**.
+- Expanded **Grove Weekly / Daily / Exam** specification, comparison, and accurate tutor/guardian entitlements. Parent and assigned-tutor accounts are **Grove Exam only**. Do not expose private partner pricing on the public site.
+- Native interactive tier / qualification / viewer switchers with fictional role-specific analytics. These are **marketing concepts**, not verified real account capabilities.
+- A swipeable, multi-month fictional practice calendar. Clicking a day opens a session detail modal. Exam mock days offer a six-minute, three-question **local unmarked simulation**; typed draft answers exist in memory only and are discarded on closing. Prepared answers do not auto-grade user work.
+- Fictional progress-trend charts, confidence comparisons and deeper student, parent and tutor interpretation.
+- Existing demo whiteboard/typed-answer/local-photo-preview controls, report types, and examiner-style prepared feedback.
+
+**Files:** `showcase-v3.css`, `showcase-v3.js`, `experience-v4.css`, `experience-v4.js` are loaded from `index.html`. The v3 JavaScript exposes limited demo state to v4; v4 owns the enhanced calendar, mock trial and additional analysis. Keep these together when editing.
+
+**Technical boundary:** No marketing demonstration transmits student work, predicts grades, grants real tutor/guardian access or publishes official examinations. The protected `portal.html` and `studio.html` remain separate applications pending security verification and production readiness.
