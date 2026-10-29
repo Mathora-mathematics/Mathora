@@ -150,8 +150,14 @@ async function handle(req:Request):Promise<Response>{
   const deleted=await admin.auth.admin.deleteUser(student,false);
   if(deleted.error)return send({error:'Account authentication removal requires manual review.'},503);
   // A copy was acknowledged by the learner; remove the temporary server ZIP.
-  const {error:zipError}=await admin.storage.from('grove-student-exports').remove([job.archive_path]);
-  if(zipError)return send({error:'Student account removed; temporary archive cleanup needs administrator attention.'},503);
+  const {data:oldArchives,error:listError}=await admin.storage.from('grove-student-exports').list(org+'/'+student,{limit:1000});
+  if(listError)return send({error:'Student account removed; archive cleanup requires manual review.'},503);
+  const archivePaths=(oldArchives||[]).filter(a=>a.id).map(a=>org+'/'+student+'/'+a.name);
+  if(!archivePaths.includes(job.archive_path))archivePaths.push(job.archive_path);
+  for(let i=0;i<archivePaths.length;i+=100){
+   const {error:zipError}=await admin.storage.from('grove-student-exports').remove(archivePaths.slice(i,i+100));
+   if(zipError)return send({error:'Student account removed; temporary archive cleanup needs administrator attention.'},503);
+  }
   const {error:finishError}=await admin.rpc('grove_offboarding_record_completion',{p_job:entry.job_id});
   if(finishError)return send({error:'Student account removed; final audit update requires review.'},503);
   return send({ok:true,status:'purged'});
