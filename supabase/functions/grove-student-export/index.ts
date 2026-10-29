@@ -1,3 +1,4 @@
+import { makeStudentPdfs, type Evidence } from './archive-pdfs.ts';
 import { createClient } from 'npm:@supabase/supabase-js@2.57.0';
 import { zipSync, strToU8 } from 'npm:fflate@0.8.2';
 
@@ -25,79 +26,118 @@ async function handle(req:Request):Promise<Response>{
  const input=await req.json().catch(()=>null);
  const action=input?.action;
  const admin=client(serviceKey);
- if(action==='health')return send({available:Boolean(Deno.env.get('RESEND_API_KEY')&&Deno.env.get('MATHSGROVE_EXPORT_FROM'))});
- if(action==='prepare'){
-  // Check sending configuration before mutating or queuing any student records.
-  const resendKey=Deno.env.get('RESEND_API_KEY'),from=Deno.env.get('MATHSGROVE_EXPORT_FROM');
-  if(!resendKey||!from)return send({error:'Archive email sender is not configured. No student has been changed.'},503);
+ if(action==='health')return send({available:true,method:'manual_zip_pdf',email_required:false});
+
+ if(action==='prepare_manual'||action==='manual_download'){
   const authHeader=req.headers.get('Authorization')||'';
   const bearer=authHeader.startsWith('Bearer ')?authHeader.slice(7):'';
   if(!bearer)return send({error:'Administrator sign-in required'},401);
   const actor=client(publishKey);
   const {data:{user},error:authError}=await actor.auth.getUser(bearer);
-  if(authError||!user?.email_confirmed_at)return send({error:'Verified administrator session required'},401);
+  if(authError||!user?.email_confirmed_at)return send({error:'Verified administrator required'},401);
   const org=input?.orgId,student=input?.studentId;
-  if(typeof org!=='string'||typeof student!=='string'||!/^[\da-f-]{36}$/i.test(org)||!/^[\da-f-]{36}$/i.test(student))return send({error:'Invalid student selection'},400);
-  const {data:roles,error:roleError}=await admin.from('memberships').select('user_id').eq('org_id',org).eq('user_id',user.id).eq('member_role','admin').limit(1);
+  if(typeof org!=='string'||typeof student!=='string'||!/^[\da-f-]{36}$/i.test(org)||!/^[\da-f-]{36}$/i.test(student))
+   return send({error:'Invalid student selection'},400);
+  const {data:roles,error:roleError}=await admin.from('memberships').select('user_id')
+   .eq('org_id',org).eq('user_id',user.id).eq('member_role','admin').limit(1);
   if(roleError||!roles?.length)return send({error:'MathsGrove administrator role required'},403);
-  const {data:member,error:memberError}=await admin.from('memberships').select('user_id').eq('org_id',org).eq('user_id',student).eq('member_role','student').limit(1);
-  if(memberError||!member?.length)return send({error:'Student is not enrolled in your organisation'},403);
-  const {data:studentUser,error:studentError}=await admin.auth.admin.getUserById(student);
-  if(studentError||!studentUser?.user?.email||!studentUser.user.email_confirmed_at)return send({error:'Student must have a verified address'},409);
-  // This user-scoped RPC checks staff membership and prevents shared-account deletion.
-  const scoped=client(publishKey);
-  const {data:authInfo,error:scopeError}=await scoped.auth.getUser(bearer);
-  if(scopeError||authInfo.user?.id!==user.id)return send({error:'Session not authorised'},403);
+  const {data:member,error:memberError}=await admin.from('memberships').select('user_id')
+   .eq('org_id',org).eq('user_id',student).eq('member_role','student').limit(1);
+  if(memberError||!member?.length||student===user.id)return send({error:'Only a single-role student account can be exported'},403);
+  const {data:subject,error:subjectError}=await admin.auth.admin.getUserById(student);
+  if(subjectError||!subject?.user?.email)return send({error:'Student account no longer exists'},409);
   const userDb=createClient(uri,publishKey,{
    global:{headers:{Authorization:'Bearer '+bearer}},
    auth:{persistSession:false,autoRefreshToken:false}
   });
-  const {data:jobId,error:jobError}=await userDb.rpc('grove_offboarding_prepare',{p_org:org,p_student:student});
-  // Do not assume a service-role call populates auth.uid(); use an explicitly user-scoped RPC call when needed.
-  if(jobError||!jobId)return send({error:'The server could not create the export request. No data was erased.',detail:jobError?.message},409);
-  const failJob=async(message:string,status=503):Promise<Response>=>{
-   try{await admin.rpc('grove_export_mark_failed',{p_job:jobId,p_message:message})}catch{/* original failure remains authoritative */}
-   return send({error:message},status);
+  const getDetails=async()=>await userDb.rpc('grove_offboarding_manual_details',{p_org:org,p_student:student});
+  const signed=async(path:string,checksum:string)=>{
+   const {data:link,error}=await admin.storage.from('grove-student-exports')
+    .createSignedUrl(path,90,{download:'MathsGrove-'+title(subject.user.email||'student')+'-complete-archive.zip'});
+   if(error||!link?.signedUrl)throw Error('Unable to issue the private ZIP download link');
+   return send({ok:true,downloadUrl:link.signedUrl,sha256:checksum,status:'ready_manual'});
   };
-  const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
-  if(rosterError)return await failJob('Cannot check the private archive queue');
-  const entry=(roster?.students||[]).find((x:{student_id:string})=>x.student_id===student);
-  if(!entry||entry.job_id!==jobId)return send({error:'Export request mismatch'},409);
-  if(entry.status==='emailed'||entry.status==='downloaded')return send({ok:true,status:entry.status});
-  if(entry.status!=='requested')return send({error:'An export is already being prepared. Try later.'},409);
+  const {data:existing,error:existingError}=await getDetails();
+  if(existingError)return send({error:'Cannot inspect this student archive request'},503);
+  if(existing?.status==='ready_manual'&&existing?.archive_path&&existing?.checksum)
+   return await signed(existing.archive_path,existing.checksum);
+  if(action==='manual_download')return send({error:'Create a new student ZIP first'},409);
+  if(existing?.status==='downloaded')
+   return send({error:'An archive has already been acknowledged for deletion. No new export will be created.'},409);
+  if(existing?.status==='emailed')
+   return send({error:'A previous email archive is pending. Contact support before changing its workflow.'},409);
+  const {data:jobId,error:queueError}=await userDb.rpc('grove_offboarding_prepare',{p_org:org,p_student:student});
+  if(queueError||!jobId)return send({error:'Could not prepare an administrator-controlled export'},409);
+  const fail=async(reason:string,status=503)=>{
+   await admin.rpc('grove_export_mark_failed',{p_job:jobId,p_message:reason});
+   return send({error:reason+' No student records were deleted.'},status);
+  };
   const {data:dataset,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
-  if(exportError||!dataset)return await failJob('Could not complete the private data export. No data was erased.');
+  if(exportError||!dataset)return await fail('The student data could not be read completely');
   const zip:Record<string,Uint8Array>={};
-  zip['MathsGrove-archive-README.txt']=strToU8('MathsGrove personal academic export. The file data.json contains the account academic information, assessment attempts, answered questions, timing, released feedback and report history. The evidence/ directory contains uploaded workings. Passwords and other students\' data are excluded. Work that was never saved or uploaded, such as browser-only scratchpads, cannot be recovered.\n');
-  zip['data.json']=strToU8(JSON.stringify(dataset,null,2));
-  let total=zip['data.json'].length,files=0;
-  for(const [i,item] of (dataset.uploaded_files||[]).entries()){
-   const path=item.storage_path;
-   if(typeof path!=='string'||!path.startsWith(org+'/'+student+'/'))return await failJob('Archive contains an invalid uploaded-file reference; no email sent.',409);
-   const result=await admin.storage.from('student-work').download(path);
-   if(result.error||!result.data)return await failJob('An uploaded working file could not be retrieved; no email sent.');
-   const bytes=new Uint8Array(await result.data.arrayBuffer());
-   total+=bytes.length;if(total>maxArchiveBytes)return await failJob('The complete student archive exceeds the safe export size limit; manual secure transfer is required.',413);
-   zip['evidence/'+String(i+1).padStart(3,'0')+'-'+title(item.original_name||'working')]=bytes;files++;
+  const evidence:Evidence[]=[];
+  const paths=new Map<string,string>();
+  const prefix=org+'/'+student+'/';
+  for(const item of dataset.uploaded_files||[]){
+   const filePath=item.storage_path;
+   if(typeof filePath!=='string'||!filePath.startsWith(prefix))
+    return await fail('An uploaded-file record does not belong to this student',409);
+   paths.set(filePath,String(item.original_name||filePath.split('/').pop()||'working'));
   }
+  async function gather(folder:string,depth=0):Promise<void>{
+   if(depth>6)throw Error('Student files require manual archive review');
+   for(let offset=0;offset<=2000;offset+=100){
+    const {data:objects,error}=await admin.storage.from('student-work').list(folder,{limit:100,offset});
+    if(error)throw error;
+    const found=objects||[];
+    for(const item of found){
+     const next=folder+'/'+item.name;
+     if(item.id&&!paths.has(next))paths.set(next,item.name);
+     else if(!item.id)await gather(next,depth+1);
+    }
+    if(found.length<100)return;
+   }
+   throw Error('Student evidence count exceeds safe archive capacity');
+  }
+  try{await gather(org+'/'+student)}catch{return await fail('Could not verify every uploaded file')}
+  let total=0,number=0;
+  for(const [filePath,originalName] of paths.entries()){
+   const {data:blob,error}=await admin.storage.from('student-work').download(filePath);
+   if(error||!blob)return await fail('At least one original student working file could not be recovered');
+   const bytes=new Uint8Array(await blob.arrayBuffer());
+   total+=bytes.byteLength;
+   if(total>maxArchiveBytes)return await fail('Student evidence is larger than the standard ZIP limit',413);
+   number++;
+   const name=String(number).padStart(3,'0')+'-'+title(originalName);
+   const mime=blob.type||(/\.png$/i.test(name)?'image/png':/\.jpe?g$/i.test(name)?'image/jpeg':'application/octet-stream');
+   evidence.push({name,bytes,kind:mime});
+   zip['Original_Submissions/'+name]=bytes;
+  }
+  let pdfs:Record<string,Uint8Array>;
+  try{pdfs=await makeStudentPdfs(dataset,evidence)}
+  catch{return await fail('The report PDF set could not be generated; no partial archive was released')}
+  for(const [name,bytes] of Object.entries(pdfs)){zip['PDF_Reports/'+name]=bytes;total+=bytes.byteLength}
+  if(total>maxArchiveBytes)return await fail('PDF reports and evidence exceed the standard ZIP capacity',413);
+  // Remove private examiner-only keys and internal user identifiers from the portable copy.
+  const safeData=JSON.parse(JSON.stringify(dataset,(key,value)=>{
+   if(['staff_notes','correct_option','bank_id','download_token_hash','secret','raw_user_meta_data'].includes(key))return undefined;
+   return value;
+  }));
+  zip['Complete_Data.json']=strToU8(JSON.stringify(safeData,null,2));
+  zip['README.txt']=strToU8(
+   'MathsGrove Complete Student Archive\n\nPDF_Reports contains printable PDF reports of programme, baseline, practice, papers and examiner feedback.\nOriginal_Submissions contains unchanged original student evidence. Supported JPEG and PNG images are also reproduced in the work overview PDF.\nComplete_Data.json contains all portable student-facing academic records. Passwords, unpublished bank keys and confidential staff-only notes are excluded.\n\nPlease confirm this ZIP opens and all expected work is present BEFORE using the permanent deletion option. The administrator is responsible for securely emailing the archive to the student if desired.\n');
   const zipped=zipSync(zip,{level:4});
-  if(zipped.length>maxArchiveBytes)return await failJob('Archive is larger than the current safe limit; use assisted export.',413);
-  const archivePath=org+'/'+student+'/'+jobId+'.zip';
-  const upload=await admin.storage.from('grove-student-exports').upload(archivePath,zipped,{contentType:'application/zip',upsert:false});
-  if(upload.error&&!upload.error.message.toLowerCase().includes('already exists'))return await failJob('Secure archive storage failed; no email sent.');
-  const token=hex(crypto.getRandomValues(new Uint8Array(32))),tokenHash=await hash(token);
-  const expires=new Date(Date.now()+72*3600*1000);
-  const link='https://mathora-mathematics.github.io/Mathora/export.html#token='+token;
-  const email=await fetch('https://api.resend.com/emails',{
-   method:'POST',headers:{'Authorization':'Bearer '+resendKey,'Content-Type':'application/json','Idempotency-Key':String(jobId)},
-   body:JSON.stringify({from,to:[studentUser.user.email],subject:'Your MathsGrove learning archive is ready',
-    text:'Your MathsGrove administrator has prepared a private archive of your saved work, assessments and feedback. Open this secure link within 72 hours to save it: '+link+'\n\nAfter saving, confirm the download on the page. If you did not request this, contact your MathsGrove administrator.'})
+  if(zipped.byteLength>maxArchiveBytes)return await fail('Complete ZIP exceeds the safe export size limit',413);
+  const digest=hex(new Uint8Array(await crypto.subtle.digest('SHA-256',zipped)));
+  const archivePath=org+'/'+student+'/'+jobId+'-manual.zip';
+  const {error:uploadError}=await admin.storage.from('grove-student-exports')
+   .upload(archivePath,zipped,{contentType:'application/zip',upsert:true});
+  if(uploadError)return await fail('The private archive could not be stored');
+  const {error:readyError}=await admin.rpc('grove_offboarding_mark_manual_ready',{
+   p_job:jobId,p_path:archivePath,p_checksum:digest
   });
-  const receipt=await email.json().catch(()=>({}));
-  if(!email.ok||!receipt.id)return await failJob('The email provider did not accept the archive delivery. No student was erased.');
-  const marked=await admin.rpc('grove_export_email_record',{p_job:jobId,p_path:archivePath,p_token_hash:tokenHash,p_message_id:receipt.id,p_expires:expires.toISOString()});
-  if(marked.error)return await failJob('An email was accepted but tracking was not confirmed; request a fresh archive link.');
-  return send({ok:true,status:'emailed',uploads:files,expires_at:expires.toISOString()});
+  if(readyError)return await fail('The archive could not be marked ready for administrator download');
+  return await signed(archivePath,digest);
  }
  if(action==='erase'){
   const bearer=(req.headers.get('Authorization')||'').replace(/^Bearer /,'');
@@ -115,7 +155,7 @@ async function handle(req:Request):Promise<Response>{
   const userDb=createClient(uri,publishKey,{global:{headers:{Authorization:'Bearer '+bearer}},auth:{persistSession:false,autoRefreshToken:false}});
   const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
   const entry=(roster?.students||[]).find((r:{student_id:string})=>r.student_id===student);
-  if(rosterError||!entry||entry.status!=='downloaded'||!entry.job_id)return send({error:'The student must first confirm their complete archive download'},409);
+  if(rosterError||!entry||entry.status!=='downloaded'||!entry.job_id)return send({error:'Download the ZIP, verify its contents, and confirm you saved it before deletion'},409);
   const {data:exportData,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
   if(exportError||!exportData)return send({error:'Cannot verify the student archive before removal'},503);
   // Collect all attached work, including orphan objects belonging to this specific learner prefix.
@@ -153,7 +193,7 @@ async function handle(req:Request):Promise<Response>{
   if(recordsError)return send({error:'Database cleanup could not finish; specialist review required.'},503);
   const deleted=await admin.auth.admin.deleteUser(student,false);
   if(deleted.error)return send({error:'Account authentication removal requires manual review.'},503);
-  // A copy was acknowledged by the learner; remove the temporary server ZIP.
+  // The administrator confirmed saving the PDF archive; remove the server's temporary ZIP.
   const {data:oldArchives,error:listError}=await admin.storage.from('grove-student-exports').list(org+'/'+student,{limit:1000});
   if(listError)return send({error:'Student account removed; archive cleanup requires manual review.'},503);
   const archivePaths=(oldArchives||[]).filter(a=>a.id).map(a=>org+'/'+student+'/'+a.name);
@@ -165,21 +205,6 @@ async function handle(req:Request):Promise<Response>{
   const {error:finishError}=await admin.rpc('grove_offboarding_record_completion',{p_job:entry.job_id});
   if(finishError)return send({error:'Student account removed; final audit update requires review.'},503);
   return send({ok:true,status:'purged'});
- }
- if(action==='download'||action==='confirm'){
-  const token=input?.token;
-  if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test(token))return send({error:'Invalid or expired archive link'},403);
-  const tokenHash=await hash(token);
-  const {data:result,error}=await admin.rpc('grove_export_download_lookup',{p_hash:tokenHash});
-  if(error||!result?.ok||typeof result.archive_path!=='string')return send({error:'Archive link is no longer available'},403);
-  if(action==='confirm'){
-   const {data:confirmed,error:confirmError}=await admin.rpc('grove_export_confirm_download',{p_hash:tokenHash});
-   if(confirmError||!confirmed)return send({error:'Unable to confirm archive access'},503);
-   return send({ok:true,confirmed:true});
-  }
-  const {data:signed,error:signError}=await admin.storage.from('grove-student-exports').createSignedUrl(result.archive_path,90,{download:'MathsGrove-learning-archive.zip'});
-  if(signError||!signed?.signedUrl)return send({error:'Archive cannot be downloaded at present'},503);
-  return send({ok:true,url:signed.signedUrl});
  }
  return send({error:'Unknown request'},400);
 }
