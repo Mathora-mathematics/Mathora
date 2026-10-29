@@ -30,7 +30,7 @@ function parseQuoted(x){
 const routes=new Map();let total=0;
 for(const path of sources){
  const source=readFileSync(path,'utf8');let count=0;
- const blocks=[...source.matchAll(/INSERT INTO private\.baseline_bank\([\s\S]*?\) VALUES\s*([\s\S]*?)\s*ON CONFLICT\(/g)];
+ const blocks=[...source.matchAll(/INSERT INTO private\.baseline_bank\([\s\S]*?\) VALUES\s*([\s\S]*?)\s*ON CONFLICT\s*\(/g)];
  assert.equal(blocks.length,4,'Four qualification routes expected per seed: '+path);
  for(const block of blocks){
   const rows=splitTopLevel(block[1]);
