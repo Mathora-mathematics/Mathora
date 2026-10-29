@@ -52,6 +52,9 @@ jobs:
           node scripts/check-password-auth.mjs
           node scripts/test-password-auth.mjs
           node scripts/check-feedback-auth.mjs
+          node scripts/check-student-export.mjs
+          node --input-type=module --check < student-offboarding.js
+          node --input-type=module --check < student-export-download.js
           node scripts/test-access-router.mjs
           node scripts/check-baseline.mjs
           node scripts/check-baseline-seeds.mjs
@@ -68,6 +71,8 @@ jobs:
           cp baseline.html baseline.css baseline.js baseline-calc.js site/
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css access-management.css access-management.js access-router.js baseline-admin.js site/
           cp assigned-admin.js assigned-admin.css site/
+          cp student-offboarding.js student-offboarding.css site/
+          cp export.html export.css student-export-download.js site/
           cp editorial-review.js site/
           cp family.html family-access.css family-access.js site/
           mkdir -p site/content
