@@ -292,7 +292,7 @@ export function initContentBank(db,studio){
  async function load(){
   say('Loading official board formats and your private question catalogue…');
   try{
-   const [b,p,g,i,tierInfo,tierDrafts,practiceG,practiceI,practiceCore,extraPractice,examDrafts]=await Promise.all([
+   const [b,p,g,i,tierInfo,tierDrafts,practiceG,practiceI,practiceCore,extraPractice,examDrafts,extraTierDrafts]=await Promise.all([
     fetch('./content/boards.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Board catalogue unavailable');return r.json()}),
     fetch('./content/paper-blueprints.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Blueprint register unavailable');return r.json()}),
     fetch('./content/GCSE/draft-exemplars.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
@@ -303,10 +303,11 @@ export function initContentBank(db,studio){
     fetch('./content/programmes/practice-igcse-v2.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/programmes/practice-foundation-core-v2.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
     fetch('./content/programmes/extra-practice-120.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
-    fetch('./content/programmes/exam-reasoning-drafts-12.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]})
+    fetch('./content/programmes/exam-reasoning-drafts-12.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}),
+    fetch('./content/programmes/original-question-bank-144.json',{cache:'no-store'}).then(r=>r.ok?r.json():{questions:[]})
    ]);
    bank.boards=b.boards||[];bank.blueprints=p.blueprints||[];bank.serviceTiers=tierInfo;
-   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE',programme:'weekly'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE',programme:'weekly'})),...(tierDrafts.items||[]),...(examDrafts.items||[])];
+   bank.drafts=[...(g.items||[]).map(q=>({...q,qualification:'GCSE',programme:'weekly'})),...(i.items||[]).map(q=>({...q,qualification:'IGCSE',programme:'weekly'})),...(tierDrafts.items||[]),...(examDrafts.items||[]),...(extraTierDrafts.questions||[])];
    bank.practice=[...(practiceG.items||[]),...(practiceI.items||[]),...(practiceCore.items||[]),...(extraPractice.items||[])];
 
    renderServiceTiers();
