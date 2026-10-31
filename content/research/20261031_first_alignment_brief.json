@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "researched_at": "2026-10-31",
+  "title": "MathsGrove official-spec alignment brief — first original tier upgrade",
+  "status": "research_complete_staging_only",
+  "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
+  "sources": [
+    {
+      "board": "Cambridge International",
+      "qualification": "IGCSE Mathematics",
+      "syllabus": "0580",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/",
+      "note": "Core and Extended; a dedicated non-calculator paper at each tier for 2025–2027, and explicit communication/reasoning"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "AS & A Level Mathematics",
+      "syllabus": "9709",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/",
+      "note": "Keep Pure, Mechanics and Statistics routes distinguished; 2026–2027 content includes quadratics, functions and probability/statistics"
+    },
+    {
+      "board": "AQA",
+      "qualification": "GCSE Mathematics",
+      "syllabus": "8300",
+      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/scheme-of-assessment",
+      "note": "Explicit AO1 techniques, AO2 communicating/reasoning, AO3 context and connections; Higher uses more AO2/AO3 than Foundation"
+    },
+    {
+      "board": "IBO",
+      "qualification": "Diploma Mathematics AA/AI",
+      "url": "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics",
+      "note": "Maintain distinctions between AA/AI and SL/HL, 2029 first-assessment revisions must not be applied to current examination cohorts"
+    },
+    {
+      "board": "UAT UK",
+      "qualification": "TMUA",
+      "url": "https://esat-tmua.ac.uk/about-the-tests/tmua-test/",
+      "note": "Two papers of 20 multiple-choice items, Paper 1 application and Paper 2 reasoning; overall score not a direct percentage"
+    }
+  ],
+  "first_cycle": [
+    "Four academic routes: GCSE Foundation (AQA), GCSE Higher (AQA), IGCSE Extended (Cambridge), A Level AS (Cambridge).",
+    "Each academic route receives one original Daily skill check, one Weekly multi-step application and one Exam integrated reasoning draft.",
+    "All 12 items stay in private Supabase editorial stage and are never automatically inserted as active practice.",
+    "Persist original question source, four unique answer choices, one keyed correct response, clear worked rationale, common wrong-method cues, approximate timing and tier/level/board.",
+    "Question-bank multiple choice is currently one mark in the task marking system; full multi-mark rubric functionality needs separate authoring and assessment implementation.",
+    "Later cycles should address GCSE Higher/noncalculator, Cambridge IGCSE Core, Pearson IGCSE 4MA1, IB AA/AI SL/HL, Further Maths and TMUA without mixing incompatible syllabuses."
+  ],
+  "tier_guidance": {
+    "daily": "Single transferable micro-skill plus explanation of working; short, accessible and purposeful, 2–5 minutes",
+    "weekly": "At least two linked steps with an explicit modelling or reasoning decision and check, ~6–9 minutes",
+    "exam": "Integrated multi-step problem; include justification, suitable domain/restrictions and credible distractors; do not falsely label short practice as a full mock"
+  },
+  "QA_rules": [
+    "exactly four distinct plausible choices and one correct choice",
+    "prompt unambiguous and final outcome agrees with worked derivation",
+    "all fractions/surds/inequalities shown with KaTeX-compatible inline notation",
+    "correct positive solutions and realistic units",
+    "prevent copyright copying and misleading official-board endorsement",
+    "level suitability and calculator status explicitly checked",
+    "editorial draft not public or active, even after a successful deployment"
+  ]
+}
