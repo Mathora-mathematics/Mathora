@@ -99,7 +99,7 @@ BEGIN
   'band',v_band,'topics',v_topics,'integrity',v_flags,'submitted_at',v_s.closed_at,
   'disclaimer','This short multiple-choice diagnostic is not a predicted grade or evidence of independently verified work.');
 END;$function$
-
+;
 CREATE OR REPLACE FUNCTION public.grove_staff_evidence(p_kind text, p_session uuid)
  RETURNS jsonb
  LANGUAGE plpgsql
@@ -126,7 +126,7 @@ BEGIN
  ORDER BY position),'[]'::jsonb) FROM private.baseline_question_time WHERE session_id=p_session)
  ELSE '[]'::jsonb END);
 END;$function$
-
+;
 CREATE OR REPLACE FUNCTION public.grove_student_insights()
  RETURNS jsonb
  LANGUAGE plpgsql
@@ -169,5 +169,5 @@ BEGIN
  GROUP BY i.topic) b),
  'disclaimer','Target grades are set by staff. The baseline and examiner-marked practices are evidence, not an official predicted grade.');
 END;$function$
-
+;
 COMMIT;
