@@ -7,6 +7,9 @@ const studio=read('studio.html'),ui=read('student-offboarding.js'),js=read('stud
 const sql=read('supabase/MANUAL_STUDENT_PDF_ARCHIVE.sql');
 const guards=read('supabase/STUDENT_REMOVAL_AFTER_ARCHIVE.sql');
 const workflow=read('.github/workflows/pages.yml');
+const cleanup=read('supabase/VERIFY_STUDENT_OFFBOARDING_CLEANUP.sql');
+const family=read('family-access.js');
+const portal=read('portal.js');
 const tests=[
  ['Admin-only roster UI',studio.includes('mg-student-offboarding')&&js.includes('initStudentOffboarding')],
  ['No email sender dependency',!service.includes('RESEND_API_KEY')&&!service.includes('api.resend.com')],
@@ -25,6 +28,12 @@ const tests=[
  ['Email typed before deletion',ui.includes("typed.trim().toLowerCase()")&&service.includes("confirmEmail.trim().toLowerCase()")],
  ['No deletion on export',!service.slice(service.indexOf("if(action==='prepare_manual'"),service.indexOf("if(action==='erase')")).includes('deleteUser(')],
  ['Disabled until service deploy',ui.includes("health.data?.method==='manual_zip_pdf'")&&ui.includes('deletion.disabled=!manualServiceReady')],
+ ['Post-deletion database cleanup verification',cleanup.includes('grove_offboarding_verify_cleanup')&&cleanup.includes('auth.users')&&cleanup.includes('storage.objects')],
+ ['Server refuses to finalise before full clean verification',service.includes("grove_offboarding_verify_cleanup")&&service.indexOf("grove_offboarding_verify_cleanup")<service.indexOf("grove_offboarding_record_completion")],
+ ['All Studio student data cleared and reloaded',js.includes("onRemoved:async")&&js.includes("state.students=[];state.attempts=[]")&&js.includes("await refresh();")],
+ ['Administrator tab resume refresh',js.includes("visibilitychange")&&js.includes("if(!document.hidden&&state.membership)void refresh()")],
+ ['Family views reject cached removed learner details',family.includes("records=[];view('fa-loading')")&&family.includes("visibilitychange")],
+ ['Student portal rechecks deleted access',portal.includes("recheckLearnerOnReturn")&&portal.includes("state.member=null;state.members=[];state.attempts=[]")],
  ['Deployment assets copied',workflow.includes('cp student-offboarding.js student-offboarding.css site/')]
 ];
 for(const [label,result] of tests)assert.ok(result,'Archive invariant failed: '+label);
