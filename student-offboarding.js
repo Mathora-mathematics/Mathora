@@ -1,5 +1,5 @@
 /* MathsGrove administrator-only ZIP/PDF student archive and protected deletion. */
-export function initStudentOffboarding(db,state){
+export function initStudentOffboarding(db,state,{onRemoved=async()=>{}}={}){
  const $=id=>document.getElementById(id),root=$('mg-offboarding-roster');
  const el=(tag,value,cls)=>{const x=document.createElement(tag);if(value!==undefined)x.textContent=String(value);if(cls)x.className=cls;return x};
  const status=text=>{$('mg-offboarding-status').textContent=text};
@@ -66,8 +66,9 @@ export function initStudentOffboarding(db,state){
     action:'erase',orgId:state.membership.org_id,studentId:student.student_id,confirmEmail:typed.trim()
    }});
    if(error||!data?.ok)throw Error(data?.error||error?.message||'Deletion did not finish. Do not repeat until a recovery check is completed.');
-   status('Student removed permanently. Their PDF ZIP has already been saved by you for manual delivery.');
-   await refresh(false)
+   readyForConfirmation.delete(student.student_id);
+   await onRemoved();
+   status('Student permanently removed and all MathsGrove Studio panels updated. Your downloaded PDF ZIP is preserved on your computer.');
   }catch(e){status('Removal stopped: '+e.message+'. Check the job before attempting a retry.')}
   finally{busy=false;btn.disabled=false}
  }
