@@ -5,7 +5,7 @@ export function initEditorialReview(db,state){
  async function refresh(){
   if(!state.membership?.org_id)return;
   const {data,error}=await db.rpc('grove_admin_editorial_bank',{p_org:state.membership.org_id,p_route:null});
-  if(error){$('mg-editorial-caption').textContent='Authorised administrator question review: '+error.message;return}
+  if(error){drafts=[];render();$('mg-editorial-caption').textContent='Question review could not reload: '+error.message;throw Error(error.message)}
   drafts=data?.drafts||[];render();
  }
  function render(){
