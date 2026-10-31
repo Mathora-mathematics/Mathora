@@ -160,8 +160,33 @@ function setupAddons(prefix){
  if(values.some(v=>!Number.isInteger(v)||v<0||v>20))throw Error('Add-on quantities must be whole numbers between 0 and 20.');
  return{signature:values[0],signature_advanced:values[1],specialist_review:values[2]};
 }
+const routeLevels={
+ GCSE:{test:/^(foundation|higher)$/i,example:'Foundation or Higher'},
+ IGCSE:{test:/^(core|extended)$/i,example:'Core or Extended'},
+ A_LEVEL:{test:/^(as|a2|year 12|year 13|full)$/i,example:'AS or A2'},
+ IB_AA:{test:/^(sl|hl|standard|higher)$/i,example:'SL or HL'},
+ IB_AI:{test:/^(sl|hl|standard|higher)$/i,example:'SL or HL'},
+ FURTHER_MATHS:{test:/^.+$/,example:'Further'},
+ TMUA:{test:/^.+$/,example:'TMUA'}
+};
+function guideAcademicRoute(){
+ const qualification=$('invite-qualification').value,route=routeLevels[qualification];
+ const hint=$('mg-invite-level-hint');
+ if(route){
+  $('invite-level').placeholder=route.example;
+  hint.textContent='Choose '+route.example+' to match a moderated 20-question diagnostic.';
+ }else hint.textContent='Choose a qualification first, then assign the corresponding academic level.';
+}
+$('invite-qualification').addEventListener('change',()=>{
+ $('invite-level').value='';
+ guideAcademicRoute();
+});
+guideAcademicRoute();
 function setupArgs(prefix,student){
  const p=prefix==='invite'?'invite-programme':'programme-tier';
+ const qualification=$(prefix+'-qualification').value,level=$(prefix+'-level').value.trim();
+ const route=routeLevels[qualification];
+ if(!route||!route.test.test(level))throw Error('Set a valid academic level for '+qualification+'. Choose '+(route?.example||'a supported exam route')+'. This is required for the initial 20-question baseline.');
  const until=$(prefix+'-until').value;
  if(!until)throw Error('Choose an access end date.');
  const expiry=new Date(until+'T23:59:59.000Z');
