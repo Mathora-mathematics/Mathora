@@ -19,3 +19,10 @@
 .mg-evidence-list>span{font-size:10px;color:#708094}
 .mg-evidence-list .mg-evidence-chip{background:#eeeae2;color:#31455d;padding:8px 10px;border-radius:20px;font-size:10px}
 @media(max-width:650px){.mg-evidence-card{padding:13px}.mg-evidence-toolbar{gap:5px}.mg-evidence-canvas{min-height:160px}}
+
+/* Released examiner guidance is separate from automatic baseline marks. */
+.mg-baseline-student-comment{margin:20px 0;padding:23px;background:#f9f7f1;border:1px solid #e5dccc;border-radius:11px}
+.mg-baseline-student-comment .bl-panel-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;border-bottom:1px solid #ece5da;margin-bottom:13px;padding-bottom:12px}
+.mg-baseline-student-comment .bl-panel-top h3{font:400 27px "Instrument Serif",Georgia,serif;color:#1c3551;margin:0}
+.mg-baseline-student-comment .bl-panel-top span{font-size:9px;letter-spacing:.13em;color:#927b5e;font-weight:800}
+.mg-baseline-student-comment p{font-size:13px;color:#38506b;line-height:1.85;white-space:pre-wrap;margin:0}
