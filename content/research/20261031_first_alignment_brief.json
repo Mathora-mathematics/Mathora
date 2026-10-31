@@ -2,7 +2,7 @@
   "version": 1,
   "researched_at": "2026-10-31",
   "title": "MathsGrove official-spec alignment brief — first original tier upgrade",
-  "status": "research_complete_staging_only",
+  "status": "initial_release_live__ongoing_research_and_original_publication",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
     {
@@ -42,7 +42,7 @@
   "first_cycle": [
     "Four academic routes: GCSE Foundation (AQA), GCSE Higher (AQA), IGCSE Extended (Cambridge), A Level AS (Cambridge).",
     "Each academic route receives one original Daily skill check, one Weekly multi-step application and one Exam integrated reasoning draft.",
-    "All 12 items stay in private Supabase editorial stage and are never automatically inserted as active practice.",
+    "The initial set of 12 original questions has been independently checked and published to the private Supabase bank; newer batches may be released after full mathematical and duplicate validations under owner's approval.",
     "Persist original question source, four unique answer choices, one keyed correct response, clear worked rationale, common wrong-method cues, approximate timing and tier/level/board.",
     "Question-bank multiple choice is currently one mark in the task marking system; full multi-mark rubric functionality needs separate authoring and assessment implementation.",
     "Later cycles should address GCSE Higher/noncalculator, Cambridge IGCSE Core, Pearson IGCSE 4MA1, IB AA/AI SL/HL, Further Maths and TMUA without mixing incompatible syllabuses."
@@ -60,5 +60,26 @@
     "prevent copyright copying and misleading official-board endorsement",
     "level suitability and calculator status explicitly checked",
     "editorial draft not public or active, even after a successful deployment"
-  ]
+  ],
+  "owner_publication_authorisation": "Owner authorised automatic publication after rigorous independent math and duplication tests; keep unverified content as editorial draft; preserve private answer keys and secure examiner marking.",
+  "initial_release": {
+    "date": "2026-10-31",
+    "count": 12,
+    "academic_routes": [
+      "GCSE Foundation AQA",
+      "GCSE Higher AQA",
+      "IGCSE Extended Cambridge",
+      "A Level AS Cambridge"
+    ],
+    "tiers": [
+      "daily",
+      "weekly",
+      "exam"
+    ],
+    "status": "live_private_bank_approved",
+    "public_manifest": "content/programmes/published-original-20261031.json",
+    "answer_keys": "private Supabase only",
+    "question_reuse": "blocked across prior student assignments by ID and normalised wording",
+    "exam_board_filter": "only matching exam board or generic content"
+  }
 }
