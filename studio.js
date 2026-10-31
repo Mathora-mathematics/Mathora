@@ -13,6 +13,7 @@ const state = {user:null,org:null,membership:null,memberships:[],students:[],att
 const linkedManager=initAccessManagement(db,state);
 const baselineManager=initBaselineAdmin(db,state);
 const assignedManager=initAssignedAdmin(db,state);
+state.onAssignedRefresh=()=>{if(state.membership)renderOverview()};
 const editorialManager=initEditorialReview(db,state);
 const offboardingChannel=typeof BroadcastChannel!=='undefined'?new BroadcastChannel('mathsgrove-offboarding'):null;
 const offboardingManager=initStudentOffboarding(db,state,{onRemoved:async(studentId)=>{
@@ -286,25 +287,35 @@ async function loadInvites(){
 }
 function renderOverview(){
  const students=state.students,attempts=state.attempts;
+ const assigned=state.assignedReviewRows||[];
+ const openReviewCount=attempts.filter(x=>x.status==='submitted').length+assigned.length;
+ const releasedPractice=state.assignedReleasedCount||0;
  $('s-students').textContent=students.length;
  $('s-invites').textContent=state.invites.filter(x=>inviteStatus(x)==='Awaiting claim').length;
- $('s-awaiting').textContent=attempts.filter(x=>x.status==='submitted').length;
- $('s-marked').textContent=attempts.filter(x=>x.status==='marked').length;
+ $('s-awaiting').textContent=openReviewCount;
+ $('s-marked').textContent=attempts.filter(x=>x.status==='marked').length+releasedPractice;
  const hour=new Date().getHours(),greeting=hour<12?'Good morning.':hour<17?'Good afternoon.':'Good evening.';
  $('mg-admin-greeting').textContent=greeting;
  const pending=state.invites.filter(x=>inviteStatus(x)==='Awaiting claim').length;
- const awaiting=attempts.filter(x=>x.status==='submitted').length;
+ const awaiting=openReviewCount;
  $('mg-admin-priority').textContent=awaiting
-  ?awaiting+' submitted paper'+(awaiting===1?' is':'s are')+' ready for your review. Open the marking board to continue.'
+  ?awaiting+' submitted assessment'+(awaiting===1?' is':'s are')+' awaiting an examiner. Open Marking to inspect working and release feedback.'
   :pending?'You have '+pending+' invitation'+(pending===1?'':'s')+' awaiting activation. Your student register is ready when they sign in.'
   :students.length?'Everything is up to date. '+students.length+' enrolled learner'+(students.length===1?'':'s')+' in your workspace.'
   :'Your workspace is ready. Enrol your first learner to begin the welcome and baseline journey.';
  const root=$('recent-attempts');clear(root);
  const queue=attempts.filter(x=>x.status==='submitted').slice(0,5);
- if(!queue.length){root.append(make('p','empty','No papers waiting for a review.'));return}
+ const scheduled=assigned.slice().sort((a,b)=>String(b.due_date).localeCompare(String(a.due_date))).slice(0,5);
+ if(!queue.length&&!scheduled.length){root.append(make('p','empty','No assignments currently awaiting marking.'));return}
  for(const a of queue){const student=students.find(x=>x.id===a.student_id);
  const button=make('button','link-action','Review →');button.onclick=()=>{setTab('marking');void openReview(a)};
  root.append(itemRow(student?.name||'Student', (examLabels[a.qualification]||a.qualification)+' · Submitted '+date(a.submitted_at),button))}
+ for(const task of scheduled.slice(0,Math.max(0,5-queue.length))){
+  const label=({weekly:'Grove Weekly',daily:'Grove Daily',exam_daily:'Grove Exam · Daily'})[task.mode]||'Assigned practice';
+  const button=make('button','link-action','Mark working →');
+  button.onclick=()=>{setTab('marking');const panel=$('mg-assigned-admin');panel?.scrollIntoView({behavior:'smooth',block:'start'})};
+  root.append(itemRow(task.student_name||'Student',label+' · '+task.due_date+' · '+(task.question_count||0)+' questions',button));
+ }
 }
 function renderRoster(){
  const root=$('students-body');clear(root);
