@@ -29,6 +29,10 @@ assert.ok(strict.includes("old.bank_id=b.id OR lower(regexp_replace(old.prompt")
 assert.ok(strict.includes('CREATE UNIQUE INDEX'),'Active item stems must be unique per academic route');
 assert.ok(strict.includes("not enough unseen verified questions")||recent.includes("not enough unseen verified questions"),'Bank exhaustion must fail safely instead of silently recycling');
 assert.ok(editorial.includes('window.MathsGroveMath?.write'),'Editorial maths notation must render securely');
+const boardGuard=readFileSync('supabase/migrations/20261031_exam_board_compatible_question_selection.sql','utf8');
+assert.ok(boardGuard.includes('grove_board_compatible')&&boardGuard.includes("b.programme_scope IN('all',v.programme)"),'Published practice must be filtered by actual exam board and programme');
+assert.ok(boardGuard.includes("RETURN s LIKE '%aqa%'")&&boardGuard.includes("RETURN (s LIKE '%edexcel%' OR s LIKE '%pearson%')"),'Exam-board aliases must map safely');
+assert.ok(boardGuard.includes("IF s='' THEN RETURN false"),'Unassigned exam boards must not receive board-specific questions');
 const n=[
 64/8*3===24,
 Math.abs(200*1.15*.85-195.5)<1e-9,
