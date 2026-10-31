@@ -14,6 +14,20 @@ const publishKey=Deno.env.get('SUPABASE_ANON_KEY')||defaultKey('SUPABASE_PUBLISH
 function client(key:string){return createClient(uri,key,{auth:{persistSession:false,autoRefreshToken:false}})}
 const hex=(bytes:Uint8Array)=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 const hash=async(s:string)=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))));
+const hashFile=async(bytes:Uint8Array)=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)));
+// JSONB object and row-array ordering can change without changing academic records.
+function canonical(value:unknown):string{
+ if(Array.isArray(value))return '['+value.map(canonical).sort().join(',')+']';
+ if(value!==null&&typeof value==='object'){
+  const obj=value as Record<string,unknown>;
+  return '{'+Object.keys(obj).sort().map(k=>JSON.stringify(k)+':'+canonical(obj[k])).join(',')+'}';
+ }
+ return JSON.stringify(value);
+}
+async function sourceFingerprint(data:Record<string,unknown>,fileDigests:Record<string,string>):Promise<string>{
+ const snapshot={...data};delete snapshot.exported_at;
+ return hash(canonical({snapshot,fileDigests}));
+}
 const title=(s:string)=>String(s).replace(/[^a-zA-Z0-9._-]/g,'_').slice(0,110);
 const err=(e:unknown)=>e instanceof Error?e.message:String(e);
 const maxArchiveBytes=48*1024*1024;
@@ -77,6 +91,7 @@ async function handle(req:Request):Promise<Response>{
   const zip:Record<string,Uint8Array>={};
   const evidence:Evidence[]=[];
   const paths=new Map<string,string>();
+  const fileDigests:Record<string,string>={};
   const prefix=org+'/'+student+'/';
   for(const item of dataset.uploaded_files||[]){
    const filePath=item.storage_path;
@@ -105,6 +120,7 @@ async function handle(req:Request):Promise<Response>{
    const {data:blob,error}=await admin.storage.from('student-work').download(filePath);
    if(error||!blob)return await fail('At least one original student working file could not be recovered');
    const bytes=new Uint8Array(await blob.arrayBuffer());
+   fileDigests[filePath]=await hashFile(bytes);
    total+=bytes.byteLength;
    if(total>maxArchiveBytes)return await fail('Student evidence is larger than the standard ZIP limit',413);
    number++;
@@ -133,8 +149,9 @@ async function handle(req:Request):Promise<Response>{
   const {error:uploadError}=await admin.storage.from('grove-student-exports')
    .upload(archivePath,zipped,{contentType:'application/zip',upsert:true});
   if(uploadError)return await fail('The private archive could not be stored');
-  const {error:readyError}=await admin.rpc('grove_offboarding_mark_manual_ready',{
-   p_job:jobId,p_path:archivePath,p_checksum:digest
+  const snapshotDigest=await sourceFingerprint(dataset,fileDigests);
+  const {error:readyError}=await admin.rpc('grove_offboarding_mark_manual_ready_v2',{
+   p_job:jobId,p_path:archivePath,p_checksum:digest,p_fingerprint:snapshotDigest
   });
   if(readyError)return await fail('The archive could not be marked ready for administrator download');
   return await signed(archivePath,digest);
@@ -181,6 +198,23 @@ async function handle(req:Request):Promise<Response>{
    throw Error('Too many student files; manual export required');
   }
   try{await gather(org+'/'+student)}catch{return send({error:'Could not safely enumerate all student files. No removal started.'},503)}
+  // Check that every saved response, grade, comment and original file is still
+  // identical to the ZIP before permitting any destructive operation.
+  const currentFileDigests:Record<string,string>={};
+  for(const path of [...owned].sort()){
+   const {data:blob,error:fileError}=await admin.storage.from('student-work').download(path);
+   if(fileError||!blob)return send({error:'Cannot recheck all original files. No removal started.'},503);
+   currentFileDigests[path]=await hashFile(new Uint8Array(await blob.arrayBuffer()));
+  }
+  const currentFingerprint=await sourceFingerprint(exportData,currentFileDigests);
+  const {data:fresh,error:freshError}=await admin.rpc('grove_offboarding_verify_source',{
+   p_job:entry.job_id,p_fingerprint:currentFingerprint
+  });
+  if(freshError)return send({error:'Could not confirm the archive is current. No removal started.'},503);
+  if(fresh!==true)return send({
+   error:'New or changed student work was found since the ZIP was downloaded. No data was deleted. Generate, save and check a fresh ZIP before removing this student.',
+   code:'ARCHIVE_STALE'
+  },409);
   const {data:job,error:beginError}=await admin.rpc('grove_offboarding_begin_removal',{p_job:entry.job_id});
   if(beginError||job?.student_id!==student||job?.org_id!==org)return send({error:'Removal permission or download confirmation failed'},409);
   // Delete only the verified learner's original files, never content bank or other learners' work.
