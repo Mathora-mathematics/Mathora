@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "researched_at": "2026-11-01",
   "title": "MathsGrove official specification alignment — IB AA/AI, TMUA, Further Maths (1 November 2026)",
   "status": "research_brief_committed__authoring_pending",
@@ -94,7 +94,7 @@
     "exam": "Integrated multi-step problem; include justification, suitable domain/restrictions and credible distractors; do not falsely label short practice as a full mock"
   },
   "QA_rules": [
-    "exactly four distinct plausible choices and one correct choice",
+    "For MCQ: correct number of distinct plausible answer options for the verified route and assessment version, exactly one keyed correct answer; do not assume four or five for authentic TMUA.",
     "prompt unambiguous and final outcome agrees with worked derivation",
     "all fractions/surds/inequalities shown with KaTeX-compatible inline notation",
     "correct positive solutions and realistic units",
@@ -124,7 +124,7 @@
     "exam_board_filter": "only matching exam board or generic content"
   },
   "latest_dated_brief": "content/research/20261101_0226_ib_tmua_further_alignment.md",
-  "latest_brief_commit": "0c29d07dbd966716b7e9fc7325bea5bf31f70ef3",
+  "latest_brief_commit": "2e92d73ece83db65df214a0aff6f84524fb4eed2",
   "research_rotation": {
     "deep_dive": [
       "IB AA SL/HL current subject brief (first assessment 2021, final assessment Nov 2028)",
@@ -239,7 +239,7 @@
       "route": "TMUA 2026–27",
       "daily": "Arg4 quantifier negation",
       "weekly": "MM1.3/MM8.7 parameter discriminant and intersections",
-      "exam": "Prf1/Err1 detect illegal cancellation and exceptional solution, five-option MCQ"
+      "exam": "Prf1/Err1 illegal cancellation and exceptional solution; MCQ option count requires current specimen verification"
     },
     {
       "route": "Cambridge Further 9231 P1",
@@ -280,7 +280,8 @@
       "Read-only snapshot; 12 new approved items since prior brief, with 0 approved duplicates.",
       "Existing 240 generic pilot items remain active and must not be treated as board-specific examiner-approved.",
       "No repeated assigned bank IDs found; paraphrase-level or future repetition is not disproved.",
-      "Exam board and optional module must be explicit for Further Maths; Cambridge Core/Extended vs Pearson Foundation/Higher are different official tier names."
+      "Exam board and optional module must be explicit for Further Maths; Cambridge Core/Extended vs Pearson Foundation/Higher are different official tier names.",
+      "TMUA (20), IB AA/AI (80) and Further Maths (20) generic pilot rows all have exactly four JSON-array choices; no claim of authentic TMUA option count until 2026–27 Pearson specimen player is checked."
     ]
   },
   "implementation_handoff": {
@@ -295,7 +296,7 @@
       "Full private worked solution, mathematical notation rendering, timing and review state",
       "Only publish approved timed mocks with complete original papers and exam-format validation",
       "Use current IB AA/AI brief for cohorts assessed through November 2028; do not apply 2029 topic codes until correct cohort.",
-      "TMUA authentic mock must have 20 five-option MCQs per 75-minute paper, two separate papers, no calculator.",
+      "TMUA mock requires two separate 75-minute, 20-question MCQ papers, no calculator; verify the CURRENT option count in the official Pearson specimen player before claiming authentic format.",
       "IB AA P1 no technology; IB AI all papers technology allowed; use correct SL/HL timings.",
       "Cambridge 9231 AS applied component P3 OR P4; Pearson 9FM0 has two mandatory Core Pure plus permitted option selection.",
       "Current IB detailed objective-code alignment pending authorised guide verification; mark editorial, not approved."
@@ -304,9 +305,10 @@
     "next_batch_editorial_items": 21,
     "blockers": [
       "Full current IB guide not publicly accessible through the official public brief; detailed micro-code alignment remains provisional.",
-      "Four-option/one-mark practice schema does not alone implement five-option TMUA mocks or IB/Further multi-mark examiner rubrics.",
+      "Four-choice/one-mark practice schema not validated against current TMUA option count (official historical keys include F/G); IB/Further multi-mark examiner rubrics remain unimplemented.",
       "Further Maths optional module and board selection must be captured before mock assignment.",
-      "82 cross-route normalised duplicate groups and 240 generic pilot items need broader semantic duplicate screening."
+      "82 cross-route normalised duplicate groups and 240 generic pilot items need broader semantic duplicate screening.",
+      "All 20 TMUA generic pilot questions, all 80 IB AA/AI pilot questions and all 20 Further pilot questions currently use four answer choices; authentic exam format is not yet verified."
     ]
   },
   "previous_dated_brief": "content/research/20261101_0030_qualification_alignment_brief.md",
@@ -320,6 +322,8 @@
     "https://esat-tmua.ac.uk/about-the-tests/tmua-test/",
     "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
     "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
-    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf",
+    "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/07125413/TMUA-2018-answer-keys.pdf",
+    "https://esat-tmua.ac.uk/prepare/"
   ]
 }
