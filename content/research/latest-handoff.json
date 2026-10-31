@@ -1,8 +1,8 @@
 {
-  "version": 1,
-  "researched_at": "2026-10-31",
-  "title": "MathsGrove official-spec alignment brief — first original tier upgrade",
-  "status": "initial_release_live__ongoing_research_and_original_publication",
+  "version": 2,
+  "researched_at": "2026-11-01",
+  "title": "MathsGrove official specification alignment — 1 November 2026 handoff",
+  "status": "research_brief_committed__authoring_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
     {
@@ -37,6 +37,47 @@
       "qualification": "TMUA",
       "url": "https://esat-tmua.ac.uk/about-the-tests/tmua-test/",
       "note": "Two papers of 20 multiple-choice items, Paper 1 application and Paper 2 reasoning; overall score not a direct percentage"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "International GCSE Mathematics A linear",
+      "syllabus": "4MA1",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+      "note": "Foundation/Higher 6.3; Higher functions 3.2; two calculator-permitted papers"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "UK GCSE Mathematics",
+      "syllabus": "1MA1",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/gcse-maths-2015-specification.pdf",
+      "note": "Distinct from 4MA1; existing drafts are 1MA1 not 4MA1"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "GCE Mathematics and Further Mathematics",
+      "syllabus": "9MA0/9FM0",
+      "url": "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/mathematics-2017.html",
+      "note": "UK linear GCE route; separate from international unitised IAL"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "International Advanced Level Mathematics",
+      "syllabus": "IAL 2018",
+      "url": "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/mathematics-2018/switch-to-pearson-mathematics.html",
+      "note": "Unitised 75-mark/90-minute papers; module route and options matter"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "Further Mathematics",
+      "syllabus": "9231",
+      "url": "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
+      "note": "2026–2027 version, applied component options"
+    },
+    {
+      "board": "UAT UK",
+      "qualification": "TMUA detailed content",
+      "url": "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
+      "note": "Logic, contrapositive, necessary/sufficient, proof, no symbolic truth tables"
     }
   ],
   "first_cycle": [
@@ -81,5 +122,141 @@
     "answer_keys": "private Supabase only",
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
+  },
+  "latest_dated_brief": "content/research/20261101_0030_qualification_alignment_brief.md",
+  "latest_brief_commit": "ab871ce0dc2ebccdbb8b2950a19d350aad6fe7bb",
+  "research_rotation": {
+    "deep_dive": [
+      "Cambridge IGCSE 0580 Core C8.1–C8.3",
+      "Pearson International GCSE 4MA1 Foundation 6.3 A–J",
+      "Pearson International GCSE 4MA1 Higher 3.2 A–D and 6.3 A–D",
+      "AQA GCSE 8300 P6–P9"
+    ],
+    "cross_checked": [
+      "Pearson GCSE 1MA1",
+      "Cambridge 9709",
+      "Cambridge Further 9231",
+      "Pearson GCE 9MA0 and 9FM0",
+      "Pearson IAL mathematics",
+      "IB AA/AI SL/HL current curriculum through November 2028",
+      "TMUA 2026–27"
+    ],
+    "next_deep_dive": [
+      "IB AA/AI SL/HL current guide and 2029 transition",
+      "TMUA reasoning and logic",
+      "Cambridge/Pearson Further Maths component-specific objectives"
+    ]
+  },
+  "verified_objective_gates": [
+    {
+      "route": "IGCSE/Cambridge/Core",
+      "codes": [
+        "C8.1",
+        "C8.2",
+        "C8.3"
+      ],
+      "limits": "Core combined events with replacement only; conditional probability and P(A|B) not Core objectives"
+    },
+    {
+      "route": "IGCSE/Cambridge/Extended",
+      "codes": [
+        "E8.3",
+        "E8.4"
+      ],
+      "limits": "With/without replacement and conditional from diagrams/tables; notation/formula not required"
+    },
+    {
+      "route": "IGCSE/Pearson 4MA1/Foundation",
+      "codes": [
+        "6.3 A–J"
+      ],
+      "limits": "No Higher-only conditional probability; two calculator-permitted linear papers"
+    },
+    {
+      "route": "IGCSE/Pearson 4MA1/Higher",
+      "codes": [
+        "3.2 A–D",
+        "6.3 A–D"
+      ],
+      "limits": "Composition/inverse with domains; conditional probability with changed denominator"
+    },
+    {
+      "route": "GCSE/AQA/Higher",
+      "codes": [
+        "P6",
+        "P8",
+        "P9"
+      ],
+      "limits": "P9 conditional probability Higher-only; P8 dependent/independent events in additional Foundation content"
+    }
+  ],
+  "original_blueprints": [
+    {
+      "route": "IGCSE Cambridge 0580 Core",
+      "daily": "Experimental relative frequency -> predicted count; C8.2",
+      "weekly": "Two-draw coloured-token tree with replacement; C8.1+C8.3",
+      "exam": "Two-spin carnival with expected counts and interpretation; C8.2+C8.3+C1.11"
+    },
+    {
+      "route": "IGCSE Pearson 4MA1 Foundation",
+      "daily": "Two-set Venn complement; 6.3D/H",
+      "weekly": "Spinner sample space and expected frequency; 6.3E/F/I/J",
+      "exam": "Survey two-way table, union, complement and prediction; 6.3A–J"
+    },
+    {
+      "route": "IGCSE Pearson 4MA1 Higher",
+      "daily": "Second draw conditional on first draw; 6.3C",
+      "weekly": "Composition and reciprocal-domain restrictions; 3.2B–D",
+      "exam": "Compare with/without replacement exactly-one-colour; 6.3B–D"
+    },
+    {
+      "route": "GCSE AQA Higher",
+      "daily": "Conditional probability from two-way table; P9",
+      "weekly": "Venn intersection versus conditional fraction; P6/P8/P9",
+      "exam": "Two-stage reliability conditional tree; P8/P9"
+    }
+  ],
+  "coverage_snapshot": {
+    "as_of": "2026-11-01",
+    "project": "nwakgkxytovprrrwyahs",
+    "total_private_practice_bank_rows": 300,
+    "active_approved": 12,
+    "inactive_draft": 48,
+    "active_pilot": 240,
+    "existing_draft_routes": {
+      "GCSE Pearson Edexcel 1MA1 Higher": 24,
+      "IGCSE Cambridge 0580 Extended": 24
+    },
+    "normalised_duplicate_groups_bank_wide": 82,
+    "extra_duplicate_rows_bank_wide": 82,
+    "duplicate_groups_within_pilots": 80,
+    "duplicate_groups_within_inactive_drafts": 2,
+    "duplicate_groups_within_approved": 0,
+    "duplicate_groups_within_same_active_qualification_and_level": 0,
+    "student_repeated_bank_assignments_observed": 0,
+    "assigned_item_instances": 4,
+    "distinct_assigned_bank_items": 4,
+    "scheduled_grove_tasks": 27,
+    "completed_grove_tasks": 1,
+    "notes": [
+      "Cross-qualification shared pilot stems account for 80 duplicate groups; no same qualification+level active duplicate groups were found.",
+      "Two inactive cross-board draft stems coincide; do not approve unchanged.",
+      "Read-only aggregate snapshot does not establish future unseen capacity.",
+      "Pilot active rows are not equivalent to independently approved board-specific questions."
+    ]
+  },
+  "implementation_handoff": {
+    "priority": "Create and mathematically verify 12 new candidate original items for four routes x three programme scopes; no protected exam questions; keys only in private Supabase",
+    "must_not_publish_as_mocks": true,
+    "do_not_relabel_drafts": "1MA1 Pearson GCSE drafts are not 4MA1 Pearson IGCSE",
+    "checks": [
+      "Exact and whitespace-normalised duplicate across all 300 existing rows and new items",
+      "Student's entire prior bank ID and normalised stem history",
+      "Calculator and academic tier restrictions",
+      "Four distinct distractors and unique keyed answer where MCQ",
+      "Full private worked solution, mathematical notation rendering, timing and review state",
+      "Only publish approved timed mocks with complete original papers and exam-format validation"
+    ],
+    "research_only_no_new_publication": true
   }
 }
