@@ -1,7 +1,7 @@
 {
-  "version": 2,
+  "version": 3,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove official specification alignment — 1 November 2026 handoff",
+  "title": "MathsGrove official specification alignment — IB AA/AI, TMUA, Further Maths (1 November 2026)",
   "status": "research_brief_committed__authoring_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -123,28 +123,24 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_0030_qualification_alignment_brief.md",
-  "latest_brief_commit": "ab871ce0dc2ebccdbb8b2950a19d350aad6fe7bb",
+  "latest_dated_brief": "content/research/20261101_0226_ib_tmua_further_alignment.md",
+  "latest_brief_commit": "0c29d07dbd966716b7e9fc7325bea5bf31f70ef3",
   "research_rotation": {
     "deep_dive": [
-      "Cambridge IGCSE 0580 Core C8.1–C8.3",
-      "Pearson International GCSE 4MA1 Foundation 6.3 A–J",
-      "Pearson International GCSE 4MA1 Higher 3.2 A–D and 6.3 A–D",
-      "AQA GCSE 8300 P6–P9"
+      "IB AA SL/HL current subject brief (first assessment 2021, final assessment Nov 2028)",
+      "IB AI SL/HL current subject brief (first assessment 2021, final assessment Nov 2028)",
+      "TMUA 2026–27 specification: MM1.3, MM1.5, MM8.2, MM8.7, Arg1–4, Prf1–5, Err1–2",
+      "Cambridge 9231 2026–27 P1 §§1.1,1.3,1.4; applied-component route gates",
+      "Pearson 9FM0 Core Pure §§2.3,3.3–3.6,4.1 and mandatory/optional component gates"
     ],
     "cross_checked": [
-      "Pearson GCSE 1MA1",
-      "Cambridge 9709",
-      "Cambridge Further 9231",
-      "Pearson GCE 9MA0 and 9FM0",
-      "Pearson IAL mathematics",
-      "IB AA/AI SL/HL current curriculum through November 2028",
-      "TMUA 2026–27"
+      "IB AA/AI 2029 revised subject briefs: do not apply revised codes to current students",
+      "Previous AQA GCSE 8300, Cambridge 0580, Pearson IGCSE 4MA1 and Cambridge 9709 alignment remains in previous brief"
     ],
     "next_deep_dive": [
-      "IB AA/AI SL/HL current guide and 2029 transition",
-      "TMUA reasoning and logic",
-      "Cambridge/Pearson Further Maths component-specific objectives"
+      "Cambridge 9709 Pure/Mechanics/Statistics vs Pearson 9MA0 linear vs Pearson IAL unitised",
+      "Further options: Pearson 9FM0 3B/3C/3D and Cambridge 9231 P3/P4 detailed objectives",
+      "Current IB authorised full guide for exact current topic micro-codes and HL-only scope"
     ]
   },
   "verified_objective_gates": [
@@ -214,39 +210,81 @@
       "daily": "Conditional probability from two-way table; P9",
       "weekly": "Venn intersection versus conditional fraction; P6/P8/P9",
       "exam": "Two-stage reliability conditional tree; P8/P9"
+    },
+    {
+      "route": "IB AA SL (current 2021–2028)",
+      "daily": "Radical-function domain and endpoint",
+      "weekly": "Quadratic storage-cost minimum with realistic constraints",
+      "exam": "Fixed-area rectangular perimeter optimisation with constraints"
+    },
+    {
+      "route": "IB AA HL (current 2021–2028)",
+      "daily": "Rational function hole and excluded input",
+      "weekly": "Cubic parameter stationary-point classification",
+      "exam": "Parameterised cubic-line intersection and distinct-root reasoning"
+    },
+    {
+      "route": "IB AI SL (current 2021–2028)",
+      "daily": "Correlation direction versus causation",
+      "weekly": "GDC linear modelling with interpolation/extrapolation caution",
+      "exam": "Population-adjusted recycling data and competing residual trends"
+    },
+    {
+      "route": "IB AI HL (current 2021–2028)",
+      "daily": "Systematic residual patterns",
+      "weekly": "Growth-model sensitivity to changed inputs",
+      "exam": "Piecewise versus exponential model after structural break"
+    },
+    {
+      "route": "TMUA 2026–27",
+      "daily": "Arg4 quantifier negation",
+      "weekly": "MM1.3/MM8.7 parameter discriminant and intersections",
+      "exam": "Prf1/Err1 detect illegal cancellation and exceptional solution, five-option MCQ"
+    },
+    {
+      "route": "Cambridge Further 9231 P1",
+      "daily": "§1.1 symmetric sums from cubic coefficients",
+      "weekly": "§1.3 telescoping series and boundary terms",
+      "exam": "§1.4 noncommuting matrix transformations and area"
+    },
+    {
+      "route": "Pearson Further 9FM0 Core Pure",
+      "daily": "§2.3 conjugate roots",
+      "weekly": "§3.3–3.6 shear/reflection determinant/inverse",
+      "exam": "§4.1/§2.3 quartic roots, conjugates and parameter constraints"
     }
   ],
   "coverage_snapshot": {
     "as_of": "2026-11-01",
     "project": "nwakgkxytovprrrwyahs",
-    "total_private_practice_bank_rows": 300,
-    "active_approved": 12,
+    "total_private_practice_bank_rows": 312,
+    "active_approved": 24,
     "inactive_draft": 48,
     "active_pilot": 240,
-    "existing_draft_routes": {
-      "GCSE Pearson Edexcel 1MA1 Higher": 24,
-      "IGCSE Cambridge 0580 Extended": 24
-    },
     "normalised_duplicate_groups_bank_wide": 82,
     "extra_duplicate_rows_bank_wide": 82,
-    "duplicate_groups_within_pilots": 80,
-    "duplicate_groups_within_inactive_drafts": 2,
     "duplicate_groups_within_approved": 0,
     "duplicate_groups_within_same_active_qualification_and_level": 0,
     "student_repeated_bank_assignments_observed": 0,
     "assigned_item_instances": 4,
     "distinct_assigned_bank_items": 4,
-    "scheduled_grove_tasks": 27,
+    "scheduled_grove_tasks": 28,
     "completed_grove_tasks": 1,
+    "approved_coverage_target_routes": {
+      "IB_AA": 0,
+      "IB_AI": 0,
+      "TMUA": 0,
+      "FURTHER_MATHS": 0
+    },
     "notes": [
-      "Cross-qualification shared pilot stems account for 80 duplicate groups; no same qualification+level active duplicate groups were found.",
-      "Two inactive cross-board draft stems coincide; do not approve unchanged.",
-      "Read-only aggregate snapshot does not establish future unseen capacity.",
-      "Pilot active rows are not equivalent to independently approved board-specific questions."
+      "Read-only snapshot; 12 new approved items since prior brief, with 0 approved duplicates.",
+      "Existing 240 generic pilot items remain active and must not be treated as board-specific examiner-approved.",
+      "No repeated assigned bank IDs found; paraphrase-level or future repetition is not disproved.",
+      "Exam board and optional module must be explicit for Further Maths; Cambridge Core/Extended vs Pearson Foundation/Higher are different official tier names."
     ]
   },
   "implementation_handoff": {
-    "priority": "Create and mathematically verify 12 new candidate original items for four routes x three programme scopes; no protected exam questions; keys only in private Supabase",
+    "priority": "Author and independently validate 21 new candidate original items across 7 routes × Grove Daily/Weekly/Exam, prioritising IB AA SL, IB AI SL, TMUA P2, Cambridge 9231 P1 and Pearson 9FM0 Core Pure; use latest dated brief for full blueprints.",
     "must_not_publish_as_mocks": true,
     "do_not_relabel_drafts": "1MA1 Pearson GCSE drafts are not 4MA1 Pearson IGCSE",
     "checks": [
@@ -255,8 +293,33 @@
       "Calculator and academic tier restrictions",
       "Four distinct distractors and unique keyed answer where MCQ",
       "Full private worked solution, mathematical notation rendering, timing and review state",
-      "Only publish approved timed mocks with complete original papers and exam-format validation"
+      "Only publish approved timed mocks with complete original papers and exam-format validation",
+      "Use current IB AA/AI brief for cohorts assessed through November 2028; do not apply 2029 topic codes until correct cohort.",
+      "TMUA authentic mock must have 20 five-option MCQs per 75-minute paper, two separate papers, no calculator.",
+      "IB AA P1 no technology; IB AI all papers technology allowed; use correct SL/HL timings.",
+      "Cambridge 9231 AS applied component P3 OR P4; Pearson 9FM0 has two mandatory Core Pure plus permitted option selection.",
+      "Current IB detailed objective-code alignment pending authorised guide verification; mark editorial, not approved."
     ],
-    "research_only_no_new_publication": true
-  }
+    "research_only_no_new_publication": true,
+    "next_batch_editorial_items": 21,
+    "blockers": [
+      "Full current IB guide not publicly accessible through the official public brief; detailed micro-code alignment remains provisional.",
+      "Four-option/one-mark practice schema does not alone implement five-option TMUA mocks or IB/Further multi-mark examiner rubrics.",
+      "Further Maths optional module and board selection must be captured before mock assignment.",
+      "82 cross-route normalised duplicate groups and 240 generic pilot items need broader semantic duplicate screening."
+    ]
+  },
+  "previous_dated_brief": "content/research/20261101_0030_qualification_alignment_brief.md",
+  "previous_brief_commit": "ab871ce0dc2ebccdbb8b2950a19d350aad6fe7bb",
+  "current_research_sources": [
+    "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics",
+    "https://www.ibo.org/contentassets/5895a05412144fe890312bad52b17044/subject-brief-dp-math-analysis-and-approaches-en.pdf",
+    "https://www.ibo.org/contentassets/5895a05412144fe890312bad52b17044/subject-brief-dp-math-applications-and-interpretations-en.pdf",
+    "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_analysis_en.pdf",
+    "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_application_en.pdf",
+    "https://esat-tmua.ac.uk/about-the-tests/tmua-test/",
+    "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
+    "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+  ]
 }
