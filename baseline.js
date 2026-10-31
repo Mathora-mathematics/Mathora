@@ -1,9 +1,10 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 import {evaluateMath} from './baseline-calc.js';
+import {createEvidenceWorkspace} from './evidence-workspace.js';
 const $=id=>document.getElementById(id),conf=window.MATHSGROVE_CONFIG||{};
 const enabled=/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(conf.url||'')&&!!conf.publishableKey;
 const db=enabled?createClient(conf.url,conf.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
-let payload=null,current=1,saving=false,closing=false,serverOffset=0,clock=null,fullSession=false,strokes=new Map(),tool='pen',activeStroke=null,focused=true;
+let payload=null,current=1,saving=false,closing=false,serverOffset=0,clock=null,fullSession=false,focused=true;
 const lookups={GCSE:'GCSE Mathematics',IGCSE:'IGCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'Further Mathematics',IB_AA:'IB Analysis & Approaches',IB_AI:'IB Applications & Interpretation',TMUA:'TMUA'};
 const visible=id=>['bl-loading','bl-unavailable','bl-intro','bl-exam','bl-report'].forEach(x=>$(x).hidden=x!==id);
 const set=(id,value)=>{const n=$(id);if(n)n.textContent=String(value??'')};
@@ -13,7 +14,7 @@ const title=p=>(lookups[p?.qualification]||p?.qualification||'Mathematics')+' ·
 const math=(el,source)=>{if(window.MathsGroveMath?.write)window.MathsGroveMath.write(el,source);else el.textContent=String(source??'')};
 const now=()=>Date.now()+serverOffset;
 const reportStatus=()=>payload&&payload.status&&payload.status!=='active';
-const workingStore=()=>{if(!strokes.has(current))strokes.set(current,[]);return strokes.get(current)};
+
 function updateSession(p){
  if(!p||p.ready!==true)throw Error(p?.reason||'Your administrator has not yet assigned an eligible baseline.');
  payload=p;
@@ -80,7 +81,7 @@ function renderQuestion(){
  $('bl-next').textContent=current===20?'Review & submit ↗':'Next question →';
  $('bl-next').disabled=saving;
  $('bl-calculator-status').textContent=payload.calculator_allowed?'CALCULATOR ALLOWED':'NON-CALCULATOR';
- renderNumbers();redrawBoard();
+ renderNumbers();evidence.switchQuestion();
 }
 async function saveAnswer(position,choice){
  if(!payload||reportStatus()||saving)return;
@@ -95,15 +96,25 @@ async function saveAnswer(position,choice){
  }catch(e){mark('bl-autosave','Not saved — try again');set('bl-focus-message','Connection interrupted: the last answer was NOT saved. Select it again. '+friendly(e))}
  finally{saving=false;renderQuestion()}
 }
-function navigate(n){if(saving||reportStatus()||!payload)return;current=Math.min(20,Math.max(1,n));renderQuestion();document.querySelector('.bl-paper')?.scrollIntoView({behavior:'smooth',block:'nearest'})}
+async function navigate(n){
+ if(saving||closing||reportStatus()||!payload)return;
+ saving=true;
+ try{
+  await evidence.flush();
+  current=Math.min(20,Math.max(1,n));renderQuestion();
+  document.querySelector('.bl-paper')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }catch(e){set('bl-focus-message','Working could not be saved: '+friendly(e)+'. Try again before changing questions.')}
+ finally{saving=false}
+}
 $('bl-previous').addEventListener('click',()=>navigate(current-1));
 $('bl-next').addEventListener('click',()=>current===20?confirmSubmit():navigate(current+1));
 const openDialog=dialog=>{if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','')};
 const closeDialog=dialog=>{if(dialog.open&&typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open')};
-function confirmSubmit(){
+async function confirmSubmit(){
  if(!payload||reportStatus()||saving)return;
+ try{await evidence.flush()}catch(e){set('bl-focus-message','Save or clear your current working before submitting: '+friendly(e));return}
  const answered=(payload.questions||[]).filter(x=>x.selected).length;
- set('bl-confirm-description',answered+' of 20 questions answered. Your assessment will close permanently and your diagnostic report will be generated. Unanswered questions count as zero.');
+ set('bl-confirm-description',answered+' of 20 questions answered. Multiple-choice answers are marked automatically; saved working is available for your examiner to review. Unanswered questions count as zero.');
  openDialog($('bl-confirm'))
 }
 $('bl-submit-side').addEventListener('click',confirmSubmit);
@@ -113,6 +124,7 @@ $('bl-confirm-submit').addEventListener('click',async()=>{
  closeDialog($('bl-confirm'));if(closing||!payload)return;
  closing=true;mark('bl-autosave','Submitting…');
  try{
+  await evidence.flush();
   const {data,error}=await db.rpc('baseline_finish',{p_session:payload.session_id});
   if(error)throw error;updateSession(data)
  }catch(e){set('bl-focus-message','Submission was not confirmed. '+friendly(e)+' Your answers remain saved; try again.')}
@@ -131,7 +143,7 @@ function startActive(){
  if(missing&&current===1)current=missing.position;
  set('bl-exam-path',title(payload));
  $('bl-calc-box').hidden=!payload.calculator_allowed;
- renderQuestion();tick();
+ void evidence.refresh().then(()=>evidence.switchQuestion()).catch(e=>set('bl-focus-message','Evidence unavailable: '+friendly(e)));renderQuestion();tick();
  if(clock!==null)clearInterval(clock);
  clock=setInterval(tick,700);
 }
@@ -212,37 +224,13 @@ function showReport(){
  }
 }
 $('bl-print').addEventListener('click',()=>window.print());
-// A modest, question-specific scratchpad. Drawings are not uploaded or scored.
-const canvas=$('bl-board'),ctx=canvas.getContext('2d');
-function boardPoint(e){const r=canvas.getBoundingClientRect();return[(e.clientX-r.left)*canvas.width/r.width,(e.clientY-r.top)*canvas.height/r.height]}
-function redrawBoard(){
- ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
- ctx.strokeStyle='#e5edf1';ctx.lineWidth=1;
- for(let x=0;x<=canvas.width;x+=25){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke()}
- for(let y=0;y<=canvas.height;y+=25){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke()}
- for(const stroke of workingStore()){
-  if(!stroke.points.length)continue;
-  ctx.save();ctx.strokeStyle=stroke.color;ctx.lineWidth=stroke.size;ctx.globalAlpha=stroke.alpha;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();
-  ctx.moveTo(...stroke.points[0]);
-  if(stroke.points.length===1)ctx.lineTo(stroke.points[0][0]+.2,stroke.points[0][1]+.2);
-  for(const point of stroke.points.slice(1))ctx.lineTo(...point);ctx.stroke();ctx.restore();
- }
-}
-canvas.addEventListener('pointerdown',e=>{
- if(!payload||reportStatus()||(e.pointerType==='mouse'&&e.button!==0))return;
- const pos=boardPoint(e);
- if(tool==='eraser'){
-  const arr=workingStore();for(let i=arr.length-1;i>=0;i--){if(arr[i].points.some(p=>Math.hypot(p[0]-pos[0],p[1]-pos[1])<28)){arr.splice(i,1);break}}redrawBoard();return;
- }
- canvas.setPointerCapture(e.pointerId);
- activeStroke={points:[pos],color:tool==='marker'?'#bda381':'#173351',size:tool==='marker'?18:3.1,alpha:tool==='marker'?.48:1};
- workingStore().push(activeStroke);redrawBoard()
+// The working is saved to private storage with each question and photo attachment.
+const evidence=createEvidenceWorkspace({
+ db,kind:'baseline',canvas:$('bl-board'),toolbar:$('bl-toolbar'),
+ photos:$('bl-photos'),saveButton:$('bl-save-work'),
+ status:$('bl-work-status'),list:$('bl-work-list'),
+ getSession:()=>payload?.session_id,getPosition:()=>current
 });
-canvas.addEventListener('pointermove',e=>{if(!activeStroke)return;activeStroke.points.push(boardPoint(e));redrawBoard()});
-for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,()=>{activeStroke=null});
-document.querySelectorAll('[data-bl-tool]').forEach(b=>b.addEventListener('click',()=>{tool=b.dataset.blTool;document.querySelectorAll('[data-bl-tool]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}));
-$('bl-undo').addEventListener('click',()=>{workingStore().pop();redrawBoard()});
-$('bl-clear').addEventListener('click',()=>{strokes.set(current,[]);redrawBoard()});
 // No arbitrary code execution in the local calculator.
 const calc=$('bl-calc-display');
 function calculate(){try{const num=evaluateMath(calc.value);const out=Number(num.toPrecision(12));set('bl-calc-output','Result: '+out);calc.value=String(out)}catch(e){set('bl-calc-output',friendly(e))}}
