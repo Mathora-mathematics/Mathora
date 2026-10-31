@@ -8,6 +8,7 @@ const sql=read('supabase/MANUAL_STUDENT_PDF_ARCHIVE.sql');
 const guards=read('supabase/STUDENT_REMOVAL_AFTER_ARCHIVE.sql');
 const workflow=read('.github/workflows/pages.yml');
 const cleanup=read('supabase/VERIFY_STUDENT_OFFBOARDING_CLEANUP.sql');
+const linkedCleanup=read('supabase/CLEAR_REMOVED_LEARNER_ALL_LINKED_ACCESS.sql');
 const family=read('family-access.js');
 const portal=read('portal.js');
 const tests=[
@@ -29,6 +30,9 @@ const tests=[
  ['No deletion on export',!service.slice(service.indexOf("if(action==='prepare_manual'"),service.indexOf("if(action==='erase')")).includes('deleteUser(')],
  ['Disabled until service deploy',ui.includes("health.data?.method==='manual_zip_pdf'")&&ui.includes('deletion.disabled=!manualServiceReady')],
  ['Post-deletion database cleanup verification',cleanup.includes('grove_offboarding_verify_cleanup')&&cleanup.includes('auth.users')&&cleanup.includes('storage.objects')],
+ ['Deleted learner cannot remain a linked viewer',linkedCleanup.includes('viewer_id=j.student_id')&&linkedCleanup.includes('lower(viewer_email)=lower(j.recipient_email)')],
+ ['Family view also periodically refreshes access',family.includes('setInterval')&&family.includes("records=[];view('fa-loading')")],
+ ['Student portal periodically rechecks removed access',portal.includes('setInterval')&&portal.includes("recheckLearnerOnReturn")],
  ['Server refuses to finalise before full clean verification',service.includes("grove_offboarding_verify_cleanup")&&service.indexOf("grove_offboarding_verify_cleanup")<service.indexOf("grove_offboarding_record_completion")],
  ['All Studio student data cleared and reloaded',js.includes("onRemoved:async")&&js.includes("state.students=[];state.attempts=[]")&&js.includes("await refresh();")],
  ['Administrator tab resume refresh',js.includes("visibilitychange")&&js.includes("if(!document.hidden&&state.membership)void refresh()")],
