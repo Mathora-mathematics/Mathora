@@ -52,3 +52,15 @@
 @media(max-width:850px){.mg-welcome-shell{grid-template-columns:1fr}.mg-welcome-brand{min-height:280px;padding:36px 26px;gap:45px}.mg-welcome-brand h1{font-size:50px;max-width:500px}.mg-welcome-main{padding:42px 23px 62px}.mg-welcome-progress{margin-bottom:29px}}
 @media(max-width:420px){.mg-welcome-brand h1{font-size:44px}.mg-welcome-progress{gap:5px}.mg-welcome-progress .mg-divider{width:12px}.mg-welcome-progress .mg-step{font-size:9px}.mg-welcome-card{max-width:100%}}
 @media(prefers-reduced-motion:reduce){.mg-welcome-pane,.mg-welcome-seal{animation:none}.mg-welcome-primary,.mg-welcome-secondary{transition:none}}
+
+/* Quick branded transition while a verified session and role are resolved. */
+.mg-loading-screen{min-height:calc(100svh - 150px);background:#101e33;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:35px;color:#f9f5ec}
+.mg-loading-orbit{width:108px;height:108px;border:1px solid #d3c0a65b;border-radius:50%;display:grid;place-items:center;position:relative;margin-bottom:30px;animation:mg-loading-breathe 2.5s ease-in-out infinite}
+.mg-loading-orbit:after{content:"";position:absolute;inset:-17px;border:1px solid #ddccb523;border-radius:50%}
+.mg-loading-orbit img{width:72px;height:72px}
+.mg-loading-brand{font:400 42px/1.1 "Instrument Serif",Georgia,serif;letter-spacing:-.04em;margin:0 0 11px}
+.mg-loading-brand span{color:#d5c4aa}
+.mg-loading-line{font-size:14px;color:#ccd5e1;line-height:1.65;margin:0 0 33px}
+.mg-loading-note{font-size:9px;font-weight:800;letter-spacing:.2em;color:#b6a487}
+@keyframes mg-loading-breathe{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.065);opacity:1}}
+@media(prefers-reduced-motion:reduce){.mg-loading-orbit{animation:none}}
