@@ -43,3 +43,21 @@ body.mg-private-portal .mg-practice-report .mg-report-metric{font-size:clamp(28p
 @media(max-width:800px){.mg-analysis-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.mg-analysis-detail{grid-template-columns:1fr}}
 @media(max-width:520px){.mg-student-analysis{padding:20px 17px}.mg-analysis-mark{display:none}.mg-analysis-metrics{gap:8px}.mg-analysis-metrics>div{padding:15px 12px}.mg-analysis-metrics strong{font-size:31px}}
 @media(prefers-reduced-motion:reduce){body.mg-private-portal .mg-auto-day{transition:none}}
+
+/* Read-only exam route summary and low-friction student profile update. */
+body.mg-private-portal .mg-student-route{padding:26px 30px!important;border-radius:14px!important}
+.mg-student-route h2{font:400 clamp(30px,3.2vw,41px)/1.1 "Instrument Serif",Georgia,serif;margin:4px 0 8px}
+.mg-student-route>div>p:not(.card-kicker){font-size:12px;line-height:1.7;color:#718095;margin:0 0 16px}
+.mg-student-route-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 13px}
+.mg-student-route-grid>div{padding:16px 14px;background:#f8f6f1;border:1px solid #e8e2d9;border-radius:10px;min-width:0}
+.mg-student-route-grid span{display:block;font-size:9px;font-weight:800;letter-spacing:.1em;color:#8f795e;margin-bottom:10px}
+.mg-student-route-grid strong{font-size:13px;color:#223b57;line-height:1.55;overflow-wrap:anywhere}
+.mg-route-profile{border-top:1px solid #ede6dc;padding-top:14px}
+.mg-route-profile summary{font-size:11px;font-weight:700;color:#617690;cursor:pointer;list-style:none}
+.mg-route-profile summary::-webkit-details-marker{display:none}
+.mg-route-profile summary:after{content:" ↗";color:#967e60}
+.mg-route-profile .pathway-form{display:flex;align-items:end;gap:11px;flex-wrap:wrap;margin-top:12px}
+.mg-route-profile .pathway-form label{flex:1;min-width:190px;margin:0}
+.mg-route-profile .pathway-form button{margin:0;align-self:end}
+@media(max-width:900px){.mg-student-route-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){body.mg-private-portal .mg-student-route{padding:19px 16px!important}.mg-student-route-grid{gap:8px}.mg-student-route-grid>div{padding:13px 11px}}
