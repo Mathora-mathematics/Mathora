@@ -121,4 +121,6 @@ document.addEventListener('visibilitychange',()=>{
 window.addEventListener('pageshow',event=>{
  if(event.persisted&&user)void access();
 });
+// Refresh authorised family records even if this tab stays open while a learner is removed.
+setInterval(()=>{if(!document.hidden&&user)void access()},60000);
 void access();
