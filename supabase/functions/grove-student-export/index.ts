@@ -109,7 +109,7 @@ async function handle(req:Request):Promise<Response>{
    if(total>maxArchiveBytes)return await fail('Student evidence is larger than the standard ZIP limit',413);
    number++;
    const name=String(number).padStart(3,'0')+'-'+title(originalName);
-   const mime=blob.type||(/\.png$/i.test(name)?'image/png':/\.jpe?g$/i.test(name)?'image/jpeg':'application/octet-stream');
+   const mime=/\.png$/i.test(name)?'image/png':/\.jpe?g$/i.test(name)?'image/jpeg':(blob.type||'application/octet-stream');
    evidence.push({name,bytes,kind:mime});
    zip['Original_Submissions/'+name]=bytes;
   }
