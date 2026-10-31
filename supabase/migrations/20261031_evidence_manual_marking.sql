@@ -39,7 +39,7 @@ REVOKE ALL ON private.grove_practice_marks FROM PUBLIC,anon,authenticated;
 
 -- Storage is private. These paths can only be uploaded for the user's own
 -- active baseline/task; it cannot be used to upload someone else's evidence.
-CREATE OR REPLACE FUNCTION private.grove_evidence_upload_allowed(p_path text)
+CREATE OR REPLACE FUNCTION public.grove_evidence_upload_allowed(p_path text)
 RETURNS boolean LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$
 DECLARE v_parts text[]:=string_to_array(p_path,'/');v_uid uuid:=(SELECT auth.uid());
 BEGIN
@@ -60,12 +60,12 @@ BEGIN
  END IF;
  RETURN false;
 END;$$;
-REVOKE ALL ON FUNCTION private.grove_evidence_upload_allowed(text) FROM PUBLIC,anon;
-GRANT EXECUTE ON FUNCTION private.grove_evidence_upload_allowed(text) TO authenticated;
+REVOKE ALL ON FUNCTION public.grove_evidence_upload_allowed(text) FROM PUBLIC,anon;
+GRANT EXECUTE ON FUNCTION public.grove_evidence_upload_allowed(text) TO authenticated;
 
 DROP POLICY IF EXISTS mathsgrove_assessment_evidence_upload ON storage.objects;
 CREATE POLICY mathsgrove_assessment_evidence_upload ON storage.objects FOR INSERT TO authenticated
-WITH CHECK(bucket_id='student-work' AND private.grove_evidence_upload_allowed(name));
+WITH CHECK(bucket_id='student-work' AND public.grove_evidence_upload_allowed(name));
 
 CREATE OR REPLACE FUNCTION public.grove_save_work_evidence(
  p_kind text,p_session uuid,p_position integer,p_path text,p_name text,p_file_kind text)
@@ -340,7 +340,7 @@ BEGIN
  ORDER BY due_date,mode),'[]'::jsonb) INTO v_rows
  FROM private.grove_tasks WHERE student_id=v_uid AND due_date BETWEEN current_date-14 AND current_date+35
  AND (v_end IS NULL OR due_date<=v_end);
- RETURN jsonb_build_object('ready',true,'programme',v_tier,'qualification',v_route->>'qualification,
+ RETURN jsonb_build_object('ready',true,'programme',v_tier,'qualification',v_route->>'qualification',
  'level',v_route->>'level','baseline_status',v_bstatus,'assignments',v_rows);
 END;$$;
 
