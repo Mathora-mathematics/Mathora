@@ -14,7 +14,15 @@ const linkedManager=initAccessManagement(db,state);
 const baselineManager=initBaselineAdmin(db,state);
 const assignedManager=initAssignedAdmin(db,state);
 const editorialManager=initEditorialReview(db,state);
-const offboardingManager=initStudentOffboarding(db,state);
+const offboardingManager=initStudentOffboarding(db,state,{onRemoved:async()=>{
+ // Discard the entire in-memory student roster and derived metrics before a fresh server read.
+ state.students=[];state.attempts=[];state.invites=[];state.entitlements=[];
+ state.academic=[];state.addons=[];state.pending=[];
+ state.activeReview=null;
+ $('review-card').hidden=true;
+ await refresh();
+ inform('Student removed. Overview, marking, reports, baseline, timetable, linked access and invitations have been reloaded.');
+}});
 const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
 const date=s=>s?new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
 const fmt=s=>String(s||'').trim();
@@ -40,7 +48,10 @@ function openStudentRemoval(){
 $('mg-offboarding-nav').addEventListener('click',openStudentRemoval);
 $('mg-student-export-shortcut').addEventListener('click',openStudentRemoval);
 
-document.querySelectorAll('.nav [data-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+document.querySelectorAll('.nav [data-tab]').forEach(b=>b.addEventListener('click',()=>{
+ setTab(b.dataset.tab);
+ if(b.dataset.tab==='students' && state.membership)void refresh();
+}));
 document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.goto)));
 $('logout').onclick=async()=>{if(db)await db.auth.signOut();location.href='./portal.html'};
 function inviteStatus(a){if(a.redeemed_at)return 'Redeemed';if(a.revoked_at)return 'Revoked';if(new Date(a.expires_at).getTime()<=Date.now())return 'Expired';return 'Awaiting claim'}
