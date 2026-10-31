@@ -12,7 +12,7 @@ const assignedPractice=sb?initAssignedPractice(sb):null;
 const passwordAccess=initPasswordAccess(sb,{show,boot});
 const studentWelcome=initStudentWelcome(sb,{show,continueToDashboard:dashboard});
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
-function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view','security-view','student-onboarding-view'].forEach(x=>$(x).hidden=x!==id)}
+function show(id){['loading-view','configure-view','login-view','claim-view','role-view','dashboard-view','security-view','student-onboarding-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
 function message(id,s,error=false){let e=$(id);e.textContent=s;e.classList.toggle('is-error',error)}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
