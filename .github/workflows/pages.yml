@@ -64,6 +64,7 @@ jobs:
           node scripts/check-baseline.mjs
           node scripts/check-baseline-seeds.mjs
           node scripts/check-content.mjs
+          node scripts/check-published-originals.mjs
           node scripts/check-original-practice.mjs
       - name: Assemble only MathsGrove public assets
         shell: bash
