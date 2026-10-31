@@ -654,5 +654,8 @@ async function recheckLearnerOnReturn(){
 }
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)void recheckLearnerOnReturn()});
 window.addEventListener('pageshow',e=>{if(e.persisted)void recheckLearnerOnReturn()});
+setInterval(()=>{
+ if(!document.hidden&&state.user&&!$('dashboard-view').hidden)void recheckLearnerOnReturn();
+},60000);
 await boot();
 $('sign-out').hidden=!state.user;
