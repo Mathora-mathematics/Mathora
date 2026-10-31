@@ -104,7 +104,7 @@ async function navigate(n){
   current=Math.min(20,Math.max(1,n));renderQuestion();await questionFocus(true);
   document.querySelector('.bl-paper')?.scrollIntoView({behavior:'smooth',block:'nearest'});
  }catch(e){set('bl-focus-message','Working could not be saved: '+friendly(e)+'. Try again before changing questions.')}
- finally{saving=false}
+ finally{saving=false;renderQuestion()}
 }
 $('bl-previous').addEventListener('click',()=>navigate(current-1));
 $('bl-next').addEventListener('click',()=>current===20?confirmSubmit():navigate(current+1));
