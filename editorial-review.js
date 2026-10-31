@@ -1,6 +1,10 @@
 export function initEditorialReview(db,state){
  const $=id=>document.getElementById(id),root=$('mg-editorial-list');
  const node=(tag,text,cls)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=String(text);if(cls)el.className=cls;return el};
+ const math=(tag,source,cls)=>{const e=node(tag,undefined,cls);
+  if(window.MathsGroveMath?.write)window.MathsGroveMath.write(e,String(source||''));
+  else e.textContent=String(source||'');
+  return e};
  let drafts=[];
  async function refresh(){
   if(!state.membership?.org_id)return;
@@ -16,13 +20,14 @@ export function initEditorialReview(db,state){
   if(!shown.length){root.append(node('p','No pending drafts for this filter.'));return}
   for(const q of shown){
    const card=node('details',undefined,'mg-editorial-item'),summary=node('summary',q.qualification+' '+q.level+' · '+q.programme_scope.toUpperCase()+' · '+q.topic+' · '+q.skill);
-   card.append(summary,node('p',q.prompt));
+   card.append(summary,math('p',q.prompt,'mg-math-prompt'));
    const opts=node('div',undefined,'mg-editorial-options');
    for(const choice of q.choices||[]){
-    const line=node('div',choice+(choice===q.correct_text?'  ✓ AUTHORING KEY':''),choice===q.correct_text?'correct':'');
+    const line=math('div',choice,choice===q.correct_text?'correct':'');
+    if(choice===q.correct_text)line.append(node('small',' ✓ AUTHORING KEY'));
     opts.append(line)
    }
-   card.append(opts,node('p','Worked rationale: '+q.explanation),
+   card.append(opts,math('p','Worked rationale: '+q.explanation,'mg-editorial-solution'),
     node('p','Draft review · '+(q.expected_seconds||'—')+' seconds suggested · '+q.exam_board+' · '+q.syllabus_objective));
    const label=node('label','Examiner verification notes (required before approval)');
    const notes=node('textarea');notes.placeholder='Check solution, all distractors, wording, syllabus level, calculator policy and answer uniqueness.';
