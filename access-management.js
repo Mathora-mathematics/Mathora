@@ -48,7 +48,7 @@ export function initAccessManagement(db,state){
     if(!['admin','partner'].includes(state.membership?.member_role))return;
     fillStudents();
     const {data,error}=await db.rpc('list_learner_viewers',{p_org:state.membership.org_id});
-    if(error){status('Linked-access setup needs the new Supabase migration: '+error.message,true);return}
+    if(error){records=[];render();status('Linked-access records could not reload: '+error.message,true);throw Error(error.message)}
     records=Array.isArray(data)?data:[];render();
   }
   const save=async(e)=>{
