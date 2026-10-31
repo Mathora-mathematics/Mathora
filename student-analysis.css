@@ -1,0 +1,45 @@
+/* MathsGrove progress atlas: evidence first, no fabricated predictions. */
+.mg-student-analysis{margin:21px 0;background:#12233b;color:#f6f5f0;border-radius:15px;padding:clamp(23px,3vw,34px);position:relative;overflow:hidden}
+.mg-student-analysis:after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;border:1px solid #bda98c29;right:-140px;top:-140px;pointer-events:none}
+.mg-analysis-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mg-student-analysis .card-kicker{color:#cabba5!important;font-size:10px;letter-spacing:.18em;margin:0 0 8px}
+.mg-analysis-heading h2{font:400 clamp(34px,4vw,49px) "Instrument Serif",Georgia,serif;margin:0 0 6px;color:white}
+.mg-analysis-heading p:not(.card-kicker){margin:0;color:#b9c6d5;font-size:12px;line-height:1.7}
+.mg-analysis-mark{font-size:9px;color:#d6c3a8;letter-spacing:.15em;border:1px solid #d6c3a83d;padding:10px 13px;border-radius:40px;white-space:nowrap}
+.mg-analysis-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:27px 0}
+.mg-analysis-metrics>div{background:#ffffff0b;border:1px solid #ffffff18;border-radius:11px;padding:19px 16px;min-width:0}
+.mg-analysis-metrics span{font-size:9px;color:#d2c1a8;font-weight:800;letter-spacing:.12em}
+.mg-analysis-metrics strong{font:400 clamp(29px,3.6vw,41px) "Instrument Serif",Georgia,serif;color:white;display:block;margin:9px 0}
+.mg-analysis-metrics small{color:#b1c0d0;font-size:10px}
+.mg-analysis-detail{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:19px}
+.mg-analysis-detail>div{border-top:1px solid #ffffff26;padding-top:18px;min-width:0}
+.mg-analysis-detail h3{color:white;font:400 26px "Instrument Serif",Georgia,serif;margin:0 0 13px}
+.mg-insight-topics,.mg-insight-trend{display:grid;gap:8px;color:#bcc9d6;font-size:12px;line-height:1.65}
+.mg-topic-row{display:flex;justify-content:space-between;gap:13px;background:#ffffff0c;padding:10px 12px;border-radius:7px}
+.mg-topic-row strong{color:#e8d7bf}
+.mg-trend-row{display:grid;grid-template-columns:60px minmax(0,1fr) 42px;align-items:center;gap:9px;font-size:11px}
+.mg-trend-row strong{font-size:11px;color:#e4d3bc;text-align:right}
+.mg-trend-track{height:8px;background:#ffffff1d;border-radius:7px;overflow:hidden}
+.mg-trend-track i{display:block;height:100%;border-radius:7px;background:#d2bea1}
+.mg-insight-foot,.mg-analysis-disclaimer{font-size:10px;color:#9fb0c4;line-height:1.8;margin:13px 0 0}
+.mg-analysis-disclaimer{border-top:1px solid #ffffff20;margin-top:23px;padding-top:15px}
+body.mg-private-portal .pathway-card{background:#fff;border:1px solid #e6dfd5;border-radius:12px}
+body.mg-private-portal .student-programme{border-left:3px solid #cbb99f}
+body.mg-private-portal .student-insight-grid .card{border-radius:13px}
+body.mg-private-portal .mg-auto-practice{border:1px solid #e4ded4;border-radius:14px;box-shadow:0 12px 34px #11233b08}
+body.mg-private-portal .mg-auto-top{padding-bottom:19px;border-bottom:1px solid #ede7df}
+body.mg-private-portal .mg-auto-day{border-radius:11px;min-height:137px;padding:18px;border:1px solid #e4dfd7;box-shadow:0 6px 17px #11233b06;transition:transform .2s,border-color .2s,box-shadow .2s}
+body.mg-private-portal .mg-auto-day.available{border-color:#c5b399;background:#faf7f0;box-shadow:0 12px 23px #11233b09}
+body.mg-private-portal .mg-auto-day.available:hover{transform:translateY(-3px);border-color:#947b5b;box-shadow:0 15px 25px #11233b16}
+body.mg-private-portal .mg-auto-day.completed{background:#eef4f1;border-color:#c9dbd2}
+body.mg-private-portal .mg-auto-day strong{font-size:14px;color:#1c3048;line-height:1.4}
+body.mg-private-portal .mg-auto-day small{font-size:10px;color:#8c7760;letter-spacing:.06em;font-weight:700}
+body.mg-private-portal .mg-auto-day span{font-size:11px;line-height:1.5}
+body.mg-private-portal .mg-practice-workspace,body.mg-private-portal .mg-practice-report{border-radius:14px}
+body.mg-private-portal .mg-practice-workspace .mg-evidence-canvas{height:auto;max-height:540px;min-height:270px}
+body.mg-private-portal .mg-practice-workspace .mg-evidence-toolbar button{color:#1a304a;background:#fff}
+body.mg-private-portal .mg-practice-workspace .mg-evidence-toolbar button[aria-pressed=true]{color:#fff;background:#1a304a}
+body.mg-private-portal .mg-practice-report .mg-report-metric{font-size:clamp(28px,4vw,45px);line-height:1.2}
+@media(max-width:800px){.mg-analysis-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.mg-analysis-detail{grid-template-columns:1fr}}
+@media(max-width:520px){.mg-student-analysis{padding:20px 17px}.mg-analysis-mark{display:none}.mg-analysis-metrics{gap:8px}.mg-analysis-metrics>div{padding:15px 12px}.mg-analysis-metrics strong{font-size:31px}}
+@media(prefers-reduced-motion:reduce){body.mg-private-portal .mg-auto-day{transition:none}}
