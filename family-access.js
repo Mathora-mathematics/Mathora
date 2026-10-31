@@ -81,6 +81,8 @@ function render(){
  view('fa-dashboard');
 }
 async function access(){
+ // Never retain a previously linked learner's name or results during a new permissions check.
+ records=[];view('fa-loading');
  if(!sb){view('fa-login');err('fa-login-message','The secure database connection has not been configured.',true);return}
  try{
   const session=await sb.auth.getSession();
@@ -113,4 +115,10 @@ $('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut(
 $('fa-retry').addEventListener('click',()=>{view('fa-loading');void access()});
 $('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;location.replace('./portal.html')});
 $('fa-learner-select').addEventListener('change',render);
+document.addEventListener('visibilitychange',()=>{
+ if(!document.hidden&&user)void access();
+});
+window.addEventListener('pageshow',event=>{
+ if(event.persisted&&user)void access();
+});
 void access();
