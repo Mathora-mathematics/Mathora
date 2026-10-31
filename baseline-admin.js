@@ -93,11 +93,13 @@ export function initBaselineAdmin(db,state){
    body.append(create('p','muted','Focus context: tab-hidden events '+(e.tab_hidden||0)+', fullscreen exits '+(e.fullscreen_exit||0)+'. These browser signals do not establish misconduct.'));
    body.append(create('p','muted',data.disclaimer||'A short diagnostic is not an official predicted grade.'));
    if(data.session_id){
+    let examinerFeedback='';
     const evidenceHeading=create('h3','','Saved mathematical working & question time');
     body.append(evidenceHeading);
     try{
      const {data:work,error:workError}=await db.rpc('grove_staff_evidence',{p_kind:'baseline',p_session:data.session_id});
      if(workError)throw workError;
+     examinerFeedback=work?.feedback||'';
      const files=Array.isArray(work?.files)?work.files:[];
      const times=Array.isArray(work?.timings)?work.timings:[];
      if(times.length){
@@ -120,6 +122,29 @@ export function initBaselineAdmin(db,state){
      }
      body.append(gallery);
     }catch(workError){body.append(create('p','muted','Could not retrieve private working: '+workError.message))}
+    const editor=create('section','mg-baseline-examiner-feedback');
+    editor.append(create('h3','','Examiner feedback on the baseline'));
+    editor.append(create('p','muted','Review the whiteboard and photographs above. The baseline multiple-choice score stays automatic; your written feedback is released separately to the student.'));
+    const label=create('label','','Examiner comment and recommended next steps');
+    const input=create('textarea');input.rows=4;input.maxLength=2500;
+    input.value=examinerFeedback;
+    input.placeholder='Describe the evidence in their working, one clear strength and one method to improve next.';
+    label.append(input);
+    const save=create('button','','Save & release baseline feedback ↗');
+    save.type='button';save.className='button primary';
+    const notice=create('p','mg-review-status',examinerFeedback?'Previous examiner feedback is loaded.':'No examiner feedback released yet.');
+    save.addEventListener('click',async()=>{
+     save.disabled=true;notice.textContent='Saving baseline feedback securely…';
+     try{
+      const {data:result,error:saveError}=await db.rpc('grove_staff_save_baseline_feedback',{
+       p_session:data.session_id,p_feedback:input.value.trim()
+      });
+      if(saveError||!result?.ok)throw Error(saveError?.message||'The examiner feedback could not be released.');
+      notice.textContent='Examiner comments released to the student. Automatic baseline marks remain unchanged.';
+     }catch(err){notice.textContent='Could not release feedback: '+(err.message||'Please try again.')}
+     finally{save.disabled=false}
+    });
+    editor.append(label,save,notice);body.append(editor);
    }
   }catch(e){body.replaceChildren(create('p','muted','Could not load diagnostic: '+(e?.message||'Unknown error')))}
  }
