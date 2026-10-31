@@ -118,6 +118,6 @@ export function initAssignedAdmin(db,state){
   }
  }
  $('mg-assigned-admin-refresh').addEventListener('click',()=>void refresh());
- setInterval(()=>{if(!document.hidden&&!$('mg-assigned-admin').closest('[data-panel]')?.hidden)void refresh()},60000);
+ setInterval(()=>{if(!document.hidden&&!$('mg-assigned-admin').closest('[data-panel]')?.hidden&&!list.querySelector('.mg-assigned-detail[open]'))void refresh()},60000);
  return {refresh}
 }
