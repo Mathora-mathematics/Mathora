@@ -24,7 +24,8 @@
       "expected_seconds": 200,
       "prompt": "Find the coefficient of \\(x^2\\) in \\((1+2x)^5\\). Show the relevant binomial term.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "Cambridge 9709 · Binomial theorem"
     },
     {
       "provenance": "mg-original-20261031-AS-exam",
@@ -38,7 +39,8 @@
       "expected_seconds": 600,
       "prompt": "A rocket has height \\(h(t)=-2t^2+12t+5\\) metres, where \\(t\\geq0\\). When does it return to its starting height? Distinguish this time from the maximum.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "Cambridge 9709 · Quadratic modelling"
     },
     {
       "provenance": "mg-original-20261031-AS-weekly",
@@ -52,7 +54,8 @@
       "expected_seconds": 460,
       "prompt": "The circle \\((x-2)^2+(y+1)^2=25\\) contains \\(P(5,3)\\). Find the tangent line at \\(P\\), showing how the radius gives a normal vector.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "Cambridge 9709 · Circle tangents"
     },
     {
       "provenance": "mg-original-20261031-GF-daily",
@@ -66,7 +69,8 @@
       "expected_seconds": 200,
       "prompt": "A charity fund of \\(\\pounds64\\) is divided in the ratio \\(3:5\\). What is the smaller share? Show how you find one part.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "AQA 8300 · Ratio"
     },
     {
       "provenance": "mg-original-20261031-GF-exam",
@@ -80,7 +84,8 @@
       "expected_seconds": 600,
       "prompt": "A floor of dimensions \\(8\\,\\mathrm m\\) by \\(6\\,\\mathrm m\\) contains a square \\(2\\,\\mathrm m\\) by \\(2\\,\\mathrm m\\) cupboard that is not carpeted. Carpet is \\(\\pounds12/\\mathrm m^2\\). Find the carpet cost.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "AQA 8300 · Compound area"
     },
     {
       "provenance": "mg-original-20261031-GF-weekly",
@@ -94,7 +99,8 @@
       "expected_seconds": 460,
       "prompt": "A bicycle costing \\(\\pounds200\\) goes up \\(15\\%\\), then down \\(15\\%\\) of its new price. Find its final price and explain why the percentages do not cancel.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "AQA 8300 · Percentage multipliers"
     },
     {
       "provenance": "mg-original-20261031-GH-daily",
@@ -108,7 +114,8 @@
       "expected_seconds": 200,
       "prompt": "Simplify \\(\\sqrt{72}-\\sqrt8\\), giving your answer as \\(a\\sqrt2\\).",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "AQA 8300 · Surds"
     },
     {
       "provenance": "mg-original-20261031-GH-exam",
@@ -122,7 +129,8 @@
       "expected_seconds": 600,
       "prompt": "Solve \\((x-2)(x+5)\\leq0\\) over the real numbers. Include all endpoints belonging to the solution.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "AQA 8300 · Quadratic inequalities"
     },
     {
       "provenance": "mg-original-20261031-GH-weekly",
@@ -136,7 +144,8 @@
       "expected_seconds": 460,
       "prompt": "A rectangle has sides \\(x\\) and \\(x+5\\) metres and area \\(84\\,\\mathrm m^2\\), with \\(x>0\\). Find the perimeter by solving a quadratic.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "AQA 8300 · Quadratic modelling"
     },
     {
       "provenance": "mg-original-20261031-IE-daily",
@@ -150,7 +159,8 @@
       "expected_seconds": 200,
       "prompt": "Express \\((3.2\\times10^4)(5\\times10^{-3})\\) in standard form, showing the index rule applied.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "Cambridge 0580 · Standard form"
     },
     {
       "provenance": "mg-original-20261031-IE-exam",
@@ -164,7 +174,8 @@
       "expected_seconds": 600,
       "prompt": "For \\(f(x)=x^2-6x+5\\), find all real \\(x\\) such that \\(f(x)\\leq0\\), justifying the interval.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "Cambridge 0580 · Quadratic inequalities"
     },
     {
       "provenance": "mg-original-20261031-IE-weekly",
@@ -178,7 +189,8 @@
       "expected_seconds": 460,
       "prompt": "A bag contains \\(4\\) red and \\(3\\) blue counters. Two are drawn without replacement. Find the probability of the same colour in both draws, considering both cases.",
       "review_state": "approved",
-      "active": true
+      "active": true,
+      "syllabus_objective": "Cambridge 0580 · Sequential probability"
     }
   ],
   "sources": [
