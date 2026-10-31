@@ -145,6 +145,44 @@ async function boot(){
   message('login-message',friendlyError(err),true);
  }
 }
+async function loadStudentAnalysis(){
+ const container=$('mg-student-analysis');if(!container)return;
+ try{
+  const {data,error}=await sb.rpc('grove_student_insights');
+  if(error)throw error;
+  const write=(id,v)=>{const el=$(id);if(el)el.textContent=String(v??'—')};
+  write('mg-insight-target',data?.target_grade||'Not set');
+  write('mg-insight-baseline',data?.baseline?.status==='submitted'||data?.baseline?.status==='expired'?(data.baseline.score+'/20'):'Not started');
+  write('mg-insight-reviewed',(data?.reviewed||0)+' / '+(data?.submitted||0));
+  write('mg-insight-accuracy',data?.reviewed_accuracy===null||data?.reviewed_accuracy===undefined?'Pending':data.reviewed_accuracy+'%');
+  write('mg-insight-time',(data?.visible_minutes||0)+' minutes of recorded question visibility. This approximates engagement, not independent working.');
+  const topics=$('mg-insight-topics');topics.replaceChildren();
+  const baseline=Array.isArray(data?.baseline_topics)?data.baseline_topics:[];
+  const weaker=baseline.filter(t=>t.correct<t.total).sort((a,b)=>a.correct/a.total-b.correct/b.total).slice(0,4);
+  if(!baseline.length)topics.append(document.createTextNode('Your 20-question baseline will identify the initial topic priorities.'));
+  else if(!weaker.length)topics.append(document.createTextNode('Strong multiple-choice starting point. Focus next on explaining unfamiliar methods.'));
+  else for(const t of weaker){
+   const item=document.createElement('div');item.className='mg-topic-row';
+   const label=document.createElement('span');label.textContent=t.topic;
+   const value=document.createElement('strong');value.textContent=t.correct+' / '+t.total;
+   item.append(label,value);topics.append(item);
+  }
+  const trend=$('mg-insight-trend');trend.replaceChildren();
+  const history=Array.isArray(data?.history)?data.history.slice(-8):[];
+  if(!history.length){const empty=document.createElement('p');empty.textContent='Your progress trend begins after an examiner releases your first practice report.';trend.append(empty)}
+  else for(const item of history){
+   const line=document.createElement('div');line.className='mg-trend-row';
+   const d=document.createElement('span');d.textContent=new Date(item.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+   const bar=document.createElement('div');bar.className='mg-trend-track';
+   const fill=document.createElement('i');const percent=item.total?Math.round(100*item.score/item.total):0;fill.style.width=percent+'%';bar.append(fill);
+   const pct=document.createElement('strong');pct.textContent=percent+'%';line.append(d,bar,pct);trend.append(line);
+  }
+ }catch(e){
+  const note=$('mg-insight-topics');note.replaceChildren();
+  note.textContent='Your analysis could not load right now. Refresh after your programme is active.';
+ }
+}
+
 async function dashboard(){
  if(isStaff()){location.replace('./studio.html');return}
  // Existing students are routed into their one-time, qualification-level baseline
@@ -157,7 +195,7 @@ async function dashboard(){
    location.replace('./baseline.html');return;
   }
  }catch{}
- const [p,org,prof]=await Promise.all([sb.from('profiles').select('id,display_name').eq('id',state.user.id).maybeSingle(),sb.from('organisations').select('id,name').eq('id',state.member.org_id).maybeSingle(),sb.from('student_preferences').select('qualification,exam_board,tier').eq('student_id',state.user.id).maybeSingle()]);if(p.error||org.error||prof.error)throw(p.error||org.error||prof.error);state.profile=p.data||{display_name:'Student'};state.preference=prof.data||null;$('student-name').value=state.profile.display_name==='Student'?'':(state.profile.display_name||'');text('organisation-label',org.data?.name?.toUpperCase()||'YOUR PROGRAMME');text('sidebar-name',state.profile.display_name||'Student');text('sidebar-role',state.member.member_role.toUpperCase());text('member-initials',initials(state.profile.display_name));text('welcome-text','Welcome'+(state.profile.display_name?' back, '+state.profile.display_name.split(' ')[0]:'')+'.');text('membership-pill',state.member.member_role==='student'?'Student access':'Organisation team');$('pathway-form').hidden=isStaff();$('begin-paper').disabled=isStaff();if(state.preference){$('qualification-select').value=state.preference.qualification||'';$('exam-board').value=state.preference.exam_board||'';$('exam-tier').value=state.preference.tier||''}show('dashboard-view');await refresh();showPanel('overview');await assignedPractice?.refresh()}
+ const [p,org,prof]=await Promise.all([sb.from('profiles').select('id,display_name').eq('id',state.user.id).maybeSingle(),sb.from('organisations').select('id,name').eq('id',state.member.org_id).maybeSingle(),sb.from('student_preferences').select('qualification,exam_board,tier').eq('student_id',state.user.id).maybeSingle()]);if(p.error||org.error||prof.error)throw(p.error||org.error||prof.error);state.profile=p.data||{display_name:'Student'};state.preference=prof.data||null;$('student-name').value=state.profile.display_name==='Student'?'':(state.profile.display_name||'');text('organisation-label',org.data?.name?.toUpperCase()||'YOUR PROGRAMME');text('sidebar-name',state.profile.display_name||'Student');text('sidebar-role',state.member.member_role.toUpperCase());text('member-initials',initials(state.profile.display_name));text('welcome-text','Welcome'+(state.profile.display_name?' back, '+state.profile.display_name.split(' ')[0]:'')+'.');text('membership-pill',state.member.member_role==='student'?'Student access':'Organisation team');$('pathway-form').hidden=isStaff();$('begin-paper').disabled=isStaff();if(state.preference){$('qualification-select').value=state.preference.qualification||'';$('exam-board').value=state.preference.exam_board||'';$('exam-tier').value=state.preference.tier||''}show('dashboard-view');await refresh();showPanel('overview');await assignedPractice?.refresh();await loadStudentAnalysis()}
 async function refresh(){if(!state.member)return;let query=sb.from('attempts').select('*').eq('org_id',state.member.org_id).order('started_at',{ascending:false}).limit(80);if(!isStaff())query=query.eq('student_id',state.user.id);let {data,error}=await query;if(error)throw error;state.attempts=data||[];text('metric-progress',state.attempts.filter(a=>a.status==='draft').length);text('metric-submitted',state.attempts.filter(a=>a.status==='submitted').length);text('metric-marked',state.attempts.filter(a=>a.status==='marked').length);const q=state.preference?.qualification;text('paper-availability',q?('Your selected pathway: '+quals[q]+'. Only original pilot questions are currently available; board-specific past papers are not yet provided.'): 'Ask your administrator to assign an exam pathway before building a paper.');if(q)await loadTopicOptions(q);await loadProgrammeAndEvidence()}
 
 const programmeNames={weekly:'Grove Weekly',daily:'Grove Daily',exam:'Grove Exam'};
