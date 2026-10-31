@@ -67,9 +67,18 @@ export function initStudentOffboarding(db,state,{onRemoved=async()=>{}}={}){
    }});
    if(error||!data?.ok)throw Error(data?.error||error?.message||'Deletion did not finish. Do not repeat until a recovery check is completed.');
    readyForConfirmation.delete(student.student_id);
-   await onRemoved();
-   status('Student permanently removed and all MathsGrove Studio panels updated. Your downloaded PDF ZIP is preserved on your computer.');
-  }catch(e){status('Removal stopped: '+e.message+'. Check the job before attempting a retry.')}
+   try{
+    await onRemoved(student.student_id);
+    status('Student permanently removed. All MathsGrove Studio panels were refreshed and checked. Your downloaded PDF ZIP stays on your computer.');
+   }catch(refreshError){
+    // Server deletion has already succeeded. Do not encourage another erase request.
+    status('Student permanently removed. Some dashboard panels could not refresh: '+refreshError.message+'. Reload the Studio page to see the latest totals.');
+   }
+  }catch(e){
+   if(/changed after|fresh ZIP|ARCHIVE_STALE/i.test(e.message))readyForConfirmation.delete(student.student_id);
+   status('No permanent deletion was confirmed: '+e.message+'. Refresh the student register to check the archive status before retrying.');
+   await refresh(false).catch(()=>{});
+  }
   finally{busy=false;btn.disabled=false}
  }
  function makeButton(label,action,disabled=false,cls=''){
