@@ -33,7 +33,7 @@ export function initBaselineAdmin(db,state){
   if(!['admin','partner'].includes(state.membership?.member_role))$('mg-bl-time-form').querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
   if(!db||!state.membership||!['admin','partner','examiner'].includes(state.membership.member_role))return;
   const {data,error}=await db.rpc('baseline_admin_overview',{p_org:state.membership.org_id});
-  if(error){root.replaceChildren(create('p','muted','The baseline register is not yet active. Apply the MathsGrove baseline database upgrade. '+error.message));return}
+  if(error){results=[];root.replaceChildren(create('p','muted','The baseline register could not reload: '+error.message));throw Error(error.message)}
   results=Array.isArray(data?.sessions)?data.sessions:[];
   render()
  }
