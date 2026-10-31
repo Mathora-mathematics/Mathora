@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./portal.css">
 <link rel="stylesheet" href="./private-refresh.css">
-<link rel="stylesheet" href="./evidence-workspace.css"><link rel="stylesheet" href="./student-features.css"><link rel="stylesheet" href="./timed-mock.css"><link rel="stylesheet" href="./evidence-theme.css">
+<link rel="stylesheet" href="./evidence-workspace.css"><link rel="stylesheet" href="./student-analysis.css"><link rel="stylesheet" href="./student-features.css"><link rel="stylesheet" href="./timed-mock.css"><link rel="stylesheet" href="./evidence-theme.css">
 <script defer src="./mathsgrove-config.js"></script>
 <script defer src="./whiteboard.js"></script><script defer src="./maths-render.js"></script>
 <script type="module" src="./portal.js"></script>
@@ -77,6 +77,20 @@
 <div class="card pathway-card"><div><p class="card-kicker">YOUR EXAM INFORMATION</p><h2>Your exam &amp; programme</h2><p>Everything you need to know about your mathematics route, exam board and level, all in one place.</p></div><form id="pathway-form" class="pathway-form"><label>Your display name<input id="student-name" type="text" maxlength="100" placeholder="The name your tutor knows you by" required></label><label>Qualification<select id="qualification-select" required disabled><option value="">Choose your qualification</option><option value="IGCSE">IGCSE Mathematics</option><option value="GCSE">GCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics: Analysis &amp; Approaches</option><option value="IB_AI">IB Mathematics: Applications &amp; Interpretation</option><option value="TMUA">TMUA</option></select></label><label>Exam board / route<input id="exam-board" type="text" disabled maxlength="80" placeholder="e.g. Cambridge, Edexcel, AQA"></label><label>Level or tier<input id="exam-tier" type="text" disabled maxlength="60" placeholder="e.g. Extended, Higher, HL"></label><button class="button button-primary" type="submit">Save my display name →</button></form></div>
 <section class="card student-programme" aria-label="Your assigned programme"><div><p class="card-kicker">YOUR PRIVATE PROGRAMME</p><h2 id="student-programme-title">Programme awaiting activation</h2><p id="student-programme-description">Your administrator sets your academic route, service programme and separate assessment arrangements.</p></div><div class="programme-facts"><span id="student-programme-expiry">Access dates will appear here</span><span id="student-signature-credits">Signature Reviews: —</span></div></section>
 <div class="overview-metrics"><div class="metric"><span>PAPERS IN PROGRESS</span><strong id="metric-progress">0</strong></div><div class="metric"><span>SUBMITTED FOR REVIEW</span><strong id="metric-submitted">0</strong></div><div class="metric"><span>MARKED PAPERS</span><strong id="metric-marked">0</strong></div></div>
+<section id="mg-student-analysis" class="mg-student-analysis" aria-labelledby="mg-analysis-heading">
+ <div class="mg-analysis-heading"><div><p class="card-kicker">THE BIGGER PICTURE</p><h2 id="mg-analysis-heading">Your progress atlas.</h2><p>One starting point, then a stronger picture as your examiner reviews your working.</p></div><span class="mg-analysis-mark">MEANINGFUL EVIDENCE</span></div>
+ <div class="mg-analysis-metrics">
+  <div><span>YOUR TARGET GRADE</span><strong id="mg-insight-target">—</strong><small>Set with your tutor</small></div>
+  <div><span>BASELINE STARTING POINT</span><strong id="mg-insight-baseline">—</strong><small>Automatically scored / 20</small></div>
+  <div><span>EXAMINER REVIEWED</span><strong id="mg-insight-reviewed">—</strong><small>Completed practice sessions</small></div>
+  <div><span>REVIEWED ACCURACY</span><strong id="mg-insight-accuracy">—</strong><small>Only examiner-awarded marks</small></div>
+ </div>
+ <div class="mg-analysis-detail">
+  <div><h3>Topics to strengthen</h3><div id="mg-insight-topics" class="mg-insight-topics"><p>Complete your baseline to see your topic priorities.</p></div></div>
+  <div><h3>Your reviewed practice trend</h3><div id="mg-insight-trend" class="mg-insight-trend"><p>Reviewed assignments will build your progress chart.</p></div><p id="mg-insight-time" class="mg-insight-foot"></p></div>
+ </div>
+ <p class="mg-analysis-disclaimer">Your target is chosen by your tutor. Baseline scores and reviewed practice marks are not official predicted grades or exam-board grade boundaries.</p>
+</section>
 <div class="student-insight-grid">
 <div class="card"><p class="card-kicker">YOUR LEARNING CALENDAR</p><h2>Coming up next.</h2><div id="student-calendar" class="mini-calendar"></div><p class="insight-disclaimer">These are actual assigned sessions, automatically prepared from your Grove tier and academic route.</p></div>
 <div class="card"><p class="card-kicker">YOUR LEARNING ANALYSIS</p><h2>Progress, with purpose.</h2><div id="student-evidence" class="student-evidence"><p>Complete reviewed papers to see your evidence trend.</p></div><p class="insight-disclaimer">Raw percentages are not official grade boundaries or grade forecasts.</p></div>
