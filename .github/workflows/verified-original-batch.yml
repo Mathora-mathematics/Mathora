@@ -1,0 +1,32 @@
+name: Verify original maths batch 2026-11-01
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261101.json'
+      - 'scripts/check-verified-batch-20261101.mjs'
+      - 'content/research/**'
+      - 'supabase/migrations/**'
+      - '.github/workflows/verified-original-batch.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261101.json'
+      - 'scripts/check-verified-batch-20261101.mjs'
+      - 'content/research/**'
+      - 'supabase/migrations/**'
+      - '.github/workflows/verified-original-batch.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate batch arithmetic, privacy and programme coverage
+        run: node scripts/check-verified-batch-20261101.mjs
+      - name: Regression check existing published originals and anti-repetition rules
+        run: node scripts/check-published-originals.mjs
