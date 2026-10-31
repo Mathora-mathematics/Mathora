@@ -1,56 +1,120 @@
+/* MathsGrove examiner review — question-level marks, timings and original evidence. */
 export function initAssignedAdmin(db,state){
  const $=id=>document.getElementById(id),list=$('mg-assigned-admin-rows'),summary=$('mg-assigned-admin-summary');
- const el=(tag,t,cls)=>{const x=document.createElement(tag);if(t!==undefined)x.textContent=t;if(cls)x.className=cls;return x};
- const modes={daily:'Daily',weekly:'Weekly',exam_daily:'Exam Daily',mock_pending:'Mock awaiting approval'};
+ const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n};
+ const modes={daily:'Daily practice',weekly:'Weekly paper',exam_daily:'Exam Daily',mock_pending:'Moderated mock placeholder'};
+ const info=(parent,message)=>{const node=el('p',message,'mg-review-status');parent.append(node);return node};
+ async function displayEvidence(root,items){
+  for(const f of items||[]){
+   const cell=el('div',undefined,'mg-evidence-preview');
+   const link=el('a',(f.kind==='whiteboard'?'Whiteboard':'Student photo')+' · '+(f.name||'Working'));
+   link.target='_blank';link.rel='noopener noreferrer';
+   const {data,error}=await db.storage.from('student-work').createSignedUrl(f.path,900);
+   if(error||!data?.signedUrl){cell.append(el('span','File unavailable — check secure storage.'));root.append(cell);continue}
+   link.href=data.signedUrl;
+   const img=document.createElement('img');img.src=data.signedUrl;img.loading='lazy';img.alt='Submitted student '+f.kind+' working';img.referrerPolicy='no-referrer';
+   cell.append(link,img);root.append(cell);
+  }
+ }
+ async function showReview(task,root){
+  const container=el('div',undefined,'mg-manual-review');
+  container.append(info(container,'Loading examiner-only question records…'));
+  root.append(container);
+  try{
+   const {data,error}=await db.rpc('grove_staff_review_task',{p_task:task.task_id});
+   if(error||!Array.isArray(data?.items))throw Error(error?.message||'The private question record is unavailable.');
+   container.replaceChildren();
+   const intro=el('p','Give a mark out of 1 for each question and explain the student’s method. The answer choice is a guide; the examiner makes the final judgement.','mg-review-guidance');
+   container.append(intro);
+   const rows=[];
+   for(const q of data.items){
+    const panel=el('article',undefined,'mg-mark-item');
+    const top=el('div',undefined,'mg-mark-header');
+    top.append(el('strong','Question '+q.position+' · '+q.topic),el('span',q.seconds_visible+' sec visible'));
+    panel.append(top);
+    const question=el('div',undefined,'mg-mark-prompt');
+    if(window.MathsGroveMath?.write)window.MathsGroveMath.write(question,q.prompt);else question.textContent=q.prompt;
+    panel.append(question);
+    const choices=el('div',undefined,'mg-mark-choices');
+    for(const c of q.choices||[]){
+     const answer=el('div',undefined,'mg-mark-choice'+(q.selected===c.id?' chosen':''));
+     const title=el('strong',c.id+' · ');
+     const value=el('span');if(window.MathsGroveMath?.write)window.MathsGroveMath.write(value,c.text);else value.textContent=c.text;
+     answer.append(title,value);
+     if(q.selected===c.id)answer.append(el('small',' · Student selected'));
+     if(q.correct_option===c.id)answer.append(el('small',' · Answer key'));
+     choices.append(answer);
+    }
+    panel.append(choices);
+    const gallery=el('div',undefined,'mg-evidence-gallery');panel.append(gallery);
+    if(q.evidence?.length)await displayEvidence(gallery,q.evidence);
+    else gallery.append(el('p','No drawing or photograph was submitted for this question.','mg-review-hint'));
+    const markLabel=el('label','Examiner mark / 1');const mark=el('select');
+    mark.append(new Option('Not yet marked',''),new Option('0 — No credit','0'),new Option('1 — Award mark','1'));
+    mark.value=q.mark===null||q.mark===undefined?'':String(q.mark);markLabel.append(mark);
+    const commentLabel=el('label','Question feedback');const comment=el('textarea');
+    comment.rows=2;comment.maxLength=1000;comment.placeholder='Mention the method, any misconception and what to improve.';
+    comment.value=q.comment||'';commentLabel.append(comment);panel.append(markLabel,commentLabel);
+    container.append(panel);rows.push({position:q.position,mark,comment});
+   }
+   const overall=el('label','Examiner summary and next step');
+   const input=el('textarea');input.rows=4;input.maxLength=2500;
+   input.placeholder='Describe an evidenced strength, a priority, and an actionable next practice step. Minimum 15 characters for release.';
+   input.value=task.teacher_feedback||'';overall.append(input);container.append(overall);
+   const actions=el('div',undefined,'mg-mark-actions');
+   const draft=el('button','Save marks (draft)'),release=el('button','Release examiner report ↗');
+   draft.type=release.type='button';release.className='mg-mark-release';
+   const notice=info(container,'Mark every question before releasing. Drafts remain private.');
+   async function save(releasing){
+    draft.disabled=release.disabled=true;notice.textContent='Saving secure examiner marking…';
+    try{
+     const marks=rows.filter(x=>x.mark.value!=='').map(x=>({position:x.position,mark:Number(x.mark.value),comment:x.comment.value.trim()}));
+     if(releasing&&marks.length!==rows.length)throw Error('Mark every question before releasing this assessment.');
+     const {data:result,error}=await db.rpc('grove_staff_mark_task',{
+      p_task:task.task_id,p_marks:marks,p_feedback:input.value.trim(),p_release:releasing
+     });
+     if(error||!result?.ok)throw Error(error?.message||'Marking could not be saved.');
+     notice.textContent=releasing?'Examiner report released. Student dashboard and analytics will show the reviewed marks.':'Draft marks securely saved. The student cannot see them yet.';
+     if(releasing)await refresh();
+    }catch(e){notice.textContent=e.message||'Could not save marking.'}
+    finally{draft.disabled=release.disabled=false}
+   }
+   draft.addEventListener('click',()=>void save(false));release.addEventListener('click',()=>void save(true));
+   actions.append(draft,release);container.append(actions);
+  }catch(error){container.replaceChildren(el('p','Unable to open examiner review: '+error.message,'mg-review-status'))}
+ }
  async function refresh(){
   if(!state.membership?.org_id)return;
   const {data,error}=await db.rpc('grove_admin_schedule',{p_org:state.membership.org_id});
-  if(error){summary.textContent='Cannot fetch the assigned practice register: '+error.message;list.replaceChildren();throw Error(error.message)}
-  const rows=data?.assignments||[];
-  const completed=rows.filter(x=>['completed','expired'].includes(x.status)),active=rows.filter(x=>x.status==='active');
-  const upcoming=rows.filter(x=>x.status==='scheduled');
+  if(error){summary.textContent='Cannot fetch assignments: '+error.message;list.replaceChildren();throw Error(error.message)}
+  const rows=Array.isArray(data?.assignments)?data.assignments:[];
+  const awaiting=rows.filter(x=>['completed','expired'].includes(x.status)&&x.review_status!=='released');
+  const released=rows.filter(x=>x.review_status==='released'),active=rows.filter(x=>x.status==='active');
   summary.replaceChildren();
-  for(const [n,label] of [[completed.length,'COMPLETED'],[active.length,'IN PROGRESS'],[upcoming.length,'SCHEDULED']]){
-   let b=el('div'),strong=el('strong',String(n)),span=el('span',label);b.append(strong,span);summary.append(b)
+  for(const [num,label] of [[awaiting.length,'AWAITING EXAMINER'],[released.length,'REPORTS RELEASED'],[active.length,'IN PROGRESS']]){
+   const cell=el('div');cell.append(el('strong',num),el('span',label));summary.append(cell);
   }
   list.replaceChildren();
-  if(!rows.length){list.append(el('p','When enrolled students sign in, their tier-specific calendar will be prepared automatically. No manually created paper is required.'));return}
-  for(const r of rows.slice(0,45)){
-   const wrap=el('div',undefined,'mg-assigned-row'),name=el('div');
-   name.append(el('strong',r.student_name||'Student'),
-    el('small',(modes[r.mode]||r.mode)+' · '+r.qualification+' '+r.level+' · '+r.due_date+' · '+r.status));
-   if(['completed','expired'].includes(r.status)&&r.question_insights?.length){
-    const detail=el('details',undefined,'mg-assigned-detail');
-    detail.append(el('summary',(r.score||0)+'/'+r.question_count+' correct · '+(r.minutes_visible||0)+' minutes visible · View question insights'));
-    const arr=r.question_insights.slice().sort((a,b)=>(a.correct===b.correct?b.seconds_visible-a.seconds_visible:a.correct?1:-1));
-    for(const q of arr){
-     const line=el('div',undefined,'mg-assigned-skill');
-     const signal=!q.correct&&q.seconds_visible>=180?'Long attempt · review method':!q.correct&&q.seconds_visible<=45?'Quick incorrect · test misconception':q.correct&&q.seconds_visible>=180?'Correct, with sustained working':q.correct?'Correct':'Incorrect';
-     line.append(el('strong','Q'+q.position+' · '+q.topic+' · '+q.skill),el('span',signal+' · '+q.seconds_visible+'s visible'));
-     detail.append(line);
-    }
-    const gaps=arr.filter(q=>!q.correct).slice(0,3);
-    if(gaps.length)detail.append(el('p','Suggested teaching rechecks: '+gaps.map(q=>q.skill).join('; ')+'. Ask for full written working on a fresh question.'));
-    detail.append(el('p','Time signals are indicative only; idle time, assistive tools and connectivity may distort them.'));
-    const label=el('label','Your examiner feedback · released to the learner');
-    const input=el('textarea');input.value=r.teacher_feedback||'';
-    input.maxLength=2500;input.rows=3;input.placeholder='A strength, one or two specific priorities, and the next independent practice step…';
-    input.setAttribute('aria-label','Released examiner feedback for '+(r.student_name||'learner'));
-    const save=el('button','Save and release feedback ↗');save.type='button';
-    const feedbackStatus=el('p',r.teacher_feedback?'Previously released feedback is loaded.':'Feedback has not yet been released.');
-    save.addEventListener('click',async()=>{
-     save.disabled=true;feedbackStatus.textContent='Saving feedback…';
-     try{
-      const {data,error}=await db.rpc('grove_staff_save_feedback',{p_task:r.task_id,p_feedback:input.value.trim()});
-      if(error||!data?.ok)throw Error(error?.message||'Feedback could not be saved.');
-      feedbackStatus.textContent='Feedback saved and released. The learner will see it in their session report.';
-     }catch(error){feedbackStatus.textContent=error.message||'Please try again.'}
-     finally{save.disabled=false}
-    });
-    detail.append(label,input,save,feedbackStatus);
-    wrap.append(name,detail)
-   }else{wrap.append(name,el('small',r.status==='scheduled'?'Will open automatically on its date.':(r.status==='active'?'Timed and saved in progress.':'Requires an approved mock.')))}
-   list.append(wrap);
+  if(!rows.length){list.append(el('p','New daily and weekly assignments appear here as students begin their programme.'));return}
+  const ordered=[...rows].sort((a,b)=>{
+   const rank=r=>r.status==='completed'||r.status==='expired'?(r.review_status==='released'?1:0):2;
+   return rank(a)-rank(b)||String(b.due_date).localeCompare(String(a.due_date));
+  });
+  for(const r of ordered.slice(0,75)){
+   const card=el('div',undefined,'mg-assigned-row'),meta=el('div',undefined,'mg-task-meta');
+   const stage=r.review_status==='released'?'Released · '+r.score+'/'+r.question_count:
+    r.status==='completed'||r.status==='expired'?'Ready to mark':
+    r.status==='active'?'In progress':r.mode==='mock_pending'?'Awaiting a moderated mock':'Upcoming';
+   meta.append(el('strong',r.student_name||'Student'),
+    el('small',[modes[r.mode]||r.mode,r.qualification,r.level,r.due_date].join(' · ')),
+    el('span',stage+' · '+(r.minutes_visible||0)+' min of recorded question visibility','mg-task-status'));
+   card.append(meta);
+   if(['completed','expired'].includes(r.status)&&r.mode!=='mock_pending'){
+    const detail=el('details',undefined,'mg-assigned-detail');detail.append(el('summary','Open examiner review · '+r.question_count+' questions, timings & submitted working'));
+    detail.addEventListener('toggle',()=>{if(detail.open&&!detail.dataset.loaded){detail.dataset.loaded='yes';void showReview(r,detail)}});
+    card.append(detail);
+   }else card.append(el('p',r.status==='scheduled'?'Opens on the scheduled date.':'The learner is still working or this mock requires publication.','mg-review-hint'));
+   list.append(card);
   }
  }
  $('mg-assigned-admin-refresh').addEventListener('click',()=>void refresh());
