@@ -14,7 +14,7 @@ const publishKey=Deno.env.get('SUPABASE_ANON_KEY')||defaultKey('SUPABASE_PUBLISH
 function client(key:string){return createClient(uri,key,{auth:{persistSession:false,autoRefreshToken:false}})}
 const hex=(bytes:Uint8Array)=>Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
 const hash=async(s:string)=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s))));
-const hashFile=async(bytes:Uint8Array)=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)));
+const hashFile=async(bytes:Uint8Array)=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',new Uint8Array(bytes).buffer as ArrayBuffer)));
 // JSONB object and row-array ordering can change without changing academic records.
 function canonical(value:unknown):string{
  if(Array.isArray(value))return '['+value.map(canonical).sort().join(',')+']';
@@ -144,7 +144,7 @@ async function handle(req:Request):Promise<Response>{
    'MathsGrove Complete Student Archive\n\nPDF_Reports contains printable PDF reports of programme, baseline, practice, papers and examiner feedback.\nOriginal_Submissions contains unchanged original student evidence. Supported JPEG and PNG images are also reproduced in the work overview PDF.\nComplete_Data.json contains all portable student-facing academic records. Passwords, unpublished bank keys and confidential staff-only notes are excluded.\n\nPlease confirm this ZIP opens and all expected work is present BEFORE using the permanent deletion option. The administrator is responsible for securely emailing the archive to the student if desired.\n');
   const zipped=zipSync(zip,{level:4});
   if(zipped.byteLength>maxArchiveBytes)return await fail('Complete ZIP exceeds the safe export size limit',413);
-  const digest=hex(new Uint8Array(await crypto.subtle.digest('SHA-256',zipped)));
+  const digest=await hashFile(zipped);
   const archivePath=org+'/'+student+'/'+jobId+'-manual.zip';
   const {error:uploadError}=await admin.storage.from('grove-student-exports')
    .upload(archivePath,zipped,{contentType:'application/zip',upsert:true});
