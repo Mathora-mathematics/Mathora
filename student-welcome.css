@@ -1,0 +1,54 @@
+/* MathsGrove first-login experience — premium navy and champagne, no gold. */
+.mg-welcome-shell{min-height:calc(100svh - 152px);display:grid;grid-template-columns:minmax(0,1fr) minmax(350px,.92fr);background:#f8f6f1;color:#17283e}
+.mg-welcome-brand{position:relative;overflow:hidden;isolation:isolate;background:#101e33;color:#fff;padding:clamp(40px,6vw,92px);display:flex;flex-direction:column;justify-content:space-between;gap:80px;min-height:590px}
+.mg-welcome-brand:before{content:"";position:absolute;inset:0;z-index:-2;opacity:.28;background-image:linear-gradient(#9cacbf21 1px,transparent 1px),linear-gradient(90deg,#9cacbf21 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(110deg,transparent 8%,black 100%)}
+.mg-welcome-brand:after{content:"";position:absolute;width:min(55vw,520px);height:min(55vw,520px);border:1px solid #e3d4bc36;border-radius:50%;right:-180px;bottom:-200px;box-shadow:0 0 0 66px #e3d4bc0d,0 0 0 132px #e3d4bc08;z-index:-1}
+.mg-welcome-brandmark{display:flex;align-items:center;gap:14px;font:400 30px/1 "Instrument Serif",Georgia,serif;letter-spacing:-.02em}
+.mg-welcome-brandmark img{width:56px;height:56px;filter:drop-shadow(0 6px 25px #0004)}
+.mg-welcome-brandmark b{color:#d2c2a8;font-weight:400}
+.mg-welcome-kicker{color:#d9c5a7;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+.mg-welcome-brand h1{font:400 clamp(54px,6.1vw,91px)/1 "Instrument Serif",Georgia,serif;letter-spacing:-.045em;margin:20px 0}
+.mg-welcome-brand h1 em{color:#d7c5a9;font-style:italic}
+.mg-welcome-brand-copy{font-size:14px;line-height:1.9;color:#b6c5d6;max-width:490px;margin:0}
+.mg-welcome-footer{font-size:10px;letter-spacing:.12em;color:#acb9ca;display:flex;align-items:center;gap:12px}
+.mg-welcome-footer:before{content:"";width:37px;height:1px;background:#cbb99d}
+.mg-welcome-main{display:flex;align-items:center;justify-content:center;padding:clamp(30px,5vw,88px)}
+.mg-welcome-card{width:min(100%,520px);margin:auto}
+.mg-welcome-progress{display:flex;align-items:center;gap:12px;margin-bottom:46px}
+.mg-welcome-progress .mg-step{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:.07em;color:#87929e}
+.mg-welcome-progress .mg-step span{width:26px;height:26px;border:1px solid #ddd6ca;border-radius:50%;display:grid;place-items:center;font-size:10px}
+.mg-welcome-progress .mg-step.is-active{color:#182940}.mg-welcome-progress .mg-step.is-active span{background:#182940;border-color:#182940;color:#fff}
+.mg-welcome-progress .mg-step.is-done span{background:#e5e9e2;border-color:#d2dfd0;color:#3a6953}
+.mg-welcome-progress .mg-divider{width:24px;height:1px;background:#ded9d0}
+.mg-welcome-pane{animation:mg-welcome-rise .48s cubic-bezier(.2,.65,.24,1) both}
+.mg-welcome-pane[hidden]{display:none!important}
+.mg-welcome-kicker-dark{font-size:10px;font-weight:800;letter-spacing:.16em;color:#987f61;text-transform:uppercase;margin:0 0 16px}
+.mg-welcome-pane h2{font:400 clamp(42px,4.4vw,64px)/1.1 "Instrument Serif",Georgia,serif;letter-spacing:-.025em;color:#10213a;margin:0 0 18px}
+.mg-welcome-pane .mg-lead{font-size:14px;line-height:1.85;color:#677689;margin:0 0 24px}
+.mg-welcome-account{display:flex;align-items:center;gap:11px;padding:12px 15px;border:1px solid #e7e2d8;border-radius:11px;background:#fff;font-size:12px;color:#4e5c6b;margin:25px 0}
+.mg-welcome-account:before{content:"✓";background:#eef2ee;color:#43654c;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;font-weight:800}
+.mg-welcome-form label{display:block;font-size:12px;font-weight:700;color:#2a3c52;margin:16px 0 7px}
+.mg-welcome-form input{width:100%;min-height:52px;border:1px solid #dcd9d3;border-radius:9px;background:#fff;padding:12px 15px;font-size:14px;color:#1a2b42}
+.mg-welcome-form input:focus-visible{outline:2px solid #547eaf;outline-offset:2px}
+.mg-welcome-hint{color:#728092;font-size:11px;line-height:1.65;margin:13px 0 22px}
+.mg-welcome-primary,.mg-welcome-secondary{display:flex;width:100%;align-items:center;justify-content:center;gap:10px;border-radius:8px;font-size:12px;font-weight:800;min-height:51px;padding:12px 18px;cursor:pointer;transition:transform .22s,background .22s}
+.mg-welcome-primary{border:1px solid #11243d;background:#11243d;color:#fff;box-shadow:0 9px 18px #0d1b3218}
+.mg-welcome-primary:hover{background:#223a59;transform:translateY(-1px)}
+.mg-welcome-primary:disabled{opacity:.62;cursor:wait;transform:none}
+.mg-welcome-secondary{border:1px solid transparent;background:transparent;color:#53667e;margin-top:6px}
+.mg-welcome-secondary:hover{background:#ede9e1}
+.mg-welcome-message{min-height:18px;font-size:12px;color:#42684f;line-height:1.6;margin:12px 0 0}
+.mg-welcome-message.is-error{color:#a33f3b}
+.mg-welcome-seal{width:87px;height:87px;display:grid;place-items:center;background:#15253d;border-radius:22px;box-shadow:0 18px 34px #0d1b3224;margin-bottom:28px;animation:mg-seal .85s cubic-bezier(.19,.8,.2,1) both}
+.mg-welcome-seal img{width:60px;height:60px}
+.mg-welcome-summary{background:#fff;border:1px solid #e6dfd3;border-radius:13px;padding:22px;margin:28px 0}
+.mg-welcome-summary-title{font-size:10px;font-weight:800;letter-spacing:.13em;color:#987e5a;margin-bottom:9px}
+.mg-welcome-summary h3{font:400 27px "Instrument Serif",Georgia,serif;color:#1a2c46;margin:0 0 7px}
+.mg-welcome-summary p{font-size:12px;color:#687a8a;line-height:1.75;margin:0}
+.mg-welcome-card .mg-welcome-count{display:flex;gap:12px;margin:15px 0 0;font-size:11px;color:#687b8e}
+.mg-welcome-count strong{font-size:16px;color:#10213a}
+@keyframes mg-welcome-rise{from{opacity:0;transform:translateY(19px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mg-seal{from{opacity:0;transform:scale(.84) rotate(-8deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@media(max-width:850px){.mg-welcome-shell{grid-template-columns:1fr}.mg-welcome-brand{min-height:280px;padding:36px 26px;gap:45px}.mg-welcome-brand h1{font-size:50px;max-width:500px}.mg-welcome-main{padding:42px 23px 62px}.mg-welcome-progress{margin-bottom:29px}}
+@media(max-width:420px){.mg-welcome-brand h1{font-size:44px}.mg-welcome-progress{gap:5px}.mg-welcome-progress .mg-divider{width:12px}.mg-welcome-progress .mg-step{font-size:9px}.mg-welcome-card{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.mg-welcome-pane,.mg-welcome-seal{animation:none}.mg-welcome-primary,.mg-welcome-secondary{transition:none}}
