@@ -202,6 +202,9 @@ async function handle(req:Request):Promise<Response>{
    const {error:zipError}=await admin.storage.from('grove-student-exports').remove(archivePaths.slice(i,i+100));
    if(zipError)return send({error:'Student account removed; temporary archive cleanup needs administrator attention.'},503);
   }
+  const {data:verifiedCleanup,error:verifyError}=await admin.rpc('grove_offboarding_verify_cleanup',{p_job:entry.job_id});
+  if(verifyError||verifiedCleanup!==true)
+   return send({error:'Student account cleanup is incomplete. The administrator must investigate before this removal can be marked complete.'},503);
   const {error:finishError}=await admin.rpc('grove_offboarding_record_completion',{p_job:entry.job_id});
   if(finishError)return send({error:'Student account removed; final audit update requires review.'},503);
   return send({ok:true,status:'purged'});
