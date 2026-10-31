@@ -97,7 +97,7 @@ export function initStudentOffboarding(db,state,{onRemoved=async()=>{}}={}){
    :'The new PDF ZIP export service is awaiting server deployment. Student deletion is disabled; all data remains unchanged.');
   const {data,error}=await db.rpc('grove_offboarding_list',{p_org:state.membership.org_id});
   root.replaceChildren();
-  if(error){status('Cannot display the private student register: '+error.message);return}
+  if(error){status('Cannot display the private student register: '+error.message);throw Error(error.message)}
   const students=data?.students||[];
   if(resetStatus&&manualServiceReady)status(students.length+' student account(s) · generate a PDF ZIP, verify it, then choose whether to remove the student.');
   if(!students.length){root.append(el('p','No students enrolled. The next trial will start with a new account.','subtext'));return}
