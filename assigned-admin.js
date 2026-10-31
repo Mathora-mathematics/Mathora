@@ -5,7 +5,7 @@ export function initAssignedAdmin(db,state){
  async function refresh(){
   if(!state.membership?.org_id)return;
   const {data,error}=await db.rpc('grove_admin_schedule',{p_org:state.membership.org_id});
-  if(error){summary.textContent='Cannot fetch the assigned practice register: '+error.message;return}
+  if(error){summary.textContent='Cannot fetch the assigned practice register: '+error.message;list.replaceChildren();throw Error(error.message)}
   const rows=data?.assignments||[];
   const completed=rows.filter(x=>['completed','expired'].includes(x.status)),active=rows.filter(x=>x.status==='active');
   const upcoming=rows.filter(x=>x.status==='scheduled');
