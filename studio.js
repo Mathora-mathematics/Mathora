@@ -261,6 +261,15 @@ function renderOverview(){
  $('s-invites').textContent=state.invites.filter(x=>inviteStatus(x)==='Awaiting claim').length;
  $('s-awaiting').textContent=attempts.filter(x=>x.status==='submitted').length;
  $('s-marked').textContent=attempts.filter(x=>x.status==='marked').length;
+ const hour=new Date().getHours(),greeting=hour<12?'Good morning.':hour<17?'Good afternoon.':'Good evening.';
+ $('mg-admin-greeting').textContent=greeting;
+ const pending=state.invites.filter(x=>inviteStatus(x)==='Awaiting claim').length;
+ const awaiting=attempts.filter(x=>x.status==='submitted').length;
+ $('mg-admin-priority').textContent=awaiting
+  ?awaiting+' submitted paper'+(awaiting===1?' is':'s are')+' ready for your review. Open the marking board to continue.'
+  :pending?'You have '+pending+' invitation'+(pending===1?'':'s')+' awaiting activation. Your student register is ready when they sign in.'
+  :students.length?'Everything is up to date. '+students.length+' enrolled learner'+(students.length===1?'':'s')+' in your workspace.'
+  :'Your workspace is ready. Enrol your first learner to begin the welcome and baseline journey.';
  const root=$('recent-attempts');clear(root);
  const queue=attempts.filter(x=>x.status==='submitted').slice(0,5);
  if(!queue.length){root.append(make('p','empty','No papers waiting for a review.'));return}
