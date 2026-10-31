@@ -2,6 +2,7 @@ import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
 import {getAccessChoices,preferredSingleChoice} from './access-router.js';
 import {initAssignedPractice} from './assigned-practice.js';
 import {initPasswordAccess} from './auth-password.js';
+import {initStudentWelcome} from './student-welcome.js';
 const $=id=>document.getElementById(id);
 const config=window.MATHSGROVE_CONFIG||{};
 const configured=Boolean(config.url&&config.publishableKey&&/^https:\/\//.test(config.url)&&!config.url.includes('YOUR_PROJECT'));
@@ -9,8 +10,9 @@ const sb=configured?createClient(config.url,config.publishableKey,{auth:{autoRef
 const state={entitlement:null,user:null,member:null,members:[],profile:null,preference:null,attempts:[],questions:[],attempt:null,question:0,answer:null,autosave:null,photos:[],pen:false,eraser:false,drawingChanged:false,mouseDown:false,mockClock:null,mockSeconds:0,mockAnchor:0,mockFinalizing:false,mockQuestionTimes:{},questionTimer:null,questionActiveId:null,questionEntered:0,questionElapsed:{}};
 const assignedPractice=sb?initAssignedPractice(sb):null;
 const passwordAccess=initPasswordAccess(sb,{show,boot});
+const studentWelcome=initStudentWelcome(sb,{show,continueToDashboard:dashboard});
 const quals={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics: Analysis & Approaches',IB_AI:'IB Mathematics: Applications & Interpretation',TMUA:'TMUA'};
-function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view','security-view'].forEach(x=>$(x).hidden=x!==id)}
+function show(id){['configure-view','login-view','claim-view','role-view','dashboard-view','security-view','student-onboarding-view'].forEach(x=>$(x).hidden=x!==id)}
 function text(id,value){$(id).textContent=String(value??'')}
 function message(id,s,error=false){let e=$(id);e.textContent=s;e.classList.toggle('is-error',error)}
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -69,6 +71,7 @@ async function enterAuthorisedSpace(choice){
  if(choice.kind==='family'){location.replace('./family.html');return}
  if(choice.kind==='student'){
   state.member=choice.member;
+  if(await studentWelcome.maybeShow(state.user))return;
   await dashboard();
   return;
  }
