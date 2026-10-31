@@ -88,7 +88,7 @@
 <option value="">Select qualification</option><option value="GCSE">GCSE Mathematics</option><option value="IGCSE">IGCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics AA</option><option value="IB_AI">IB Mathematics AI</option><option value="TMUA">TMUA</option>
 </select></label>
 <label>Exam board / route (choose code for mocks)<input id="invite-board" list="mg-exam-board-codes" maxlength="80" placeholder="e.g. Edexcel, Cambridge, AQA"></label>
-<label>Academic tier / level<input id="invite-level" list="mg-academic-levels" maxlength="60" placeholder="e.g. Higher, Extended, HL, SL"></label>
+<label>Academic tier / level<input id="invite-level" list="mg-academic-levels" maxlength="60" required placeholder="Choose the academic level"><small id="mg-invite-level-hint">Choose a level that matches the exam route so the correct 20-question baseline is assigned.</small></label>
 <label>MathsGrove programme<select id="invite-programme" required>
 <option value="weekly">Grove Weekly · 4 weekly sets + monthly report</option><option value="daily">Grove Daily · daily focus + weekly report</option><option value="exam">Grove Exam · Daily + timed mock and exam outlook</option>
 </select></label>
@@ -119,7 +119,7 @@
 <label>Qualification<select id="programme-qualification" required>
 <option value="GCSE">GCSE Mathematics</option><option value="IGCSE">IGCSE Mathematics</option><option value="A_LEVEL">A Level Mathematics</option><option value="FURTHER_MATHS">A Level Further Mathematics</option><option value="IB_AA">IB Mathematics AA</option><option value="IB_AI">IB Mathematics AI</option><option value="TMUA">TMUA</option></select></label>
 <label>Exam board / route<input id="programme-board" list="mg-exam-board-codes" maxlength="80" placeholder="Exam board"></label>
-<label>Academic tier / level<input id="programme-level" list="mg-academic-levels" maxlength="60" placeholder="Higher / Extended / HL / SL"></label>
+<label>Academic tier / level<input id="programme-level" list="mg-academic-levels" maxlength="60" required placeholder="Choose the academic level"></label>
 <label>MathsGrove programme<select id="programme-tier"><option value="weekly">Grove Weekly</option><option value="daily">Grove Daily</option><option value="exam">Grove Exam</option></select></label>
 <label>Access until<input id="programme-until" type="date" required></label>
 <label>Priority topics<input id="programme-focus" maxlength="500" placeholder="Mathematical focus"></label>
