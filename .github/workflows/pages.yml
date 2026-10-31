@@ -34,6 +34,8 @@ jobs:
           node --input-type=module --check < baseline-calc.js
           node --input-type=module --check < baseline-admin.js
           node --input-type=module --check < assigned-practice.js
+          node --input-type=module --check < evidence-workspace.js
+          node scripts/check-evidence-marking.mjs
           node --input-type=module --check < assigned-admin.js
           node --input-type=module --check < editorial-review.js
           node scripts/check-auto-assign.mjs
@@ -72,6 +74,7 @@ jobs:
           cp student-welcome.js student-welcome.css site/
           cp studio-refine.css site/
           cp assigned-practice.js assigned-practice.css site/
+          cp evidence-workspace.js evidence-workspace.css student-analysis.css examiner-evidence.css site/
           cp baseline.html baseline.css baseline.js baseline-calc.js site/
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css access-management.css access-management.js access-router.js baseline-admin.js site/
           cp assigned-admin.js assigned-admin.css site/
