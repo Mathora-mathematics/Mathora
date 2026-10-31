@@ -2,7 +2,7 @@
 export function initStudentWelcome(sb,{show,continueToDashboard}){
  const $=id=>document.getElementById(id);
  let busy=false,learner=null;
- const msg=(text,error=false)=>{const node=$('mg-welcome-message');node.textContent=text||'';node.classList.toggle('is-error',error)};
+ const msg=(text,error=false)=>{for(const id of ['mg-welcome-message','mg-welcome-intro-message']){const node=$(id);node.textContent=text||'';node.classList.toggle('is-error',error)}};
  const formatName=s=>String(s||'').trim().split(/\s+/)[0]||'there';
  const exams={GCSE:'GCSE Mathematics',IGCSE:'IGCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
  const advance=step=>{
