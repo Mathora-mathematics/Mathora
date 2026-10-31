@@ -88,6 +88,8 @@ export function initAssignedAdmin(db,state){
   const {data,error}=await db.rpc('grove_admin_schedule',{p_org:state.membership.org_id});
   if(error){summary.textContent='Cannot fetch assignments: '+error.message;list.replaceChildren();throw Error(error.message)}
   const rows=Array.isArray(data?.assignments)?data.assignments:[];
+  state.assignedReviewRows=rows.filter(x=>['completed','expired'].includes(x.status)&&x.review_status!=='released');
+  state.assignedReleasedCount=rows.filter(x=>x.review_status==='released').length;
   const awaiting=rows.filter(x=>['completed','expired'].includes(x.status)&&x.review_status!=='released');
   const released=rows.filter(x=>x.review_status==='released'),active=rows.filter(x=>x.status==='active');
   summary.replaceChildren();
@@ -116,6 +118,7 @@ export function initAssignedAdmin(db,state){
    }else card.append(el('p',r.status==='scheduled'?'Opens on the scheduled date.':'The learner is still working or this mock requires publication.','mg-review-hint'));
    list.append(card);
   }
+  state.onAssignedRefresh?.();
  }
  $('mg-assigned-admin-refresh').addEventListener('click',()=>void refresh());
  setInterval(()=>{if(!document.hidden&&!$('mg-assigned-admin').closest('[data-panel]')?.hidden&&!list.querySelector('.mg-assigned-detail[open]'))void refresh()},60000);
