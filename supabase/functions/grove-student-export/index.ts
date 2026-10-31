@@ -31,6 +31,14 @@ async function sourceFingerprint(data:Record<string,unknown>,fileDigests:Record<
 const title=(s:string)=>String(s).replace(/[^a-zA-Z0-9._-]/g,'_').slice(0,110);
 const err=(e:unknown)=>e instanceof Error?e.message:String(e);
 const maxArchiveBytes=48*1024*1024;
+async function fullStudentExport(admin:ReturnType<typeof client>,org:string,student:string){
+ const [base,extra]=await Promise.all([
+  admin.rpc('grove_offboarding_export',{p_org:org,p_student:student}),
+  admin.rpc('grove_offboarding_extra',{p_org:org,p_student:student})
+ ]);
+ if(base.error||extra.error||!base.data||!extra.data)throw Error('Student export is incomplete. Nothing has been removed.');
+ return {...base.data,...extra.data} as Record<string,any>;
+}
 
 async function handle(req:Request):Promise<Response>{
  if(req.method==='OPTIONS')return new Response(null,{headers:cors});
@@ -86,8 +94,8 @@ async function handle(req:Request):Promise<Response>{
    await admin.rpc('grove_export_mark_failed',{p_job:jobId,p_message:reason});
    return send({error:reason+' No student records were deleted.'},status);
   };
-  const {data:dataset,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
-  if(exportError||!dataset)return await fail('The student data could not be read completely');
+  let dataset:Record<string,any>;
+  try{dataset=await fullStudentExport(admin,org,student)}catch{return await fail('The complete student records could not be exported')}
   const zip:Record<string,Uint8Array>={};
   const evidence:Evidence[]=[];
   const paths=new Map<string,string>();
@@ -173,8 +181,8 @@ async function handle(req:Request):Promise<Response>{
   const {data:roster,error:rosterError}=await userDb.rpc('grove_offboarding_list',{p_org:org});
   const entry=(roster?.students||[]).find((r:{student_id:string})=>r.student_id===student);
   if(rosterError||!entry||entry.status!=='downloaded'||!entry.job_id)return send({error:'Download the ZIP, verify its contents, and confirm you saved it before deletion'},409);
-  const {data:exportData,error:exportError}=await admin.rpc('grove_offboarding_export',{p_org:org,p_student:student});
-  if(exportError||!exportData)return send({error:'Cannot verify the student archive before removal'},503);
+  let exportData:Record<string,any>;
+  try{exportData=await fullStudentExport(admin,org,student)}catch{return send({error:'Cannot verify complete records before removal'},503)}
   // Collect all attached work, including orphan objects belonging to this specific learner prefix.
   const owned=new Set<string>();
   for(const file of exportData.uploaded_files||[]){
