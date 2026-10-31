@@ -6,6 +6,7 @@ const pdfs=read('supabase/functions/grove-student-export/archive-pdfs.ts');
 const studio=read('studio.html'),ui=read('student-offboarding.js'),js=read('studio.js');
 const sql=read('supabase/MANUAL_STUDENT_PDF_ARCHIVE.sql');
 const guards=read('supabase/STUDENT_REMOVAL_AFTER_ARCHIVE.sql');
+const consistency=read('supabase/migrations/20261031_student_removal_consistency.sql');
 const workflow=read('.github/workflows/pages.yml');
 const cleanup=read('supabase/VERIFY_STUDENT_OFFBOARDING_CLEANUP.sql');
 const linkedCleanup=read('supabase/CLEAR_REMOVED_LEARNER_ALL_LINKED_ACCESS.sql');
@@ -26,6 +27,11 @@ const tests=[
  ['Checksum verified in browser',ui.includes("crypto.subtle.digest('SHA-256'")&&ui.includes('digest.toLowerCase()!==result.sha256.toLowerCase()')],
  ['Explicit saved-archive confirmation',ui.includes('I saved and checked the ZIP')&&sql.includes('grove_offboarding_manual_confirm')],
  ['Permanent removal gated after confirmation',guards.includes("j.status NOT IN('downloaded','purging')")&&service.includes("entry.status!=='downloaded'")],
+ ['Stale student archives block deletion',service.includes("grove_offboarding_verify_source")&&service.indexOf("grove_offboarding_verify_source")<service.indexOf("grove_offboarding_begin_removal")],
+ ['ZIP and individual original uploads fingerprinted',service.includes("sourceFingerprint(dataset,fileDigests)")&&service.includes("currentFileDigests[path]=await hashFile")],
+ ['Snapshot protection is installed',consistency.includes("grove_offboarding_verify_source")&&consistency.includes("source_fingerprint")&&consistency.includes("RETURN false")],
+ ['Related student records and stale cache cleared',consistency.includes("student_id=j.student_id OR attempt_id=ANY(v_attempts)")&&js.includes("refresh({strict:true})")],
+ ['Other Studio tabs receive a removal notice',js.includes("BroadcastChannel('mathsgrove-offboarding')")],
  ['Email typed before deletion',ui.includes("typed.trim().toLowerCase()")&&service.includes("confirmEmail.trim().toLowerCase()")],
  ['No deletion on export',!service.slice(service.indexOf("if(action==='prepare_manual'"),service.indexOf("if(action==='erase')")).includes('deleteUser(')],
  ['Disabled until service deploy',ui.includes("health.data?.method==='manual_zip_pdf'")&&ui.includes('deletion.disabled=!manualServiceReady')],
