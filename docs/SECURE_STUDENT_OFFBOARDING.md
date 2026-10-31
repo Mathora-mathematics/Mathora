@@ -52,3 +52,15 @@ If an archive is too large (default 48 MB), a file is missing or cannot be read,
 `supabase/functions/grove-student-export/archive-pdfs.ts`,
 `student-offboarding.js`, `student-offboarding.css`, `studio.html`,
 `scripts/check-student-export.mjs`, `scripts/check-site.mjs`.
+
+## Complete cleanup and live dashboard synchronisation (31 October 2026)
+
+Upon **successful** permanent removal, the service checks that no records remain for the deleted learner in Auth, profiles/memberships, enrolment and invitations, linked family/tutor permissions (including any viewer role), subscription and academic settings, paper responses, baseline sittings, scheduled practice, original uploads, and the private ZIP bucket. If any live record remains, the server refuses to report the deletion as complete and leaves the job for administrator investigation.
+
+The Studio immediately discards its student roster and all derived figures and reloads overview totals, marking queue, reports, baseline diagnostics, assigned practice, invitations and linked access. It also refreshes when an existing Studio tab becomes visible. The student portal and family/tutor dashboard recheck authorisation on return to the tab and periodically while open; removed learners' old panels are hidden and replaced by an access message. Server-side row security and linked-access rules remain authoritative.
+
+The two historic trial learner accounts had already been deleted. The current live audit confirms zero students, attempts, answers, baseline sessions, scheduled practice tasks, student uploads, invitations, and active family/tutor links. One unused revoked invitation was cleared. Only two minimal, non-identifying completed-removal audit entries remain; these are not displayed as current learners.
+
+**Boundary:** This verifies operational application records and Supabase Storage, not instantaneous deletion from database backups, historical platform logs, files that the administrator manually downloaded or emailed, or copies held outside MathsGrove. Existing JWTs can remain technically valid until expiry, but revoked memberships and learner links deny access to the removed student's data.
+
+**Test status:** Database removal guard and positive/negative cleanup checks passed in rollback-only tests, all 27 source-level regression checks pass, and the updated offboarding Edge Function is deployed as version 7. GitHub Pages live-browser behaviour still needs a manual smoke test.
