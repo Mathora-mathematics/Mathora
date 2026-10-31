@@ -1,7 +1,8 @@
 BEGIN;
 CREATE OR REPLACE FUNCTION private.grove_board_compatible(p_item_board text,p_student_board text)
 RETURNS boolean LANGUAGE plpgsql IMMUTABLE SECURITY INVOKER SET search_path='' AS $$
-DECLARE b text:=lower(trim(coalesce(p_item_board,''))),s text:=lower(trim(coalesce(p_student_board,'')));
+DECLARE b text:=lower(trim(coalesce(p_item_board,'')));
+        s text:=lower(trim(coalesce(p_student_board,'')));
 BEGIN
  IF b IN('','all','generic','cross-board') THEN RETURN true;END IF;
  IF s='' THEN RETURN false;END IF;
