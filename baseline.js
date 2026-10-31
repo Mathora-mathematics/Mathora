@@ -100,8 +100,8 @@ async function navigate(n){
  if(saving||closing||reportStatus()||!payload)return;
  saving=true;
  try{
-  await evidence.flush();
-  current=Math.min(20,Math.max(1,n));renderQuestion();
+  await evidence.flush();await questionFocus(false);
+  current=Math.min(20,Math.max(1,n));renderQuestion();await questionFocus(true);
   document.querySelector('.bl-paper')?.scrollIntoView({behavior:'smooth',block:'nearest'});
  }catch(e){set('bl-focus-message','Working could not be saved: '+friendly(e)+'. Try again before changing questions.')}
  finally{saving=false}
@@ -124,7 +124,9 @@ $('bl-confirm-submit').addEventListener('click',async()=>{
  closeDialog($('bl-confirm'));if(closing||!payload)return;
  closing=true;mark('bl-autosave','Submitting…');
  try{
-  await evidence.flush();
+  await evidence.flush();await evidence.refresh();
+  if(!evidence.totalSaved())throw Error('Save a working diagram or photograph before submitting.');
+  await questionFocus(false);
   const {data,error}=await db.rpc('baseline_finish',{p_session:payload.session_id});
   if(error)throw error;updateSession(data)
  }catch(e){set('bl-focus-message','Submission was not confirmed. '+friendly(e)+' Your answers remain saved; try again.')}
@@ -143,7 +145,7 @@ function startActive(){
  if(missing&&current===1)current=missing.position;
  set('bl-exam-path',title(payload));
  $('bl-calc-box').hidden=!payload.calculator_allowed;
- void evidence.refresh().then(()=>evidence.switchQuestion()).catch(e=>set('bl-focus-message','Evidence unavailable: '+friendly(e)));renderQuestion();tick();
+ void evidence.refresh().then(()=>evidence.switchQuestion()).catch(e=>set('bl-focus-message','Evidence unavailable: '+friendly(e)));renderQuestion();void questionFocus(true);tick();
  if(clock!==null)clearInterval(clock);
  clock=setInterval(tick,700);
 }
@@ -155,16 +157,22 @@ function tick(){
  set('bl-timer',mm+':'+ss);document.querySelector('.bl-timer-box')?.classList.toggle('urgent',left<=300);
  if(left<=0&&!expiryTriggered){expiryTriggered=true;set('bl-focus-message','Time has elapsed. The server is closing your sitting.');void refreshState()}
 }
+async function questionFocus(visible){
+ if(!payload?.session_id||payload.status!=='active')return;
+ try{await db.rpc('baseline_question_focus',{p_session:payload.session_id,p_position:current,p_visible:visible})}catch{}
+}
+setInterval(()=>{if(payload?.status==='active'&&!document.hidden)void questionFocus(true)},15000);
 async function logEvent(kind){
  if(!payload||reportStatus()||!db)return;
  try{await db.rpc('baseline_event',{p_session:payload.session_id,p_kind:kind})}catch{}
 }
 document.addEventListener('visibilitychange',()=>{
  if(!payload||reportStatus())return;
- if(document.hidden){void logEvent('tab_hidden')}
- else{void logEvent('returned');set('bl-focus-message','Welcome back. Time continued while this tab was hidden; browser-focus events are noted for your report.')}
+ if(document.hidden){void questionFocus(false);void logEvent('tab_hidden')}
+ else{void questionFocus(true);void logEvent('returned');set('bl-focus-message','Welcome back. Time continued while this tab was hidden; browser-focus events are noted for your report.')}
 });
-window.addEventListener('blur',()=>{if(payload&&!reportStatus())void logEvent('window_blur')});
+window.addEventListener('blur',()=>{if(payload&&!reportStatus()){void questionFocus(false);void logEvent('window_blur')}});
+window.addEventListener('focus',()=>{if(payload?.status==='active'&&!document.hidden)void questionFocus(true)});
 document.addEventListener('fullscreenchange',()=>{
  const inFull=!!document.fullscreenElement;
  document.body.classList.toggle('bl-exam-focused',inFull);
