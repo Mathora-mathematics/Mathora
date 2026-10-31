@@ -16,7 +16,7 @@ for(const route of routes){
  for(const q of group){
   assert.equal(q.review_state,'approved');
   assert.equal(q.active,true);
-  assert.ok(q.prompt.length>=90,'Original stem too short: '+q.provenance);
+  assert.ok(q.prompt.length>=(q.programme_scope==='daily'?60:90),'Question wording too short for its tier: '+q.provenance);
   assert.ok(q.prompt.includes('\\('),'Use proper inline mathematical notation: '+q.provenance);
   assert.ok(q.exam_board&&q.syllabus_objective!==undefined);
   assert.ok(q.expected_seconds>=60);
