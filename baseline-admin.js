@@ -76,7 +76,10 @@ export function initBaselineAdmin(db,state){
    for(const [value,label] of [[score+'/20','CORRECT ANSWERS'],[Math.round(score/20*100)+'%','SAMPLE ACCURACY'],[data.band||'—','STARTING BAND']]){
     const card=create('div');card.append(create('strong','',value),create('span','',label));stats.append(card)
    }
-   body.append(stats,create('h3','','Topic-level evidence'));
+   body.append(stats);
+   const target=state.academic?.find(x=>x.student_id===studentId)?.target_grade||'Not set';
+   body.append(create('p','mg-bl-priority','Learner target grade: '+target+' · Set by the administrator; this baseline is not a predicted grade.'));
+   body.append(create('h3','','Topic-level evidence'));
    for(const t of topics){
     const row=create('div','mg-bl-topic'),a=create('strong','',t.topic),b=create('small','',t.correct+' / '+t.total);
     row.append(a,b);body.append(row)
@@ -89,6 +92,35 @@ export function initBaselineAdmin(db,state){
    const e=data.integrity||{};
    body.append(create('p','muted','Focus context: tab-hidden events '+(e.tab_hidden||0)+', fullscreen exits '+(e.fullscreen_exit||0)+'. These browser signals do not establish misconduct.'));
    body.append(create('p','muted',data.disclaimer||'A short diagnostic is not an official predicted grade.'));
+   if(data.session_id){
+    const evidenceHeading=create('h3','','Saved mathematical working & question time');
+    body.append(evidenceHeading);
+    try{
+     const {data:work,error:workError}=await db.rpc('grove_staff_evidence',{p_kind:'baseline',p_session:data.session_id});
+     if(workError)throw workError;
+     const files=Array.isArray(work?.files)?work.files:[];
+     const times=Array.isArray(work?.timings)?work.timings:[];
+     if(times.length){
+      const timing=create('div','mg-baseline-times');
+      for(const tm of times)timing.append(create('span','','Q'+tm.position+' · '+tm.seconds+' sec'));
+      body.append(timing);
+     }
+     const events=Array.isArray(work?.events)?work.events:[];
+     if(events.length)body.append(create('p','muted','Recorded browser focus events: '+events.map(e=>e.kind).join(' · ')+'. Changes in focus are contextual signals, not evidence of misconduct.'));
+     if(!files.length)body.append(create('p','muted','No saved drawing or photo evidence. Check whether this sitting expired before evidence could be saved.'));
+     const gallery=create('div','mg-evidence-gallery');
+     for(const item of files){
+      const {data:link,error:signErr}=await db.storage.from('student-work').createSignedUrl(item.storage_path,900);
+      if(signErr||!link?.signedUrl){gallery.append(create('p','muted','Q'+item.position+' file unavailable.'));continue}
+      const cell=create('div','mg-evidence-preview'),a=create('a','','');
+      a.href=link.signedUrl;a.target='_blank';a.rel='noopener noreferrer';
+      a.textContent='Question '+item.position+' · '+item.file_kind+' · '+item.original_name;
+      const img=create('img');img.src=link.signedUrl;img.loading='lazy';img.alt='Saved mathematical working for question '+item.position;
+      img.referrerPolicy='no-referrer';cell.append(a,img);gallery.append(cell);
+     }
+     body.append(gallery);
+    }catch(workError){body.append(create('p','muted','Could not retrieve private working: '+workError.message))}
+   }
   }catch(e){body.replaceChildren(create('p','muted','Could not load diagnostic: '+(e?.message||'Unknown error')))}
  }
  $('mg-refresh-baselines').addEventListener('click',()=>void refresh());
