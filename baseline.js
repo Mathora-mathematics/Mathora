@@ -193,8 +193,20 @@ window.addEventListener('beforeunload',e=>{if(payload?.status==='active'){e.prev
 function reportItem(kind,title,body){
  const div=document.createElement('div');div.className=kind;const a=document.createElement('strong');a.textContent=title;const b=document.createElement('p');b.textContent=body;div.append(a,b);return div;
 }
+async function loadExaminerBaselineComment(){
+ const output=$('bl-examiner-feedback-content');
+ if(!db||!output)return;
+ try{
+  const {data,error}=await db.rpc('grove_my_baseline_feedback');
+  if(error)throw error;
+  output.textContent=data?.released
+   ?(data.feedback||'Your examiner has reviewed your baseline.')
+   :'Your examiner has not yet released comments on your saved methods. Your automatic diagnostic results are available above.';
+ }catch(e){output.textContent='Examiner comments cannot be loaded right now. Your automatic baseline result is unaffected.'}
+}
 function showReport(){
  expiryTriggered=false;clearInterval(clock);clock=null;visible('bl-report');
+ void loadExaminerBaselineComment();
  document.body.classList.remove('bl-exam-focused');
  if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});
  set('bl-score',(payload.score??'—')+' / 20');
