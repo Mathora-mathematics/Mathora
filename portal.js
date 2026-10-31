@@ -623,5 +623,36 @@ $('export-history').addEventListener('click',async()=>{
   message('global-message','Your learning record JSON has been downloaded. Uploaded photographs remain private in Supabase.');
  }catch(err){message('global-message',friendlyError(err),true)}
 });
+// Discard locally cached learner records when an account is removed in another session.
+let accessRecheckBusy=false;
+async function recheckLearnerOnReturn(){
+ if(accessRecheckBusy||!sb||!state.user||$('dashboard-view').hidden)return;
+ accessRecheckBusy=true;
+ $('dashboard-view').hidden=true;
+ try{
+  const {data:verified,error:authError}=await sb.auth.getUser();
+  if(authError||!verified?.user)throw Error('Account session is no longer valid');
+  const {data:roles,error:roleError}=await sb.from('memberships').select('org_id,member_role')
+   .eq('user_id',verified.user.id).eq('member_role','student').limit(1);
+  if(roleError)throw roleError;
+  if(!roles?.length){
+   state.member=null;state.members=[];state.attempts=[];state.questions=[];
+   state.preference=null;state.profile=null;state.entitlement=null;state.attempt=null;
+   show('claim-view');
+   message('claim-message','This student account no longer has active MathsGrove access. No previous submissions or progress are available.');
+   return;
+  }
+  state.member=roles[0];state.members=roles;
+  show('dashboard-view');
+  if(!state.attempt)await refresh();
+ }catch{
+  state.member=null;state.members=[];state.attempts=[];state.questions=[];
+  state.profile=null;state.preference=null;state.entitlement=null;state.attempt=null;
+  show('login-view');
+  message('login-message','Your current learner access could not be verified. Sign in again to continue.',true);
+ }finally{accessRecheckBusy=false}
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)void recheckLearnerOnReturn()});
+window.addEventListener('pageshow',e=>{if(e.persisted)void recheckLearnerOnReturn()});
 await boot();
 $('sign-out').hidden=!state.user;
