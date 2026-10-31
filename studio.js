@@ -14,13 +14,18 @@ const linkedManager=initAccessManagement(db,state);
 const baselineManager=initBaselineAdmin(db,state);
 const assignedManager=initAssignedAdmin(db,state);
 const editorialManager=initEditorialReview(db,state);
-const offboardingManager=initStudentOffboarding(db,state,{onRemoved:async()=>{
+const offboardingChannel=typeof BroadcastChannel!=='undefined'?new BroadcastChannel('mathsgrove-offboarding'):null;
+const offboardingManager=initStudentOffboarding(db,state,{onRemoved:async(studentId)=>{
  // Discard the entire in-memory student roster and derived metrics before a fresh server read.
  state.students=[];state.attempts=[];state.invites=[];state.entitlements=[];
  state.academic=[];state.addons=[];state.pending=[];
  state.activeReview=null;
  $('review-card').hidden=true;
- await refresh();
+ // Tell other open Studio tabs to discard the removed learner immediately.
+ offboardingChannel?.postMessage({type:'student-removed',studentId});
+ await refresh({strict:true});
+ if(state.students.some(x=>x.id===studentId)||state.attempts.some(x=>x.student_id===studentId))
+  throw Error('A removed student still appears in a refreshed Studio panel.');
  inform('Student removed. Overview, marking, reports, baseline, timetable, linked access and invitations have been reloaded.');
 }});
 const examLabels={IGCSE:'IGCSE Mathematics',GCSE:'GCSE Mathematics',A_LEVEL:'A Level Mathematics',FURTHER_MATHS:'A Level Further Mathematics',IB_AA:'IB Mathematics AA',IB_AI:'IB Mathematics AI',TMUA:'TMUA'};
@@ -90,17 +95,26 @@ async function init(){
   else setTab('overview');
  }catch(e){showStatus('Could not open the studio.','The secure connection could not verify your permissions: '+(e?.message||'Unknown error'));}
 }
-async function refresh(){
+async function refresh({strict=false}={}){
+ const issues=[];
  const results=await Promise.allSettled([loadRoster(),loadAttempts(),loadInvites(),loadProgrammes(),loadStudentSetups()]);
  const failures=results.filter(x=>x.status==='rejected').map(x=>x.reason?.message||'Unknown error');
- if(failures.length)inform('Some studio data could not load: '+failures.join(' | '),true);
+ if(failures.length){issues.push(...failures);inform('Some studio data could not load: '+failures.join(' | '),true);}
  renderOverview();renderRoster();renderInvites();renderProgrammes();renderQueue();renderReleased();
- if(adminRole())await linkedManager.refresh().catch(err=>inform('Linked access not yet available: '+err.message,true));
- await baselineManager.refresh().catch(err=>inform('Baseline register could not load: '+err.message,true));
- await assignedManager.refresh().catch(err=>inform('Assigned practice register could not load: '+err.message,true));
- if(adminRole())await editorialManager.refresh().catch(err=>inform('Question editorial review could not load: '+err.message,true));
- if(state.membership?.member_role==='admin')await offboardingManager.refresh().catch(err=>inform('Student archive register could not load: '+err.message,true));
+ const inspect=async(label,task)=>{
+  try{await task()}catch(err){
+   const reason=label+': '+(err?.message||String(err));
+   issues.push(reason);inform(reason,true);
+  }
+ };
+ if(adminRole())await inspect('Linked access',()=>linkedManager.refresh());
+ await inspect('Baseline register',()=>baselineManager.refresh());
+ await inspect('Assigned practice',()=>assignedManager.refresh());
+ if(adminRole())await inspect('Editorial register',()=>editorialManager.refresh());
+ if(state.membership?.member_role==='admin')await inspect('Student archive register',()=>offboardingManager.refresh());
+ if(strict&&issues.length)throw Error('Some dashboards could not reload: '+issues.join(' | '));
 }
+
 async function loadRoster(){
  const {data,error}=await db.from('memberships').select('user_id,member_role').eq('org_id',state.membership.org_id).eq('member_role','student').limit(200);
  if(error)throw error;
@@ -489,4 +503,8 @@ document.addEventListener('visibilitychange',()=>{
 window.addEventListener('pageshow',event=>{
  if(event.persisted&&state.membership)void refresh();
 });
+offboardingChannel?.addEventListener('message',event=>{
+ if(event.data?.type==='student-removed'&&state.membership)void refresh();
+});
+
 void init();
