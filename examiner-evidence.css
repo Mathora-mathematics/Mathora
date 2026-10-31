@@ -30,3 +30,18 @@
 .mg-baseline-times{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .mg-baseline-times span{padding:8px 11px;background:#f3f0e9;border:1px solid #e6ddcf;border-radius:7px;color:#36516b;font-size:11px}
 @media(max-width:740px){.mg-mark-choices{grid-template-columns:1fr}.mg-evidence-gallery{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))}.mg-mark-item{padding:13px}.mg-manual-review{gap:12px}}
+
+/* Unified assessment inbox — all three Grove programmes and the baseline. */
+.mg-marking-hub-intro{padding:27px 30px;background:linear-gradient(112deg,#152944,#243c58);color:#fff;border-radius:15px;margin:0 0 20px;border:1px solid #294360}
+.mg-marking-hub-intro .overline{color:#d9c8ac;font-size:10px;letter-spacing:.16em;margin:0 0 10px}
+.mg-marking-hub-intro h2{font:400 clamp(29px,3.2vw,40px)/1.13 "Instrument Serif",Georgia,serif;margin:0 0 8px;color:white}
+.mg-marking-hub-intro p:not(.overline){font-size:12px;line-height:1.75;color:#c1d0de;margin:0;max-width:800px}
+.mg-studio-navigation-note{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#f8f5ef;border:1px solid #e7dece;padding:16px 20px;border-radius:10px;color:#5b6b7d;font-size:12px;line-height:1.6;margin:0 0 22px}
+.mg-studio-navigation-note strong{color:#243951}
+.mg-studio-navigation-note button{border:1px solid #d1c0aa;border-radius:7px;background:#fff;color:#1e3550;padding:10px 14px;font-size:11px;font-weight:800;cursor:pointer}
+.mg-baseline-examiner-feedback{background:#fbfaf7;border:1px solid #e4dccf;padding:18px;border-radius:12px;margin:22px 0 8px}
+.mg-baseline-examiner-feedback h3{font:400 27px "Instrument Serif",Georgia,serif;color:#213a54;margin:0 0 8px}
+.mg-baseline-examiner-feedback label{display:block;font-size:12px;color:#4f6075;font-weight:700;margin:15px 0}
+.mg-baseline-examiner-feedback textarea{display:block;width:100%;min-height:105px;margin:7px 0;border:1px solid #d9d1c6;border-radius:8px;background:white;padding:12px;font-size:13px;line-height:1.6;color:#172d48;resize:vertical}
+.mg-baseline-examiner-feedback .button{border-radius:8px}
+@media(max-width:700px){.mg-marking-hub-intro{padding:22px 18px}.mg-studio-navigation-note{padding:13px}}
