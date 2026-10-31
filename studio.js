@@ -483,4 +483,10 @@ function renderReleased(){
  const button=make('button','link-action','View marks →');button.onclick=()=>{setTab('marking');void openReview(a)};
  root.append(itemRow(st?.name||'Student',(examLabels[a.qualification]||a.qualification)+' · '+date(a.submitted_at),button))}
 }
+document.addEventListener('visibilitychange',()=>{
+ if(!document.hidden&&state.membership)void refresh();
+});
+window.addEventListener('pageshow',event=>{
+ if(event.persisted&&state.membership)void refresh();
+});
 void init();
