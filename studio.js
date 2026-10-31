@@ -138,7 +138,7 @@ async function loadProgrammes(){
 async function loadStudentSetups(){
  if(!adminRole()){state.academic=[];state.addons=[];state.pending=[];return}
  const [academic,addons,pending]=await Promise.all([
-  db.from('student_academic_settings').select('student_id,org_id,focus_topics,staff_notes').eq('org_id',state.membership.org_id).limit(200),
+  db.from('student_academic_settings').select('student_id,org_id,focus_topics,staff_notes,target_grade').eq('org_id',state.membership.org_id).limit(200),
   db.from('student_service_addons').select('student_id,service_type,quantity').eq('org_id',state.membership.org_id).limit(600),
   db.from('pending_student_setups').select('org_id,email,qualification,exam_board,exam_tier,programme,ends_at,focus_topics,staff_notes,add_ons').eq('org_id',state.membership.org_id).limit(200)
  ]);
@@ -229,6 +229,7 @@ function fillStudentEditor(id){
  $('programme-until').value=plan?.ends_at?plan.ends_at.slice(0,10):defaultAccessDate();
  $('programme-focus').value=extra?.focus_topics||'';
  $('programme-notes').value=extra?.staff_notes||'';
+ $('programme-target-grade').value=extra?.target_grade||'';
  const addons={};for(const a of state.addons.filter(x=>x.student_id===id))addons[a.service_type]=a.quantity;
  fillAddons('programme',addons);
 }
@@ -241,10 +242,13 @@ $('programme-form').onsubmit=async e=>{
  try{
   const payload=setupArgs('programme',student);
   const {data,error}=await db.rpc('update_student_setup',payload);
-  if(error||!data?.ok)throw Error(error?.message||'Student settings could not be saved. Install the new administrator setup migration first.');
+  if(error||!data?.ok)throw Error(error?.message||'Student settings could not be saved.');
+  const target=$('programme-target-grade').value.trim();
+  const {data:gradeResult,error:gradeError}=await db.rpc('grove_admin_set_target',{p_student:student,p_grade:target});
+  if(gradeError||!gradeResult?.ok)throw Error('Programme saved, but target grade was not updated: '+(gradeError?.message||'Please try again.'));
   await Promise.all([loadRoster(),loadProgrammes(),loadStudentSetups()]);
   renderRoster();renderProgrammes();
-  inform('Updated student exam settings, programme and separate add-ons. Previous submissions and reports remain unchanged.',false,'programme-feedback');
+  inform('Saved exam information, programme, target grade and add-ons. Previous submissions and reports remain unchanged.',false,'programme-feedback');
  }catch(err){inform(err.message,true,'programme-feedback')}
  finally{button.disabled=false}
 };
