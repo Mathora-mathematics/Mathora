@@ -93,17 +93,21 @@ export async function makeStudentPdfs(data:AnyRow,evidence:Evidence[]):Promise<R
 
  const practice=(await new Writer().init('MathsGrove - Practice and Question Timing'));
  const tasks=arr(data.practice_assignments),taskItems=arr(data.practice_questions),taskAnswers=arr(data.practice_responses),times=arr(data.practice_question_timing),feedback=arr(data.released_teacher_feedback);
+ const examinerMarks=arr(data.manual_question_marks),savedWork=arr(data.work_evidence);
  practice.heading('Scheduled practice and progress');
  practice.line('Visible seconds show the amount of time the question was onscreen. This is an approximation, not proof of active working or independent performance.');
  for(const [i,t] of tasks.entries()){
   practice.heading('Session '+(i+1)+' - '+str(t.mode)+' ('+date(t.due_date)+')');
   practice.line(str(t.qualification)+' '+str(t.academic_level)+' · Grove '+str(t.programme)+' · Status '+str(t.status));
-  practice.line('Score: '+str(t.score)+' / '+str(t.question_count));
+  practice.line('Examiner status: '+str(t.review_status)+' · Score: '+(t.review_status==='released'?str(t.score)+' / '+str(t.question_count):'Awaiting examiner marking'));
   for(const q of taskItems.filter(z=>z.task_id===t.id)){
    const a=taskAnswers.find(z=>z.task_id===t.id&&z.position===q.position),time=times.find(z=>z.task_id===t.id&&z.position===q.position);
    practice.line('Q'+str(q.position)+' · '+str(q.topic)+' · '+str(q.skill),{bold:true});
    practice.line(str(q.prompt));
-   practice.line('Chosen: '+str(a?.choice)+' · '+(a?.choice===q.correct_option?'Correct':'Review')+' · '+str(time?.seconds_visible||0)+' seconds visible');
+   const mark=examinerMarks.find(z=>z.task_id===t.id&&z.position===q.position);
+   practice.line('Chosen: '+str(a?.choice)+' · '+(t.review_status==='released'?'Examiner mark '+str(mark?.mark)+' / 1':'Unmarked')+' · '+str(time?.seconds_visible||0)+' seconds visible');
+   if(mark?.comment)practice.line('Examiner comment: '+str(mark.comment));
+   practice.line('Saved workings: '+savedWork.filter(z=>z.task_id===t.id&&z.position===q.position).length+' files');
    practice.line('Explanation: '+str(q.explanation),{size:9,color:colors.muted});
    practice.y-=7;
   }
@@ -148,6 +152,7 @@ export async function makeStudentPdfs(data:AnyRow,evidence:Evidence[]):Promise<R
   examiner.field('Examiner comment',r.feedback);
  }
  for(const f of feedback){examiner.heading('Released daily practice guidance');examiner.line(str(f.feedback));}
+ for(const m of examinerMarks){examiner.line('Practice '+str(m.task_id)+' Q'+str(m.position)+' · '+str(m.mark)+'/1 · '+str(m.comment));}
  if(!summaries.length&&!reviews.length&&!feedback.length)examiner.line('No released examiner comments are recorded.');
  result['05_Examiner_Reports.pdf']=await examiner.finish();
 
