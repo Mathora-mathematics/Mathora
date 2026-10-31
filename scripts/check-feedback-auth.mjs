@@ -13,7 +13,10 @@ assert.ok(sql.includes("v.status NOT IN('completed','expired')"),'Feedback must 
 assert.ok(sql.includes('private.grove_feedback_history'),'Feedback edits must be auditable');
 assert.ok(sql.includes("'teacher_feedback'"),'Admin report must carry existing feedback');
 assert.ok(sql.includes("'task_id',t.id"),'Admin report must bind comments to the correct attempt');
-assert.ok(staff.includes("db.rpc('grove_staff_save_feedback'"),'Studio must offer examiner feedback saving');
+const current=readFileSync('supabase/migrations/20261031_evidence_manual_marking.sql','utf8');
+assert.ok(staff.includes("db.rpc('grove_staff_mark_task'"),'Studio must save question marks and release examiner feedback together');
+assert.ok(current.includes('grove_staff_mark_task')&&current.includes('private.grove_feedback_history'),'Complete examiner release must include audited feedback');
+assert.ok(current.includes("review_status='released'"),'Only released, human-marked practice can show a result');
 assert.ok(student.includes("rpc('grove_my_feedback'"),'Student report must receive released feedback');
 assert.ok(!student.includes('private.grove_task_feedback'),'Browser must never directly query private feedback tables');
 assert.ok(workflow.includes('check-feedback-auth.mjs'),'Deploy must test feedback security invariants');
