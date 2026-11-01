@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "batch": "20261102-0100",
+  "status": "private_drafts_pending_ci_and_deployment",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Public ledger contains only IDs and routing metadata; prompts, choices, keys, worked solutions and tutor notes remain in private Supabase.",
+  "research_brief": "content/research/20261102_0025_ib_tmua_further_assessment_qa.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "distinct_four_choices": 9,
+    "single_key": 9,
+    "worked_solution_and_tutor_guidance": 9,
+    "katex_delimiter_brace_checks": 9,
+    "prior_practice": 414,
+    "prior_baseline": 240,
+    "prior_assigned": 4,
+    "prior_baseline_assigned": 20,
+    "compared_per_item": 678,
+    "within_batch_pairs": 36,
+    "exact_duplicates": 0,
+    "near_duplicates_at_065": 0,
+    "max_prior_token_jaccard": 0.315789,
+    "max_within_batch_jaccard": 0.2,
+    "student_mutations": 0
+  },
+  "sources": {
+    "AQA_8300": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content-and-assessments",
+    "Cambridge_0580": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+    "Cambridge_9231": "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf"
+  },
+  "notes": [
+    "Initial AQA ratio candidate was replaced while still inactive because it reused the numerical complement of an existing ratio item.",
+    "Core C1.8 standard-form arithmetic item explicitly specifies calculator-permitted Paper 3; Core C8.3 repeated spins are independent.",
+    "Cambridge Further 9231 questions are Paper 1 §1.6; do not confuse with Cambridge 9709.",
+    "No existing students, submissions, assignments or examiner marking are modified.",
+    "Public CI validates privacy-safe metadata and repository regression; private mathematical calculations and full-bank duplicate screening were executed independently before staging.",
+    "Do not activate until PR CI, main CI and deployment pass; these are MCQ practice items, not full mocks."
+  ],
+  "questions": [
+    {
+      "id": "479f5694-3cbe-4afa-a27c-10444af76b52",
+      "provenance": "mg-original-20261102-0100-AQA-F-D",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "AQA 8300",
+      "programme_scope": "daily",
+      "topic": "Unit conversion",
+      "expected_seconds": 165,
+      "syllabus_objective": "AQA 8300 R1 — convert related standard units of mass; N2 — four operations (Foundation)"
+    },
+    {
+      "id": "a5e8da9e-4eec-4fc8-8a83-7a6e246b7b3c",
+      "provenance": "mg-original-20261102-0100-AQA-F-E",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "AQA 8300",
+      "programme_scope": "exam",
+      "topic": "Area and proportional planning",
+      "expected_seconds": 620,
+      "syllabus_objective": "AQA 8300 G16 — calculate rectangle area; R9 — percentage increase; N2 — arithmetic (Foundation)"
+    },
+    {
+      "id": "981bda40-a4cf-4ac2-9564-db99860cbf10",
+      "provenance": "mg-original-20261102-0100-AQA-F-W",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "AQA 8300",
+      "programme_scope": "weekly",
+      "topic": "Percentages and money",
+      "expected_seconds": 420,
+      "syllabus_objective": "AQA 8300 R9 — percentage decrease; N2 — four operations with decimals (Foundation)"
+    },
+    {
+      "id": "1118a60a-6de6-4fdf-91fc-8d63bed73f98",
+      "provenance": "mg-original-20261102-0100-C0580-C-D",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "exam_board": "Cambridge 0580",
+      "programme_scope": "daily",
+      "topic": "Directed numbers",
+      "expected_seconds": 150,
+      "syllabus_objective": "Cambridge 0580 Core C1.6 — four operations with negative numbers (2025–2027)"
+    },
+    {
+      "id": "1126a55a-0e55-4ee8-b63c-e1585b177605",
+      "provenance": "mg-original-20261102-0100-C0580-C-E",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "exam_board": "Cambridge 0580",
+      "programme_scope": "exam",
+      "topic": "Standard form and percentage modelling",
+      "expected_seconds": 610,
+      "syllabus_objective": "Cambridge 0580 Core C1.8 — standard-form calculations on calculator Paper 3; C1.13 — percentage calculations (2025–2027)"
+    },
+    {
+      "id": "ed813d5b-95a0-4241-817f-48330355e47e",
+      "provenance": "mg-original-20261102-0100-C0580-C-W",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "exam_board": "Cambridge 0580",
+      "programme_scope": "weekly",
+      "topic": "Combined probability",
+      "expected_seconds": 420,
+      "syllabus_objective": "Cambridge 0580 Core C8.3 — combined events with replacement/independent repeated trials (2025–2027)"
+    },
+    {
+      "id": "bb81cb30-7ca0-4e2a-a63c-3a369d1c613d",
+      "provenance": "mg-original-20261102-0100-C9231-P1-D",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "daily",
+      "topic": "Vectors and planes",
+      "expected_seconds": 280,
+      "syllabus_objective": "Cambridge 9231 Further Pure 1 §1.6 — planes and vector geometry (2026–2027)"
+    },
+    {
+      "id": "67548244-c834-4916-800b-80f29f813448",
+      "provenance": "mg-original-20261102-0100-C9231-P1-E",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "exam",
+      "topic": "Intersecting planes",
+      "expected_seconds": 760,
+      "syllabus_objective": "Cambridge 9231 Further Pure 1 §1.6 — intersection of planes and angles (2026–2027)"
+    },
+    {
+      "id": "fb15e041-70df-40df-b53f-c1a81506e12a",
+      "provenance": "mg-original-20261102-0100-C9231-P1-W",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "weekly",
+      "topic": "Vectors and planes",
+      "expected_seconds": 540,
+      "syllabus_objective": "Cambridge 9231 Further Pure 1 §1.6 — Cartesian plane and vector line intersection (2026–2027)"
+    }
+  ]
+}
