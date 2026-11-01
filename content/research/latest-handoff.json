@@ -124,7 +124,7 @@
     "exam_board_filter": "only matching exam board or generic content"
   },
   "latest_dated_brief": "content/research/20261101_0433_cambridge_9709_pearson_9MA0_IAL_alignment.md",
-  "latest_brief_commit": "05ffb665b95bbe911f4145f26041d988301164ff",
+  "latest_brief_commit": "e087b009344eceb9a4700ef82896f18f92f9ee70",
   "research_rotation": {
     "deep_dive": [
       "Cambridge 9709 2026–27 AS P1/P4/P5 and A P6 objective/component gates",
@@ -297,7 +297,7 @@
       "route": "Pearson IAL M1 WME01",
       "daily": "Signed impulse from velocity reversal",
       "weekly": "Connected-particle acceleration and tension",
-      "exam": "Beam moment equilibrium with friction constraint"
+      "exam": "Parallel-force loading-platform moments/reactions plus separate static-friction feasibility check"
     }
   ],
   "coverage_snapshot": {
@@ -343,7 +343,8 @@
       "9709 P4 g≈10, Pearson 9MA0 default g=9.8; 9709 P4 paper avoids vector notation.",
       "All 321 bank prompts and student task snapshots exact+semantic dedup; previous 9 approved 9231/9FM0/TMUA blueprints are already consumed.",
       "Original question and private fully checked solution; multi-mark rubric, notation, diagrams, units, answer uniqueness and reviewer sign-off.",
-      "Never publish complete answer keys in public GitHub; full timed mocks require independently approved paper assembly and lockout testing."
+      "Never publish complete answer keys in public GitHub; full timed mocks require independently approved paper assembly and lockout testing.",
+      "Pearson IAL M1 moments restricted to simple coplanar parallel-force rigid bodies; separate friction check must not create unsupported nonparallel rigid-body mechanics."
     ],
     "research_only_no_new_publication": true,
     "next_batch_editorial_items": 30,
