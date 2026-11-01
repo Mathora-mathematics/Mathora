@@ -1,7 +1,7 @@
 {
-  "version": 14,
-  "researched_at": "2026-11-01",
-  "title": "MathsGrove Cambridge 9709 Pure P1/P2/P3 vs Pearson UK 9MA0 Pure and IAL WMA11–14 — original blueprint handoff (rotation 12)",
+  "version": 15,
+  "researched_at": "2026-11-02",
+  "title": "MathsGrove IB AA/AI 2029, TMUA 2026–27 and Further 9231/9FM0 original tier blueprint handoff (rotation 13)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -169,6 +169,12 @@
       "qualification": "IAL 2018 Issue 3 M1/M2/S1/S2",
       "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
       "note": "Unit codes WME01 WME02 WST01 WST02; 75 marks 90 minutes each"
+    },
+    {
+      "board": "Pearson",
+      "qualification": "Pearson official optional-entry combinations (2025–26)",
+      "url": "https://qualifications.pearson.com/en/support/support-for-you/exam-officers-administrators/entries-information-manual.html?CourseCode=International&QualFamily=A+Level+and+AS+Level&subject=Further+Mathematics",
+      "note": "specific entry options; 3D Decision 1 vs 4D Decision 2 not interchangeable"
     }
   ],
   "first_cycle": [
@@ -217,26 +223,28 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_2234_cambridge_9709_pearson_9ma0_ial_pure_gates.md",
-  "latest_brief_commit": "c5d50e8d621f136b31804f0b32883d4148591fdb",
+  "latest_dated_brief": "content/research/20261102_0025_ib_tmua_further_assessment_qa.md",
+  "latest_brief_commit": "275d89b461cebc9ff2196645598e7cd69aa65f78",
   "research_rotation": {
     "deep_dive": [
-      "Cambridge 9709 2026–27 v4 and 2028–30 v1 Pure P1/P2/P3",
-      "Pearson UK 9MA0 Issue 4 synoptic Pure papers /01 and /02",
-      "Pearson International Advanced Level WMA11 P1, WMA12 P2, WMA13 P3, WMA14 P4"
+      "IB AA SL/HL first assessment 2029 (A3 combinatorics, A4 complex HL)",
+      "IB AI SL/HL first assessment 2029 (D3 probability, C5 graph theory HL)",
+      "TMUA October 2026/January 2027 P1 MM2 and P2 Arg/Prf/Err",
+      "Cambridge Further 9231 2028–30 P1 §1.6, P3 §3.4, P4 §4.1",
+      "Pearson Edexcel Further 9FM0 optional 4B FS2 §§1.1–1.2"
     ],
     "cross_checked": [
-      "Earlier research briefs 20261101_0433, 20261101_1233 and 20261101_2030 plus latest handoff v13",
-      "405 private practice bank: 111 approved, 54 inactive drafts, 240 active pilots; 82 exact-normalised duplicate groups, zero containing approved items",
-      "28 existing tasks, only 4 bank-backed assigned items in one task, four distinct bank IDs",
-      "Approved A_LEVEL: 15 Cambridge 9709, 9 Pearson UK 9MA0, 3 Pearson IAL WMA11; no approved WMA12/WMA13/WMA14 explicitly tagged"
+      "Previous 20261101_1630 IB/TMUA/Further draft and handoff v14",
+      "Live 414 private questions: 120 approved, 54 inactive, 360 active; 82 exact-normalised duplicate groups, zero touching approved",
+      "28 tasks, 4 bank-backed assigned items, four distinct IDs, no repeats within one task",
+      "Approved coverage IB AA SL 6/HL 3, AI SL 3/HL 6, TMUA 9, Cambridge Further 9231 6, Pearson Core Pure 3; no approved FS2 4B explicitly tagged"
     ],
-    "authored_blueprints": 27,
-    "instructional_lanes": 9,
+    "authored_blueprints": 30,
+    "instructional_lanes": 10,
     "timed_mock_assembly_plans": 9,
     "next_deep_dive": [
-      "IB AA/AI SL/HL 2029 transition and TMUA/Further syllabus gates",
-      "GCSE/IGCSE tier and calculator restrictions"
+      "GCSE/IGCSE AQA 8300, Cambridge 0580, Pearson UK 1MA1/linear 4MA1/modular 4WM",
+      "Then Cambridge/Pearson A Level/Further applied syllabus and routing"
     ]
   },
   "verified_objective_gates": {
@@ -883,12 +891,12 @@
     }
   ],
   "implementation_priority": [
-    "Implement explicit exam board, syllabus version/exam year, paper/unit and prerequisites before enabling new assignments.",
-    "Reconcile Cambridge 9709 2026–27 v3 metadata to current official v4 without rewriting history silently.",
-    "Author and independently verify 27 new original question blueprints; prioritize Pearson IAL WMA12/13/14, zero approved component-specific coverage.",
-    "Keep new items editorial inactive until human approval, independent mathematics QA, normalized and semantic deduplication, and secure answer key separation.",
-    "Build multi-mark rubric, evidence capture and timed lockout before claiming approved full-length mocks.",
-    "Block reassignments by bank ID and semantic template across available student history; preserve privacy in offboarding."
+    "Do not publish these 30 editorial designs until exact objective, maths, mark scheme, novelty and human approval checks pass.",
+    "IB 2029 assessment-year gating; 2029 AI HL Poisson exclusion and AA/AI tech differences; licensed guide check for De Moivre and graph algorithms.",
+    "TMUA P1/P2 topic gating and official computer specimen UI/answer-option verification.",
+    "Cambridge 9231 P1/P3/P4 routing; Pearson 9FM0 valid 4B FS2 optional entry and 3D/4D distinction.",
+    "Global semantic and assignment repetition checks including baseline; current four-item assignment check is limited.",
+    "Full timed mocks require independently authored full papers, complete marking rubrics, strict timers and examiner sign-off."
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261101_1426_pearson_modular_4wm_unit_gate_ums.md",
@@ -956,5 +964,13 @@
       "Pearson IAL WMA14 P4": 0
     },
     "limitations": "Assignment audit is limited to one task with four bank-backed items; free-form/history/semantic reuse not established."
-  }
+  },
+  "known_blockers": [
+    "IB 2029 detailed subject guide objective microcodes not verified publicly; public 2029 subject briefs give broad topic identifiers.",
+    "TMUA computer specimen answer-option count not independently verified; no authentic mock claim.",
+    "No first-class IB assessment year/board optional-paper metadata in inspected practice bank schema.",
+    "82 exact-normalised duplicate prompt groups still require semantic inspection; zero touch approved at time of read.",
+    "Only four bank-backed assigned items audited; broader cross-task and semantic repetition not proven.",
+    "No independently approved full-length multi-mark timed mocks verified in this research run."
+  ]
 }
