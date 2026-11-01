@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261101-0700",
-  "status": "private_draft_awaiting_ci_and_activation",
+  "status": "published_to_private_supabase_bank",
   "record_count": 12,
   "assessment_kind": "Grove Daily/Weekly/Exam original four-choice formative MCQ practice; NOT complete timed mocks",
   "private_fields": "Prompts, options, answer keys, full worked solutions, misconceptions and tutor guidance are stored ONLY in private Supabase, not public GitHub.",
@@ -159,5 +159,37 @@
       "expected_seconds": 490,
       "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
     }
-  ]
+  ],
+  "activated_at_utc": "2026-11-01T04:12:03.589307Z",
+  "publication": {
+    "approved_and_active": 12,
+    "live_total": 342,
+    "live_approved_active": 54,
+    "live_active_pilot": 240,
+    "live_inactive_drafts": 48,
+    "previous_bank_checked": 330,
+    "previous_assigned_snapshots_checked": 4,
+    "baseline_bank_collision_count": 0,
+    "student_tasks_unchanged": 28,
+    "assigned_items_unchanged": 4,
+    "student_answers_unchanged": 0,
+    "eligible_route_tier_matches": 12,
+    "ib_alias_short_matches": 12,
+    "ib_alias_full_matches": 12,
+    "wrong_board_matches": 0,
+    "complete_scheduled_ib_task_ready": false,
+    "required_question_count_per_scheduled_task": {
+      "daily": 4,
+      "weekly": 8,
+      "exam_daily": 6
+    },
+    "available_new_approved_per_ib_route_and_tier": 1,
+    "ci_pr_run": 41272054714,
+    "ci_main_run": 41272080346,
+    "site_deploy_run": 41272080364,
+    "pages_build_run": 41272079896,
+    "github_pr": 21,
+    "merge_sha": "5fea52a9e93f2c405ba3058efa8662b8fd6c0131",
+    "ib_board_alias_migration_applied": true
+  }
 }
