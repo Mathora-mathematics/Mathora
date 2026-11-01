@@ -1,0 +1,35 @@
+name: Verify private original maths batch 2026-11-01 0900
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261101-0900.json'
+      - 'scripts/check-verified-batch-20261101-0900.mjs'
+      - '.github/workflows/verified-original-batch-0900.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261101-0900.json'
+      - 'scripts/check-verified-batch-20261101-0900.mjs'
+      - '.github/workflows/verified-original-batch-0900.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original batch metadata and independent mathematics
+        run: node scripts/check-verified-batch-20261101-0900.mjs
+      - name: Existing question, routing, human-marking and anti-repeat regressions
+        run: |
+          node scripts/check-original-practice.mjs
+          node scripts/check-published-originals.mjs
+          node scripts/check-verified-batch-20261101-0300.mjs
+          node scripts/check-verified-batch-20261101-0500.mjs
+          node scripts/check-verified-batch-20261101-0700.mjs
+          node scripts/check-evidence-marking.mjs
+          node scripts/test-all-tier-evidence.mjs
