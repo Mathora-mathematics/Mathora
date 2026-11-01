@@ -1,7 +1,7 @@
 {
-  "version": 7,
+  "version": 8,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove official alignment — IB 2029 cohort transition, TMUA 2026/27, Cambridge 9231 and Pearson 9FM0 (1 November 2026)",
+  "title": "MathsGrove official alignment — Cambridge 9709 applied vs Pearson UK 9MA0 and IAL WST/WME units (1 November 2026)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -144,26 +144,24 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_0832_ib_2029_tmua_further_alignment.md",
-  "latest_brief_commit": "c823faba0155b2421626ad12efbc6767dfa6e254",
+  "latest_dated_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md",
+  "latest_brief_commit": "297e723df7f69755e9ccaa0dd76e6921081a405c",
   "research_rotation": {
     "deep_dive": [
-      "IB AA/AI current 2021–28 vs revised 2029 objective and paper rules",
-      "TMUA October 2026/January 2027 P1/P2 mathematical reasoning and format",
-      "Cambridge 9231 P2 hyperbolic/matrices, P3 circular motion, P4 continuous random variables/t inference",
-      "Pearson 9FM0 Core Pure polar, FS1 negative binomial, Decision 1 shortest paths"
+      "Cambridge 9709 P4 Mechanics, P5 Probability & Statistics 1, P6 Probability & Statistics 2",
+      "Pearson UK 9MA0/03 Statistics and Mechanics",
+      "Pearson IAL WST01 S1, WST02 S2, WME01 M1, WME02 M2"
     ],
     "cross_checked": [
-      "Prior GCSE/IGCSE and Cambridge/Pearson A Level research briefs",
-      "54 approved private questions and 48 inactive drafts",
-      "492 public editorial question records in 8 GitHub JSON files",
-      "28 private tasks, 4 assigned bank items, no repeated assigned bank IDs or exact stems"
+      "Previous A Level, GCSE/IGCSE and IB/TMUA/Further research briefs",
+      "354 private bank items: 66 approved, 48 inactive drafts, 240 active pilot",
+      "28 private tasks; four task items; no repeated assigned bank IDs or exact-normalised stems",
+      "Previous 492-entry GitHub public editorial inventory; not independently recounted"
     ],
     "next_deep_dive": [
-      "Cambridge 9709 P4 Mechanics and P5/P6 Statistics vs Pearson 9MA0 applied",
-      "Pearson IAL WST01/WME01 and 9FM0 option selection schema",
-      "Cambridge 0580 2028–30 cohort transition",
-      "IB 2027/28 Paper 3 timing discrepancy"
+      "Cambridge 9709 and 0580 2028–2030 syllabus transition",
+      "Pearson modular IGCSE 4WM unit-level objectives",
+      "IB 2029 cohort filtering and TMUA specimen option-count verification"
     ]
   },
   "verified_objective_gates": {
@@ -198,6 +196,56 @@
       "Core Pure §7.1–7.3 polar",
       "Further Statistics 1 §2.3 Poisson approximation, §3.1–3.3 geometric/negative binomial",
       "Decision 1 §2.1 Prim/Kruskal, §2.2 Dijkstra/Floyd; 3D not 4D Decision 2"
+    ],
+    "Cambridge_9709_P4_2026_2027": [
+      "§4.1 force/equilibrium/friction",
+      "§4.2 1D kinematics",
+      "§4.3 direct impact momentum; impulse and restitution not required",
+      "§4.4 Newton connected particles",
+      "§4.5 energy/work/power",
+      "No vector notation in P4 questions; g≈10 expected"
+    ],
+    "Cambridge_9709_P5_2026_2027": [
+      "§5.1 data representation",
+      "§5.2 linear arrangements no circular",
+      "§5.3 probability",
+      "§5.4 E/Var, binomial and geometric",
+      "§5.5 normal and binomial approximation"
+    ],
+    "Cambridge_9709_P6_2026_2027": [
+      "§6.1 Poisson",
+      "§6.2 independent linear combinations",
+      "§6.3 density, explicit CDF not required",
+      "§6.4 CLT and confidence intervals",
+      "§6.5 hypothesis tests and Type I/II"
+    ],
+    "Pearson_UK_9MA0_P3": [
+      "Statistics §§1–5, no discrete E/Var calculation and no CLT requirement",
+      "Mechanics §§6–9, 2D vectors/projectiles and moments",
+      "Default g=9.8; 120 min/100 marks"
+    ],
+    "Pearson_IAL_S1_WST01": [
+      "§§2–5 descriptive, probability, regression/PMCC, discrete E/Var",
+      "PMCC significance testing not required"
+    ],
+    "Pearson_IAL_S2_WST02": [
+      "§1 binomial/Poisson",
+      "§2 PDF and explicit CDF",
+      "§3 continuous uniform/normal approximation",
+      "§4 binomial and Poisson tests"
+    ],
+    "Pearson_IAL_M1_WME01": [
+      "§2 planar vectors",
+      "§4 connected motion/impulse/friction",
+      "§5 particle equilibrium",
+      "§6 moments parallel coplanar forces only"
+    ],
+    "Pearson_IAL_M2_WME02": [
+      "§1 vector calculus/projectiles",
+      "§2 centre of mass/lamina",
+      "§3 energy",
+      "§4 restitution/impacts",
+      "§5 rigid-body statics"
     ]
   },
   "original_blueprints": [
@@ -296,6 +344,96 @@
       "exam": "network edge closure and new shortest path proof",
       "status": "editorial_blueprint_only",
       "source_brief": "content/research/20261101_0832_ib_2029_tmua_further_alignment.md"
+    },
+    {
+      "route": "Cambridge 9709 P4 Mechanics",
+      "objective": "§4.5 work/energy/power; §4.4 inclined motion and friction; §4.1 limiting versus nonlimiting friction",
+      "daily": "A maintenance winch exerts a constant 1.2 kN pull while a load travels at 8 m/s in the direction of force. Calculate instantaneous power in kW; explain why kN×m/s produces kW. (2–3 min; 2 marks)",
+      "weekly": "A 4 kg parcel is projected UP a 30° rough incline, μ=0.20, g=10. Draw both free-body diagrams for ascent and descent; find acceleration in each phase and justify why friction reverses direction, not gravity. Compare acceleration magnitudes and check signs. (8–10 min; 7 marks)",
+      "exam": "A 2 kg inspection cart enters a 30° rough ramp at 12 m/s against a constant 3 N resistance in addition to gravity, g=10. Find maximum distance along ramp using energy; cross-check by F=ma and SUVAT; explain why mechanical energy is not conserved if resistance is omitted. Check s=144/13 m. (10–13 min; 9 marks)",
+      "misconception": "Power vs work; friction always set to μR; same friction direction on return; mixing kg and N; 9709 P4 uses g≈10 and paper questions do not use vector notation.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Cambridge 9709 P5 Probability & Statistics 1",
+      "objective": "§5.1 histogram frequency density; §5.3 dependent sampling and conditional probability; §5.5 normal and continuity-corrected binomial approximation",
+      "daily": "A frequency histogram has a class width 5 with frequency 18 and another width 12 with frequency 24. Determine both frequency densities and which bar is taller; distinguish height from frequency. (2–3 min; 3 marks)",
+      "weekly": "A tray contains 5 amber and 7 blue quality seals. Two are sampled without replacement. Construct a tree, find P(second amber | first blue), then find P(exactly one amber) and test whether the two draw-colour events are independent. (7–10 min; 7 marks)",
+      "exam": "Fill weights X are modelled N(500,8²) g. Determine the threshold exceeded by 10% of fills. For 100 independent fills, model the number exceeding this threshold as B(100,0.10), then estimate P(at least 15) using a continuity-corrected normal approximation; justify np>5 and n(1−p)>5, and critique independence. Threshold ≈510.3 g. (11–14 min; 10 marks)",
+      "misconception": "Frequency density mistaken for frequency; conditional probabilities treated as independent; SD confused with variance; no 14.5 continuity correction; 9709 P5 excludes circular arrangements.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Cambridge 9709 P6 Probability & Statistics 2",
+      "objective": "§6.1 Poisson counts/interval scaling; §6.3 density and median by integration (not explicit CDF); §6.5 Type I/II error probabilities",
+      "daily": "A detector receives an average of 0.8 alerts per 10 minutes, modelled by Poisson. Find the mean for 30 minutes and the probability of zero alerts; give a reason a fixed-rate assumption may fail. (3–4 min; 3 marks)",
+      "weekly": "For a continuous random variable with f(x)=kx for 0≤x≤3 and zero otherwise, normalise f, calculate P(X>2), and find the median by equating an integral to 1/2. Check k=2/9 and median=3/√2. Do not require the named cumulative distribution function. (7–10 min; 8 marks)",
+      "exam": "A monitoring system tests H0:λ=2 against H1:λ>2 for a one-hour Poisson count, rejecting when X≥5. Find the actual Type I error probability under λ=2 and Type II error probability when λ=4; discuss whether a nominal 5% claim is justified and how a different threshold changes both risks. (10–14 min; 10 marks)",
+      "misconception": "Poisson mean not rescaled with exposure; using f(x) as P(X=x); invoking an explicit CDF not required by 9709 P6; Type II calculated under null instead of stated alternative.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Pearson UK 9MA0/03 Statistics",
+      "objective": "§1.1 sampling techniques; §3.2 conditional probability; §5.3 normal-population mean hypothesis test with known/assumed variance",
+      "daily": "A population has strata of sizes 120, 180 and 300. For a stratified sample of 60, allocate sample sizes 12,18,30 and explain why sampling only volunteers is not equivalent to stratification. (3–4 min; 3 marks)",
+      "weekly": "A synthetic survey table records use of a repair app by 2 age groups, with unequal group sizes. Compute P(app|older), P(older|app), and overall P(app); explain which conditional probability answers a stated marketing question and why reversing the condition changes the result. (7–9 min; 7 marks)",
+      "exam": "A packaging line has known population SD 4 g and a normal output model. Test H0:μ=100 g against H1:μ>100 g using n=25 and sample mean 101.2 g at 5% one-sided significance. Find z=1.5, state the decision in context, and compare with a second independent sample mean 102.0 g (z=2.5). Critique the normal/known-σ assumptions; do not invoke CLT. (10–14 min; 10 marks)",
+      "misconception": "Stratified versus quota/opportunity samples; P(A|B) vs P(B|A); non-rejection does not prove H0; 9MA0 §4.1 excludes calculation of discrete E(X),Var(X); CLT is not required.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Pearson UK 9MA0/03 Mechanics",
+      "objective": "§6.1 units; §8.4 connected particles and resolving forces; §7.4 two-dimensional calculus kinematics",
+      "daily": "Convert 72 km/h to m/s and explain why 72 m/s is incorrect; extend to a 5-second displacement under constant speed. (2–3 min; 3 marks)",
+      "weekly": "A 3 kg particle on a smooth 30° plane is linked over a smooth pulley to a hanging 2 kg particle. With g=9.8, draw separate diagrams, show the 2 kg mass descends, and calculate a=0.98 m/s² and tension 17.64 N; check units and force directions. (8–10 min; 8 marks)",
+      "exam": "For a robot on a flat plane, r(t)=2t² i+(t³/3−4t) j metres for 0≤t≤4. Find v(t), a(t), when the j-component of velocity is zero, and why the robot is NOT at rest then. Calculate the net displacement over the interval and comment on distance versus displacement. (10–13 min; 9 marks)",
+      "misconception": "g default is 9.8 unless specified; mixing total system with individual-body tensions; horizontal velocity nonzero when vertical component is zero; UK 9MA0 explicitly permits i,j and vector calculus.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Pearson IAL S1 WST01",
+      "objective": "S1 §3.4 dependent sampling; §2.3–2.4 dispersion/skewness/outliers; §4.3 PMCC and interpretation (no significance tests)",
+      "daily": "A box contains 4 red and 6 blue tickets. Two are drawn without replacement. Find P(second red | first blue) and explain why the denominator is 9, not 10. (2–4 min; 3 marks)",
+      "weekly": "Two newly invented delivery-route data summaries give medians, quartiles and whisker endpoints. Apply an explicitly supplied 1.5×IQR outlier rule, compare spread and possible skewness, and explain why the same mean can mask different reliability. Focus on interpretation, not drawing a box plot as the direct question. (7–10 min; 8 marks)",
+      "exam": "For six newly invented paired observations of temperature and machine output, supply Σx, Σy, Σx², Σy², Σxy. Calculate PMCC r from Sxx,Syy,Sxy, interpret its sign and strength, and critique the claim that temperature causes output changes; NO significance test and no reuse of earlier least-squares-regression blueprint. (10–13 min; 9 marks)",
+      "misconception": "Treating without-replacement draws as independent; quartiles/outlier threshold misuse; correlation implies causation; S1 does not require PMCC significance tests and histogram drawing is not direct examination focus.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Pearson IAL S2 WST02",
+      "objective": "S2 §2.2–2.3 continuous PDF/CDF relation; §1.3 Poisson approximation to binomial; §4.6 Poisson-mean hypothesis test",
+      "daily": "A distribution has F(x)=x²/16 for 0≤x≤4, with F(x)=0 below 0 and 1 above 4. Differentiate to obtain f(x), calculate P(1<X≤3), and verify f is nonnegative. (3–5 min; 4 marks)",
+      "weekly": "A process tests 200 independent tiny components, each with failure probability 0.012. Use a Poisson approximation with λ=2.4 to estimate P(at most 1 failure), then compare assumptions with the exact binomial model and explain when approximation could be misleading. (7–10 min; 7 marks)",
+      "exam": "An instrument produces Poisson counts with claimed mean 3 per shift. A shift records 8. Form H0:λ=3, H1:λ>3; calculate a one-tailed p-value, find a 5% critical threshold using Poisson tails, and interpret in context, explicitly distinguishing observed significance from a change in true mean. (10–14 min; 10 marks)",
+      "misconception": "Confusing F and f; endpoint values of a continuous CDF; Poisson λ=np; tail direction and discrete critical region; S2 contains explicit CDF, unlike Cambridge 9709 P6.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Pearson IAL M1 WME01",
+      "objective": "M1 §2.1–2.2 vectors in a plane; §5.2 equilibrium of a particle; §4.2 changing-force/connected-particle dynamics",
+      "daily": "A drone's constant velocity vector is (3i+4j) m/s. Find speed and unit direction, explaining why a vector cannot be replaced by its magnitude when direction matters. (2–4 min; 3 marks)",
+      "weekly": "A 5 kg suspended instrument is held in equilibrium by two taut cables at distinct specified angles to the horizontal. Construct a free-body diagram and solve the two simultaneous component equations for both tensions; verify vertical components sum to mg and both tensions are positive. (8–11 min; 8 marks)",
+      "exam": "A 3 kg mass and a 2 kg mass are joined over a smooth pulley. Starting at rest, the 3 kg mass descends 1 m then reaches the floor. Use g=9.8, find initial acceleration 1.96 m/s² and speed²=3.92; after the string goes slack find the further 0.20 m rise of the 2 kg mass, explaining why the first-phase tension equation no longer applies. (11–15 min; 11 marks)",
+      "misconception": "Scalar speed substituted for vector velocity; tension direction; incorrectly keeping taut-string constraint after impact; M1 has no Newton coefficient of restitution requirement (that is M2).",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
+    },
+    {
+      "route": "Pearson IAL M2 WME02",
+      "objective": "M2 §2.1–2.3 centre of mass/lamina equilibrium; §4.2 direct impact and restitution; §2.2 composite lamina without integration",
+      "daily": "Two point masses 2 kg at x=1 m and 1 kg at x=4 m lie on a light line. Find the centre of mass x=2 m and explain why it lies nearer the heavier mass. (2–4 min; 3 marks)",
+      "weekly": "A 2 kg particle travelling at 5 m/s collides directly with a stationary 1 kg particle. Coefficient of restitution e=0.5. Apply momentum and restitution to find v1=2.5 m/s and v2=5 m/s; calculate kinetic energy loss 6.25 J and justify why momentum, not kinetic energy, is conserved. (8–11 min; 9 marks)",
+      "exam": "A uniform 6×4 rectangular lamina has the top-right 2×2 rectangle removed. With origin at bottom-left, compute the remaining centre of mass (2.6,1.8), then discuss the initial clockwise turning moment when suspended from (0,4) and the stable orientation of its centre of mass below the suspension point. No integration. (11–15 min; 10 marks)",
+      "misconception": "Centre of mass uses masses/areas not simple mean of coordinates; coefficient of restitution not 1 unless stated; impact loses kinetic energy; moment direction depends on pivot; M2 is not interchangeable with M1.",
+      "status": "editorial_blueprint_only",
+      "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md"
     }
   ],
   "coverage_snapshot": {
@@ -457,5 +595,77 @@
     "latest_dated_brief": "content/research/20261101_0634_gcse_igcse_linear_modular_alignment.md",
     "latest_commit": "3febbb491c734806cecc9e82e92d5f554b7a5dde",
     "priority": "Block wrong IGCSE assignment by introducing 4MA1 linear vs 4WM modular route_code, explicit 4WM unit_code and tier, plus 2027 formula-sheet metadata; then author/QA 27 new designs. Prioritise uncovered 4WM and 1MA1."
+  },
+  "live_audit": {
+    "timestamp_local": "2026-11-01 10:34+03:00 (run-start reference; queries performed during this run)",
+    "production_table": "private.grove_practice_bank",
+    "bank_total": 354,
+    "approved": 66,
+    "inactive_drafts": 48,
+    "active_pilots": 240,
+    "exact_normalised_duplicate_groups": 82,
+    "pilot_duplicate_groups": 80,
+    "draft_duplicate_groups": 2,
+    "approved_duplicate_groups": 0,
+    "tasks": 28,
+    "task_items": 4,
+    "task_answer_rows": 4,
+    "per_student_duplicate_bank_ids": 0,
+    "per_student_duplicate_exact_stems": 0,
+    "baseline_bank": 240,
+    "baseline_items": 20,
+    "missing_approved_component_coverage": [
+      "Cambridge 9709 P4/P5/P6",
+      "Pearson IAL WST01/WST02/WME01/WME02"
+    ],
+    "caution": "Snapshot only. 82 exact duplicates remain and semantic near-duplicates are unmeasured; baseline-history dedup not proven."
+  },
+  "latest_research_sources": [
+    {
+      "id": "C9709",
+      "title": "Cambridge International AS & A Level Mathematics 9709, 2026–27 syllabus, v3 Feb 2025",
+      "url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+      "focus": "pp. 11–16, 31–39, 40–42; P4 §4.1–4.5, P5 §5.1–5.5, P6 §6.1–6.5"
+    },
+    {
+      "id": "C9709samples",
+      "title": "Cambridge 9709 official specimen/past paper hub (format only)",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/",
+      "focus": "Question part structure, marks, working-space conventions; March 2026 accessible layout change"
+    },
+    {
+      "id": "P9MA0",
+      "title": "Pearson Edexcel UK A Level Mathematics 9MA0, specification Issue 4 (Feb 2020)",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf",
+      "focus": "Paper 3 Statistics §§1–5, Mechanics §§6–9, p. 35–39"
+    },
+    {
+      "id": "PIAL",
+      "title": "Pearson Edexcel International A Level Mathematics/Further Mathematics/Pure Mathematics, Issue 3 Apr 2019",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
+      "focus": "IAL units M1 pp. 44–46, M2 pp. 47–49, S1 pp. 53–56, S2 pp. 57–59"
+    },
+    {
+      "id": "PIALsamples",
+      "title": "Pearson Edexcel IAL official Sample Assessment Materials Issue 3",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/International-A-Level-Maths-SAMs1.pdf",
+      "focus": "90-minute 75-mark unit format; show working, mark allocations, 3-s.f. conventions"
+    }
+  ],
+  "implementation_priority": [
+    "Fail-closed paper/unit and syllabus-year routing; no generic A_LEVEL cross-board assignment",
+    "Independent original authoring and rubric QA for 27 applied blueprints; first cover Cambridge P4/P5/P6 and IAL S1/M1",
+    "g≈10 Cambridge P4 vs 9.8 Pearson UK; 9709 P4 no vector notation or restitution; 9709 P6 no explicit CDF vs IAL S2 yes",
+    "Audit and suppress 82 private exact-duplicate groups; block semantic duplicates and per-student repeats",
+    "Do not label Grove Exam short practice as approved full-length mocks; require independent 50/75/100 mark assembly and examiner sign-off",
+    "Preserve per-question whiteboard/photo evidence for examiner across all tiers"
+  ],
+  "next_implementation_handoff": {
+    "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md",
+    "source_commit": "297e723df7f69755e9ccaa0dd76e6921081a405c",
+    "blueprint_count": 27,
+    "route_count": 9,
+    "publication_status": "research_only",
+    "mock_approval_count": 0
   }
 }
