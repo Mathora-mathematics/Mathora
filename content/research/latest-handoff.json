@@ -218,7 +218,7 @@
     "exam_board_filter": "only matching exam board or generic content"
   },
   "latest_dated_brief": "content/research/20261101_2234_cambridge_9709_pearson_9ma0_ial_pure_gates.md",
-  "latest_brief_commit": "39cbc503c21457f6a7052cbe16acbe4c1912d60b",
+  "latest_brief_commit": "c5d50e8d621f136b31804f0b32883d4148591fdb",
   "research_rotation": {
     "deep_dive": [
       "Cambridge 9709 2026–27 v4 and 2028–30 v1 Pure P1/P2/P3",
@@ -775,7 +775,7 @@
   "latest_cycle": {
     "date": "2026-11-01",
     "brief": "content/research/20261101_2234_cambridge_9709_pearson_9ma0_ial_pure_gates.md",
-    "commit": "39cbc503c21457f6a7052cbe16acbe4c1912d60b",
+    "commit": "c5d50e8d621f136b31804f0b32883d4148591fdb",
     "focus": "Cambridge/Pearson pure maths paper and prerequisite gates",
     "original_blueprints": 27,
     "mock_assembly_plans": 9,
