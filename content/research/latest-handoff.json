@@ -1,7 +1,7 @@
 {
-  "version": 8,
+  "version": 9,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove official alignment — Cambridge 9709 applied vs Pearson UK 9MA0 and IAL WST/WME units (1 November 2026)",
+  "title": "MathsGrove official alignment — Cambridge 0580/9709 2028–2030 transition, paper gating and Pure Mathematics (1 November 2026)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -96,6 +96,36 @@
       "qualification": "Further Mathematics 9FM0",
       "url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf",
       "note": "Core Pure plus valid optional pair; Appendix 9 3D Decision 1 vs 4D Decision 2"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "IGCSE Mathematics 0580 2028–2030 version 2",
+      "url": "https://www.cambridgeinternational.org/Images/745681-2028-2030-syllabus.pdf",
+      "note": "Aug 2026 v2, p9 assessment, Core/Extended C1.8 C1.10 E1.10 E2.12 E2.13"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "0580 2028–2030 syllabus update",
+      "url": "https://www.cambridgeinternational.org/Images/763300-2028-2030-syllabus-update.pdf",
+      "note": "Aug 2026 p9 assessment overview revision"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "IGCSE Mathematics 0580 2025–2027",
+      "url": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+      "note": "Prior cohort comparison"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "AS & A Level Mathematics 9709 2028–2030 version 1",
+      "url": "https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf",
+      "note": "P1/P2/P3 objective and route requirements, all-paper calculator/MF19"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "AS & A Level Mathematics 9709 2026–2027",
+      "url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+      "note": "Prior cohort comparison"
     }
   ],
   "first_cycle": [
@@ -144,24 +174,25 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md",
-  "latest_brief_commit": "297e723df7f69755e9ccaa0dd76e6921081a405c",
+  "latest_dated_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
+  "latest_brief_commit": "e9e318f09c5d509239c63102fac95946160a0a7c",
   "research_rotation": {
     "deep_dive": [
-      "Cambridge 9709 P4 Mechanics, P5 Probability & Statistics 1, P6 Probability & Statistics 2",
-      "Pearson UK 9MA0/03 Statistics and Mechanics",
-      "Pearson IAL WST01 S1, WST02 S2, WME01 M1, WME02 M2"
+      "Cambridge IGCSE 0580 2028–2030 version 2: Core P1/P3 and Extended P2/P4",
+      "Cambridge AS & A Level 9709 2028–2030 version 1: Pure P1, P2, P3",
+      "Official Cambridge 0580 August 2026 assessment-overview update; 2025–27 and 2026–27 cohort comparisons"
     ],
     "cross_checked": [
-      "Previous A Level, GCSE/IGCSE and IB/TMUA/Further research briefs",
-      "354 private bank items: 66 approved, 48 inactive drafts, 240 active pilot",
-      "28 private tasks; four task items; no repeated assigned bank IDs or exact-normalised stems",
-      "Previous 492-entry GitHub public editorial inventory; not independently recounted"
+      "Previous 20261101_0433, _0634, _0832 and _1034 research briefs",
+      "360 private.grove_practice_bank rows: 72 approved, 48 inactive drafts, 240 active pilot",
+      "82 exact-normalised duplicate stem groups, zero containing approved",
+      "28 tasks, four assigned private bank items; no per-student exact-stem or bank-ID repetition in those four",
+      "Existing approved Cambridge 0580/9709 topic and skill fingerprints checked to avoid near-identical constructions"
     ],
     "next_deep_dive": [
-      "Cambridge 9709 and 0580 2028–2030 syllabus transition",
-      "Pearson modular IGCSE 4WM unit-level objectives",
-      "IB 2029 cohort filtering and TMUA specimen option-count verification"
+      "Pearson modular International GCSE 4WM1F/H and 4WM2F/H objective gates and mock structure",
+      "IB AA/AI 2029 cohort transition; current 2021–28 vs future syllabus",
+      "TMUA 2026–27 official specimen option counts and Paper 2 logic routing"
     ]
   },
   "verified_objective_gates": {
@@ -246,7 +277,26 @@
       "§3 energy",
       "§4 restitution/impacts",
       "§5 rigid-body statics"
-    ]
+    ],
+    "Cambridge_0580_2028_2030": {
+      "version": "2 (August 2026)",
+      "Core_P1": "noncalculator, 80 marks/90min; C1.10 input bounds only; no C1.8 standard-form calculations",
+      "Core_P3": "calculator, 80 marks/90min; C1.8 standard-form calculations permitted",
+      "Extended_P2": "noncalculator, 100 marks/120min; E2.12 elementary polynomial derivatives; E2.13 composite functions but no composite domain/range",
+      "Extended_P4": "calculator, 100 marks/120min; E1.10 bounds of calculated results"
+    },
+    "Cambridge_9709_2028_2030": {
+      "version": "1 (September 2025)",
+      "P1": "AS/A, 75 marks/110min",
+      "P2": "AS Pure-only, 50 marks/75min, non-carry-forward",
+      "P3": "A Level, 75 marks/110min; 3.7 vectors 3.8 separable ODE 3.9 complex",
+      "A_level_routes": [
+        "P1+P3+P4+P5",
+        "P1+P3+P5+P6"
+      ],
+      "invalid_route": "P4+P6",
+      "calculator": "scientific permitted/expected all papers; MF19"
+    }
   },
   "original_blueprints": [
     {
@@ -437,9 +487,9 @@
     }
   ],
   "coverage_snapshot": {
-    "source": "Supabase nwakgkxytovprrrwyahs private.grove_practice_bank and private.grove_task_items, read-only audit",
-    "private_bank_total": 342,
-    "approved": 54,
+    "source": "Supabase nwakgkxytovprrrwyahs private.grove_practice_bank and private.grove_task_items, read-only 2026-11-01",
+    "private_bank_total": 360,
+    "approved": 72,
     "inactive_drafts": 48,
     "active_pilots": 240,
     "duplicate_normalized_groups": 82,
@@ -463,7 +513,8 @@
       "Public public.question_bank contains 10 demo rows; the production practice bank is private.grove_practice_bank",
       "Current approved IB AI HL Poisson item is valid only for current syllabus, not first assessment 2029",
       "Existing private practice bank has no explicit syllabus version/year, TMUA paper number, or Further optional component field",
-      "Semantic and algebraic near-duplicate audit still pending"
+      "Semantic and algebraic near-duplicate audit still pending",
+      "2026-11-01 latest counts supersede previous 342/54 snapshot; 0580 2028–2030 is now version 2 (August 2026)."
     ]
   },
   "implementation_handoff": {
@@ -492,22 +543,51 @@
       "No independently approved complete timed mocks or verified multi-mark rubric workflow"
     ]
   },
-  "previous_dated_brief": "content/research/20261101_0634_gcse_igcse_linear_modular_alignment.md",
-  "previous_brief_commit": "3febbb491c734806cecc9e82e92d5f554b7a5dde",
+  "previous_dated_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md",
+  "previous_brief_commit": "297e723df7f69755e9ccaa0dd76e6921081a405c",
   "current_research_sources": [
-    "https://www.ibo.org/programmes/diploma-programme/curriculum/mathematics/",
-    "https://www.ibo.org/university-admission/latest-curriculum-updates/dp-mathematics-analysis-and-approaches-updates/",
-    "https://www.ibo.org/university-admission/latest-curriculum-updates/dp-mathematics-applications-and-interpretation-updates/",
-    "https://www.ibo.org/contentassets/5895a05412144fe890312bad52b17044/subject-brief-dp-math-analysis-and-approaches-en.pdf",
-    "https://www.ibo.org/contentassets/5895a05412144fe890312bad52b17044/subject-brief-dp-math-applications-and-interpretations-en.pdf",
-    "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_analysis_en.pdf",
-    "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_application_en.pdf",
-    "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
-    "https://esat-tmua.ac.uk/prepare/",
-    "https://esat-tmua.ac.uk/about-the-tests/tmua-test/",
-    "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
-    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf",
-    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/Teaching%20and%20learning%20materials/Sample_Assessment_Materials_Model_Answers%20_%E2%80%93_Core_Pure_for_A_level_Further_Mathematics.pdf"
+    {
+      "board": "Cambridge International",
+      "qualification": "IGCSE Mathematics 0580 2028–2030 version 2",
+      "url": "https://www.cambridgeinternational.org/Images/745681-2028-2030-syllabus.pdf",
+      "note": "Aug 2026 v2, p9 assessment, Core/Extended C1.8 C1.10 E1.10 E2.12 E2.13"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "0580 2028–2030 syllabus update",
+      "url": "https://www.cambridgeinternational.org/Images/763300-2028-2030-syllabus-update.pdf",
+      "note": "Aug 2026 p9 assessment overview revision"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "IGCSE Mathematics 0580 2025–2027",
+      "url": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+      "note": "Prior cohort comparison"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "AS & A Level Mathematics 9709 2028–2030 version 1",
+      "url": "https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf",
+      "note": "P1/P2/P3 objective and route requirements, all-paper calculator/MF19"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "AS & A Level Mathematics 9709 2026–2027",
+      "url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+      "note": "Prior cohort comparison"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "0580 public specimens",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/past-papers/",
+      "note": "Public examples used for format, not copied"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "9709 public specimens",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/",
+      "note": "Public examples used for format, not copied"
+    }
   ],
   "previous_cycle_original_blueprints": [
     {
@@ -568,24 +648,24 @@
   "latest_cycle": {
     "date": "2026-11-01",
     "phase": "research_only",
-    "blueprint_count": 36,
-    "route_count": 12,
+    "blueprint_count": 21,
+    "route_count": 7,
     "qualifications": [
-      "IB AA SL/HL 2021–28 and 2029 transition",
-      "IB AI SL/HL 2021–28 and 2029 transition",
-      "TMUA P1/P2 2026/27",
-      "Cambridge Further 9231 P2/P3/P4",
-      "Pearson Further 9FM0 Core Pure/FS1/Decision1"
+      "Cambridge 0580 Core P1/P3 2028–2030",
+      "Cambridge 0580 Extended P2/P4 2028–2030",
+      "Cambridge 9709 Pure P1/P2/P3 2028–2030"
     ],
     "major_new_findings": [
-      "IB 2029 published removals demand exam-year-specific routing; approved current AI HL Poisson item is a future-cohort leak risk",
-      "2029 IB paper marks change to 75/75 SL and 100/100/50 HL; IB official public documents conflict on old HL Paper 3 duration",
-      "Pearson 9FM0 3D Decision1 vs 4D Decision2 and Cambridge 9231 AS optional applied route need explicit paper codes",
-      "Production question bank is private schema; 342 rows, 54 approved, 82 repeated-stem groups, no repeats in 4 assigned items"
+      "Official Cambridge 0580 2028–30 syllabus is version 2, August 2026; its update changes assessment overview p.9. Use version 2 rather than cached version 1.",
+      "Cambridge 0580 Core C1.8 standard-form calculations restricted to calculator P3; C1.10 input bounds only, unlike Extended E1.10 bounds on calculated results.",
+      "Cambridge 0580 E2.12 differentiation is elementary polynomial-only; E2.13 excludes finding domains/ranges of composite functions.",
+      "Cambridge 9709 P1+P2 AS Pure-only cannot carry forward to A Level; A Level permits P1+P3+P4+P5 or P1+P3+P5+P6, not P4+P6.",
+      "Scientific calculator/MF19 on all 9709 papers, unlike 0580 noncalculator P1/P2.",
+      "Private bank now 360 rows, 72 approved; 82 exact-normalised duplicate groups, none approved; four assigned items show no repeats."
     ],
     "new_publication": false,
     "approved_timed_mocks_created": 0,
-    "notes": "36 original concepts are editorial blueprints only; private database and student assignments were read but not changed. Mathematical QA corrected a stationary initial Markov example to a 70:30 initial distribution and required equal angular sectors in polar area comparison."
+    "notes": "21 original blueprints, numerical QA checkpoints and four timed-mock assembly plans saved to GitHub; no questions or mocks published. Existing published approvals belong to separate content routine."
   },
   "previous_cycle_handoff_summary": {
     "date": "2026-11-01",
@@ -597,75 +677,87 @@
     "priority": "Block wrong IGCSE assignment by introducing 4MA1 linear vs 4WM modular route_code, explicit 4WM unit_code and tier, plus 2027 formula-sheet metadata; then author/QA 27 new designs. Prioritise uncovered 4WM and 1MA1."
   },
   "live_audit": {
-    "timestamp_local": "2026-11-01 10:34+03:00 (run-start reference; queries performed during this run)",
+    "timestamp_local": "2026-11-01 (read-only checks in current run)",
     "production_table": "private.grove_practice_bank",
-    "bank_total": 354,
-    "approved": 66,
+    "bank_total": 360,
+    "approved": 72,
     "inactive_drafts": 48,
     "active_pilots": 240,
     "exact_normalised_duplicate_groups": 82,
-    "pilot_duplicate_groups": 80,
-    "draft_duplicate_groups": 2,
+    "exact_normalised_involved_rows": 164,
     "approved_duplicate_groups": 0,
     "tasks": 28,
     "task_items": 4,
-    "task_answer_rows": 4,
+    "bank_backed_task_items": 4,
     "per_student_duplicate_bank_ids": 0,
     "per_student_duplicate_exact_stems": 0,
-    "baseline_bank": 240,
-    "baseline_items": 20,
-    "missing_approved_component_coverage": [
-      "Cambridge 9709 P4/P5/P6",
-      "Pearson IAL WST01/WST02/WME01/WME02"
-    ],
-    "caution": "Snapshot only. 82 exact duplicates remain and semantic near-duplicates are unmeasured; baseline-history dedup not proven."
+    "caution": "Snapshot only; exact-normalised whitespace/lowercase matching does not detect semantic near-duplicates. Only four bank-backed assigned items; no general guarantee."
   },
   "latest_research_sources": [
     {
-      "id": "C9709",
-      "title": "Cambridge International AS & A Level Mathematics 9709, 2026–27 syllabus, v3 Feb 2025",
+      "id": "C2028_1",
+      "title": "IGCSE Mathematics 0580 2028–2030 version 2",
+      "url": "https://www.cambridgeinternational.org/Images/745681-2028-2030-syllabus.pdf",
+      "focus": "Aug 2026 v2, p9 assessment, Core/Extended C1.8 C1.10 E1.10 E2.12 E2.13"
+    },
+    {
+      "id": "C2028_2",
+      "title": "0580 2028–2030 syllabus update",
+      "url": "https://www.cambridgeinternational.org/Images/763300-2028-2030-syllabus-update.pdf",
+      "focus": "Aug 2026 p9 assessment overview revision"
+    },
+    {
+      "id": "C2028_3",
+      "title": "IGCSE Mathematics 0580 2025–2027",
+      "url": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+      "focus": "Prior cohort comparison"
+    },
+    {
+      "id": "C2028_4",
+      "title": "AS & A Level Mathematics 9709 2028–2030 version 1",
+      "url": "https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf",
+      "focus": "P1/P2/P3 objective and route requirements, all-paper calculator/MF19"
+    },
+    {
+      "id": "C2028_5",
+      "title": "AS & A Level Mathematics 9709 2026–2027",
       "url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
-      "focus": "pp. 11–16, 31–39, 40–42; P4 §4.1–4.5, P5 §5.1–5.5, P6 §6.1–6.5"
+      "focus": "Prior cohort comparison"
     },
     {
-      "id": "C9709samples",
-      "title": "Cambridge 9709 official specimen/past paper hub (format only)",
+      "id": "C2028_6",
+      "title": "0580 public specimens",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/past-papers/",
+      "focus": "Public examples used for format, not copied"
+    },
+    {
+      "id": "C2028_7",
+      "title": "9709 public specimens",
       "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/",
-      "focus": "Question part structure, marks, working-space conventions; March 2026 accessible layout change"
-    },
-    {
-      "id": "P9MA0",
-      "title": "Pearson Edexcel UK A Level Mathematics 9MA0, specification Issue 4 (Feb 2020)",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf",
-      "focus": "Paper 3 Statistics §§1–5, Mechanics §§6–9, p. 35–39"
-    },
-    {
-      "id": "PIAL",
-      "title": "Pearson Edexcel International A Level Mathematics/Further Mathematics/Pure Mathematics, Issue 3 Apr 2019",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
-      "focus": "IAL units M1 pp. 44–46, M2 pp. 47–49, S1 pp. 53–56, S2 pp. 57–59"
-    },
-    {
-      "id": "PIALsamples",
-      "title": "Pearson Edexcel IAL official Sample Assessment Materials Issue 3",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/International-A-Level-Maths-SAMs1.pdf",
-      "focus": "90-minute 75-mark unit format; show working, mark allocations, 3-s.f. conventions"
+      "focus": "Public examples used for format, not copied"
     }
   ],
   "implementation_priority": [
-    "Fail-closed paper/unit and syllabus-year routing; no generic A_LEVEL cross-board assignment",
-    "Independent original authoring and rubric QA for 27 applied blueprints; first cover Cambridge P4/P5/P6 and IAL S1/M1",
-    "g≈10 Cambridge P4 vs 9.8 Pearson UK; 9709 P4 no vector notation or restitution; 9709 P6 no explicit CDF vs IAL S2 yes",
-    "Audit and suppress 82 private exact-duplicate groups; block semantic duplicates and per-student repeats",
-    "Do not label Grove Exam short practice as approved full-length mocks; require independent 50/75/100 mark assembly and examiner sign-off",
-    "Preserve per-question whiteboard/photo evidence for examiner across all tiers"
+    "Fail-closed exam-year and syllabus-version routing; Cambridge 0580 2028–30 v2 (Aug 2026), 9709 2028–30 v1, retain 2027 specifications for earlier cohorts",
+    "Enforce 0580 C1.8 standard-form calculations only on Core P3, C1.10 input bounds vs E1.10 calculated bounds, Extended E2.12 elementary derivatives and E2.13 composite-function restrictions",
+    "Enforce 9709 P2 AS Pure-only non-carry-forward, P3 A-Level-only; reject P4+P6 combination; all 9709 papers calculator+MF19",
+    "Independently author and review 21 new tiered blueprints, with complete solutions, method-mark rubrics, student whiteboard/photo evidence and unique semantic fingerprints",
+    "Resolve 82 pilot/draft exact-duplicate groups and add semantic/historical student assignment de-duplication",
+    "Treat Grove Exam short practice separately from examiner-approved 80/100/75/50-mark full-length mocks; require full paper sign-off and timer/lockout tests"
   ],
   "next_implementation_handoff": {
-    "source_brief": "content/research/20261101_1034_cambridge_9709_pearson_applied_routes.md",
-    "source_commit": "297e723df7f69755e9ccaa0dd76e6921081a405c",
-    "blueprint_count": 27,
-    "route_count": 9,
+    "source_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
+    "source_commit": "e9e318f09c5d509239c63102fac95946160a0a7c",
+    "blueprint_count": 21,
+    "route_count": 7,
     "publication_status": "research_only",
-    "mock_approval_count": 0
+    "mock_approval_count": 0,
+    "priority_gates": [
+      "0580 exam_year/version/paper/calculator/formula-sheet",
+      "9709 P2 AS-only vs P3 A Level",
+      "0580 Core bounds vs Extended bounds",
+      "9709 all-paper scientific calculator and MF19",
+      "independent multi-mark QA and semantic non-repeat"
+    ]
   }
 }
