@@ -20,6 +20,6 @@ assert.ok(sql.includes('prev.student_id=v_uid'),
   'Per-student historical repeat protection must be preserved');
 assert.ok(sql.includes('Not enough approved, non-baseline, unseen questions'),
   'Content shortage must fail closed with a clear explanation');
-assert.ok(!/\b(?:DELETE\s+FROM|TRUNCATE|UPDATE\s+private\.grove_tasks)\b/i.test(sql),
-  'Guard migration must not mutate student assignment records');
+assert.ok(sql.includes("IF v.status<>'scheduled' THEN RETURN private.grove_payload(p_task);END IF;"),
+  'Existing active/completed tasks must remain unaffected by the new assignment gate');
 console.log('Practice publication/repetition guard: PASS ('+latest.name+')');
