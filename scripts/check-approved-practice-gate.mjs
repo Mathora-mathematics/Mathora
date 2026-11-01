@@ -26,11 +26,11 @@ const boardMigrations=migrations.map(name=>({name,sql:readFileSync('supabase/mig
   .filter(x=>/CREATE OR REPLACE FUNCTION\s+private\.grove_board_compatible\s*\(/i.test(x.sql));
 assert.ok(boardMigrations.length>0,'Missing board-compatibility migration');
 const board=boardMigrations.at(-1);
-assert.ok(board.sql.includes("IF b LIKE '%wma11%' THEN RETURN s LIKE '%wma11%';END IF;"),
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%wma11%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%wma11%';\s*END IF;/i,
   'IAL P1 items must match WMA11 specifically, not every IAL unit');
 assert.ok(!board.sql.includes("IF b LIKE '%wma11%' OR b LIKE '%ial%'"),
   'Broad IAL match must not override the exact P1 guard');
-assert.ok(board.sql.includes("IF b LIKE '%9ma0%' THEN RETURN s LIKE '%9ma0%';END IF;"),
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%9ma0%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%9ma0%';\s*END IF;/i,
   'UK GCE route must remain strict');
 assert.ok(board.sql.includes("IF b LIKE '%0580%' THEN"),
   'Cambridge 0580 items must be guarded by their subject code');
