@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261101-1255",
-  "status": "private_draft_awaiting_ci_and_activation",
+  "status": "published_to_private_supabase_bank",
   "record_count": 9,
   "assessment_kind": "Original four-option Grove Daily, Weekly and Exam practice; NOT complete timed mocks",
   "privacy": "Public GitHub contains only non-answer metadata; full prompts, choices, keys, solutions, misconception and marking guidance remain in private Supabase.",
@@ -129,5 +129,15 @@
       "syllabus_objective": "Cambridge 9709 P3 §3.7 (2026–27), scalar product and 3D lines; A Level P3 only",
       "source_url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
     }
-  ]
+  ],
+  "publication": {
+    "approved_active_count": 9,
+    "verified_at": "2026-11-01",
+    "pull_request": "https://github.com/Mathora-mathematics/Mathora/pull/26",
+    "pr_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41295565734",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41295620699",
+    "deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41295620682",
+    "pages": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41295620259",
+    "student_mutations": 0
+  }
 }
