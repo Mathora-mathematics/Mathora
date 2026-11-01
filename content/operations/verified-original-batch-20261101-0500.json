@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "batch": "20261101-0500",
+  "status": "private_draft_awaiting_ci_and_activation",
+  "assessment_kind": "Grove Daily/Weekly/Exam original formative MCQ practice; NOT complete timed mocks",
+  "record_count": 9,
+  "private_fields": "Prompts, four choices, answer keys, solutions, misconceptions and tutor guidance are stored only in private Supabase; never in public GitHub.",
+  "verification": [
+    "Independent SymPy exact/numeric mathematics; independent JavaScript calculations",
+    "Private four-option one-key, TeX delimiter, worked solution, tutor guidance and source checks",
+    "All 321 previous bank items and four assigned snapshots screened for exact, normalised, token and character-gram near-duplicates",
+    "Academic route code guard required before approval; existing student data unchanged",
+    "CI and Pages deployment must succeed before approval and activation"
+  ],
+  "research_brief": "content/research/20261101_0433_cambridge_9709_pearson_9MA0_IAL_alignment.md",
+  "questions": [
+    {
+      "id": "45a54f65-ce3f-42f0-9e05-64d00682330b",
+      "provenance": "mg-original-20261101-0500-C9709-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Cambridge 9709",
+      "programme_scope": "daily",
+      "topic": "Circular measure",
+      "syllabus_objective": "P1 §1.4",
+      "expected_seconds": 200,
+      "source_url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "3798db13-e935-4f81-abbd-463661c929d4",
+      "provenance": "mg-original-20261101-0500-C9709-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Cambridge 9709",
+      "programme_scope": "weekly",
+      "topic": "Geometric progressions",
+      "syllabus_objective": "P1 §1.6",
+      "expected_seconds": 490,
+      "source_url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "71752913-a2ce-4929-a80f-71f4918660ba",
+      "provenance": "mg-original-20261101-0500-C9709-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Cambridge 9709",
+      "programme_scope": "exam",
+      "topic": "Definite integration",
+      "syllabus_objective": "P1 §1.8",
+      "expected_seconds": 750,
+      "source_url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "2b0678f2-49fd-40dc-9f0a-f6648de1d3b5",
+      "provenance": "mg-original-20261101-0500-P9MA0-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "programme_scope": "daily",
+      "topic": "Differentiation",
+      "syllabus_objective": "Pure §7",
+      "expected_seconds": 230,
+      "source_url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf"
+    },
+    {
+      "id": "6132f9a8-2a3c-4b22-b255-e8d0525c9f7e",
+      "provenance": "mg-original-20261101-0500-P9MA0-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "programme_scope": "weekly",
+      "topic": "Numerical methods",
+      "syllabus_objective": "Pure §§7,9",
+      "expected_seconds": 510,
+      "source_url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf"
+    },
+    {
+      "id": "ee165a1a-2208-47a1-99ef-5f911c8c78f1",
+      "provenance": "mg-original-20261101-0500-P9MA0-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "programme_scope": "exam",
+      "topic": "Calculus modelling",
+      "syllabus_objective": "Pure §§7–8",
+      "expected_seconds": 810,
+      "source_url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf"
+    },
+    {
+      "id": "d41a84aa-7216-4d4f-bce7-2c67238886c9",
+      "provenance": "mg-original-20261101-0500-IALP1-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "daily",
+      "topic": "Coordinate geometry",
+      "syllabus_objective": "WMA11/01 straight lines",
+      "expected_seconds": 250,
+      "source_url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+    },
+    {
+      "id": "7a52d85e-1d77-416d-baa5-2398a4d2c742",
+      "provenance": "mg-original-20261101-0500-IALP1-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "weekly",
+      "topic": "Triangle trigonometry",
+      "syllabus_objective": "WMA11/01 §3.1",
+      "expected_seconds": 550,
+      "source_url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+    },
+    {
+      "id": "53f97ded-d3b7-41df-8445-a66efd63713c",
+      "provenance": "mg-original-20261101-0500-IALP1-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "exam",
+      "topic": "Differentiation and optimisation",
+      "syllabus_objective": "WMA11/01 differentiation",
+      "expected_seconds": 760,
+      "source_url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+    }
+  ]
+}
