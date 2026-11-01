@@ -145,7 +145,7 @@
     "exam_board_filter": "only matching exam board or generic content"
   },
   "latest_dated_brief": "content/research/20261101_0832_ib_2029_tmua_further_alignment.md",
-  "latest_brief_commit": "9ef1714fc9544d48f462dcb65d70c4a0729ccdc7",
+  "latest_brief_commit": "c823faba0155b2421626ad12efbc6767dfa6e254",
   "research_rotation": {
     "deep_dive": [
       "IB AA/AI current 2021–28 vs revised 2029 objective and paper rules",
@@ -228,7 +228,7 @@
     {
       "route": "IB_AI_HL_2021_2028",
       "daily": "column-stochastic matrix convention",
-      "weekly": "two-state transition matrix after two steps",
+      "weekly": "column-stochastic transition matrix [[.8,.3],[.2,.7]] with nonstationary 70:30 start, then 65:35 and 62.5:37.5",
       "exam": "Markov equilibrium and sensitivity to policy change",
       "status": "editorial_blueprint_only",
       "source_brief": "content/research/20261101_0832_ib_2029_tmua_further_alignment.md"
@@ -277,7 +277,7 @@
       "route": "Pearson_9FM0_CorePure",
       "daily": "polar-to-Cartesian circle",
       "weekly": "complete cardioid area 6π",
-      "exam": "polar sensor footprint area vs circle",
+      "exam": "polar sensor footprint area vs radius-2 circular footprint over identical angular sector",
       "status": "editorial_blueprint_only",
       "source_brief": "content/research/20261101_0832_ib_2029_tmua_further_alignment.md"
     },
@@ -447,7 +447,7 @@
     ],
     "new_publication": false,
     "approved_timed_mocks_created": 0,
-    "notes": "36 original concepts are editorial blueprints only; private database and student assignments were read but not changed."
+    "notes": "36 original concepts are editorial blueprints only; private database and student assignments were read but not changed. Mathematical QA corrected a stationary initial Markov example to a 70:30 initial distribution and required equal angular sectors in polar area comparison."
   },
   "previous_cycle_handoff_summary": {
     "date": "2026-11-01",
