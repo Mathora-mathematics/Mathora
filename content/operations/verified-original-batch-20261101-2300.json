@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "batch": "20261101-2300",
+  "status": "private_drafts_pending_ci_and_publication",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Public manifest includes only IDs and routing metadata; private question prompts, choices, answer keys, explanations and tutor guidance remain in Supabase.",
+  "research_brief": "content/research/20261101_2234_cambridge_9709_pearson_9ma0_ial_pure_gates.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "four_distinct_options": 9,
+    "one_key_per_question": 9,
+    "worked_solutions": 9,
+    "misconception_and_marking_guidance": 9,
+    "katex_wrapped": 9,
+    "prior_practice": 405,
+    "prior_baseline": 240,
+    "prior_assigned": 4,
+    "prior_baseline_assigned": 20,
+    "compared_per_item": 669,
+    "within_batch_pairs": 36,
+    "exact_duplicates": 0,
+    "near_duplicates_at_065": 0,
+    "max_prior_token_jaccard": 0.290323,
+    "max_within_batch_jaccard": 0.258065,
+    "student_mutations": 0
+  },
+  "sources": {
+    "cambridge_9709": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+    "pearson_ial": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
+    "cambridge_9231": "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf"
+  },
+  "notes": [
+    "New Cambridge 9231 selection guard is required: previous function erroneously accepted a Cambridge 9709 student-board string for a 9231 item.",
+    "Cambridge 9709 P3 questions are A2; WMA11 P1 questions are AS unit-specific; Cambridge 9231 questions are Further Pure 1.",
+    "Do not activate until CI, merged-main regression and deployment succeed and the database routing migration passes.",
+    "These are four-option practice questions, not complete authentic mock examinations. Human examiner marking is preserved."
+  ],
+  "questions": [
+    {
+      "id": "a62efad8-302d-4bc1-9756-f394ba41dcf9",
+      "provenance": "mg-original-20261101-2300-9709-A2-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "exam_board": "Cambridge 9709",
+      "programme_scope": "daily",
+      "topic": "Implicit differentiation",
+      "expected_seconds": 260,
+      "syllabus_objective": "Cambridge 9709 P3 §3.4"
+    },
+    {
+      "id": "e1d472d2-8b4e-4824-b430-4671635f1844",
+      "provenance": "mg-original-20261101-2300-9709-A2-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "exam_board": "Cambridge 9709",
+      "programme_scope": "weekly",
+      "topic": "Partial fractions",
+      "expected_seconds": 540,
+      "syllabus_objective": "Cambridge 9709 P3 §3.1"
+    },
+    {
+      "id": "763fe114-332b-446b-a2a3-70f11c07fab5",
+      "provenance": "mg-original-20261101-2300-9709-A2-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "exam_board": "Cambridge 9709",
+      "programme_scope": "exam",
+      "topic": "Parametric differentiation",
+      "expected_seconds": 660,
+      "syllabus_objective": "Cambridge 9709 P3 §3.4"
+    },
+    {
+      "id": "9b722ba2-b529-4432-8045-5e27d2e166cf",
+      "provenance": "mg-original-20261101-2300-IAL-P1-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "daily",
+      "topic": "Differentiation of powers",
+      "expected_seconds": 280,
+      "syllabus_objective": "Pearson IAL WMA11 P1 §4"
+    },
+    {
+      "id": "98be6e84-c1c1-4509-9fda-02f41f796365",
+      "provenance": "mg-original-20261101-2300-IAL-P1-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "weekly",
+      "topic": "Coordinate geometry",
+      "expected_seconds": 510,
+      "syllabus_objective": "Pearson IAL WMA11 P1 §2"
+    },
+    {
+      "id": "4269d15c-71fc-4716-9942-1fc5c1c78360",
+      "provenance": "mg-original-20261101-2300-IAL-P1-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "exam",
+      "topic": "Cubic optimisation",
+      "expected_seconds": 740,
+      "syllabus_objective": "Pearson IAL WMA11 P1 §4"
+    },
+    {
+      "id": "9192b773-67e9-459f-8a60-ac545b2f97ad",
+      "provenance": "mg-original-20261101-2300-9231-P1-D",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "daily",
+      "topic": "Matrix inverse",
+      "expected_seconds": 260,
+      "syllabus_objective": "Cambridge Further 9231 P1 §1.4"
+    },
+    {
+      "id": "4c61efa9-3ddd-4055-bb43-b4417c37a9af",
+      "provenance": "mg-original-20261101-2300-9231-P1-W",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "weekly",
+      "topic": "Proof by induction",
+      "expected_seconds": 570,
+      "syllabus_objective": "Cambridge Further 9231 P1 §1.7"
+    },
+    {
+      "id": "5e244c2f-89b7-4e63-9038-38e0373f3ff6",
+      "provenance": "mg-original-20261101-2300-9231-P1-E",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "exam",
+      "topic": "Polar coordinates",
+      "expected_seconds": 660,
+      "syllabus_objective": "Cambridge Further 9231 P1 §1.5"
+    }
+  ]
+}
