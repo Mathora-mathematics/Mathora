@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "date": "2026-11-01",
+  "batch": "0300",
+  "status": "private_draft_awaiting_ci_and_activation",
+  "record_count": 9,
+  "assessment_kind": "Grove Daily/Weekly/Exam practice items; NOT full mocks or official specimen papers",
+  "source_brief": "content/research/20261101_0226_ib_tmua_further_alignment.md",
+  "privacy": "Private prompts, four choices, correct answers, explanations and tutor guidance are held only in Supabase; no answers in this public manifest.",
+  "independent_validation": [
+    "SymPy independent exact algebra/matrix/fraction checks for Further Maths and TMUA numerical questions",
+    "Boolean quantifier equivalence over all truth assignments to a finite test domain",
+    "Four unique MCQ choices and exactly one keyed option per private record",
+    "Full worked solution, misconceptions, tutor guidance, KaTeX delimiters and syllabus references",
+    "Bank-wide and previously assigned normalised stem comparison; token-Jaccard near-duplicate screen",
+    "CI regression, GitHub Pages deployment and post-activation selection check required"
+  ],
+  "sources": [
+    "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf",
+    "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf"
+  ],
+  "questions": [
+    {
+      "id": "1ea275c4-61a4-4f0b-aade-9cdc9b98fd34",
+      "provenance": "mg-original-20261101-0300-C9231-D",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "daily",
+      "topic": "Polynomial roots",
+      "skill": "Vieta pairwise root sum",
+      "difficulty": 2,
+      "expected_seconds": 240,
+      "syllabus_objective": "9231 2026–27 P1 §1.1"
+    },
+    {
+      "id": "968e518c-1f7d-49bb-a40d-9c919b3e8471",
+      "provenance": "mg-original-20261101-0300-C9231-E",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "exam",
+      "topic": "Matrices",
+      "skill": "Composition and signed area",
+      "difficulty": 4,
+      "expected_seconds": 680,
+      "syllabus_objective": "9231 2026–27 P1 §1.4"
+    },
+    {
+      "id": "8e879cc6-f8db-43c0-8d06-60ef958a2c29",
+      "provenance": "mg-original-20261101-0300-C9231-W",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Cambridge 9231",
+      "programme_scope": "weekly",
+      "topic": "Series",
+      "skill": "Telescoping series with boundaries",
+      "difficulty": 3,
+      "expected_seconds": 510,
+      "syllabus_objective": "9231 2026–27 P1 §1.3"
+    },
+    {
+      "id": "58e68c0c-f730-4f72-a172-a79ec0411c03",
+      "provenance": "mg-original-20261101-0300-P9FM0-D",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Pearson Edexcel 9FM0 Core Pure",
+      "programme_scope": "daily",
+      "topic": "Complex numbers",
+      "skill": "Conjugate quadratic factor",
+      "difficulty": 2,
+      "expected_seconds": 240,
+      "syllabus_objective": "9FM0 Core Pure §2.3 (issue 4)"
+    },
+    {
+      "id": "f363fd34-bb35-4925-b724-ab7d7cd307ad",
+      "provenance": "mg-original-20261101-0300-P9FM0-E",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Pearson Edexcel 9FM0 Core Pure",
+      "programme_scope": "exam",
+      "topic": "Complex roots and polynomials",
+      "skill": "Quartic root coefficient constraints",
+      "difficulty": 5,
+      "expected_seconds": 760,
+      "syllabus_objective": "9FM0 Core Pure §§2.3,4.1 (issue 4)"
+    },
+    {
+      "id": "0a9ac18f-c305-42e6-997a-00106f905218",
+      "provenance": "mg-original-20261101-0300-P9FM0-W",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Pearson Edexcel 9FM0 Core Pure",
+      "programme_scope": "weekly",
+      "topic": "Matrices",
+      "skill": "Reflection/shear order",
+      "difficulty": 3,
+      "expected_seconds": 510,
+      "syllabus_objective": "9FM0 Core Pure §§3.3–3.6 (issue 4)"
+    },
+    {
+      "id": "97f3428c-cee8-48c4-ae4f-00c44692b0eb",
+      "provenance": "mg-original-20261101-0300-TMUA-D",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "daily",
+      "topic": "Logic",
+      "skill": "Negation of universal quantifier",
+      "difficulty": 2,
+      "expected_seconds": 200,
+      "syllabus_objective": "TMUA 2026–27 P2 Arg4"
+    },
+    {
+      "id": "48092cb3-0fc3-44f2-9253-99bf46b69e48",
+      "provenance": "mg-original-20261101-0300-TMUA-E",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "exam",
+      "topic": "Proof and error spotting",
+      "skill": "Invalid cancellation",
+      "difficulty": 4,
+      "expected_seconds": 600,
+      "syllabus_objective": "TMUA 2026–27 P2 Prf1/Err1"
+    },
+    {
+      "id": "978071be-18e9-4fe5-9812-dd1482dde758",
+      "provenance": "mg-original-20261101-0300-TMUA-W",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "weekly",
+      "topic": "Quadratics",
+      "skill": "Tangency and root sign",
+      "difficulty": 3,
+      "expected_seconds": 430,
+      "syllabus_objective": "TMUA 2026–27 P1 MM1.3/MM8.7"
+    }
+  ]
+}
