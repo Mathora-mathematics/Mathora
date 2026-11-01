@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261101-0500",
-  "status": "private_draft_awaiting_ci_and_activation",
+  "status": "published_to_private_supabase_bank",
   "assessment_kind": "Grove Daily/Weekly/Exam original formative MCQ practice; NOT complete timed mocks",
   "record_count": 9,
   "private_fields": "Prompts, four choices, answer keys, solutions, misconceptions and tutor guidance are stored only in private Supabase; never in public GitHub.",
@@ -122,5 +122,25 @@
       "expected_seconds": 760,
       "source_url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
     }
-  ]
+  ],
+  "activated_at_utc": "2026-11-01T02:03:20.081723Z",
+  "publication": {
+    "approved_and_active": 9,
+    "live_total": 330,
+    "live_approved_active": 42,
+    "live_active_pilot": 240,
+    "live_inactive_drafts": 48,
+    "existing_task_items_unchanged": 4,
+    "existing_tasks_unchanged": 28,
+    "assigned_new_items": 0,
+    "selection_matches": 9,
+    "cross_route_matches": 0,
+    "private_answer_keys_only": true,
+    "github_pr": 19,
+    "merge_sha": "0ba9295be8197396674e466358c2692d1294599a",
+    "ci_pr_run": 41263494492,
+    "ci_main_run": 41263515623,
+    "website_deploy_run": 41263515648,
+    "pages_build_run": 41263515039
+  }
 }
