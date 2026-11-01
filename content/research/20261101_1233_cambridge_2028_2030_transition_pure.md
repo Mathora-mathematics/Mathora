@@ -1,0 +1,98 @@
+# MathsGrove official syllabus research — Cambridge 2028–2030 transition, Core/Extended and Pure routing
+
+**Date:** 2026-11-01, Asia/Kuwait · **Rotation 7** · **Editorial research only.** Deep focus: 0580 Core and Extended across non-calculator/calculator components; 9709 Pure Mathematics 1, 2 and 3 across AS/A Level routes. Prior rotations cover AQA/Pearson GCSE, Pearson/Cambridge IGCSE, UK/IAL A Level, Further Maths, IB AA/AI SL/HL and TMUA; these are not re-audited as fresh specifications here.
+
+## Source hierarchy and version-critical finding
+
+The official Cambridge qualification pages select syllabuses by **year of examination**, not by the student's year group. **0580 2028–2030 is version 2 (August 2026)**; its one-page official update explicitly says the assessment overview on p.9 changed. The **2028–2030 9709 version 1** and 0580 version 2 both state that no significant changes affect teaching. This does **not** mean that the older 2025–27 and 2026–27 documents should be silently replaced for students sitting earlier years. Record syllabus code, year, version, tier, component, calculator mode and formula-sheet regime on each assignment. [S1–S5]
+
+**0580 2028–2030 assessment (version 2):** Core P1 non-calculator 90 min/80 marks and P3 calculator 90 min/80 marks, 50% each; Extended P2 non-calculator 120 min/100 marks and P4 calculator 120 min/100 marks, 50% each. Core grades C–G; Extended A*–E. The list of formulas appears on page 2, but does not provide every required formula. Approximate AO2 share is 30–40% Core and 50–60% Extended. The 2025–27 syllabus has the same basic non-calculator/calculator split. [S1,S3]
+
+**9709 2028–2030 assessment:** P1 110 min/75 marks, P2 75 min/50 marks, P3 110 min/75 marks, P4/P5/P6 75 min/50 marks. **P1+P2 is AS Pure-only and cannot be carried forward to A Level.** A Level routes are P1+P3+P4+P5 or P1+P3+P5+P6; P4+P6 is not an allowed combination. Scientific calculators and MF19 are provided/expected for all 9709 papers; a short non-calculator challenge may be used as practice but must not be labelled an authentic 9709 exam condition. [S4,S5]
+
+**Important objective-level traps from official 0580 text:** Core C1.8 permits calculations in standard form **only on P3**; Core C1.10 asks for bounds of measured input values but explicitly **excludes bounds on calculated results**, while Extended E1.10 includes calculated-result bounds. Extended E2.12 differentiates polynomials with nonnegative integer exponents (not general product/quotient/chain rules). Extended E2.13 includes inverse and composite functions, but **does not expect domains/ranges of composite functions**. Extended E2.6 excludes linear programming. [S1 pp.14,34,39–42]
+
+**Important objective-level traps from official 9709 text:** P1 §1.2 includes domain/range/inverse/composition and valid composition domains; §1.7 includes the chain rule and related rates. P2 §2.1 polynomial division/factor theorem, §2.2 logarithmic models, §2.6 root iteration. P3 §§3.7–3.9 adds 2D/3D vectors, separable first-order differential equations and complex numbers. P2 §2.5 does **not** require the general integration-by-substitution method. P1 §1.7 excludes inflexion points. [S4 pp.19–30]
+
+## Board/qualification comparisons that the implementation must retain
+
+| Dimension | Cambridge 0580 | Cambridge 9709 | Other-board guard from earlier verified rotations |
+|---|---|---|---|
+| Paper calculator | P1/P2 prohibited, P3/P4 scientific calculator required | Scientific calculator permitted/expected in every component | Pearson 4MA1 linear permits calculators in both papers; AQA GCSE 8300 P1 is non-calculator, P2/P3 calculator. |
+| Higher-tier calculus | E2.12 elementary polynomial differentiation, **no integration** | P1 integration/differentiation, P3 advanced methods | AQA/Pearson UK GCSE do not have IGCSE-style elementary differentiation. |
+| Formulae | Formula list on p.2, not exhaustive | MF19 for all components | Use exact board/year-specific provision; do not globally show MF19. |
+| Route | Core P1+P3 or Extended P2+P4 | P1+P2 AS-only; P1+P3+P4+P5 or P1+P3+P5+P6 A Level | Pearson IAL is unitised, not Cambridge P1–P6; IB AA/AI and TMUA require independent routing. |
+| Assessment | 0580 structured/unstructured, 80/100 marks, tier-specific AO2 | P1/P3 75 marks, P2/P4/P5/P6 50; multi-part written | Existing single-mark MCQ task scoring is insufficient for full method marks and verified timed mocks. |
+
+## Existing work and live assignment/duplication audit (read-only)
+
+Connected MathsGrove Supabase project **nwakgkxytovprrrwyahs**, private.grove_practice_bank and private.grove_tasks / private.grove_task_items, checked on 2026-11-01:
+- **360 private items**: **72 approved active**, **48 inactive draft**, **240 active pilot**. This is **six more approved** than previous 354/66 audit; not six newly authored by this research run.
+- **82 exact-normalised duplicate-stem groups / 164 involved rows**, none containing approved items. Exact-normalised check uses lower-case, trim and collapsed whitespace; it **does not** detect semantic paraphrases.
+- **28 tasks**, **4 bank-backed assigned task items**; **zero** repeated bank IDs per student and **zero** repeated normalised assigned stems per student among these four. Small sample is not a guarantee against future repeats.
+- Approved Cambridge 0580 Core topics already cover median/range, experimental probability, two-stage probability, enlargement and comparative data. Approved Extended topics include fractional indices, standard form, quadratic inequalities, sequential probability and line/circle intersections. Approved 9709 AS P1 topics include binomial coefficients, circle tangents, quadratic modelling, radians, geometric series and signed integrals. New seeds deliberately pivot to **bounds, algebraic restrictions, frustum modelling, P2 and P3-only topics** rather than cloning these constructions.
+- Reviewed prior research drafts: 20261101_0433 (9709/Pearson UK/IAL), 20261101_0634 (GCSE/IGCSE linear/modular), 20261101_0832 (IB/TMUA/Further), 20261101_1034 (applied 9709/Pearson). In particular, a prior Pearson 4MA1 rectangle-area bounds design and Pearson modular function-composition design were **not reused** in this cycle; Extended speed-interval bounds and rational-function exclusions are distinct.
+
+**Repetition gate for content routine:** query *all* private bank rows including inactive drafts and pilots, and *all* assigned snapshots before inserting or activating. Reject exact-normalised and near-semantic repeats; fingerprint concept+method+context+data+target result; reject reworded copies even when answer or unit changes. Store per-student historical fingerprint (not only bank ID), enforce unique question IDs and stem hashes across scheduling windows, and check question-bank/assignment race conditions.
+
+## 21 original question blueprints — 7 routes × 3 tiers
+
+**These are original editorial construction plans, not finished questions, approved student items, board-endorsed questions or approved timed mocks.** Numerical checks below were independently recalculated (symbolic/numerical where applicable). Marks and time estimates are editorial targets, not board mark schemes. Each Weekly design must be expanded to multiple linked subparts with working; each Exam design is a **reasoning-rich practice item**, not a complete mock. For final authoring provide a precise student-facing prompt, solution, misconception-trigger feedback, rubric, accessible notation, and collision check.
+
+| # | Route | Exact objective | Grove Daily: short targeted | Grove Weekly: linked multi-step | Grove Exam: reasoning-rich practice | Misconceptions / gates |
+|---:|---|---|---|---|---|---|
+| 1 | **0580 Core / P1 non-calculator** | C1.10; C2.5; C5.3 | A shelf length is recorded as 7.4 cm to nearest 0.1 cm. State 7.35 ≤ L < 7.45 and explain why upper endpoint is excluded. 2–3 min; 2 marks. | A packaging strip has three equal sections each x+4 cm; total length 51 cm. Form 3(x+4)=51, solve x=13, and check by substitution. 6–8 min; 5 marks. | A 90° circular garden sector has radius 8 m. Obtain exact area 16π m² and complete perimeter 16+4π m, then decide whether a 28 m edging roll suffices without a calculator, justifying using π>3. 9–12 min; 8 marks. | C1.10 Core bounds apply to given rounded measurements, NOT bounds of derived results. No calculator; exact π, no premature decimal. |
+| 2 | **0580 Core / P3 calculator** | C1.8; C5.4; C1.4 | Calculate (2.4×10^5)(3×10^-2) in standard form: 7.2×10^3. This is explicitly a Core Paper 3 calculation. 2–3 min; 2 marks. | A cylindrical storage tube has internal radius 5 cm and height 8 cm. Find its capacity 200π cm³ ≈ 628.3 cm³; compare with a 600 cm³ label and quantify the margin. 7–9 min; 6 marks. | A conical mould has radius 4 cm and vertical height 9 cm. A recipe fills 80% of its *volume*, not 80% of its height. Find 48π cm³ total and 38.4π cm³ ≈120.64 cm³ of mixture; convert to litres and explain why scaling the height by 0.8 is invalid. 10–13 min; 8 marks. | Standard form calculations Core C1.8 only P3; volume fraction ≠ linear-height fraction; capacity conversion 1000 cm³=1 L. |
+| 3 | **0580 Extended / P2 non-calculator** | E2.13; E2.3; E2.12 | For f(x)=5/(x−4), give its domain x≠4 and range y≠0; justify each exclusion. 3–4 min; 3 marks. | Combine 1/(x−2)+2/(x+1) into 3(x−1)/[(x−2)(x+1)] and state x≠2,−1. Explain why cancelling x−1 is invalid. 7–10 min; 7 marks. | A cubic design profile is f(x)=x³−6x²+9x+1 for 0≤x≤4. Differentiate, find stationary x=1 and x=3; classify max (1,5) and min (3,1) and compare with endpoints before giving a global maximum. 11–14 min; 10 marks. | E2.12 allows derivatives of polynomial terms with nonnegative integer powers; stationary y-values are not roots; for global extrema check endpoints. No calculator. |
+| 4 | **0580 Extended / P4 calculator** | E6.2; E1.10; E5.4 | An observer is 35 m horizontally from a mast and measures elevation 28°. Calculate mast height 35tan28°≈18.61 m, identifying opposite/adjacent. 3–4 min; 3 marks. | A cyclist covers 1.45 km (nearest 0.01 km) in 3.2 min (nearest 0.1 min). Find lower/upper bounds on average speed in km/h: 60(1.445/3.25)≈26.677 and 60(1.455/3.15)≈27.714. State strict upper-bound convention. 8–10 min; 8 marks. | An original conical-frustum tank has vertical height 8 cm, lower radius 6 cm and upper radius 3 cm. Find volume 168π cm³≈527.79 cm³ using valid frustum geometry, then determine material required for 12 identical tanks in litres. Require a labelled section diagram and reasonableness check against enclosing cylinder. 11–15 min; 10 marks. | Core C1.10 does NOT include calculated-result bounds; Extended E1.10 does. Frustum formula must be derived or supplied as appropriate; no assumption that slant height equals vertical height. |
+| 5 | **9709 P1 Pure Mathematics 1 / AS or A** | §1.5; §1.7; §1.1 | Solve sinθ=1/2 for 0°≤θ≤360° and give θ=30°,150°. State why a single inverse-sine value is incomplete. 3–4 min; 3 marks. | A spherical balloon has radius increasing at 0.5 cm/s. At r=3 cm, use A=4πr² and the chain rule to show dA/dt=12π cm²/s; explain that this is an instantaneous rate. 8–10 min; 7 marks. | A line y=2x+k meets the parabola y=x²−4x+7. Eliminate y and classify the number of intersections by k. Show the tangency condition k=−2 and point (3,4), and explain discriminant zero geometrically. 11–14 min; 10 marks. | P1 chain rule and discriminant within scope; tangent-to-parabola not the existing circle-tangent stem. Scientific calculator allowed; MF19 supplied. |
+| 6 | **9709 P2 Pure Mathematics 2 / AS-only non-carry-forward** | §2.1; §2.2; §2.6 | For f(x)=2x³−5x+7, find remainder on division by x−2 as f(2)=13. 2–3 min; 2 marks. | An independently invented sensor model has output y=ke^(at), with y(0)=6 and y(4)=96. Derive k=6, a=ln2, show doubling time 1 unit and critique extrapolation. 8–10 min; 8 marks. | For f(x)=x³+x−3, show a root lies between 1 and 2; use supplied iteration x_(n+1)=(3−x_n)^(1/3) starting at 1.2 to approximate the root 1.213 to 3 d.p. Check by substitution and discuss why observed convergence is not proof of uniqueness. 11–14 min; 10 marks. | P2 is only valid for AS Pure-only P1+P2 route, cannot be carried to A Level; do not automatically assign to 9709 A Level P3 students. Numerical iteration does not establish uniqueness. |
+| 7 | **9709 P3 Pure Mathematics 3 / A only** | §3.9; §3.7; §3.8 | Multiply (2+i)(3−2i) and simplify to 8−i, using i²=−1. 3–4 min; 3 marks. | For 3D line r=(1,2,0)+t(2,0,1) and point P=(3,4,2), calculate perpendicular foot at t=6/5 and shortest distance 2√30/5. Justify using a dot-product orthogonality condition, not a sketch alone. 9–12 min; 9 marks. | A colony obeys dN/dt=kN, N(0)=400 and N(3)=500. Separate variables to find N(t)=400(5/4)^(t/3), forecast N(6)=625 and solve time to N=800 as 3ln2/ln(5/4)≈9.319. Explain the limitation of indefinite exponential growth. 12–15 min; 11 marks. | Complex arithmetic, 3D line projection and separable ODEs are P3-only; never route to P1 or P2. Show initial condition and dimensionally valid time. |
+
+## Independent numerical/logic checks for authoring
+
+- Core P1: 7.4 cm to nearest 0.1 gives [7.35,7.45); 3(x+4)=51 gives x=13; quarter circle radius 8 gives area 16π and full sector perimeter 16+4π. Since 16+4π > 28 when π>3, 28 m is **insufficient** (do not mark it sufficient).
+- Core P3: (2.4×10^5)(3×10^-2)=7.2×10^3; cylinder 200π≈628.319 cm³; cone volume 48π, 80% is 192π/5≈120.637 cm³=0.120637 L.
+- Extended P2: 1/(x−2)+2/(x+1)=3(x−1)/[(x−2)(x+1)] with x≠2,−1; cubic f′=3(x−1)(x−3), f(1)=5, f(3)=1, f(0)=1, f(4)=5. Thus **global maximum 5 occurs at both x=1 and x=4**; do not claim unique maximum at x=1. This is a deliberate endpoint diagnostic.
+- Extended P4: 35tan28°≈18.6098; speed lower 26.676923... and upper 27.714285... km/h; frustum (πh/3)(R²+Rr+r²)=168π≈527.788 cm³; 12 tanks ≈6.33345 L.
+- 9709 P1: dA/dt=8πr(dr/dt)=12π at r=3, dr/dt=0.5; parabola/line discriminant 8+4k, tangency k=−2 at (3,4).
+- 9709 P2: f(2)=13; sensor y=6·2^t; cubic root x≈1.2134116628; iteration should be checked for stable convergence from chosen starting value, with tolerance and rounded answer specified.
+- 9709 P3: (2+i)(3−2i)=8−i; projection parameter t=6/5, perpendicular distance 2√30/5; growth model gives N(6)=625 and doubling time 3ln2/ln(5/4)≈9.31885 time units.
+
+## Approved timed-mock assembly blueprint — not yet approved
+
+1. **0580 Core P1**: 90 min, 80 marks, calculator OFF, correct Core formula sheet; structured/unstructured mix; include C1.10 bounds of inputs, exact sectors and straightforward equations, but do **not** put C1.8 standard-form calculations on this paper. Independent question-level method-mark rubric, accessible diagrams, item-timing and examiner sign-off required.
+2. **0580 Extended P2**: 120 min, 100 marks, calculator OFF, Extended formula sheet; include E2.3 algebraic fractions, E2.12 elementary polynomial derivatives, E2.13 functions with explicitly allowed domain/range requirements; no linear programming, no composite-function domain/range demand. Target Extended AO2 proportion 50–60% over complete mock.
+3. **9709 P1**: 110 min, 75 marks, scientific calculator + MF19; 10–12 structured questions, P1-only objectives. Avoid P2 polynomial division and P3 vectors/complex/ODEs; show complete working and allow method marks.
+4. **9709 P3**: 110 min, 75 marks, scientific calculator + MF19; 9–11 structured questions, P3 objectives plus assumed P1 knowledge. Require vector notation, separable ODE with initial condition, complex arithmetic, appropriate mathematical argument.
+5. **Do not mark a mock as approved** until a human examiner validates full topic/mark/time blueprint, independent complete solutions, marks/rubrics, uniqueness, accessibility, timer lockout, answer-evidence capture and student/admin delivery. Existing MCQ-only marking cannot support a fully authentic multi-mark written paper; label any interim timed activity a **practice trial**, not an official-style approved mock.
+
+## Implementation handoff (priority order)
+
+**P0 — cohort/version metadata:** persist qualification_code, exam_year, syllabus_version, tier, component, calculator_mode, formula_sheet_id, route_combination. For 0580 2028+ require version 2 or later if updated; for 9709 2028+ version 1 or later. Do not silently migrate 2027 students. 9709 AS P1+P2 route is explicitly non-carry-forward; reject P4+P6 pair.
+
+**P1 — objective gates:** encode C1.8 calculations only 0580 P3, C1.10 vs E1.10 bounds distinction, E2.12 derivative scope, E2.13 no composite-domain/range questions, 9709 P2-only and P3-only content. Confirm 2028 0580 version-2 p.9 metadata before publishing a mock.
+
+**P2 — original content:** turn the 21 seeds into fully worked, independently checked question packages for the three tiers. Each requires a unique content fingerprint and separate question-bank ID; write full reasoning and rubric. Existing pilot rows are not examiner-approved even when active.
+
+**P3 — mock engine:** support multi-mark examiner rubrics, per-question whiteboard/photo evidence, partial credit, calculator/formula toggle, timer, expiry lockout, admin queue, no repeat on rescheduling, and explicit human approval of the entire mock.
+
+**P4 — QA:** regression-test 2027/2028 boundary, 0580 P1/P2 no calculator, P3/P4 calculator, 9709 all papers calculator, 9709 P2 AS-only, no semantic duplication across 360 private items plus four assigned items, and confirm answer evidence reaches administration.
+
+## Blockers and honesty
+
+- Board-specific student exam-year/component metadata and paper-level routing are incomplete; full version-gated assignment cannot yet be claimed.
+- 82 duplicate wording groups remain in pilot/draft bank; semantic duplicate analysis across all old questions is not complete.
+- Only four private task-bank assignments were available to audit; no evidence of repeat in that sample does not guarantee future uniqueness.
+- No independently approved full-length multi-mark timed mock was identified. The 21 seeds are **not** published.
+- No copyrighted exam question wording, diagram, numerical dataset or marking text was copied; publicly accessible Cambridge specimens were consulted only for assessment format.
+
+## Official source register
+
+- **S1. Cambridge 0580 2028–2030 version 2 (August 2026):** https://www.cambridgeinternational.org/Images/745681-2028-2030-syllabus.pdf — pp.9–11, 14–18, 37–42, 51, 69.
+- **S2. Cambridge 0580 August 2026 version-2 update note:** https://www.cambridgeinternational.org/Images/763300-2028-2030-syllabus-update.pdf — page 1: assessment overview p.9 revised.
+- **S3. Cambridge 0580 2025–2027 version 3:** https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf — prior cohort comparison.
+- **S4. Cambridge 9709 2028–2030 version 1:** https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf — pp.11–16, 19–30, 40–41, 61.
+- **S5. Cambridge 9709 2026–2027 version 3:** https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf — prior cohort comparison.
+- **S6. Official 0580 public specimens and examiner materials hub:** https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/past-papers/ — format/mark allocation only, no item reuse.
+- **S7. Official 9709 public specimens and examiner materials hub:** https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/ — format/working-space only, no item reuse.
