@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "batch": "20261101-0700",
+  "status": "private_draft_awaiting_ci_and_activation",
+  "record_count": 12,
+  "assessment_kind": "Grove Daily/Weekly/Exam original four-choice formative MCQ practice; NOT complete timed mocks",
+  "private_fields": "Prompts, options, answer keys, full worked solutions, misconceptions and tutor guidance are stored ONLY in private Supabase, not public GitHub.",
+  "research_brief": "content/research/20261101_0226_ib_tmua_further_alignment.md",
+  "latest_research_handoff": "content/research/latest-handoff.json",
+  "verification": [
+    "Original questions checked against current IB AA/AI 2021–2028 guide objectives; no official wording copied",
+    "12 independent symbolic/numerical checks, four distinct choices and exactly one keyed answer per private record",
+    "All 330 previous bank rows plus 4 assigned snapshots screened for exact, token and 4-gram near-duplicates",
+    "All twelve staged inactive draft; approved/activated only after CI and Pages deploy success",
+    "Exam-board alias guard and tier/level route selection verified; no enrolled student or human marking changes"
+  ],
+  "questions": [
+    {
+      "id": "e428a9e2-b843-433b-a634-fdd7860cd7e2",
+      "provenance": "mg-original-20261101-0700-AAHL-D",
+      "qualification": "IB_AA",
+      "academic_level": "hl",
+      "programme_scope": "daily",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Complex arithmetic",
+      "syllabus_objective": "AHL 1.12 and AHL 1.13 complex numbers",
+      "expected_seconds": 290,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf"
+    },
+    {
+      "id": "a7204c15-c948-477e-b242-09bc815137ea",
+      "provenance": "mg-original-20261101-0700-AAHL-E",
+      "qualification": "IB_AA",
+      "academic_level": "hl",
+      "programme_scope": "exam",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Polynomial intersections",
+      "syllabus_objective": "AHL 2.12 polynomial roots; AHL 2.15 equations",
+      "expected_seconds": 740,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf"
+    },
+    {
+      "id": "b65b61ec-abaa-4bdc-bb9c-2235bab6cbfe",
+      "provenance": "mg-original-20261101-0700-AAHL-W",
+      "qualification": "IB_AA",
+      "academic_level": "hl",
+      "programme_scope": "weekly",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Polynomial stationary points",
+      "syllabus_objective": "AHL 2.12 polynomials; SL 5.8 stationary points",
+      "expected_seconds": 560,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf"
+    },
+    {
+      "id": "6f50c782-f433-4788-8343-e5ff9068f2e3",
+      "provenance": "mg-original-20261101-0700-AASL-D",
+      "qualification": "IB_AA",
+      "academic_level": "sl",
+      "programme_scope": "daily",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Inverse functions",
+      "syllabus_objective": "SL 2.5 inverse functions",
+      "expected_seconds": 220,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf"
+    },
+    {
+      "id": "e1fe4d76-8fa8-4136-bb4a-953ed5e6801c",
+      "provenance": "mg-original-20261101-0700-AASL-E",
+      "qualification": "IB_AA",
+      "academic_level": "sl",
+      "programme_scope": "exam",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Constrained optimisation",
+      "syllabus_objective": "SL 5.8 optimisation",
+      "expected_seconds": 730,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf"
+    },
+    {
+      "id": "ac359ff4-d69b-4994-b6de-561146154576",
+      "provenance": "mg-original-20261101-0700-AASL-W",
+      "qualification": "IB_AA",
+      "academic_level": "sl",
+      "programme_scope": "weekly",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Quadratic cost modelling",
+      "syllabus_objective": "SL 2.6 quadratics; SL 2.7 inequalities",
+      "expected_seconds": 470,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-analysis-approaches-guide.pdf"
+    },
+    {
+      "id": "291c0dba-14c8-45bc-83b5-afafbe891183",
+      "provenance": "mg-original-20261101-0700-AIHL-D",
+      "qualification": "IB_AI",
+      "academic_level": "hl",
+      "programme_scope": "daily",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Confidence intervals",
+      "syllabus_objective": "AHL 4.16 confidence intervals",
+      "expected_seconds": 310,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
+    },
+    {
+      "id": "954272fa-cbe6-4646-bb29-5475c9ce0c06",
+      "provenance": "mg-original-20261101-0700-AIHL-E",
+      "qualification": "IB_AI",
+      "academic_level": "hl",
+      "programme_scope": "exam",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Logistic models",
+      "syllabus_objective": "AHL 2.9 logistic modelling",
+      "expected_seconds": 720,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
+    },
+    {
+      "id": "e07e6ec4-278d-462e-945f-ead0d46a2350",
+      "provenance": "mg-original-20261101-0700-AIHL-W",
+      "qualification": "IB_AI",
+      "academic_level": "hl",
+      "programme_scope": "weekly",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Poisson process",
+      "syllabus_objective": "AHL 4.17 Poisson model",
+      "expected_seconds": 560,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
+    },
+    {
+      "id": "31b0a253-17d9-466c-bcf2-90c78be98353",
+      "provenance": "mg-original-20261101-0700-AISL-D",
+      "qualification": "IB_AI",
+      "academic_level": "sl",
+      "programme_scope": "daily",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Correlation",
+      "syllabus_objective": "SL 4.4 correlation and causation",
+      "expected_seconds": 180,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
+    },
+    {
+      "id": "a7d72f4b-c30b-4aae-9e4f-088c2d1b24c1",
+      "provenance": "mg-original-20261101-0700-AISL-E",
+      "qualification": "IB_AI",
+      "academic_level": "sl",
+      "programme_scope": "exam",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Population-normalised modelling",
+      "syllabus_objective": "SL 2.6 modelling; SL 4.2 descriptive statistics",
+      "expected_seconds": 690,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
+    },
+    {
+      "id": "6acd4ac2-dc05-4ac2-8bc2-31dc9601518c",
+      "provenance": "mg-original-20261101-0700-AISL-W",
+      "qualification": "IB_AI",
+      "academic_level": "sl",
+      "programme_scope": "weekly",
+      "exam_board": "IB Diploma Programme",
+      "topic": "Linear regression",
+      "syllabus_objective": "SL 4.4 least-squares regression",
+      "expected_seconds": 490,
+      "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
+    }
+  ]
+}
