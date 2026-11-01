@@ -66,6 +66,7 @@ jobs:
           node scripts/check-content.mjs
           node scripts/check-published-originals.mjs
           node scripts/check-verified-batch-20261101.mjs
+          node scripts/check-verified-batch-20261101-0300.mjs
           node scripts/check-original-practice.mjs
       - name: Assemble only MathsGrove public assets
         shell: bash
