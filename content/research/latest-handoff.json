@@ -1,7 +1,7 @@
 {
-  "version": 5,
+  "version": 6,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove official specification alignment — Cambridge 9709, Pearson UK 9MA0, Pearson IAL (1 November 2026, 04:33 Kuwait)",
+  "title": "MathsGrove official specification alignment — GCSE/IGCSE 8300, 1MA1, 0580, 4MA1 and new Pearson 4WM modular routing (1 November 2026)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -123,22 +123,25 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_0433_cambridge_9709_pearson_9MA0_IAL_alignment.md",
-  "latest_brief_commit": "e087b009344eceb9a4700ef82896f18f92f9ee70",
+  "latest_dated_brief": "content/research/20261101_0634_gcse_igcse_linear_modular_alignment.md",
+  "latest_brief_commit": "3febbb491c734806cecc9e82e92d5f554b7a5dde",
   "research_rotation": {
     "deep_dive": [
-      "Cambridge 9709 2026–27 AS P1/P4/P5 and A P6 objective/component gates",
-      "Pearson UK 9MA0 linear Pure/Statistics/Mechanics objective differences",
-      "Pearson Edexcel IAL XMA01/YMA01 P1/S1/M1 unitised content and allowed unit pairs"
+      "AQA GCSE 8300 Foundation/Higher objectives and 2027 formula sheets",
+      "Pearson UK GCSE 1MA1 Higher objectives and three-paper format",
+      "Cambridge IGCSE 0580 2025–27 Core/Extended and noncalculator/calculator gates",
+      "Pearson International GCSE 4MA1 linear versus newly identified 4WM modular Unit 1/2 and Foundation/Higher gates"
     ],
     "cross_checked": [
-      "Prior 2026-11-01 IB AA/AI SL/HL, TMUA and Further Maths brief",
-      "Current live approved bank 33, including nine newly approved 9231/9FM0/TMUA items"
+      "Previous A Level 9709/9MA0/IAL research; nine A Level items now approved",
+      "Prior 0580 and 4MA1 probability blueprints, 42 approved bank skills, 48 1MA1 drafts",
+      "Live Supabase 330 bank rows, 28 tasks and four assigned bank items"
     ],
     "next_deep_dive": [
-      "AQA 8300, Cambridge IGCSE 0580, Pearson IGCSE 4MA1 noncalculator/calculator and cohort transition",
-      "IB AA/AI authorised detailed guide alignment",
-      "TMUA current specimen answer-option verification"
+      "IB AA/AI SL/HL authorised guide detailed objectives",
+      "TMUA current computer specimen option count",
+      "Cambridge 9231 and Pearson 9FM0 optional component restrictions",
+      "Cambridge 0580 2028–30 cohort transition"
     ]
   },
   "verified_objective_gates": [
@@ -240,6 +243,137 @@
   ],
   "original_blueprints": [
     {
+      "route": "AQA 8300 Foundation",
+      "daily": "Compound units 72 km in 1h36m",
+      "weekly": "Whole-pack best buy with unit cost and ratios",
+      "exam": "Two-stage minibus journey including waiting; average speed"
+    },
+    {
+      "route": "AQA 8300 Higher",
+      "daily": "Similar solids volume factor 2:3",
+      "weekly": "Similar tank volume and usable fraction",
+      "exam": "Domain-aware composite and inverse function"
+    },
+    {
+      "route": "Pearson UK 1MA1 Higher",
+      "daily": "Unequal-class histogram frequency density",
+      "weekly": "Scatter correlation, interpolation and outlier",
+      "exam": "Parallelogram diagonal vector proof"
+    },
+    {
+      "route": "Cambridge 0580 Core",
+      "daily": "Median and range of six observations",
+      "weekly": "Single fractional enlargement and area factor",
+      "exam": "Equal-mean differing-range sample interpretation"
+    },
+    {
+      "route": "Cambridge 0580 Extended",
+      "daily": "Allowed polynomial derivative and stationary point",
+      "weekly": "Vector collinearity and point order",
+      "exam": "Cubic local versus global extrema on finite interval"
+    },
+    {
+      "route": "Pearson 4MA1 linear Foundation",
+      "daily": "Area unit conversion squared",
+      "weekly": "Frequency-weighted mean comparison",
+      "exam": "Right-triangle ramp length/angle and threshold"
+    },
+    {
+      "route": "Pearson 4MA1 linear Higher",
+      "daily": "Polynomial derivative and stationary x",
+      "weekly": "Strict rectangular area bounds",
+      "exam": "Signed displacement versus total distance"
+    },
+    {
+      "route": "Pearson 4WM modular Unit 1 F/H",
+      "daily": "Foundation HCF equal packs",
+      "weekly": "Foundation contextual monic quadratic",
+      "exam": "Higher completing square and root count"
+    },
+    {
+      "route": "Pearson 4WM modular Unit 2 F/H",
+      "daily": "Foundation reverse percentage",
+      "weekly": "Foundation three-part ratio reallocation",
+      "exam": "Higher restricted-domain inverse/composite"
+    }
+  ],
+  "coverage_snapshot": {
+    "as_of": "2026-11-01 Asia/Kuwait",
+    "project": "nwakgkxytovprrrwyahs",
+    "total_private_practice_bank_rows": 330,
+    "active_approved": 42,
+    "inactive_draft": 48,
+    "active_pilot": 240,
+    "normalised_duplicate_groups_bank_wide": 82,
+    "duplicate_groups_within_approved": 0,
+    "assigned_item_instances": 4,
+    "student_repeated_bank_assignments_observed": 0,
+    "student_repeated_normalised_stems_observed": 0,
+    "scheduled_grove_tasks": 27,
+    "completed_grove_tasks": 1,
+    "new_since_previous_snapshot": {
+      "approved_plus": 9,
+      "approved_routes": [
+        "Cambridge 9709 AS",
+        "Pearson UK 9MA0 A2",
+        "Pearson IAL P1"
+      ]
+    },
+    "approved_coverage_target_routes": {
+      "Pearson_4WM_modular": 0,
+      "Pearson_UK_1MA1": 0,
+      "Cambridge_0580_Core": 3,
+      "Cambridge_0580_Extended": 3,
+      "Pearson_4MA1_linear_Foundation": 3,
+      "Pearson_4MA1_linear_Higher": 3,
+      "AQA_8300_Foundation": 3,
+      "AQA_8300_Higher": 6
+    },
+    "notes": [
+      "42 approved skills and 48 inactive 1MA1 drafts inspected; probability-heavy approved GCSE/IGCSE coverage",
+      "82 bank-wide identical normalised stems; none within approved; semantic near-duplicate analysis not complete",
+      "Four task-item snapshots show no per-student repeated bank IDs or normalised wording; future dedup remains required"
+    ]
+  },
+  "implementation_handoff": {
+    "priority": "Block wrong IGCSE assignment by introducing 4MA1 linear vs 4WM modular route_code, explicit 4WM unit_code and tier, plus 2027 formula-sheet metadata; then author/QA 27 new designs. Prioritise uncovered 4WM and 1MA1.",
+    "must_not_publish_as_mocks": true,
+    "research_only_no_new_publication": true,
+    "next_batch_editorial_items": 27,
+    "checks": [
+      "Separate AQA 8300, Pearson UK 1MA1, Cambridge 0580, Pearson 4MA1 linear and Pearson 4WM modular routes",
+      "Pearson 4WM unit 1 versus unit 2 objective gates: no Unit 2-only calculus/functions in 4WM1H; Unit 2 assumes earlier prerequisites",
+      "2027 UK GCSE formula sheet available on all three papers, including noncalculator P1; Cambridge 0580 per-paper formula lists",
+      "Authentic per-paper durations/marks/calculator restrictions, tier and exam year",
+      "Do not assign 0580 Core with/without-replacement conditional, negative scale enlargement or composite transformations",
+      "Only Cambridge 0580 Extended, Pearson 4MA1 Higher and Pearson 4WM2H receive GCSE/IGCSE elementary differentiation; not UK 8300/1MA1",
+      "Dedup across all 330 private bank rows, 48 drafts, 240 pilots, previous research blueprints and all per-student task snapshots; include semantic and symbolic equivalence",
+      "Validate original prompt, private worked answer, rubric, diagrams, notation, distractors, AO, time and units before approving",
+      "Keep complete answer keys private; never claim short Exam practice is an approved timed mock",
+      "Full mocks require independently approved multi-mark rubrics and verified lockout, calculator and formula-sheet behavior"
+    ],
+    "blockers": [
+      "No verified explicit Pearson 4WM modular unit selector or route schema; must fail closed on ambiguous IGCSE",
+      "No approved full-length timed mocks or validated multi-mark marking workflow",
+      "82 cross-route pilot duplicate wording groups, plus semantic near-duplicates not fully audited",
+      "Authorised detailed IB AA/AI guides and current TMUA computer specimen choice count still outstanding"
+    ]
+  },
+  "previous_dated_brief": "content/research/20261101_0433_cambridge_9709_pearson_9MA0_IAL_alignment.md",
+  "previous_brief_commit": "e087b009344eceb9a4700ef82896f18f92f9ee70",
+  "current_research_sources": [
+    "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content",
+    "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance",
+    "https://www.aqa.org.uk/news/gcse-maths-sciences-formulae-equation-sheets-2027-28",
+    "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/gcse-maths-2015-specification.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2024/specification-and-sample-assessments/int-gcse-mathematics-spec-a-modular.pdf",
+    "https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html",
+    "https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses-in-2025-2026-and-2027/outcome/decisions-on-changes-to-the-assessment-of-mathematics-physics-and-combined-sciences-gcses-in-2025-2026-and-2027"
+  ],
+  "previous_cycle_original_blueprints": [
+    {
       "route": "Cambridge 9709 AS P1",
       "daily": "Radians and arc length",
       "weekly": "Finite geometric subscription series",
@@ -300,68 +434,88 @@
       "exam": "Parallel-force loading-platform moments/reactions plus separate static-friction feasibility check"
     }
   ],
-  "coverage_snapshot": {
-    "as_of": "2026-11-01 04:33 Asia/Kuwait",
-    "project": "nwakgkxytovprrrwyahs",
-    "total_private_practice_bank_rows": 321,
-    "active_approved": 33,
-    "inactive_draft": 48,
-    "active_pilot": 240,
-    "normalised_duplicate_groups_bank_wide": 82,
-    "extra_duplicate_rows_bank_wide": 82,
-    "duplicate_groups_within_approved": 0,
-    "student_repeated_bank_assignments_observed": 0,
-    "assigned_item_instances": 4,
-    "distinct_assigned_bank_items": 4,
-    "scheduled_grove_tasks": 28,
-    "completed_grove_tasks": 1,
-    "approved_coverage_target_routes": {
-      "Cambridge_9709_P1_AS": 3,
-      "Cambridge_9709_P4": 0,
-      "Cambridge_9709_P5": 0,
-      "Cambridge_9709_P6": 0,
-      "Pearson_UK_9MA0": 0,
-      "Pearson_IAL_P1_S1_M1": 0,
-      "Cambridge_9231": 3,
-      "Pearson_9FM0": 3,
-      "TMUA": 3
-    },
-    "notes": [
-      "Nine new approved items since last research: Cambridge Further 9231 (3), Pearson Further 9FM0 (3), TMUA (3); these directly overlap prior editorial blueprints and must not be reauthored.",
-      "Four assigned bank items all GCSE Higher Grove Daily, from generic board-empty rows; skills: simultaneous equations, gradient, independent events, rationalising a denominator.",
-      "No repeated student-bank ID in inspected assignments; near-duplicate prompts remain possible.",
-      "82 exact normalised cross-route stem repeats persist in bank, zero among approved."
-    ]
-  },
-  "implementation_handoff": {
-    "priority": "Author 30 independent editorial candidates across 10 Cambridge 9709 / Pearson 9MA0 / Pearson IAL routes × Grove Daily/Weekly/Exam. Prioritise P4/P5, 9MA0 Statistics/Mechanics and IAL S1/M1; do not repeat the nine Further/TMUA items now approved.",
-    "must_not_publish_as_mocks": true,
-    "checks": [
-      "Board, syllabus version, academic level, actual paper/unit and allowed applied component combination must match student route.",
-      "No 9709 P4+P6 A Level combination; no IAL P1/P2/P3/P4+invalid applied pair; no 9MA0 single-statistics full Paper 3.",
-      "9MA0 does not assess E(X)/Var(X) discrete random-variable calculations or CLT; 9709 P5 and IAL S1 do assess E/Var; IAL S1 binomial belongs in S2.",
-      "9709 P4 g≈10, Pearson 9MA0 default g=9.8; 9709 P4 paper avoids vector notation.",
-      "All 321 bank prompts and student task snapshots exact+semantic dedup; previous 9 approved 9231/9FM0/TMUA blueprints are already consumed.",
-      "Original question and private fully checked solution; multi-mark rubric, notation, diagrams, units, answer uniqueness and reviewer sign-off.",
-      "Never publish complete answer keys in public GitHub; full timed mocks require independently approved paper assembly and lockout testing.",
-      "Pearson IAL M1 moments restricted to simple coplanar parallel-force rigid bodies; separate friction check must not create unsupported nonparallel rigid-body mechanics."
+  "latest_cycle": {
+    "date": "2026-11-01",
+    "phase": "research_only",
+    "blueprint_count": 27,
+    "route_count": 9,
+    "qualifications": [
+      "GCSE/AQA_8300/Foundation",
+      "GCSE/AQA_8300/Higher",
+      "GCSE/Pearson_UK_1MA1/Higher",
+      "IGCSE/Cambridge_0580/Core",
+      "IGCSE/Cambridge_0580/Extended",
+      "IGCSE/Pearson_4MA1_linear/Foundation",
+      "IGCSE/Pearson_4MA1_linear/Higher",
+      "IGCSE/Pearson_4WM_modular/Unit1_Foundation_and_Higher",
+      "IGCSE/Pearson_4WM_modular/Unit2_Foundation_and_Higher"
     ],
-    "research_only_no_new_publication": true,
-    "next_batch_editorial_items": 30,
-    "blockers": [
-      "No board/unit routing for generic A_LEVEL rows; current as/a2 alone insufficient.",
-      "No authentic full-paper mocks with method-mark rubrics approved for researched routes.",
-      "82 cross-route duplicate stem groups and 240 generic pilot questions need semantic dedup and provenance review.",
-      "Prior unresolved: full authorised IB guides and current TMUA computer specimen choice-count check."
-    ]
+    "major_new_findings": [
+      "Pearson International GCSE 4WM modular route (4WM1F/H,4WM2F/H; 4XMAF/H cash-in) needs separate unit-aware assignment from 4MA1 linear and UK 1MA1",
+      "2027 UK GCSE tier-specific formula sheets accompany all three papers including noncalculator",
+      "Cambridge 0580 Extended E2.12 and Pearson 4MA1 Higher/4WM2H 3.4 allow basic differentiation, UK GCSE 8300/1MA1 do not"
+    ],
+    "paper_rules": {
+      "AQA_8300_and_Pearson_UK_1MA1": "3 x 90 min x 80 marks; P1 noncalc, P2/P3 calc; 2027 formula sheets",
+      "Cambridge_0580_Core": "P1 noncalc 90 min 80 marks + P3 calc 90 min 80 marks",
+      "Cambridge_0580_Extended": "P2 noncalc 120 min 100 marks + P4 calc 120 min 100 marks",
+      "Pearson_4MA1_linear": "2 x 120 min x 100 marks, both calc",
+      "Pearson_4WM_modular": "2 units x 120 min x 100 marks, both calc; 4WM1F/H, 4WM2F/H, separate prerequisites, cash-in 4XMAF/H"
+    },
+    "objectives": {
+      "AQA_8300": [
+        "R11",
+        "R5",
+        "R9",
+        "G19",
+        "A7",
+        "G10"
+      ],
+      "Pearson_UK_1MA1": [
+        "S3",
+        "S6",
+        "G25"
+      ],
+      "Cambridge_0580": [
+        "C9.3",
+        "C7.1",
+        "C9.2",
+        "E2.12",
+        "E7.4",
+        "E9.3"
+      ],
+      "Pearson_4MA1": [
+        "4.4",
+        "6.2",
+        "4.8 A-C",
+        "1.8 A",
+        "3.4 A-E"
+      ],
+      "Pearson_4WM_Unit1_F": [
+        "1.1 H",
+        "2.7 A"
+      ],
+      "Pearson_4WM_Unit1_H": [
+        "2.2 D",
+        "2.7 B"
+      ],
+      "Pearson_4WM_Unit2_F": [
+        "1.6 F",
+        "1.7 B"
+      ],
+      "Pearson_4WM_Unit2_H": [
+        "3.2 B-D",
+        "3.4 B-E"
+      ]
+    },
+    "new_publication": false,
+    "approved_timed_mocks_created": 0,
+    "notes": "Blueprints are original concepts, not final student stems or complete answer keys. Full maths QA, method-mark rubrics and unit routing are required before release."
   },
-  "previous_dated_brief": "content/research/20261101_0226_ib_tmua_further_alignment.md",
-  "previous_brief_commit": "3d3808679f5ef6c8cea659eb54d4181de6ef4ab8",
-  "current_research_sources": [
-    "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
-    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf",
-    "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/pearson-edexcel-l3-advanced-gce-mathematics-9ma0-enhanced-content-guidance-issue-2.pdf",
-    "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
-    "https://qualifications.pearson.com/en/qualifications/edexcel-international-advanced-levels/mathematics-2018.html"
-  ]
+  "previous_cycle_handoff_summary": {
+    "latest_dated_brief": "content/research/20261101_0433_cambridge_9709_pearson_9MA0_IAL_alignment.md",
+    "latest_commit": "e087b009344eceb9a4700ef82896f18f92f9ee70",
+    "coverage_approved": 33,
+    "priority": "Author 30 independent editorial candidates across 10 Cambridge 9709 / Pearson 9MA0 / Pearson IAL routes × Grove Daily/Weekly/Exam. Prioritise P4/P5, 9MA0 Statistics/Mechanics and IAL S1/M1; do not repeat the nine Further/TMUA items now approved."
+  }
 }
