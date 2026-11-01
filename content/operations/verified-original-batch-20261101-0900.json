@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261101-0900",
-  "status": "private_draft_awaiting_ci_and_activation",
+  "status": "published_to_private_supabase_bank",
   "record_count": 12,
   "assessment_kind": "Original Grove Daily, Weekly and Exam four-option practice items; NOT complete timed mocks",
   "privacy": "Private Supabase holds all prompts, four options, correct answers, full solutions, misconceptions and tutor marking notes. Public GitHub holds metadata only.",
@@ -178,5 +178,16 @@
       "expected_seconds": 720,
       "source_url": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf"
     }
-  ]
+  ],
+  "publication": {
+    "published_count": 12,
+    "review_state": "approved",
+    "active": true,
+    "db_project": "nwakgkxytovprrrwyahs",
+    "ci_pull_request": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41279515927",
+    "ci_main": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41279570827",
+    "pages_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41279570840",
+    "pages_build": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41279570318",
+    "privacy": "Answer keys and full student-facing content remain in private Supabase; student assignments untouched."
+  }
 }
