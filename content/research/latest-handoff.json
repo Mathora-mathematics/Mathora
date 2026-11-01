@@ -224,7 +224,7 @@
     "exam_board_filter": "only matching exam board or generic content"
   },
   "latest_dated_brief": "content/research/20261102_0025_ib_tmua_further_assessment_qa.md",
-  "latest_brief_commit": "275d89b461cebc9ff2196645598e7cd69aa65f78",
+  "latest_brief_commit": "3387d7d6e4e3562daf9385891220e14b42368e3d",
   "research_rotation": {
     "deep_dive": [
       "IB AA SL/HL first assessment 2029 (A3 combinatorics, A4 complex HL)",
@@ -896,7 +896,8 @@
     "TMUA P1/P2 topic gating and official computer specimen UI/answer-option verification.",
     "Cambridge 9231 P1/P3/P4 routing; Pearson 9FM0 valid 4B FS2 optional entry and 3D/4D distinction.",
     "Global semantic and assignment repetition checks including baseline; current four-item assignment check is limited.",
-    "Full timed mocks require independently authored full papers, complete marking rubrics, strict timers and examiner sign-off."
+    "Full timed mocks require independently authored full papers, complete marking rubrics, strict timers and examiner sign-off.",
+    "Because the research repository is public and blueprints include solution checkpoints, never deploy exact blueprint prompts as secure assessment items; author private novel variants and store answer keys privately."
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261101_1426_pearson_modular_4wm_unit_gate_ums.md",
@@ -971,6 +972,7 @@
     "No first-class IB assessment year/board optional-paper metadata in inspected practice bank schema.",
     "82 exact-normalised duplicate prompt groups still require semantic inspection; zero touch approved at time of read.",
     "Only four bank-backed assigned items audited; broader cross-task and semantic repetition not proven.",
-    "No independently approved full-length multi-mark timed mocks verified in this research run."
+    "No independently approved full-length multi-mark timed mocks verified in this research run.",
+    "Public editorial blueprints contain answer checkpoints; secure live exams require newly authored private variants, not verbatim reuse."
   ]
 }
