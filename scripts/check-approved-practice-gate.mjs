@@ -32,4 +32,8 @@ assert.ok(!board.sql.includes("IF b LIKE '%wma11%' OR b LIKE '%ial%'"),
   'Broad IAL match must not override the exact P1 guard');
 assert.ok(board.sql.includes("IF b LIKE '%9ma0%' THEN RETURN s LIKE '%9ma0%';END IF;"),
   'UK GCE route must remain strict');
+assert.ok(board.sql.includes("IF b LIKE '%0580%' THEN"),
+  'Cambridge 0580 items must be guarded by their subject code');
+assert.ok(board.sql.includes("RETURN s LIKE '%0580%'"),
+  'Cambridge 0580 items must not be assigned to Cambridge 0607 students');
 console.log('Practice publication/repetition guard: PASS ('+latest.name+')');
