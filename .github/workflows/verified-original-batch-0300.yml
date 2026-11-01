@@ -1,0 +1,32 @@
+name: Verify original maths batch 2026-11-01 0300
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261101-0300.json'
+      - 'scripts/check-verified-batch-20261101-0300.mjs'
+      - '.github/workflows/verified-original-batch-0300.yml'
+      - '.github/workflows/pages.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261101-0300.json'
+      - 'scripts/check-verified-batch-20261101-0300.mjs'
+      - '.github/workflows/verified-original-batch-0300.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original batch mathematics and privacy
+        run: node scripts/check-verified-batch-20261101-0300.mjs
+      - name: Check prior published originals and repeat protection
+        run: |
+          node scripts/check-published-originals.mjs
+          node scripts/check-verified-batch-20261101.mjs
+          node scripts/check-original-practice.mjs
