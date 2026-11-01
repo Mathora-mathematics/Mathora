@@ -175,7 +175,7 @@
     "exam_board_filter": "only matching exam board or generic content"
   },
   "latest_dated_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
-  "latest_brief_commit": "e9e318f09c5d509239c63102fac95946160a0a7c",
+  "latest_brief_commit": "5f051b3eb63d6ee8b17068be73e78770a50a9baf",
   "research_rotation": {
     "deep_dive": [
       "Cambridge IGCSE 0580 2028–2030 version 2: Core P1/P3 and Extended P2/P4",
@@ -665,7 +665,9 @@
     ],
     "new_publication": false,
     "approved_timed_mocks_created": 0,
-    "notes": "21 original blueprints, numerical QA checkpoints and four timed-mock assembly plans saved to GitHub; no questions or mocks published. Existing published approvals belong to separate content routine."
+    "notes": "21 original blueprints, numerical QA checkpoints and four timed-mock assembly plans saved to GitHub; no questions or mocks published. Existing published approvals belong to separate content routine. Final editorial QA corrected mast observation height and tank capacity wording.",
+    "research_brief_initial_commit": "e9e318f09c5d509239c63102fac95946160a0a7c",
+    "research_brief_final_commit": "5f051b3eb63d6ee8b17068be73e78770a50a9baf"
   },
   "previous_cycle_handoff_summary": {
     "date": "2026-11-01",
@@ -747,7 +749,7 @@
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
-    "source_commit": "e9e318f09c5d509239c63102fac95946160a0a7c",
+    "source_commit": "5f051b3eb63d6ee8b17068be73e78770a50a9baf",
     "blueprint_count": 21,
     "route_count": 7,
     "publication_status": "research_only",
