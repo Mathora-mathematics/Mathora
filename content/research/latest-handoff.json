@@ -1,7 +1,7 @@
 {
-  "version": 11,
+  "version": 12,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove official alignment — IB 2029 AA/AI, TMUA 2026/27 Paper 1/2, Cambridge 9231 2028–30, Pearson 9FM0 options (rotation 9)",
+  "title": "MathsGrove GCSE/IGCSE 2028+ formula policy, calculator, tier and modular-unit gates (rotation 10)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -199,28 +199,26 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_1630_ib_tmua_further_objective_routing.md",
-  "latest_brief_commit": "6d146a50ef3682e90734bb0431781523b6796654",
+  "latest_dated_brief": "content/research/20261101_1834_gcse_igcse_formula_tier_rotation10.md",
+  "latest_brief_commit": "5602cdd510c0773274e1e8e897789ab5d6f709e3",
   "research_rotation": {
     "deep_dive": [
-      "IB AA/AI 2029 official subject briefs: exact published broad topic codes and paper technology/timing",
-      "TMUA 2026/27 Paper 2 extended objective codes Prf3–5 and Err1–2; Pearson specimen and scaled scoring restrictions",
-      "Cambridge 9231 2028–30 version 1 vs 2026–27 version 3: no significant teaching change; Further Pure 2/P4 route and content",
-      "Pearson 9FM0 Issue 4: Further Statistics 1 and Decision 1 optional paper routing"
+      "Ofqual 5 May 2026: 2028+ formula sheets for lifetime of current UK GCSE specs",
+      "AQA 8300 vs Pearson UK 1MA1 Foundation/Higher and paper conditions",
+      "Cambridge 0580 2025–27/2028–30 C1.8,C1.10,E1.10,C8.3,E8.4 and 2025+ formula page",
+      "Pearson 4MA1 linear vs 4WM modular unit gates and raw/UMS"
     ],
     "cross_checked": [
-      "Prior rotation 5 IB/TMUA/Further 36 draft designs and rotation 8 Pearson modular handoff",
-      "378 private.grove_practice_bank entries: 90 approved, 48 inactive drafts, 240 active pilot",
-      "82 exact-normalised duplicate wording groups; none with approved questions; semantic deduplication remains incomplete",
-      "28 tasks; 4 bank-backed items in one student's task sample; no repeated IDs or normalised stems",
-      "30 approved IB/TMUA/Further items; no explicitly approved Pearson 9FM0 FS1/Decision 1 or Cambridge 9231 P2/P4 routes"
+      "Prior GCSE/IGCSE, modular and IB/TMUA/Further research briefs",
+      "387 private bank: 93 approved, 54 drafts, 240 pilots; 82 exact duplicate groups, none approved",
+      "28 tasks and four bank-backed assignments, no repeated IDs in small sample",
+      "No approved Pearson UK 1MA1 or modular 4WM content"
     ],
-    "authored_blueprints": 30,
-    "routes": 10,
-    "timed_mock_assembly_plans": 5,
+    "authored_blueprints": 36,
+    "routes": 12,
+    "timed_mock_assembly_plans": 6,
     "next_deep_dive": [
-      "AQA 8300 / Pearson UK 1MA1 / Cambridge 0580 / Pearson 4MA1 calculator/formula/tier boundaries",
-      "Cambridge 9709 / Pearson UK 9MA0 / Pearson IAL component-specific applied content"
+      "Cambridge 9709 / Pearson UK 9MA0 / Pearson IAL applied and pure component restrictions"
     ]
   },
   "verified_objective_gates": {
@@ -557,8 +555,8 @@
       "Only four bank-backed student assignments across one student in audit"
     ]
   },
-  "previous_dated_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
-  "previous_brief_commit": "5f051b3eb63d6ee8b17068be73e78770a50a9baf",
+  "previous_dated_brief": "content/research/20261101_1630_ib_tmua_further_objective_routing.md",
+  "previous_brief_commit": "6d146a50ef3682e90734bb0431781523b6796654",
   "current_research_sources": [
     {
       "board": "Pearson Edexcel",
@@ -770,26 +768,14 @@
   ],
   "latest_cycle": {
     "date": "2026-11-01",
-    "phase": "research_only",
-    "blueprint_count": 12,
-    "route_count": 4,
-    "qualifications": [
-      "Pearson modular 4WM1F/01",
-      "Pearson modular 4WM1H/01",
-      "Pearson modular 4WM2F/01",
-      "Pearson modular 4WM2H/01"
-    ],
-    "major_new_findings": [
-      "4WM modular requires four unit/tier-specific routes, no cross-unit tier mixing, and international-centre eligibility.",
-      "Each unit is 120 minutes/100 raw marks, calculator permitted with tier formula sheet; unit maximum 120 UMS and cash-in maximum 240 UMS.",
-      "Unit 1 Higher includes 3D trigonometry and histograms; Unit 2 Higher adds calculus, circle theorems, vectors and cumulative frequency.",
-      "No 4WM-tagged items in private bank; 81 approved items overall, 82 pilot/draft duplicate groups; only four assigned items in one student sample.",
-      "Pearson International modular AO1/2/3 are content domains; do not confuse with UK GCSE fluency/reasoning/problem-solving AOs."
-    ],
-    "new_publication": false,
-    "approved_timed_mocks_created": 0,
-    "notes": "12 independently devised Daily/Weekly/Exam editorial blueprints plus four 100-mark mock assembly plans; no protected exam questions copied; no student content published by research routine.",
-    "research_brief_final_commit": "ecbea865e66894425b057b3f39250f334b4a3004"
+    "rotation": 10,
+    "brief": "content/research/20261101_1834_gcse_igcse_formula_tier_rotation10.md",
+    "brief_commit": "5602cdd510c0773274e1e8e897789ab5d6f709e3",
+    "blueprint_count": 36,
+    "route_count": 12,
+    "mock_plans_unapproved": 6,
+    "publication": "none",
+    "new_finding": "Ofqual 5 May 2026 extends UK GCSE formula sheets beyond 2027 for lifetime of current specifications"
   },
   "previous_cycle_handoff_summary": {
     "source_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
@@ -807,54 +793,89 @@
     ]
   },
   "live_audit": {
-    "timestamp_local": "2026-11-01 (read-only checks in current research run)",
-    "production_table": "private.grove_practice_bank",
-    "bank_total": 369,
-    "approved": 81,
-    "inactive_drafts": 48,
-    "active_pilots": 240,
-    "exact_normalised_duplicate_groups": 82,
-    "exact_normalised_involved_rows": 164,
+    "as_of": "2026-11-01",
+    "private_bank_total": 387,
+    "approved": 93,
+    "drafts": 54,
+    "pilot": 240,
+    "active": 333,
+    "inactive": 54,
+    "exact_duplicate_groups": 82,
     "approved_duplicate_groups": 0,
     "tasks": 28,
-    "task_items": 4,
-    "bank_backed_task_items": 4,
-    "students_with_bank_items": 1,
-    "per_student_duplicate_bank_ids": 0,
-    "per_student_duplicate_exact_stems": 0,
-    "approved_Pearson_modular_4WM": 0,
-    "caution": "Exact lower-case/trim/whitespace match is not semantic dedup; only 4 bank-backed items assigned to one student."
+    "bank_backed_items": 4,
+    "repeated_student_bank_ids": 0,
+    "scope": "read-only sample; semantic dedup not completed"
   },
   "latest_research_sources": [
     {
-      "board": "Pearson Edexcel",
-      "qualification": "International GCSE Mathematics A (Modular)",
-      "syllabus": "4WM1F/4WM1H/4WM2F/4WM2H; 4XMAF/4XMAH cash-in",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2024/specification-and-sample-assessments/int-gcse-mathematics-spec-a-modular.pdf",
-      "note": "Issue 2 March 2024, pp.6–8, 13–40, 41–48, 53, 56–57; four unit/tier routes; calculator and formula sheets; 100 raw/120 UMS each; two most recent resit aggregation."
+      "title": "Ofqual 2028+ policy, decision 5 May 2026",
+      "url": "https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses"
     },
     {
-      "board": "Pearson Edexcel",
-      "qualification": "International GCSE Mathematics A (Modular) qualification page",
-      "url": "https://qualifications.pearson.com/en/qualifications/edexcel-international-gcses/mathematics-a-2024-modular.html",
-      "note": "Current qualification landing page accessed 2026-11-01; first assessment 2025, international-only route."
+      "title": "Ofqual 2025–27 formula-sheet decision",
+      "url": "https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses-in-2025-2026-and-2027/outcome/decisions-on-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses-in-2025-2026-and-2027"
     },
     {
-      "board": "Pearson Edexcel",
-      "qualification": "International GCSE Mathematics A linear 4MA1",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
-      "note": "Cross-route comparator, not a modular unit."
+      "title": "AQA 8300 specification overview",
+      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance"
+    },
+    {
+      "title": "AQA 8300 Number objectives",
+      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.1-number"
+    },
+    {
+      "title": "AQA 8300 Algebra objectives",
+      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.2-algebra"
+    },
+    {
+      "title": "AQA 8300 Statistics objectives",
+      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.6-statistics"
+    },
+    {
+      "title": "AQA 8300 Probability objectives",
+      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.5-probability"
+    },
+    {
+      "title": "Pearson UK 1MA1 teaching guidance Issue 4",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/teaching-and-learning-materials/GCSE-9-1-Mathematics-Teaching-Guidance-Issue-4.pdf"
+    },
+    {
+      "title": "Pearson UK 1MA1 specification",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/gcse-maths-2015-specification.pdf"
+    },
+    {
+      "title": "Cambridge 0580 2025–27 v3",
+      "url": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf"
+    },
+    {
+      "title": "Cambridge 0580 2028–30 v2",
+      "url": "https://www.cambridgeinternational.org/Images/745681-2028-2030-syllabus.pdf"
+    },
+    {
+      "title": "Cambridge 0580 official formula FAQ",
+      "url": "https://help.cambridgeinternational.org/hc/en-gb/articles/360000559338-FAQs-for-IGCSE-Mathematics-0580-0980"
+    },
+    {
+      "title": "Pearson International 4MA1 linear specification",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf"
+    },
+    {
+      "title": "Pearson International 4WM modular specification",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2024/specification-and-sample-assessments/int-gcse-mathematics-spec-a-modular.pdf"
+    },
+    {
+      "title": "Pearson UK public sample assessment format",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/GCSE-Mathematics-2015-SAM.pdf"
     }
   ],
   "implementation_priority": [
-    "qualification PEARSON_IGCSE_MATH_A_MODULAR distinct from 4MA1 linear, 1MA1 UK and Cambridge 0580",
-    "unit 4WM1F/H versus 4WM2F/H exact syllabus objective gating and valid prerequisites",
-    "block mixed-tier modular Unit 1/2 and invalid cash-in code",
-    "calculator permitted on all four papers; Pearson modular tier formula sheet; no CAS",
-    "100 raw marks per 120-min paper; 120 UMS per unit; 240 UMS total; raw-to-UMS conversion by series",
-    "independently author 12 question packages with private solutions, misconception feedback, multi-mark rubrics, diagrams and KaTeX",
-    "semantic and algebraic dedup against all 369 bank items and historical assigned snapshots",
-    "full mock human examiner sign-off, timer expiry, whiteboard/photo evidence and admin delivery"
+    "P0: correct UK GCSE 2028+ formula-sheet policy",
+    "P0: qualification/board/year/tier/paper/unit/calculator/formula-sheet routing",
+    "P0: semantic dedup and historical student assignment coverage",
+    "P1: independent maths/rubric review of 36 original seeds, prioritize 1MA1 and 4WM",
+    "P1: full timed mock approval and multi-mark support",
+    "P1: Pearson modular series-specific raw-to-UMS conversion"
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261101_1426_pearson_modular_4wm_unit_gate_ums.md",
@@ -894,11 +915,10 @@
     "Pearson_9FM0_FS1_D1": "FS1 §3.2 geometric expectation/variance, §4.2 testing, §6.1 chi-square; Decision1 §1.3 Eulerian, §2.2 Floyd, §3.1 route inspection. Correct optional code 3D Decision1 vs 4D Decision2 in Appendix9."
   },
   "blockers": [
-    "Official current TMUA Pearson specimen player's answer-option count/navigation not independently inspected; no authentic TMUA timed mock approval.",
-    "Full authorised IB AA/AI guides needed for granular micro-objective codes and legacy 2027/28 timing; 2029 broad subject-brief codes must not be mislabelled as legacy microcodes.",
-    "Student and item routing lacks robust syllabus version, IB exam session, Cambridge component, Pearson optional pair and assessment technology metadata.",
-    "82 exact-normalised duplicate stem groups still require semantic review, with only four assigned bank items audited.",
-    "No independently approved full-length multi-mark timed mocks or rubric-enabled examiner marking; blueprints remain editorial.",
-    "Current approved IB AI HL Poisson must be restricted to pre-2029 cohorts."
+    "No approved Pearson UK 1MA1 or 4WM bank items",
+    "82 duplicate-stem groups, semantic overlap unresolved",
+    "Only four bank-backed assigned items audited",
+    "No verified approved full-length multi-mark mocks",
+    "Missing exam-unit and formula-sheet version metadata; modular raw-to-UMS unavailable"
   ]
 }
