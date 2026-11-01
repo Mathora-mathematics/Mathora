@@ -1,7 +1,7 @@
 {
-  "version": 12,
+  "version": 13,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove GCSE/IGCSE 2028+ formula policy, calculator, tier and modular-unit gates (rotation 10)",
+  "title": "MathsGrove Cambridge 9709 and Pearson UK/IAL applied paper routing and original blueprint handoff (rotation 11)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -151,6 +151,24 @@
       "qualification": "Further Mathematics 9231 2028–2030 v1",
       "url": "https://www.cambridgeinternational.org/Images/744603-2028-2030-syllabus.pdf",
       "note": "No significant teaching changes; AS P1+P3/P4; full A all four components"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "9709 2026–27 applied papers",
+      "url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+      "note": "P4 §§4.1–4.5, P5 §§5.1–5.5, P6 §§6.1–6.5; official times/marks"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "UK GCE 9MA0 Issue 4",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf",
+      "note": "P3 statistics §§1–5 and mechanics §§6–9; UK linear"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "IAL 2018 Issue 3 M1/M2/S1/S2",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
+      "note": "Unit codes WME01 WME02 WST01 WST02; 75 marks 90 minutes each"
     }
   ],
   "first_cycle": [
@@ -199,26 +217,26 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_1834_gcse_igcse_formula_tier_rotation10.md",
-  "latest_brief_commit": "5602cdd510c0773274e1e8e897789ab5d6f709e3",
+  "latest_dated_brief": "content/research/20261101_2030_9709_9ma0_ial_applied_objective_blueprints.md",
+  "latest_brief_commit": "e6115145e2b66aecddf9265893d07064a2fdb648",
   "research_rotation": {
     "deep_dive": [
-      "Ofqual 5 May 2026: 2028+ formula sheets for lifetime of current UK GCSE specs",
-      "AQA 8300 vs Pearson UK 1MA1 Foundation/Higher and paper conditions",
-      "Cambridge 0580 2025–27/2028–30 C1.8,C1.10,E1.10,C8.3,E8.4 and 2025+ formula page",
-      "Pearson 4MA1 linear vs 4WM modular unit gates and raw/UMS"
+      "Cambridge 9709 P4/P5/P6 2026–27 vs 2028–30",
+      "Pearson UK 9MA0/03 Statistics vs Mechanics",
+      "Pearson IAL WME01/WME02/WST01/WST02 component objectives and prerequisites",
+      "Current public Cambridge/Pearson specimen conventions"
     ],
     "cross_checked": [
-      "Prior GCSE/IGCSE, modular and IB/TMUA/Further research briefs",
-      "387 private bank: 93 approved, 54 drafts, 240 pilots; 82 exact duplicate groups, none approved",
-      "28 tasks and four bank-backed assignments, no repeated IDs in small sample",
-      "No approved Pearson UK 1MA1 or modular 4WM content"
+      "Prior 20261101_1034 applied research and rotation-10 latest handoff",
+      "396 private bank: 102 approved, 54 inactive drafts, 240 active pilots; 82 exact wording duplicate groups; none approved",
+      "28 tasks, 4 bank-backed assigned items, 0 repeated bank IDs in inspected subset",
+      "No explicitly approved 9709 P4/P5/P6 or Pearson IAL M1/M2/S1/S2 component-specific items"
     ],
-    "authored_blueprints": 36,
-    "routes": 12,
-    "timed_mock_assembly_plans": 6,
+    "authored_blueprints": 27,
+    "routes": 9,
+    "timed_mock_assembly_plans": 8,
     "next_deep_dive": [
-      "Cambridge 9709 / Pearson UK 9MA0 / Pearson IAL applied and pure component restrictions"
+      "Cambridge 9709 Pure P1/P3 vs Pearson 9MA0 Pure vs Pearson IAL WMA12/WMA13/WMA14"
     ]
   },
   "verified_objective_gates": {
@@ -870,12 +888,11 @@
     }
   ],
   "implementation_priority": [
-    "P0: correct UK GCSE 2028+ formula-sheet policy",
-    "P0: qualification/board/year/tier/paper/unit/calculator/formula-sheet routing",
-    "P0: semantic dedup and historical student assignment coverage",
-    "P1: independent maths/rubric review of 36 original seeds, prioritize 1MA1 and 4WM",
-    "P1: full timed mock approval and multi-mark support",
-    "P1: Pearson modular series-specific raw-to-UMS conversion"
+    "Create explicit exam-year + component/unit metadata for Cambridge 9709 P4/P5/P6, UK 9MA0/03 section, Pearson IAL WME01/WME02/WST01/WST02",
+    "Validate 27 original tier seeds mathematically, against existing approved and pilot content and all available historical assignments; publish only reviewed unique questions",
+    "Add multi-mark rubrics and per-question working evidence before authentic timed mock publication",
+    "Check gravity, formula booklet, calculator settings and prerequisite/valid route combinations",
+    "Independently moderate eight proposed full-length mock assemblies before student use"
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261101_1426_pearson_modular_4wm_unit_gate_ums.md",
@@ -915,10 +932,23 @@
     "Pearson_9FM0_FS1_D1": "FS1 §3.2 geometric expectation/variance, §4.2 testing, §6.1 chi-square; Decision1 §1.3 Eulerian, §2.2 Floyd, §3.1 route inspection. Correct optional code 3D Decision1 vs 4D Decision2 in Appendix9."
   },
   "blockers": [
-    "No approved Pearson UK 1MA1 or 4WM bank items",
-    "82 duplicate-stem groups, semantic overlap unresolved",
-    "Only four bank-backed assigned items audited",
-    "No verified approved full-length multi-mark mocks",
-    "Missing exam-unit and formula-sheet version metadata; modular raw-to-UMS unavailable"
-  ]
+    "Component and exam-year routing not represented as dedicated fields in private practice bank",
+    "82 exact duplicate wording groups; semantic duplicates and assignment-history coverage not fully verified",
+    "Only four bank-backed student assignments inspectable",
+    "No independently approved complete timed mocks or end-to-end verified multi-mark marking workflow"
+  ],
+  "current_audit": {
+    "project_id": "nwakgkxytovprrrwyahs",
+    "date": "2026-11-01",
+    "private_bank_total": 396,
+    "approved": 102,
+    "inactive_drafts": 54,
+    "active_pilots": 240,
+    "exact_duplicate_wording_groups": 82,
+    "duplicate_groups_with_approved": 0,
+    "tasks": 28,
+    "assigned_bank_items": 4,
+    "repeated_assigned_bank_ids": 0,
+    "scope_note": "Small observed assignment sample; exact normalisation does not establish semantic uniqueness."
+  }
 }
