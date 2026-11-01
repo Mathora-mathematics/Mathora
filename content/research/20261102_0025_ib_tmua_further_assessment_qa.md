@@ -130,3 +130,6 @@ These plans specify future **full-length** originals; do not mark a mock `approv
 5. Require second independent solution and human examiner sign-off on every multi-mark item and entire timed paper; keep private correct answers and secure examiner feedback.
 
 **Scope note:** GCSE/IGCSE and Cambridge/Pearson A Level were covered in preceding research rotations; this run intentionally deep-dives IB/TMUA/Further instead of claiming all syllabuses freshly audited. Next rotation: GCSE/IGCSE (AQA 8300, Cambridge 0580, Pearson 1MA1/4MA1/4WM) with calculator/formula and 2028/2029 cohort gates.
+
+## Public-repository exam-integrity warning
+**This research repository is public and the blueprint solution checkpoints above are visible. Do not deploy any of these exact prompts verbatim as secure summative, adaptive or timed-mock items.** The later implementation routine must author a materially new private variant for each selected blueprint, validate it independently, store the keyed answer and marking rubric in private storage only, and run semantic similarity checks against this public research file as well as the bank. Research examples may be used openly as teaching demonstrations, not as confidential unseen assessments.
