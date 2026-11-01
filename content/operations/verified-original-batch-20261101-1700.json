@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261101-1700",
-  "status": "private_draft_awaiting_ci_and_activation",
+  "status": "partially_published_cohort_safe",
   "record_count": 9,
   "release_candidates": 3,
   "blocked_cohort_gate": 6,
@@ -21,7 +21,23 @@
     "complete_rows": 9,
     "unique_four_choice_rows": 9,
     "unique_key_rows": 9,
-    "student_mutations": 0
+    "student_mutations": 0,
+    "post_release_active_approved": 3,
+    "post_release_held_drafts": 6,
+    "post_release_bank_count": 387,
+    "post_release_approved_total": 93,
+    "post_release_inactive_drafts": 54,
+    "post_release_assignment_snapshots": 4,
+    "post_release_task_count": 28,
+    "post_release_matching_routes": 3,
+    "post_release_cross_board_matches": 0,
+    "ci_pull_request_run": 41315062485,
+    "ci_main_run": 41315104116,
+    "website_deploy_run": 41315104109,
+    "pages_deploy_run": 41315103644,
+    "ci_success": true,
+    "website_deploy_success": true,
+    "pages_deploy_success": true
   },
   "publication_gate": "CI, regression, merge, Pages deployment, SQL integrity and route selection before activation; IB stays inactive pending exam-year cohort filtering.",
   "questions": [
@@ -142,5 +158,6 @@
       "release_candidate": false,
       "source_url": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/subject-guides/mathematics-applications-interpretation-guide.pdf"
     }
-  ]
+  ],
+  "publication_note": "Three Pearson Edexcel linear 4MA1 Foundation items active and approved; six IB 2021–28 items remain inactive drafts pending exam-session cohort routing for the 2029 syllabus transition."
 }
