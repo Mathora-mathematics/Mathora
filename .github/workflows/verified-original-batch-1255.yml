@@ -1,0 +1,39 @@
+name: Verify private original maths batch 2026-11-01 1255
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261101-1255.json'
+      - 'scripts/check-verified-batch-20261101-1255.mjs'
+      - '.github/workflows/verified-original-batch-1255.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261101-1255.json'
+      - 'scripts/check-verified-batch-20261101-1255.mjs'
+      - '.github/workflows/verified-original-batch-1255.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check private metadata and nine independently computed mathematics outcomes
+        run: node scripts/check-verified-batch-20261101-1255.mjs
+      - name: Check previously approved questions, routing, non-repetition and evidence marking
+        run: |
+          node scripts/check-original-practice.mjs
+          node scripts/check-published-originals.mjs
+          node scripts/check-verified-batch-20261101-0300.mjs
+          node scripts/check-verified-batch-20261101-0500.mjs
+          node scripts/check-verified-batch-20261101-0700.mjs
+          node scripts/check-verified-batch-20261101-0900.mjs
+          node scripts/check-verified-batch-20261101-1056.mjs
+          node scripts/check-approved-practice-gate.mjs
+          node scripts/check-auto-assign.mjs
+          node scripts/check-evidence-marking.mjs
+          node scripts/test-all-tier-evidence.mjs
