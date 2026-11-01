@@ -1,7 +1,7 @@
 {
-  "version": 15,
+  "version": 16,
   "researched_at": "2026-11-02",
-  "title": "MathsGrove IB AA/AI 2029, TMUA 2026–27 and Further 9231/9FM0 original tier blueprint handoff (rotation 13)",
+  "title": "MathsGrove GCSE/IGCSE AQA 8300, Cambridge 0580 v2, Pearson 1MA1/4MA1/4WM original tier blueprint handoff (rotation 14)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -175,6 +175,12 @@
       "qualification": "Pearson official optional-entry combinations (2025–26)",
       "url": "https://qualifications.pearson.com/en/support/support-for-you/exam-officers-administrators/entries-information-manual.html?CourseCode=International&QualFamily=A+Level+and+AS+Level&subject=Further+Mathematics",
       "note": "specific entry options; 3D Decision 1 vs 4D Decision 2 not interchangeable"
+    },
+    {
+      "board": "Ofqual",
+      "qualification": "UK GCSE formula sheets current specification lifetime",
+      "url": "https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses",
+      "note": "5 May 2026 decision; from 2028 for remaining lifetime of current specs including resits"
     }
   ],
   "first_cycle": [
@@ -223,28 +229,28 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261102_0025_ib_tmua_further_assessment_qa.md",
-  "latest_brief_commit": "3387d7d6e4e3562daf9385891220e14b42368e3d",
+  "latest_dated_brief": "content/research/20261102_0233_gcse_igcse_route_gates_and_original_blueprints.md",
+  "latest_brief_commit": "4b3b46e918a4a400d9edfa70560717ab865d0d8d",
   "research_rotation": {
     "deep_dive": [
-      "IB AA SL/HL first assessment 2029 (A3 combinatorics, A4 complex HL)",
-      "IB AI SL/HL first assessment 2029 (D3 probability, C5 graph theory HL)",
-      "TMUA October 2026/January 2027 P1 MM2 and P2 Arg/Prf/Err",
-      "Cambridge Further 9231 2028–30 P1 §1.6, P3 §3.4, P4 §4.1",
-      "Pearson Edexcel Further 9FM0 optional 4B FS2 §§1.1–1.2"
+      "AQA GCSE 8300 Foundation/Higher and Ofqual 5 May 2026 formula-sheet decision",
+      "Pearson UK GCSE 1MA1 Foundation/Higher, no calculus",
+      "Cambridge 0580 Core/Extended 2028–30 Version 2 official hub-linked syllabus",
+      "Pearson International GCSE linear 4MA1 Foundation/Higher",
+      "Pearson modular 4WM2F/4WM2H Unit 2 and same-tier entry restriction"
     ],
     "cross_checked": [
-      "Previous 20261101_1630 IB/TMUA/Further draft and handoff v14",
-      "Live 414 private questions: 120 approved, 54 inactive, 360 active; 82 exact-normalised duplicate groups, zero touching approved",
-      "28 tasks, 4 bank-backed assigned items, four distinct IDs, no repeats within one task",
-      "Approved coverage IB AA SL 6/HL 3, AI SL 3/HL 6, TMUA 9, Cambridge Further 9231 6, Pearson Core Pure 3; no approved FS2 4B explicitly tagged"
+      "Previous 20261101_1834 GCSE/IGCSE draft, 20261101_0634 linear/modular draft, 20261101_1426 4WM unit-gate draft, handoff v15",
+      "Live 423 private questions: 129 approved, 54 inactive, 369 active; 82 exact-normalised duplicate groups, zero touching approved",
+      "28 tasks, 4 bank-backed assigned items, zero repeated IDs or exact-normalised assigned wording",
+      "Approved Pearson UK GCSE 1MA1 Higher 3; no approved Pearson modular 4WM explicitly unit-tagged"
     ],
     "authored_blueprints": 30,
     "instructional_lanes": 10,
-    "timed_mock_assembly_plans": 9,
+    "timed_mock_assembly_plans": 6,
     "next_deep_dive": [
-      "GCSE/IGCSE AQA 8300, Cambridge 0580, Pearson UK 1MA1/linear 4MA1/modular 4WM",
-      "Then Cambridge/Pearson A Level/Further applied syllabus and routing"
+      "Cambridge 9709 2028–30 Pure/Mechanics/Statistics vs Pearson UK 9MA0 and IAL P1–P4/S1–S2/M1–M2",
+      "IB 2029 AA/AI, TMUA 2026–27 specimen, Further 9231/9FM0 options"
     ]
   },
   "verified_objective_gates": {
@@ -366,6 +372,13 @@
       "unit_max_ums": 120,
       "qualification_max_ums": 240,
       "grading_warning": "Raw marks and percentages are not UMS; session-specific raw-to-UMS mapping needed; unit resit uses better of two most recent attempts."
+    },
+    "GCSE_IGCSE_20261102": {
+      "AQA_8300": "P1 noncalculator, P2/P3 calculator, 90min/80 marks each, UK lifetime current-spec formula sheet (Ofqual decision 2026-05-05)",
+      "Pearson_1MA1": "Three 90min/80 papers, P1 noncalculator, no polynomial differentiation, UK lifetime current-spec formula sheet",
+      "Cambridge_0580_2028_2030": "Version 2 via official hub, Core P1/P3 90min/80, Extended P2/P4 120min/100; C1.8 Core standard-form calculations only P3; C1.10 no calculated-result bounds; C8.3 replacement only; E2.12 Extended calculus",
+      "Pearson_4MA1": "Linear 1F+2F or 1H+2H, each 120min/100, calculator permitted; Higher includes elementary differentiation",
+      "Pearson_4WM": "4WM1F/H and 4WM2F/H separate units, 120min/100 raw and 120 UMS each, same tier mandatory, Unit 2 Higher §3.4 calculus and §2.8 quadratic inequalities"
     }
   },
   "original_blueprints": [
@@ -974,5 +987,21 @@
     "Only four bank-backed assigned items audited; broader cross-task and semantic repetition not proven.",
     "No independently approved full-length multi-mark timed mocks verified in this research run.",
     "Public editorial blueprints contain answer checkpoints; secure live exams require newly authored private variants, not verbatim reuse."
+  ],
+  "latest_research_implementation_priorities": [
+    "P0 route qualification+board+exam_year+syllabus_version+tier+unit_or_component+calculator+formula sheet; 1MA1 vs 4MA1 vs 4WM",
+    "P0 modular 4WM same-tier rule; Unit 2 Higher calculus not Unit 1; use series-specific raw-to-UMS conversion",
+    "P0 Cambridge 0580 2028–30 Version 2 from official hub; C1.8 Core standard-form calculations P3 only, C1.10 Core input bounds only, C8.3 replacement only",
+    "P0 semantic dedup across 423 private items, 82 duplicate groups, previous public drafts and all lifetime student assignments",
+    "P0 private new variants with independently checked mathematics, complete mark rubrics, secure keys and examiner approval",
+    "P1 full mock assemblies 80/100 marks with approved multi-mark mark schemes, timer, lockout, whiteboard/photo QA before publication"
+  ],
+  "latest_research_blockers": [
+    "82 exact-normalised duplicate groups and incomplete semantic/parameter-family dedup",
+    "Only four bank-backed assigned items in current audit; broader lifetime student assignment coverage unverified",
+    "Missing explicit board/version/unit/formula metadata and no approved full multi-mark timed mocks",
+    "Pearson modular 4WM unit-specific approved coverage absent; raw-to-UMS mapping missing",
+    "Public research prompts contain solution checkpoints and cannot be confidential student mocks",
+    "Cambridge 0580 PDF direct URL may show stale cached Version 1; always follow official hub for Version 2"
   ]
 }
