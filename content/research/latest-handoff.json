@@ -1,7 +1,7 @@
 {
-  "version": 10,
+  "version": 11,
   "researched_at": "2026-11-01",
-  "title": "MathsGrove official alignment — Pearson modular International GCSE 4WM1/4WM2 F/H, exam routing and UMS (1 November 2026)",
+  "title": "MathsGrove official alignment — IB 2029 AA/AI, TMUA 2026/27 Paper 1/2, Cambridge 9231 2028–30, Pearson 9FM0 options (rotation 9)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -133,6 +133,24 @@
       "syllabus": "4WM1F/4WM1H/4WM2F/4WM2H; 4XMAF/4XMAH cash-in",
       "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2024/specification-and-sample-assessments/int-gcse-mathematics-spec-a-modular.pdf",
       "note": "Issue 2 March 2024, pp.6–8, 13–40, 41–48, 53, 56–57; four unit/tier routes; calculator and formula sheets; 100 raw/120 UMS each; two most recent resit aggregation."
+    },
+    {
+      "board": "IBO",
+      "qualification": "AA 2029 official 2026 subject brief",
+      "url": "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_analysis_en.pdf",
+      "note": "Broad A1–E6 objectives; P1 no technology; 2029 HL P3 60 minutes"
+    },
+    {
+      "board": "IBO",
+      "qualification": "AI 2029 official 2026 subject brief",
+      "url": "https://www.ibo.org/globalassets/new-structure/programmes/dp/pdfs/sb_maths_application_en.pdf",
+      "note": "Broad A1–E5 objectives; all papers technology; 2029 HL P3 60 minutes"
+    },
+    {
+      "board": "Cambridge International",
+      "qualification": "Further Mathematics 9231 2028–2030 v1",
+      "url": "https://www.cambridgeinternational.org/Images/744603-2028-2030-syllabus.pdf",
+      "note": "No significant teaching changes; AS P1+P3/P4; full A all four components"
     }
   ],
   "first_cycle": [
@@ -181,25 +199,28 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261101_1426_pearson_modular_4wm_unit_gate_ums.md",
-  "latest_brief_commit": "ecbea865e66894425b057b3f39250f334b4a3004",
+  "latest_dated_brief": "content/research/20261101_1630_ib_tmua_further_objective_routing.md",
+  "latest_brief_commit": "6d146a50ef3682e90734bb0431781523b6796654",
   "research_rotation": {
     "deep_dive": [
-      "Pearson Edexcel International GCSE Mathematics A Modular Issue 2 March 2024, Unit 1 F/H and Unit 2 F/H objective gates",
-      "Modular calculator/formula conditions, unit entry versus cash-in codes, tier-mixing restriction, raw/UMS grading",
-      "Pearson linear 4MA1, UK 1MA1 and Cambridge 0580 comparator gates"
+      "IB AA/AI 2029 official subject briefs: exact published broad topic codes and paper technology/timing",
+      "TMUA 2026/27 Paper 2 extended objective codes Prf3–5 and Err1–2; Pearson specimen and scaled scoring restrictions",
+      "Cambridge 9231 2028–30 version 1 vs 2026–27 version 3: no significant teaching change; Further Pure 2/P4 route and content",
+      "Pearson 9FM0 Issue 4: Further Statistics 1 and Decision 1 optional paper routing"
     ],
     "cross_checked": [
-      "Prior 20261101_0634 modular draft designs and 20261101_1233 Cambridge transition brief",
-      "369 private.grove_practice_bank rows: 81 approved, 48 drafts, 240 pilots",
-      "82 exact-normalised repeated-stem groups, zero containing approved; semantic duplication not fully tested",
-      "28 private tasks, 4 bank-backed items from one student; no repeated IDs or exact stems",
-      "Zero 4WM/modular-tagged private bank items; six approved Pearson IGCSE items are linear 4MA1"
+      "Prior rotation 5 IB/TMUA/Further 36 draft designs and rotation 8 Pearson modular handoff",
+      "378 private.grove_practice_bank entries: 90 approved, 48 inactive drafts, 240 active pilot",
+      "82 exact-normalised duplicate wording groups; none with approved questions; semantic deduplication remains incomplete",
+      "28 tasks; 4 bank-backed items in one student's task sample; no repeated IDs or normalised stems",
+      "30 approved IB/TMUA/Further items; no explicitly approved Pearson 9FM0 FS1/Decision 1 or Cambridge 9231 P2/P4 routes"
     ],
+    "authored_blueprints": 30,
+    "routes": 10,
+    "timed_mock_assembly_plans": 5,
     "next_deep_dive": [
-      "IB AA/AI 2029 assessment transition and session-specific objective gates",
-      "TMUA 2026–27 official computer specimen and Paper 2 reasoning",
-      "Cambridge 9231/Pearson 9FM0 Further Mathematics optional paper routes"
+      "AQA 8300 / Pearson UK 1MA1 / Cambridge 0580 / Pearson 4MA1 calculator/formula/tier boundaries",
+      "Cambridge 9709 / Pearson UK 9MA0 / Pearson IAL component-specific applied content"
     ]
   },
   "verified_objective_gates": {
@@ -849,5 +870,35 @@
       "calculator/formula-sheet settings for all four papers",
       "independent 100-mark mock approval and no-repetition checks"
     ]
-  }
+  },
+  "last_verified_live_audit": {
+    "at": "2026-11-01 16:30 Asia/Kuwait (cycle window)",
+    "private_total": 378,
+    "approved": 90,
+    "inactive_drafts": 48,
+    "active_pilot": 240,
+    "exact_normalised_duplicate_groups": 82,
+    "groups_containing_approved": 0,
+    "private_tasks": 28,
+    "bank_backed_assignment_items": 4,
+    "repeated_assigned_ids": 0,
+    "repeated_assigned_normalised_stems": 0,
+    "advanced_approved": 30,
+    "scope_warning": "Only four bank-backed assigned items in inspected task tables; semantic and public-bank repetitions not exhaustively checked."
+  },
+  "new_research_gates": {
+    "IB_2029_AA": "Official 2026 first-assessment-2029 subject brief: A1–A5 B1–B5 C1–C3 D1–D3 E1–E6; C3/A4/E5/E6 HL; P1 no tech, P2 tech, P3 HL tech; P1/P2 SL 75 marks each, HL 100 marks each; HL P3 50 marks/60 min.",
+    "IB_2029_AI": "Official 2026 first-assessment-2029 subject brief: A1–A6 B1–B5 C1–C5 D1–D5 E1–E5; A6/B5/C4/C5/E5 HL; all papers tech; P1/P2 SL 75 each, HL 100 each; HL P3 50 marks/60 min.",
+    "TMUA_P2_2026_27": "Arg1–4, Prf1–5, Err1–2; Paper 1 Section 1 only, Paper 2 Sections 1+2; 20 MCQ per paper, 75 min each, no calculator/formula, no negative marks; authentic option count remains unverified; do not invent official scaled score.",
+    "Cambridge_9231_2028_30": "Version 1 Sept 2025 states no significant changes affecting teaching. AS P1+P3 or P1+P4, full A P1+P2+P3+P4; P2 not AS; P4 §4.3 chi-square §4.4 nonparametric §4.5 PGF.",
+    "Pearson_9FM0_FS1_D1": "FS1 §3.2 geometric expectation/variance, §4.2 testing, §6.1 chi-square; Decision1 §1.3 Eulerian, §2.2 Floyd, §3.1 route inspection. Correct optional code 3D Decision1 vs 4D Decision2 in Appendix9."
+  },
+  "blockers": [
+    "Official current TMUA Pearson specimen player's answer-option count/navigation not independently inspected; no authentic TMUA timed mock approval.",
+    "Full authorised IB AA/AI guides needed for granular micro-objective codes and legacy 2027/28 timing; 2029 broad subject-brief codes must not be mislabelled as legacy microcodes.",
+    "Student and item routing lacks robust syllabus version, IB exam session, Cambridge component, Pearson optional pair and assessment technology metadata.",
+    "82 exact-normalised duplicate stem groups still require semantic review, with only four assigned bank items audited.",
+    "No independently approved full-length multi-mark timed mocks or rubric-enabled examiner marking; blueprints remain editorial.",
+    "Current approved IB AI HL Poisson must be restricted to pre-2029 cohorts."
+  ]
 }
