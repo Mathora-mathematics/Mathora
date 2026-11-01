@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261101-1504",
-  "status": "private_draft_awaiting_ci_and_activation",
+  "status": "published_to_private_supabase_bank",
   "record_count": 9,
   "assessment_kind": "Original four-option practice across Grove Daily, Weekly and Exam; NOT complete timed mocks or official-format TMUA papers",
   "privacy": "Public GitHub contains metadata only. Prompts, options, correct answers, worked solutions, misconception analysis and tutor marking guidance are private in Supabase.",
@@ -18,7 +18,12 @@
     "maximum_4gram_jaccard": 0.20192,
     "valid_private_draft_rows": 9,
     "student_mutations": 0,
-    "publication_gate": "CI, merge, Pages deployment, private SQL integrity, routing and anti-repeat checks before approval and activation"
+    "publication_gate": "CI, merge, Pages deployment, private SQL integrity, routing and anti-repeat checks before approval and activation",
+    "post_release_active_approved": 9,
+    "post_release_routing_matches": 9,
+    "post_release_bank_count": 378,
+    "post_release_approved_total": 90,
+    "post_release_assignment_mutations": 0
   },
   "questions": [
     {
