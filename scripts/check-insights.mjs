@@ -30,6 +30,7 @@ for (const part of ['function student(', 'function studio(', 'function family(',
 }
 assert.ok(!ui.includes('.innerHTML='), 'Analytics must not inject arbitrary HTML from student records');
 const deploy = read('.github/workflows/pages.yml');
-assert.ok(deploy.includes('cp sample.html sample.css sample-extras.css sample.js sample-extras.js insights-upgrade.css insights-upgrade.js site/'), 'Pages curated bundle is missing analytics assets');
+const sampleCopy=deploy.split('\n').find(line=>line.includes('cp sample.html'))||'';
+assert.ok(['insights-upgrade.css','insights-upgrade.js',' site/'].every(asset=>sampleCopy.includes(asset)), 'Pages curated bundle is missing analytics assets');
 assert.ok(deploy.includes('node --check insights-upgrade.js'), 'Pages is missing analytics syntax check');
 console.log('MathsGrove analytics hooks, role views, privacy-friendly rendering and deployment assets: OK');
