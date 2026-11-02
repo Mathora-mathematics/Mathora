@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "batch": "20261102-0300",
+  "status": "private_drafts_pending_ci_and_deployment",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Public ledger contains only identifiers, syllabus routing and QA summary. Prompts, answer choices, keys, explanations, misconception analyses and tutor rubrics remain in private Supabase.",
+  "research_brief": "content/research/20261102_0025_ib_tmua_further_assessment_qa.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "distinct_four_choices": 9,
+    "single_key": 9,
+    "substantial_worked_solutions": 9,
+    "misconception_and_tutor_guidance": 9,
+    "katex_delimiter_brace_checks": 9,
+    "prior_practice": 423,
+    "prior_baseline": 240,
+    "prior_assigned": 4,
+    "prior_baseline_assigned": 20,
+    "compared_per_item": 687,
+    "within_batch_pairs": 36,
+    "exact_duplicates": 0,
+    "near_duplicates_at_065": 0,
+    "max_prior_token_jaccard": 0.5,
+    "max_within_batch_jaccard": 0.241379,
+    "student_mutations": 0
+  },
+  "sources": {
+    "pearson_gcse": "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/gcse-maths-2015-specification.pdf",
+    "pearson_igcse": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+    "tmua": "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf"
+  },
+  "notes": [
+    "Initial TMUA quadratic-positivity candidate rejected because it reused an earlier approved question's reasoning structure; replaced with periodic remainders and proof-by-cases item before drafting.",
+    "Strict Pearson linear subject-code routing migration required: 1MA1 and 4MA1 must not match other Pearson routes such as 4WM modular.",
+    "Questions are four-option MathsGrove practice, not authentic-format TMUA or complete timed mocks.",
+    "All questions remain inactive drafts until PR CI, main CI, Pages deployment, live routing checks and database validation pass.",
+    "No student, submission, assignment or human examiner marking rows may be modified.",
+    "Automated mathematical checks do not imply human editorial sign-off."
+  ],
+  "questions": [
+    {
+      "id": "0f991dc7-5807-4ef1-a323-23f332b3d30e",
+      "provenance": "mg-original-20261102-0300-P1MA1-F-D",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "Pearson Edexcel 1MA1",
+      "programme_scope": "daily",
+      "topic": "Decimal division and integer rounding",
+      "expected_seconds": 185,
+      "syllabus_objective": "1MA1 Foundation N2,N15"
+    },
+    {
+      "id": "0686ef31-ac14-4e0f-b765-34da3e810ea5",
+      "provenance": "mg-original-20261102-0300-P1MA1-F-W",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "Pearson Edexcel 1MA1",
+      "programme_scope": "weekly",
+      "topic": "Percentages and money",
+      "expected_seconds": 440,
+      "syllabus_objective": "1MA1 Foundation R9,N2"
+    },
+    {
+      "id": "c03b4f1e-cb60-41ea-8358-2fd6cb85ba00",
+      "provenance": "mg-original-20261102-0300-P1MA1-F-E",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "Pearson Edexcel 1MA1",
+      "programme_scope": "exam",
+      "topic": "Compound measures and average speed",
+      "expected_seconds": 650,
+      "syllabus_objective": "1MA1 Foundation R11,R1"
+    },
+    {
+      "id": "9c3aa768-a155-4cca-9ce9-b63f3c7152a0",
+      "provenance": "mg-original-20261102-0300-P4MA1-H-D",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Pearson Edexcel 4MA1 Higher",
+      "programme_scope": "daily",
+      "topic": "Indices and exponential equations",
+      "expected_seconds": 240,
+      "syllabus_objective": "4MA1 Higher Sections 1,2"
+    },
+    {
+      "id": "cf33f13c-7488-452f-a40f-f73a842cdc95",
+      "provenance": "mg-original-20261102-0300-P4MA1-H-W",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Pearson Edexcel 4MA1 Higher",
+      "programme_scope": "weekly",
+      "topic": "Algebraic fractions",
+      "expected_seconds": 500,
+      "syllabus_objective": "4MA1 Higher Section 2"
+    },
+    {
+      "id": "9e01fb62-4aed-472a-add6-eb92fed73a6d",
+      "provenance": "mg-original-20261102-0300-P4MA1-H-E",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Pearson Edexcel 4MA1 Higher",
+      "programme_scope": "exam",
+      "topic": "Cosine rule and perimeter modelling",
+      "expected_seconds": 710,
+      "syllabus_objective": "4MA1 Higher Section 4"
+    },
+    {
+      "id": "6e6577f8-38e0-4a4e-9378-69e3e4aca271",
+      "provenance": "mg-original-20261102-0300-TMUA-P2-D",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "daily",
+      "topic": "Quantified statements and negation",
+      "expected_seconds": 255,
+      "syllabus_objective": "TMUA 2026–27 Paper 2 Arg3,Arg4"
+    },
+    {
+      "id": "e349c4cc-235f-4ce1-a94a-7b752a741a49",
+      "provenance": "mg-original-20261102-0300-TMUA-P2-W",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "weekly",
+      "topic": "Proof by divisibility",
+      "expected_seconds": 515,
+      "syllabus_objective": "TMUA 2026–27 Paper 2 Prf1"
+    },
+    {
+      "id": "dd0ae86f-46df-4d62-b731-4df29d3c540b",
+      "provenance": "mg-original-20261102-0300-TMUA-P2-E",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "exam",
+      "topic": "Periodic remainders and proof by cases",
+      "expected_seconds": 730,
+      "syllabus_objective": "TMUA 2026–27 Paper 2 Prf1,Prf3,Prf5; MM2.1"
+    }
+  ]
+}
