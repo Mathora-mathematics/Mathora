@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "batch": "20261102-0700",
+  "status": "private_drafts_pending_ci_and_deployment",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Only IDs, routing, and QA summaries appear publicly. Prompts, choices, keys, solutions, misconception analysis and tutor marking guidance remain in private Supabase.",
+  "research_brief": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "independent_symbolic_option_uniqueness": 9,
+    "distinct_four_choices": 9,
+    "single_key": 9,
+    "substantial_worked_solutions": 9,
+    "misconception_and_tutor_guidance": 9,
+    "katex_delimiter_brace_checks": 9,
+    "prior_practice": 441,
+    "prior_baseline": 240,
+    "prior_assigned": 4,
+    "prior_baseline_assigned": 20,
+    "compared_per_item": 705,
+    "within_batch_pairs": 36,
+    "exact_duplicates": 0,
+    "near_duplicates_at_065": 0,
+    "near_structural_at_085": 0,
+    "max_prior_token_jaccard": 0.545455,
+    "max_prior_structural_jaccard": 0.642857,
+    "max_within_batch_jaccard": 0.645162,
+    "student_mutations": 0
+  },
+  "sources": {
+    "Cambridge_0580": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+    "TMUA": "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
+    "Pearson_9FM0": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+  },
+  "notes": [
+    "Nine original four-option platform practice items, not authentic complete timed mock examinations.",
+    "All nine private drafts inactive until PR CI, main CI, Pages deployment and live routing migration pass.",
+    "Pearson 9FM0/4B Further Statistics 2 must be restricted to exact option enrolment; generic 9FM0 is not sufficient.",
+    "TMUA items are four-option platform MCQs; do not claim official paper format.",
+    "The research brief identifies historical same-learner baseline-to-practice repeats in older pilot material; no historical learner records are changed by this batch.",
+    "Do not activate the six previously blocked IB drafts pending exam-year safeguards.",
+    "No student, submission, evidence, assignment or human examiner marking records are modified.",
+    "Public CI validates the privacy-safe ledger and regression scripts, not the confidential private answer keys; SymPy/JS checks were performed before draft insertion."
+  ],
+  "questions": [
+    {
+      "id": "3b33edf8-ebbc-44ed-bbd7-65015a0e02fb",
+      "topic": "Fractional equations with surd roots",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Cambridge 0580 Extended",
+      "programme_scope": "daily",
+      "expected_seconds": 255,
+      "syllabus_objective": "E2.5(3),(6)",
+      "provenance": "mg-original-20261102-0700-C0580E-D"
+    },
+    {
+      "id": "55f6ef3a-7e2a-4e54-b0ee-e7b248465f9c",
+      "topic": "Algebraic fractions and domain",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Cambridge 0580 Extended",
+      "programme_scope": "weekly",
+      "expected_seconds": 385,
+      "syllabus_objective": "E2.2(4),E2.3(2)",
+      "provenance": "mg-original-20261102-0700-C0580E-W"
+    },
+    {
+      "id": "ca1caf33-2c06-4551-b63c-636bc1edd2c8",
+      "topic": "Trapezoidal-prism surface area",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Cambridge 0580 Extended",
+      "programme_scope": "exam",
+      "expected_seconds": 675,
+      "syllabus_objective": "E5.2,E5.4,E6.1",
+      "provenance": "mg-original-20261102-0700-C0580E-E"
+    },
+    {
+      "id": "f2e5f440-f1d1-4970-834a-e448a4b9f93b",
+      "topic": "Absolute-value equation roots",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "daily",
+      "expected_seconds": 240,
+      "syllabus_objective": "Paper 1 algebra",
+      "provenance": "mg-original-20261102-0700-TMUA-D"
+    },
+    {
+      "id": "e615517e-2129-4528-8364-27cff0f328a6",
+      "topic": "Composite functions and quadratics",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "weekly",
+      "expected_seconds": 405,
+      "syllabus_objective": "Paper 1 functions",
+      "provenance": "mg-original-20261102-0700-TMUA-W"
+    },
+    {
+      "id": "e7a261ac-7483-4be1-8b4c-3ef1c6098e73",
+      "topic": "Divisibility and residue classes",
+      "qualification": "TMUA",
+      "academic_level": "tmua",
+      "exam_board": "TMUA",
+      "programme_scope": "exam",
+      "expected_seconds": 620,
+      "syllabus_objective": "Paper 1 number and algebra",
+      "provenance": "mg-original-20261102-0700-TMUA-E"
+    },
+    {
+      "id": "7e714617-b735-42eb-a031-e61854295c80",
+      "topic": "Continuous PDF and tail probability",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Pearson Edexcel 9FM0 4B Further Statistics 2",
+      "programme_scope": "daily",
+      "expected_seconds": 300,
+      "syllabus_objective": "§2.1–2.2",
+      "provenance": "mg-original-20261102-0700-P9FM04B-D"
+    },
+    {
+      "id": "b54291ea-5b1c-460e-b933-854ab197fca7",
+      "topic": "Variance from a CDF",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Pearson Edexcel 9FM0 4B Further Statistics 2",
+      "programme_scope": "weekly",
+      "expected_seconds": 525,
+      "syllabus_objective": "§2.1–2.3",
+      "provenance": "mg-original-20261102-0700-P9FM04B-W"
+    },
+    {
+      "id": "887417ca-d023-4a34-ab10-39d4caeedc71",
+      "topic": "Conditional variance from a PDF",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "exam_board": "Pearson Edexcel 9FM0 4B Further Statistics 2",
+      "programme_scope": "exam",
+      "expected_seconds": 765,
+      "syllabus_objective": "§2.1–2.3",
+      "provenance": "mg-original-20261102-0700-P9FM04B-E"
+    }
+  ]
+}
