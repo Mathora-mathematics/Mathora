@@ -1,7 +1,7 @@
 {
-  "version": 16,
+  "version": 17,
   "researched_at": "2026-11-02",
-  "title": "MathsGrove GCSE/IGCSE AQA 8300, Cambridge 0580 v2, Pearson 1MA1/4MA1/4WM original tier blueprint handoff (rotation 14)",
+  "title": "MathsGrove Cambridge 9709 2026–27 v4 / 2028–30 v1 vs Pearson UK 9MA0 and IAL P2/P4 cross-component objective handoff (rotation 17)",
   "status": "research_brief_committed__implementation_pending",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
@@ -181,6 +181,12 @@
       "qualification": "UK GCSE formula sheets current specification lifetime",
       "url": "https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses",
       "note": "5 May 2026 decision; from 2028 for remaining lifetime of current specs including resits"
+    },
+    {
+      "board": "Pearson Edexcel",
+      "qualification": "9MA0 official public October 2020 mark scheme",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/A-Level/Mathematics/2017/Exam-materials/9MA0_01_msc_20201217.pdf",
+      "note": "M/A/B and follow-through conventions; not reused question text"
     }
   ],
   "first_cycle": [
@@ -229,28 +235,27 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261102_0233_gcse_igcse_route_gates_and_original_blueprints.md",
-  "latest_brief_commit": "4b3b46e918a4a400d9edfa70560717ab865d0d8d",
+  "latest_dated_brief": "content/research/20261102_0431_9709_pearson_alevel_crosscomponent_blueprints.md",
+  "latest_brief_commit": "74af232f4398a4d193e7049aa86b5872316bc568",
   "research_rotation": {
     "deep_dive": [
-      "AQA GCSE 8300 Foundation/Higher and Ofqual 5 May 2026 formula-sheet decision",
-      "Pearson UK GCSE 1MA1 Foundation/Higher, no calculus",
-      "Cambridge 0580 Core/Extended 2028–30 Version 2 official hub-linked syllabus",
-      "Pearson International GCSE linear 4MA1 Foundation/Higher",
-      "Pearson modular 4WM2F/4WM2H Unit 2 and same-tier entry restriction"
+      "Cambridge 9709 P1–P6 2026–27 Version 4 (via official syllabus hub) and 2028–30 Version 1",
+      "Pearson UK 9MA0 synoptic Pure §§7–9 and Paper 3 Statistics §§2–5",
+      "Pearson International A Level WMA12 P2 §2.1/§5.3/§6.2 and WMA14 P4 §2.1/§4.1/§6.5"
     ],
     "cross_checked": [
-      "Previous 20261101_1834 GCSE/IGCSE draft, 20261101_0634 linear/modular draft, 20261101_1426 4WM unit-gate draft, handoff v15",
-      "Live 423 private questions: 129 approved, 54 inactive, 369 active; 82 exact-normalised duplicate groups, zero touching approved",
-      "28 tasks, 4 bank-backed assigned items, zero repeated IDs or exact-normalised assigned wording",
-      "Approved Pearson UK GCSE 1MA1 Higher 3; no approved Pearson modular 4WM explicitly unit-tagged"
+      "Prior 20261101_2234 Pure, 20261101_2030 applied, 20261102_0233 GCSE/IGCSE drafts and handoff v16",
+      "Live 432 private items: 138 approved active, 240 active pilot, 54 inactive draft; 82 exact-normalised duplicate groups, none involving approved",
+      "28 tasks and 4 bank-backed assigned items; no repeated assigned IDs or exact-normalised wording in inspected assignment rows",
+      "Approved A_LEVEL: Cambridge 9709 AS 12/A2 6; Pearson UK 9MA0 9; Pearson IAL WMA11 P1 6; WMA12/13/14 zero",
+      "A candidate Cambridge circle-tangent seed collided with approved item coordinates and was rejected/replaced with distinct chord item"
     ],
     "authored_blueprints": 30,
     "instructional_lanes": 10,
-    "timed_mock_assembly_plans": 6,
+    "timed_mock_assembly_plans": 11,
     "next_deep_dive": [
-      "Cambridge 9709 2028–30 Pure/Mechanics/Statistics vs Pearson UK 9MA0 and IAL P1–P4/S1–S2/M1–M2",
-      "IB 2029 AA/AI, TMUA 2026–27 specimen, Further 9231/9FM0 options"
+      "IB AA/AI SL/HL 2029 syllabus changes vs current cohorts, TMUA 2026–27 computer specimen and Further Maths 9231/9FM0 component routing",
+      "GCSE/IGCSE AQA 8300, Cambridge 0580, Pearson 1MA1/4MA1/4WM formula, calculator and unit rules"
     ]
   },
   "verified_objective_gates": {
@@ -343,18 +348,7 @@
       "Extended_P2": "noncalculator, 100 marks/120min; E2.12 elementary polynomial derivatives; E2.13 composite functions but no composite domain/range",
       "Extended_P4": "calculator, 100 marks/120min; E1.10 bounds of calculated results"
     },
-    "Cambridge_9709_2028_2030": {
-      "version": "1 (September 2025)",
-      "P1": "AS/A, 75 marks/110min",
-      "P2": "AS Pure-only, 50 marks/75min, non-carry-forward",
-      "P3": "A Level, 75 marks/110min; 3.7 vectors 3.8 separable ODE 3.9 complex",
-      "A_level_routes": [
-        "P1+P3+P4+P5",
-        "P1+P3+P5+P6"
-      ],
-      "invalid_route": "P4+P6",
-      "calculator": "scientific permitted/expected all papers; MF19"
-    },
+    "Cambridge_9709_2028_2030": "Version 1 September 2025, no significant teaching changes; same component gates; P1 75/110, P2 50/75, P3 75/110, P4/P5/P6 50/75.",
     "Pearson_4WM_2024_issue2": {
       "qualification_code": "PEARSON_IGCSE_MATH_A_MODULAR",
       "first_assessment": 2025,
@@ -379,7 +373,10 @@
       "Cambridge_0580_2028_2030": "Version 2 via official hub, Core P1/P3 90min/80, Extended P2/P4 120min/100; C1.8 Core standard-form calculations only P3; C1.10 no calculated-result bounds; C8.3 replacement only; E2.12 Extended calculus",
       "Pearson_4MA1": "Linear 1F+2F or 1H+2H, each 120min/100, calculator permitted; Higher includes elementary differentiation",
       "Pearson_4WM": "4WM1F/H and 4WM2F/H separate units, 120min/100 raw and 120 UMS each, same tier mandatory, Unit 2 Higher §3.4 calculus and §2.8 quadratic inequalities"
-    }
+    },
+    "Cambridge_9709_2026_2027": "Version 4 (December 2025) confirmed via official syllabus hub; P1+P2 AS only; A Level P1+P3+(P4+P5 or P5+P6); P4+P6 invalid.",
+    "Pearson_IAL_WMA12_P2": "Issue 3 April 2019, P2.3 §2.1 remainder theorem, §5.3 exponential equations, §6.2 trigonometric equations; 75 marks/90min; P1 prerequisite.",
+    "Pearson_IAL_WMA14_P4": "Issue 3 April 2019, P4.3 §2.1 repeated-linear partial fractions, §4.1 rational-index binomial, §6.5 parametric area; 75 marks/90min; P1/P2/P3 prerequisites."
   },
   "original_blueprints": [
     {
@@ -950,34 +947,36 @@
     "Pearson_9FM0_FS1_D1": "FS1 §3.2 geometric expectation/variance, §4.2 testing, §6.1 chi-square; Decision1 §1.3 Eulerian, §2.2 Floyd, §3.1 route inspection. Correct optional code 3D Decision1 vs 4D Decision2 in Appendix9."
   },
   "blockers": [
-    "Dedicated exam-year and exact component routing fields absent in private practice bank",
-    "82 exact-normalised wording duplicate groups (pilot/draft); semantic duplicates and full student history not fully audited",
-    "Only four bank-backed student assignment items inspectable",
-    "Pearson IAL WMA12/13/14 lack explicitly approved questions",
-    "No independently approved complete 75/100-mark timed mocks or fully validated multi-mark examiner workflow",
-    "Legacy Pearson exemplification link now 404 and IAL SAM too large for current web extraction"
+    "First-class board/component/exam-year/version/valid-route metadata still missing from inspected private bank",
+    "82 exact-normalised duplicate groups remain in pilot/draft; semantic and parameter-only duplication unresolved",
+    "Only four bank-backed assigned question rows inspectable; cannot certify lifetime non-repetition",
+    "No explicitly approved Pearson IAL WMA12/WMA13/WMA14 questions; no independently approved complete multi-mark timed mocks",
+    "Pearson IAL sample assessment PDF too large for browser text extraction; official specification and Pearson UK public mark scheme used instead",
+    "Public editorial research contains answer checkpoints and cannot serve as confidential student exam content"
   ],
   "current_audit": {
-    "as_of": "2026-11-01 late-evening read-only SQL",
-    "practice_total": 405,
-    "approved_active": 111,
-    "draft_inactive": 54,
+    "as_of": "2026-11-02 early-morning read-only Supabase SQL",
+    "practice_total": 432,
+    "approved_active": 138,
     "pilot_active": 240,
+    "draft_inactive": 54,
     "exact_normalised_duplicate_groups": 82,
     "groups_containing_approved": 0,
     "tasks": 28,
     "bank_backed_assigned_items": 4,
     "distinct_assigned_bank_ids": 4,
     "repeated_assigned_bank_ids": 0,
+    "repeated_assigned_normalised_prompts": 0,
     "coverage_a_level_approved": {
-      "Cambridge 9709 (component free text)": 15,
+      "Cambridge 9709 AS (component not first-class)": 12,
+      "Cambridge 9709 A2 (component not first-class)": 6,
       "Pearson UK 9MA0": 9,
-      "Pearson IAL WMA11 P1": 3,
+      "Pearson IAL WMA11 P1": 6,
       "Pearson IAL WMA12 P2": 0,
       "Pearson IAL WMA13 P3": 0,
       "Pearson IAL WMA14 P4": 0
     },
-    "limitations": "Assignment audit is limited to one task with four bank-backed items; free-form/history/semantic reuse not established."
+    "limitations": "Four assigned rows only; no full lifetime free-form task/history audit or semantic/parameter-family equivalence guarantee. pg_trgm, fuzzystrmatch and vector extensions not installed."
   },
   "known_blockers": [
     "IB 2029 detailed subject guide objective microcodes not verified publicly; public 2029 subject briefs give broad topic identifiers.",
@@ -989,19 +988,19 @@
     "Public editorial blueprints contain answer checkpoints; secure live exams require newly authored private variants, not verbatim reuse."
   ],
   "latest_research_implementation_priorities": [
-    "P0 route qualification+board+exam_year+syllabus_version+tier+unit_or_component+calculator+formula sheet; 1MA1 vs 4MA1 vs 4WM",
-    "P0 modular 4WM same-tier rule; Unit 2 Higher calculus not Unit 1; use series-specific raw-to-UMS conversion",
-    "P0 Cambridge 0580 2028–30 Version 2 from official hub; C1.8 Core standard-form calculations P3 only, C1.10 Core input bounds only, C8.3 replacement only",
-    "P0 semantic dedup across 423 private items, 82 duplicate groups, previous public drafts and all lifetime student assignments",
-    "P0 private new variants with independently checked mathematics, complete mark rubrics, secure keys and examiner approval",
-    "P1 full mock assemblies 80/100 marks with approved multi-mark mark schemes, timer, lockout, whiteboard/photo QA before publication"
+    "P0 add qualification+board+exam_year+syllabus_version+component_or_unit+valid_route+calculator+formula_sheet to bank/student/tasks; enforce Cambridge P1+P2 AS-only, P4+P5 or P5+P6 for full A Level, and Pearson UK synoptic vs IAL modular distinctions",
+    "P0 reconcile Cambridge 9709 2026–27 official hub Version 4 vs stale direct-search PDF Version 3; preserve provenance of legacy item metadata",
+    "P0 independently author and validate private WMA12 P2, WMA13 P3, WMA14 P4 questions, with complete marking rubrics and no public blueprint prompt reuse",
+    "P0 semantic and parameter-family dedup across 432 private questions, 82 exact-normalised duplicate groups, all prior public drafts and lifetime student assignments",
+    "P1 assemble 11 full-length board-correct timed mocks, with full multi-mark method/accuracy schemes, examiner approval, timer/lockout/whiteboard/photo tests, before any approved-mock label",
+    "P1 ensure Cambridge P6 continuous densities do not require named CDFs; Pearson IAL S2 explicitly does, and Pearson UK 9MA0 excludes discrete E/Var calculation"
   ],
   "latest_research_blockers": [
-    "82 exact-normalised duplicate groups and incomplete semantic/parameter-family dedup",
-    "Only four bank-backed assigned items in current audit; broader lifetime student assignment coverage unverified",
-    "Missing explicit board/version/unit/formula metadata and no approved full multi-mark timed mocks",
-    "Pearson modular 4WM unit-specific approved coverage absent; raw-to-UMS mapping missing",
-    "Public research prompts contain solution checkpoints and cannot be confidential student mocks",
-    "Cambridge 0580 PDF direct URL may show stale cached Version 1; always follow official hub for Version 2"
+    "First-class board/component/exam-year/version/valid-route metadata still missing from inspected private bank",
+    "82 exact-normalised duplicate groups remain in pilot/draft; semantic and parameter-only duplication unresolved",
+    "Only four bank-backed assigned question rows inspectable; cannot certify lifetime non-repetition",
+    "No explicitly approved Pearson IAL WMA12/WMA13/WMA14 questions; no independently approved complete multi-mark timed mocks",
+    "Pearson IAL sample assessment PDF too large for browser text extraction; official specification and Pearson UK public mark scheme used instead",
+    "Public editorial research contains answer checkpoints and cannot serve as confidential student exam content"
   ]
 }
