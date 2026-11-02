@@ -22,7 +22,6 @@ function requireReady(){if(!sb)throw Error('The Supabase connection is not confi
 function isStaff(){return state.member&&['partner','examiner','admin'].includes(state.member.member_role)}
 function isPartner(){return state.member&&['partner','admin'].includes(state.member.member_role)}
 function showPanel(id){
- const old=document.querySelector('.dash-panel:not([hidden])');
  const update=()=>{
   document.querySelectorAll('.dash-panel').forEach(e=>e.hidden=e.id!==id+'-panel');
   document.querySelectorAll('[data-view]').forEach(b=>{
@@ -34,10 +33,7 @@ function showPanel(id){
   if(id==='progress')renderProgress();
   if(id==='mocks')void loadAssignedMocks();
  };
- const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
- if(old&&old.id!==id+'-panel'&&document.startViewTransition&&!reduced&&$('dashboard-view')&&!$('dashboard-view').hidden){
-  document.startViewTransition(update);
- }else update();
+ update();
 }
 function initials(name){return (name||'Student').trim().split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()||'').join('')||'MG'}
 async function requestLink(e){
