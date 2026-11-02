@@ -57,3 +57,20 @@ Original IB AA SL Signature Advanced diagnostic `77bc4543-3792-4348-99fe-195916b
 **At initial journal creation: draft only; no live publication claimed.** Publication requires this PR's passing GitHub Actions, deployment checks, conditional approval of exactly the nine UUIDs and read-back from Supabase. If any gate fails, leave inactive drafts and record failure.
 
 Student records before: **35 tasks, 10 task items, 5 answers, 5 evidence files, 10 human marks**. No modifications to those tables. Existing historical **four baseline-to-practice repeats** remain unresolved. Mathematical-family no-repeat and per-learner year/paper gating remain unproven; do not claim a complete four-week unique inventory. Current MCQ schema cannot publish a genuine multi-mark written mock.
+
+## Final verified release — 3 November 2026, 01:06 Kuwait
+
+**PUBLISHED 9/9**: conditional atomic Supabase update approved and activated exactly the nine staged UUIDs at `2026-11-02T22:05:32.735278Z`. Post-release read-back confirmed **9 active approved**, four distinct choices and one key **9/9**, exact intended board matches **9/9**, previously assigned new IDs **0**. Independent SQL maths **9/9** and balanced TeX delimiters/braces **9/9**. Duplicate preflight covered **22,329 prior comparisons**, zero exact, digit-masked or token-Jaccard ≥0.76 collisions; within-batch **36 pairs**, zero collisions.
+
+**Merged GitHub PR #53:** https://github.com/Mathora-mathematics/Mathora/pull/53 ; merge commit `4993c8898523459e6c682895f32b36826444bc85`. Final PR CI: https://github.com/Mathora-mathematics/Mathora/actions/runs/41533921936 ; main mathematics/regression CI: https://github.com/Mathora-mathematics/Mathora/actions/runs/41534066350 ; custom website deployment: https://github.com/Mathora-mathematics/Mathora/actions/runs/41534066445 ; GitHub Pages: https://github.com/Mathora-mathematics/Mathora/actions/runs/41534066351 . **All four passed** on the merged release; audit-only journal/ledger commit may trigger a further run, which must be checked separately.
+
+**Post-publication bank:** **2,220 total / 1,932 approved active / 240 active pilot / 48 inactive**. Exact approved active D/W/E stock and individual-mode deficits:
+- Cambridge 0580 Core: **6/6/6**, shortfalls **106/26/182**.
+- IB AA SL current 2021–Nov 2028: **4/4/4**, shortfalls **108/28/184**.
+- Pearson 9FM0/4B Further Statistics 2: **2/2/2**, shortfalls **110/30/186**.
+
+Daily additionally needs 32 distinct Weekly questions and Exam 32 distinct Weekly; do not count shared eligible items twice. Learner-specific unseen inventory may be lower. There are still four historical baseline-to-practice repetitions; a new no-repeat mathematical-family guarantee is **not** proven.
+
+**Student records unchanged:** 35 tasks, 10 materialised items, 5 answers, 5 evidence records, 10 human marks. Private Signature Advanced `77bc4543-3792-4348-99fe-195916b863d2` remains `awaiting_human_moderation`, 24/24 criterion marks reconciled, no authenticated human signoff, zero student reports released.
+
+**Next cycle priority:** repair historical baseline-to-practice repetition without changing historical marks; enforce learner exam-year/paper-specific routing; expand IB AI/AA, Pearson 4MA1, AQA/Pearson GCSE and exact A Level/Further/TMUA units; continue Signature Specialist editorial papers under human moderation.
