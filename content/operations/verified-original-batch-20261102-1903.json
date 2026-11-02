@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "batch": "20261102-1903",
+  "date": "2026-11-02",
+  "status": "staged_inactive_pending_ci",
+  "privacy": "Question stems, four choices, answer keys, worked solutions, tutor notes, and student records are held only in private Supabase.",
+  "sources": [
+    "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf",
+    "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+  ],
+  "questions": [
+    {
+      "id": "02d3e017-b5e6-482f-b734-68bd9be0f60b",
+      "provenance": "mg-original-20261102-1903-IG-D",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Cambridge IGCSE 0580 Extended",
+      "programme_scope": "daily",
+      "expected_seconds": 270,
+      "topic": "Piecewise speed–time graphs",
+      "syllabus_objective": "0580 2025–2027 v3 E2.9(3–4), https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf; practice may be attempted without calculator"
+    },
+    {
+      "id": "2a433716-88aa-448d-9257-eba87cf1f7e8",
+      "provenance": "mg-original-20261102-1903-IG-E",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Cambridge IGCSE 0580 Extended",
+      "programme_scope": "exam",
+      "expected_seconds": 390,
+      "topic": "Cubic stationary points",
+      "syllabus_objective": "0580 2025–2027 v3 E2.12(2–4), https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf; calculator permitted"
+    },
+    {
+      "id": "30cb9230-754f-49fc-84ad-3a15f6cb2143",
+      "provenance": "mg-original-20261102-1903-IG-W",
+      "qualification": "IGCSE",
+      "academic_level": "extended",
+      "exam_board": "Cambridge IGCSE 0580 Extended",
+      "programme_scope": "weekly",
+      "expected_seconds": 340,
+      "topic": "3D trigonometry",
+      "syllabus_objective": "0580 2025–2027 v3 E6.6, https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf; calculator paper 4 style"
+    },
+    {
+      "id": "d31d6b1c-cc1a-4524-b444-3d8f83af32c2",
+      "provenance": "mg-original-20261102-1903-P1-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "daily",
+      "expected_seconds": 250,
+      "topic": "Rationalising surds",
+      "syllabus_objective": "Pearson IAL WMA11/01 P1.3 §1.2 surds; Issue 3 (2019), https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf; calculator allowed"
+    },
+    {
+      "id": "24330273-720f-47f8-932c-3489e80052fe",
+      "provenance": "mg-original-20261102-1903-P1-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "exam",
+      "expected_seconds": 440,
+      "topic": "Discriminant with parameter",
+      "syllabus_objective": "Pearson IAL WMA11/01 P1.3 §§1.4–1.5 discriminant and quadratic formula; https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf; calculator allowed"
+    },
+    {
+      "id": "4a4e82fa-aeb8-49bd-b7dc-55d7adf6a8d3",
+      "provenance": "mg-original-20261102-1903-P1-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA11 P1",
+      "programme_scope": "weekly",
+      "expected_seconds": 370,
+      "topic": "Radian sector geometry",
+      "syllabus_objective": "Pearson IAL WMA11/01 P1.3 §3.2 radian measure, arc length and sector area; https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf; calculator allowed"
+    },
+    {
+      "id": "d807720a-6e8b-4fac-b5c1-24c4f5aa1a12",
+      "provenance": "mg-original-20261102-1903-P5-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Cambridge 9709 P5 Statistics 1",
+      "programme_scope": "daily",
+      "expected_seconds": 300,
+      "topic": "Restricted permutations",
+      "syllabus_objective": "Cambridge 9709 2026–2027 v3 P5 §5.2 permutations with restrictions, https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf; scientific calculator allowed"
+    },
+    {
+      "id": "e8599d5b-1d83-4d6a-937c-01c16ce11b3b",
+      "provenance": "mg-original-20261102-1903-P5-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Cambridge 9709 P5 Statistics 1",
+      "programme_scope": "exam",
+      "expected_seconds": 430,
+      "topic": "Conditional normal probabilities",
+      "syllabus_objective": "Cambridge 9709 2026–2027 v3 P5 §§5.3,5.5 conditional probability and normal distribution, https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf; scientific calculator/normal tables allowed"
+    },
+    {
+      "id": "d5e3a71d-6823-4d68-8f34-3ad3bcc4adbd",
+      "provenance": "mg-original-20261102-1903-P5-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Cambridge 9709 P5 Statistics 1",
+      "programme_scope": "weekly",
+      "expected_seconds": 380,
+      "topic": "Summary statistics from coded totals",
+      "syllabus_objective": "Cambridge 9709 2026–2027 v3 P5 §5.1 mean and standard deviation from Σx and Σx²; https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf; scientific calculator allowed"
+    }
+  ],
+  "qa": {
+    "sympy_independent": 9,
+    "javascript_independent": 9,
+    "sql_math": 9,
+    "unique_four_options": 9,
+    "one_key": 9,
+    "explanations_and_misconceptions": 9,
+    "latex_delimiters_and_braces": 9,
+    "prior_compared_per_candidate": 2434,
+    "total_prior_comparisons": 21906,
+    "exact_duplicates": 0,
+    "masked_template_duplicates": 0,
+    "near_duplicates_at_076": 0,
+    "maximum_prior_jaccard": 0.4,
+    "within_batch_pairs": 36,
+    "maximum_within_jaccard": 0.214286,
+    "board_positive_negative_assertions": 6,
+    "rejected_candidates": 1,
+    "rejection_reason": "Initial P5 Weekly same-colour counter-draw item was structurally similar to older probability items (maximum Jaccard 0.556) despite not breaching the numerical threshold; replaced by independently checked standard-deviation item before approval."
+  },
+  "signature": {
+    "id": "8b77c85c-eb08-4804-86d5-7aa1452a3a08",
+    "product": "signature",
+    "qualification": "IGCSE",
+    "academic_level": "extended",
+    "component": "0580 Extended structured diagnostic",
+    "questions": 3,
+    "parts": 9,
+    "marks": 24,
+    "criterion_marks": 24,
+    "status": "awaiting_human_moderation",
+    "human_signoff": false
+  },
+  "pre_release_bank": {
+    "total": 2193,
+    "approved_active": 1896,
+    "pilot_active": 240,
+    "inactive": 57
+  },
+  "pre_release_student_aggregate": {
+    "tasks": 35,
+    "task_items": 10,
+    "answers": 5,
+    "evidence": 5,
+    "human_marks": 10
+  },
+  "publication": null,
+  "limitations": [
+    "Full timed written exam mocks are not represented by the four-option practice schema.",
+    "Four historical same-learner baseline/practice repetitions remain unresolved; exact-stem and ID no-repeat is enforced but family-level no-repeat is not proven.",
+    "IB revised cohort safeguards remain pending; no IB drafts mass-activated."
+  ]
+}
