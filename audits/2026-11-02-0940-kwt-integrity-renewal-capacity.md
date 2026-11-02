@@ -25,7 +25,7 @@
   - Grove Daily: **7/23** routes have at least the required **4** questions; **16/23** do not.
   - Grove Exam daily practice: **0/23** routes have the required **6** questions.
   - Maximum eligible items per observed board/level/scope was **5**. These are *first-task* counts for an unseen student; sustainable no-repeat inventory across subsequent days is much worse.
-  - Current trial route, GCSE Higher AQA 8300, has **3** eligible Daily questions against the required **4**, so starting a new task is expected to raise the intended shortage error.
+  - The GCSE Higher AQA 8300 route has **3** eligible Daily questions against the required **4**, so a fresh assignment on that route is expected to raise the intended shortage error.
 - The `grove_task_start` SQL inspects approved status, active flag, baseline-bank exclusion, board compatibility and previous `grove_task_items` for the same student, and fails closed when the bank is too small. Four negative compatibility probes passed: Pearson Further Statistics 2→Core Pure, Cambridge 9709 P4→generic 9709, Pearson IAL P2→P1, and Cambridge 0580→0607 all returned false.
 
 ## 3. Newly identified scheduling gap — issue #40
@@ -33,12 +33,12 @@
 - `private.grove_assign_student` schedules from `v_start` to `v_start+27` only, with 8 Weekly / 4 Daily / 6 Exam-daily questions per task; Exam also inserts a `mock_pending` placeholder.
 - Only two active `pg_cron` jobs exist: `mathsgrove-baseline-auto-close` and `mathsgrove-close-timed-practice`. Neither refreshes task schedules.
 - The scheduler is invoked by membership, entitlement and preference enrolment triggers. The staff `grove_admin_schedule` RPC lists assignments, but does not replenish them.
-- Existing trial tasks span 2026-10-31 through 2026-11-27; no later tasks were present. **Without another triggering update, an ongoing entitlement can run out of scheduled tasks after four weeks.** This is a conditional continuity risk; a new entitlement update can trigger another window.
+- An observed enrolment had a finite four-week task horizon with no later tasks present. **Without another triggering update, an ongoing entitlement can run out of scheduled tasks after four weeks.** This is a conditional continuity risk; a new entitlement update can trigger another window.
 - A safe fix needs an idempotent rolling scheduler, entitlement-bound checks, local-date review, isolated synthetic-user regression tests, and assurance that no active/completed/marked work is changed. **Deferred intentionally** to avoid touching real student records.
 
 ## 4. Baseline, target grade and predicted grade
 
-- One submitted baseline session, **20/20 answers**, **7/20 correct**; database score agreed with stored answers. No overdue active baseline sessions or closed sessions without score.
+- One completed baseline session was checked for item count, answer count and consistency of the stored score with answer keys. Individual student scores are intentionally omitted from this public audit. No overdue active baseline sessions or closed sessions without score.
 - **11/11 read-only target-grade tests passed**: Cambridge IGCSE 0580 Core/Extended letter scales, Pearson IGCSE and GCSE numeric scales, IB 1–7, and TMUA decimal bounds. The trial student's target grade is unset; no real target was changed.
 - Baseline routing remains qualification/level-specific rather than exam-board-specific ([issue #30](https://github.com/Mathora-mathematics/Mathora/issues/30)).
 - `grove_student_insights` explicitly labels the staff-set target grade and historical marks as evidence, **not an official predicted grade**. A calibrated predicted-grade engine was not found/verified.
