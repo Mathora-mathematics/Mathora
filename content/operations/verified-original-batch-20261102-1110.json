@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261102-1110",
-  "status": "private_drafts_pending_ci_and_deployment",
+  "status": "published_database_verified",
   "record_count": 9,
   "release_candidates": 9,
   "privacy": "Public repository stores only private Supabase UUIDs and privacy-safe verification metadata; prompts, choices, keys, explanations and marking notes remain in private Supabase.",
@@ -130,5 +130,26 @@
     "Four-option MCQs are practice only; no complete timed mock is claimed.",
     "Historical baseline-to-Daily repetition is unresolved; this batch had no matching near duplicates.",
     "Cambridge 9709 P5 and Pearson IAL WMA13 require exact component gates before activation."
-  ]
+  ],
+  "publication": {
+    "approved_and_active": 9,
+    "post_publication_selection_matches": 9,
+    "incorrect_board_matches": 0,
+    "component_routing_assertions_passed": 14,
+    "component_routing_assertions_total": 14,
+    "migration_applied": true,
+    "post_publication_total": 468,
+    "post_publication_active_approved": 174,
+    "post_publication_active_pilot": 240,
+    "post_publication_inactive_drafts": 54,
+    "previously_held_ib_drafts_unchanged": 6,
+    "pr_review_and_ci": [
+      "https://github.com/Mathora-mathematics/Mathora/pull/41",
+      "https://github.com/Mathora-mathematics/Mathora/pull/42",
+      "https://github.com/Mathora-mathematics/Mathora/actions/runs/41412023076",
+      "https://github.com/Mathora-mathematics/Mathora/actions/runs/41412023090",
+      "https://github.com/Mathora-mathematics/Mathora/actions/runs/41412022842"
+    ],
+    "notes": "Database activated only after independent mathematical, duplicate, route, CI and deployment checks; no student or human marking records modified."
+  }
 }
