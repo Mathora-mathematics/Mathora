@@ -45,7 +45,6 @@ function make(tag,cls,text){const el=document.createElement(tag);if(cls)el.class
 function pill(t,cls=''){return make('span','status-pill '+cls,t)}
 function itemRow(title,description,trailing){const row=make('div','record'),a=make('div');a.append(make('strong','',title),make('small','',description));row.append(a);if(trailing)row.append(trailing);return row}
 function setTab(tab){
- const old=document.querySelector('[data-panel]:not([hidden])');
  const update=()=>{
   document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==tab);
   document.querySelectorAll('.nav [data-tab]').forEach(b=>{
@@ -56,10 +55,7 @@ function setTab(tab){
   if(tab==='reports')renderReleased();
   if(tab==='marking')renderQueue();
  };
- const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
- if(old&&old.dataset.panel!==tab&&document.startViewTransition&&!reduced&&!$('application').hidden){
-  document.startViewTransition(update);
- }else update();
+ update();
 }
 function openStudentRemoval(){
  if(state.membership?.member_role!=='admin'){inform('Only the organisation administrator may manage complete student data exports.',true);return}
