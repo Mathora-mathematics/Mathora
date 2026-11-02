@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "batch": "20261102-2100",
+  "date": "2026-11-02",
+  "status": "draft_pending_ci_and_activation",
+  "privacy": "Confidential prompts, answer keys, worked solutions and student records exist only in private Supabase.",
+  "questions": [
+    {
+      "code": "AQA-D",
+      "id": "b0ad3300-23fb-4c55-bc00-9af4e74f299b",
+      "qualification": "GCSE",
+      "level": "foundation",
+      "board": "AQA 8300",
+      "syllabus": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content-and-assessments",
+      "mode": "daily",
+      "topic": "Fractional sharing",
+      "expected_seconds": 180,
+      "staged_as": "draft"
+    },
+    {
+      "code": "AQA-W",
+      "id": "4fbab8b3-8e09-4386-a5a2-993887aaa887",
+      "qualification": "GCSE",
+      "level": "foundation",
+      "board": "AQA 8300",
+      "syllabus": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content-and-assessments",
+      "mode": "weekly",
+      "topic": "Changing ratio",
+      "expected_seconds": 240,
+      "staged_as": "draft"
+    },
+    {
+      "code": "AQA-E",
+      "id": "087a200e-e97d-4b87-a514-b4795ee88510",
+      "qualification": "GCSE",
+      "level": "foundation",
+      "board": "AQA 8300",
+      "syllabus": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content-and-assessments",
+      "mode": "exam",
+      "topic": "Reverse percentages",
+      "expected_seconds": 240,
+      "staged_as": "draft"
+    },
+    {
+      "code": "IG-D",
+      "id": "b425ecdf-2e0b-462f-a0b3-ffde0ca8347c",
+      "qualification": "IGCSE",
+      "level": "extended",
+      "board": "Pearson Edexcel 4MA1 Higher",
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+      "mode": "daily",
+      "topic": "Rational formula rearrangement",
+      "expected_seconds": 290,
+      "staged_as": "draft"
+    },
+    {
+      "code": "IG-W",
+      "id": "ca1b85a1-3ae7-4194-a0e5-8962fe24631b",
+      "qualification": "IGCSE",
+      "level": "extended",
+      "board": "Pearson Edexcel 4MA1 Higher",
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+      "mode": "weekly",
+      "topic": "External secants",
+      "expected_seconds": 280,
+      "staged_as": "draft"
+    },
+    {
+      "code": "IG-E",
+      "id": "c447227b-7fe9-490d-8854-f84ed61b143f",
+      "qualification": "IGCSE",
+      "level": "extended",
+      "board": "Pearson Edexcel 4MA1 Higher",
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+      "mode": "exam",
+      "topic": "Intersecting inequalities",
+      "expected_seconds": 370,
+      "staged_as": "draft"
+    },
+    {
+      "code": "TM-D",
+      "id": "285edd99-998d-43a7-b604-63ae13dff798",
+      "qualification": "TMUA",
+      "level": "tmua",
+      "board": "TMUA",
+      "paper": "Paper 2",
+      "syllabus": "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
+      "mode": "daily",
+      "topic": "Contrapositive",
+      "expected_seconds": 210,
+      "staged_as": "draft"
+    },
+    {
+      "code": "TM-W",
+      "id": "1e51260b-93d9-471e-8ec3-cb61473ad191",
+      "qualification": "TMUA",
+      "level": "tmua",
+      "board": "TMUA",
+      "paper": "Paper 2",
+      "syllabus": "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
+      "mode": "weekly",
+      "topic": "Divisibility counterexample",
+      "expected_seconds": 250,
+      "staged_as": "draft"
+    },
+    {
+      "code": "TM-E",
+      "id": "ab0792a3-2910-4ace-affe-9b9d942d0958",
+      "qualification": "TMUA",
+      "level": "tmua",
+      "board": "TMUA",
+      "paper": "Paper 2",
+      "syllabus": "https://uat-wp.s3.eu-west-2.amazonaws.com/wp-content/uploads/2024/05/03165619/TMUA_Content_Specification.pdf",
+      "mode": "exam",
+      "topic": "Prime conjecture",
+      "expected_seconds": 270,
+      "staged_as": "draft"
+    }
+  ],
+  "qa": {
+    "sympy_independent": 9,
+    "javascript_independent": 9,
+    "sql_independent": 9,
+    "distinct_four_choices": 9,
+    "one_key": 9,
+    "complete_explanations": 9,
+    "tex_syntax": 9,
+    "prior_compared_per_question": 2443,
+    "prior_comparisons": 21987,
+    "exact_duplicates": 0,
+    "masked_template_duplicates": 0,
+    "near_duplicates_jaccard_076": 0,
+    "maximum_prior_jaccard": 0.45,
+    "within_batch_pairs": 36,
+    "maximum_within_jaccard": 0.2174,
+    "board_positive": 9,
+    "board_negative": 9,
+    "previously_assigned": 0,
+    "new_candidates_rejected": 0
+  },
+  "signature": {
+    "id": "bd8ffee0-56d3-4f41-bc6b-006cc51e50fd",
+    "product": "signature_advanced",
+    "qualification": "IGCSE",
+    "component": "Pearson 4MA1 Higher",
+    "questions": 3,
+    "parts": 11,
+    "marks": 24,
+    "criteria_marks": 24,
+    "status": "awaiting_human_moderation",
+    "human_signoff": false
+  },
+  "bank_before": {
+    "total": 2202,
+    "approved_active": 1905,
+    "pilot_active": 240,
+    "inactive": 57
+  },
+  "student_aggregate_before": {
+    "tasks": 35,
+    "task_items": 10,
+    "answers": 5,
+    "evidence": 5,
+    "human_marks": 10
+  },
+  "publication": null,
+  "limitations": [
+    "No-repeat by exact ID and stem only; family-level no-repeat unproven.",
+    "Four historical baseline-to-practice repeats unresolved.",
+    "TMUA Paper 2 only metadata-level routing.",
+    "No full multi-mark written exam mock published through MCQ practice schema."
+  ]
+}
