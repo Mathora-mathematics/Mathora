@@ -2,7 +2,7 @@
   "version": 1,
   "batch": "20261102-2304",
   "date": "2026-11-02",
-  "status": "draft_pending_github_ci_and_deployment",
+  "status": "published_database_verified",
   "privacy": "Confidential prompts, answers and student records remain only in private Supabase.",
   "questions": [
     {
@@ -117,7 +117,9 @@
     "previously_assigned": 0,
     "new_candidates_rejected": 0,
     "legacy_drafts_reviewed": 48,
-    "legacy_drafts_activated": 0
+    "legacy_drafts_activated": 0,
+    "within_batch_max_jaccard": 0.2462,
+    "final_pre_activation_max_jaccard": 0.45
   },
   "signature": {
     "id": "c4e5bbde-606c-4f8f-bf84-fa8b00729f3b",
@@ -149,5 +151,69 @@
     "Mathematical-family no-repeat not proven.",
     "All exact routes far below four-week unseen inventory requirements.",
     "MCQ items are not multi-mark written mocks."
-  ]
+  ],
+  "publication": {
+    "approved_active": 9,
+    "approved_at_utc": "2026-11-02T20:15:36.863082+00:00",
+    "intended_board_selection": 9,
+    "incorrect_board_matches": 0,
+    "previously_assigned": 0,
+    "pr": "https://github.com/Mathora-mathematics/Mathora/pull/52",
+    "pr_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41516906258",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41516973037",
+    "website_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41516972938",
+    "pages_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41516973481",
+    "workflow_results": "success on publication commit 8d535e6b1a00237f62106be824afa6b65630acc3; final ledger-update CI pending",
+    "bank": {
+      "total": 2211,
+      "approved_active": 1923,
+      "pilot_active": 240,
+      "inactive": 48
+    },
+    "routes": [
+      {
+        "board": "Cambridge 9709 P4 Mechanics",
+        "daily": 2,
+        "weekly": 2,
+        "exam": 2,
+        "shortfall_daily": 110,
+        "shortfall_weekly": 30,
+        "shortfall_exam": 186
+      },
+      {
+        "board": "Pearson Edexcel IAL WME01 Mechanics M1",
+        "daily": 2,
+        "weekly": 2,
+        "exam": 2,
+        "shortfall_daily": 110,
+        "shortfall_weekly": 30,
+        "shortfall_exam": 186
+      },
+      {
+        "board": "Cambridge 9231 P2 Further Pure 2",
+        "daily": 3,
+        "weekly": 3,
+        "exam": 3,
+        "shortfall_daily": 109,
+        "shortfall_weekly": 29,
+        "shortfall_exam": 185
+      }
+    ],
+    "student_aggregate_after": {
+      "tasks": 35,
+      "task_items": 10,
+      "answers": 5,
+      "evidence": 5,
+      "human_marks": 10
+    },
+    "student_mutations": 0,
+    "signature": {
+      "id": "c4e5bbde-606c-4f8f-bf84-fa8b00729f3b",
+      "status": "awaiting_human_moderation",
+      "human_signoff": false,
+      "student_reports_released": 0,
+      "criterion_marks": 24,
+      "parts": 9
+    }
+  }
 }
