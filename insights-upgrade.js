@@ -68,7 +68,8 @@ function studio(payload){
  const cohort=panel("Programme mix",true);
  const enrolled=Array.isArray(payload.students)?payload.students:[];
  const entitlement=Array.isArray(payload.entitlements)?payload.entitlements:[];
- const active=entitlement.filter(x=>new Date(x.starts_at)<=new Date()&&(!x.ends_at||new Date(x.ends_at)>new Date()));
+ const ids=new Set(enrolled.map(x=>x.id));
+ const active=entitlement.filter(x=>ids.has(x.student_id)&&new Date(x.starts_at)<=new Date()&&(!x.ends_at||new Date(x.ends_at)>new Date()));
  const tiers=[["Grove Weekly","weekly"],["Grove Daily","daily"],["Grove Exam","exam"]];
  const tierBars=make("div","mgx-bars");
  tiers.forEach(([label,key])=>tierBars.append(bar(label,active.filter(x=>x.tier===key).length,enrolled.length)));
@@ -83,6 +84,7 @@ function studio(payload){
 }
 function student(data){
  const root=$("mg-student-deep-insights");if(!root)return;root.replaceChildren();
+ if(!data){add(root,head("LEARNING ANALYTICS","Evidence temporarily unavailable.","Your saved papers and reports are not affected."),make("div","mgx-empty","The detailed analysis could not be loaded. Try returning to your dashboard after your access and reports are refreshed."));return;}
  const history=Array.isArray(data&&data.history)?data.history.filter(x=>number(x.total)>0):[];
  const topics=Array.isArray(data&&data.baseline_topics)?data.baseline_topics.filter(x=>number(x.total)>0):[];
  const focus=topics.filter(x=>number(x.correct)<number(x.total)).sort((a,b)=>number(a.correct)/number(a.total)-number(b.correct)/number(b.total)).slice(0,3);
