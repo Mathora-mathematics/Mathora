@@ -14,12 +14,13 @@ export function initAssignedPractice(db){
   set('mg-auto-programme','GROVE '+schedule.programme.toUpperCase());
   const overdue=new Date();overdue.setDate(overdue.getDate()-7);
   const floor=[overdue.getFullYear(),String(overdue.getMonth()+1).padStart(2,'0'),String(overdue.getDate()).padStart(2,'0')].join('-');
-  const rows=(schedule.assignments||[]).filter(r=>r.due_date>=floor).slice(0,20);
+  const rows=(schedule.assignments||[]).filter(r=>r.due_date>=floor).sort((a,b)=>a.due_date.localeCompare(b.due_date)).slice(0,42);
   for(const r of rows){
-   const eligible=r.due_date<=date()&&r.mode!=='mock_pending'&&['submitted','expired'].includes(schedule.baseline_status);
+   const enough=r.status!=='scheduled'||Number(schedule.unseen_questions||0)>=Number(r.questions||0);
+   const eligible=r.due_date<=date()&&r.mode!=='mock_pending'&&enough&&['submitted','expired'].includes(schedule.baseline_status);
    const b=el('button',undefined,'mg-auto-day'+(eligible?' available':'')+(r.status==='completed'?' completed':''));b.type='button';b.disabled=!eligible;
    b.append(el('small',new Date(r.due_date+'T12:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})),el('strong',titles[r.mode]||'Assigned practice'),
-   el('span',r.mode==='mock_pending'?'Requires a tutor-approved full mock':r.status==='completed'||r.status==='expired'?(r.review_status==='released'?'Examiner marked · '+r.score+'/'+r.questions:'Submitted · awaiting examiner review'):r.status==='active'?'Continue saved session':eligible?'Ready · '+r.questions+' questions':r.due_date>date()?'Opens on this date':'Complete baseline first'));
+   el('span',r.mode==='mock_pending'?'Requires a tutor-approved full mock':r.status==='completed'||r.status==='expired'?(r.review_status==='released'?'Examiner marked · '+r.score+'/'+r.questions:'Submitted · awaiting examiner review'):r.status==='active'?'Continue saved session':!enough?'Preparing verified questions · '+(schedule.unseen_questions||0)+' of '+r.questions+' currently available':eligible?'Ready · '+r.questions+' questions':r.due_date>date()?'Opens on this date':'Complete baseline first'));
    b.addEventListener('click',()=>void open(r));list.append(b);
    if(r.due_date<=new Date(Date.now()+7*86400000).toISOString().slice(0,10)){
      const day=el('button',new Date(r.due_date+'T12:00:00').getDate()+' · '+(titles[r.mode]||'Assigned work'),'practice-day'+(eligible?' scheduled':''));
