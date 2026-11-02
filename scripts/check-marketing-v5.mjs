@@ -55,6 +55,17 @@ assert.equal(roles[1].attributes['aria-pressed'],'true','Parent tab should be se
 assert.match(elements['mg5-chart'].children[0].attributes['aria-label'],/Jamie Patel/,'Chart should update with learner');
 scenarios[2].click();roles[2].click();
 assert.match(elements['mg5-next-title'].textContent,/non-routine/i,'High achiever tutor next step should differ');
+for(let i=0;i<scenarios.length;i++){
+ scenarios[i].click();
+ for(let j=0;j<roles.length;j++){
+  roles[j].click();
+  assert.equal(scenarios[i].attributes['aria-pressed'],'true','Scenario state should persist');
+  assert.equal(roles[j].attributes['aria-pressed'],'true','Perspective state should persist');
+  assert.equal(elements['mg5-chart'].children.length,1,'Chart should rerender across all nine examples');
+  assert.equal(elements['mg5-topics'].children.length,3,'Topic bars should rerender across all nine examples');
+ }
+}
+scenarios[2].click();roles[2].click();
 elements['mg5-open-full-demo'].click();
 assert.equal(elements['mg3-exam-select'].value,'alevel','Full demo should reflect selected route');
 assert.ok(tier.wasClicked&&rolePreview.tutor.wasClicked&&elements['learning-journey'].scrolled,'Full demo link should open matching role/qualification');
