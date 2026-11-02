@@ -81,4 +81,26 @@ Created private **Signature Cambridge IGCSE 0580 Extended** original structured 
 
 ## Final publication
 
-**PENDING GitHub CI/deployment and conditional database activation.** Append verified URLs and counts only after live checks; never infer success from a draft or from a GitHub merge alone.
+**See the final verified publication record below.** The initial pre-release section remains as a chronological audit snapshot.
+
+## Final verified publication — 2 November 2026
+
+**PUBLISHED: 9/9 original questions approved and active in live private Supabase.** Atomic conditional gate: **9 staged / 9 valid / 9 distinct qualification-level-board-mode routes / 0 exact duplicates**. All nine were activated together at **2026-11-02 16:13:47 UTC** after CI, custom website deployment and GitHub Pages deployment succeeded. Automated editorial approval is **not** an authenticated human examiner sign-off.
+
+| Exact qualification and route | Approved active Daily | Weekly | Exam | Remaining distinct unseen shortfall Daily / Weekly / Exam |
+| --- | ---: | ---: | ---: | --- |
+| Cambridge IGCSE 0580 Extended (including exact-board aliases) | 6 | 6 | 6 | **106 / 26 / 182** |
+| Pearson IAL WMA11/01 P1, AS | 3 | 3 | 3 | **109 / 29 / 185** |
+| Cambridge 9709 P5 Statistics 1, AS | 2 | 2 | 2 | **110 / 30 / 186** |
+
+These are **distinct exact-board/component, academic-level and programme-scope approved active** records, with no assignment of any of the nine new items. Daily and Exam additionally need **32 separate unseen Weekly questions**, and the monthly 20-item Exam timed MCQ practice mock has not been assembled. The generic Cambridge 9709 items and cross-board generic items are excluded from exact-unit stock; live selection may still admit generic content until the noted routing defect is fixed.
+
+**Post-publication readback:** nine intended board matches, **zero incompatible-board matches** in six tested positive/negative routing cases, **zero previously assigned new items**. SymPy 9/9, independent JS 9/9, SQL 9/9, four unique options and one key 9/9, complete explanations and misconception/tutor notes 9/9. **21,906** prior-record comparisons, zero exact/numeric-template duplicates and zero Jaccard ≥0.76; 36 within-batch comparisons, maximum 0.2143. One similar P5 Weekly candidate was rejected and replaced before approval.
+
+**GitHub:** [PR #50](https://github.com/Mathora-mathematics/Mathora/pull/50) merged; [PR independent maths and learner regression CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41479139636) **success**; [main mathematics CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41479245649) **success**; [custom website deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41479248540) **success**; [native GitHub Pages deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41479245394) **success**.
+
+**Post-publication live bank:** 2,193 total / **1,905 approved active** / 240 active pilot / 48 inactive. Aggregate student tasks 35, task items 10, answers 5, evidence 5, human marks 10 — **unchanged** before/after. No student records or examiner marks edited.
+
+**Private Signature:** `8b77c85c-eb08-4804-86d5-7aa1452a3a08` remains `awaiting_human_moderation`; nine parts and 24 marks fully reconciled; moderator ID/time NULL; **zero student-specific reports released**.
+
+**Unresolved:** four historical baseline-to-practice same-learner repetitions; generic 9709 content may route into P5 despite being unit-ambiguous; no guarantee of semantic-family no-repeat; 48 inactive drafts require individual review; IB 2029 cohort safeguards pending. These issues are not claimed fixed. Next cycle should prioritise an exact-component compatibility migration and a verified per-student mathematical-family exposure gate before adding more A Level, Further Maths, IB and TMUA items.
