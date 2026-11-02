@@ -164,6 +164,13 @@ if(full)full.addEventListener('click',event=>{
  history.replaceState(null,'','#learning-journey');
  target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
 });
+window.MathsGroveShowcase=Object.freeze({
+ select({caseKey,viewRole}){
+  if(!Object.prototype.hasOwnProperty.call(cases,caseKey)||!['student','parent','tutor'].includes(viewRole))return false;
+  changePreview(()=>{activeCase=caseKey;role=viewRole});
+  return true;
+ }
+});
 render();
 // Motion is decorative: the page remains fully visible without JavaScript and with reduced-motion settings.
 const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
