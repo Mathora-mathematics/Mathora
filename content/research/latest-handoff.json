@@ -1,8 +1,8 @@
 {
-  "version": 19,
+  "version": 20,
   "researched_at": "2026-11-02",
-  "title": "GCSE/IGCSE AQA 8300, Cambridge 0580, Pearson 4MA1 and 4XMA modular: 33 editorial tier blueprints, verified route restrictions and unresolved baseline-to-Daily repeat (rotation 19)",
-  "status": "research_brief_committed__implementation_pending__cross_mode_repeat_blocker",
+  "title": "Cambridge 9709 and Pearson UK/IAL A Level: 36 original tier blueprints across 12 component routes, 12 held mock plans and cross-mode repetition QA (rotation 20)",
+  "status": "research_brief_committed__implementation_pending__four_crossmode_repeats_unresolved",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
     {
@@ -235,9 +235,9 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-  "latest_brief_commit": "cbf8d5c3ea36ce045246981cd5fb4c7913dc01a4",
-  "research_rotation": 19,
+  "latest_dated_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+  "latest_brief_commit": "0de84e01d0f70fa9e46ce0885a656ec1ce081065",
+  "research_rotation": 20,
   "verified_objective_gates": {
     "IB_2021_2028": "Current official IB subject briefs; detailed authorised guide objective microcodes outstanding; AA P1 no tech, AA P2/P3 tech; AI all tech",
     "IB_2029_AA": [
@@ -575,8 +575,8 @@
       "No independently approved full-length multi-mark timed mocks; public seeds not confidential student assessments"
     ]
   },
-  "previous_dated_brief": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
-  "previous_brief_commit": "56b71796e83266be23ffd946dc3c9fe9987bf20b",
+  "previous_dated_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
+  "previous_brief_commit": "cbf8d5c3ea36ce045246981cd5fb4c7913dc01a4",
   "current_research_sources": [
     "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
     "https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf",
@@ -776,16 +776,19 @@
   ],
   "latest_cycle": {
     "date": "2026-11-02",
-    "focus": "GCSE/IGCSE qualification and tier/unit gates",
-    "editorial_blueprints": 33,
-    "routes": 11,
-    "mock_assembly_plans": 8,
-    "source_count": 10,
+    "focus": "Cambridge 9709 Pure/Mechanics/Statistics vs Pearson UK 9MA0 and IAL P3/P4/S1/M1",
+    "editorial_blueprints": 36,
+    "routes": 12,
+    "mock_assembly_plans": 12,
+    "source_count": 7,
     "student_publications": 0,
     "live_mocks_approved": 0,
-    "previous_brief_checked": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
+    "previous_briefs_checked": [
+      "content/research/20261102_0431_9709_pearson_alevel_crosscomponent_blueprints.md",
+      "content/research/20261101_2234_cambridge_9709_pearson_9ma0_ial_pure_gates.md"
+    ],
     "exact_collisions_against_live_practice_baseline_assigned": 0,
-    "previous_brief_exact_substring_collisions": 0,
+    "previous_brief_exact_full_prompt_collisions": 0,
     "semantic_uniqueness": "NOT VERIFIED"
   },
   "previous_cycle_handoff_summary": {
@@ -836,91 +839,79 @@
   },
   "latest_research_sources": [
     {
-      "id": "S1",
-      "title": "AQA GCSE 8300 R5 ratio",
-      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.3-ratio-proportion-and-rates-of-change"
+      "id": "R20-S1",
+      "title": "Cambridge 9709 2026–27 v4",
+      "url": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
     },
     {
-      "id": "S2",
-      "title": "AQA GCSE 8300 S3 and S4 statistics",
-      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.6-statistics"
+      "id": "R20-S2",
+      "title": "Cambridge 9709 2028–30 v1",
+      "url": "https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf"
     },
     {
-      "id": "S3",
-      "title": "AQA GCSE 8300 P9 probability",
-      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content/3.5-probability"
+      "id": "R20-S3",
+      "title": "Cambridge public examples",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-international-as-and-a-level-mathematics-9709/past-papers/"
     },
     {
-      "id": "S4",
-      "title": "Cambridge IGCSE 0580 2028–2030 syllabus v2 August 2026",
-      "url": "https://www.cambridgeinternational.org/Images/745681-2028-2030-syllabus.pdf"
+      "id": "R20-S4",
+      "title": "Pearson UK 9MA0 Issue 4",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf"
     },
     {
-      "id": "S5",
-      "title": "Pearson International GCSE linear 4MA1 specification",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf"
+      "id": "R20-S5",
+      "title": "Pearson UK qualification page",
+      "url": "https://qualifications.pearson.com/en/qualifications/edexcel-a-levels/mathematics-2017.html"
     },
     {
-      "id": "S6",
-      "title": "Pearson International GCSE modular 4XMAF/4XMAH Issue 2 March 2024",
-      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2024/specification-and-sample-assessments/int-gcse-mathematics-spec-a-modular.pdf"
+      "id": "R20-S6",
+      "title": "Pearson IAL Issue 3",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
     },
     {
-      "id": "S7",
-      "title": "AQA GCSE 8300 assessment structure/AO weights",
-      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/scheme-of-assessment"
-    },
-    {
-      "id": "S8",
-      "title": "Ofqual decision 5 May 2026 on GCSE formulae sheets",
-      "url": "https://www.gov.uk/government/consultations/proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses/outcome/decisions-proposed-changes-to-the-assessment-of-mathematics-physics-and-combined-science-gcses"
-    },
-    {
-      "id": "S9",
-      "title": "AQA 8300 paper structure",
-      "url": "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/specification-at-a-glance"
-    },
-    {
-      "id": "S10",
-      "title": "Cambridge 0580 qualification and syllabus-year hub",
-      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-mathematics-0580/"
+      "id": "R20-S7",
+      "title": "Pearson IAL P3 sample",
+      "url": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/International-A-Level-Maths-SAMs1.pdf"
     }
   ],
   "implementation_priority": [
-    "P0 CONFIRMED same-learner baseline→completed Daily exact repetition: 4 prompts. Add cross-mode lifetime exclusion, template-family fingerprinting and a regression test; preserve submitted records",
-    "P0 use exam_year/version/board/component/valid route as first-class bank and student/task metadata; IB 2029 vs 2028, Cambridge 9231 P2 A-only and Pearson 9FM0 4B optional route",
-    "P0 create distinct private variants of 30 public research seeds; check against 441 practice, 240 baseline, 20 assigned baseline, 4 assigned task items and prior GitHub editorial drafts",
-    "P1 independent mathematical QA, M/A/B rubrics, no official-board endorsement, protected answers, student photo/whiteboard evidence and admin marking",
-    "P1 ten mock assembly plans are NOT approved mocks; complete duration/mark schemes, timer and examiner sign-off required",
-    "P1 verify full IB 2029 detailed subject guides and TMUA interactive Pearson specimen before claiming algorithm-level objective or exact UI fidelity",
-    "P2 next rotation GCSE/IGCSE tier/unit/formula/assessment-year rules and cross-mode repeat prevention"
+    "P0 preserve submitted history and fix four confirmed same-student baseline→Daily repetitions via lifetime cross-mode stem and family exclusion; regression tests",
+    "P0 server-side route filters: Cambridge P2 AS-only, P6 after P5, P4 excludes impulse/restitution; Pearson IAL P3 vs P4 vs S1 vs M1, UK 9MA0 synoptic papers",
+    "P0 first-class exam_year/spec_version/board/component/valid_route/calculator/formula_sheet/question_family and exposure history",
+    "P0 create distinct confidential private variants of 36 public editorial seeds; check 459 practice, 240 baseline, 20 assigned baseline, 4 assigned task items and prior drafts",
+    "P1 verify all maths and full M/A/B rubrics with independent examiner sign-off, work-evidence capture, timers and accessibility",
+    "P1 12 mock assembly plans are HOLD; no completed approved full-length timed mocks",
+    "P2 next research IB AA/AI SL/HL, TMUA, Further Mathematics"
   ],
   "next_implementation_handoff": {
-    "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-    "source_commit": "cbf8d5c3ea36ce045246981cd5fb4c7913dc01a4",
-    "action": "Read source brief section 6 and implement cross-mode lifetime no-repeat and route-gating; public blueprints must be converted to new private variants and reviewed before publication.",
+    "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+    "source_commit": "0de84e01d0f70fa9e46ce0885a656ec1ce081065",
+    "action": "Read research rotation 20 sections: official objective gates, 36 editorial tier seeds, mock HOLD plans and read-only cross-mode audit. Prioritise confirmed baseline→Daily repetition fix and private question-family dedup; never publish public seeds.",
     "publication_allowed_only_after_independent_QA": true
   },
   "last_verified_live_audit": {
-    "at": "2026-11-01 16:30 Asia/Kuwait (cycle window)",
-    "private_total": 378,
-    "approved": 90,
-    "inactive_drafts": 48,
+    "at": "2026-11-02 rotation 20",
+    "private_total": 459,
+    "approved": 165,
+    "inactive_drafts": 54,
     "active_pilot": 240,
     "exact_normalised_duplicate_groups": 82,
     "groups_containing_approved": 0,
     "private_tasks": 28,
     "bank_backed_assignment_items": 4,
-    "repeated_assigned_ids": 0,
-    "repeated_assigned_normalised_stems": 0,
-    "advanced_approved": 30,
-    "scope_warning": "Only four bank-backed assigned items in inspected task tables; semantic and public-bank repetitions not exhaustively checked."
+    "baseline_items": 240,
+    "baseline_unique_stems": 160,
+    "baseline_to_completed_daily_repeated_stems": 4,
+    "scope_warning": "Historical repetition across modes confirmed; not fixed. Semantic variants unresolved."
   },
   "new_research_gates": [
-    "Cambridge 0580 2028–2030 v2: Core C1.8 standard-form calculations Paper 3 only; Core C1.10 excludes bounds of results of calculations; E9.7/E2.13 Extended",
-    "Pearson modular qualification cash-in codes 4XMAF/4XMAH, unit codes 4WM1F/4WM1H/4WM2F/4WM2H; same tier for units; Unit 1/2 no increasing difficulty",
-    "Pearson 4MA1 linear is separate from 4XMA modular; both calculator permitted; AQA 8300 P1 no calculator, P2/P3 calculator",
-    "Ofqual 5 May 2026 current UK GCSE formula sheet policy applies throughout current specification lifetime including resits, not to international qualifications"
+    "Cambridge 9709 current 2026–27 v4 Dec 2025 updated weblink; 2028–30 v1 no significant teaching changes; exam-year routing mandatory",
+    "Cambridge P2 AS-only and no general integration substitution; P3 separable first-order differential equations",
+    "Cambridge P4 1D collisions, no impulse/restitution; Pearson IAL M1 impulse and moments",
+    "Cambridge P5 can draw stem/box/histograms; Pearson IAL S1 drawing and median/IQR calculation not direct examination focus, and outlier rule supplied",
+    "Cambridge P6 Poisson hypothesis tests and Type I/II, requires P5",
+    "Pearson UK 9MA0 synoptic Pure /01 /02 2h/100m, combined Stats/Mechanics /03 2h/100m",
+    "Pearson IAL P3 WMA13, P4 WMA14, S1 WST01, M1 WME01 separate 90min/75m units"
   ],
   "blockers": [
     "FOUR exact-normalised baseline prompts repeated in a completed Daily task for the same learner (verified; new actionable P0)",
@@ -932,9 +923,9 @@
     "No independently approved full-length multi-mark timed mocks; public seeds not confidential student assessments"
   ],
   "current_audit": {
-    "as_of": "2026-11-02 08:31 Asia/Kuwait read-only SQL",
-    "practice_total": 450,
-    "approved_active": 156,
+    "as_of": "2026-11-02 read-only SQL, rotation 20",
+    "practice_total": 459,
+    "approved_active": 165,
     "pilot_active": 240,
     "draft_inactive": 54,
     "exact_normalised_duplicate_groups": 82,
@@ -943,11 +934,10 @@
     "bank_backed_assigned_items": 4,
     "baseline_bank_rows": 240,
     "baseline_distinct_normalised_prompts": 160,
-    "baseline_stems_also_in_practice": 160,
     "assigned_baseline_items": 20,
     "same_learner_baseline_to_completed_daily_exact_repeats": 4,
     "affected_learner_count": 1,
-    "limitations": "No exhaustive semantic/parameter-family scan; current audit snapshots are subject to concurrent implementation changes."
+    "limitations": "Semantic and parameter-family collisions not exhaustively checked; concurrent writes may change counts."
   },
   "known_blockers": [
     "FOUR exact-normalised baseline prompts repeated in a completed Daily task for the same learner (verified; new actionable P0)",
@@ -959,219 +949,238 @@
     "No independently approved full-length multi-mark timed mocks; public seeds not confidential student assessments"
   ],
   "latest_research_implementation_priorities": [
-    "P0 confirmed 4 same-learner baseline-to-Daily repeats: exclude across all modes by normalised prompt and family fingerprint, preserving submitted history",
-    "P0 enforce board/tier/unit/exam_year/paper/calculator/formula gates server-side; Pearson modular cash-in and unit codes correct",
-    "P0 independently author private variants of 33 public editorial seeds; check against all 450 practice, 240 baseline, 20 baseline assignments, 4 task items and prior research",
-    "P1 82 exact duplicate groups and semantic/parameter-family collisions require review",
-    "P1 eight full-length mock plans NOT approved mocks: author complete 80/100-mark papers, rubrics, examiner sign-off, timer and evidence",
-    "P2 next rotation Cambridge/Pearson A Level component routes then IB/TMUA/Further"
+    "P0 preserve submitted history and fix four confirmed same-student baseline→Daily repetitions via lifetime cross-mode stem and family exclusion; regression tests",
+    "P0 server-side route filters: Cambridge P2 AS-only, P6 after P5, P4 excludes impulse/restitution; Pearson IAL P3 vs P4 vs S1 vs M1, UK 9MA0 synoptic papers",
+    "P0 first-class exam_year/spec_version/board/component/valid_route/calculator/formula_sheet/question_family and exposure history",
+    "P0 create distinct confidential private variants of 36 public editorial seeds; check 459 practice, 240 baseline, 20 assigned baseline, 4 assigned task items and prior drafts",
+    "P1 verify all maths and full M/A/B rubrics with independent examiner sign-off, work-evidence capture, timers and accessibility",
+    "P1 12 mock assembly plans are HOLD; no completed approved full-length timed mocks",
+    "P2 next research IB AA/AI SL/HL, TMUA, Further Mathematics"
   ],
   "latest_research_blockers": [
-    "4 confirmed baseline-to-completed-Daily same-learner repeats not yet prevented",
-    "82 normalised duplicate groups (no approved collision); semantic/family duplication not exhaustively checked",
-    "Pearson modular 4XMA unit-specific approved question coverage not confirmed in private bank",
-    "First-class syllabus year, unit/component and question-family metadata missing from inspected schema",
-    "Only 4 bank-backed assigned items and 20 assigned baseline items; broader history limited",
-    "No independently approved full-length timed mocks"
+    "Four confirmed exact-normalised same-learner baseline→completed-Daily repetitions remain unresolved",
+    "82 pilot/draft duplicate wording groups and incomplete semantic/parameter-family screening",
+    "Missing first-class exam-year/version and component-specific eligibility fields",
+    "Zero explicitly component-tagged approved Pearson IAL WMA13 P3, WMA14 P4, WST01 S1, WME01 M1 in inspected bank",
+    "Cambridge 9709 board-only approvals cannot establish paper-level eligibility",
+    "No independently approved full-length multi-mark timed mocks"
   ],
   "latest_blueprint_manifest": [
     {
-      "id": "AQA-F-R5-D",
+      "id": "C9709-P1-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-F-R5-W",
+      "id": "C9709-P1-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-F-R5-E",
+      "id": "C9709-P1-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-H-S3-D",
+      "id": "C9709-P2-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-H-S3-W",
+      "id": "C9709-P2-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-H-S3-E",
+      "id": "C9709-P2-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-H-P9-D",
+      "id": "C9709-P3-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-H-P9-W",
+      "id": "C9709-P3-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "AQA-H-P9-E",
+      "id": "C9709-P3-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-C-C18-D",
+      "id": "C9709-P4-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-C-C18-W",
+      "id": "C9709-P4-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-C-C18-E",
+      "id": "C9709-P4-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-C-C110-D",
+      "id": "C9709-P5-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-C-C110-W",
+      "id": "C9709-P5-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-C-C110-E",
+      "id": "C9709-P5-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-E-E97-D",
+      "id": "C9709-P6-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-E-E97-W",
+      "id": "C9709-P6-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-E-E97-E",
+      "id": "C9709-P6-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-E-E213-D",
+      "id": "P9MA0-PURE-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-E-E213-W",
+      "id": "P9MA0-PURE-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "C0580-E-E213-E",
+      "id": "P9MA0-PURE-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4MA1-H-61-D",
+      "id": "P9MA0-STAT-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4MA1-H-61-W",
+      "id": "P9MA0-STAT-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4MA1-H-61-E",
+      "id": "P9MA0-STAT-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U1H-61-D",
+      "id": "PIAL-P3-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U1H-61-W",
+      "id": "PIAL-P3-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U1H-61-E",
+      "id": "PIAL-P3-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U2H-34-D",
+      "id": "PIAL-P4-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U2H-34-W",
+      "id": "PIAL-P4-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U2H-34-E",
+      "id": "PIAL-P4-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U2F-17-D",
+      "id": "PIAL-S1-D",
       "tier": "daily",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U2F-17-W",
+      "id": "PIAL-S1-W",
       "tier": "weekly",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     },
     {
-      "id": "P4WM-U2F-17-E",
+      "id": "PIAL-S1-E",
       "tier": "exam",
-      "source_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-      "status": "editorial_only__private_variant_and_examiner_QA_required"
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
+    },
+    {
+      "id": "PIAL-M1-D",
+      "tier": "daily",
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
+    },
+    {
+      "id": "PIAL-M1-W",
+      "tier": "weekly",
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
+    },
+    {
+      "id": "PIAL-M1-E",
+      "tier": "exam",
+      "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+      "status": "editorial_public_seed_only__must_create_distinct_private_variant_and_independent_examiner_QA"
     }
   ],
   "historical_modular_implementation_handoff": {
