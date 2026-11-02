@@ -1,6 +1,6 @@
 /* MathsGrove marketing v5: deliberate, fictional multi-role learning-story product tour. */
 (()=>{'use strict';
-const root=document.getElementById('mg5-learning-stories');if(!root)return;
+const root=document.getElementById('dashboards');if(!root)return;
 const q=id=>document.getElementById(id);
 const text=(id,value)=>{const e=q(id);if(e)e.textContent=String(value??'—')};
 const cases={
