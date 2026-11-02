@@ -150,6 +150,7 @@ async function loadStudentAnalysis(){
  try{
   const {data,error}=await sb.rpc('grove_student_insights');
   if(error)throw error;
+  window.MGInsights?.student(data);
   const write=(id,v)=>{const el=$(id);if(el)el.textContent=String(v??'—')};
   write('mg-insight-target',data?.target_grade||'Not set');
   write('mg-insight-baseline',data?.baseline?.status==='submitted'||data?.baseline?.status==='expired'?(data.baseline.score+'/20'):'Not started');
@@ -607,6 +608,7 @@ async function viewPaperRecord(attempt){
     root.append(note);
    }
   }
+  if(attempt.status==='marked')window.MGInsights?.report(root,answers.data||[],questions.data||[],reviewResult.data||[]);
   const sorted=(answers.data||[]).sort((a,b)=>String(qs.get(a.question_id)?.topic||'').localeCompare(String(qs.get(b.question_id)?.topic||'')));
   for(let i=0;i<sorted.length;i++){
    const a=sorted[i],q=qs.get(a.question_id),r=reviews.get(a.question_id);
