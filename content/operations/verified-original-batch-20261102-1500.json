@@ -2,7 +2,7 @@
   "version": 1,
   "batch": "20261102-1500",
   "date": "2026-11-02",
-  "status": "draft_pending_ci_and_routing",
+  "status": "published_database_verified",
   "private_project": "nwakgkxytovprrrwyahs",
   "count": 9,
   "privacy": "No unseen stems, answer options, solutions, marking notes, student data or secret credentials are in this public ledger.",
@@ -126,14 +126,59 @@
     "max_prior_jaccard": 0.5,
     "max_internal_jaccard": 0.269,
     "near_duplicates_at_076": 0,
-    "student_record_mutations": 0
+    "student_record_mutations": 0,
+    "sql_math_checkpoints": 9,
+    "distinct_numeric_options": 36
   },
   "publication": {
-    "approved_active": 0,
-    "selection_matches": 0,
-    "incorrect_board_matches": null,
-    "ci": "pending",
-    "deployment": "pending",
-    "signature_human_moderation": "unchanged"
+    "approved_active": 9,
+    "selection_matches": 9,
+    "incorrect_board_matches": 0,
+    "previously_assigned": 0,
+    "routing_assertions_passed": 18,
+    "routing_assertions_total": 18,
+    "migration_applied": true,
+    "post_publication_total": 2175,
+    "post_publication_active_approved": 1887,
+    "post_publication_active_pilot": 240,
+    "post_publication_inactive": 48,
+    "student_counts_before_after": {
+      "tasks": [
+        35,
+        35
+      ],
+      "task_items": [
+        10,
+        10
+      ],
+      "answers": [
+        5,
+        5
+      ],
+      "evidence": [
+        5,
+        5
+      ],
+      "marks": [
+        10,
+        10
+      ]
+    },
+    "signature": {
+      "id": "fa10e5d8-4a76-442c-a9de-c33d794b83f9",
+      "product": "signature_advanced",
+      "component": "WME02 M2",
+      "total_marks": 24,
+      "parts": 9,
+      "criterion_marks": 24,
+      "review_state": "awaiting_human_moderation",
+      "student_reports_released": 0
+    },
+    "pr": "https://github.com/Mathora-mathematics/Mathora/pull/46",
+    "pr_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41442271261",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41442433741",
+    "native_pages_success": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41442701059",
+    "secondary_deploy": "Custom Deploy MathsGrove website workflow encountered concurrent Pages deployment collisions and a missing asset on another concurrent commit; native Pages build/deploy succeeded. This is not represented as a clean custom deploy pass.",
+    "notes": "9/9 activated only after private maths, duplicate, routing, CI and successful native Pages verification. Human Signature moderation untouched. Four historical baseline/practice repetitions remain."
   }
 }
