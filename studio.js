@@ -4,6 +4,7 @@ import { initAccessManagement } from './access-management.js';
 import { initBaselineAdmin } from './baseline-admin.js';
 import { initAssignedAdmin } from './assigned-admin.js';
 import { initEditorialReview } from './editorial-review.js';
+import { initSignatureEditorial } from './signature-editorial.js';
 import { initStudentOffboarding } from './student-offboarding.js';
 const $ = id => document.getElementById(id);
 const config = window.MATHSGROVE_CONFIG || {};
@@ -15,6 +16,7 @@ const baselineManager=initBaselineAdmin(db,state);
 const assignedManager=initAssignedAdmin(db,state);
 state.onAssignedRefresh=()=>{if(state.membership)renderOverview()};
 const editorialManager=initEditorialReview(db,state);
+const signatureManager=initSignatureEditorial(db,state);
 const offboardingChannel=typeof BroadcastChannel!=='undefined'?new BroadcastChannel('mathsgrove-offboarding'):null;
 const offboardingManager=initStudentOffboarding(db,state,{onRemoved:async(studentId)=>{
  // Discard the entire in-memory student roster and derived metrics before a fresh server read.
@@ -111,6 +113,7 @@ async function refresh({strict=false}={}){
  if(adminRole())await inspect('Linked access',()=>linkedManager.refresh());
  await inspect('Baseline register',()=>baselineManager.refresh());
  await inspect('Assigned practice',()=>assignedManager.refresh());
+ await inspect('Signature editorial',()=>signatureManager.refresh());
  if(adminRole())await inspect('Editorial register',()=>editorialManager.refresh());
  if(state.membership?.member_role==='admin')await inspect('Student archive register',()=>offboardingManager.refresh());
  if(strict&&issues.length)throw Error('Some dashboards could not reload: '+issues.join(' | '));
