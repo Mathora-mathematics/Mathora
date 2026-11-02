@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "batch": "20261102-1500",
+  "date": "2026-11-02",
+  "status": "draft_pending_ci_and_routing",
+  "private_project": "nwakgkxytovprrrwyahs",
+  "count": 9,
+  "privacy": "No unseen stems, answer options, solutions, marking notes, student data or secret credentials are in this public ledger.",
+  "sources": [
+    "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+  ],
+  "migration": "supabase/migrations/20261102150000_grove_9231_p2_exact_component_gate.sql",
+  "questions": [
+    {
+      "code": "M2D",
+      "id": "a0cbfee2-d197-40d4-bc02-656ee046a668",
+      "exam_board": "Pearson Edexcel IAL WME02 Mechanics M2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 280,
+      "syllabus_objective": "WME02 §1.3",
+      "provenance": "mg-original-20261102-1500-M2D"
+    },
+    {
+      "code": "M2W",
+      "id": "5116ccf4-7a16-40ec-b940-64f5ce3468f9",
+      "exam_board": "Pearson Edexcel IAL WME02 Mechanics M2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 370,
+      "syllabus_objective": "WME02 §1.2",
+      "provenance": "mg-original-20261102-1500-M2W"
+    },
+    {
+      "code": "M2E",
+      "id": "bc766f2d-7e09-498b-b213-8e10c62d896e",
+      "exam_board": "Pearson Edexcel IAL WME02 Mechanics M2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 570,
+      "syllabus_objective": "WME02 §3.1",
+      "provenance": "mg-original-20261102-1500-M2E"
+    },
+    {
+      "code": "F2D",
+      "id": "0459fff6-e642-4e61-9a94-932b66dd2f22",
+      "exam_board": "Cambridge 9231 P2 Further Pure 2",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "programme_scope": "daily",
+      "expected_seconds": 280,
+      "syllabus_objective": "9231 P2 §2.1",
+      "provenance": "mg-original-20261102-1500-F2D"
+    },
+    {
+      "code": "F2W",
+      "id": "cb4c2784-4d22-46fd-9bee-10bb2639a7dd",
+      "exam_board": "Cambridge 9231 P2 Further Pure 2",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "programme_scope": "weekly",
+      "expected_seconds": 470,
+      "syllabus_objective": "9231 P2 §2.2",
+      "provenance": "mg-original-20261102-1500-F2W"
+    },
+    {
+      "code": "F2E",
+      "id": "cb8f8068-45fc-41f5-a9a3-f11bece7618e",
+      "exam_board": "Cambridge 9231 P2 Further Pure 2",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "programme_scope": "exam",
+      "expected_seconds": 620,
+      "syllabus_objective": "9231 P2 §2.6",
+      "provenance": "mg-original-20261102-1500-F2E"
+    },
+    {
+      "code": "S1D",
+      "id": "19e2e42e-a72a-409b-b123-7d3e3227f95a",
+      "exam_board": "Pearson Edexcel IAL WST01 S1",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "daily",
+      "expected_seconds": 300,
+      "syllabus_objective": "WST01 §5",
+      "provenance": "mg-original-20261102-1500-S1D"
+    },
+    {
+      "code": "S1W",
+      "id": "5517c8a4-911b-4c27-ae8e-7ddea3dcd20d",
+      "exam_board": "Pearson Edexcel IAL WST01 S1",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "weekly",
+      "expected_seconds": 440,
+      "syllabus_objective": "WST01 §4",
+      "provenance": "mg-original-20261102-1500-S1W"
+    },
+    {
+      "code": "S1E",
+      "id": "282798fd-33eb-458b-90e6-ec3b5cacac38",
+      "exam_board": "Pearson Edexcel IAL WST01 S1",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "exam",
+      "expected_seconds": 520,
+      "syllabus_objective": "WST01 §6",
+      "provenance": "mg-original-20261102-1500-S1E"
+    }
+  ],
+  "verification": {
+    "sympy": 9,
+    "javascript": 9,
+    "live_sql_four_options": 9,
+    "live_sql_unique_options": 9,
+    "live_sql_single_key": 9,
+    "live_sql_complete": 9,
+    "prior_practice_per_candidate": 2166,
+    "baseline_and_assigned_per_candidate": 270,
+    "total_prior_comparisons": 21924,
+    "within_batch_pairs": 36,
+    "max_prior_jaccard": 0.5,
+    "max_internal_jaccard": 0.269,
+    "near_duplicates_at_076": 0,
+    "student_record_mutations": 0
+  },
+  "publication": {
+    "approved_active": 0,
+    "selection_matches": 0,
+    "incorrect_board_matches": null,
+    "ci": "pending",
+    "deployment": "pending",
+    "signature_human_moderation": "unchanged"
+  }
+}
