@@ -43,7 +43,7 @@ for(const p of pageNames){
 }
 for(const part of ['[data-mg6-step]','ArrowRight','ArrowLeft','Home','End','aria-selected'])assert.ok(publicJs.includes(part),'Homepage keyboard/tabs lost '+part);
 assert.ok(publicCss.includes('prefers-reduced-motion'),'Homepage design must respect reduced motion');
-assert.ok(workflow.includes('marketing-polish-v6.css marketing-polish-v6.js site/'),'Curated Pages lacks homepage assets');
+assert.ok(workflow.split('\n').some(line => /^\s*cp\s+/.test(line) && line.includes('marketing-polish-v6.css') && line.includes('marketing-polish-v6.js') && /\s+site\/\s*$/.test(line)),'Curated Pages lacks homepage assets');
 assert.ok(workflow.includes('insights-upgrade.js private-polish-v6.css site/'),'Curated Pages lacks private assets');
 assert.ok(workflow.includes('node --check marketing-polish-v6.js'),'Missing homepage script syntax check');
 console.log('MathsGrove v6 four-role UX, marketing hierarchy, accessibility, essential workflows and deploy assets: OK');
