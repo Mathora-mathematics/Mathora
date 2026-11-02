@@ -1,0 +1,117 @@
+/* MathsGrove welcome-first experience v8 — an editorial front door, never a blocking splash.
+   Navy #0d1b32 | champagne #cdbba0 | ivory #f7f4ef. Marketing-only. */
+body.mg-site .mg-hero.mg8-welcome-hero{background:#0d1b32;color:#f9f7f3;overflow:hidden;isolation:isolate;position:relative}
+body.mg-site .mg-hero.mg8-welcome-hero:after{content:"";position:absolute;right:-180px;top:-235px;width:min(55vw,760px);height:min(55vw,760px);border:1px solid #cdbba02e;border-radius:50%;pointer-events:none;z-index:0;opacity:1}
+body.mg-site .mg8-welcome-hero:before{content:"";position:absolute;right:-110px;top:-165px;width:min(48vw,645px);height:min(48vw,645px);border:1px solid #cdbba01b;border-radius:50%;pointer-events:none;z-index:0}
+body.mg-site .mg8-welcome-hero .mg-hero-grid{min-height:min(82vh,790px);padding-top:83px!important;padding-bottom:86px!important;position:relative;z-index:1;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(32px,4.4vw,74px)}
+body.mg-site .mg8-welcome-hero .mg-hero-copy{max-width:660px}
+body.mg-site .mg8-welcome-hero .mg5-hero-kicker{color:#e4ceb2;border:1px solid #cdbba055;background:#ffffff07;letter-spacing:.145em;font-size:10px;padding:9px 14px;margin-bottom:22px}
+body.mg-site .mg8-welcome-hero .mg5-hero-kicker i{background:#cdbba0}
+body.mg-site .mg8-welcome-hero h1{font:400 clamp(69px,6.1vw,99px)/.99 "Instrument Serif",Georgia,serif;letter-spacing:-.042em;color:#fcfaf5;margin-bottom:29px;max-width:680px}
+body.mg-site .mg8-welcome-hero h1 em{display:inline;color:#dbc4a6;font-style:italic;letter-spacing:-.035em}
+body.mg-site .mg8-welcome-hero .mg-hero-lead{font-size:clamp(14px,1.3vw,16px);line-height:1.85;max-width:540px;margin-bottom:29px;color:#ccd5e1;font-weight:400}
+body.mg-site .mg8-welcome-hero .mg-actions{gap:11px;flex-wrap:wrap}
+body.mg-site .mg8-welcome-hero .mg-button{font-size:12px;min-height:53px;padding:15px 20px;gap:12px;border-radius:7px;transition:background .18s,color .18s,border-color .18s,transform .18s,box-shadow .18s}
+body.mg-site .mg8-welcome-hero .mg-button-primary{background:#e5d3b9;color:#0d1b32;border-color:#e5d3b9}
+body.mg-site .mg8-welcome-hero .mg-button-primary:hover{background:#f2e4cf;color:#0d1b32;border-color:#f2e4cf}
+body.mg-site .mg8-welcome-hero .mg-button-secondary{background:#ffffff08;border:1px solid #ffffff68;color:#f7f4ef}
+body.mg-site .mg8-welcome-hero .mg-button-secondary:hover{background:#ffffff16;border-color:#fff;color:#fff}
+body.mg-site .mg8-welcome-hero .mg8-tertiary-link{display:inline-flex;gap:8px;align-items:center;font:700 11px/1.5 "DM Sans",sans-serif;color:#d2dee9;margin:17px 0 0;text-decoration:underline;text-decoration-color:#cdbba06e;text-underline-offset:6px;transition:color .2s}
+body.mg-site .mg8-welcome-hero .mg8-tertiary-link:hover{color:#fff}
+body.mg-site .mg8-welcome-hero .mg-hero-details{margin-top:43px;gap:17px;display:flex;flex-wrap:wrap}
+body.mg-site .mg8-welcome-hero .mg-hero-details span{font-size:10px;line-height:1.5;color:#c0cddd;white-space:normal}
+body.mg-site .mg8-welcome-hero .mg-hero-details i{background:#cdbba0}
+body.mg-site .mg8-welcome-hero .mg-hero-product{min-width:0}
+body.mg-site .mg8-welcome-hero .mg-product-note{color:#dcc5a6;letter-spacing:.12em}
+body.mg-site .mg8-welcome-hero .mg-product-note small{color:#bdcbd7}
+body.mg-site .mg8-welcome-hero .mg6-evidence-hero{border-color:#ffffff3b;box-shadow:0 35px 80px #00000024}
+body.mg-site .mg8-welcome-hero .mg6-proof-subnote{color:#b8c6d7;line-height:1.65}
+body.mg-site .mg8-welcome-hero .mg5-hero-spotlight:after{display:none}
+body.mg-site .mg8-welcome-hero .mg8-welcome-note{font-size:10px;letter-spacing:.075em;color:#9db0c5;display:flex;align-items:center;gap:13px;margin-top:23px}
+body.mg-site .mg8-welcome-hero .mg8-welcome-note:before{content:"";display:block;width:31px;height:1px;background:#b3a084}
+body.mg-site .mg8-welcome-hero .mg-hero-copy,.mg-site .mg8-welcome-hero .mg-hero-product{animation:mg8-welcome-fade .7s cubic-bezier(.22,.75,.3,1) both}
+body.mg-site .mg8-welcome-hero .mg-hero-product{animation-delay:.11s}
+@keyframes mg8-welcome-fade{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+
+/* Role-based orientation with working links to the actual fictional product tour. */
+body.mg-site .mg8-entry{padding:80px 0 84px;background:#f7f4ef;border-top:1px solid #cdbba024;border-bottom:1px solid #e6ded3;scroll-margin-top:82px}
+body.mg-site .mg8-entry-heading{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:end;gap:45px;margin-bottom:29px}
+body.mg-site .mg8-entry-eyebrow{color:#92785d;font:800 10px/1.6 "DM Sans",sans-serif;letter-spacing:.19em;margin:0 0 13px}
+body.mg-site .mg8-entry-heading h2{font:400 clamp(45px,5vw,70px)/1.04 "Instrument Serif",Georgia,serif;letter-spacing:-.031em;margin:0;color:#0d1b32}
+body.mg-site .mg8-entry-heading h2 em{font-weight:400;color:#a18a6e;font-style:italic}
+body.mg-site .mg8-entry-heading>p{font-size:14px;line-height:1.82;color:#63758b;margin:0 0 3px;max-width:420px}
+body.mg-site .mg8-entry-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+body.mg-site .mg8-entry-card{position:relative;display:flex;flex-direction:column;min-width:0;text-decoration:none;background:#fffdf9;color:#1b304a;border:1px solid #e3d9cd;border-radius:11px;padding:25px clamp(18px,2.6vw,29px) 22px;min-height:335px;box-shadow:0 8px 26px #11243d06;transition:transform .21s cubic-bezier(.2,.7,.2,1),box-shadow .21s,border-color .21s;overflow:hidden}
+body.mg-site .mg8-entry-card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:#a88e6e;transform-origin:left;transform:scaleX(0);transition:transform .24s}
+body.mg-site .mg8-entry-card:hover{transform:translateY(-5px);border-color:#c8b498;box-shadow:0 18px 43px #11243d13}
+body.mg-site .mg8-entry-card:hover:before{transform:scaleX(1)}
+body.mg-site .mg8-entry-card:active{transform:translateY(-1px)}
+body.mg-site .mg8-entry-card .mg8-card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+body.mg-site .mg8-entry-card .mg8-card-top b{font:400 32px/1 "Instrument Serif",Georgia,serif;color:#9a8161}
+body.mg-site .mg8-entry-card .mg8-card-top span{color:#9a8871;font-size:9px;font-weight:800;letter-spacing:.13em}
+body.mg-site .mg8-entry-card h3{font:400 clamp(29px,2.75vw,37px)/1.1 "Instrument Serif",Georgia,serif;letter-spacing:-.02em;margin:31px 0 11px;color:#102840}
+body.mg-site .mg8-entry-card p{font-size:12px;line-height:1.78;color:#5e7289;margin:0 0 23px;max-width:320px}
+body.mg-site .mg8-card-art{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-top:auto;border-top:1px solid #ece4d9;padding:16px 0 13px}
+body.mg-site .mg8-card-art span{display:block;font-size:10px;color:#53687f;line-height:1.4;font-weight:650}
+body.mg-site .mg8-card-art strong{font:400 25px/1 "Instrument Serif",Georgia,serif;color:#38516c;letter-spacing:-.02em}
+body.mg-site .mg8-card-art strong em{font-style:normal;font-size:11px;color:#a58d70;font-family:"DM Sans",sans-serif;font-weight:700}
+body.mg-site .mg8-card-cta{font-size:11px;color:#152d49;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:12px}
+body.mg-site .mg8-card-cta i{display:grid;place-items:center;border-radius:50%;height:27px;width:27px;background:#efe8de;color:#1b344e;font-size:15px;font-style:normal;transition:transform .18s,background .18s}
+body.mg-site .mg8-entry-card:hover .mg8-card-cta i{transform:translate(2px,-2px);background:#e4d6c1}
+body.mg-site .mg8-entry-foot{display:flex;align-items:center;gap:21px;justify-content:space-between;flex-wrap:wrap;border-top:1px solid #e3dace;padding:22px 2px 0;margin-top:23px}
+body.mg-site .mg8-entry-foot>p{margin:0;max-width:610px;font-size:10px;line-height:1.7;color:#748295}
+body.mg-site .mg8-entry-foot>a{font-size:11px;color:#173550;font-weight:800;border-bottom:1px solid #bca488;padding-bottom:4px;text-decoration:none;white-space:nowrap}
+body.mg-site .mg8-entry-foot>a:hover{border-color:#173550}
+body.mg-site .mg8-spotlight{background:#eae4da;padding:29px 0;border-top:1px solid #ded2c2;border-bottom:1px solid #ded2c2}
+body.mg-site .mg8-spotlight-inner{display:flex;align-items:center;justify-content:space-between;gap:22px}
+body.mg-site .mg8-spotlight-copy{display:flex;align-items:center;gap:19px}
+body.mg-site .mg8-spotlight-icon{background:#142942;color:#e7d5bc;border-radius:8px;display:grid;place-items:center;flex:0 0 48px;height:54px;font:400 27px/1 "Instrument Serif",Georgia,serif}
+body.mg-site .mg8-spotlight h2{font:400 clamp(26px,3vw,37px)/1.13 "Instrument Serif",Georgia,serif;margin:0 0 5px;color:#0d1b32}
+body.mg-site .mg8-spotlight p{font-size:11px;color:#68798a;line-height:1.6;margin:0}
+body.mg-site .mg8-spotlight a{min-height:43px;padding:12px 18px;white-space:nowrap;border-radius:7px;background:#0d1b32;color:#fff;display:inline-flex;align-items:center;gap:12px;font:800 11px/1.4 "DM Sans",sans-serif;transition:background .18s,transform .18s;text-decoration:none}
+body.mg-site .mg8-spotlight a:hover{background:#243e5d;transform:translateY(-2px)}
+body.mg-site #dashboards{scroll-margin-top:85px}
+body.mg-site #signature-sample{scroll-margin-top:80px}
+body.mg-site .mg8-orientation-caption{font-size:10px;color:#aebed0;margin-top:16px;line-height:1.65}
+/* This control replaces a full-screen splash: welcome is usable immediately, including with JS disabled. */
+@media(max-width:1100px){
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{min-height:660px;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:28px}
+ body.mg-site .mg8-welcome-hero h1{font-size:clamp(60px,6vw,80px)}
+ body.mg-site .mg8-entry-card{min-height:330px}
+}
+@media(max-width:900px){
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{grid-template-columns:1fr;min-height:0;max-width:720px;gap:36px;padding-top:59px!important;padding-bottom:69px!important}
+ body.mg-site .mg8-welcome-hero h1{font-size:clamp(63px,10vw,90px)}
+ body.mg-site .mg8-welcome-hero .mg-hero-product{max-width:610px;width:100%}
+ body.mg-site .mg8-entry{padding:60px 0}
+ body.mg-site .mg8-entry-heading{grid-template-columns:1fr;gap:13px}
+ body.mg-site .mg8-entry-grid{gap:10px}
+ body.mg-site .mg8-entry-card{padding:23px 17px;min-height:350px}
+}
+@media(max-width:680px){
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{padding-top:43px!important;padding-bottom:52px!important}
+ body.mg-site .mg8-welcome-hero h1{font-size:clamp(55px,12vw,73px)}
+ body.mg-site .mg8-welcome-hero .mg-hero-lead{font-size:14px;line-height:1.78}
+ body.mg-site .mg8-welcome-hero .mg-actions{display:grid;grid-template-columns:1fr;max-width:420px;gap:9px}
+ body.mg-site .mg8-welcome-hero .mg-actions a{width:100%}
+ body.mg-site .mg8-welcome-hero .mg-hero-details{gap:12px;margin-top:31px}
+ body.mg-site .mg8-welcome-hero .mg-hero-details span{font-size:9px}
+ body.mg-site .mg8-entry{padding:53px 0}
+ body.mg-site .mg8-entry-heading h2{font-size:clamp(43px,9.5vw,60px)}
+ body.mg-site .mg8-entry-heading>p{font-size:13px}
+ body.mg-site .mg8-entry-grid{grid-template-columns:1fr;gap:11px}
+ body.mg-site .mg8-entry-card{min-height:0;padding:22px 22px 20px}
+ body.mg-site .mg8-entry-card h3{margin:17px 0 9px;font-size:35px}
+ body.mg-site .mg8-entry-card p{margin-bottom:17px}
+ body.mg-site .mg8-spotlight-inner{display:grid;gap:16px}
+ body.mg-site .mg8-spotlight a{width:100%;justify-content:center}
+ body.mg-site .mg8-spotlight-copy{align-items:flex-start;gap:13px}
+ body.mg-site .mg8-spotlight-icon{height:45px;flex-basis:43px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.mg-site .mg8-welcome-hero .mg-hero-copy,body.mg-site .mg8-welcome-hero .mg-hero-product{animation:none!important;opacity:1!important;transform:none!important}
+ body.mg-site .mg8-entry-card,body.mg-site .mg8-entry-card:before,body.mg-site .mg8-card-cta i,body.mg-site .mg8-spotlight a{transition:none!important;transform:none!important}
+}
+@media print{
+ body.mg-site .mg8-entry,body.mg-site .mg8-spotlight{display:none!important}
+}
