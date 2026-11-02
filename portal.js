@@ -181,6 +181,7 @@ async function loadStudentAnalysis(){
  }catch(e){
   const note=$('mg-insight-topics');note.replaceChildren();
   note.textContent='Your analysis could not load right now. Refresh after your programme is active.';
+   window.MGInsights?.student(null);
  }
 }
 
