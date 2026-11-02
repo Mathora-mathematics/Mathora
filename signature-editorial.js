@@ -37,7 +37,34 @@ export function initSignatureEditorial(db,state){
    }
    root.append(panel);
   }
-  root.append(make('p','EDITORIAL ONLY · A human examiner must independently moderate this paper before it can be approved or assigned. The secure marking and student-delivery workflow is separate.','mg-signature-alert'));
+  root.append(make('p',paper.review_state==='approved'?
+   'HUMAN-MODERATED EDITORIAL APPROVAL · The paper remains private and is not automatically assigned or released.':
+   'EDITORIAL ONLY · A human examiner must independently check every question and mark before approval. Student delivery is a separate workflow.','mg-signature-alert'));
+  if(paper.review_state!=='approved'&&['admin','examiner'].includes(state.membership?.member_role)){
+   const form=make('div',undefined,'mg-signature-moderation');
+   form.append(make('strong','Independent mathematical moderation'));
+   const label=make('label','Examiner moderation note (minimum 100 characters):');
+   const note=make('textarea');note.rows=4;note.maxLength=3500;
+   note.placeholder='Record the mathematical checks, syllabus/version alignment, grade appropriateness, mark criteria checked and any concerns resolved. This is an editorial sign-off, not student marking.';
+   label.append(note);form.append(label);
+   const agree=make('label',undefined,'mg-signature-agreement');
+   const checkbox=make('input');checkbox.type='checkbox';
+   agree.append(checkbox,document.createTextNode(' I have independently verified every question and marking point against this syllabus.'));form.append(agree);
+   const button=make('button','Approve editorial paper (no student release)','button primary');button.type='button';
+   const status=make('p','A human moderator must provide a signed review.','mg-signature-meta');
+   button.addEventListener('click',async()=>{
+    if(!checkbox.checked||note.value.trim().length<100){status.textContent='Confirm the checks and provide at least 100 characters of substantive moderation.';return}
+    button.disabled=true;status.textContent='Saving human moderation to the restricted assessment register…';
+    try{
+     const {data,error}=await db.rpc('grove_staff_approve_signature',{p_org:state.membership.org_id,p_assessment:paper.id,p_review_note:note.value.trim()});
+     if(error||!data?.ok)throw Error(error?.message||'Moderation could not be saved.');
+     status.textContent='Editorial approval signed. This paper has NOT been assigned or sent to any student.';
+     form.querySelectorAll('button,input,textarea').forEach(x=>x.disabled=true);
+     await refresh();
+    }catch(e){status.textContent='Moderation was not saved: '+e.message;button.disabled=false}
+   });
+   form.append(button,status);root.append(form);
+  }
  }
  async function refresh(){
   if(!list||!caption||!state.membership?.org_id)return;
