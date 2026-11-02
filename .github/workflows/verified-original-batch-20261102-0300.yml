@@ -1,0 +1,36 @@
+name: Verify private original maths batch 2026-11-02 0300
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261102-0300.json'
+      - 'scripts/check-verified-batch-20261102-0300.mjs'
+      - 'supabase/migrations/20261102_0300_pearson_linear_subject_code_gate.sql'
+      - '.github/workflows/verified-original-batch-20261102-0300.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261102-0300.json'
+      - 'scripts/check-verified-batch-20261102-0300.mjs'
+      - 'supabase/migrations/20261102_0300_pearson_linear_subject_code_gate.sql'
+      - '.github/workflows/verified-original-batch-20261102-0300.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check private-batch metadata, routes, privacy and migration
+        run: node scripts/check-verified-batch-20261102-0300.mjs
+      - name: Regression for question selection, human marking and evidence
+        run: |
+          node scripts/check-original-practice.mjs
+          node scripts/check-published-originals.mjs
+          node scripts/check-approved-practice-gate.mjs
+          node scripts/check-auto-assign.mjs
+          node scripts/check-evidence-marking.mjs
+          node scripts/test-all-tier-evidence.mjs
