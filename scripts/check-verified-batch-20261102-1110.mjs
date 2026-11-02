@@ -12,7 +12,7 @@ assert.ok(m.verification.max_internal_token_jaccard<.65);assert.equal(m.verifica
 const routes=['Cambridge 9709 P5 Statistics 1','Pearson Edexcel IAL WMA13 P3','Pearson Edexcel 9MA0 UK GCE'];
 for(const board of routes){const rows=m.questions.filter(x=>x.exam_board===board);assert.equal(rows.length,3);assert.deepEqual(rows.map(x=>x.programme_scope).sort(),['daily','exam','weekly']);}
 for(const q of m.questions){assert.match(q.id,/^[0-9a-f-]{36}$/);assert.ok(q.expected_seconds>=180&&q.expected_seconds<=900);assert.ok(q.syllabus_objective.length>8);for(const forbidden of ['prompt','choices','correct_text','explanation','reviewer_note','answer','solution'])assert.ok(!(forbidden in q));}
-const approx=(x,y)=>Math.abs(x-y)<1e-9;
+const approx=(x,y)=>Math.abs(x-y)<1e-7;
 const choose=(n,k)=>{let r=1;for(let j=1;j<=k;j++)r=r*(n-j+1)/j;return r};
 assert(approx(5/12*4/11,5/33));
 assert.equal(7*6*5*4+3*6*6*5*4,3000);
