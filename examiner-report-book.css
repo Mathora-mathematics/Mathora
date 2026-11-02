@@ -17,7 +17,7 @@
 .mg-site .mg7-toc-btn b{font-size:11px;font-weight:700;line-height:1.4}
 .mg-site .mg7-toc-btn small{display:block;color:#acbfd1;font-size:9px;line-height:1.5;margin-top:3px}
 .mg-site .mg7-toc-foot{border-top:1px solid #ffffff27;margin:17px 5px 0;padding-top:15px;color:#aec0cf;font-size:10px;line-height:1.7}
-.mg-site .mg7-workspace{min-width:0}
+.mg-site .mg7-workspace{min-width:0;scroll-margin-top:100px}
 .mg-site .mg7-toolbar{border:1px solid #e6dfd5;border-radius:9px 9px 0 0;background:#fff;min-height:59px;display:flex;align-items:center;gap:13px;justify-content:space-between;padding:10px 16px}
 .mg-site .mg7-toolbar-label{color:#1e334b;font-size:10px;font-weight:800;letter-spacing:.08em}
 .mg-site .mg7-toolbar-label span{display:block;font-weight:500;color:#8894a2;font-size:9px;margin-top:3px;letter-spacing:0}
@@ -146,9 +146,31 @@
 @media(max-width:1150px){.mg-site .mg7-layout{grid-template-columns:193px minmax(0,1fr);gap:12px}.mg-site .mg7-toc{padding:17px 10px}.mg-site .mg7-toc-btn{gap:8px;padding:9px 7px}.mg-site .mg7-toc-btn b{font-size:10px}.mg-site .mg7-page{padding-left:clamp(19px,3vw,36px);padding-right:clamp(19px,3vw,36px)}}
 @media(max-width:850px){.mg-site .mg7-layout{grid-template-columns:1fr}.mg-site .mg7-toc{position:static;display:block;padding:16px}.mg-site .mg7-toc h3{font-size:26px;margin-bottom:11px}.mg-site .mg7-toc-list{display:flex;overflow-x:auto;gap:7px;padding-bottom:4px;scroll-snap-type:x proximity}.mg-site .mg7-toc-btn{flex:0 0 169px;scroll-snap-align:start;min-height:53px}.mg-site .mg7-toc-foot{margin:10px 4px 0;padding-top:10px}.mg-site .mg7-page{min-height:830px}.mg-site .mg7-announcement span:last-child{white-space:normal}}
 @media(max-width:600px){.mg-site .mg7-report-heading{font-size:43px}.mg-site .mg7-announcement{display:block;padding:13px}.mg-site .mg7-announcement span:last-child{display:block;margin-top:7px}.mg-site .mg7-paper-shadow{padding:9px 6px 12px}.mg-site .mg7-page{padding:23px 17px 20px;min-height:740px}.mg-site .mg7-page-body{padding-top:21px}.mg-site .mg7-cover-title{font-size:56px;margin-top:38px}.mg-site .mg7-cover-band{padding:21px 19px;gap:9px}.mg-site .mg7-cover-band strong{font-size:42px}.mg-site .mg7-cover-band small{font-size:9px}.mg-site .mg7-details{gap:13px 12px}.mg-site .mg7-stat-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.mg-site .mg7-stat{padding:11px 8px}.mg-site .mg7-stat strong{font-size:27px}.mg-site .mg7-topic{grid-template-columns:minmax(85px,1fr) 48px minmax(55px,1fr) 31px;gap:6px}.mg-site .mg7-topic-name{font-size:10px}.mg-site .mg7-topic-count,.mg-site .mg7-topic-pct{font-size:9px}.mg-site .mg7-topic-advice,.mg-site .mg7-brief-grid,.mg-site .mg7-evidence-grid,.mg-site .mg7-check{grid-template-columns:1fr}.mg-site .mg7-report-heading{font-size:39px}.mg-site .mg7-toolbar{padding:10px 11px}.mg-site .mg7-tool{padding:8px 9px}.mg-site .mg7-bottom-bar{padding:11px;flex-wrap:wrap}.mg-site .mg7-page-turn{padding:9px 10px}.mg-site .mg7-page-head>span{font-size:8px}.mg-site .mg7-table-scroller{margin-top:13px}.mg-site .mg7-page-footer{margin-top:18px}.mg-site .mg7-progress-compare article{padding:12px 11px}.mg-site .mg7-progress-compare strong{font-size:33px}.mg-site .mg7-evidence-case header{flex-wrap:wrap}}
+@media(max-width:600px){
+ .mg-site .mg7-mark-table{min-width:0}
+ .mg-site .mg7-mark-table thead{display:none}
+ .mg-site .mg7-mark-table tbody,.mg-site .mg7-mark-table tfoot,.mg-site .mg7-mark-table tr{display:block;width:100%}
+ .mg-site .mg7-mark-table tbody tr{display:grid;grid-template-columns:35px minmax(0,1fr) 75px;gap:4px 7px;padding:11px 8px;border-bottom:1px solid #e5ddd1}
+ .mg-site .mg7-mark-table tbody td{border:0;padding:0;display:block;min-width:0}
+ .mg-site .mg7-mark-table tbody td:nth-child(1){grid-row:1/span 3;grid-column:1;padding-top:2px}
+ .mg-site .mg7-mark-table tbody td:nth-child(2){grid-row:1;grid-column:2}
+ .mg-site .mg7-mark-table tbody td:nth-child(3){grid-row:1;grid-column:3;text-align:right}
+ .mg-site .mg7-mark-table tbody td:nth-child(4){grid-row:2;grid-column:2/4}
+ .mg-site .mg7-mark-table tbody td:nth-child(5){grid-row:3;grid-column:2/4;font-size:10px;line-height:1.6}
+ .mg-site .mg7-mark-table tfoot tr{display:flex;justify-content:space-between;padding:8px;gap:7px}
+ .mg-site .mg7-mark-table tfoot td{padding:4px 0}
+ .mg-site .mg7-mark-table tfoot td:last-child{display:none}
+}
 @media(prefers-reduced-motion:reduce){.mg-site .mg7-page,.mg-site .mg7-progress>span,.mg-site .mg7-page-turn,.mg-site .mg7-toc-btn,.mg-site .mg7-tool{animation:none!important;transition:none!important;transform:none!important}.mg-site .mg7-book[data-enhanced="true"] .mg7-page.mg7-turn-forward,.mg-site .mg7-book[data-enhanced="true"] .mg7-page.mg7-turn-back{animation:none!important}}
 @media print{
  @page{size:A4 portrait;margin:10mm}
+ body.mg-site > :not(main){display:none!important}
+ body.mg-site main > :not(.mg-v3){display:none!important}
+ body.mg-site main,body.mg-site .mg-v3{display:block!important;overflow:visible!important;padding:0!important;margin:0!important}
+ body.mg-site .mg-v3 > :not(#signature-sample){display:none!important}
+ body.mg-site #signature-sample{display:block!important;padding:0!important;margin:0!important;background:#fff!important}
+ body.mg-site #signature-sample > .wrap{width:100%!important;max-width:none!important;padding:0!important;margin:0!important}
+ body.mg-site #signature-sample > .wrap > .mg3-intro{display:none!important}
  body.mg-site{background:#fff!important}
  body.mg-site .mg7-book{margin:0!important}
  body.mg-site .mg7-announcement,body.mg-site .mg7-toc,body.mg-site .mg7-toolbar,body.mg-site .mg7-bottom-bar,body.mg-site .mg7-progress,body.mg-site .mg7-context,body.mg-site .mg7-legacy-comparison{display:none!important}
