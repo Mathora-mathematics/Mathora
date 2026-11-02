@@ -1,0 +1,36 @@
+name: Verify original maths batch 2026-11-02 1110
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261102-1110.json'
+      - 'scripts/check-verified-batch-20261102-1110.mjs'
+      - 'supabase/migrations/20261102111000_grove_p5_wma13_component_routing.sql'
+      - '.github/workflows/verified-original-batch-20261102-1110.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261102-1110.json'
+      - 'scripts/check-verified-batch-20261102-1110.mjs'
+      - 'supabase/migrations/20261102111000_grove_p5_wma13_component_routing.sql'
+      - '.github/workflows/verified-original-batch-20261102-1110.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mathematical and privacy checks
+        run: node scripts/check-verified-batch-20261102-1110.mjs
+      - name: Existing student assignment and marking regression
+        run: |
+          node scripts/check-original-practice.mjs
+          node scripts/check-published-originals.mjs
+          node scripts/check-approved-practice-gate.mjs
+          node scripts/check-auto-assign.mjs
+          node scripts/check-evidence-marking.mjs
+          node scripts/test-all-tier-evidence.mjs
