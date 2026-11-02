@@ -31,3 +31,29 @@ Duplicate screening against **2,166** existing practice records and **270** base
 5. Signature Advanced WME02 structured assessment development remains in the **private** editorial library, awaiting actual authenticated human examiner moderation. No student-specific report release or forged sign-off.
 
 **Current status:** Draft awaiting CI and routing. Final publication status will be appended after live verification.
+
+## Final live release and Signature verification — 2 November 2026
+
+**PUBLISHED: 9/9 approved and active** in private Supabase. This is a verified *automated editorial* release under owner authorisation, not authenticated human examiner sign-off.
+
+| Exact component | Grove Daily | Grove Weekly | Grove Exam |
+| --- | --- | --- | --- |
+| Pearson IAL WME02 Mechanics M2 | `a0cbfee2` | `5116ccf4` | `bc766f2d` |
+| Cambridge 9231 P2 Further Pure 2 | `0459fff6` | `cb4c2784` | `cb8f8068` |
+| Pearson IAL WST01 Statistics 1 | `19e2e42e` | `5517c8a4` | `282798fd` |
+
+Full UUIDs, provenance, syllabus objectives, timing and board/unit labels: [publication ledger](verified-original-batch-20261102-1500.json). The nine stems, keys, distractors, worked explanations and marking notes remain **private**.
+
+**Independent verification:** SymPy 9/9, JavaScript 9/9, SQL mathematical checkpoints 9/9, four mathematically distinct options 9/9, unique keyed option 9/9, completeness 9/9. Duplicate screening: 2,166 prior practice + 270 baseline/assigned snapshots **per candidate** = 21,924 comparisons; max Jaccard 0.500, zero at ≥0.76; 36 within-batch comparisons, max 0.269. The initial NOT NULL insert and explanation-length preflight errors were fixed before any successful draft insertion. No candidates were activated until all checks passed.
+
+**Routing:** [migration](../../supabase/migrations/20261102150000_grove_9231_p2_exact_component_gate.sql) applied. **18/18** positive/negative component assertions passed. All 9 new questions passed intended qualification/tier selection; **0** incorrect-board matches and **0** prior student assignments.
+
+**GitHub:** [PR #46](https://github.com/Mathora-mathematics/Mathora/pull/46) merged; [PR CI success](https://github.com/Mathora-mathematics/Mathora/actions/runs/41442271261), [main CI success](https://github.com/Mathora-mathematics/Mathora/actions/runs/41442433741), and [native GitHub Pages success](https://github.com/Mathora-mathematics/Mathora/actions/runs/41442701059). Two stale CI asset assertions were corrected separately in [PR #47](https://github.com/Mathora-mathematics/Mathora/pull/47) and [PR #48](https://github.com/Mathora-mathematics/Mathora/pull/48). The parallel custom "Deploy MathsGrove website" workflow suffered concurrent native Pages deployment collisions and, on another concurrent commit, a temporarily missing script asset. **Do not describe that secondary workflow as passed.** Native Pages did deploy successfully.
+
+**Live bank:** 2,175 total / 1,887 approved active / 240 pilot active / 48 inactive. The three new exact-component routes now each have 1 Daily + 1 Weekly + 1 Exam; **at least 111 Daily, 31 Weekly and 187 Exam additional unseen questions per route** are still required for four-week stock, plus the distinct Weekly inheritance requirement. Cross-board generic items are not counted as exact-component originals; a question shared between modes cannot count twice as a unique question.
+
+**Student records unchanged by this batch:** 35 scheduled tasks, 10 materialised task items, 5 task answers, 5 evidence rows and 10 human practice-mark rows, before/after. A separate aggregate check still finds **4 historical exact-normalised same-learner baseline-to-practice repetitions**. No historical learner records were altered. The selector's full semantic-family no-repeat guarantee is not yet proven.
+
+**Signature Advanced:** New private editorial paper `fa10e5d8-4a76-442c-a9de-c33d794b83f9`, Pearson IAL WME02 M2, **24 marks, 40 minutes, 3 structured questions / 9 parts**, with a full 24-mark part-by-part confidential mark scheme and six-section report template. SymPy and independent JS calculations checked projectile motion, composite lamina centroid and collision restitution/energy. SQL reconciled **24/24** paper/scheme/criterion marks and **9/9** part awards. Status **awaiting_human_moderation**; `human_moderated_by` remains null. No student-specific Signature report or human-marked work was released. This is a private editorial paper, not an end-to-end live Signature sitting.
+
+**Next cycle:** increase WME02/WST01/9231 P2 mathematical-family breadth, address exact component/2029 cohort filters and cross-mode exposure, and test a complete 20-item timed practice mock before making any full-mock claims. Independent human moderation is still required for Signature papers and student reports.
