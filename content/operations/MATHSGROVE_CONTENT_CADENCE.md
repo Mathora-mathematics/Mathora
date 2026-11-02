@@ -1,3 +1,28 @@
+# MathsGrove Content Programme — Current Cadence
+
+As of **2 November 2026**, all earlier overlapping MathsGrove research/publishing/QA schedules are superseded by the new three-hour operating cycle. Times are Kuwait (Asia/Kuwait).
+
+| Workflow | Recurring start | Target |
+| --- | --- | --- |
+| Author & Publish | 13:00, 16:00, 19:00, 22:00, 01:00, etc. | Research and implement original board/level/tier questions; aim for 2 hours within available task runtime |
+| Independent QA | 15:00, 18:00, 21:00, 00:00, etc. | Maths correctness, no repetition, tier availability, student experience, database security, CI/deployment; aim for 1 hour within runtime |
+| Evening Email | Around 20:00 daily | Use connected Gmail to send validated summary with website https://mathora-mathematics.github.io/Mathora/, portal and studio links |
+
+**Important:** Scheduled starts and reminders do not guarantee continuous hour-long computation. Each run must report actual duration/results and not invent completed work, audits or email delivery.
+
+See the dated [2 Nov research and release handoff](./2026-11-02-three-hour-coverage-handoff.md) for actual live content gaps and independent exam-board source links.
+
+## Policies retained
+
+- Never publish copied copyright-protected exam questions or incomplete/broken mathematics.
+- Only original, independently checked and approved syllabus-aligned maths enters live Supabase practice bank.
+- Do not let already-assigned or equivalent questions repeat for a student.
+- Preserve private answers and student working evidence and human-reviewed examiner feedback.
+- A 20-question timed Grove Exam MCQ mock is not equivalent to a complete exam-board paper.
+- Coverage must be measured in **real unseen eligible questions per board, qualification, academic level and tier**, not total generic bank rows.
+
+## Archived original cadence specification
+
 # MathsGrove Mathematics — Recurring Quality Programme
 
 **Timezone:** Asia/Kuwait (UTC+03:00). **Started:** 31 October 2026.
