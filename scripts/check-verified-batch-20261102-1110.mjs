@@ -14,7 +14,7 @@ for(const board of routes){const rows=m.questions.filter(x=>x.exam_board===board
 for(const q of m.questions){assert.match(q.id,/^[0-9a-f-]{36}$/);assert.ok(q.expected_seconds>=180&&q.expected_seconds<=900);assert.ok(q.syllabus_objective.length>8);for(const forbidden of ['prompt','choices','correct_text','explanation','reviewer_note','answer','solution'])assert.ok(!(forbidden in q));}
 const approx=(x,y)=>Math.abs(x-y)<1e-7;
 const choose=(n,k)=>{let r=1;for(let j=1;j<=k;j++)r=r*(n-j+1)/j;return r};
-assert(approx(5/12*4/11,5/33));
+assert(approx((4-1)/23,3/23));assert(approx((-2*3+9+4*5)/23,1));
 assert.equal(7*6*5*4+3*6*6*5*4,3000);
 assert(approx(choose(5,2)*choose(7,2)/(choose(12,4)-choose(7,4)),21/46));
 const f=x=>x*Math.sin(3*x)+Math.log(x),h=1e-6,x=1.3;
