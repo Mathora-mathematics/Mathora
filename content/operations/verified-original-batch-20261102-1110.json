@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "batch": "20261102-1110",
+  "status": "private_drafts_pending_ci_and_deployment",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Public repository stores only private Supabase UUIDs and privacy-safe verification metadata; prompts, choices, keys, explanations and marking notes remain in private Supabase.",
+  "research_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "sql_mathematical_checkpoints": 9,
+    "four_unique_choices": 9,
+    "exactly_one_correct_text": 9,
+    "worked_solutions_and_tutor_guidance": 9,
+    "prior_records": 723,
+    "prior_comparisons": 6507,
+    "within_batch_pairs": 36,
+    "max_prior_token_jaccard": 0.6,
+    "max_internal_token_jaccard": 0.3214285714,
+    "near_duplicates_at_065": 0,
+    "rejected_initial_candidate": 1,
+    "student_mutations": 0
+  },
+  "routing_migration": "supabase/migrations/20261102111000_grove_p5_wma13_component_routing.sql",
+  "questions": [
+    {
+      "id": "7484f07b-d370-4d7a-a1cc-ae39693499c2",
+      "code": "C5D",
+      "qualification": "A_LEVEL",
+      "exam_board": "Cambridge 9709 P5 Statistics 1",
+      "academic_level": "as",
+      "programme_scope": "daily",
+      "expected_seconds": 220,
+      "syllabus_objective": "9709 P5 §5.3",
+      "provenance": "mg-original-20261102-1110-C5D"
+    },
+    {
+      "id": "cd76e0e6-4b1d-4f8c-8bb3-6e862218b8c2",
+      "code": "C5W",
+      "qualification": "A_LEVEL",
+      "exam_board": "Cambridge 9709 P5 Statistics 1",
+      "academic_level": "as",
+      "programme_scope": "weekly",
+      "expected_seconds": 440,
+      "syllabus_objective": "9709 P5 §5.2",
+      "provenance": "mg-original-20261102-1110-C5W"
+    },
+    {
+      "id": "968b6930-3dd0-46f3-8fa4-2e2d0d843795",
+      "code": "C5E",
+      "qualification": "A_LEVEL",
+      "exam_board": "Cambridge 9709 P5 Statistics 1",
+      "academic_level": "as",
+      "programme_scope": "exam",
+      "expected_seconds": 610,
+      "syllabus_objective": "9709 P5 §§5.2–5.3",
+      "provenance": "mg-original-20261102-1110-C5E"
+    },
+    {
+      "id": "ef9f1040-3cd0-426b-8c8a-698439414829",
+      "code": "I3D",
+      "qualification": "A_LEVEL",
+      "exam_board": "Pearson Edexcel IAL WMA13 P3",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 240,
+      "syllabus_objective": "WMA13/01 P3 differentiation",
+      "provenance": "mg-original-20261102-1110-I3D"
+    },
+    {
+      "id": "be695e34-f0cf-43e9-b6e9-f6487c41a1d3",
+      "code": "I3W",
+      "qualification": "A_LEVEL",
+      "exam_board": "Pearson Edexcel IAL WMA13 P3",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 410,
+      "syllabus_objective": "WMA13/01 P3 logarithms",
+      "provenance": "mg-original-20261102-1110-I3W"
+    },
+    {
+      "id": "37e391e8-8204-4c12-9b0f-c99e46813ec1",
+      "code": "I3E",
+      "qualification": "A_LEVEL",
+      "exam_board": "Pearson Edexcel IAL WMA13 P3",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 660,
+      "syllabus_objective": "WMA13/01 P3 stationary points",
+      "provenance": "mg-original-20261102-1110-I3E"
+    },
+    {
+      "id": "8154fdf6-4588-4678-b716-7373024c3361",
+      "code": "U0D",
+      "qualification": "A_LEVEL",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 260,
+      "syllabus_objective": "9MA0 Pure parametric differentiation",
+      "provenance": "mg-original-20261102-1110-U0D"
+    },
+    {
+      "id": "d0f3f6db-79e3-4c21-87e1-11eda61fa2ac",
+      "code": "U0W",
+      "qualification": "A_LEVEL",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 420,
+      "syllabus_objective": "9MA0 Pure integration by parts",
+      "provenance": "mg-original-20261102-1110-U0W"
+    },
+    {
+      "id": "2e7fc5ed-33bc-49ca-b1c6-0752c9eb84b4",
+      "code": "U0E",
+      "qualification": "A_LEVEL",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 660,
+      "syllabus_objective": "9MA0 Pure separable differential equations",
+      "provenance": "mg-original-20261102-1110-U0E"
+    }
+  ],
+  "notes": [
+    "Staged inactive drafts; no learner assignments or marks changed.",
+    "One initial product-rule question was rejected after a near-match score 0.8; independently authored replacement passed 0.4286.",
+    "Four-option MCQs are practice only; no complete timed mock is claimed.",
+    "Historical baseline-to-Daily repetition is unresolved; this batch had no matching near duplicates.",
+    "Cambridge 9709 P5 and Pearson IAL WMA13 require exact component gates before activation."
+  ]
+}
