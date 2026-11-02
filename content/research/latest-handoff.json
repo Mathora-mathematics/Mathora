@@ -1,8 +1,8 @@
 {
-  "version": 20,
+  "version": 21,
   "researched_at": "2026-11-02",
-  "title": "Cambridge 9709 and Pearson UK/IAL A Level: 36 original tier blueprints across 12 component routes, 12 held mock plans and cross-mode repetition QA (rotation 20)",
-  "status": "research_brief_committed__implementation_pending__four_crossmode_repeats_unresolved",
+  "title": "Scheduler shortage audit: 2,127 private rows, 1,833 approved; 18 original fully worked editorial blueprints across 6 routes",
+  "status": "research_brief_committed__implementation_pending__four_crossmode_repeats_unresolved__component_stock_below_target",
   "principle": "Syllabus and examples inform scope/level, not text reuse. Questions and working below must be independently authored, mathematically checked and approved by a human examiner before students see them.",
   "sources": [
     {
@@ -235,9 +235,9 @@
     "question_reuse": "blocked across prior student assignments by ID and normalised wording",
     "exam_board_filter": "only matching exam board or generic content"
   },
-  "latest_dated_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
-  "latest_brief_commit": "0de84e01d0f70fa9e46ce0885a656ec1ce081065",
-  "research_rotation": 20,
+  "latest_dated_brief": "content/research/20261102_1231_scheduler_shortfall_blueprints_rotation21.md",
+  "latest_brief_commit": "5be55d11aad04f32e08e7d353cb38d0fb3b86422",
+  "research_rotation": 21,
   "verified_objective_gates": {
     "IB_2021_2028": "Current official IB subject briefs; detailed authorised guide objective microcodes outstanding; AA P1 no tech, AA P2/P3 tech; AI all tech",
     "IB_2029_AA": [
@@ -575,8 +575,8 @@
       "No independently approved full-length multi-mark timed mocks; public seeds not confidential student assessments"
     ]
   },
-  "previous_dated_brief": "content/research/20261102_0831_gcse_igcse_crossmode_route_blueprints.md",
-  "previous_brief_commit": "cbf8d5c3ea36ce045246981cd5fb4c7913dc01a4",
+  "previous_dated_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
+  "previous_brief_commit": "0de84e01d0f70fa9e46ce0885a656ec1ce081065",
   "current_research_sources": [
     "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
     "https://www.cambridgeinternational.org/Images/744634-2028-2030-syllabus.pdf",
@@ -776,20 +776,16 @@
   ],
   "latest_cycle": {
     "date": "2026-11-02",
-    "focus": "Cambridge 9709 Pure/Mechanics/Statistics vs Pearson UK 9MA0 and IAL P3/P4/S1/M1",
-    "editorial_blueprints": 36,
-    "routes": 12,
-    "mock_assembly_plans": 12,
-    "source_count": 7,
-    "student_publications": 0,
-    "live_mocks_approved": 0,
-    "previous_briefs_checked": [
-      "content/research/20261102_0431_9709_pearson_alevel_crosscomponent_blueprints.md",
-      "content/research/20261101_2234_cambridge_9709_pearson_9ma0_ial_pure_gates.md"
-    ],
-    "exact_collisions_against_live_practice_baseline_assigned": 0,
-    "previous_brief_exact_full_prompt_collisions": 0,
-    "semantic_uniqueness": "NOT VERIFIED"
+    "rotation": 21,
+    "blueprint_lanes": 6,
+    "blueprints": 18,
+    "full_working": true,
+    "proposed_distractors": true,
+    "mock_assembly_plan": true,
+    "mock_approved": false,
+    "student_publication": false,
+    "dated_brief": "content/research/20261102_1231_scheduler_shortfall_blueprints_rotation21.md",
+    "brief_commit": "5be55d11aad04f32e08e7d353cb38d0fb3b86422"
   },
   "previous_cycle_handoff_summary": {
     "source_brief": "content/research/20261101_1233_cambridge_2028_2030_transition_pure.md",
@@ -875,13 +871,12 @@
     }
   ],
   "implementation_priority": [
-    "P0 preserve submitted history and fix four confirmed same-student baseline→Daily repetitions via lifetime cross-mode stem and family exclusion; regression tests",
-    "P0 server-side route filters: Cambridge P2 AS-only, P6 after P5, P4 excludes impulse/restitution; Pearson IAL P3 vs P4 vs S1 vs M1, UK 9MA0 synoptic papers",
-    "P0 first-class exam_year/spec_version/board/component/valid_route/calculator/formula_sheet/question_family and exposure history",
-    "P0 create distinct confidential private variants of 36 public editorial seeds; check 459 practice, 240 baseline, 20 assigned baseline, 4 assigned task items and prior drafts",
-    "P1 verify all maths and full M/A/B rubrics with independent examiner sign-off, work-evidence capture, timers and accessibility",
-    "P1 12 mock assembly plans are HOLD; no completed approved full-length timed mocks",
-    "P2 next research IB AA/AI SL/HL, TMUA, Further Mathematics"
+    "P0: eliminate four verified same-student baseline-to-Daily exact-normalised repeats; preserve historic submissions; block question family reuse across tiers",
+    "P0: prioritise component-specific shortages, especially 9709 P6, Pearson IAL P4 and S2 (each 112 Daily,32 Weekly,188 Exam short before exposure)",
+    "P1: implement exam_year, board, component, family, calculator and human_review routing metadata",
+    "P1: quality audit GCSE/IGCSE cross-board 12-16 numeric-masked templates; approved item count does not equal independent question breadth",
+    "P1: reserve 20 unseen MCQs for 90-minute Grove Exam practice mock distinct from 168 Exam daily and all other exposures",
+    "P1: privately re-author and independently validate 18 public editorial seeds before human examiner approval"
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261102_1037_9709_pearson_component_crossmode_qa.md",
@@ -923,21 +918,32 @@
     "No independently approved full-length multi-mark timed mocks; public seeds not confidential student assessments"
   ],
   "current_audit": {
-    "as_of": "2026-11-02 read-only SQL, rotation 20",
-    "practice_total": 459,
-    "approved_active": 165,
-    "pilot_active": 240,
-    "draft_inactive": 54,
-    "exact_normalised_duplicate_groups": 82,
-    "groups_containing_approved": 0,
-    "tasks": 28,
-    "bank_backed_assigned_items": 4,
-    "baseline_bank_rows": 240,
-    "baseline_distinct_normalised_prompts": 160,
-    "assigned_baseline_items": 20,
-    "same_learner_baseline_to_completed_daily_exact_repeats": 4,
-    "affected_learner_count": 1,
-    "limitations": "Semantic and parameter-family collisions not exhaustively checked; concurrent writes may change counts."
+    "date": "2026-11-02",
+    "project": "nwakgkxytovprrrwyahs",
+    "practice_total": 2127,
+    "active_approved": 1833,
+    "active_pilot": 240,
+    "inactive": 54,
+    "student_tasks": 35,
+    "materialised_task_items": 10,
+    "baseline_bank": 240,
+    "baseline_items": 20,
+    "confirmed_same_student_baseline_daily_repeats": 4,
+    "active_entitlement": "one Grove Exam GCSE Higher (board not first-class on task)",
+    "active_gcse_higher_cross_board": {
+      "daily_approved": 132,
+      "weekly_approved": 48,
+      "exam_approved": 228,
+      "exact_normalised_unseen_daily": 132,
+      "exact_normalised_unseen_weekly": 48,
+      "exact_normalised_unseen_exam": 222,
+      "rough_numeric_masked_template_counts": {
+        "daily": 12,
+        "weekly": 12,
+        "exam": 12
+      }
+    },
+    "limitations": "Counts do not establish board/component/year eligibility or mathematical-family novelty; scheduled tasks may not yet have materialised items."
   },
   "known_blockers": [
     "FOUR exact-normalised baseline prompts repeated in a completed Daily task for the same learner (verified; new actionable P0)",
@@ -958,12 +964,13 @@
     "P2 next research IB AA/AI SL/HL, TMUA, Further Mathematics"
   ],
   "latest_research_blockers": [
-    "Four confirmed exact-normalised same-learner baseline→completed-Daily repetitions remain unresolved",
-    "82 pilot/draft duplicate wording groups and incomplete semantic/parameter-family screening",
-    "Missing first-class exam-year/version and component-specific eligibility fields",
-    "Zero explicitly component-tagged approved Pearson IAL WMA13 P3, WMA14 P4, WST01 S1, WME01 M1 in inspected bank",
-    "Cambridge 9709 board-only approvals cannot establish paper-level eligibility",
-    "No independently approved full-length multi-mark timed mocks"
+    "Four same-learner baseline-to-Daily repetitions still present in 10 materialised task items",
+    "No verified independent-family count; cross-board GCSE Higher 132/48/228 items collapse to 12/12/12 rough numeric-masked templates",
+    "No first-class component/year/family metadata in private practice schema; board routing provisional",
+    "Pearson IAL P4/S2 and Cambridge 9709 P6 have zero explicitly tagged approved items",
+    "IB 2029 detailed guide microobjectives not publicly verified; hold AI HL matrix application depth",
+    "TMUA interactive specimen option count not independently verified",
+    "No human-approved complete 20-MCQ Grove timed practice mock"
   ],
   "latest_blueprint_manifest": [
     {
@@ -1205,5 +1212,137 @@
       "82 exact duplicate groups in draft/pilot bank, semantic collisions not fully reviewed",
       "Only four bank-backed student assignments across one student in audit"
     ]
-  }
+  },
+  "target_unseen_per_route": {
+    "daily": 112,
+    "weekly": 32,
+    "exam": 188,
+    "exam_daily": 168,
+    "exam_mock_reserved": 20,
+    "exam_mock_minutes": 90,
+    "mock_description": "Grove timed MCQ practice, not official full-format board paper"
+  },
+  "component_shortage_examples": [
+    {
+      "route": "Cambridge 9709 P6",
+      "daily": 0,
+      "weekly": 0,
+      "exam": 0,
+      "gap": {
+        "daily": 112,
+        "weekly": 32,
+        "exam": 188
+      }
+    },
+    {
+      "route": "Pearson IAL WMA14 P4",
+      "daily": 0,
+      "weekly": 0,
+      "exam": 0,
+      "gap": {
+        "daily": 112,
+        "weekly": 32,
+        "exam": 188
+      }
+    },
+    {
+      "route": "Pearson IAL WST02 S2",
+      "daily": 0,
+      "weekly": 0,
+      "exam": 0,
+      "gap": {
+        "daily": 112,
+        "weekly": 32,
+        "exam": 188
+      }
+    },
+    {
+      "route": "Cambridge 9709 P4 Mechanics",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "Cambridge 9709 P5 Statistics 1",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "Pearson IAL WMA13 P3",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "Pearson 9FM0 Core Pure",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "Pearson 9FM0 4B Further Statistics 2",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "IB AA HL",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "IB AI SL",
+      "daily": 1,
+      "weekly": 1,
+      "exam": 1,
+      "gap": {
+        "daily": 111,
+        "weekly": 31,
+        "exam": 187
+      }
+    },
+    {
+      "route": "TMUA",
+      "daily": 5,
+      "weekly": 5,
+      "exam": 5,
+      "gap": {
+        "daily": 107,
+        "weekly": 27,
+        "exam": 183
+      }
+    }
+  ]
 }
