@@ -51,6 +51,6 @@ assert.equal(d.signature.parts,9);
 assert.equal(d.signature.status,'awaiting_human_moderation');
 assert.equal(d.signature.human_signoff,false);
 const txt=fs.readFileSync('content/operations/verified-original-batch-20261103-0056.json','utf8');
-assert.ok(!/service_role|student_email|correct_text|student_id\\s*[:]|"choices"\\s*:|"explanation"\\s*:/i.test(txt));
+assert.ok(!/service_role|student_email|correct_text|student_id\s*[:]|"choices"\s*:|"explanation"\s*:/i.test(txt));
 assert.ok(fs.existsSync('content/operations/2026-11-03-0056-kwt-core-ib-fs2-content-qa.md'));
 console.log('PASS: 9 original MCQ routes, independent arithmetic, 22,329 prior comparisons, 24-mark private Signature moderation boundary. Live Supabase requires separate read-back.');
