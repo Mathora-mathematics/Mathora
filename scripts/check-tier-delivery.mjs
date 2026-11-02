@@ -5,6 +5,7 @@ const cal=read('supabase/migrations/20261102_calendar_explain_tier_question_supp
 const assign=read('supabase/migrations/20261102_adaptive_mixed_topic_assignment.sql');
 const mock=read('supabase/migrations/20261102_live_monthly_practice_mock.sql');
 const aliases=read('supabase/migrations/20261102_igcse_pearson_tier_aliases.sql');
+const inherited=read('supabase/migrations/20261102_subscription_weekly_inheritance.sql');
 const noRepeat=read('supabase/migrations/20261031_unseen_question_text_guard.sql');
 const practice=read('assigned-practice.js');
 const staff=read('assigned-admin.js');
@@ -30,4 +31,11 @@ assert.match(practice,/mock:'Monthly timed mock/,'Student mock must be navigable
 assert.match(staff,/mock:'20-question timed monthly mock'/,'Examiner must distinguish mock mode');
 assert.match(aliases,/v_norm LIKE '%foundation%'/,'Pearson IGCSE Foundation should route to Core');
 assert.match(aliases,/v_norm LIKE '%higher%'/,'Pearson IGCSE Higher should route to Extended');
+assert.match(inherited,/v_prog IN \('daily','exam'\)/,'Grove Daily and Exam must inherit weekly practice sets on enrolment');
+assert.match(inherited,/v_tier,'weekly',v_day,8/,'Student dashboard must schedule inherited weekly sets');
+assert.match(inherited,/CASE WHEN v.mode='weekly' THEN 'weekly' ELSE v.programme END/,'A weekly set must use weekly-approved questions, not the daily/exam pool');
+assert.match(inherited,/weekly_unseen_questions/,'Weekly bank supply must be separately reported');
+assert.match(practice,/r.mode==='weekly'\?schedule.weekly_unseen_questions:schedule.unseen_questions/,'Frontend Ready status must use the appropriate pool per mode');
+assert.ok(tiers.daily.cadence.includes('PLUS')&&tiers.exam.cadence.includes('PLUS'),'Tier catalogue must describe inheritance and monthly mock accurately');
+
 console.log('MathsGrove tier delivery: calendar supply, no repeats, baseline adaptation, topic rotation, board aliases, 90-minute monthly mock, examiner queue — PASS');
