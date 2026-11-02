@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "clarification": "These are commercial/product service tiers, NOT GCSE/IGCSE/A Level academic levels.",
   "study_routes": [
     "GCSE",
@@ -13,89 +13,62 @@
     "weekly": {
       "name": "Grove Weekly",
       "entitlement": "weekly",
-      "cadence": "Four structured sets each month",
+      "cadence": "Four assigned 8-question weekly mixed-topic sets in each four-week block",
       "student_goal": "Build consistent exam technique and identify weaknesses.",
       "question_design": {
-        "GCSE": {
-          "recommended_marks": 25,
+        "ALL_ROUTES": {
           "items": 8,
-          "minutes": 35,
-          "topic_mix": "Balanced fluency, 30% reasoning, 20% modelling"
-        },
-        "IGCSE": {
-          "recommended_marks": 25,
-          "items": 8,
-          "minutes": 35,
-          "topic_mix": "Structured and unstructured mathematical reasoning"
-        },
-        "AS_A_LEVEL": {
-          "recommended_marks": 30,
-          "items": 7,
-          "minutes": 40,
-          "topic_mix": "Pure / statistics / mechanics by assigned pathway"
+          "marks": 8,
+          "estimated_minutes": 40,
+          "topic_mix": "Mixed-topic fluency, numerical reasoning, applied questions and worked evidence; difficulty adapts to student baseline and examiner feedback"
         }
       },
-      "assessment_workflow": "Each question receives typed, whiteboard or photographic evidence; human marking/report when available",
-      "calendaring": "One suggested day each week; scheduler to be implemented",
-      "status": "pilot question bank; not full board-calibrated sets"
+      "assessment_workflow": "Student answers 8 mixed-topic multiple-choice questions, showing working on whiteboard or photo; submitted work is released only after human examiner review.",
+      "calendaring": "Automatically assigned on each student's weekly slot, anchored to their subscription start date; calendar checks approved unseen bank availability.",
+      "status": "Live scheduler; mathematical coverage depends on qualification, board and approved original bank."
     },
     "daily": {
       "name": "Grove Daily",
       "entitlement": "daily",
-      "cadence": "Seven days of short practice each week, plus Weekly sets",
+      "cadence": "Four short questions every day, PLUS four weekly 8-question mixed-topic sets per four-week cycle",
       "student_goal": "Target specific errors and make mathematical working routine.",
       "question_design": {
-        "GCSE": {
-          "recommended_marks": 10,
-          "items": 3,
-          "minutes": 12,
-          "topic_mix": "One micro-skill, then one reasoning check"
-        },
-        "IGCSE": {
-          "recommended_marks": 12,
-          "items": 3,
-          "minutes": 14,
-          "topic_mix": "Cambridge or Pearson technique and short justification"
-        },
-        "AS_A_LEVEL": {
-          "recommended_marks": 15,
-          "items": 3,
-          "minutes": 18,
-          "topic_mix": "Algebraic and applied single-skill review"
+        "ALL_ROUTES": {
+          "items_per_day": 4,
+          "marks_per_day": 4,
+          "estimated_minutes_per_day": 12,
+          "weekly_items": 8,
+          "weekly_marks": 8,
+          "topic_mix": "Daily focused transferable skills with evidence and tailored level; weekly includes several topics"
         }
       },
-      "assessment_workflow": "Topic recovery based on examiner feedback; no automatic high-stakes marking of handwritten proof",
-      "calendaring": "Seven-day suggested schedule, no emails or auto assignment yet",
-      "status": "existing student builder supports short practice; content expansion pending"
+      "assessment_workflow": "Daily short practice with mathematical working/photo; progress and feedback released by examiner; 8-question weekly work inherited from Grove Weekly.",
+      "calendaring": "Automatically assigns 28 daily sessions and four weekly sessions, no email notification. Calendar checks each pool independently for verified unseen questions.",
+      "status": "Live for routes with enough verified content; advanced-level question banks expanding."
     },
     "exam": {
       "name": "Grove Exam",
       "entitlement": "exam",
-      "cadence": "Everything in Grove Daily plus one approved timed mock monthly",
+      "cadence": "Six daily exam-preparation questions PLUS 8-question weekly sets PLUS one monthly 20-item timed practice mock.",
       "student_goal": "Practice exam conditions and gather moderated evidence of readiness.",
       "question_design": {
-        "GCSE": {
-          "recommended_marks": "80/100/120 depending board",
-          "items": "8–20",
-          "minutes": "90–135",
-          "topic_mix": "Full-board marks, AO and calculator mapping"
-        },
-        "IGCSE": {
-          "recommended_marks": "80/100 depending board",
-          "items": "8–20",
-          "minutes": "90–120",
-          "topic_mix": "Core/Extended or Foundation/Higher syllabus mapping"
-        },
-        "AS_A_LEVEL": {
-          "recommended_marks": "Board dependent",
-          "items": "Later stage",
-          "minutes": "Board dependent",
-          "topic_mix": "Board and unit specific"
+        "ALL_ROUTES": {
+          "daily_items": 6,
+          "daily_marks": 6,
+          "daily_time_limit_minutes": 35,
+          "weekly_items": 8,
+          "weekly_marks": 8,
+          "monthly_mock_items": 20,
+          "monthly_mock_marks": 20,
+          "monthly_mock_time_limit_minutes": 90,
+          "topic_mix": "Tier-differentiated exam preparation; varied topics, adaptation from baseline and released examiner marks; carefully separated from full official-format papers"
         }
       },
-      "assessment_workflow": "Administrator-authored, approved, published and assigned original paper; server hard-stop mock session; examiner review",
-      "calendaring": "One real mock per calendar month once approved pack available",
-      "status": "backend and web UI prepared, SQL deployment and moderation required"
+      "assessment_workflow": "20-item original multiple-choice timed practice mock with server-side 90-minute lockout, whiteboard/photo evidence per question, private examiner review and release. This is NOT yet a moderated official-style multi-mark full exam paper.",
+      "calendaring": "Automatically assigns daily, weekly and an end-of-month 90-minute 20-item practice mock. No full-board format equivalence is claimed.",
+      "status": "Timed 20-item practice mock live; full board-authentic long-form mocks remain separate future work."
     }
-  }
+  },
+  "last_reviewed": "2026-11-02",
+  "engine_description": "Current system assigns auto-markable multiple-choice responses with whiteboard/photo evidence and separate examiner assessment of method and released comments. Practice items are worth one marking point each. These are NOT full official-board exam papers."
 }
