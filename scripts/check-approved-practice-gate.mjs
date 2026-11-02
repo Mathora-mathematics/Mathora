@@ -8,7 +8,11 @@ const candidates=migrations.map(name=>({name,sql:readFileSync('supabase/migratio
   .filter(x=>/CREATE OR REPLACE FUNCTION\s+public\.grove_task_start\s*\(/i.test(x.sql));
 assert.ok(candidates.length>0,'Missing task-start SQL migration');
 const latest=candidates.at(-1);
-const sql=latest.sql;
+const fullMigration=latest.sql;
+const start=fullMigration.indexOf('CREATE OR REPLACE FUNCTION public.grove_task_start(');
+const stop=fullMigration.indexOf('END;$function$;',start);
+assert.ok(start>=0&&stop>start,'Latest migration must contain a complete task-start function');
+const sql=fullMigration.slice(start,stop+'END;$function$;'.length);
 const occurrences=(re)=>[...sql.matchAll(re)].length;
 assert.equal(occurrences(/b\.review_state\s*=\s*'approved'/g),2,
   'Both eligibility count and assignment selection must require editorial approval');
