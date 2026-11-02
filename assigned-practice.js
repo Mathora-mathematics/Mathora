@@ -127,6 +127,7 @@ export function initAssignedPractice(db){
     root.append(line);
    }
   }else root.append(el('p','Your submitted answers remain private until an examiner checks your methods and releases feedback.','mg-report-priority'));
+  if(reviewed)window.MGInsights?.assigned(task,root);
   if(task?.task_id)void loadExaminerFeedback(task.task_id,root);
  }
  const evidence=createEvidenceWorkspace({
