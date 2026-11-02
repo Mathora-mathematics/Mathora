@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "batch": "20261102-0500",
+  "status": "private_drafts_pending_ci_and_deployment",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Only IDs, syllabus routing and QA summaries are public. Prompts, four choices, correct keys, worked solutions, misconception notes and tutor rubrics remain in private Supabase.",
+  "research_brief": "content/research/20261102_0431_9709_pearson_alevel_crosscomponent_blueprints.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "distinct_four_choices": 9,
+    "single_key": 9,
+    "substantial_worked_solutions": 9,
+    "misconception_and_tutor_guidance": 9,
+    "katex_delimiter_brace_checks": 9,
+    "prior_practice": 432,
+    "prior_baseline": 240,
+    "prior_assigned": 4,
+    "prior_baseline_assigned": 20,
+    "compared_per_item": 696,
+    "within_batch_pairs": 36,
+    "exact_duplicates": 0,
+    "near_duplicates_at_065": 0,
+    "near_structural_at_085": 0,
+    "max_prior_token_jaccard": 0.36,
+    "max_prior_structural_jaccard": 0.384615,
+    "max_within_batch_jaccard": 0.22449,
+    "student_mutations": 0
+  },
+  "sources": {
+    "Cambridge_9709": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+    "Pearson_UK_9MA0": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-mathematics-specification-issue4.pdf",
+    "Pearson_IAL_WMA12": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+  },
+  "notes": [
+    "Three newly underpopulated component routes: Cambridge 9709 P4 Mechanics, Pearson UK 9MA0 Paper 3 Statistics, Pearson IAL WMA12 P2; each Daily, Weekly and Exam.",
+    "Unit-specific 9709 P4 and WMA12 P2 assignment must be restricted to matching unit preferences. Generic 9709 or generic IAL is insufficient.",
+    "Four-option MCQ practice items, not complete timed mocks or authentic official papers.",
+    "Mathematical checks were performed independently in SymPy and JavaScript. Public CI checks privacy-safe ledger, routing migration and regressions, not private answer keys.",
+    "Keep all nine private drafts inactive until PR CI, main regression, deployment, migration and live selection verification succeed.",
+    "No existing learner, submission, assignment, evidence or human examiner marking records are changed. No human editorial sign-off is claimed."
+  ],
+  "questions": [
+    {
+      "id": "7e536350-4ee5-4f29-a293-dfc8b230ad1a",
+      "topic": "Inclined-plane equilibrium",
+      "exam_board": "Cambridge 9709 P4 Mechanics",
+      "provenance": "mg-original-20261102-0500-C9709P4-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "daily",
+      "expected_seconds": 255,
+      "syllabus_objective": "Cambridge 9709 Paper 4 §4.1 friction and limiting equilibrium, 2026–27 v4"
+    },
+    {
+      "id": "d3bb436b-e5d6-4919-a458-08c23b101bdc",
+      "topic": "Two-stage motion on rough surfaces",
+      "exam_board": "Cambridge 9709 P4 Mechanics",
+      "provenance": "mg-original-20261102-0500-C9709P4-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "exam",
+      "expected_seconds": 745,
+      "syllabus_objective": "Cambridge 9709 Paper 4 §§4.1,4.3,4.5 forces and work-energy, 2026–27 v4"
+    },
+    {
+      "id": "6439f637-599a-4eb2-ba76-f6df15ba4777",
+      "topic": "Connected particles with resistance",
+      "exam_board": "Cambridge 9709 P4 Mechanics",
+      "provenance": "mg-original-20261102-0500-C9709P4-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "weekly",
+      "expected_seconds": 515,
+      "syllabus_objective": "Cambridge 9709 Paper 4 §§4.3–4.4 connected particles, 2026–27 v4"
+    },
+    {
+      "id": "109ae1fd-91e6-48be-86f5-ebe49b8ae6ee",
+      "topic": "Logarithmic equations",
+      "exam_board": "Pearson Edexcel IAL WMA12 P2",
+      "provenance": "mg-original-20261102-0500-IALP2-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "daily",
+      "expected_seconds": 280,
+      "syllabus_objective": "Pearson IAL WMA12/01 P2 §5.3 logarithms and equations, Issue 3"
+    },
+    {
+      "id": "0efb2902-fb62-4f54-b6ba-0537c5cd1825",
+      "topic": "Exponential growth modelling",
+      "exam_board": "Pearson Edexcel IAL WMA12 P2",
+      "provenance": "mg-original-20261102-0500-IALP2-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "exam",
+      "expected_seconds": 700,
+      "syllabus_objective": "Pearson IAL WMA12/01 P2 §5.3 exponential functions and modelling, Issue 3"
+    },
+    {
+      "id": "e20dd1a2-65ef-40f1-ab1a-7f568a9d9f04",
+      "topic": "Trigonometric equations",
+      "exam_board": "Pearson Edexcel IAL WMA12 P2",
+      "provenance": "mg-original-20261102-0500-IALP2-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "programme_scope": "weekly",
+      "expected_seconds": 510,
+      "syllabus_objective": "Pearson IAL WMA12/01 P2 §6.2 double-angle trigonometry, Issue 3"
+    },
+    {
+      "id": "4a35aad1-c1be-4248-bab7-c98ceaf2d6da",
+      "topic": "Sampling without replacement",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "provenance": "mg-original-20261102-0500-P9MA0ST-D",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 270,
+      "syllabus_objective": "Pearson UK 9MA0 Paper 3 Statistics §3 probability without replacement, Issue 4"
+    },
+    {
+      "id": "edc43703-009d-42f0-b75c-ca43504c7a26",
+      "topic": "Normal percentile and binomial risk",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "provenance": "mg-original-20261102-0500-P9MA0ST-E",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 760,
+      "syllabus_objective": "Pearson UK 9MA0 Paper 3 Statistics §§3–5 Normal distribution and binomial count, Issue 4"
+    },
+    {
+      "id": "ff6aa41b-ec35-4f73-a5fc-495ffba14374",
+      "topic": "One-sided binomial hypothesis test",
+      "exam_board": "Pearson Edexcel 9MA0 UK GCE",
+      "provenance": "mg-original-20261102-0500-P9MA0ST-W",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 560,
+      "syllabus_objective": "Pearson UK 9MA0 Paper 3 Statistics §4 binomial hypothesis testing, Issue 4"
+    }
+  ]
+}
