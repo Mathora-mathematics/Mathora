@@ -58,6 +58,23 @@ Pre-release **2,202 total / 1,914 approved active / 240 pilot active / 48 inacti
 
 ## Publication gate and follow-up
 
-**PENDING GitHub PR mathematics CI, learner no-repeat and human-marking regression, custom website and GitHub Pages deployment.** Only if all gates pass: atomically approve/activate the nine exact IDs, read them back from live Supabase, test exact-board routing and exposure, and append the final status here. No new student assignment, answer, evidence, mark or report may be modified.
+**COMPLETED:** GitHub PR CI, main-branch CI, learner no-repeat/evidence/human-marking regression, custom website and GitHub Pages deployment passed. The nine exact staged UUIDs were atomically approved and activated, then read back from live Supabase. No student assignment, answer, evidence, mark or report was modified. No new student assignment, answer, evidence, mark or report may be modified.
 
 Known unresolved: **four historical baseline-to-practice repetitions**, mathematical-family learner no-repeat not proven, all routes below the four-week unseen target, six IB examination-year-uncertain drafts held, and no true full multi-mark written mock published through the four-option practice schema. The existing human examiner marking gate is preserved. Priority next cycle: strengthen no-repeat and continue understocked exact-component GCSE/IGCSE, IB AA/AI, A Level, Further and TMUA rotation.
+
+## Final verified release — 2 November 2026, 23:15 Kuwait
+
+**PUBLISHED: 9/9 approved and active in live Supabase**, activation timestamp `2026-11-02T20:15:36.863082+00:00`. A single conditional update activated exactly the nine previously staged IDs after all preflight checks. **9/9** intended board/component matches, **0** incorrect-board matches, **0** previously assigned new IDs. Final repeat screening again found **0 exact / 0 numeric-masked / 0 Jaccard ≥0.76 collisions** in 22,068 comparisons; maximum final prior Jaccard **0.4500**, within-batch maximum **0.2462** over 36 pairs. The initial pre-stage screening used slightly different candidate wording and reported maximum **0.5556**; both passes were below the rejection threshold. Strict SQL equality on repeating fractions was replaced with a justified tolerance of `10^-12`, not a mathematical answer change.
+
+**Passed GitHub workflows for merged PR #52:** [PR mathematics/regression CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41516906258), [main mathematics/regression CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41516973037), [custom website deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41516972938), [native Pages deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41516973481). [Merged PR #52](https://github.com/Mathora-mathematics/Mathora/pull/52), merge commit `8d535e6b1a00237f62106be824afa6b65630acc3`. Subsequent ledger/journal audit-only commits may trigger additional CI/deploy runs, which must be checked independently.
+
+**Post-publication bank:** 2,211 total; **1,923 approved active**, 240 active pilot, 48 inactive legacy drafts. Exact active Daily/Weekly/Exam stock and individual-mode deficits:
+- Cambridge 9709 P4 Mechanics AS: **2/2/2**, shortfalls **110/30/186**.
+- Pearson IAL WME01 Mechanics M1 AS: **2/2/2**, shortfalls **110/30/186**.
+- Cambridge 9231 P2 Further Pure: **3/3/3**, shortfalls **109/29/185**.
+
+These counts **do not** double-count generic eligibility as unique questions. Daily also needs 32 separate unseen Weekly questions; Exam also needs 32 separate unseen Weekly questions. Learner-specific unseen stock may be lower.
+
+**Unchanged student aggregates:** 35 tasks, 10 materialised items, 5 answers, 5 evidence records and 10 human marks. Signature `c4e5bbde-606c-4f8f-bf84-fa8b00729f3b` remains private **`awaiting_human_moderation`**, with no authenticated examiner sign-off or released student report.
+
+**Unresolved:** four historical baseline-to-practice repetitions, mathematical-family no-repeat not proven, six IB year-sensitive drafts held, every route understocked, and MCQ practice cannot be represented as a genuine full multi-mark written mock. No broad legacy-draft approval was attempted.
