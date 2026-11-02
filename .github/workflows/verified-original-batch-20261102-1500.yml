@@ -1,0 +1,37 @@
+name: Verify original maths batch 2026-11-02 1500
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261102-1500.json'
+      - 'scripts/check-verified-batch-20261102-1500.mjs'
+      - 'supabase/migrations/20261102150000_grove_9231_p2_exact_component_gate.sql'
+      - '.github/workflows/verified-original-batch-20261102-1500.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261102-1500.json'
+      - 'scripts/check-verified-batch-20261102-1500.mjs'
+      - 'supabase/migrations/20261102150000_grove_9231_p2_exact_component_gate.sql'
+      - '.github/workflows/verified-original-batch-20261102-1500.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independent mathematical verification and privacy
+        run: node scripts/check-verified-batch-20261102-1500.mjs
+      - name: Practice, assignment, evidence and Signature regression
+        run: |
+          node scripts/check-original-practice.mjs
+          node scripts/check-published-originals.mjs
+          node scripts/check-approved-practice-gate.mjs
+          node scripts/check-auto-assign.mjs
+          node scripts/check-evidence-marking.mjs
+          node scripts/test-all-tier-evidence.mjs
+          node scripts/check-signature-editorial.mjs
