@@ -29,3 +29,19 @@ Batch `20261102-1300`; nine IDs, modes and syllabus objectives in [privacy-safe 
 4. Confirm unchanged student task/item/answer/evidence/mark counts; journal final status.
 
 **Next priority:** develop genuinely varied component-specific questions for these zero-stock routes, and address historical baseline-to-practice family repetition; avoid mass parameter-swapped templates. Also keep IB 2029 cohort safeguards before activating held drafts.
+
+
+## Final verified publication — 2 November 2026
+**PUBLISHED: 9/9 approved and active.** Initially drafted inactive; activation followed successful [PR #44](https://github.com/Mathora-mathematics/Mathora/pull/44), [PR CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41425652321), [main CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41425702211), [website deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41425702150), and [Pages deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41425700340). Live exact-component migration applied successfully; **30/30** positive/negative board regression assertions passed. New-item selection **9/9**, incompatible-board selection **0/9**.
+
+| Exact component | Grove Daily | Grove Weekly | Grove Exam |
+| --- | --- | --- | --- |
+| Cambridge 9709 P6 Statistics 2 | `1fd2b28a` | `9c324b57` | `2180854c` |
+| Pearson IAL WMA14 P4 | `332f20af` | `99b991a1` | `296fe715` |
+| Pearson IAL WST02 S2 | `b77458bc` | `b1b77c52` | `6418eaf8` |
+
+Post-release bank **2,154 total / 1,860 active approved / 240 active pilot / 54 inactive**. Student records unchanged before/after: **35** scheduled/task rows, **10** materialised task items, **5** task answers, **5** evidence rows and **4** human marking rows. These new items are eligible but the three routes are far from a full unseen four-week supply.
+
+**Unresolved cross-mode quality defect:** a read-only same-learner comparison still finds **4 exact-normalised baseline-to-practice repeats** among existing assigned snapshots. This batch did not introduce them, and previously assigned work was not rewritten. Fix future exposure filtering and semantic-family reuse before claiming a complete no-repeat guarantee. Existing broad cross-board question pools also show substantial parameter-swapped template repetition; new production should prioritise mathematical family diversity over raw count. The published questions are four-choice practice, **not** a full written multi-mark examination or an official TMUA-format mock. Automated approval is not a human examiner's editorial sign-off.
+
+**Next authoring priority:** more genuinely distinct P6, WMA14 and WST02 families, followed by low-stock Further Mathematics, IB AA/AI with examination-year routing, and TMUA. Reserve mock-only items separately and test per-student unseen capacity before scheduling.
