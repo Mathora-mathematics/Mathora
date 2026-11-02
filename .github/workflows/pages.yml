@@ -48,6 +48,7 @@ jobs:
           node --input-type=module --check < student-welcome.js
           node scripts/check-student-welcome.mjs
           node --input-type=module --check < studio.js
+          node --input-type=module --check < signature-editorial.js
           node --input-type=module --check < access-management.js
           node --input-type=module --check < family-access.js
           node --check showcase-v3.js
@@ -69,6 +70,7 @@ jobs:
           node scripts/check-content.mjs
           node scripts/check-published-originals.mjs
           node scripts/check-tier-delivery.mjs
+          node scripts/check-signature-editorial.mjs
           node scripts/check-verified-batch-20261101.mjs
           node scripts/check-verified-batch-20261101-0300.mjs
           node scripts/check-verified-batch-20261101-0500.mjs
@@ -87,6 +89,7 @@ jobs:
           cp baseline.html baseline.css baseline.js baseline-calc.js site/
           cp studio.html studio.css studio.js admin-learner.css content-bank.js content-bank.css timed-mock.css maths-notation.css access-management.css access-management.js access-router.js baseline-admin.js site/
           cp assigned-admin.js assigned-admin.css site/
+          cp signature-editorial.js signature-editorial.css site/
           cp student-offboarding.js student-offboarding.css site/
           cp export.html export.css student-export-download.js site/
           cp editorial-review.js site/
