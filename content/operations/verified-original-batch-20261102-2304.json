@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "batch": "20261102-2304",
+  "date": "2026-11-02",
+  "status": "draft_pending_github_ci_and_deployment",
+  "privacy": "Confidential prompts, answers and student records remain only in private Supabase.",
+  "questions": [
+    {
+      "id": "f1cc2fe0-cf83-4071-8be3-f2a7fdd1ce82",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Cambridge 9709 P4 Mechanics",
+      "mode": "daily",
+      "topic": "Momentum conservation",
+      "expected_seconds": 250,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "060af1bd-4e16-450e-b20a-19ae03218e16",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Cambridge 9709 P4 Mechanics",
+      "mode": "weekly",
+      "topic": "Rough incline dynamics",
+      "expected_seconds": 320,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "bd44031c-6b90-435e-ac10-5b658517e0dc",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Cambridge 9709 P4 Mechanics",
+      "mode": "exam",
+      "topic": "Power on gradient",
+      "expected_seconds": 365,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "e0ae02a3-c0dc-4233-9fa3-8ff34cbc662a",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Pearson Edexcel IAL WME01 Mechanics M1",
+      "mode": "daily",
+      "topic": "Beam moments",
+      "expected_seconds": 280,
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+    },
+    {
+      "id": "3881a17c-f434-46af-a4ce-b87206832ed6",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Pearson Edexcel IAL WME01 Mechanics M1",
+      "mode": "weekly",
+      "topic": "Catch-up kinematics",
+      "expected_seconds": 270,
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+    },
+    {
+      "id": "44c20237-675f-4e96-a8f6-1337c09ef3c1",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Pearson Edexcel IAL WME01 Mechanics M1",
+      "mode": "exam",
+      "topic": "Inclined connected particles",
+      "expected_seconds": 395,
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+    },
+    {
+      "id": "67b61528-1b8a-497e-826f-2fd48f7d0e34",
+      "qualification": "FURTHER_MATHS",
+      "level": "further",
+      "board": "Cambridge 9231 P2 Further Pure 2",
+      "mode": "daily",
+      "topic": "Hyperbolic cosine",
+      "expected_seconds": 215,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "f406647d-5dd0-40d1-8365-8730b309135f",
+      "qualification": "FURTHER_MATHS",
+      "level": "further",
+      "board": "Cambridge 9231 P2 Further Pure 2",
+      "mode": "weekly",
+      "topic": "Trace of matrix power",
+      "expected_seconds": 380,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "3c883179-407e-4752-8ec4-f086e84d4b96",
+      "qualification": "FURTHER_MATHS",
+      "level": "further",
+      "board": "Cambridge 9231 P2 Further Pure 2",
+      "mode": "exam",
+      "topic": "Maclaurin coefficient",
+      "expected_seconds": 430,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf"
+    }
+  ],
+  "qa": {
+    "sympy_independent": 9,
+    "javascript_independent": 9,
+    "sql_independent": 9,
+    "distinct_four_choices": 9,
+    "one_key": 9,
+    "complete_explanations": 9,
+    "tex_syntax": 9,
+    "prior_compared_per_question": 2452,
+    "prior_comparisons": 22068,
+    "exact_duplicates": 0,
+    "masked_template_duplicates": 0,
+    "near_duplicates_jaccard_076": 0,
+    "maximum_prior_jaccard": 0.5556,
+    "within_batch_pairs": 36,
+    "within_batch_exact_duplicates": 0,
+    "board_positive": 9,
+    "board_negative": 9,
+    "previously_assigned": 0,
+    "new_candidates_rejected": 0,
+    "legacy_drafts_reviewed": 48,
+    "legacy_drafts_activated": 0
+  },
+  "signature": {
+    "id": "c4e5bbde-606c-4f8f-bf84-fa8b00729f3b",
+    "product": "signature",
+    "qualification": "A_LEVEL",
+    "component": "Cambridge 9709 P4 Mechanics",
+    "questions": 3,
+    "parts": 9,
+    "marks": 24,
+    "criteria_marks": 24,
+    "status": "awaiting_human_moderation",
+    "human_signoff": false
+  },
+  "bank_staged": {
+    "total": 2211,
+    "approved_active": 1914,
+    "pilot_active": 240,
+    "inactive": 57
+  },
+  "student_aggregate_before": {
+    "tasks": 35,
+    "task_items": 10,
+    "answers": 5,
+    "evidence": 5,
+    "human_marks": 10
+  },
+  "limitations": [
+    "Four historical baseline-to-practice repetitions unresolved.",
+    "Mathematical-family no-repeat not proven.",
+    "All exact routes far below four-week unseen inventory requirements.",
+    "MCQ items are not multi-mark written mocks."
+  ]
+}
