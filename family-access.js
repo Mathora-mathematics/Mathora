@@ -116,9 +116,13 @@ $('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut(
 $('fa-retry').addEventListener('click',()=>{view('fa-loading');void access()});
 $('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;location.replace('./portal.html')});
 $('fa-learner-select').addEventListener('change',()=>{
- const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
- if(document.startViewTransition&&!reduced&&!$('fa-dashboard').hidden)document.startViewTransition(render);
- else render();
+ const panel=$('fa-dashboard');
+ panel.classList.remove('mg6-repaint');
+ render();
+ if(!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches&&!panel.hidden){
+  void panel.offsetWidth;
+  panel.classList.add('mg6-repaint');
+ }
 });
 document.addEventListener('visibilitychange',()=>{
  if(!document.hidden&&user)void access();
