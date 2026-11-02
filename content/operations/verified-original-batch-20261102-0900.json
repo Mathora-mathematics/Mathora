@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batch": "20261102-0900",
-  "status": "private_drafts_pending_ci_and_deployment",
+  "status": "published_database_verified",
   "record_count": 9,
   "release_candidates": 9,
   "privacy": "Only private draft UUIDs, routing metadata, syllabus links and verification summaries are public. Prompts, choices, correct options, worked solutions, misconception analysis and tutor marking guidance are private Supabase data.",
@@ -143,5 +143,23 @@
       "provenance": "mg-original-20261102-0900-A1E",
       "topic": "Circle tangent and coordinate-intercept area"
     }
-  ]
+  ],
+  "publication": {
+    "approved_activated": 9,
+    "verification": "post-merge and post-deployment live SQL",
+    "approved_total": 165,
+    "active_total": 405,
+    "practice_total": 459,
+    "inactive_drafts": 54,
+    "eligible_tier_board_routes": 9,
+    "wrong_board_matches": 0,
+    "blocked_ib_drafts_unchanged": 6,
+    "assigned_practice_unchanged": 4,
+    "assigned_baseline_unchanged": 20,
+    "pr": "https://github.com/Mathora-mathematics/Mathora/pull/39",
+    "pr_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41398136482",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41398202323",
+    "site_deploy": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41398202198",
+    "pages_deploy": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41398202251"
+  }
 }
