@@ -154,6 +154,31 @@ function report(root,answers,questions,reviews){
  section.append(wrap);
  const before=root.querySelector(".record-question");if(before)root.insertBefore(section,before);else root.append(section);
 }
+
+function assigned(task,root){
+ if(!root||!task||task.review_status!=="released")return;
+ const section=make("section","mgx mgx-report");
+ add(section,head("YOUR RELEASED PRACTICE ANALYSIS","What the evidence shows.","A clearer interpretation of your marked practice, with a topic-by-topic next step."));
+ const reviews=Array.isArray(task.review)?task.review:[];
+ const seconds=reviews.filter(q=>Number.isFinite(Number(q.seconds))).reduce((a,q)=>a+Math.max(0,number(q.seconds)),0);
+ const g=grid(3);
+ add(g,tile("MARKED RESPONSES",number(task.score)+" / "+number(task.question_count),"Released examiner-reviewed results"),
+ tile("ACCURACY",number(task.question_count)>0?pct(task.score,task.question_count)+"%":"—","On this assigned question set only"),
+ tile("QUESTION VISIBILITY",reviews.length?Math.round(seconds/60)+" min":"—","Time the questions were visible"));
+ section.append(g);
+ const topics=Array.isArray(task.topics)?task.topics.filter(x=>number(x.total)>0):[];
+ const split=make("div","mgx-split"),left=panel("Topic evidence"),right=panel("Your next action",true);
+ if(topics.length){const bars=make("div","mgx-bars");topics.slice().sort((a,b)=>number(a.correct)/number(a.total)-number(b.correct)/number(b.total)).forEach(t=>bars.append(bar(t.topic||"Mathematics",t.correct,t.total)));left.append(bars);}
+ else left.append(make("div","mgx-empty","Topic breakdown will appear when reviewed question details are available."));
+ const weak=topics.filter(t=>number(t.correct)<number(t.total)).sort((a,b)=>number(a.correct)/number(a.total)-number(b.correct)/number(b.total))[0];
+ right.append(list([weak?"Practise "+weak.topic+" again using a different question.":"Try a new reasoning problem and write out the full method.",
+ "Read the examiner comments and rewrite any missing steps.",
+ "Complete a fresh question independently before treating this topic as secure."]));
+ add(split,left,right);section.append(split);
+ add(section,note("Question visibility is not a verified measure of focused study. Individual task percentages are not official exam grades."));
+ root.append(section);
+}
+
 function sample(){
  const root=$("mg-sample-insights");if(root){
   root.replaceChildren();add(root,head("LEARNING SIGNALS / FICTIONAL","From marks to understanding.","An example of how a short examiner-reviewed paper could be interpreted."));
@@ -171,6 +196,6 @@ function sample(){
   print.append(bars);add(print,note("Illustrative analysis only; a real report uses a student's reviewed working and the actual awarded mark breakdown."));
  }
 }
-window.MGInsights={studio,student,family,report,sample};
+window.MGInsights={studio,student,family,report,assigned,sample};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",sample,{once:true});else sample();
 })();
