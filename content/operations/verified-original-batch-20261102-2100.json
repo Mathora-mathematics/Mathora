@@ -2,7 +2,7 @@
   "version": 1,
   "batch": "20261102-2100",
   "date": "2026-11-02",
-  "status": "draft_pending_ci_and_activation",
+  "status": "published_database_verified",
   "privacy": "Confidential prompts, answer keys, worked solutions and student records exist only in private Supabase.",
   "questions": [
     {
@@ -15,7 +15,7 @@
       "mode": "daily",
       "topic": "Fractional sharing",
       "expected_seconds": 180,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "AQA-W",
@@ -27,7 +27,7 @@
       "mode": "weekly",
       "topic": "Changing ratio",
       "expected_seconds": 240,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "AQA-E",
@@ -39,7 +39,7 @@
       "mode": "exam",
       "topic": "Reverse percentages",
       "expected_seconds": 240,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "IG-D",
@@ -51,7 +51,7 @@
       "mode": "daily",
       "topic": "Rational formula rearrangement",
       "expected_seconds": 290,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "IG-W",
@@ -63,7 +63,7 @@
       "mode": "weekly",
       "topic": "External secants",
       "expected_seconds": 280,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "IG-E",
@@ -75,7 +75,7 @@
       "mode": "exam",
       "topic": "Intersecting inequalities",
       "expected_seconds": 370,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "TM-D",
@@ -88,7 +88,7 @@
       "mode": "daily",
       "topic": "Contrapositive",
       "expected_seconds": 210,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "TM-W",
@@ -101,7 +101,7 @@
       "mode": "weekly",
       "topic": "Divisibility counterexample",
       "expected_seconds": 250,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     },
     {
       "code": "TM-E",
@@ -114,7 +114,7 @@
       "mode": "exam",
       "topic": "Prime conjecture",
       "expected_seconds": 270,
-      "staged_as": "draft"
+      "staged_as": "approved_active"
     }
   ],
   "qa": {
@@ -163,7 +163,70 @@
     "evidence": 5,
     "human_marks": 10
   },
-  "publication": null,
+  "publication": {
+    "approved_active": 9,
+    "approved_at_utc": "2026-11-02T18:11:09.049456+00:00",
+    "intended_board_selection": 9,
+    "incorrect_board_matches": 0,
+    "previously_assigned": 0,
+    "pr": "https://github.com/Mathora-mathematics/Mathora/pull/51",
+    "pr_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41497684878",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41497775579",
+    "website_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41497775769",
+    "pages_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41497773675",
+    "workflow_results": "success",
+    "bank": {
+      "total": 2202,
+      "approved_active": 1914,
+      "pilot_active": 240,
+      "inactive": 48
+    },
+    "routes": [
+      {
+        "board": "AQA 8300 Foundation",
+        "daily": 4,
+        "weekly": 4,
+        "exam": 4,
+        "shortfall_daily": 108,
+        "shortfall_weekly": 28,
+        "shortfall_exam": 184
+      },
+      {
+        "board": "Pearson 4MA1 Higher",
+        "daily": 4,
+        "weekly": 4,
+        "exam": 4,
+        "shortfall_daily": 108,
+        "shortfall_weekly": 28,
+        "shortfall_exam": 184
+      },
+      {
+        "board": "TMUA (Paper 1/2 pooled)",
+        "daily": 7,
+        "weekly": 7,
+        "exam": 7,
+        "shortfall_daily": 105,
+        "shortfall_weekly": 25,
+        "shortfall_exam": 181
+      }
+    ],
+    "student_aggregate_after": {
+      "tasks": 35,
+      "task_items": 10,
+      "answers": 5,
+      "evidence": 5,
+      "human_marks": 10
+    },
+    "student_mutations": 0,
+    "signature": {
+      "id": "bd8ffee0-56d3-4f41-bc6b-006cc51e50fd",
+      "status": "awaiting_human_moderation",
+      "human_signoff": false,
+      "student_reports_released": 0,
+      "criterion_marks": 24,
+      "parts": 11
+    }
+  },
   "limitations": [
     "No-repeat by exact ID and stem only; family-level no-repeat unproven.",
     "Four historical baseline-to-practice repeats unresolved.",
