@@ -94,13 +94,10 @@ body.mg-private-family .fa-history{padding-top:15px;padding-bottom:15px}
 body.mg-private-family .fa-notice{border-radius:0 6px 6px 0;background:#f2ece3}
 body.mg-private-family .fa-top-right a:hover{color:#8a735a;text-decoration:underline}
 
-/* On modern engines, only the visible authenticated panel transitions. */
-body.mg-private-portal .dash-panel:not([hidden]),body.mg-private-studio [data-panel]:not([hidden]){view-transition-name:mg6-private-panel}
-body.mg-private-family #fa-dashboard:not([hidden]){view-transition-name:mg6-family-panel}
-::view-transition-old(mg6-private-panel),::view-transition-old(mg6-family-panel){animation:mg6-private-out .12s ease-in both}
-::view-transition-new(mg6-private-panel),::view-transition-new(mg6-family-panel){animation:mg6-private-in .19s cubic-bezier(.2,.65,.2,1) both}
-@keyframes mg6-private-out{to{opacity:0;transform:translateY(-3px)}}
-@keyframes mg6-private-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+/* Immediate navigation updates, followed by a subtle entrance fade.
+   Avoids delayed state transitions during admin workflows or student submissions. */
+body.mg-private-portal .dash-panel:not([hidden]),body.mg-private-studio [data-panel]:not([hidden]),body.mg-private-family #fa-dashboard.mg6-repaint{animation:mg6-private-in .18s ease-out}
+@keyframes mg6-private-in{from{opacity:.45;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:950px){
  body.mg-private-portal .panel-heading h1,body.mg-private-studio .heading h1{font-size:clamp(42px,5vw,55px)!important}
@@ -117,12 +114,11 @@ body.mg-private-family #fa-dashboard:not([hidden]){view-transition-name:mg6-fami
  body.mg-private-family .fa-dashboard-intro h1{font-size:47px}
 }
 @media print{
- body.mg-private-portal .dash-panel:not([hidden]),body.mg-private-studio [data-panel]:not([hidden]),body.mg-private-family #fa-dashboard:not([hidden]){view-transition-name:none}
  body.mg-private-portal .mgx,body.mg-private-studio .mgx,body.mg-private-family .mgx{box-shadow:none!important;break-inside:auto}
  body.mg-private-portal .record-question,body.mg-private-studio .review-summary-card,body.mg-private-family .fa-card{break-inside:avoid}
 }
 @media(prefers-reduced-motion:reduce){
  body.mg-private-portal *,body.mg-private-studio *,body.mg-private-family *{scroll-behavior:auto!important}
  body.mg-private-portal :is(.button,.mgx-cta,.side-nav button),body.mg-private-studio :is(.button,.mgx-cta,.nav button),body.mg-private-family :is(button,.mgx-cta){transition:none!important;transform:none!important}
- ::view-transition-old(mg6-private-panel),::view-transition-new(mg6-private-panel),::view-transition-old(mg6-family-panel),::view-transition-new(mg6-family-panel){animation:none!important}
+ body.mg-private-portal .dash-panel:not([hidden]),body.mg-private-studio [data-panel]:not([hidden]),body.mg-private-family #fa-dashboard.mg6-repaint{animation:none!important}
 }
