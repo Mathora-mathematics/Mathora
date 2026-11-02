@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "batch": "20261102-1300",
+  "date": "2026-11-02",
+  "status": "draft_pending_ci_and_routing",
+  "private_project": "nwakgkxytovprrrwyahs",
+  "count": 9,
+  "privacy": "Unseen question stems, answer keys, worked solutions and marking notes remain exclusively in private Supabase; this ledger contains only IDs and metadata.",
+  "sources": [
+    "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf",
+    "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+  ],
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "sql_math_checkpoints": 9,
+    "valid_four_options": 9,
+    "unique_options": 9,
+    "exactly_one_key": 9,
+    "complete_working_and_marking_notes": 9,
+    "prior_bank_rows": 2145,
+    "baseline_rows": 240,
+    "assigned_snapshots": 10,
+    "comparisons_per_candidate": 2395,
+    "total_prior_comparisons": 21555,
+    "within_batch_pairs": 36,
+    "max_prior_jaccard": 0.6,
+    "max_internal_jaccard": 0.333333333333333,
+    "near_duplicates_at_076": 0,
+    "student_record_mutations": 0
+  },
+  "migration": "supabase/migrations/20261102130000_grove_p6_wma14_wst02_component_routing.sql",
+  "questions": [
+    {
+      "code": "P6D",
+      "id": "1fd2b28a-cf59-4a34-ab30-b4e898a72ca3",
+      "exam_board": "Cambridge 9709 P6 Statistics 2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 250,
+      "syllabus_objective": "9709 P6 §6.2",
+      "provenance": "mg-original-20261102-1300-P6D"
+    },
+    {
+      "code": "P6W",
+      "id": "9c324b57-7a1b-4f66-8283-f59f2d0d1763",
+      "exam_board": "Cambridge 9709 P6 Statistics 2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 430,
+      "syllabus_objective": "9709 P6 §6.4",
+      "provenance": "mg-original-20261102-1300-P6W"
+    },
+    {
+      "code": "P6E",
+      "id": "2180854c-702e-4e02-ad9e-fb0e43c640d5",
+      "exam_board": "Cambridge 9709 P6 Statistics 2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 650,
+      "syllabus_objective": "9709 P6 §6.5",
+      "provenance": "mg-original-20261102-1300-P6E"
+    },
+    {
+      "code": "P4D",
+      "id": "332f20af-ded2-4af6-8fdb-280186a838e1",
+      "exam_board": "Pearson Edexcel IAL WMA14 P4",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 290,
+      "syllabus_objective": "WMA14/01 §4.1",
+      "provenance": "mg-original-20261102-1300-P4D"
+    },
+    {
+      "code": "P4W",
+      "id": "99b991a1-f7b5-4dfd-bd40-44dd833b3f91",
+      "exam_board": "Pearson Edexcel IAL WMA14 P4",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 470,
+      "syllabus_objective": "WMA14/01 §5.1",
+      "provenance": "mg-original-20261102-1300-P4W"
+    },
+    {
+      "code": "P4E",
+      "id": "296fe715-f3b6-438a-9531-9ed7abc37acc",
+      "exam_board": "Pearson Edexcel IAL WMA14 P4",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 680,
+      "syllabus_objective": "WMA14/01 §6.1",
+      "provenance": "mg-original-20261102-1300-P4E"
+    },
+    {
+      "code": "S2D",
+      "id": "b77458bc-809c-448a-a41b-cf175e9aacff",
+      "exam_board": "Pearson Edexcel IAL WST02 S2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "daily",
+      "expected_seconds": 220,
+      "syllabus_objective": "WST02/01 §3.1",
+      "provenance": "mg-original-20261102-1300-S2D"
+    },
+    {
+      "code": "S2W",
+      "id": "b1b77c52-bf26-4feb-b8cf-a09f03f8dc6a",
+      "exam_board": "Pearson Edexcel IAL WST02 S2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "weekly",
+      "expected_seconds": 460,
+      "syllabus_objective": "WST02/01 §§2.2–2.5",
+      "provenance": "mg-original-20261102-1300-S2W"
+    },
+    {
+      "code": "S2E",
+      "id": "6418eaf8-0709-4fd2-bb96-c1f22c831b23",
+      "exam_board": "Pearson Edexcel IAL WST02 S2",
+      "qualification": "A_LEVEL",
+      "academic_level": "a2",
+      "programme_scope": "exam",
+      "expected_seconds": 670,
+      "syllabus_objective": "WST02/01 §3.2",
+      "provenance": "mg-original-20261102-1300-S2E"
+    }
+  ],
+  "publication": {
+    "approved_active": 0,
+    "notes": "Staged only. CI and exact-component routing migration must pass before activation."
+  }
+}
