@@ -142,6 +142,7 @@ body.mg-site .mg-final h2{font-size:clamp(58px,6vw,91px)}
  body.mg-site.mg9-motion-ready .mg9-reveal:not(.mg9-visible){opacity:0;transform:translate3d(0,27px,0)}
  body.mg-site.mg9-motion-ready .mg9-reveal{transition:opacity .7s ease,transform .86s var(--atelier-ease)}
  body.mg-site.mg9-motion-ready .mg9-reveal.mg9-visible{opacity:1;transform:none}
+ body.mg-site.mg9-motion-ready .mg8-entry-card.mg9-reveal.mg9-visible:hover{transform:translateY(-6px)}
  body.mg-site.mg9-motion-ready .mg9-reveal[data-mg9-delay="1"]{transition-delay:.12s}
  body.mg-site.mg9-motion-ready .mg9-reveal[data-mg9-delay="2"]{transition-delay:.22s}
 }
@@ -222,6 +223,10 @@ body.mg-site .mg-final h2{font-size:clamp(58px,6vw,91px)}
  body.mg-site .mg7-report-heading{font-size:clamp(39px,9vw,50px)}
  body.mg-site .mg7-mark-table{font-size:10px}
  body.mg-site .mg-final h2{font-size:clamp(49px,10vw,71px)}
+}
+@media(hover:none){
+ body.mg-site .mg9-signature-feature:hover .mg9-sig-paper{transform:rotate(-1deg)}
+ body.mg-site .mg8-welcome-hero .mg-hero-product:hover .mg6-evidence-hero{transform:none}
 }
 @media(prefers-reduced-motion:reduce){
  body.mg-site .mg8-welcome-hero .mg6-evidence-hero,
