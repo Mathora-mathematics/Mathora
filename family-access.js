@@ -115,7 +115,11 @@ async function access(){
 $('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();records=[];user=null;$('fa-sign-out').hidden=true;location.replace('./portal.html')});
 $('fa-retry').addEventListener('click',()=>{view('fa-loading');void access()});
 $('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;location.replace('./portal.html')});
-$('fa-learner-select').addEventListener('change',render);
+$('fa-learner-select').addEventListener('change',()=>{
+ const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ if(document.startViewTransition&&!reduced&&!$('fa-dashboard').hidden)document.startViewTransition(render);
+ else render();
+});
 document.addEventListener('visibilitychange',()=>{
  if(!document.hidden&&user)void access();
 });
