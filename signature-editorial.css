@@ -16,3 +16,10 @@
 .mg-signature-part details p{font-size:12px;margin:12px 0 0}
 .mg-signature-reference{font-size:12px;text-decoration:underline;color:#304d6d}
 .mg-signature-alert{padding:14px;border-left:3px solid #c6b59e;background:#f7f4ed;color:#40526b;font-size:12px;line-height:1.7}
+
+.mg-signature-moderation{margin-top:20px;padding:17px;background:#f9f7f2;border:1px solid #d9cdbb;border-radius:7px}
+.mg-signature-moderation strong{font-size:13px;color:#192b43}
+.mg-signature-moderation label{display:block;margin:12px 0;font-size:12px;font-weight:700;color:#354d69}
+.mg-signature-moderation textarea{display:block;width:100%;min-height:110px;padding:12px;border:1px solid #d3cabf;border-radius:5px;background:white;color:#1c324a;margin-top:8px}
+.mg-signature-moderation .mg-signature-agreement{display:flex;align-items:flex-start;gap:9px;font-weight:500;line-height:1.5}
+.mg-signature-moderation button{margin-top:8px}
