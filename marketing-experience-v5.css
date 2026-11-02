@@ -1,0 +1,111 @@
+/* MathsGrove marketing experience v5 — fictional learning-story explorer.
+   Deep navy #0D1B32, champagne #CDBBA0 and ivory #F7F4EF. No external JS dependencies. */
+.mg-site{--mg5-navy:#0d1b32;--mg5-ink:#1b314c;--mg5-champ:#cdbba0;--mg5-ivory:#f7f4ef;--mg5-muted:#697a8d;--mg5-rule:#e8e0d5}
+.mg-site .mg5-hero-kicker{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;padding:7px 11px;border:1px solid #cdbba05e;border-radius:30px;color:#e5d4bc;font-size:10px;font-weight:700;letter-spacing:.13em}
+.mg-site .mg5-hero-kicker i{height:6px;width:6px;border-radius:50%;background:#d7baa0;box-shadow:0 0 0 4px #d7baa01b}
+.mg-site .mg5-hero-subproof{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px;align-items:center;color:#d1dce8;font-size:11px}
+.mg-site .mg5-hero-subproof span{display:flex;align-items:center;gap:7px}.mg-site .mg5-hero-subproof svg{flex:none}
+.mg-site .mg5-case-section{background:#f7f4ef;padding:95px 0 92px;position:relative;isolation:isolate;overflow:hidden}
+.mg-site .mg5-case-section:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:#e5ded4}
+.mg-site .mg5-section-eyebrow{color:#91785e;font:800 10px/1.5 "DM Sans",sans-serif;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px}
+.mg-site .mg5-section-heading{display:grid;grid-template-columns:1.04fr .96fr;align-items:end;gap:45px;margin-bottom:36px}
+.mg-site .mg5-section-heading h2{font:400 clamp(45px,5vw,72px)/1.03 "Instrument Serif",Georgia,serif;letter-spacing:-.032em;color:#0d1b32;margin:0}
+.mg-site .mg5-section-heading h2 em{color:#9e886d;font-weight:400}
+.mg-site .mg5-section-heading>div:last-child p{color:#637389;font:400 15px/1.85 "DM Sans",sans-serif;max-width:440px;margin:0 0 16px}
+.mg-site .mg5-section-heading .mg5-subtle-label{display:inline-flex;gap:8px;align-items:center;font-size:10px;letter-spacing:.07em;color:#8b7965}
+.mg-site .mg5-section-heading .mg5-subtle-label:before{content:"";width:25px;height:1px;background:#aa947a}
+.mg-site .mg5-story-layout{display:grid;grid-template-columns:minmax(245px,295px) minmax(0,1fr);gap:18px;align-items:stretch}
+.mg-site .mg5-selector{display:flex;flex-direction:column;gap:20px;background:#11243d;color:#fff;border-radius:13px;padding:30px 22px;min-width:0}
+.mg-site .mg5-selector h3{font:400 33px/1.14 "Instrument Serif",Georgia,serif;margin:0 0 9px;color:#f8f3eb}
+.mg-site .mg5-selector p{font-size:12px;line-height:1.7;color:#c4cfda;margin:0}
+.mg-site .mg5-selector-label{font-size:9px;font-weight:800;letter-spacing:.17em;color:#cdbba0;margin:0 0 10px}
+.mg-site .mg5-story-choices{display:grid;gap:8px}
+.mg-site .mg5-story-option{display:grid;grid-template-columns:35px 1fr auto;align-items:center;gap:10px;border:1px solid #ffffff20;background:#ffffff08;color:#edf4fa;border-radius:8px;padding:13px 11px;text-align:left;min-height:72px;cursor:pointer;transition:background .22s ease,border-color .22s ease,transform .22s ease;min-width:0}
+.mg-site .mg5-story-option:hover{background:#ffffff12;transform:translateX(2px)}
+.mg-site .mg5-story-option[aria-pressed="true"]{background:#cdbba016;border-color:#cdbba0b8;box-shadow:inset 3px 0 0 #cdbba0}
+.mg-site .mg5-story-option .mg5-story-num{font:400 24px/1 "Instrument Serif",Georgia,serif;color:#cdbba0}
+.mg-site .mg5-story-option strong{display:block;font-size:12px;font-weight:700;color:#fafaf9;line-height:1.4}
+.mg-site .mg5-story-option small{font-size:10px;color:#afc0d2;display:block;margin-top:3px;line-height:1.5}
+.mg-site .mg5-story-option .mg5-story-arrow{color:#cdbba0;font-size:15px}
+.mg-site .mg5-selector-foot{margin-top:auto;padding-top:18px;border-top:1px solid #ffffff29;color:#b7c7d7;font-size:10px;line-height:1.7}
+.mg-site .mg5-selector-foot strong{display:block;font-size:11px;color:#e8ddcd;margin-bottom:5px}
+.mg-site .mg5-showcase{min-width:0}
+.mg-site .mg5-role-switch{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 18px;background:#fff;border:1px solid var(--mg5-rule);border-bottom:0;border-radius:12px 12px 0 0;flex-wrap:wrap}
+.mg-site .mg5-role-switch-label{font-size:10px;font-weight:800;color:#6c7c90;letter-spacing:.12em}
+.mg-site .mg5-role-buttons{display:inline-flex;background:#f2eee8;padding:4px;border-radius:9px;gap:2px}
+.mg-site .mg5-role-buttons button{padding:9px 15px;border:0;border-radius:7px;background:transparent;color:#5c6f85;font-size:11px;font-weight:800;cursor:pointer;transition:background .22s,color .22s,box-shadow .22s}
+.mg-site .mg5-role-buttons button:hover{color:#0d1b32}
+.mg-site .mg5-role-buttons button[aria-pressed="true"]{background:#0d1b32;color:#fff;box-shadow:0 2px 10px #0d1b3217}
+.mg-site .mg5-browser{background:#fff;border:1px solid #e4ded5;border-radius:0 0 12px 12px;overflow:hidden;box-shadow:0 24px 62px #0d1b3212}
+.mg-site .mg5-browser-top{height:42px;background:#f8f7f5;border-bottom:1px solid #ece7e0;display:flex;align-items:center;gap:6px;padding:0 17px}
+.mg-site .mg5-browser-top .dot{width:7px;height:7px;border:1px solid #d0c8bc;border-radius:50%}
+.mg-site .mg5-browser-top .address{font-size:10px;color:#78879a;text-align:center;letter-spacing:.03em;flex:1;margin-right:18px}
+.mg-site .mg5-browser-body{display:grid;grid-template-columns:157px minmax(0,1fr);min-height:525px}
+.mg-site .mg5-app-sidebar{background:#14243c;color:#e8ecf0;padding:22px 13px;display:flex;flex-direction:column;gap:11px}
+.mg-site .mg5-app-brand{font:400 23px/1.1 "Instrument Serif",Georgia,serif;padding:2px 8px 20px;color:#f6f1e8}
+.mg-site .mg5-app-brand em{color:#cdbba0;font-style:normal}
+.mg-site .mg5-app-menu{font-size:11px;padding:10px 9px;border-radius:6px;color:#aebed0}
+.mg-site .mg5-app-menu.active{background:#ffffff15;color:#f9f3e9;border-left:2px solid #cdbba0}
+.mg-site .mg5-app-sidebottom{margin-top:auto;font-size:9px;line-height:1.8;padding:12px 8px;color:#b0bdcc;border-top:1px solid #ffffff23}
+.mg-site .mg5-app-body{padding:26px clamp(15px,2.5vw,31px) 25px;min-width:0;background:#fff}
+.mg-site .mg5-app-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}
+.mg-site .mg5-app-eyebrow{font-size:9px;font-weight:800;letter-spacing:.12em;color:#927d63}
+.mg-site .mg5-app-user{display:flex;gap:7px;align-items:center;font-size:10px;color:#788599}
+.mg-site .mg5-avatar{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#efe8de;font-size:10px;font-weight:800;color:#76634c}
+.mg-site .mg5-app-intro{display:flex;justify-content:space-between;align-items:end;gap:17px;margin-bottom:21px}
+.mg-site .mg5-app-intro h3{font:400 clamp(27px,2.7vw,37px)/1.1 "Instrument Serif",Georgia,serif;letter-spacing:-.02em;color:#14263c;margin:0 0 6px}
+.mg-site .mg5-app-intro p{font-size:11px;color:#718195;line-height:1.65;margin:0}
+.mg-site .mg5-badge{background:#f1ebe2;color:#8a7359;border:1px solid #e3d8ca;border-radius:30px;font-size:9px;font-weight:800;padding:6px 10px;white-space:nowrap}
+.mg-site .mg5-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:13px}
+.mg-site .mg5-metric{background:#faf8f5;border:1px solid #ece6dd;border-radius:8px;padding:13px 13px 12px;min-width:0}
+.mg-site .mg5-metric span{display:block;color:#7a8796;font-size:9px;line-height:1.4;font-weight:800;letter-spacing:.08em;min-height:25px}
+.mg-site .mg5-metric strong{display:block;color:#152c47;font:400 clamp(22px,2.9vw,32px)/1.12 "Instrument Serif",Georgia,serif;margin:6px 0 4px;font-variant-numeric:tabular-nums}
+.mg-site .mg5-metric small{display:block;font-size:9px;line-height:1.5;color:#8190a0}
+.mg-site .mg5-chart-grid{display:grid;grid-template-columns:1.16fr .84fr;gap:12px;margin-bottom:12px}
+.mg-site .mg5-panel{background:#fff;border:1px solid #ebe6df;border-radius:9px;padding:16px;min-width:0}
+.mg-site .mg5-panel h4{font-size:12px;font-weight:800;color:#172b43;letter-spacing:-.01em;margin:0 0 4px}
+.mg-site .mg5-panel .mg5-panel-meta{font-size:9px;color:#7c8a9b;margin:0 0 13px;line-height:1.6}
+.mg-site .mg5-chart-canvas{position:relative;min-height:158px;width:100%;overflow:hidden}
+.mg-site .mg5-chart-svg{display:block;width:100%;height:155px;overflow:visible}
+.mg-site .mg5-chart-caption{display:flex;justify-content:space-between;font-size:9px;color:#7f8998;margin-top:5px}
+.mg-site .mg5-chart-legend{display:flex;align-items:center;gap:7px;color:#536c83;font-size:9px}
+.mg-site .mg5-chart-legend:before{content:"";width:16px;height:3px;background:#233f5c;display:block;border-radius:4px}
+.mg-site .mg5-topic-list{display:grid;gap:13px;margin-top:7px}
+.mg-site .mg5-topic-name{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#4e6078;margin-bottom:5px;line-height:1.4}
+.mg-site .mg5-topic-name b{font-size:10px;color:#18324e;font-variant-numeric:tabular-nums}
+.mg-site .mg5-topic-track{height:6px;overflow:hidden;border-radius:6px;background:#eeeae3}
+.mg-site .mg5-topic-fill{height:100%;width:0;border-radius:6px;background:#213d5a;transition:width .65s ease}
+.mg-site .mg5-topic-row:last-child .mg5-topic-fill{background:#c4b29b}
+.mg-site .mg5-evidence-row{display:grid;grid-template-columns:1.08fr .92fr;gap:12px}
+.mg-site .mg5-next-card{background:#f5f0e8;border:1px solid #e6dacb;border-radius:9px;padding:15px}
+.mg-site .mg5-next-label{font-size:9px;color:#967c5e;letter-spacing:.1em;font-weight:800;display:block;margin-bottom:9px}
+.mg-site .mg5-next-card strong{font-size:13px;display:block;color:#20344c;line-height:1.45;margin-bottom:6px}
+.mg-site .mg5-next-card p{font-size:10px;line-height:1.65;margin:0;color:#5c6c80}
+.mg-site .mg5-evidence-card{padding:15px;background:#f9fafb;border:1px solid #e9edf0;border-radius:9px}
+.mg-site .mg5-evidence-card .mg5-evidence-title{display:block;font-size:9px;font-weight:800;color:#65768a;letter-spacing:.1em;margin-bottom:9px}
+.mg-site .mg5-evidence-card p{font-size:10px;line-height:1.7;color:#415871;margin:0}
+.mg-site .mg5-evidence-card small{display:block;font-size:9px;color:#8a99a6;margin-top:8px}
+.mg-site .mg5-story-cta-row{display:flex;justify-content:space-between;align-items:center;gap:17px;margin-top:20px;padding:17px 3px 0;border-top:1px solid #ded7cc}
+.mg-site .mg5-story-cta-row p{font-size:11px;color:#66778b;line-height:1.6;max-width:580px;margin:0}
+.mg-site .mg5-story-cta-row a{display:inline-flex;white-space:nowrap;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:0 17px;background:#0d1b32;border:1px solid #0d1b32;color:white;border-radius:7px;font-size:11px;font-weight:800;transition:transform .2s,box-shadow .2s,background .2s}
+.mg-site .mg5-story-cta-row a:hover{transform:translateY(-2px);box-shadow:0 8px 21px #0d1b3226;background:#19334f}
+.mg-site .mg5-footnote{margin-top:18px;color:#7f8997;font-size:10px;line-height:1.8}
+.mg-site .mg5-value-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:32px}
+.mg-site .mg5-value-card{border-top:1px solid #d8cbb9;padding:16px 15px 10px 0}
+.mg-site .mg5-value-card span{display:block;font-size:9px;font-weight:800;letter-spacing:.16em;color:#967a58;margin-bottom:8px}
+.mg-site .mg5-value-card strong{font:400 25px/1.2 "Instrument Serif",Georgia,serif;color:#182d47;display:block;margin-bottom:9px}
+.mg-site .mg5-value-card p{font-size:11px;line-height:1.8;color:#68778b;margin:0}
+.mg-site .mg5-controls-hint{font-size:10px;color:#bccbd9;margin-top:11px}
+.mg-site .mg5-focus-pulse{animation:mg5-fade-in .36s ease both}
+@keyframes mg5-fade-in{from{opacity:.25;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.mg-site.mg5-motion-ready .mg5-reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.mg-site.mg5-motion-ready .mg5-reveal.mg5-visible{opacity:1;transform:translateY(0)}
+.mg-site .mg5-scroll-progress{position:fixed;z-index:10000;left:0;top:0;width:0;height:2px;background:#cdbba0;pointer-events:none}
+.mg-site .mg5-story-option:focus-visible,.mg-site .mg5-role-buttons button:focus-visible,.mg-site .mg5-story-cta-row a:focus-visible{outline:3px solid #7d9eb7;outline-offset:3px}
+.mg-site .mg5-hero-spotlight{position:relative}
+.mg-site .mg5-hero-spotlight:after{content:"";position:absolute;inset:auto 9% -9% 9%;height:20px;background:#e7dfd4;filter:blur(28px);opacity:.27;z-index:-1;pointer-events:none}
+@media(max-width:1100px){.mg-site .mg5-story-layout{grid-template-columns:240px minmax(0,1fr)}.mg-site .mg5-browser-body{grid-template-columns:130px minmax(0,1fr)}.mg-site .mg5-app-menu{font-size:10px;padding:9px 5px}.mg-site .mg5-app-body{padding:21px 17px}.mg-site .mg5-chart-grid{grid-template-columns:1fr}.mg-site .mg5-chart-canvas,.mg-site .mg5-chart-svg{height:125px;min-height:125px}}
+@media(max-width:820px){.mg-site .mg5-case-section{padding:70px 0}.mg-site .mg5-section-heading{grid-template-columns:1fr;gap:15px}.mg-site .mg5-story-layout{grid-template-columns:1fr}.mg-site .mg5-selector{padding:24px;gap:15px}.mg-site .mg5-story-choices{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.mg-site .mg5-story-option{grid-template-columns:1fr;gap:7px;align-items:start;min-height:112px}.mg-site .mg5-story-option .mg5-story-arrow{display:none}.mg-site .mg5-selector-foot{margin-top:0}.mg-site .mg5-chart-grid{grid-template-columns:1.16fr .84fr}.mg-site .mg5-chart-canvas,.mg-site .mg5-chart-svg{height:155px;min-height:155px}.mg-site .mg5-browser-body{grid-template-columns:145px minmax(0,1fr)}}
+@media(max-width:600px){.mg-site .mg5-case-section{padding:52px 0}.mg-site .mg5-section-heading h2{font-size:clamp(42px,10vw,55px)}.mg-site .mg5-section-heading>div:last-child p{font-size:13px}.mg-site .mg5-story-choices{grid-template-columns:1fr}.mg-site .mg5-story-option{grid-template-columns:27px 1fr auto;min-height:0;padding:11px 12px;align-items:center}.mg-site .mg5-story-option .mg5-story-arrow{display:block}.mg-site .mg5-story-option .mg5-story-num{font-size:22px}.mg-site .mg5-story-option small{font-size:9px}.mg-site .mg5-role-switch{padding:11px 12px}.mg-site .mg5-role-buttons{width:100%;justify-content:stretch}.mg-site .mg5-role-buttons button{flex:1;padding:10px 6px}.mg-site .mg5-browser-body{display:block}.mg-site .mg5-app-sidebar{display:none}.mg-site .mg5-app-body{padding:18px 14px 20px}.mg-site .mg5-app-top{margin-bottom:15px}.mg-site .mg5-app-intro h3{font-size:30px}.mg-site .mg5-app-intro{align-items:start}.mg-site .mg5-metrics{gap:6px}.mg-site .mg5-metric{padding:10px 8px}.mg-site .mg5-metric span{font-size:8px;min-height:27px}.mg-site .mg5-metric strong{font-size:25px}.mg-site .mg5-metric small{font-size:8px}.mg-site .mg5-chart-grid,.mg-site .mg5-evidence-row{grid-template-columns:1fr}.mg-site .mg5-chart-canvas,.mg-site .mg5-chart-svg{height:155px;min-height:155px}.mg-site .mg5-story-cta-row{display:grid;gap:12px}.mg-site .mg5-story-cta-row a{width:100%}.mg-site .mg5-value-row{grid-template-columns:1fr;margin-top:18px;gap:5px}.mg-site .mg5-value-card{padding:15px 4px}.mg-site .mg5-browser-top{height:35px}.mg-site .mg5-footnote{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.mg-site .mg5-story-option,.mg-site .mg5-role-buttons button,.mg-site .mg5-topic-fill,.mg-site .mg5-story-cta-row a,.mg-site.mg5-motion-ready .mg5-reveal{animation:none!important;transition:none!important;transform:none!important;opacity:1!important}.mg-site .mg5-focus-pulse{animation:none}}
+@media print{.mg-site .mg5-reveal{opacity:1!important;transform:none!important}.mg-site .mg5-scroll-progress{display:none}.mg-site .mg5-case-section{break-inside:avoid}}
