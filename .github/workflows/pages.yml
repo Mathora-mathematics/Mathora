@@ -55,6 +55,7 @@ jobs:
           node --check experience-v4.js
           node --check marketing-experience-v5.js
           node --check marketing-polish-v6.js
+          node --check examiner-report-book.js
           node --input-type=module --check < content-bank.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
           node scripts/check-site.mjs
@@ -83,7 +84,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p site
-          cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg showcase-v3.css showcase-v3.js experience-v4.css experience-v4.js marketing-experience-v5.css marketing-experience-v5.js marketing-polish-v6.css marketing-polish-v6.js site/
+          cp index.html mathsgrove.css brand-refresh.css marketing-services.css marketing.js mathsgrove-icon.svg showcase-v3.css showcase-v3.js experience-v4.css experience-v4.js marketing-experience-v5.css marketing-experience-v5.js marketing-polish-v6.css marketing-polish-v6.js examiner-report-book.css examiner-report-book.js site/
           cp portal.html portal.css private-refresh.css student-features.css evidence-theme.css timed-mock.css maths-notation.css portal.js maths-render.js mathsgrove-config.js whiteboard.js site/
           cp auth-password.js auth-password.css site/
           cp student-welcome.js student-welcome.css site/
