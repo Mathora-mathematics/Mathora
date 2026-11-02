@@ -2,7 +2,7 @@
 export function initAssignedAdmin(db,state){
  const $=id=>document.getElementById(id),list=$('mg-assigned-admin-rows'),summary=$('mg-assigned-admin-summary');
  const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n};
- const modes={daily:'Daily practice',weekly:'Weekly paper',exam_daily:'Exam Daily',mock_pending:'Moderated mock placeholder'};
+ const modes={daily:'Daily practice',weekly:'Weekly paper',exam_daily:'Exam Daily',mock_pending:'Moderated mock placeholder',mock:'20-question timed monthly mock'};
  const info=(parent,message)=>{const node=el('p',message,'mg-review-status');parent.append(node);return node};
  async function displayEvidence(root,items){
   for(const f of items||[]){
