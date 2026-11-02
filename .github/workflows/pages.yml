@@ -63,6 +63,7 @@ jobs:
           node scripts/check-marketing-v5.mjs
           node scripts/check-experience-v6.mjs
           node scripts/check-examiner-book.mjs
+          node scripts/check-welcome-v8.mjs
           node scripts/check-insights.mjs
           node scripts/check-family-access.mjs
           node scripts/check-password-auth.mjs
