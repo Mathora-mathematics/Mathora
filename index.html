@@ -18,9 +18,12 @@
 <link rel="stylesheet" href="./mathsgrove.css">
 <link rel="stylesheet" href="./brand-refresh.css">
 <link rel="stylesheet" href="./marketing-services.css"><link rel="stylesheet" href="./showcase-v3.css"><link rel="stylesheet" href="./experience-v4.css">
+<link rel="stylesheet" href="./marketing-experience-v5.css">
 <script defer src="./marketing.js"></script><script defer src="./showcase-v3.js"></script><script defer src="./experience-v4.js"></script>
+<script defer src="./marketing-experience-v5.js"></script>
 <style>.mg-integrated{background:#fff}.mg-integrated-sample{background:#f7f4ef}.mg-integrated-lead{max-width:760px;color:#66758a;font-size:15px;line-height:1.8;margin:0 0 28px}.mg-integrated-shell{border:1px solid #e5dfd6;border-radius:10px;overflow:hidden;box-shadow:0 18px 54px rgba(13,27,50,.07);background:#fff}.mg-integrated-shell iframe{display:block;width:100%;height:1050px;border:0;background:#fff}.mg-integrated-sample .mg-integrated-shell iframe{height:1500px}@media(max-width:720px){.mg-integrated-shell{border-radius:6px}.mg-integrated-lead{font-size:13px}}</style></head>
 <body class="mg-site" id="top">
+<div id="mg5-scroll-progress" class="mg5-scroll-progress" aria-hidden="true"></div>
 <a href="#main-content" class="mg-skip">Skip to main content</a>
 <div class="preview-banner"><span class="live-dot"></span> Private access by invitation · Explore a fully populated fictional student dashboard</div>
 <header class="site-header">
@@ -28,7 +31,7 @@
 <a href="#top" class="mg-brand" aria-label="MathsGrove homepage"><img src="./mathsgrove-icon.svg" width="43" height="43" alt=""><span>Maths<span class="mg-brand-accent">Grove</span></span></a>
 <button class="mobile-toggle" id="mobile-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-nav" aria-expanded="false">☰</button>
 <nav id="primary-nav" aria-label="Primary navigation">
-<a href="#experience">Experience</a>
+<a href="#dashboards">Dashboards</a><a href="#experience">Experience</a>
 <a href="#how-it-works">How it works</a>
 <a href="#exam-pathways">Examinations</a>
 <a href="#services">Programmes</a><a href="#signature">Signature</a>
@@ -41,16 +44,16 @@
 <section class="mg-hero" aria-labelledby="hero-title">
 <div class="wrap mg-hero-grid">
 <div class="mg-hero-copy">
-<p class="mg-kicker"><span class="mg-spark" aria-hidden="true">✳</span> AN INDIVIDUAL APPROACH TO MATHEMATICS</p>
-<h1 id="hero-title">Your mathematics.<br><em>Your own space.</em></h1>
-<p class="mg-hero-lead">Daily practice, weekly papers and examiner-reviewed assessments—all designed around your mathematics pathway, with your working and feedback kept in one private learning space.</p>
+<p class="mg5-hero-kicker"><i aria-hidden="true"></i> MATHEMATICS, WITH A CLEARER PICTURE OF PROGRESS</p>
+<h1 id="hero-title">More than marks.<br><em>See the mathematics.</em></h1>
+<p class="mg-hero-lead">Purposeful practice. Beautifully clear progress. Thoughtful examiner feedback. A private mathematics experience that makes every learner’s next step easier to see.</p>
 <div class="mg-actions">
-<a href="./portal.html" class="mg-button mg-button-primary">Enter your private dashboard <span aria-hidden="true">↗</span></a>
-<a href="#learning-journey" class="mg-button mg-button-secondary">Explore the learning journey <span aria-hidden="true">↗</span></a>
+<a href="#dashboards" class="mg-button mg-button-primary">Explore the dashboards <span aria-hidden="true">↗</span></a>
+<a href="./portal.html" class="mg-button mg-button-secondary">Member sign in <span aria-hidden="true">↗</span></a>
 </div>
 <a class="mg4-hero-signature" href="#signature"><span class="mg4-hero-pip">SIGNATURE</span><span>Human-marked mathematics assessments <b>Explore Signature ↗</b></span></a><div class="mg-hero-details"><span><i aria-hidden="true"></i> Private by invitation</span><span><i aria-hidden="true"></i> Work in your own way</span><span><i aria-hidden="true"></i> Examiner-led insights</span></div>
 </div>
-<div class="mg-hero-product" aria-label="Illustrative preview of the MathsGrove student dashboard">
+<div class="mg-hero-product mg5-hero-spotlight" aria-label="Illustrative preview of the MathsGrove student dashboard">
 <div class="mg-product-note"><span class="mg-note-dot"></span> A PREVIEW OF WHAT'S POSSIBLE <small>Sample interface</small></div>
 <div class="mg-dashboard">
 <div class="mg-dash-sidebar">
@@ -79,6 +82,58 @@
 </div>
 </div></section>
 <section class="mg-exam-strip" id="pathways"><div class="wrap mg-exam-strip-inner"><span>MATHEMATICS PATHWAYS</span><div aria-label="Supported examination pathways"><span>GCSE</span><span>IGCSE</span><span>A Level</span><span>IB Mathematics</span><span>TMUA</span><span>11+ / 13+</span><span>STEP</span><span>ESAT</span></div><small>Coverage varies by qualification; further examination pathways are planned.</small></div></section>
+
+<section class="mg5-case-section" id="dashboards" aria-labelledby="mg5-heading">
+ <div class="wrap">
+  <div class="mg5-section-heading mg5-reveal">
+   <div><p class="mg5-section-eyebrow">THE EXPERIENCE / THROUGH THEIR EYES</p><h2 id="mg5-heading">No two learners.<br><em>The same story.</em></h2></div>
+   <div><p>Watch a learner’s mathematics take shape. Explore three different academic journeys and see exactly how the experience changes for the student, their family and their tutor.</p><span class="mg5-subtle-label">AN INTERACTIVE PRODUCT TOUR · FICTIONAL EXAMPLES</span></div>
+  </div>
+  <div class="mg5-story-layout mg5-reveal">
+   <aside class="mg5-selector" aria-label="Choose a fictional learner story">
+    <div><p class="mg5-selector-label">01 / CHOOSE A JOURNEY</p><h3 id="mg5-case-story">Confidence built on visible progress.</h3><p id="mg5-case-summary">From uncertain algebra to a more consistent method.</p></div>
+    <div class="mg5-story-choices" role="group" aria-label="Select a learner scenario">
+      <button type="button" class="mg5-story-option" data-mg5-case="eleven" aria-pressed="false"><span class="mg5-story-num">01</span><span><strong>The 11+ learner</strong><small>Foundations &amp; early reasoning</small></span><span class="mg5-story-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" class="mg5-story-option" data-mg5-case="growth" aria-pressed="true"><span class="mg5-story-num">02</span><span><strong>The growing learner</strong><small>GCSE · Visible progression</small></span><span class="mg5-story-arrow" aria-hidden="true">↗</span></button>
+      <button type="button" class="mg5-story-option" data-mg5-case="stretch" aria-pressed="false"><span class="mg5-story-num">03</span><span><strong>The high achiever</strong><small>A Level · Stretch &amp; depth</small></span><span class="mg5-story-arrow" aria-hidden="true">↗</span></button>
+    </div>
+    <div class="mg5-selector-foot"><strong>A different route. The same attention to detail.</strong>Choose a student to change the charts, reviewed work, priorities and examiner feedback. Then change who is looking.</div>
+   </aside>
+   <div class="mg5-showcase">
+    <div class="mg5-role-switch"><span class="mg5-role-switch-label">02 / VIEW THE SAME JOURNEY AS</span><div class="mg5-role-buttons" role="group" aria-label="Choose a dashboard role"><button type="button" data-mg5-role="student" aria-pressed="true">Student</button><button type="button" data-mg5-role="parent" aria-pressed="false">Parent</button><button type="button" data-mg5-role="tutor" aria-pressed="false">Tutor</button></div></div>
+    <div class="mg5-browser" id="mg5-preview" aria-label="Interactive fictional MathsGrove dashboard">
+     <div class="mg5-browser-top" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="address">MathsGrove / private learning space · demonstration</span></div>
+     <div class="mg5-browser-body">
+       <aside class="mg5-app-sidebar" aria-hidden="true"><div class="mg5-app-brand">Maths<em>Grove</em></div><div class="mg5-app-menu active">◈ &nbsp; Overview</div><div class="mg5-app-menu">▤ &nbsp; Assessments</div><div class="mg5-app-menu">⌁ &nbsp; Progress</div><div class="mg5-app-menu">◇ &nbsp; Reports</div><div class="mg5-app-sidebottom">PURPOSEFUL PRACTICE<br>EXAMINER-LED INSIGHT</div></aside>
+       <div class="mg5-app-body">
+        <div class="mg5-app-top"><span class="mg5-app-eyebrow" id="mg5-preview-eyebrow">STUDENT VIEW / PERSONAL WORKSPACE</span><span class="mg5-app-user"><span id="mg5-preview-user">Maya Ellis</span><span class="mg5-avatar" id="mg5-preview-initials">ME</span></span></div>
+        <div class="mg5-app-intro"><div><h3 id="mg5-preview-name">Welcome back, Maya.</h3><p id="mg5-preview-subtitle">Your practice, feedback and next step in one place.</p></div><span class="mg5-badge" id="mg5-preview-badge">GCSE HIGHER</span></div>
+        <div class="mg5-metrics" aria-label="Example learning metrics">
+          <div class="mg5-metric"><span id="mg5-metric1-label">LATEST REVIEW</span><strong id="mg5-metric1-value">76%</strong><small id="mg5-metric1-note">This fictional paper</small></div>
+          <div class="mg5-metric"><span id="mg5-metric2-label">PRACTICE COMPLETION</span><strong id="mg5-metric2-value">6 / 7</strong><small id="mg5-metric2-note">Example learning week</small></div>
+          <div class="mg5-metric"><span id="mg5-metric3-label">FIRST REVIEW</span><strong id="mg5-metric3-value">47%</strong><small id="mg5-metric3-note">Fictional starting point</small></div>
+        </div>
+        <div class="mg5-chart-grid">
+          <section class="mg5-panel" aria-labelledby="mg5-chart-title"><h4 id="mg5-chart-title">Your reviewed paper journey</h4><p class="mg5-panel-meta" id="mg5-chart-meta">Scores across six different fictional papers</p><div class="mg5-chart-canvas" id="mg5-chart" aria-label="Fictional assessment score chart"></div><div class="mg5-chart-caption"><span id="mg5-chart-start">47% at first review</span><span id="mg5-chart-end">76% at latest review</span></div></section>
+          <section class="mg5-panel" aria-labelledby="mg5-topics-title"><h4 id="mg5-topics-title">Topics worth revisiting</h4><p class="mg5-panel-meta">Illustrative marks awarded / available</p><div id="mg5-topics" class="mg5-topic-list"><div class="mg5-topic-row"><div class="mg5-topic-name"><span>Linear equations</span><b>88%</b></div><div class="mg5-topic-track"><div class="mg5-topic-fill" style="width:88%"></div></div></div></div></section>
+        </div>
+        <div class="mg5-evidence-row"><div class="mg5-next-card"><span class="mg5-next-label" id="mg5-next-label">YOUR NEXT PRACTICE</span><strong id="mg5-next-title">Try a fresh quadratic equation</strong><p id="mg5-next-detail">See the question, record your working and review how the method can improve.</p></div><div class="mg5-evidence-card"><span class="mg5-evidence-title" id="mg5-insight-label">YOUR EXAMINER INSIGHT</span><p id="mg5-insight-text">Your working is more organised. You are now securing more method marks; check the final line and units.</p><small>EXAMPLE REVIEW · NOT A REAL REPORT</small></div></div>
+       </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="mg5-story-cta-row mg5-reveal"><p><strong id="mg5-story-moral">A learning view that helps the student decide what to do next.</strong> <span id="mg5-preview-level">GCSE mathematics · fictional student</span></p><a href="#learning-journey" id="mg5-open-full-demo">Explore the full interactive preview <span aria-hidden="true">↗</span></a></div>
+  <p class="mg5-footnote" id="mg5-story-accuracy">An illustrative progression story. Scores come from fictional papers of varying difficulty and cannot establish a predicted grade.</p>
+  <div class="mg5-value-row mg5-reveal">
+    <div class="mg5-value-card"><span>01 / THE STUDENT</span><strong>A next step worth taking.</strong><p>Focused practice, working evidence and feedback, brought together into one personal learning routine.</p></div>
+    <div class="mg5-value-card"><span>02 / THE FAMILY</span><strong>Reassurance without guesswork.</strong><p>Understand what was completed, where understanding improved and how to offer useful support at home.</p></div>
+    <div class="mg5-value-card"><span>03 / THE TUTOR</span><strong>Better teaching decisions.</strong><p>Make sense of question-level errors, teach the missing method and revisit the topic with an unseen problem.</p></div>
+  </div>
+  <p class="mg5-footnote">All people, progress figures, grades and reviewed comments in this tour are fictional. In the live service, separate parent and tutor dashboards are available with Grove Exam only. Some examination routes, including 11+ examples, are indicative of planned coverage and require content approval before activation.</p>
+ </div>
+</section>
+
 <section class="mg4-signature-teaser" aria-labelledby="mg4-signature-teaser-title"><div class="wrap mg4-teaser-inner"><div><p class="mg4-eyebrow">THE SIGNATURE DIFFERENCE · SEPARATE EXAMINER REVIEW</p><h2 id="mg4-signature-teaser-title">A mark is a number.<br><em>An examiner sees the story.</em></h2><p>An individually reviewed assessment with annotated working, a meaningful academic report and a precisely targeted recovery plan. Available independently of all three Grove programmes.</p><div class="mg4-teaser-actions"><a href="#signature" class="mg4-teaser-link">Discover Signature ↗</a><a href="#signature-sample" class="mg4-teaser-secondary" data-mg4-report="signature">Read the report example ↗</a></div></div><div class="mg4-annotation-card"><div class="mg4-annotation-top"><span>EXAMINER'S ANNOTATION · SAMPLE</span><span>Q07 / ALGEBRA</span></div><p class="mg4-annotation-maths">x² − 5x + 6 = 0</p><p class="mg4-annotation-working">(x − 2)(x + 3) = 0 <span class="mg4-annotation-note">Incorrect sign</span></p><div class="mg4-annotation-evidence"><strong>What matters next</strong><p>One sign changed the roots. The next set should check factor pairs, sign reasoning and substitution.</p></div><small>Illustrative examiner note — not an actual student's work.</small></div></div></section>
 <section class="mg-section mg-experience" id="experience">
 <div class="wrap">
