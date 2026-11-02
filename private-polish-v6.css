@@ -1,0 +1,128 @@
+/* MathsGrove private experience v6
+   Refines existing authenticated views without changing access, data, marking or submissions.
+   Navy + champagne + ivory. No new claims, predictions or client-side records. */
+:root{--mg6-navy:#0d1b32;--mg6-slate:#203a57;--mg6-champ:#cdbba0;--mg6-paper:#f7f4ef;--mg6-border:#e5ded4;--mg6-muted:#697a8c;--mg6-serif:"Instrument Serif",Georgia,serif;--mg6-sans:"DM Sans",Arial,sans-serif}
+body.mg-private-portal,body.mg-private-studio,body.mg-private-family{background:#f8f6f2;color:#1b3049;font-family:var(--mg6-sans)}
+body.mg-private-portal :is(button,input,select,textarea),body.mg-private-studio :is(button,input,select,textarea),body.mg-private-family :is(button,input,select,textarea){font-family:var(--mg6-sans)}
+body.mg-private-portal :is(button,a,input,select,textarea):focus-visible,body.mg-private-studio :is(button,a,input,select,textarea):focus-visible,body.mg-private-family :is(button,a,input,select,textarea):focus-visible{outline:3px solid #7292b5;outline-offset:3px}
+body.mg-private-portal :is(.card,.metric,.mgx,.mg-student-analysis,.student-programme),body.mg-private-studio :is(.card,.mgx,.stat-grid article,.mg-admin-action,.mg-admin-priority),body.mg-private-family :is(.fa-card,.fa-stats article,.mgx){box-shadow:0 9px 27px rgba(13,27,50,.035)}
+body.mg-private-portal .mgx,body.mg-private-studio .mgx,body.mg-private-family .mgx{border-color:#e8e1d7;border-radius:12px;margin-top:22px}
+body.mg-private-portal .mgx-tile,body.mg-private-studio .mgx-tile,body.mg-private-family .mgx-tile{background:#faf8f5;border-color:#eae2d8;border-radius:8px}
+body.mg-private-portal .mgx-tile strong,body.mg-private-studio .mgx-tile strong,body.mg-private-family .mgx-tile strong{font-size:clamp(28px,2.8vw,38px)}
+body.mg-private-portal .mgx-panel,body.mg-private-studio .mgx-panel,body.mg-private-family .mgx-panel{border-color:#e8e1d7;border-radius:8px}
+body.mg-private-portal .mgx h2,body.mg-private-studio .mgx h2,body.mg-private-family .mgx h2{font:400 clamp(33px,3.3vw,44px)/1.09 var(--mg6-serif);letter-spacing:-.02em}
+body.mg-private-portal .mgx h3,body.mg-private-studio .mgx h3,body.mg-private-family .mgx h3{font:400 27px/1.12 var(--mg6-serif)}
+body.mg-private-portal .mgx-eyebrow,body.mg-private-studio .mgx-eyebrow,body.mg-private-family .mgx-eyebrow{color:#927a5f}
+body.mg-private-portal .mgx-grid,body.mg-private-studio .mgx-grid,body.mg-private-family .mgx-grid{gap:10px}
+body.mg-private-portal .mgx-track>i,body.mg-private-studio .mgx-track>i,body.mg-private-family .mgx-track>i{background:#304f6c}
+body.mg-private-portal .mgx-track>i.soft,body.mg-private-studio .mgx-track>i.soft,body.mg-private-family .mgx-track>i.soft{background:#bca78b}
+body.mg-private-portal .mgx-cta,body.mg-private-studio .mgx-cta,body.mg-private-family .mgx-cta{border-radius:7px;min-height:40px}
+body.mg-private-portal .mgx-filter button,body.mg-private-studio .mgx-filter button,body.mg-private-family .mgx-filter button{border-radius:6px}
+body.mg-private-portal :is(.button,.mgx-cta,.mg-role-option,.side-nav button),body.mg-private-studio :is(.button,.mgx-cta,.nav button,.mg-admin-action,.link-action),body.mg-private-family :is(.fa-actions button,.fa-top-right button,.mgx-cta){transition:background-color .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease}
+body.mg-private-portal :is(.button,.mgx-cta):hover:not(:disabled),body.mg-private-studio :is(.button,.mgx-cta):hover:not(:disabled),body.mg-private-family :is(.fa-actions button,.mgx-cta):hover:not(:disabled){box-shadow:0 8px 22px rgba(13,27,50,.09);transform:translateY(-1px)}
+body.mg-private-portal :is(.button,.mgx-cta):active:not(:disabled),body.mg-private-studio :is(.button,.mgx-cta):active:not(:disabled),body.mg-private-family :is(.fa-actions button,.mgx-cta):active:not(:disabled){transform:translateY(0);box-shadow:none}
+body.mg-private-portal :is(.card,.mgx-panel,.report-detail,.mgx-tile),body.mg-private-studio :is(.card,.mgx-panel,.mgx-tile),body.mg-private-family :is(.fa-card,.mgx-panel,.mgx-tile){min-width:0}
+body.mg-private-portal :is(.record,.mgx-tile,.mg-topic-row),body.mg-private-studio :is(.record,.mgx-tile,.mg-admin-action),body.mg-private-family :is(.fa-history,.mgx-tile,.fa-topic){overflow-wrap:anywhere}
+
+/* Student space: clearer sequence from status to work to evidence. */
+body.mg-private-portal .dashboard-main{min-width:0}
+body.mg-private-portal .dash-top{padding-bottom:17px;border-bottom:1px solid #e7ded2;margin-bottom:27px}
+body.mg-private-portal .sidebar{background:#14253e}
+body.mg-private-portal .side-user{padding-bottom:19px;border-bottom:1px solid #ffffff1d}
+body.mg-private-portal .side-nav button{border-radius:8px;min-height:46px}
+body.mg-private-portal .side-nav button:hover{transform:none;background:#ffffff0e}
+body.mg-private-portal .side-nav button.active{box-shadow:inset 3px 0 0 #cdbba0;background:#ffffff14;color:#fff}
+body.mg-private-portal .panel-heading h1{font-family:var(--mg6-serif)!important;font-size:clamp(43px,4.6vw,67px)!important;font-weight:400!important;letter-spacing:-.02em;line-height:1.05}
+body.mg-private-portal .panel-heading>p:not(.eyebrow){max-width:740px;line-height:1.8;color:#62768c}
+body.mg-private-portal .overview-metrics{gap:11px}
+body.mg-private-portal .overview-metrics .metric{border-radius:9px;border-color:#e6ded4;background:#fff;padding:20px}
+body.mg-private-portal .overview-metrics .metric span{font-size:10px;letter-spacing:.075em;font-weight:800;color:#728296}
+body.mg-private-portal .overview-metrics .metric strong{font:400 clamp(29px,3.4vw,42px)/1.15 var(--mg6-serif);color:#1c354f}
+body.mg-private-portal .student-insight-grid{gap:14px}
+body.mg-private-portal .student-programme{border-radius:10px}
+body.mg-private-portal .mg-student-analysis{border-radius:12px;box-shadow:none;background:#162941}
+body.mg-private-portal .mg-analysis-metrics>div{border-radius:8px}
+body.mg-private-portal .mg-auto-practice,body.mg-private-portal #mg-practice-workspace{scroll-margin-top:24px}
+body.mg-private-portal .report-detail{line-height:1.65}
+body.mg-private-portal .record-question{border-color:#e7ded3}
+body.mg-private-portal .record-next{border-left:3px solid #b9a488}
+body.mg-private-portal :is(input,select,textarea){border-radius:7px}
+
+/* Admin/examiner operations: priority and workflow, not decorative noise. */
+body.mg-private-studio .sidebar{background:#14263e!important;border-right:1px solid #ffffff19}
+body.mg-private-studio .sidebar .nav button{border-radius:8px}
+body.mg-private-studio .sidebar .nav button.active{background:#ffffff16;box-shadow:inset 3px 0 0 #cdbba0;color:#fff}
+body.mg-private-studio .sidebar .nav button:hover{transform:none;background:#ffffff0e}
+body.mg-private-studio .mg-admin-hero{border-radius:12px;background:#172b46}
+body.mg-private-studio .mg-admin-hero h1{font-size:clamp(45px,4.7vw,70px);letter-spacing:-.025em;line-height:1.04}
+body.mg-private-studio .mg-admin-section-label{margin-top:34px}
+body.mg-private-studio .mg-admin-section-label h2{font:400 34px/1.13 var(--mg6-serif);letter-spacing:-.015em}
+body.mg-private-studio .stat-grid{gap:12px}
+body.mg-private-studio .stat-grid article{border-radius:9px;background:#fff}
+body.mg-private-studio .stat-grid article strong{font:400 39px/1.07 var(--mg6-serif);letter-spacing:-.01em}
+body.mg-private-studio .mg-admin-action{border-radius:9px}
+body.mg-private-studio .mg-admin-action:hover{transform:translateY(-2px);border-color:#bba689}
+body.mg-private-studio .mg-admin-priority{border-radius:9px}
+body.mg-private-studio .mg-overview>.mgx{margin-top:23px}
+body.mg-private-studio .mgx-grid .mgx-tile strong{font-size:35px}
+body.mg-private-studio .heading h1{font:400 clamp(43px,4vw,60px)/1.08 var(--mg6-serif)!important;letter-spacing:-.02em}
+body.mg-private-studio .heading p{line-height:1.75}
+body.mg-private-studio :is(input,select,textarea){border-radius:7px}
+body.mg-private-studio .record{border-radius:6px}
+body.mg-private-studio .link-action{border-radius:7px}
+body.mg-private-studio .topbar{border-bottom-color:#e7ded3}
+
+/* Parents and tutors: summaries at a glance, easy reading, view-only by design. */
+body.mg-private-family .fa-top{background:#fffdfb;border-bottom-color:#e9e1d8}
+body.mg-private-family .fa-wrap{max-width:1280px;padding-top:39px}
+body.mg-private-family .fa-dashboard-intro{margin-top:20px;margin-bottom:24px}
+body.mg-private-family .fa-dashboard-intro h1{font-size:clamp(45px,5vw,69px);line-height:1.05;letter-spacing:-.026em}
+body.mg-private-family .fa-dashboard-intro p:not(.fa-kicker){max-width:730px;font-size:14px;line-height:1.78}
+body.mg-private-family .fa-chip{border-radius:7px;background:#f5f0e9;color:#826a51}
+body.mg-private-family .fa-select-row{border-top:1px solid #e6dfd5;padding-top:17px}
+body.mg-private-family .fa-select-row select{border-radius:8px;min-height:44px}
+body.mg-private-family .fa-stats{gap:10px;margin:17px 0 23px}
+body.mg-private-family .fa-stats article{border-radius:9px}
+body.mg-private-family .fa-stats strong{font:400 clamp(27px,3.1vw,39px)/1.08 var(--mg6-serif)}
+body.mg-private-family .fa-grid{gap:13px}
+body.mg-private-family .fa-card{border-radius:10px;border-color:#e7ded2}
+body.mg-private-family .fa-card h2{font-size:33px;line-height:1.1}
+body.mg-private-family .fa-highlight{border-radius:0 7px 7px 0;background:#f7f3ed}
+body.mg-private-family .fa-track{height:8px;background:#eeebe6}
+body.mg-private-family .fa-track i{background:#304c69}
+body.mg-private-family .fa-history{padding-top:15px;padding-bottom:15px}
+body.mg-private-family .fa-notice{border-radius:0 6px 6px 0;background:#f2ece3}
+body.mg-private-family .fa-top-right a:hover{color:#8a735a;text-decoration:underline}
+
+/* On modern engines, only the visible authenticated panel transitions. */
+body.mg-private-portal .dash-panel:not([hidden]),body.mg-private-studio [data-panel]:not([hidden]){view-transition-name:mg6-private-panel}
+body.mg-private-family #fa-dashboard:not([hidden]){view-transition-name:mg6-family-panel}
+::view-transition-old(mg6-private-panel),::view-transition-old(mg6-family-panel){animation:mg6-private-out .12s ease-in both}
+::view-transition-new(mg6-private-panel),::view-transition-new(mg6-family-panel){animation:mg6-private-in .19s cubic-bezier(.2,.65,.2,1) both}
+@keyframes mg6-private-out{to{opacity:0;transform:translateY(-3px)}}
+@keyframes mg6-private-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:950px){
+ body.mg-private-portal .panel-heading h1,body.mg-private-studio .heading h1{font-size:clamp(42px,5vw,55px)!important}
+ body.mg-private-studio .mg-admin-hero h1{font-size:clamp(45px,5vw,60px)}
+}
+@media(max-width:700px){
+ body.mg-private-portal .dashboard-main{padding-left:15px;padding-right:15px}
+ body.mg-private-portal .mgx,body.mg-private-studio .mgx,body.mg-private-family .mgx{padding:18px 15px}
+ body.mg-private-portal .mgx-grid,body.mg-private-studio .mgx-grid,body.mg-private-family .mgx-grid{grid-template-columns:1fr}
+ body.mg-private-portal .mgx-header,body.mg-private-studio .mgx-header,body.mg-private-family .mgx-header{display:grid;gap:13px}
+ body.mg-private-portal .mgx-panel,body.mg-private-studio .mgx-panel,body.mg-private-family .mgx-panel{padding:17px}
+ body.mg-private-studio .mg-admin-hero h1{font-size:46px}
+ body.mg-private-family .fa-wrap{padding:26px 15px 55px}
+ body.mg-private-family .fa-dashboard-intro h1{font-size:47px}
+}
+@media print{
+ body.mg-private-portal .dash-panel:not([hidden]),body.mg-private-studio [data-panel]:not([hidden]),body.mg-private-family #fa-dashboard:not([hidden]){view-transition-name:none}
+ body.mg-private-portal .mgx,body.mg-private-studio .mgx,body.mg-private-family .mgx{box-shadow:none!important;break-inside:auto}
+ body.mg-private-portal .record-question,body.mg-private-studio .review-summary-card,body.mg-private-family .fa-card{break-inside:avoid}
+}
+@media(prefers-reduced-motion:reduce){
+ body.mg-private-portal *,body.mg-private-studio *,body.mg-private-family *{scroll-behavior:auto!important}
+ body.mg-private-portal :is(.button,.mgx-cta,.side-nav button),body.mg-private-studio :is(.button,.mgx-cta,.nav button),body.mg-private-family :is(button,.mgx-cta){transition:none!important;transform:none!important}
+ ::view-transition-old(mg6-private-panel),::view-transition-new(mg6-private-panel),::view-transition-old(mg6-family-panel),::view-transition-new(mg6-family-panel){animation:none!important}
+}
