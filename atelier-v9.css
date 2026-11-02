@@ -1,0 +1,238 @@
+/* MathsGrove Atelier v9 — editorial typography, generous scale, Signature hierarchy.
+   Marketing/demo only; no account changes. Motion uses opacity/transform. */
+body.mg-site{--atelier-ink:#0d1b32;--atelier-champ:#cdbba0;--atelier-ease:cubic-bezier(.18,.82,.24,1)}
+body.mg-site .wrap{max-width:1460px;padding-left:clamp(20px,4.7vw,74px);padding-right:clamp(20px,4.7vw,74px)}
+body.mg-site .nav-row{height:86px;gap:24px}
+body.mg-site .nav-row nav{gap:clamp(16px,2.2vw,30px)}
+body.mg-site .nav-row nav>a{font-size:12px}
+body.mg-site .nav-row nav>.mg-nav-login{padding:15px 21px}
+body.mg-site .mg-brand{font-size:30px}
+body.mg-site .mg8-welcome-hero .mg-hero-grid{min-height:min(90vh,910px);grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr);gap:clamp(37px,5.5vw,90px);padding-top:clamp(83px,7vw,118px)!important;padding-bottom:clamp(86px,7vw,119px)!important}
+body.mg-site .mg8-welcome-hero h1{font-size:clamp(79px,7vw,112px);line-height:.99;letter-spacing:-.047em;margin-bottom:32px}
+body.mg-site .mg8-welcome-hero .mg-hero-lead{font-size:clamp(16px,1.4vw,18px);line-height:1.77;max-width:590px;margin-bottom:33px}
+body.mg-site .mg8-welcome-hero .mg5-hero-kicker{letter-spacing:.18em;margin-bottom:27px;padding:10px 15px}
+body.mg-site .mg8-welcome-hero .mg-button{font-size:12px;min-height:57px;padding:16px 23px}
+body.mg-site .mg8-welcome-hero .mg-hero-details{margin-top:34px}
+body.mg-site .mg8-welcome-hero .mg-hero-details span{font-size:11px}
+body.mg-site .mg8-welcome-hero .mg6-evidence-hero{border-radius:12px;box-shadow:0 34px 83px #010c1b55;transform:rotate(.7deg);transition:transform .65s var(--atelier-ease),box-shadow .65s}
+body.mg-site .mg8-welcome-hero .mg-hero-product:hover .mg6-evidence-hero{transform:rotate(0) translateY(-4px);box-shadow:0 44px 99px #010c1b65}
+body.mg-site .mg8-welcome-hero .mg6-proof-body{padding:31px clamp(21px,2.7vw,39px);min-height:425px}
+body.mg-site .mg8-welcome-hero .mg6-proof-heading{font-size:clamp(30px,2.8vw,40px)}
+body.mg-site .mg8-welcome-hero .mg6-proof-desc{font-size:12px}
+body.mg-site .mg8-welcome-hero .mg6-proof-stage{min-height:202px;padding:20px}
+body.mg-site .mg8-welcome-hero .mg6-proof-equation{font-size:clamp(31px,3.2vw,44px)}
+body.mg-site .mg8-welcome-hero .mg6-proof-note{font-size:12px}
+body.mg-site .mg8-welcome-hero .mg6-proof-tab{padding:14px 7px}
+body.mg-site .mg8-welcome-hero .mg6-proof-bottom{padding:17px 23px}
+body.mg-site .mg9-hero-signature{display:grid;grid-template-columns:1fr auto;gap:17px;align-items:center;max-width:590px;margin:28px 0 0;padding:18px 21px;border:1px solid #cdbba06b;border-radius:7px;background:#ffffff09;color:#f7f2e9;text-decoration:none;transition:background .2s,border-color .2s,transform .3s var(--atelier-ease)}
+body.mg-site .mg9-hero-signature:hover{background:#ffffff14;border-color:#e0c9a9;transform:translateY(-3px)}
+body.mg-site .mg9-hero-signature small{display:block;color:#dbc3a5;font-size:9px;font-weight:800;letter-spacing:.16em;margin-bottom:6px}
+body.mg-site .mg9-hero-signature strong{font:400 23px/1.25 "Instrument Serif",Georgia,serif;color:#fff9ef}
+body.mg-site .mg9-hero-signature>span:last-child{font-size:20px;color:#dfc7a7}
+body.mg-site .mg8-welcome-hero .mg8-tertiary-link{margin-top:19px}
+body.mg-site .mg8-entry{padding:clamp(90px,8.8vw,143px) 0 clamp(95px,8.8vw,142px)}
+body.mg-site .mg8-entry-heading{gap:clamp(32px,5vw,75px);margin-bottom:49px}
+body.mg-site .mg8-entry-heading h2{font-size:clamp(56px,5.8vw,91px)}
+body.mg-site .mg8-entry-heading>p{font-size:16px;max-width:500px}
+body.mg-site .mg8-entry-grid{gap:20px}
+body.mg-site .mg8-entry-card{min-height:411px;padding:35px clamp(24px,2.7vw,38px) 30px}
+body.mg-site .mg8-entry-card h3{font-size:clamp(38px,3.6vw,51px);margin-top:47px;margin-bottom:16px}
+body.mg-site .mg8-entry-card p{font-size:14px;line-height:1.74}
+body.mg-site .mg8-card-art{padding-top:23px;padding-bottom:19px}
+body.mg-site .mg8-card-art span{font-size:11px}
+body.mg-site .mg8-card-cta{font-size:12px}
+body.mg-site .mg8-card-cta i{height:33px;width:33px}
+body.mg-site .mg8-entry-card:hover{transform:translateY(-6px);box-shadow:0 22px 53px #11243d17}
+body.mg-site .mg8-entry-foot{padding-top:27px;margin-top:33px}
+body.mg-site .mg8-entry-foot>p{font-size:11px;max-width:700px}
+
+/* Hero product and Signature: premium editorial paper, never a fake testimonial. */
+body.mg-site .mg9-signature-feature{position:relative;isolation:isolate;background:#0d1e35;color:#f7f4ef;padding:clamp(93px,9vw,150px) 0;overflow:hidden;scroll-margin-top:92px;border-top:1px solid #ffffff25}
+body.mg-site .mg9-signature-feature:before{content:"";position:absolute;width:min(76vw,940px);height:min(76vw,940px);border:1px solid #cdbba02e;border-radius:50%;right:-310px;top:-390px;pointer-events:none}
+body.mg-site .mg9-signature-grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:clamp(41px,6vw,94px);position:relative}
+body.mg-site .mg9-sig-kicker{font-size:10px;color:#d8c1a1;font-weight:800;letter-spacing:.2em;margin:0 0 26px}
+body.mg-site .mg9-sig-copy h2{font:400 clamp(62px,6.3vw,95px)/.99 "Instrument Serif",Georgia,serif;letter-spacing:-.042em;color:#fffaf4;margin:0 0 28px}
+body.mg-site .mg9-sig-copy h2 em{font-style:italic;color:#dec8aa}
+body.mg-site .mg9-sig-copy>p:not(.mg9-sig-kicker){font-size:15px;line-height:1.87;color:#c9d5e1;max-width:540px;margin:0 0 25px}
+body.mg-site .mg9-sig-points{max-width:510px;border-top:1px solid #ffffff32;margin:25px 0 33px}
+body.mg-site .mg9-sig-points>div{border-bottom:1px solid #ffffff32;padding:15px 0;display:flex;gap:15px;align-items:center;color:#e2e9f1;font-size:12px;line-height:1.5}
+body.mg-site .mg9-sig-points b{font:400 23px/1 "Instrument Serif",Georgia,serif;color:#d1b89a}
+body.mg-site .mg9-sig-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+body.mg-site .mg9-sig-primary{display:inline-flex;gap:17px;align-items:center;justify-content:center;min-height:55px;padding:14px 22px;border-radius:7px;background:#e4d2b8;border:1px solid #e4d2b8;color:#112640;text-decoration:none;font-size:12px;font-weight:800;transition:transform .25s var(--atelier-ease),background .2s}
+body.mg-site .mg9-sig-primary:hover{background:#f2e5d0;transform:translateY(-3px)}
+body.mg-site .mg9-sig-secondary{color:#e0e9f1;font-size:12px;text-decoration:underline;text-underline-offset:6px;text-decoration-color:#cdbba08c;font-weight:700;padding:11px 0}
+body.mg-site .mg9-sig-secondary:hover{color:white}
+body.mg-site .mg9-sig-disclaimer{font-size:10px;color:#b9c7d3;margin:21px 0 0;line-height:1.7}
+body.mg-site .mg9-sig-art{position:relative;width:100%;max-width:590px;margin:auto;padding:30px 22px 20px 18px}
+body.mg-site .mg9-sig-paper-back{position:absolute;inset:28px 0 11px 45px;border:1px solid #deccb4;background:#e8decf;transform:rotate(4deg) translate(17px,-8px);box-shadow:0 24px 70px #0004;border-radius:4px}
+body.mg-site .mg9-sig-paper{position:relative;z-index:1;min-height:520px;background:#fffdf8;border:1px solid #e6d8c6;border-radius:4px;padding:clamp(25px,3.1vw,48px);box-shadow:0 37px 89px #0007;transform:rotate(-3deg);transition:transform .8s var(--atelier-ease),box-shadow .8s;color:#193049;display:flex;flex-direction:column}
+body.mg-site .mg9-signature-feature:hover .mg9-sig-paper{transform:translateY(-9px) rotate(-.6deg);box-shadow:0 48px 103px #0008}
+body.mg-site .mg9-sig-paper-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #d8ccbd;padding-bottom:17px;margin-bottom:25px}
+body.mg-site .mg9-sig-paper-brand{font:400 25px/1 "Instrument Serif",Georgia,serif}
+body.mg-site .mg9-sig-paper-brand em{color:#a08566;font-style:normal}
+body.mg-site .mg9-sig-paper-head small{font-size:9px;letter-spacing:.09em;color:#957b5d;font-weight:800}
+body.mg-site .mg9-sig-paper h3{font:400 clamp(38px,3.6vw,56px)/1.06 "Instrument Serif",Georgia,serif;letter-spacing:-.029em;margin:0 0 13px;color:#122a43}
+body.mg-site .mg9-sig-paper p{font-size:11px;color:#66778b;line-height:1.8;margin:0 0 22px}
+body.mg-site .mg9-sig-paper-result{border-top:1px solid #ddd2c5;border-bottom:1px solid #ddd2c5;padding:22px 0;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:24px}
+body.mg-site .mg9-sig-paper-result strong{font:400 64px/1 "Instrument Serif",Georgia,serif;color:#17334d}
+body.mg-site .mg9-sig-paper-result span{font-size:11px;line-height:1.75;color:#627588}
+body.mg-site .mg9-sig-paper-item{display:flex;justify-content:space-between;gap:14px;font-size:11px;padding:14px 0;border-bottom:1px solid #e5ded4;line-height:1.4}
+body.mg-site .mg9-sig-paper-item b{color:#9f8265}
+body.mg-site .mg9-sig-paper-footer{border-top:2px solid #17334d;margin-top:auto;padding-top:16px;color:#7c8792;font-size:9px;letter-spacing:.06em}
+
+/* Proportional scaling throughout the actual marketing demo and 7-page report. */
+body.mg-site .mg5-case-section{padding:clamp(95px,9vw,146px) 0}
+body.mg-site .mg5-section-heading{margin-bottom:48px}
+body.mg-site .mg5-section-heading h2{font-size:clamp(58px,5.85vw,91px)}
+body.mg-site .mg5-section-heading>div:last-child p{font-size:16px;max-width:510px}
+body.mg-site .mg5-story-layout{grid-template-columns:minmax(280px,330px) minmax(0,1fr);gap:22px}
+body.mg-site .mg5-selector{padding:34px 27px;gap:25px}
+body.mg-site .mg5-selector h3{font-size:40px}
+body.mg-site .mg5-selector p{font-size:13px}
+body.mg-site .mg5-role-switch{padding:18px 21px}
+body.mg-site .mg5-role-buttons button{padding:11px 16px}
+body.mg-site .mg5-app-body{padding:32px clamp(20px,2.8vw,42px)}
+body.mg-site .mg5-metrics{gap:13px;margin-bottom:16px}
+body.mg-site .mg5-metric{padding:18px}
+body.mg-site .mg5-metric span{font-size:10px}
+body.mg-site .mg5-metric strong{font-size:clamp(30px,3.2vw,43px)}
+body.mg-site .mg5-panel{padding:21px}
+body.mg-site .mg5-chart-grid{gap:16px}
+body.mg-site .mg5-browser{box-shadow:0 32px 83px #0d1b3217}
+body.mg-site .mg6-process{padding:clamp(93px,8vw,133px) 0}
+body.mg-site .mg6-process-heading h2{font-size:clamp(56px,5.5vw,85px)}
+body.mg-site .mg6-process-heading>p{font-size:16px}
+body.mg-site .mg6-process-card h3{font-size:37px}
+body.mg-site .mg6-process-card p{font-size:14px}
+body.mg-site .mg-v3 .mg3-section{padding:clamp(90px,8vw,136px) 0}
+body.mg-site .mg-v3 h2{font-size:clamp(56px,5.7vw,87px)}
+body.mg-site .mg-v3 .mg3-intro{max-width:880px;margin-bottom:39px}
+body.mg-site .mg-v3 .mg3-lead{font-size:16px;line-height:1.82;max-width:750px}
+body.mg-site .mg-v3 .mg4-signature-full{padding:clamp(109px,9vw,152px) 0}
+body.mg-site .mg-v3 .mg4-sig-heading{grid-template-columns:1.18fr .62fr;gap:65px}
+body.mg-site .mg-v3 .mg4-sig-emblem{padding:31px}
+body.mg-site .mg-v3 .mg4-sig-emblem strong{font-size:47px}
+body.mg-site .mg-v3 .mg3-sig-grid{gap:19px;margin-top:44px}
+body.mg-site .mg-v3 .mg3-sig-grid>article{padding:29px}
+body.mg-site .mg-v3 .mg3-sig-grid h3{font-size:39px}
+body.mg-site .mg-v3 .mg4-sig-proof{gap:clamp(35px,6vw,85px);margin-top:57px;padding-top:48px}
+body.mg-site .mg-v3 .mg4-sig-paper{padding:35px;transition:transform .7s var(--atelier-ease),box-shadow .7s}
+body.mg-site .mg-v3 .mg4-sig-paper:hover{transform:rotate(0) translateY(-4px)}
+body.mg-site .mg-v3 .mg4-sig-proof-copy h3{font-size:clamp(40px,4vw,59px)}
+body.mg-site .mg-v3 .mg4-sig-proof-copy>p:not(.mg3-eyebrow){font-size:14px}
+body.mg-site .mg7-book{margin-top:45px}
+body.mg-site .mg7-layout{grid-template-columns:250px minmax(0,1fr);gap:23px}
+body.mg-site .mg7-toc{padding:27px 20px}
+body.mg-site .mg7-toc h3{font-size:33px}
+body.mg-site .mg7-toc-btn{min-height:63px}
+body.mg-site .mg7-paper-shadow{padding:21px clamp(16px,2.5vw,35px) 26px}
+body.mg-site .mg7-page{min-height:885px;padding:40px clamp(29px,3.4vw,51px)}
+body.mg-site .mg7-report-heading{font-size:clamp(45px,4.1vw,63px)}
+body.mg-site .mg7-cover-title{font-size:clamp(64px,6.4vw,94px)}
+body.mg-site .mg7-deck{font-size:13px}
+body.mg-site .mg7-bodycopy{font-size:12px}
+body.mg-site .mg7-mark-table{font-size:11px}
+body.mg-site .mg7-book[data-enhanced="true"] .mg7-page.mg7-turn-forward,
+body.mg-site .mg7-book[data-enhanced="true"] .mg7-page.mg7-turn-back{animation-duration:.56s;animation-timing-function:var(--atelier-ease)}
+body.mg-site .mg-final{padding:clamp(95px,8vw,140px) 0}
+body.mg-site .mg-final h2{font-size:clamp(58px,6vw,91px)}
+
+/* Progressive one-time reveals. Without JS/IntersectionObserver, everything stays visible. */
+@media(prefers-reduced-motion:no-preference){
+ body.mg-site.mg9-motion-ready .mg9-reveal:not(.mg9-visible){opacity:0;transform:translate3d(0,27px,0)}
+ body.mg-site.mg9-motion-ready .mg9-reveal{transition:opacity .7s ease,transform .86s var(--atelier-ease)}
+ body.mg-site.mg9-motion-ready .mg9-reveal.mg9-visible{opacity:1;transform:none}
+ body.mg-site.mg9-motion-ready .mg9-reveal[data-mg9-delay="1"]{transition-delay:.12s}
+ body.mg-site.mg9-motion-ready .mg9-reveal[data-mg9-delay="2"]{transition-delay:.22s}
+}
+@media(max-width:1100px){
+ body.mg-site .mg8-welcome-hero h1{font-size:clamp(63px,7vw,88px)}
+ body.mg-site .mg9-signature-grid{gap:36px}
+ body.mg-site .mg9-sig-copy h2{font-size:clamp(59px,6vw,82px)}
+ body.mg-site .mg5-story-layout{grid-template-columns:minmax(245px,290px) minmax(0,1fr)}
+ body.mg-site .mg5-selector{padding:29px 20px}
+ body.mg-site .mg7-layout{grid-template-columns:200px minmax(0,1fr);gap:14px}
+ body.mg-site .mg7-page{min-height:820px;padding:30px 24px}
+}
+@media(max-width:900px){
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{grid-template-columns:1fr;max-width:750px;min-height:0;padding:63px 0 75px!important;gap:38px}
+ body.mg-site .mg8-welcome-hero h1{font-size:clamp(67px,10vw,91px)}
+ body.mg-site .mg8-welcome-hero .mg6-evidence-hero{transform:none}
+ body.mg-site .mg9-signature-grid{grid-template-columns:1fr}
+ body.mg-site .mg9-sig-copy h2{font-size:clamp(63px,8vw,85px)}
+ body.mg-site .mg9-sig-art{max-width:570px;margin:0}
+ body.mg-site .mg5-story-layout{grid-template-columns:1fr}
+ body.mg-site .mg5-selector{display:grid;grid-template-columns:1fr 1.15fr;gap:18px}
+ body.mg-site .mg5-selector .mg5-selector-foot{grid-column:1/-1}
+ body.mg-site .mg7-layout{grid-template-columns:1fr}
+ body.mg-site .mg7-toc{position:static}
+ body.mg-site .mg7-toc-list{display:flex;overflow-x:auto}
+ body.mg-site .mg7-toc-btn{flex:0 0 175px}
+}
+@media(max-width:680px){
+ body.mg-site .wrap{padding-left:18px;padding-right:18px}
+ body.mg-site .nav-row{height:73px}
+ body.mg-site .mg-brand{font-size:26px}
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{padding:47px 0 58px!important}
+ body.mg-site .mg8-welcome-hero h1{font-size:clamp(55px,12vw,73px)}
+ body.mg-site .mg8-welcome-hero .mg-hero-lead{font-size:15px}
+ body.mg-site .mg8-welcome-hero .mg6-proof-body{padding:20px 16px;min-height:0}
+ body.mg-site .mg8-welcome-hero .mg6-proof-stage{padding:16px;min-height:187px}
+ body.mg-site .mg8-welcome-hero .mg6-proof-equation{font-size:31px}
+ body.mg-site .mg9-hero-signature{padding:15px 16px}
+ body.mg-site .mg9-hero-signature strong{font-size:20px}
+ body.mg-site .mg8-entry{padding:72px 0 82px}
+ body.mg-site .mg8-entry-heading h2{font-size:clamp(48px,10vw,65px)}
+ body.mg-site .mg8-entry-heading>p{font-size:14px}
+ body.mg-site .mg8-entry-card{min-height:0;padding:27px 25px}
+ body.mg-site .mg8-entry-card h3{font-size:41px;margin-top:20px}
+ body.mg-site .mg8-entry-card p{font-size:14px}
+ body.mg-site .mg9-signature-feature{padding:85px 0 94px}
+ body.mg-site .mg9-sig-copy h2{font-size:clamp(55px,11vw,74px)}
+ body.mg-site .mg9-sig-copy>p:not(.mg9-sig-kicker){font-size:14px}
+ body.mg-site .mg9-sig-art{padding:18px 4px 18px 0}
+ body.mg-site .mg9-sig-paper-back{inset:23px 0 8px 22px;transform:rotate(2deg)}
+ body.mg-site .mg9-sig-paper{min-height:475px;padding:25px;transform:rotate(-1deg)}
+ body.mg-site .mg9-sig-paper h3{font-size:42px}
+ body.mg-site .mg9-sig-paper-result strong{font-size:51px}
+ body.mg-site .mg9-sig-actions{display:grid}
+ body.mg-site .mg9-sig-primary{width:100%}
+ body.mg-site .mg5-case-section{padding:82px 0}
+ body.mg-site .mg5-section-heading h2{font-size:clamp(48px,10vw,66px)}
+ body.mg-site .mg5-section-heading>div:last-child p{font-size:14px}
+ body.mg-site .mg5-selector{display:flex}
+ body.mg-site .mg5-selector h3{font-size:35px}
+ body.mg-site .mg5-app-body{padding:19px 14px}
+ body.mg-site .mg5-metric{padding:12px 8px}
+ body.mg-site .mg5-metric strong{font-size:26px}
+ body.mg-site .mg5-panel{padding:16px}
+ body.mg-site .mg6-process{padding:78px 0}
+ body.mg-site .mg6-process-heading h2{font-size:clamp(48px,10vw,67px)}
+ body.mg-site .mg6-process-heading>p{font-size:14px}
+ body.mg-site .mg6-process-card h3{font-size:32px}
+ body.mg-site .mg6-process-card p{font-size:13px}
+ body.mg-site .mg-v3 .mg3-section{padding:79px 0 84px}
+ body.mg-site .mg-v3 h2{font-size:clamp(48px,10vw,66px)}
+ body.mg-site .mg-v3 .mg3-lead{font-size:14px}
+ body.mg-site .mg-v3 .mg4-sig-heading{grid-template-columns:1fr}
+ body.mg-site .mg-v3 .mg3-sig-grid{grid-template-columns:1fr}
+ body.mg-site .mg-v3 .mg4-sig-proof{grid-template-columns:1fr}
+ body.mg-site .mg7-page{min-height:0;padding:23px 17px}
+ body.mg-site .mg7-cover-title{font-size:clamp(55px,12vw,73px)}
+ body.mg-site .mg7-report-heading{font-size:clamp(39px,9vw,50px)}
+ body.mg-site .mg7-mark-table{font-size:10px}
+ body.mg-site .mg-final h2{font-size:clamp(49px,10vw,71px)}
+}
+@media(prefers-reduced-motion:reduce){
+ body.mg-site .mg8-welcome-hero .mg6-evidence-hero,
+ body.mg-site .mg8-welcome-hero .mg-hero-product:hover .mg6-evidence-hero,
+ body.mg-site .mg9-signature-feature:hover .mg9-sig-paper,
+ body.mg-site .mg9-sig-paper,
+ body.mg-site .mg9-hero-signature{transition:none!important;transform:none!important;animation:none!important}
+ body.mg-site.mg9-motion-ready .mg9-reveal{opacity:1!important;transform:none!important;transition:none!important}
+}
+@media print{
+ body.mg-site .mg9-signature-feature{display:none!important}
+ body.mg-site .mg9-reveal{opacity:1!important;transform:none!important;animation:none!important}
+ body.mg-site .mg7-page{min-height:270mm!important;padding:12mm 13mm 10mm!important}
+}
