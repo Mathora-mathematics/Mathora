@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "batch": "20261102-0900",
+  "status": "private_drafts_pending_ci_and_deployment",
+  "record_count": 9,
+  "release_candidates": 9,
+  "privacy": "Only private draft UUIDs, routing metadata, syllabus links and verification summaries are public. Prompts, choices, correct options, worked solutions, misconception analysis and tutor marking guidance are private Supabase data.",
+  "research_brief": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
+  "verification": {
+    "independent_sympy": 9,
+    "independent_javascript": 9,
+    "independent_option_math": 9,
+    "distinct_four_choices": 9,
+    "single_key": 9,
+    "substantial_worked_solutions": 9,
+    "misconception_and_tutor_guidance": 9,
+    "katex_delimiter_brace_checks": 9,
+    "prior_practice": 450,
+    "prior_baseline": 240,
+    "prior_assigned": 4,
+    "prior_baseline_assigned": 20,
+    "prior_legacy": 10,
+    "compared_per_item": 724,
+    "comparisons_total": 6516,
+    "within_batch_pairs": 36,
+    "exact_duplicates": 0,
+    "near_duplicates_at_065": 0,
+    "max_prior_token_jaccard": 0.375,
+    "max_within_batch_jaccard": 0.125,
+    "pre_draft_structural_rejections": 1,
+    "student_mutations": 0
+  },
+  "sources": {
+    "Pearson_GCSE_1MA1": "https://qualifications.pearson.com/content/dam/pdf/GCSE/mathematics/2015/specification-and-sample-assesment/gcse-maths-2015-specification.pdf",
+    "Cambridge_0580": "https://www.cambridgeinternational.org/Images/662466-2025-2027-syllabus.pdf",
+    "Pearson_IAL_WMA12": "https://qualifications.pearson.com/content/dam/pdf/International%20Advanced%20Level/Mathematics/2018/Specification-and-Sample-Assessment/international-a-level-maths-spec.pdf"
+  },
+  "notes": [
+    "All nine were staged in private Supabase as inactive drafts, not activated at the time of this ledger commit.",
+    "Public CI validates privacy-safe metadata and existing regression tests; it does not independently inspect confidential answer keys. SymPy and JavaScript numerical checks and full private duplicate scans were performed before drafting.",
+    "A proposed average-speed question was rejected as structurally similar to an existing approved item; a distinct limiting-ingredient recipe question replaced it.",
+    "No enrolled learner, task, submission, evidence or examiner mark record is altered.",
+    "The six pre-existing IB drafts remain inactive pending examination-year safeguards.",
+    "Four-option MCQs are practice items, not complete authentic examination papers. Existing baseline-to-daily repetitions in old pilot material remain a P0 issue; this batch introduces no such repeat."
+  ],
+  "questions": [
+    {
+      "id": "2e33d6a7-6686-47f8-887e-092683907582",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "Pearson Edexcel 1MA1",
+      "programme_scope": "daily",
+      "expected_seconds": 250,
+      "syllabus_objective": "R5,R11",
+      "provenance": "mg-original-20261102-0900-P1D",
+      "topic": "Ratio and ticket revenue"
+    },
+    {
+      "id": "375e26c0-1ade-4a18-add1-69624daf1015",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "Pearson Edexcel 1MA1",
+      "programme_scope": "weekly",
+      "expected_seconds": 380,
+      "syllabus_objective": "R1,R5,R7",
+      "provenance": "mg-original-20261102-0900-P1W",
+      "topic": "Recipe constraints and proportion"
+    },
+    {
+      "id": "84ceb173-6911-4b86-b963-c638b9b4153d",
+      "qualification": "GCSE",
+      "academic_level": "foundation",
+      "exam_board": "Pearson Edexcel 1MA1",
+      "programme_scope": "exam",
+      "expected_seconds": 600,
+      "syllabus_objective": "G14,G17,R11",
+      "provenance": "mg-original-20261102-0900-P1E",
+      "topic": "Composite area and tile costing"
+    },
+    {
+      "id": "8a3fcdc1-eeea-4d09-9689-fcfec9741134",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "exam_board": "Cambridge 0580",
+      "programme_scope": "daily",
+      "expected_seconds": 225,
+      "syllabus_objective": "C8.2",
+      "provenance": "mg-original-20261102-0900-C1D",
+      "topic": "Relative frequency and expected count"
+    },
+    {
+      "id": "fd4457ed-be74-4d33-9603-8260822551c0",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "exam_board": "Cambridge 0580",
+      "programme_scope": "weekly",
+      "expected_seconds": 390,
+      "syllabus_objective": "C8.1,C8.3",
+      "provenance": "mg-original-20261102-0900-C1W",
+      "topic": "Two-set Venn probability"
+    },
+    {
+      "id": "8e72ed97-4f25-4fd8-82fa-7df8aa18305b",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "exam_board": "Cambridge 0580",
+      "programme_scope": "exam",
+      "expected_seconds": 580,
+      "syllabus_objective": "C9.3",
+      "provenance": "mg-original-20261102-0900-C1E",
+      "topic": "Frequency-table mean after new observations"
+    },
+    {
+      "id": "c2e69898-3b8b-4015-8b12-1ef58abdb8f1",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA12 P2",
+      "programme_scope": "daily",
+      "expected_seconds": 260,
+      "syllabus_objective": "P2.3 §2.1",
+      "provenance": "mg-original-20261102-0900-A1D",
+      "topic": "Remainder theorem for a linear divisor"
+    },
+    {
+      "id": "eb1837a6-2670-40b3-8698-9fcd2c0c8a7f",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA12 P2",
+      "programme_scope": "weekly",
+      "expected_seconds": 425,
+      "syllabus_objective": "P2.3 §4.2",
+      "provenance": "mg-original-20261102-0900-A1W",
+      "topic": "Finite arithmetic-series inversion"
+    },
+    {
+      "id": "43377a02-81af-4b7d-a118-c657a35d6a6c",
+      "qualification": "A_LEVEL",
+      "academic_level": "as",
+      "exam_board": "Pearson Edexcel IAL WMA12 P2",
+      "programme_scope": "exam",
+      "expected_seconds": 675,
+      "syllabus_objective": "P2.3 §3.1",
+      "provenance": "mg-original-20261102-0900-A1E",
+      "topic": "Circle tangent and coordinate-intercept area"
+    }
+  ]
+}
