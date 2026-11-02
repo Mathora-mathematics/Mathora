@@ -5,7 +5,7 @@ export function initAssignedPractice(db){
  const set=(id,val)=>{if($(id))$(id).textContent=String(val??'')};
  const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
  const date=()=>{let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
- const titles={weekly:'Weekly paper · mixed skills',daily:'Daily Focus · essential skills',exam_daily:'Grove Exam · daily reasoning',mock_pending:'Monthly moderated mock'};
+ const titles={weekly:'Weekly paper · mixed skills',daily:'Daily Focus · essential skills',exam_daily:'Grove Exam · daily reasoning',mock_pending:'Monthly mock awaiting publication',mock:'Monthly timed mock · 20 questions'};
  async function rpc(name,args={}){const {data,error}=await db.rpc(name,args);if(error)throw error;return data}
  async function refresh(){try{schedule=await rpc('grove_my_calendar');render()}catch(e){list.replaceChildren(el('p','Assignments unavailable: '+e.message))}}
  function render(){
@@ -62,7 +62,7 @@ export function initAssignedPractice(db){
  function showQuestion(){
   let q=task.questions?.find(x=>x.position===pos);if(!q)return;
   set('mg-practice-path',task.qualification+' · '+task.level+' · '+task.programme);
-  set('mg-practice-title',({daily:'Daily focus',weekly:'Weekly practice',exam_daily:'Daily exam preparation'}[task.mode]||'Personal practice'));
+  set('mg-practice-title',({daily:'Daily focus',weekly:'Weekly practice',exam_daily:'Daily exam preparation',mock:'Monthly timed mock · 90 minutes'}[task.mode]||'Personal practice'));
   set('mg-practice-path',task.qualification+' · '+task.level+' · '+task.programme);set('mg-practice-progress','Question '+pos+' / '+task.question_count+' · '+q.topic);
   if(window.MathsGroveMath?.write)window.MathsGroveMath.write($('mg-practice-question'),q.prompt);else set('mg-practice-question',q.prompt);
   const root=$('mg-practice-options');root.replaceChildren();
