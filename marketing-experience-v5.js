@@ -142,8 +142,14 @@ function render(){
  });
  lineChart(d);
 }
-document.querySelectorAll('[data-mg5-case]').forEach(btn=>btn.addEventListener('click',()=>{activeCase=btn.dataset.mg5Case;render()}));
-document.querySelectorAll('[data-mg5-role]').forEach(btn=>btn.addEventListener('click',()=>{role=btn.dataset.mg5Role;render()}));
+function changePreview(update){
+ const renderNow=()=>{update();render()};
+ if(document.startViewTransition&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.startViewTransition(renderNow);
+ }else renderNow();
+}
+document.querySelectorAll('[data-mg5-case]').forEach(btn=>btn.addEventListener('click',()=>changePreview(()=>{activeCase=btn.dataset.mg5Case})));
+document.querySelectorAll('[data-mg5-role]').forEach(btn=>btn.addEventListener('click',()=>changePreview(()=>{role=btn.dataset.mg5Role})));
 const full=q('mg5-open-full-demo');
 if(full)full.addEventListener('click',event=>{
  const exam=q('mg3-exam-select');const target=q('learning-journey');
@@ -167,12 +173,5 @@ if(!reduce&&'IntersectionObserver' in window){
   if(entry.isIntersecting){entry.target.classList.add('mg5-visible');observer.unobserve(entry.target)}
  }),{threshold:.09,rootMargin:'0px 0px 35px 0px'});
  document.body.classList.add('mg5-motion-ready');sections.forEach(el=>{observer.observe(el)});
-}
-const bar=q('mg5-scroll-progress');
-if(bar){
- let scheduled=false;
- function update(){const doc=document.documentElement;const distance=Math.max(1,doc.scrollHeight-innerHeight);bar.style.width=Math.max(0,Math.min(100,scrollY/distance*100))+'%';scheduled=false}
- window.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(update)}},{passive:true});
- window.addEventListener('resize',update,{passive:true});update();
 }
 })();
