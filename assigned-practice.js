@@ -4,7 +4,7 @@ export function initAssignedPractice(db){
  let schedule=null,task=null,pos=1,busy=false,clock=null,lastFocus=Date.now(),visibleBase=0,clockOffset=0;
  const set=(id,val)=>{if($(id))$(id).textContent=String(val??'')};
  const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e};
- const date=()=>{let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
+ const date=()=>new Date().toISOString().slice(0,10); // Match PostgreSQL current_date (UTC), not the viewer's local date.
  const titles={weekly:'Weekly paper · mixed skills',daily:'Daily Focus · essential skills',exam_daily:'Grove Exam · daily reasoning',mock_pending:'Monthly mock awaiting publication',mock:'Monthly timed mock · 20 questions'};
  async function rpc(name,args={}){const {data,error}=await db.rpc(name,args);if(error)throw error;return data}
  async function refresh(){try{schedule=await rpc('grove_my_calendar');render()}catch(e){list.replaceChildren(el('p','Assignments unavailable: '+e.message))}}
