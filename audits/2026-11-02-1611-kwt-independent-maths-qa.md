@@ -68,3 +68,9 @@ For the current trial route, read-only eligible counts (already excluding baseli
 6. **Security/performance:** Audit SECURITY DEFINER grants, enable leaked-password protection if compatible with the login plan, and index proven slow foreign-key paths only after `EXPLAIN` checks.
 
 **Change safety:** Only two GitHub test assertions and four unassigned bank explanations were modified. No student account, subscription, task, submission, evidence, mark, Signature approval or historical assignment was changed. No unverified mathematics was published.
+
+## Postscript — additional concurrent-site regression (approximately 16:13 Kuwait)
+
+A subsequent website commit added `atelier-v9.css` and `atelier-v9.js` to the curated homepage copy command. This exposed the **same overly rigid adjacent-substring check** in `scripts/check-welcome-v8.mjs`, causing custom Deploy workflow `41450731686` to fail despite the assets being included. Narrowly fixed the welcome test to check both assets on the same `cp ... site/` command; commit `cb92d95baf6dd6b3b1ec4219818be4d41597c5b8`. No application code or deployment asset was removed. A subsequent workflow was in progress when this postscript was recorded; do not claim the new commit's deployment passed until Actions confirms it. This raises the total verified **source-level fixes in this QA run to three test assertions plus four private bank explanations**. Earlier successful `e3d99e76` workflows remain a valid verified deployment, but are not the final current commit.
+
+The live GitHub Pages HTML could not be fetched directly from this execution environment (network/DNS failure), so successful Actions deployments are not represented as an authenticated browser or HTTP smoke test.
