@@ -10,7 +10,98 @@ assert.ok(candidates.length>0,'Missing task-start SQL migration');
 const latest=candidates.at(-1);
 const fullMigration=latest.sql;
 const start=fullMigration.indexOf('CREATE OR REPLACE FUNCTION public.grove_task_start(');
-const stop=fullMigration.indexOf('END;$function$;',start);
+const stop=fullMigration.indexOf('END;$function
+assert.ok(start>=0&&stop>start,'Latest migration must contain a complete task-start function');
+const sql=fullMigration.slice(start,stop+'END;$function
+const occurrences=(re)=>[...sql.matchAll(re)].length;
+assert.equal(occurrences(/b\.review_state\s*=\s*'approved'/g),2,
+  'Both eligibility count and assignment selection must require editorial approval');
+assert.equal(occurrences(/FROM private\.baseline_bank base/g),2,
+  'Both eligibility count and assignment selection must exclude baseline questions');
+assert.ok(sql.includes('private.grove_board_compatible('),
+  'Exam-board compatibility filter must be preserved');
+assert.ok(sql.includes('prev.student_id=v_uid'),
+  'Per-student historical repeat protection must be preserved');
+assert.ok(sql.includes('Not enough approved, non-baseline, unseen questions'),
+  'Content shortage must fail closed with a clear explanation');
+assert.ok(sql.includes("IF v.status<>'scheduled' THEN RETURN private.grove_payload(p_task);END IF;"),
+  'Existing active/completed tasks must remain unaffected by the new assignment gate');
+const boardMigrations=migrations.map(name=>({name,sql:readFileSync('supabase/migrations/'+name,'utf8')}))
+  .filter(x=>/CREATE OR REPLACE FUNCTION\s+private\.grove_board_compatible\s*\(/i.test(x.sql));
+assert.ok(boardMigrations.length>0,'Missing board-compatibility migration');
+const board=boardMigrations.at(-1);
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%wma11%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%wma11%';\s*END IF;/i,
+  'IAL P1 items must match WMA11 specifically, not every IAL unit');
+assert.ok(!board.sql.includes("IF b LIKE '%wma11%' OR b LIKE '%ial%'"),
+  'Broad IAL match must not override the exact P1 guard');
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%9ma0%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%9ma0%';\s*END IF;/i,
+  'UK GCE route must remain strict');
+assert.ok(board.sql.includes("IF b LIKE '%0580%' THEN"),
+  'Cambridge 0580 items must be guarded by their subject code');
+assert.ok(board.sql.includes("RETURN s LIKE '%0580%'"),
+  'Cambridge 0580 items must not be assigned to Cambridge 0607 students');
+console.log('Practice publication/repetition guard: PASS ('+latest.name+')');
+,start);
+assert.ok(start>=0&&stop>start,'Latest migration must contain a complete task-start function');
+const sql=fullMigration.slice(start,stop+'END;$function$;'.length);
+const occurrences=(re)=>[...sql.matchAll(re)].length;
+assert.equal(occurrences(/b\.review_state\s*=\s*'approved'/g),2,
+  'Both eligibility count and assignment selection must require editorial approval');
+assert.equal(occurrences(/FROM private\.baseline_bank base/g),2,
+  'Both eligibility count and assignment selection must exclude baseline questions');
+assert.ok(sql.includes('private.grove_board_compatible('),
+  'Exam-board compatibility filter must be preserved');
+assert.ok(sql.includes('prev.student_id=v_uid'),
+  'Per-student historical repeat protection must be preserved');
+assert.ok(sql.includes('Not enough approved, non-baseline, unseen questions'),
+  'Content shortage must fail closed with a clear explanation');
+assert.ok(sql.includes("IF v.status<>'scheduled' THEN RETURN private.grove_payload(p_task);END IF;"),
+  'Existing active/completed tasks must remain unaffected by the new assignment gate');
+const boardMigrations=migrations.map(name=>({name,sql:readFileSync('supabase/migrations/'+name,'utf8')}))
+  .filter(x=>/CREATE OR REPLACE FUNCTION\s+private\.grove_board_compatible\s*\(/i.test(x.sql));
+assert.ok(boardMigrations.length>0,'Missing board-compatibility migration');
+const board=boardMigrations.at(-1);
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%wma11%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%wma11%';\s*END IF;/i,
+  'IAL P1 items must match WMA11 specifically, not every IAL unit');
+assert.ok(!board.sql.includes("IF b LIKE '%wma11%' OR b LIKE '%ial%'"),
+  'Broad IAL match must not override the exact P1 guard');
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%9ma0%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%9ma0%';\s*END IF;/i,
+  'UK GCE route must remain strict');
+assert.ok(board.sql.includes("IF b LIKE '%0580%' THEN"),
+  'Cambridge 0580 items must be guarded by their subject code');
+assert.ok(board.sql.includes("RETURN s LIKE '%0580%'"),
+  'Cambridge 0580 items must not be assigned to Cambridge 0607 students');
+console.log('Practice publication/repetition guard: PASS ('+latest.name+')');
+.length);
+const occurrences=(re)=>[...sql.matchAll(re)].length;
+assert.equal(occurrences(/b\.review_state\s*=\s*'approved'/g),2,
+  'Both eligibility count and assignment selection must require editorial approval');
+assert.equal(occurrences(/FROM private\.baseline_bank base/g),2,
+  'Both eligibility count and assignment selection must exclude baseline questions');
+assert.ok(sql.includes('private.grove_board_compatible('),
+  'Exam-board compatibility filter must be preserved');
+assert.ok(sql.includes('prev.student_id=v_uid'),
+  'Per-student historical repeat protection must be preserved');
+assert.ok(sql.includes('Not enough approved, non-baseline, unseen questions'),
+  'Content shortage must fail closed with a clear explanation');
+assert.ok(sql.includes("IF v.status<>'scheduled' THEN RETURN private.grove_payload(p_task);END IF;"),
+  'Existing active/completed tasks must remain unaffected by the new assignment gate');
+const boardMigrations=migrations.map(name=>({name,sql:readFileSync('supabase/migrations/'+name,'utf8')}))
+  .filter(x=>/CREATE OR REPLACE FUNCTION\s+private\.grove_board_compatible\s*\(/i.test(x.sql));
+assert.ok(boardMigrations.length>0,'Missing board-compatibility migration');
+const board=boardMigrations.at(-1);
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%wma11%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%wma11%';\s*END IF;/i,
+  'IAL P1 items must match WMA11 specifically, not every IAL unit');
+assert.ok(!board.sql.includes("IF b LIKE '%wma11%' OR b LIKE '%ial%'"),
+  'Broad IAL match must not override the exact P1 guard');
+assert.match(board.sql,/IF\s+b\s+LIKE\s+'%9ma0%'\s+THEN\s+RETURN\s+s\s+LIKE\s+'%9ma0%';\s*END IF;/i,
+  'UK GCE route must remain strict');
+assert.ok(board.sql.includes("IF b LIKE '%0580%' THEN"),
+  'Cambridge 0580 items must be guarded by their subject code');
+assert.ok(board.sql.includes("RETURN s LIKE '%0580%'"),
+  'Cambridge 0580 items must not be assigned to Cambridge 0607 students');
+console.log('Practice publication/repetition guard: PASS ('+latest.name+')');
+,start);
 assert.ok(start>=0&&stop>start,'Latest migration must contain a complete task-start function');
 const sql=fullMigration.slice(start,stop+'END;$function$;'.length);
 const occurrences=(re)=>[...sql.matchAll(re)].length;
