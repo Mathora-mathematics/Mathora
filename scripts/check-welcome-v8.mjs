@@ -27,7 +27,7 @@ assert.ok(css.includes('prefers-reduced-motion:reduce'),'Welcome animations must
 assert.ok(css.includes('@media(max-width:680px)'),'Welcome must provide compact mobile layout');
 assert.ok(!/setInterval|setTimeout/.test(app),'Welcome should not introduce looping animations');
 assert.ok(workflow.includes('node --check welcome-experience-v8.js'),'CI must syntax-check welcome interactions');
-assert.ok(workflow.includes('welcome-experience-v8.css welcome-experience-v8.js site/'),'Curated Pages bundle must contain welcome assets');
+assert.ok(workflow.split('\n').some(line => /^\s*cp\s+/.test(line) && line.includes('welcome-experience-v8.css') && line.includes('welcome-experience-v8.js') && /\s+site\/\s*$/.test(line)),'Curated Pages bundle must contain welcome assets');
 assert.ok(tour.includes('window.MathsGroveShowcase=Object.freeze'),'Existing showcase must expose a role selection API');
 let navigated=[],selected=[],historyRecords=[];
 const destination={scrollIntoView(args){navigated.push(args)}};
