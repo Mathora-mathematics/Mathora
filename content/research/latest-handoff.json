@@ -571,26 +571,30 @@
     "approved_Pearson_4WM": 0
   },
   "implementation_handoff": {
-    "priority": "P0 add Pearson modular qualification+unit+F/H routing, no tier mixing; P1 prevent Unit1/Unit2 objective leakage; P2 create 12 new independently checked originals; P3 implement raw-to-UMS session-aware prediction and full multi-mark mock workflows.",
+    "priority": "P0 verified cross-mode repetition: four identical baseline stems were later completed as Daily items by the same learner. Prevent baseline→practice reuse before new publishing; then exam-year/component metadata and private original content.",
+    "source_brief": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
+    "source_commit": "56b71796e83266be23ffd946dc3c9fe9987bf20b",
+    "version": 18,
     "must_not_publish_as_mocks": true,
     "research_only_no_new_publication": true,
-    "next_batch_editorial_items": 12,
+    "next_batch_editorial_items": 30,
     "checks": [
-      "qualification PEARSON_IGCSE_MATH_A_MODULAR distinct from 4MA1 linear, 1MA1 UK and Cambridge 0580",
-      "unit 4WM1F/H versus 4WM2F/H exact syllabus objective gating and valid prerequisites",
-      "block mixed-tier modular Unit 1/2 and invalid cash-in code",
-      "calculator permitted on all four papers; Pearson modular tier formula sheet; no CAS",
-      "100 raw marks per 120-min paper; 120 UMS per unit; 240 UMS total; raw-to-UMS conversion by series",
-      "independently author 12 question packages with private solutions, misconception feedback, multi-mark rubrics, diagrams and KaTeX",
-      "semantic and algebraic dedup against all 369 bank items and historical assigned snapshots",
-      "full mock human examiner sign-off, timer expiry, whiteboard/photo evidence and admin delivery"
+      "P0 fix 4 verified same-learner baseline-to-completed-Daily exact repeats via cross-mode exposure history and canonical question families; do not mutate submitted history",
+      "P0 ensure same-learner exclusion spans baseline, practice, mock, archived assignments and parameterised variants",
+      "P0 first-class qualification, board, exam_year, syllabus_version, paper/component, valid route, calculator/formula policy",
+      "P1 private variants of 30 public seeds; independent math check and multi-mark examiner rubrics",
+      "P1 2029 IB subject guide microobjective and IA A4/B6/C4/D6 cohort-specific gates",
+      "P1 TMUA specimen UI/answer-option count must be independently verified before authentic mock label",
+      "P1 10 full-length original mocks require 100% item QA and human sign-off"
     ],
     "blockers": [
-      "No 4WM-tagged approved bank items or clear modular unit routing",
-      "No reliable raw-to-UMS session-specific conversion for predicted grades",
-      "No independently approved full-length multi-mark 4WM mocks",
-      "82 exact duplicate groups in draft/pilot bank, semantic collisions not fully reviewed",
-      "Only four bank-backed student assignments across one student in audit"
+      "FOUR exact-normalised baseline prompts repeated in a completed Daily task for the same learner (verified; new actionable P0)",
+      "82 exact-normalised duplicate groups remain in pilot/draft; semantic/parameter-family duplication unresolved",
+      "All 160 distinct baseline-bank stems occur in pilot/draft practice; zero in approved practice; need generator to exclude baseline exposures",
+      "No first-class exam_year/board/component/valid-route/question-family metadata in inspected practice schema",
+      "Detailed IB 2029 full guide microobjectives not verified publicly; graph Euler algorithm and Maclaurin scope remain editorial gates",
+      "TMUA interactive Pearson specimen inaccessible to current browser; answer-option count/UI not independently verified",
+      "No independently approved full-length multi-mark timed mocks; public seeds not confidential student assessments"
     ]
   },
   "previous_dated_brief": "content/research/20261102_0431_9709_pearson_alevel_crosscomponent_blueprints.md",
@@ -826,19 +830,35 @@
     ]
   },
   "live_audit": {
-    "as_of": "2026-11-01",
-    "private_bank_total": 387,
-    "approved": 93,
-    "drafts": 54,
-    "pilot": 240,
-    "active": 333,
-    "inactive": 54,
-    "exact_duplicate_groups": 82,
-    "approved_duplicate_groups": 0,
+    "as_of": "2026-11-02 read-only SQL",
+    "practice_total": 441,
+    "approved_active": 147,
+    "pilot_active": 240,
+    "draft_inactive": 54,
+    "exact_normalised_duplicate_groups": 82,
+    "groups_containing_approved": 0,
     "tasks": 28,
-    "bank_backed_items": 4,
-    "repeated_student_bank_ids": 0,
-    "scope": "read-only sample; semantic dedup not completed"
+    "bank_backed_assigned_items": 4,
+    "distinct_assigned_bank_ids": 4,
+    "repeated_assigned_bank_ids": 0,
+    "repeated_assigned_normalised_prompts": 0,
+    "baseline_bank_rows": 240,
+    "baseline_distinct_normalised_prompts": 160,
+    "baseline_stems_also_in_practice": 160,
+    "baseline_stems_also_in_approved_practice": 0,
+    "submitted_baseline_sessions": 1,
+    "baseline_assigned_items": 20,
+    "same_learner_baseline_to_completed_daily_exact_repeats": 4,
+    "affected_learner_count": 1,
+    "coverage_approved": {
+      "IB_AA": 9,
+      "IB_AI": 9,
+      "TMUA": 12,
+      "FURTHER_MATHS": 12,
+      "Cambridge_9231_P2_P3_P4_specific": 0,
+      "Pearson_9FM0_4B_specific": 0
+    },
+    "limitations": "No exhaustive semantic/parameter-family scan; baseline-to-practice exact matches are mostly draft/pilot copies; historical records should remain unchanged."
   },
   "latest_research_sources": [
     {
@@ -887,13 +907,13 @@
     }
   ],
   "implementation_priority": [
-    "Do not publish these 30 editorial designs until exact objective, maths, mark scheme, novelty and human approval checks pass.",
-    "IB 2029 assessment-year gating; 2029 AI HL Poisson exclusion and AA/AI tech differences; licensed guide check for De Moivre and graph algorithms.",
-    "TMUA P1/P2 topic gating and official computer specimen UI/answer-option verification.",
-    "Cambridge 9231 P1/P3/P4 routing; Pearson 9FM0 valid 4B FS2 optional entry and 3D/4D distinction.",
-    "Global semantic and assignment repetition checks including baseline; current four-item assignment check is limited.",
-    "Full timed mocks require independently authored full papers, complete marking rubrics, strict timers and examiner sign-off.",
-    "Because the research repository is public and blueprints include solution checkpoints, never deploy exact blueprint prompts as secure assessment items; author private novel variants and store answer keys privately."
+    "P0 CONFIRMED same-learner baseline→completed Daily exact repetition: 4 prompts. Add cross-mode lifetime exclusion, template-family fingerprinting and a regression test; preserve submitted records",
+    "P0 use exam_year/version/board/component/valid route as first-class bank and student/task metadata; IB 2029 vs 2028, Cambridge 9231 P2 A-only and Pearson 9FM0 4B optional route",
+    "P0 create distinct private variants of 30 public research seeds; check against 441 practice, 240 baseline, 20 assigned baseline, 4 assigned task items and prior GitHub editorial drafts",
+    "P1 independent mathematical QA, M/A/B rubrics, no official-board endorsement, protected answers, student photo/whiteboard evidence and admin marking",
+    "P1 ten mock assembly plans are NOT approved mocks; complete duration/mark schemes, timer and examiner sign-off required",
+    "P1 verify full IB 2029 detailed subject guides and TMUA interactive Pearson specimen before claiming algorithm-level objective or exact UI fidelity",
+    "P2 next rotation GCSE/IGCSE tier/unit/formula/assessment-year rules and cross-mode repeat prevention"
   ],
   "next_implementation_handoff": {
     "source_brief": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
@@ -1186,5 +1206,28 @@
       "source_brief": "content/research/20261102_0627_ib_tmua_further_crossmode_repetition.md",
       "status": "editorial_only__private_variant_and_examiner_QA_required"
     }
-  ]
+  ],
+  "historical_modular_implementation_handoff": {
+    "priority": "P0 add Pearson modular qualification+unit+F/H routing, no tier mixing; P1 prevent Unit1/Unit2 objective leakage; P2 create 12 new independently checked originals; P3 implement raw-to-UMS session-aware prediction and full multi-mark mock workflows.",
+    "must_not_publish_as_mocks": true,
+    "research_only_no_new_publication": true,
+    "next_batch_editorial_items": 12,
+    "checks": [
+      "qualification PEARSON_IGCSE_MATH_A_MODULAR distinct from 4MA1 linear, 1MA1 UK and Cambridge 0580",
+      "unit 4WM1F/H versus 4WM2F/H exact syllabus objective gating and valid prerequisites",
+      "block mixed-tier modular Unit 1/2 and invalid cash-in code",
+      "calculator permitted on all four papers; Pearson modular tier formula sheet; no CAS",
+      "100 raw marks per 120-min paper; 120 UMS per unit; 240 UMS total; raw-to-UMS conversion by series",
+      "independently author 12 question packages with private solutions, misconception feedback, multi-mark rubrics, diagrams and KaTeX",
+      "semantic and algebraic dedup against all 369 bank items and historical assigned snapshots",
+      "full mock human examiner sign-off, timer expiry, whiteboard/photo evidence and admin delivery"
+    ],
+    "blockers": [
+      "No 4WM-tagged approved bank items or clear modular unit routing",
+      "No reliable raw-to-UMS session-specific conversion for predicted grades",
+      "No independently approved full-length multi-mark 4WM mocks",
+      "82 exact duplicate groups in draft/pilot bank, semantic collisions not fully reviewed",
+      "Only four bank-backed student assignments across one student in audit"
+    ]
+  }
 }
