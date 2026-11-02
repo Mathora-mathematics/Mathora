@@ -294,6 +294,7 @@ function renderOverview(){
  $('s-invites').textContent=state.invites.filter(x=>inviteStatus(x)==='Awaiting claim').length;
  $('s-awaiting').textContent=openReviewCount;
  $('s-marked').textContent=attempts.filter(x=>x.status==='marked').length+releasedPractice;
+ window.MGInsights?.studio({students:students.map(s=>({id:s.id})),attempts:attempts.map(a=>({status:a.status,started_at:a.started_at})),entitlements:state.entitlements.map(e=>({tier:e.tier,starts_at:e.starts_at,ends_at:e.ends_at})),assignedOpen:assigned.length,assignedReleased:releasedPractice,capped:attempts.length>=150});
  const hour=new Date().getHours(),greeting=hour<12?'Good morning.':hour<17?'Good afternoon.':'Good evening.';
  $('mg-admin-greeting').textContent=greeting;
  const pending=state.invites.filter(x=>inviteStatus(x)==='Awaiting claim').length;
