@@ -29,6 +29,7 @@ jobs:
           node --check whiteboard.js
           node --check sample.js
           node --check sample-extras.js
+          node --check insights-upgrade.js
           node --check maths-render.js
           node --input-type=module --check < baseline.js
           node --input-type=module --check < baseline-calc.js
@@ -98,7 +99,7 @@ jobs:
           mkdir -p site/content/GCSE site/content/IGCSE
           cp content/GCSE/draft-exemplars.json site/content/GCSE/
           cp content/IGCSE/draft-exemplars.json site/content/IGCSE/
-          cp sample.html sample.css sample-extras.css sample.js sample-extras.js site/
+          cp sample.html sample.css sample-extras.css sample.js sample-extras.js insights-upgrade.css insights-upgrade.js site/
           cp journey.html journey.css journey.js embed-bridge.js unified-site.js site/
           touch site/.nojekyll
       - name: Configure Pages
