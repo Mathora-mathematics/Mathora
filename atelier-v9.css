@@ -155,7 +155,7 @@ body.mg-site .mg-final h2{font-size:clamp(58px,6vw,91px)}
  body.mg-site .mg7-page{min-height:820px;padding:30px 24px}
 }
 @media(max-width:900px){
- body.mg-site .mg8-welcome-hero .mg-hero-grid{grid-template-columns:1fr;max-width:750px;min-height:0;padding:63px 0 75px!important;gap:38px}
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{grid-template-columns:1fr;max-width:750px;min-height:0;padding-top:63px!important;padding-bottom:75px!important;gap:38px}
  body.mg-site .mg8-welcome-hero h1{font-size:clamp(67px,10vw,91px)}
  body.mg-site .mg8-welcome-hero .mg6-evidence-hero{transform:none}
  body.mg-site .mg9-signature-grid{grid-template-columns:1fr}
@@ -173,7 +173,7 @@ body.mg-site .mg-final h2{font-size:clamp(58px,6vw,91px)}
  body.mg-site .wrap{padding-left:18px;padding-right:18px}
  body.mg-site .nav-row{height:73px}
  body.mg-site .mg-brand{font-size:26px}
- body.mg-site .mg8-welcome-hero .mg-hero-grid{padding:47px 0 58px!important}
+ body.mg-site .mg8-welcome-hero .mg-hero-grid{padding-top:47px!important;padding-bottom:58px!important}
  body.mg-site .mg8-welcome-hero h1{font-size:clamp(55px,12vw,73px)}
  body.mg-site .mg8-welcome-hero .mg-hero-lead{font-size:15px}
  body.mg-site .mg8-welcome-hero .mg6-proof-body{padding:20px 16px;min-height:0}
