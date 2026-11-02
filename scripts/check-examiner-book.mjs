@@ -8,7 +8,7 @@ assert.ok(home.includes('href="./examiner-report-book.css"')&&home.includes('src
 assert.ok(home.includes('href="#signature-sample"'),'Site navigation must link to specimen');
 assert.ok(home.includes('id="mg7-book"'),'Signature specimen must have a book');
 assert.ok(home.includes('mg7-legacy-comparison'),'Programme-specific report comparisons must remain available');
-assert.ok(deploy.includes('examiner-report-book.css examiner-report-book.js site/'),'Deploy must include flipbook assets');
+assert.ok(deploy.split('\n').some(line => /^\s*cp\s+/.test(line) && line.includes('examiner-report-book.css') && line.includes('examiner-report-book.js') && /\s+site\/\s*$/.test(line)),'Deploy must include flipbook assets');
 assert.ok(deploy.includes('node --check examiner-report-book.js'),'CI must parse flipbook script');
 assert.ok(style.includes('@media print')&&style.includes('body.mg-site main > :not(.mg-v3)'),'Printing must isolate the report');
 assert.ok(style.includes('prefers-reduced-motion:reduce'),'Page turns must respect reduced-motion preference');
