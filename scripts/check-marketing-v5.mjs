@@ -11,7 +11,8 @@ for(const key of ['eleven','growth','stretch'])assert.ok(home.includes('data-mg5
 for(const key of ['student','parent','tutor'])assert.ok(home.includes('data-mg5-role="'+key+'"'),'Missing role '+key);
 assert.ok(home.includes('id="dashboards"')&&home.indexOf('id="dashboards"')<home.indexOf('id="services"'),'Marketing showcase should precede programmes');
 assert.ok(home.includes('marketing-experience-v5.css')&&home.includes('marketing-experience-v5.js'),'Homepage script and styles must be loaded');
-assert.ok(pages.includes('marketing-experience-v5.css marketing-experience-v5.js site/'),'Curated Pages bundle must contain v5 files');
+const curatedCopy=pages.split('\n').find(line=>line.includes('cp index.html'))||'';
+assert.ok(['marketing-experience-v5.css','marketing-experience-v5.js',' site/'].every(asset=>curatedCopy.includes(asset)),'Curated Pages bundle must contain v5 files');
 assert.ok(pages.includes('node --check marketing-experience-v5.js'),'Check v5 script syntax in CI');
 assert.ok(!/\bpricing\b|£/i.test(home),'No prices on public pages');
 assert.ok(home.includes('fictional')&&home.includes('11+'),'Demo must distinguish fictional scores and planned routes');
