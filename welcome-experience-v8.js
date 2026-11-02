@@ -25,6 +25,7 @@
     document.querySelector('[data-mg5-role="'+scenario.viewRole+'"]')?.click();
    }
    if(window.history?.replaceState)window.history.replaceState(null,"","#dashboards");
+   destination.focus?.({preventScroll:true});
    destination.scrollIntoView({behavior:reduce()?"auto":"smooth",block:"start"});
   });
  }
