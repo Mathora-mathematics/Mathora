@@ -1,25 +1,26 @@
-# MathsGrove Content Programme — Current Cadence
+# MathsGrove · Current Two-Hour Publishing + Signature QA
 
-As of **2 November 2026**, all earlier overlapping MathsGrove research/publishing/QA schedules are superseded by the new three-hour operating cycle. Times are Kuwait (Asia/Kuwait).
+**Effective 2 November 2026 · Asia/Kuwait.** This is the current schedule, superseding the previous three-hour and older two-hour/seven-hour programmes. Earlier details are retained below for historical traceability only.
 
-| Workflow | Recurring start | Target |
+| Live automation | Kuwait schedule | Actions |
 | --- | --- | --- |
-| Author & Publish | 13:00, 16:00, 19:00, 22:00, 01:00, etc. | Research and implement original board/level/tier questions; aim for 2 hours within available task runtime |
-| Independent QA | 15:00, 18:00, 21:00, 00:00, etc. | Maths correctness, no repetition, tier availability, student experience, database security, CI/deployment; aim for 1 hour within runtime |
-| Evening Email | Around 20:00 daily | Use connected Gmail to send validated summary with website https://mathora-mathematics.github.io/Mathora/, portal and studio links |
+| MathsGrove · Content + Signature | 15:00, 17:00, 19:00, 21:00, etc., every 2 hours | Source-aligned research, original maths questions for Weekly/Daily/Exam, all supported board/levels/units, original multi-mark Signature/Signature Advanced/Specialist papers and schemes, secure vetted release |
+| MathsGrove · Independent Maths QA | 16:00, 18:00, 20:00, 22:00, etc., every 2 hours | Independently check calculations, mark schemes, syllabus year/version, exam-board unit, unique questions per student, adaptive tier deliveries, marking, private evidence/RLS and website CI |
+| MathsGrove · Evening Email | Around 20:00 each evening | Send factual updates and website/student/admin links via connected Gmail, including separate Signature editorial vs human-moderated/live status |
 
-**Important:** Scheduled starts and reminders do not guarantee continuous hour-long computation. Each run must report actual duration/results and not invent completed work, audits or email delivery.
+**The cadence is start-to-start scheduling, NOT uninterrupted two-hour execution.** Tasks must report verified work only. Neither the automated content agent nor QA may pretend to be the human examiner who signs off Signature papers or releases individual grade reports. Signature original draft papers and full marking schemes live in private Supabase; only metadata and workflow docs belong on public GitHub. Human moderation must precede editorial approval, and a separate delivery workflow is required before student assignment.
 
-See the dated [2 Nov research and release handoff](./2026-11-02-three-hour-coverage-handoff.md) for actual live content gaps and independent exam-board source links.
+Updated detailed implementation: [Signature and two-hour content QA handoff](./2026-11-02-signature-and-two-hour-content-qa.md).
 
-## Policies retained
+## Active authoring requirements
 
-- Never publish copied copyright-protected exam questions or incomplete/broken mathematics.
-- Only original, independently checked and approved syllabus-aligned maths enters live Supabase practice bank.
-- Do not let already-assigned or equivalent questions repeat for a student.
-- Preserve private answers and student working evidence and human-reviewed examiner feedback.
-- A 20-question timed Grove Exam MCQ mock is not equivalent to a complete exam-board paper.
-- Coverage must be measured in **real unseen eligible questions per board, qualification, academic level and tier**, not total generic bank rows.
+- Fill real four-week **unseen approved** supply for each route (board, paper/unit, level and programme): Weekly 32; Daily 112 plus Weekly 32; Exam 188 plus Weekly 32.
+- Distinguish Signature premium written assessment content from the 20-item monthly Exam MCQ practice mock. Each Signature paper requires coherent total marks, subpart marks, examiner model solutions, moderation notes and recovery/report standards.
+- Check active official 2026–2027 and subsequent syllabus variants and first-assessment dates, calculator policies, permissible units and command words; create original rather than copied questions.
+- Keep student evidence, examiner feedback, grade reports, identity and answer keys private, and forbid repeated bank IDs or normalised stems.
+- Treat a passing mathematical static check as separate from authenticated browser testing and human moderation; log each boundary precisely.
+
+## Archived former schedules (inactive)
 
 ## Archived original cadence specification
 
