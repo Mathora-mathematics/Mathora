@@ -40,4 +40,11 @@ assert.ok(board.sql.includes("IF b LIKE '%0580%' THEN"),
   'Cambridge 0580 items must be guarded by their subject code');
 assert.ok(board.sql.includes("RETURN s LIKE '%0580%'"),
   'Cambridge 0580 items must not be assigned to Cambridge 0607 students');
+assert.ok(board.sql.includes("IF b LIKE '%9709%' AND (b LIKE '%p1%' OR b LIKE '%pure mathematics 1%')"),
+  'Cambridge 9709 P1 must require exact Pure 1 component enrolment');
+assert.ok(board.sql.includes("IF b LIKE '%9709%' AND (b LIKE '%p3%' OR b LIKE '%pure mathematics 3%')"),
+  'Cambridge 9709 P3 must require exact Pure 3 component enrolment');
+assert.ok(board.sql.includes("IF b LIKE '%9709%' THEN RETURN false; END IF;"),
+  'Ambiguous generic Cambridge 9709 questions must fail closed, not leak into Mechanics/Statistics');
+// Cambridge 9709 P1/P3 pure component gate: static migration regression only, not a live RPC test.
 console.log('Practice publication/repetition guard: PASS ('+latest.name+')');
