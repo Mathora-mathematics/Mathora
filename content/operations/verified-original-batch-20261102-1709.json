@@ -2,7 +2,7 @@
   "version": 1,
   "batch": "20261102-1709",
   "date": "2026-11-02",
-  "status": "qa_verified_draft_pending_ci",
+  "status": "published_database_verified",
   "privacy": "Original question stems, answer choices, solutions, examiner notes, learner data and credentials are held in private Supabase only.",
   "sources": [
     "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
@@ -155,5 +155,84 @@
     "Four historical same-learner baseline-to-practice repetitions unresolved; future semantic-family no-repeat not guaranteed.",
     "MCQ supplemental practice is not a multi-mark written mock.",
     "2029 IB cohort routing remains unresolved; no IB items activated this batch."
-  ]
+  ],
+  "publication": {
+    "approved_active": 9,
+    "draft_to_approved": true,
+    "approved_at_utc": "2026-11-02T14:21:06.742162+00:00",
+    "gate": {
+      "n": 9,
+      "valid": 9,
+      "distinct_routes": 9
+    },
+    "intended_selection_matches": 9,
+    "incorrect_board_matches": 0,
+    "previously_assigned": 0,
+    "pr": "https://github.com/Mathora-mathematics/Mathora/pull/49",
+    "pr_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41460758849",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41460957071",
+    "custom_site_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41460957167",
+    "native_pages_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41460954998",
+    "all_workflows": "success",
+    "bank": {
+      "total": 2184,
+      "approved_active": 1896,
+      "pilot_active": 240,
+      "inactive": 48
+    },
+    "routes": [
+      {
+        "board": "AQA 8300",
+        "level": "higher",
+        "daily": 4,
+        "weekly": 4,
+        "exam": 4,
+        "daily_shortfall": 108,
+        "weekly_shortfall": 28,
+        "exam_shortfall": 184
+      },
+      {
+        "board": "Pearson Edexcel 4MA1 Foundation",
+        "level": "core",
+        "daily": 3,
+        "weekly": 3,
+        "exam": 3,
+        "daily_shortfall": 109,
+        "weekly_shortfall": 29,
+        "exam_shortfall": 185
+      },
+      {
+        "board": "Cambridge 9231 P2 Further Pure 2",
+        "level": "further",
+        "daily": 2,
+        "weekly": 2,
+        "exam": 2,
+        "daily_shortfall": 110,
+        "weekly_shortfall": 30,
+        "exam_shortfall": 186
+      }
+    ],
+    "student_aggregate_after": {
+      "tasks": 35,
+      "task_items": 10,
+      "answers": 5,
+      "evidence": 5,
+      "human_marks": 10
+    },
+    "student_mutations": 0,
+    "signature": {
+      "id": "04b3fe06-a430-4e1f-877f-f87e4ea69b7e",
+      "product": "specialist_review",
+      "qualification": "FURTHER_MATHS",
+      "component": "9231 Paper 2",
+      "marks": 24,
+      "parts": 9,
+      "criterion_marks": 24,
+      "status": "awaiting_human_moderation",
+      "human_signoff": false,
+      "moderator_id": null,
+      "student_reports_released": 0
+    },
+    "limitations": "Only four-option supplemental practice released; learner-level semantic-family no-repeat and historical baseline/practice repetitions remain unresolved."
+  }
 }
