@@ -13,7 +13,7 @@ assert.ok(deploy.includes('node --check examiner-report-book.js'),'CI must parse
 assert.ok(style.includes('@media print')&&style.includes('body.mg-site main > :not(.mg-v3)'),'Printing must isolate the report');
 assert.ok(style.includes('prefers-reduced-motion:reduce'),'Page turns must respect reduced-motion preference');
 for(const key of ['ArrowRight','ArrowLeft','touchstart','touchend','aria-current','window.print'])assert.ok(script.includes(key),'Missing reader control '+key);
-for(const term of ['not an official','fictional','43 / 60','10 / 10','2 / 10','4-week','centre is twice'])assert.ok(home.toLowerCase().includes(term.toLowerCase()),'Report content missing '+term);
+for(const term of ['not an official','fictional','43 / 60','10 / 10','2 / 10','four-week','centre is twice'])assert.ok(home.toLowerCase().includes(term.toLowerCase()),'Report content missing '+term);
 const pages=[...home.matchAll(/<article class="mg7-page[^"]*" data-mg7-page="(\d+)"[^>]*>/g)].map(m=>+m[1]);
 const pageTabs=[...home.matchAll(/data-mg7-nav="(\d+)"/g)].map(m=>+m[1]);
 assert.deepEqual(pages,[0,1,2,3,4,5,6],'Report must contain seven ordered pages');
