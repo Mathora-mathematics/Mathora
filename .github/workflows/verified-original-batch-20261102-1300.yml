@@ -1,0 +1,36 @@
+name: Verify original maths batch 2026-11-02 1300
+on:
+  pull_request:
+    paths:
+      - 'content/operations/verified-original-batch-20261102-1300.json'
+      - 'scripts/check-verified-batch-20261102-1300.mjs'
+      - 'supabase/migrations/20261102130000_grove_p6_wma14_wst02_component_routing.sql'
+      - '.github/workflows/verified-original-batch-20261102-1300.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'content/operations/verified-original-batch-20261102-1300.json'
+      - 'scripts/check-verified-batch-20261102-1300.mjs'
+      - 'supabase/migrations/20261102130000_grove_p6_wma14_wst02_component_routing.sql'
+      - '.github/workflows/verified-original-batch-20261102-1300.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independent mathematical checks and privacy
+        run: node scripts/check-verified-batch-20261102-1300.mjs
+      - name: Assignment, approval and evidence regression
+        run: |
+          node scripts/check-original-practice.mjs
+          node scripts/check-published-originals.mjs
+          node scripts/check-approved-practice-gate.mjs
+          node scripts/check-auto-assign.mjs
+          node scripts/check-evidence-marking.mjs
+          node scripts/test-all-tier-evidence.mjs
