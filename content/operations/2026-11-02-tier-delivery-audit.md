@@ -52,3 +52,16 @@ Numbers are eligible approved questions for **a new student** before prior-quest
 - Every two hours: official syllabus research / source-linked editorial brief.
 - Thirty minutes later: verify and publish original maths batches to private tier bank.
 - Every seven hours: sample student-calendar supply, real no-repeat integrity, marking/evidence and deployment status. These are scheduled starts, not guarantees of thirty minutes of wall-clock execution.
+
+
+## Tier inheritance follow-up (verified 2 November 2026)
+
+The initial scheduler only created a single assignment mode per subscription, even though Grove Daily and Grove Exam include Grove Weekly. Deployed migration `supabase/migrations/20261102_subscription_weekly_inheritance.sql` fixes both administrator-driven assignment and student-calendar self-healing:
+
+- **Weekly:** four 8-item weekly papers in a 28-day subscription block.
+- **Daily:** 28 four-item daily sessions, plus four separate eight-item weekly papers.
+- **Exam:** 28 six-item daily sessions, plus four separate eight-item weekly papers, plus the 20-item 90-minute timed monthly MCQ practice mock.
+- The weekly sets for Daily and Exam are due on the 7th, 14th, 21st and 28th days relative to entitlement start; each mode checks its own unseen/approved bank separately. Historic item and matching-normalised-stem reuse are still excluded.
+- The existing trial student's four inherited weekly tasks were backfilled safely on November 6, 13, 20 and 27. The active exam-daily assessment and graded prior work were not touched.
+- The student UI now displays `weekly_unseen_questions` for weekly assignments and `unseen_questions` for Daily/Exam, avoiding misleading Ready buttons. The public service tier metadata was brought in line with the actual implemented MCQ practice format.
+- Regression assertions were added to `scripts/check-tier-delivery.mjs` and included in the deployment workflow.
