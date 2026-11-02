@@ -19,7 +19,7 @@
     "max_prior_token_jaccard": 0.6,
     "max_internal_token_jaccard": 0.3214285714,
     "near_duplicates_at_065": 0,
-    "rejected_initial_candidate": 1,
+    "rejected_initial_candidate": 2,
     "student_mutations": 0
   },
   "routing_migration": "supabase/migrations/20261102111000_grove_p5_wma13_component_routing.sql",
@@ -32,7 +32,7 @@
       "academic_level": "as",
       "programme_scope": "daily",
       "expected_seconds": 220,
-      "syllabus_objective": "9709 P5 §5.3",
+      "syllabus_objective": "9709 P5 §5.4 discrete random variables",
       "provenance": "mg-original-20261102-1110-C5D"
     },
     {
@@ -126,7 +126,7 @@
   ],
   "notes": [
     "Staged inactive drafts; no learner assignments or marks changed.",
-    "One initial product-rule question was rejected after a near-match score 0.8; independently authored replacement passed 0.4286.",
+    "Two structural candidates were rejected: an overly similar product-rule derivative and a bag-draw probability family. Both were replaced before approval.",
     "Four-option MCQs are practice only; no complete timed mock is claimed.",
     "Historical baseline-to-Daily repetition is unresolved; this batch had no matching near duplicates.",
     "Cambridge 9709 P5 and Pearson IAL WMA13 require exact component gates before activation."
