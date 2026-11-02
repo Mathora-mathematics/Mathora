@@ -21,7 +21,24 @@ function friendlyError(e){return e?.message||'Something went wrong. Please try a
 function requireReady(){if(!sb)throw Error('The Supabase connection is not configured yet.')}
 function isStaff(){return state.member&&['partner','examiner','admin'].includes(state.member.member_role)}
 function isPartner(){return state.member&&['partner','admin'].includes(state.member.member_role)}
-function showPanel(id){document.querySelectorAll('.dash-panel').forEach(e=>e.hidden=e.id!==id+'-panel');document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='papers')renderPaperList();if(id==='progress')renderProgress();if(id==='mocks')void loadAssignedMocks()}
+function showPanel(id){
+ const old=document.querySelector('.dash-panel:not([hidden])');
+ const update=()=>{
+  document.querySelectorAll('.dash-panel').forEach(e=>e.hidden=e.id!==id+'-panel');
+  document.querySelectorAll('[data-view]').forEach(b=>{
+   const selected=b.dataset.view===id;
+   b.classList.toggle('active',selected);
+   if(selected)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+  });
+  if(id==='papers')renderPaperList();
+  if(id==='progress')renderProgress();
+  if(id==='mocks')void loadAssignedMocks();
+ };
+ const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ if(old&&old.id!==id+'-panel'&&document.startViewTransition&&!reduced&&$('dashboard-view')&&!$('dashboard-view').hidden){
+  document.startViewTransition(update);
+ }else update();
+}
 function initials(name){return (name||'Student').trim().split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()||'').join('')||'MG'}
 async function requestLink(e){
  e.preventDefault();
