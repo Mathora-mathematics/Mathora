@@ -35,6 +35,7 @@ jobs:
           node --input-type=module --check < baseline-calc.js
           node --input-type=module --check < baseline-admin.js
           node --input-type=module --check < assigned-practice.js
+          node scripts/check-practice-utc-date.mjs
           node --input-type=module --check < evidence-workspace.js
           node scripts/check-evidence-marking.mjs
           node scripts/test-all-tier-evidence.mjs
