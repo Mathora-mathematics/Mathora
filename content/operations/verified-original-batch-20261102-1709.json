@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "batch": "20261102-1709",
+  "date": "2026-11-02",
+  "status": "qa_verified_draft_pending_ci",
+  "privacy": "Original question stems, answer choices, solutions, examiner notes, learner data and credentials are held in private Supabase only.",
+  "sources": [
+    "https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/Mathematics%20A/2016/Specification%20and%20sample%20assessments/international-gcse-in-mathematics-spec-a.pdf",
+    "https://www.aqa.org.uk/subjects/mathematics/gcse/mathematics-8300/specification/subject-content",
+    "https://www.cambridgeinternational.org/Images/697357-2026-2027-syllabus.pdf"
+  ],
+  "questions": [
+    {
+      "code": "PF-D",
+      "id": "2b6dd912-1f0a-4533-96a6-4b7a531ee697",
+      "exam_board": "Pearson Edexcel 4MA1 Foundation",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "programme_scope": "daily",
+      "expected_seconds": 230,
+      "syllabus_objective": "4MA1 §6.3",
+      "provenance": "mg-original-20261102-1709-PF-D"
+    },
+    {
+      "code": "PF-W",
+      "id": "820b2644-d261-4f64-8388-db472f200476",
+      "exam_board": "Pearson Edexcel 4MA1 Foundation",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "programme_scope": "weekly",
+      "expected_seconds": 380,
+      "syllabus_objective": "4MA1 §§1.7,4.4",
+      "provenance": "mg-original-20261102-1709-PF-W"
+    },
+    {
+      "code": "PF-E",
+      "id": "603ff5e6-64ea-4de6-b148-76bb8d8b653b",
+      "exam_board": "Pearson Edexcel 4MA1 Foundation",
+      "qualification": "IGCSE",
+      "academic_level": "core",
+      "programme_scope": "exam",
+      "expected_seconds": 420,
+      "syllabus_objective": "4MA1 §§1.6,1.7,1.10",
+      "provenance": "mg-original-20261102-1709-PF-E"
+    },
+    {
+      "code": "AH-D",
+      "id": "519d23da-79b5-4933-9aba-9c1efb5fea06",
+      "exam_board": "AQA 8300",
+      "qualification": "GCSE",
+      "academic_level": "higher",
+      "programme_scope": "daily",
+      "expected_seconds": 270,
+      "syllabus_objective": "AQA R9/R16",
+      "provenance": "mg-original-20261102-1709-AH-D"
+    },
+    {
+      "code": "AH-W",
+      "id": "08167c58-138b-4b5f-909d-7355780265b5",
+      "exam_board": "AQA 8300",
+      "qualification": "GCSE",
+      "academic_level": "higher",
+      "programme_scope": "weekly",
+      "expected_seconds": 370,
+      "syllabus_objective": "AQA A23/A24",
+      "provenance": "mg-original-20261102-1709-AH-W"
+    },
+    {
+      "code": "AH-E",
+      "id": "1ea73a1b-392b-47bf-b69f-fa0058518606",
+      "exam_board": "AQA 8300",
+      "qualification": "GCSE",
+      "academic_level": "higher",
+      "programme_scope": "exam",
+      "expected_seconds": 480,
+      "syllabus_objective": "AQA P7/P9",
+      "provenance": "mg-original-20261102-1709-AH-E"
+    },
+    {
+      "code": "FP-D",
+      "id": "6ca68b1a-d7ac-40ca-89f5-16f4672f079a",
+      "exam_board": "Cambridge 9231 P2 Further Pure 2",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "programme_scope": "daily",
+      "expected_seconds": 320,
+      "syllabus_objective": "9231 P2 §2.4",
+      "provenance": "mg-original-20261102-1709-FP-D"
+    },
+    {
+      "code": "FP-W",
+      "id": "a28b4dc9-46a6-43ba-b57b-be744df5475f",
+      "exam_board": "Cambridge 9231 P2 Further Pure 2",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "programme_scope": "weekly",
+      "expected_seconds": 410,
+      "syllabus_objective": "9231 P2 §2.2",
+      "provenance": "mg-original-20261102-1709-FP-W"
+    },
+    {
+      "code": "FP-E",
+      "id": "4a63dbd1-1a2e-48fc-9428-52e5f004900f",
+      "exam_board": "Cambridge 9231 P2 Further Pure 2",
+      "qualification": "FURTHER_MATHS",
+      "academic_level": "further",
+      "programme_scope": "exam",
+      "expected_seconds": 530,
+      "syllabus_objective": "9231 P2 §2.5",
+      "provenance": "mg-original-20261102-1709-FP-E"
+    }
+  ],
+  "qa": {
+    "javascript_independent": 9,
+    "sympy_independent": 9,
+    "sql_math": 9,
+    "four_distinct_options": 9,
+    "exactly_one_key": 9,
+    "complete_explanations": 9,
+    "prior_comparisons_per_candidate": 2425,
+    "total_prior_comparisons": 21825,
+    "maximum_prior_jaccard": 0.5,
+    "exact_duplicates": 0,
+    "template_duplicates": 0,
+    "near_duplicates_at_076": 0,
+    "within_batch_pairs": 36,
+    "maximum_within_jaccard": 0.156,
+    "positive_negative_board_assertions": 8
+  },
+  "signature": {
+    "id": "04b3fe06-a430-4e1f-877f-f87e4ea69b7e",
+    "product": "specialist_review",
+    "qualification": "FURTHER_MATHS",
+    "component": "9231 Paper 2",
+    "marks": 24,
+    "parts": 9,
+    "criterion_marks": 24,
+    "status": "awaiting_human_moderation",
+    "human_signoff": false
+  },
+  "pre_release_bank": {
+    "total": 2184,
+    "approved_active": 1887,
+    "pilot_active": 240,
+    "inactive": 57
+  },
+  "pre_release_student_aggregate": {
+    "tasks": 35,
+    "task_items": 10,
+    "answers": 5,
+    "evidence": 5,
+    "human_marks": 10
+  },
+  "limitations": [
+    "Four historical same-learner baseline-to-practice repetitions unresolved; future semantic-family no-repeat not guaranteed.",
+    "MCQ supplemental practice is not a multi-mark written mock.",
+    "2029 IB cohort routing remains unresolved; no IB items activated this batch."
+  ]
+}
