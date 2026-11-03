@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "batch": "20261103-0300",
+  "date": "2026-11-03",
+  "status": "staged_pending_ci",
+  "privacy": "No confidential stems, options, answers, mark schemes, student data or credentials in this public ledger.",
+  "questions": [
+    {
+      "id": "1adf5be6-49d6-4970-9f97-01d61b6ebfa1",
+      "qualification": "IB_AI",
+      "level": "hl",
+      "board": "IB Diploma Programme",
+      "mode": "daily",
+      "topic": "Graph theory",
+      "expected_seconds": 230,
+      "syllabus": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp-mathematics-applications-and-interpretation-guide-en.pdf"
+    },
+    {
+      "id": "1203b6df-bb12-4fdb-a9d2-f6e011863f97",
+      "qualification": "IB_AI",
+      "level": "hl",
+      "board": "IB Diploma Programme",
+      "mode": "weekly",
+      "topic": "Euler method",
+      "expected_seconds": 300,
+      "syllabus": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp-mathematics-applications-and-interpretation-guide-en.pdf"
+    },
+    {
+      "id": "d20d1ccb-5ee6-4359-a36e-d4c666544bfa",
+      "qualification": "IB_AI",
+      "level": "hl",
+      "board": "IB Diploma Programme",
+      "mode": "exam",
+      "topic": "Minimum spanning tree",
+      "expected_seconds": 360,
+      "syllabus": "https://www.ibo.org/globalassets/new-structure/university-admission/pdfs/dp-mathematics-applications-and-interpretation-guide-en.pdf"
+    },
+    {
+      "id": "5f97c6f9-e372-447c-99ab-c35130c62827",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Cambridge 9709 P1 Pure Mathematics 1",
+      "mode": "daily",
+      "topic": "Composite function domain",
+      "expected_seconds": 230,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "271678d9-a5ae-4de3-8a9f-fc6a6cee7648",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Cambridge 9709 P1 Pure Mathematics 1",
+      "mode": "weekly",
+      "topic": "Area between curves",
+      "expected_seconds": 330,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "5676a2a9-beda-405a-a500-8ac21750269c",
+      "qualification": "A_LEVEL",
+      "level": "as",
+      "board": "Cambridge 9709 P1 Pure Mathematics 1",
+      "mode": "exam",
+      "topic": "Trigonometric equations",
+      "expected_seconds": 330,
+      "syllabus": "https://www.cambridgeinternational.org/Images/697427-2026-2027-syllabus.pdf"
+    },
+    {
+      "id": "934fbf92-02a4-4a27-86f0-d18dd341fce9",
+      "qualification": "FURTHER_MATHS",
+      "level": "further",
+      "board": "Pearson Edexcel 9FM0 Core Pure",
+      "mode": "daily",
+      "topic": "Complex modulus",
+      "expected_seconds": 230,
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+    },
+    {
+      "id": "546fbdb9-520b-4cfa-97a0-373c5283e1fe",
+      "qualification": "FURTHER_MATHS",
+      "level": "further",
+      "board": "Pearson Edexcel 9FM0 Core Pure",
+      "mode": "weekly",
+      "topic": "Invariant lines",
+      "expected_seconds": 320,
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+    },
+    {
+      "id": "72f97597-ca84-4022-bf5a-47311b10305e",
+      "qualification": "FURTHER_MATHS",
+      "level": "further",
+      "board": "Pearson Edexcel 9FM0 Core Pure",
+      "mode": "exam",
+      "topic": "Polar area",
+      "expected_seconds": 400,
+      "syllabus": "https://qualifications.pearson.com/content/dam/pdf/A%20Level/Mathematics/2017/specification-and-sample-assesment/a-level-l3-further-mathematics-specification.pdf"
+    }
+  ],
+  "qa": {
+    "sympy_independent": 9,
+    "javascript_independent": 9,
+    "sql_independent": 9,
+    "distinct_four_choices": 9,
+    "one_key": 9,
+    "tex_fields": 54,
+    "prior_compared_per_question": 2490,
+    "prior_comparisons": 22410,
+    "maximum_prior_jaccard": 0.6,
+    "exact_duplicates": 0,
+    "masked_duplicates": 0,
+    "near_duplicates": 0,
+    "within_batch_pairs": 36,
+    "board_positive": 9,
+    "board_negative": 18,
+    "previously_assigned": 0,
+    "new_candidates_rejected": 0,
+    "legacy_drafts_activated": 0
+  },
+  "signature": {
+    "id": "87884e73-5700-415f-b788-97dd6a5f6084",
+    "product": "specialist_review",
+    "qualification": "FURTHER_MATHS",
+    "board": "Pearson Edexcel 9FM0 Core Pure",
+    "questions": 3,
+    "parts": 9,
+    "marks": 24,
+    "criteria_marks": 24,
+    "status": "awaiting_human_moderation",
+    "human_signoff": false
+  },
+  "bank_staged": {
+    "total": 2229,
+    "approved_active": 1932,
+    "pilot_active": 240,
+    "inactive": 57
+  },
+  "student_aggregate_before": {
+    "tasks": 35,
+    "task_items": 10,
+    "answers": 5,
+    "evidence": 5,
+    "human_marks": 10
+  },
+  "limitations": [
+    "Four historical baseline-to-practice repetitions remain unresolved.",
+    "No-repeat mathematical-family guarantee not proven.",
+    "IB exam-year metadata not enforced per learner.",
+    "MCQ practice is not a full written multi-mark mock."
+  ],
+  "publication": null
+}
