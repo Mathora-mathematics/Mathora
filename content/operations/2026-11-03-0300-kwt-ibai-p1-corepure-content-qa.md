@@ -60,3 +60,20 @@ Pre-stage bank: **2,220 total / 1,932 approved active / 240 active pilot / 48 in
 Student aggregates before: **35 tasks, 10 materialised items, 5 answers, 5 evidence files, 10 human marks**. No student-table mutations authorised. Existing four historical baseline-to-practice repeats unresolved; learner-level mathematical-family no-repeat is not proven. Exact-ID and exact-stem exclusion in `public.grove_task_start` remains in place. Current four-option practice schema does not deliver genuine multi-mark written mock exams.
 
 **Next:** complete CI and deployment, conditionally publish, verify post-release route eligibility and counts, then expand exact-board inventory and strengthen baseline/practice mathematical-family repetition and examination-year routing without changing historical student work.
+
+## Final verified release — 3 November 2026, 03:12 Kuwait
+
+**PUBLISHED 9/9**: conditional atomic Supabase approval activated exactly nine pre-staged UUIDs at `2026-11-03T00:12:13.868451Z`. Live read-back confirmed **9 active approved**, four distinct options and one key **9/9**, intended board matches **9/9**, incompatible AQA and Pearson IAL board matches **0**, and previously assigned new UUIDs **0**.
+
+**Merged [GitHub PR #54](https://github.com/Mathora-mathematics/Mathora/pull/54)** at commit `fe574cf53c8ad6d212b683f5ae9350c1f324dbd6`. Branch [CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41550979634), merged-main [mathematics/regression CI](https://github.com/Mathora-mathematics/Mathora/actions/runs/41551036260), [custom website deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41551036303) and [GitHub Pages deployment](https://github.com/Mathora-mathematics/Mathora/actions/runs/41551035857) all **passed** before database activation. The initial workflow attempt [failed](https://github.com/Mathora-mathematics/Mathora/actions/runs/41550883497) because a YAML step name contained an unquoted colon; it was corrected and the replacement workflow passed. No untested question was published.
+
+**Live bank after:** **2,229 total / 1,941 approved active / 240 active pilot / 48 inactive drafts**. Exact-board approved active counts and *individual-mode* deficits:
+- IB AI HL current 2021–Nov 2028: **4/4/4** Daily/Weekly/Exam; shortfalls **108/28/184**.
+- Cambridge 9709 P1 AS: **6/6/6**; shortfalls **106/26/182**.
+- Pearson 9FM0 Core Pure: **2/2/2**; shortfalls **110/30/186**.
+
+Daily and Exam each additionally require a distinct 32-question Weekly allocation; do not count shared items twice. Across all exact-board routes, the weakest live inventory includes Cambridge 9709 P6, Pearson IAL WMA13/WMA14/WME02/WST01/WST02, Pearson 9FM0 Core Pure and several exact Cambridge 0580 Extended variants with only one approved question per mode. Generic cross-board content is not evidence of exact-board completeness. No learner-specific four-week inventory guarantee is claimed.
+
+**Signature Specialist:** private assessment `87884e73-5700-415f-b788-97dd6a5f6084` remains `awaiting_human_moderation`, 9 parts / 24 marks / 24 criterion awards; no authenticated human signoff or student report release. Student aggregates unchanged: **35 tasks / 10 task items / 5 answers / 5 evidence files / 10 human marks**. Four historical baseline-to-practice repetitions remain unresolved; mathematical-family no-repeat protection and learner examination-year/paper gating are still incomplete. The present four-option MCQ schema is not a genuine written multi-mark mock.
+
+**Next cycle:** strengthen no-repeat family protection and learner-year/board gating with tests, then add diverse original items for underfilled Pearson IAL, Further, IB AI/AA and GCSE/IGCSE exact routes. This audit-only commit may trigger fresh CI/deployments; verify the final commit separately.

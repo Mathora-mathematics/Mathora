@@ -2,7 +2,7 @@
   "version": 1,
   "batch": "20261103-0300",
   "date": "2026-11-03",
-  "status": "staged_pending_ci",
+  "status": "published_database_verified",
   "privacy": "No confidential stems, options, answers, mark schemes, student data or credentials in this public ledger.",
   "questions": [
     {
@@ -147,5 +147,74 @@
     "IB exam-year metadata not enforced per learner.",
     "MCQ practice is not a full written multi-mark mock."
   ],
-  "publication": null
+  "publication": {
+    "approved_active": 9,
+    "approved_at_utc": "2026-11-03T00:12:13.868451Z",
+    "pr": "https://github.com/Mathora-mathematics/Mathora/pull/54",
+    "branch_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41550979634",
+    "main_ci": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41551036260",
+    "website_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41551036303",
+    "pages_deployment": "https://github.com/Mathora-mathematics/Mathora/actions/runs/41551035857",
+    "merge_commit": "fe574cf53c8ad6d212b683f5ae9350c1f324dbd6",
+    "intended_board_selection": 9,
+    "incorrect_board_matches": 0,
+    "previously_assigned": 0,
+    "bank": {
+      "total": 2229,
+      "approved_active": 1941,
+      "pilot_active": 240,
+      "inactive": 48
+    },
+    "routes": [
+      {
+        "qualification": "IB_AI",
+        "board": "IB Diploma Programme",
+        "level": "hl",
+        "daily": 4,
+        "weekly": 4,
+        "exam": 4,
+        "shortfall_daily": 108,
+        "shortfall_weekly": 28,
+        "shortfall_exam": 184
+      },
+      {
+        "qualification": "A_LEVEL",
+        "board": "Cambridge 9709 P1 Pure Mathematics 1",
+        "level": "as",
+        "daily": 6,
+        "weekly": 6,
+        "exam": 6,
+        "shortfall_daily": 106,
+        "shortfall_weekly": 26,
+        "shortfall_exam": 182
+      },
+      {
+        "qualification": "FURTHER_MATHS",
+        "board": "Pearson Edexcel 9FM0 Core Pure",
+        "level": "further",
+        "daily": 2,
+        "weekly": 2,
+        "exam": 2,
+        "shortfall_daily": 110,
+        "shortfall_weekly": 30,
+        "shortfall_exam": 186
+      }
+    ],
+    "student_aggregate_after": {
+      "tasks": 35,
+      "task_items": 10,
+      "answers": 5,
+      "evidence": 5,
+      "human_marks": 10
+    },
+    "student_mutations": 0,
+    "signature": {
+      "id": "87884e73-5700-415f-b788-97dd6a5f6084",
+      "status": "awaiting_human_moderation",
+      "human_signoff": false,
+      "criteria_marks": 24,
+      "parts": 9,
+      "student_reports_released": 0
+    }
+  }
 }
