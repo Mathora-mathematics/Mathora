@@ -1,0 +1,49 @@
+name: MathsGrove deployed site smoke
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/deployed-site-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-site:
+    name: Check live public routes and deployed fixes
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check three branded public entry points
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://mathsgrove.github.io/Mathora"
+          for page in index.html portal.html studio.html; do
+            html="$(mktemp)"
+            status="$(curl --silent --show-error --location --max-time 25 \
+              --output "$html" --write-out '%{http_code}' "$base/$page")"
+            echo "$page status=$status bytes=$(wc -c < "$html")"
+            if [[ "$status" != "200" ]] || ! grep -q 'MathsGrove' "$html"; then
+              echo "::error::$page is missing or does not contain the expected MathsGrove title."
+              exit 1
+            fi
+            rm -f "$html"
+          done
+      - name: Check published whiteboard and paper save changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://mathsgrove.github.io/Mathora"
+          curl --fail --silent --show-error --location --max-time 25 "$base/whiteboard.js" | grep -Fq 'setContext(context)'
+          echo 'Published whiteboard includes question recovery.'
+          curl --fail --silent --show-error --location --max-time 25 "$base/portal.js" | grep -Fq 'let answerWriteQueue=Promise.resolve();'
+          echo 'Published student portal includes serialised autosaves.'
+      - name: Observe retired URL status (informational only)
+        shell: bash
+        run: |
+          set +e
+          old_status="$(curl --silent --location --max-time 12 --output /dev/null \
+            --write-out '%{http_code}' 'https://mathora-mathematics.github.io/Mathora/')"
+          echo "Former Pages entry URL: HTTP $old_status (not required for success)."
