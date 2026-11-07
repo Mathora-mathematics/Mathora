@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
+const exportFn=read('supabase/functions/grove-student-export/index.ts');
+const inviteFn=read('supabase/functions/invitations/index.ts');
+assert.ok(exportFn.includes("const site='https://mathsgrove.github.io';"),'Export CORS must use the current GitHub Pages origin');
+assert.ok(exportFn.includes("if(origin&&origin!==site)"),'Export must reject unknown origins');
+assert.ok(!exportFn.includes("const site='https://mathora-mathematics.github.io'"),'Old host must not be trusted by student export');
+assert.ok(inviteFn.includes("Deno.env.get('APP_ORIGINS')"),'Explicit invitation origin configuration must be retained');
+assert.ok(inviteFn.includes("configuredOrigins.length?"),'Do not allow invitations if the origin configuration is absent');
+assert.ok(inviteFn.includes(".concat('https://mathsgrove.github.io')"),'Current GitHub Pages origin must be allowed');
+assert.ok(inviteFn.includes("o!=='https://mathora-mathematics.github.io'"),'Remove the retired owner origin from invitation allowlist');
+assert.ok(inviteFn.includes('origins.includes(origin)'),'Requests must remain origin-authorised');
+console.log('Supabase Edge origin migration checks passed: only current Pages origin is added, and authentication checks remain in place.');
