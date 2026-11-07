@@ -5,7 +5,9 @@
 import {createClient} from 'npm:@supabase/supabase-js@2';
 const url=Deno.env.get('SUPABASE_URL')||'';
 const secret=Deno.env.get('SUPABASE_SECRET_KEY')||Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')||'';
-const origins=(Deno.env.get('APP_ORIGINS')||'').split(',').map(s=>s.trim()).filter(Boolean);
+const configuredOrigins=(Deno.env.get('APP_ORIGINS')||'').split(',').map(s=>s.trim()).filter(Boolean);
+// Preserve the explicit configuration gate while migrating the GitHub Pages origin.
+const origins=configuredOrigins.length?[...new Set(configuredOrigins.filter(o=>o!=='https://mathora-mathematics.github.io').concat('https://mathsgrove.github.io'))]:[];
 const admin=createClient(url,secret,{auth:{persistSession:false,autoRefreshToken:false}});
 const encode=new TextEncoder();
 function codeHash(code){return crypto.subtle.digest('SHA-256',encode.encode(code)).then(x=>[...new Uint8Array(x)].map(y=>y.toString(16).padStart(2,'0')).join(''))}
