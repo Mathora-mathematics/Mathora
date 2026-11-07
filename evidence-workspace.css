@@ -26,3 +26,14 @@
 .mg-baseline-student-comment .bl-panel-top h3{font:400 27px "Instrument Serif",Georgia,serif;color:#1c3551;margin:0}
 .mg-baseline-student-comment .bl-panel-top span{font-size:9px;letter-spacing:.13em;color:#927b5e;font-weight:800}
 .mg-baseline-student-comment p{font-size:13px;color:#38506b;line-height:1.85;white-space:pre-wrap;margin:0}
+
+/* Grid lines are painted in the same canvas coordinate space as the saved PNG. */
+.mg-evidence-canvas{background:#fff;touch-action:none}
+@media (pointer:coarse){
+ .mg-evidence-toolbar button,.mg-evidence-toolbar select{min-height:44px;font-size:13px}
+ .mg-evidence-toolbar [data-board-color]{min-height:36px;width:36px;height:36px}
+ .mg-evidence-actions button,.mg-evidence-upload{min-height:44px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+ .mg-evidence-canvas{scroll-behavior:auto}
+}

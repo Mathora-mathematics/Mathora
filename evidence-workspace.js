@@ -13,7 +13,7 @@ export function createEvidenceWorkspace({db,kind,canvas,toolbar,photos,saveButto
   if(memberError||!member)throw Error('An enrolled student account is required.');
   identity={uid:user.id,org:member.org_id};return identity;
  }
- async function upload(blob,filename,fileKind){
+ async function upload(blob,filename,fileKind,savedVersion){
   if(uploading)throw Error('Another file is being saved. Please try again.');
   const session=getSession(),position=getPosition();
   if(!session||!position)throw Error('Open an assessment question before submitting working.');
@@ -30,18 +30,19 @@ export function createEvidenceWorkspace({db,kind,canvas,toolbar,photos,saveButto
     p_name:String(filename||'working').slice(0,160),p_file_kind:fileKind
    });
    if(error||!data?.ok)throw Error(error?.message||'Could not register this working file.');
-   if(fileKind==='whiteboard')board.markSaved();
+   if(fileKind==='whiteboard')board.markSaved(savedVersion);
    await refresh();
-   notify('Saved privately. Your examiner can review this working.');
+   notify(board.isDirty()?'An earlier drawing was saved, but newer changes still need saving.':'Saved privately. Your examiner can review this working.');
    return true;
   }catch(e){notify('Could not save: '+e.message,true);throw e}
   finally{uploading=false;saveButton.disabled=false}
  }
  async function saveDrawing(){
   if(!board.isDirty())return true;
+  const version=board.getVersion();
   const blob=await board.exportBlob();
   if(!blob)throw Error('Could not export the whiteboard.');
-  await upload(blob,'Whiteboard working — question '+getPosition(),'whiteboard');
+  await upload(blob,'Whiteboard working — question '+getPosition(),'whiteboard',version);
   return true;
  }
  async function flush(){
@@ -69,7 +70,12 @@ export function createEvidenceWorkspace({db,kind,canvas,toolbar,photos,saveButto
  }
  function switchQuestion(){
   const key=getSession()+':'+getPosition();
-  if(contextKey!==key){contextKey=key;board.clear();notify('Use the whiteboard or attach a photograph. Working is saved to your private account.')}
+  if(contextKey!==key){
+   contextKey=key;board.setContext(key);
+   notify(board.isDirty()?'Recovered unsaved working from this browser tab. Save it before leaving.':
+    board.getStrokeCount()?'Recovered the last drawing from this tab. Previously uploaded copies are saved privately.':
+    'Use the whiteboard or attach a photograph. Save working before leaving this tab.');
+  }
   drawList();
  }
  saveButton.addEventListener('click',()=>void saveDrawing().catch(()=>{}));
