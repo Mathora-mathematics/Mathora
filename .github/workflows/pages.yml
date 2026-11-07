@@ -64,6 +64,7 @@ jobs:
           node --check atelier-v9.js
           node --input-type=module --check < content-bank.js
           node --input-type=module --check < supabase/functions/invitations/index.ts
+          node scripts/check-studio-html-head.mjs
           node scripts/check-site.mjs
           node scripts/check-marketing-v5.mjs
           node scripts/check-experience-v6.mjs
