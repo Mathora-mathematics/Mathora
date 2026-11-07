@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/smoke-ui.mjs'
+      - 'scripts/check-studio-html-head.mjs'
       - '.github/workflows/browser-smoke.yml'
       - '*.html'
       - '*.css'
@@ -27,6 +28,8 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Validate Studio HTML structure
+        run: node scripts/check-studio-html-head.mjs
       - name: Check all public entry pages
         run: node scripts/smoke-ui.mjs
       - name: Upload viewport screenshots
