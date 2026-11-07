@@ -1,0 +1,47 @@
+name: MathsGrove live Edge preflight
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/edge-live-preflight.yml'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/invitations/index.ts'
+      - 'supabase/functions/grove-student-export/index.ts'
+      - '.github/workflows/edge-live-preflight.yml'
+permissions:
+  contents: read
+jobs:
+  cors:
+    name: Verify live browser-origin preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Check current Pages origin for both Supabase functions
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://nwakgkxytovprrrwyahs.supabase.co/functions/v1"
+          for function_name in invitations grove-student-export; do
+            headers="$(mktemp)"
+            status="$(curl --silent --show-error --max-time 20 --output /dev/null \
+              --dump-header "$headers" --write-out '%{http_code}' \
+              --request OPTIONS "$base/$function_name" \
+              --header 'Origin: https://mathsgrove.github.io' \
+              --header 'Access-Control-Request-Method: POST' \
+              --header 'Access-Control-Request-Headers: authorization, apikey, content-type')"
+            origin="$(grep -im1 '^access-control-allow-origin:' "$headers" | tr -d '\r' | awk '{print $2}' || true)"
+            echo "$function_name OPTIONS status=$status allow-origin=$origin"
+            rm -f "$headers"
+            if [[ "$status" != "200" && "$status" != "204" ]]; then
+              echo "::error::$function_name is rejecting preflight from the current Pages origin."
+              exit 1
+            fi
+            if [[ "$origin" != "https://mathsgrove.github.io" ]]; then
+              echo "::error::$function_name has the wrong browser origin."
+              exit 1
+            fi
+          done
+          echo "Both MathsGrove Edge functions accept the new Pages browser origin."
