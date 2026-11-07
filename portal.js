@@ -547,12 +547,71 @@ async function resume(a){
   await showQuestion();
  }catch(err){message('global-message',friendlyError(err),true)}
 }
-async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');text('work-suggested-time','Suggested '+Math.ceil((state.mockQuestionTimes[q.id]||q.marks*65)/60)+' min');if(window.MathsGroveMath)window.MathsGroveMath.write($('work-prompt'),q.prompt);else text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];state.drawingChanged=false;clearCanvas();board.setEnabled(true);await showFiles();beginQuestionTimer(q);text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
-async function persistAnswer(){if(!state.attempt||!state.questions.length)return;if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)throw Error('Mock time has expired; work can no longer be saved.');const q=state.questions[state.question];const fields={typed_answer:$('work-text').value.slice(0,20000),difficulty:$('work-difficulty').value||null,confidence:$('work-confidence').value||null,clarity:$('work-clarity').value||null};let data,error;if(state.answer){({data,error}=await sb.from('answers').update(fields).eq('id',state.answer.id).select().single())}else{({data,error}=await sb.from('answers').insert({...fields,attempt_id:state.attempt.id,question_id:q.id,student_id:state.user.id}).select().single())}if(error)throw error;state.answer=data;text('save-status','Saved securely');return data}
-let saving=false;async function autosave(){if(!state.attempt||saving)return;if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)return;saving=true;try{await persistAnswer()}catch(err){text('save-status','Save failed — '+friendlyError(err))}finally{saving=false}}
+async function showQuestion(){const q=state.questions[state.question];if(!q)return;$('question-workspace').hidden=false;text('work-count','QUESTION '+(state.question+1)+' OF '+state.questions.length);text('work-topic',q.topic);text('work-marks',q.marks+' MARKS');text('work-suggested-time','Suggested '+Math.ceil((state.mockQuestionTimes[q.id]||q.marks*65)/60)+' min');if(window.MathsGroveMath)window.MathsGroveMath.write($('work-prompt'),q.prompt);else text('work-prompt',q.prompt);const {data,error}=await sb.from('answers').select('id,typed_answer,difficulty,confidence,clarity').eq('attempt_id',state.attempt.id).eq('question_id',q.id).maybeSingle();if(error)throw error;state.answer=data||null;$('work-text').value=data?.typed_answer||'';$('work-difficulty').value=data?.difficulty||'';$('work-confidence').value=data?.confidence||'';$('work-clarity').value=data?.clarity||'';$('previous-work').disabled=state.question===0;$('save-and-next').textContent=state.question===state.questions.length-1?'Submit completed paper →':'Save & next →';state.photos=[];board.setContext('paper:'+state.attempt.id+':'+q.id);state.drawingChanged=board.isDirty();board.setEnabled(true);await showFiles();beginQuestionTimer(q);text('save-status','Question '+(state.question+1)+' ready');$('question-workspace').scrollIntoView({behavior:'smooth',block:'start'})}
+// Serialise answer writes; a delayed autosave must never overwrite a newer manual save.
+let answerWriteQueue=Promise.resolve();
+async function persistAnswer(){
+ if(!state.attempt||!state.questions.length)return;
+ if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)throw Error('Mock time has expired; work can no longer be saved.');
+ const attemptId=state.attempt.id,questionId=state.questions[state.question].id,studentId=state.user.id;
+ const fields={typed_answer:$('work-text').value.slice(0,20000),difficulty:$('work-difficulty').value||null,confidence:$('work-confidence').value||null,clarity:$('work-clarity').value||null};
+ const doWrite=async()=>{
+  const {data,error}=await sb.from('answers').upsert({
+   ...fields,attempt_id:attemptId,question_id:questionId,student_id:studentId
+  },{onConflict:'attempt_id,question_id'}).select().single();
+  if(error)throw error;
+  // A response for the previous question may finish after navigation.
+  if(state.attempt?.id===attemptId&&state.questions[state.question]?.id===questionId){
+   state.answer=data;
+   const latest=$('work-text').value.slice(0,20000)===fields.typed_answer&&
+    ($('work-difficulty').value||null)===fields.difficulty&&
+    ($('work-confidence').value||null)===fields.confidence&&
+    ($('work-clarity').value||null)===fields.clarity;
+   text('save-status',latest?'Saved securely':'Newer edits are waiting to save');
+  }
+  return data;
+ };
+ const queued=answerWriteQueue.catch(()=>{}).then(doWrite);
+ answerWriteQueue=queued;
+ return queued;
+}
+async function autosave(){
+ if(!state.attempt)return;
+ try{await persistAnswer()}catch(err){text('save-status','Save failed — '+friendlyError(err))}
+}
 ['work-text','work-difficulty','work-confidence','work-clarity'].forEach(id=>$(id).addEventListener(id==='work-text'?'input':'change',()=>{if(state.autosave)clearTimeout(state.autosave);text('save-status','Saving…');state.autosave=setTimeout(autosave,1300)}));
-async function uploadOne(file,kind){if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)throw Error('Time expired. No late uploads are permitted.');const q=state.questions[state.question];const valid=['image/png','image/jpeg','image/webp'];if(!valid.includes(file.type)||file.size>5*1024*1024)throw Error('Use a JPG, PNG or WebP image smaller than 5 MB.');const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';const path=[state.member.org_id,state.user.id,state.attempt.id,q.id,crypto.randomUUID()+'.'+ext].join('/');const {error}=await sb.storage.from('student-work').upload(path,file,{contentType:file.type,upsert:false});if(error)throw error;const {error:e}=await sb.from('answer_files').insert({attempt_id:state.attempt.id,question_id:q.id,student_id:state.user.id,org_id:state.member.org_id,storage_path:path,original_name:kind==='drawing'?'Whiteboard working':file.name,file_kind:kind});if(e)throw e}
-async function uploadPending(){if(!state.photos.length&&!state.drawingChanged)return;if(state.photos.length>3)throw Error('Maximum three photographs per question.');for(const file of state.photos)await uploadOne(file,'photo');state.photos=[];if(state.drawingChanged){const blob=await board.exportBlob();if(!blob)throw Error('Could not save whiteboard image.');await uploadOne(new File([blob],'whiteboard.png',{type:'image/png'}),'drawing');state.drawingChanged=false}await showFiles()}
+async function uploadOne(file,kind){
+ if(mockMode()&&state.mockSeconds-(performance.now()-state.mockAnchor)/1000<=0)throw Error('Time expired. No late uploads are permitted.');
+ const q=state.questions[state.question],attemptId=state.attempt.id,studentId=state.user.id,orgId=state.member.org_id;
+ const valid=['image/png','image/jpeg','image/webp'];
+ if(!valid.includes(file.type)||file.size>5*1024*1024)throw Error('Use a JPG, PNG or WebP image smaller than 5 MB.');
+ const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
+ const path=[orgId,studentId,attemptId,q.id,crypto.randomUUID()+'.'+ext].join('/');
+ const {error}=await sb.storage.from('student-work').upload(path,file,{contentType:file.type,upsert:false});
+ if(error)throw error;
+ const {error:e}=await sb.from('answer_files').insert({
+  attempt_id:attemptId,question_id:q.id,student_id:studentId,org_id:orgId,
+  storage_path:path,original_name:kind==='drawing'?'Whiteboard working':file.name,file_kind:kind
+ });
+ if(e)throw e;
+}
+async function uploadPending(){
+ if(!state.photos.length&&!state.drawingChanged)return;
+ if(state.photos.length>3)throw Error('Maximum three photographs per question.');
+ // Remove only successfully uploaded photos from the pending queue.
+ const pending=state.photos.splice(0);
+ for(let i=0;i<pending.length;i++){
+  try{await uploadOne(pending[i],'photo')}
+  catch(err){state.photos=pending.slice(i).concat(state.photos);throw err}
+ }
+ if(state.drawingChanged){
+  const version=board.getVersion(),blob=await board.exportBlob();
+  if(!blob)throw Error('Could not save whiteboard image.');
+  await uploadOne(new File([blob],'whiteboard.png',{type:'image/png'}),'drawing');
+  if(board.markSaved(version))state.drawingChanged=false;
+ }
+ await showFiles();
+}
 async function showFiles(){const q=state.questions[state.question];const {data,error}=await sb.from('answer_files').select('id,original_name,storage_path,file_kind').eq('attempt_id',state.attempt.id).eq('question_id',q.id);if(error)throw error;const el=$('attached-files');el.replaceChildren();for(const f of data||[]){const btn=document.createElement('button');btn.type='button';btn.className='small-button';btn.textContent='📎 '+f.original_name+' ↗';btn.onclick=async()=>{const {data:d,error:e}=await sb.storage.from('student-work').createSignedUrl(f.storage_path,60);if(e){message('global-message',friendlyError(e),true);return}window.open(d.signedUrl,'_blank','noopener,noreferrer')};el.append(btn)}if(state.photos.length){const pending=document.createElement('span');pending.textContent=state.photos.length+' photo(s) selected for upload';el.append(pending)}}
 $('work-photos').addEventListener('change',e=>{state.photos=Array.from(e.target.files||[]).slice(0,3);const el=$('attached-files');const row=document.createElement('span');row.textContent=state.photos.length+' new photo(s) selected; saved when you continue.';el.append(row);e.target.value=''});
 async function saveNext(){if(state.autosave)clearTimeout(state.autosave);const btn=$('save-and-next');btn.disabled=true;try{await persistAnswer();await uploadPending();if(state.question<state.questions.length-1){state.question++;await showQuestion()}else{if(mockMode()){await finishMockEarly();return}if(!confirm('Submit your paper for examiner review? You will not be able to edit it afterwards.'))return;const {error}=await sb.from('attempts').update({status:'submitted',submitted_at:new Date().toISOString()}).eq('id',state.attempt.id);if(error)throw error;stopQuestionTimer();state.attempt=null;state.questions=[];$('question-workspace').hidden=true;await refresh();await renderPaperList();showPanel('progress');message('global-message','Your paper has been submitted and saved for authorised examiner review.')}}catch(err){message('global-message',friendlyError(err),true)}finally{btn.disabled=false}}

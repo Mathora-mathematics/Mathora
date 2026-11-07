@@ -28,6 +28,7 @@ jobs:
           node --check marketing.js
           node --check whiteboard.js
           node scripts/check-whiteboard-v2.mjs
+          node scripts/check-paper-save-queue.mjs
           node --check sample.js
           node --check sample-extras.js
           node --check insights-upgrade.js
