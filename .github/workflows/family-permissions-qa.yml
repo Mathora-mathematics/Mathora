@@ -1,0 +1,26 @@
+name: MathsGrove family permission regression
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'family-access.js'
+      - 'scripts/check-family-refresh-race.mjs'
+      - 'scripts/check-family-access.mjs'
+      - '.github/workflows/family-permissions-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  family-guards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate family dashboard module
+        run: node --input-type=module --check < family-access.js
+      - name: Test stale permission responses and sign-out
+        run: node scripts/check-family-refresh-race.mjs
+      - name: Test linked family access guards
+        run: node scripts/check-family-access.mjs

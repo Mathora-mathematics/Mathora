@@ -81,40 +81,65 @@ function render(){
  window.MGInsights?.family(p,parent);
  view('fa-dashboard');
 }
+// A user may sign out, switch accounts or trigger another refresh while a slow
+// network request is still pending. Only the newest permission check may render.
+let accessGeneration=0;
 async function access(){
- // Never retain a previously linked learner's name or results during a new permissions check.
+ const generation=++accessGeneration;
+ const isCurrent=()=>generation===accessGeneration;
+ // Clear previously authorised learner records before every permissions check.
  records=[];view('fa-loading');
  if(!sb){view('fa-login');err('fa-login-message','The secure database connection has not been configured.',true);return}
  try{
   const session=await sb.auth.getSession();
+  if(!isCurrent())return;
   if(session.error)throw session.error;
-  if(!session.data?.session?.user){location.replace('./portal.html');return}
+  if(!session.data?.session?.user){user=null;location.replace('./portal.html');return}
   const verify=await sb.auth.getUser();
-  if(verify.error||!verify.data?.user?.email_confirmed_at){location.replace('./portal.html');return}
+  if(!isCurrent())return;
+  if(verify.error||!verify.data?.user?.email_confirmed_at||
+     verify.data.user.id!==session.data.session.user.id){
+   user=null;location.replace('./portal.html');return;
+  }
   user=verify.data.user;$('fa-sign-out').hidden=false;
   const claim=await sb.rpc('claim_my_learner_views');
+  if(!isCurrent())return;
   if(claim.error)throw claim.error;
   const result=await sb.rpc('get_my_learner_views');
+  if(!isCurrent())return;
   if(result.error)throw result.error;
-  records=Array.isArray(result.data?.learners)?result.data.learners:[];
-  if(records.length){
-   await Promise.all(records.map(async learner=>{
+  const nextRecords=Array.isArray(result.data?.learners)?result.data.learners:[];
+  if(nextRecords.length){
+   await Promise.all(nextRecords.map(async learner=>{
     try{
      const {data,error}=await sb.rpc('baseline_family_report',{p_student:learner.student_id});
      if(!error)learner.baseline=data;
     }catch{}
-   }))
+   }));
   }
-
+  if(!isCurrent())return;
+  records=nextRecords;
   if(!records.length){
-    view('fa-pending');
-    set('fa-pending-copy',claim.data?.awaiting_student>0?'Your invitation is confirmed, but the student has not yet activated their Grove Exam account. Please return after the student signs in.':'Your email is verified, but no active Grove Exam learner is linked to this account. Ask the administrator to check the nominated email and current programme.');
-  }else render()
- }catch(e){view('fa-pending');err('fa-pending-message','Linked access is not available yet: '+(e.message||'Unknown error')+'. Check that the access migration is installed and your invitation is active.',true)}
+   view('fa-pending');
+   set('fa-pending-copy',claim.data?.awaiting_student>0?
+    'Your invitation is confirmed, but the student has not yet activated their Grove Exam account. Please return after the student signs in.':
+    'Your email is verified, but no active Grove Exam learner is linked to this account. Ask the administrator to check the nominated email and current programme.');
+  }else render();
+ }catch(e){
+  if(!isCurrent())return;
+  records=[];view('fa-pending');
+  err('fa-pending-message','Linked access is not available yet: '+(e.message||'Unknown error')+'. Check that the access migration is installed and your invitation is active.',true);
+ }
 }
-$('fa-sign-out').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();records=[];user=null;$('fa-sign-out').hidden=true;location.replace('./portal.html')});
+async function leaveFamilyDashboard(){
+ // Invalidate every in-flight permission response before initiating sign-out.
+ ++accessGeneration;records=[];user=null;view('fa-loading');
+ $('fa-sign-out').hidden=true;
+ try{if(sb)await sb.auth.signOut()}finally{location.replace('./portal.html')}
+}
+$('fa-sign-out').addEventListener('click',()=>void leaveFamilyDashboard());
 $('fa-retry').addEventListener('click',()=>{view('fa-loading');void access()});
-$('fa-back').addEventListener('click',async()=>{if(sb)await sb.auth.signOut();$('fa-sign-out').hidden=true;location.replace('./portal.html')});
+$('fa-back').addEventListener('click',()=>void leaveFamilyDashboard());
 $('fa-learner-select').addEventListener('change',()=>{
  const panel=$('fa-dashboard');
  panel.classList.remove('mg6-repaint');

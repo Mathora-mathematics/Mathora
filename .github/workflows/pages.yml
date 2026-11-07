@@ -72,6 +72,7 @@ jobs:
           node scripts/check-atelier-v9.mjs
           node scripts/check-insights.mjs
           node scripts/check-family-access.mjs
+          node scripts/check-family-refresh-race.mjs
           node scripts/check-password-auth.mjs
           node scripts/test-password-auth.mjs
           node scripts/check-feedback-auth.mjs
