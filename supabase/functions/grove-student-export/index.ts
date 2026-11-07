@@ -2,7 +2,7 @@ import { makeStudentPdfs, type Evidence } from './archive-pdfs.ts';
 import { createClient } from 'npm:@supabase/supabase-js@2.57.0';
 import { zipSync, strToU8 } from 'npm:fflate@0.8.2';
 
-const site='https://mathora-mathematics.github.io';
+const site='https://mathsgrove.github.io';
 const cors={'Access-Control-Allow-Origin':site,'Access-Control-Allow-Headers':'authorization, apikey, content-type, x-client-info','Access-Control-Allow-Methods':'POST, OPTIONS','Vary':'Origin'};
 const send=(obj:unknown,status=200)=>Response.json(obj,{status,headers:{...cors,'Cache-Control':'no-store'}});
 const uri=Deno.env.get('SUPABASE_URL')||'';
