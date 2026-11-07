@@ -1,0 +1,38 @@
+name: MathsGrove browser smoke
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/smoke-ui.mjs'
+      - '.github/workflows/browser-smoke.yml'
+      - '*.html'
+      - '*.css'
+      - '*.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium-smoke:
+    name: Mobile and desktop smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install headless Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Check all public entry pages
+        run: node scripts/smoke-ui.mjs
+      - name: Upload viewport screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maths-grove-viewport-screenshots
+          path: audits/browser-smoke/*.png
+          if-no-files-found: ignore
