@@ -10,6 +10,7 @@ on:
       - 'studio.js'
       - 'scripts/check-whiteboard-v2.mjs'
       - 'scripts/check-paper-save-queue.mjs'
+      - 'scripts/check-assigned-answer-reliability.mjs'
       - '.github/workflows/whiteboard-qa.yml'
   workflow_dispatch:
 
@@ -35,3 +36,5 @@ jobs:
         run: node scripts/check-whiteboard-v2.mjs
       - name: Test paper autosave concurrency
         run: node scripts/check-paper-save-queue.mjs
+      - name: Test assigned-answer save locking and rollback
+        run: node scripts/check-assigned-answer-reliability.mjs

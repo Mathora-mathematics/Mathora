@@ -53,12 +53,35 @@ export function initAssignedPractice(db){
   }catch(e){set('mg-auto-caption',e.message||'Unable to open the assignment.')}
   finally{busy=false}
  }
+ // Lock the radio controls until Supabase confirms the selected answer. This prevents
+ // a second tap from appearing selected while its save is silently ignored.
+ function lockAnswerControls(locked){
+  $('mg-practice-options').querySelectorAll('input[name="mg-answer"]').forEach(input=>{input.disabled=locked});
+  $('mg-practice-back').disabled=locked||pos===1;
+  $('mg-practice-next').disabled=locked||pos>=task?.question_count;
+  $('mg-practice-finish').disabled=locked;
+ }
  async function save(c){
-  if(busy||task?.status!=='active')return;busy=true;set('mg-practice-save','Saving answer…');
-  try{const data=await rpc('grove_task_answer',{p_task:task.task_id,p_position:pos,p_choice:c});
+  if(busy||task?.status!=='active')return;
+  const currentTask=task,taskId=task.task_id,answerPosition=pos;
+  const question=currentTask.questions?.find(q=>q.position===answerPosition);
+  if(!question)return;
+  busy=true;lockAnswerControls(true);set('mg-practice-save','Saving answer…');
+  try{
+   const data=await rpc('grove_task_answer',{p_task:taskId,p_position:answerPosition,p_choice:c});
    if(!data?.ok)throw Error('This sitting is closed.');
-   task.questions.find(q=>q.position===pos).selected=c;showQuestion();
-  }catch(e){set('mg-practice-save','Not saved: '+e.message)}finally{busy=false}
+   question.selected=c;
+   if(task?.task_id===taskId&&pos===answerPosition)showQuestion();
+  }catch(e){
+   // Re-render the last server-confirmed answer rather than leaving a failed
+   // selection checked in the browser.
+   if(task?.task_id===taskId&&pos===answerPosition){
+    showQuestion();set('mg-practice-save','Not saved: '+e.message+'. Select your answer again.');
+   }
+  }finally{
+   busy=false;
+   if(task?.task_id===taskId&&pos===answerPosition)lockAnswerControls(false);
+  }
  }
  function showQuestion(){
   let q=task.questions?.find(x=>x.position===pos);if(!q)return;
