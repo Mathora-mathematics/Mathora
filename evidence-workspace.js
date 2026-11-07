@@ -39,7 +39,7 @@ export function createEvidenceWorkspace({db,kind,canvas,toolbar,photos,saveButto
  }
  async function saveDrawing(){
   if(!board.isDirty())return true;
-  const version=board.getVersion();
+  const version=typeof board.getVersion==='function'?board.getVersion():undefined;
   const blob=await board.exportBlob();
   if(!blob)throw Error('Could not export the whiteboard.');
   await upload(blob,'Whiteboard working — question '+getPosition(),'whiteboard',version);
@@ -71,9 +71,10 @@ export function createEvidenceWorkspace({db,kind,canvas,toolbar,photos,saveButto
  function switchQuestion(){
   const key=getSession()+':'+getPosition();
   if(contextKey!==key){
-   contextKey=key;board.setContext(key);
+   contextKey=key;
+   if(typeof board.setContext==='function')board.setContext(key);else board.clear();
    notify(board.isDirty()?'Recovered unsaved working from this browser tab. Save it before leaving.':
-    board.getStrokeCount()?'Recovered the last drawing from this tab. Previously uploaded copies are saved privately.':
+    (typeof board.getStrokeCount==='function'&&board.getStrokeCount())?'Recovered the last drawing from this tab. Previously uploaded copies are saved privately.':
     'Use the whiteboard or attach a photograph. Save working before leaving this tab.');
   }
   drawList();
