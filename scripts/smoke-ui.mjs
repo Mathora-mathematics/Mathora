@@ -62,7 +62,12 @@ try{
       overflow:Math.max(doc.scrollWidth,document.body?.scrollWidth||0)-doc.clientWidth,
       imageMissingAlt:images.filter(x=>!x.hasAttribute('alt')).length,
       unlabeledButtons,brokenHashAnchors,
-      bodyCharacters:document.body?.innerText?.trim().length||0
+      bodyCharacters:document.body?.innerText?.trim().length||0,
+      overflowElements:[...document.querySelectorAll('body *')].map(el=>{
+       const r=el.getBoundingClientRect();
+       return {tag:el.tagName.toLowerCase(),id:el.id,cls:String(el.className||'').slice(0,100),
+        left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)}
+      }).filter(r=>r.right>doc.clientWidth+8&&r.width>0).sort((a,b)=>b.right-a.right).slice(0,10)
      };
     });
     const status=response?.status()||0;
